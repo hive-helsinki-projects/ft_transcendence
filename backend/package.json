@@ -7,18 +7,11 @@
 	"type": "commonjs",
 	"main": "index.js",
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1",
-		"ts-node": "ts-node",
-		"start": "ts-node src/index.ts",
-		"dev": "ts-node-dev src/index.ts"
+		"start": "node index.js",
+		"dev": "node --watch index.js",
+		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"dependencies": {
 		"express": "^4.21.2"
-	},
-	"devDependencies": {
-		"@types/express": "^5.0.1",
-		"ts-node": "^10.9.2",
-		"ts-node-dev": "^2.0.0",
-		"typescript": "^5.8.2"
 	}
 }
