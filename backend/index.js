@@ -1,11 +1,16 @@
-const express = require('express')
-const app = express()
-
-app.get('/', (_req, res) => {
-	res.send('<h1>Hello world! </h1>')
+const Fastify = require('fastify')
+const fastify = Fastify({
+  logger: true
 })
 
-const PORT = 3001
-app.listen(PORT, () => {
-	console.log(`Server running on port ${PORT}`)
+fastify.get('/', async function handler (request, reply) {
+	return { hello: 'world' }
 })
+
+fastify.listen({ port: 3001, host: '0.0.0.0' }, (err, address) => {
+	if (err) {
+		fastify.log.error(err);
+		process.exit(1);
+	}
+	fastify.log.info(`Server listening at ${address}`);
+});
