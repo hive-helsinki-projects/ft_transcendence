@@ -9,15 +9,15 @@ ft_transcendence is a web-based multiplayer Pong game that integrates real-time 
 We are a team of five developers working together to complete this project within a two-month timeframe (01.04 - 01.06). Our focus is on designing an engaging gaming experience while ensuring security and performance best practices.
 
 ### Developers
-- @ito-miyuki 
-- @k2matu 
-- @Vallehtelia 
-- @oliverhertzberg 
-- @lkilpela 
-
+- [Miyuki Ito](https://github.com/ito-miyuki)
+- [Kim Matjuhin](https://github.com/k2matu)
+- [Valle Vaalanti](https://github.com/Vallehtelia)
+- [Oliver Hertzberg](https://github.com/oliverhertzberg)
+- [Lumi Kilpeläinen](https://github.com/lkilpela)
+  
 ## Features
 
-- 🎮 Pong gameplay: Play 1v1 Pong matches locally.
+- 🎮 Pong gameplay: Play 1v1 Pong matches & multiplayers locally.
 
 - 🔐 User management: Registration, authentication, and user profiles.
 
@@ -59,7 +59,7 @@ We are a team of five developers working together to complete this project withi
 
 - ✅ Major: Implement Two-Factor Authentication (2FA) and JWT.
 
-Accessibility
+### Accessibility
 
 - ✅ Minor: Expanding browser compatibility.
 
