@@ -8,10 +8,13 @@
 	"main": "index.js",
 	"scripts": {
 		"start": "node index.js",
-		"dev": "node --watch index.js",
+		"dev": "nodemon index.js",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"dependencies": {
 		"fastify": "^5.2.1"
+	},
+	"devDependencies": {
+		"nodemon": "^3.1.9"
 	}
 }
