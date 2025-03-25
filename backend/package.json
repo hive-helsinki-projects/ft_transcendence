@@ -12,7 +12,11 @@
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"dependencies": {
-		"fastify": "^5.2.1"
+		"@fastify/websocket": "^11.0.2",
+		"better-sqlite3": "^11.9.1",
+		"dotenv": "^16.4.7",
+		"fastify": "^5.2.1",
+		"fastify-cors": "^6.0.3"
 	},
 	"devDependencies": {
 		"nodemon": "^3.1.9"
