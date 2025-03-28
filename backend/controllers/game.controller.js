@@ -1,7 +1,7 @@
-const handleWebSocket = (connection, request) => {
-    connection.socket.on('message', (message) => {
+const handleWebSocket = (connection, req) => {
+    connection.on('message', (message) => {
       console.log('Received:', message);
-      connection.socket.send(`Echo: ${message}`);
+      connection.send(`Echo: ${message}`);
     });
   };
   
