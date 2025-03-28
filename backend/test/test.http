@@ -1,11 +1,11 @@
 ### GET ALL USERS
-GET http://localhost:3001/users HTTP/1.1
+GET http://localhost:3001/api/users HTTP/1.1
 
 ### GET USER BY USERNAME
-GET http://localhost:3001/users/kmatjuhi HTTP/1.1
+GET http://localhost:3001/api/users/kmatjuhi HTTP/1.1
 
 ### CREATE USER KIM
-POST http://localhost:3001/users HTTP/1.1
+POST http://localhost:3001/api/users HTTP/1.1
 Content-Type: application/json
 
 {
@@ -15,7 +15,7 @@ Content-Type: application/json
 }
 
 ### CREATE USER LUMI
-POST http://localhost:3001/users HTTP/1.1
+POST http://localhost:3001/api/users HTTP/1.1
 Content-Type: application/json
 
 {

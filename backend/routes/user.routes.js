@@ -58,13 +58,13 @@ const postUserOpts = {
 // Define user routes
 function userRoutes(fastify, options, done) {
 	// Get all users
-	fastify.get('/users', getUsersOpts)
+	fastify.get('/api/users', getUsersOpts)
 
 	// Get a single user by username
-	fastify.get('/users/:username', getUserOpts)
+	fastify.get('/api/users/:username', getUserOpts)
 	
 	// Create a user
-	fastify.post('/users', postUserOpts)
+	fastify.post('/api/users', postUserOpts)
 	
 	done()
 }

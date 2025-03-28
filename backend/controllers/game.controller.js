@@ -6,4 +6,3 @@ const handleWebSocket = (connection, req) => {
   };
   
   export default { handleWebSocket };
-  
