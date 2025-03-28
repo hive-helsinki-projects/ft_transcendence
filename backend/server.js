@@ -14,6 +14,7 @@ fastify.register(fastifyJwt, {
 
 // Register routes
 await fastify.register(import('./routes/user.routes.js'))
+await fastify.register(import('./routes/login.routes.js'))
 
 // Start the server
 const start = async () => {
