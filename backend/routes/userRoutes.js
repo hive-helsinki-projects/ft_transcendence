@@ -4,14 +4,16 @@ import userController from '../controllers/userController.js';
 const User = {
 	type: 'object',
 	properties: {
-		id: { type: 'string' },
+		id: { type: 'integer' },
 		username: { type: 'string' },
+		display_name: { type: 'string' },
 		email: { type: 'string' },
-		password: { type: 'string' },
 		avatar_url: { type: 'string', nullable: true },
-		status: { type: 'string', enum: ['online', 'offline', 'busy']},
 		created_at: { type: 'string', format: 'date-time' },
 		updated_at: { type: 'string', format: 'date-time' },
+		online: { type: 'boolean' },
+		wins: { type: 'integer'},
+		losses: { type: 'integer'}
 	},
 }
 
@@ -87,15 +89,15 @@ function userRoutes(fastify, options) {
 	fastify.get('/api/users', getUsersOpts)
 	console.log(getUsersOpts.handler);
 
-	// Get a single user by username
-	fastify.get('/api/users/:username', getUserOpts)
+	// Get a single user by id
+	fastify.get('/api/users/:id', getUserOpts)
 	
 	// Create a user
 	fastify.post('/api/users', postUserOpts)
 	console.log(userController.createUser);
 	
 	// Update user information
-	fastify.put('/api/users/:username', { onRequest: [fastify.jwtAuth], ...putUserOpts })
+	fastify.put('/api/users/:id', { onRequest: [fastify.jwtAuth], ...putUserOpts })
 }
 
 export default userRoutes;

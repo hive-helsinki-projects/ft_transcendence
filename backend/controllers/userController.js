@@ -3,7 +3,12 @@ import bcrypt from 'bcryptjs';
 
 const getUsers = async (req, reply) => {
 	try {
-		const users = db.prepare('SELECT * FROM users').all();
+		const users = db.prepare(`
+			SELECT * 
+			FROM users u
+			LEFT JOIN user_online_status uos ON u.id = uos.user_id
+			LEFT JOIN user_stats us ON u.id = us.user_id;`).all()
+
 		return reply.send(users);
 	} catch (error) {
 		return reply.code(500).send({ error: 'Failed to fetch users' });
@@ -11,10 +16,11 @@ const getUsers = async (req, reply) => {
 }
 
 const getUser = async (req, reply) => {
-	const { username } = req.params
+	const { id } = req.params
+
 	try {
-		const stmt = db.prepare('SELECT * FROM users WHERE username = ?')
-		const user = stmt.get(username);
+		const stmt = db.prepare('SELECT * FROM users WHERE id = ?')
+		const user = stmt.get(id);
 		
 		if (!user) {
 			return reply.code(404).send({ error: 'User not found' })
@@ -31,7 +37,13 @@ const createUser = async (req, reply) => {
 
 	try {
 		const passwordHash = await bcrypt.hash(password, saltRounds);
-		db.prepare('INSERT INTO users (username, email, password) VALUES (?, ?, ?)').run(username, email, passwordHash);
+		const result = db.prepare('INSERT INTO users (username, display_name, email, password_hash) VALUES (?, ?, ?, ?)').run(username, username, email, passwordHash);
+		
+		const userId = parseInt(result.lastInsertRowid)
+		
+		db.prepare('INSERT INTO user_online_status (user_id) VALUES (?)').run(userId);
+		db.prepare('INSERT INTO user_stats (user_id) VALUES (?)').run(userId);
+		
 		return reply.status(201).send({ message: 'User created successfully' });
 	} catch (error) {
 		if (error.message.includes('UNIQUE constraint failed')) {
@@ -42,21 +54,21 @@ const createUser = async (req, reply) => {
 }
 
 const updateUser = async (req, reply) => {
-	const { username } = req.params;
+	const { id } = req.params;
 	const { newUsername, password, email, avatar_url, status } = req.body;
-	
-	if (req.user.username !== username) {
+
+	if (req.user.id !== parseInt(id)) {
 		return reply.code(403).send({ error: 'Unauthoritized to update user information' })
 	}
 	
-	const user = db.prepare('SELECT * FROM users WHERE username = ?').get(username);
-		if (!user) {
-			return reply.code(404).send({ error: 'User not found' });
-		}
+	const user = db.prepare('SELECT * FROM users WHERE id = ?').get(id);
+	if (!user) {
+		return reply.code(404).send({ error: 'User not found' });
+	}
 	
 	try {
 		if (newUsername && newUsername !== user.username) {
-			const existingUser = db.prepare('SELECT * FROM users WHERE username = ?').get(username);
+			const existingUser = db.prepare('SELECT * FROM users WHERE username = ?').get(newUsername);
 			if (existingUser) {
 				return reply.code(400).send({ error: 'Username already taken '});
 			}
@@ -64,30 +76,28 @@ const updateUser = async (req, reply) => {
 		
 		const updateUser = {
 			username: newUsername ?? user.username,
-			password: user.password,
+			password_hash: user.password_hash,
 			email: email ?? user.email,
 			avatar_url: avatar_url ?? user.avatar_url,
-			status: status ?? user.status,
 		}
 		
 		if (password) {
 			const saltRounds = parseInt(process.env.SALT_ROUNDS, 10) || 10;
-			updateUser.password = await bcrypt.hash(password, saltRounds)
+			updateUser.password_hash = await bcrypt.hash(password, saltRounds)
 		}
 		
 		db.prepare(`
 			UPDATE users
-			set username = ?, password = ?, email = ?, avatar_url = ?, status = ?
+			set username = ?, password_hash = ?, email = ?, avatar_url = ?, updated_at = CURRENT_TIMESTAMP
 			WHERE username = ?
-		`).run(updateUser.username, updateUser.password, updateUser.email, updateUser.avatar_url, updateUser.status, user.username)
+		`).run(updateUser.username, updateUser.password_hash, updateUser.email, updateUser.avatar_url, user.username)
 		
 		return reply.send({
 			message: 'User updated successfully',
 			user: {
 				username: updateUser.username,
 				email: updateUser.email,
-				avatar_url: updateUser.avatar_url,
-				status: updateUser.status,
+				avatar_url: updateUser.avatar_url
 			},
 		});
 	} catch (error) {

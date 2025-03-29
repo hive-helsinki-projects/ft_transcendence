@@ -1,8 +1,8 @@
 ### GET ALL USERS
 GET http://localhost:3001/api/users HTTP/1.1
 
-### GET USER BY USERNAME
-GET http://localhost:3001/api/users/kmatjuhi HTTP/1.1
+### GET USER BY ID
+GET http://localhost:3001/api/users/1 HTTP/1.1
 
 ### CREATE USER KIM
 POST http://localhost:3001/api/users HTTP/1.1
@@ -24,11 +24,11 @@ Content-Type: application/json
 	"password": "password"
 }
 
-### UPDATE USER KIM
-PUT http://localhost:3001/api/users/kmatjuhi HTTP/1.1
+### UPDATE USER BY ID
+PUT http://localhost:3001/api/users/1 HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImttYXRqdWhpIiwiaWQiOjEsImlhdCI6MTc0MzIxNjUxMiwiZXhwIjoxNzQzMjIwMTEyfQ.Ib3qOPfMraH8c8J9P-a-u24SgQ80PMHvixnJDoTJ5wM
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImttYXRqdWhpIiwiaWQiOjEsImlhdCI6MTc0MzI4MzEyMSwiZXhwIjoxNzQzMjg2NzIxfQ.0FqVzlunBKUrhomSgLU0ONrxDa2cLDxl2XsJRRgk1cs
 
 {
-	"email": "test@hive.fr"
+	"email": "newtest@hive.fr"
 }
