@@ -1,6 +1,6 @@
 import Fastify from 'fastify';
 import dotenv from 'dotenv';
-import fastifyJwt from 'fastify-jwt';
+import jwtPlugin from './plugins/jwt-plugin.js';
 
 // Load environment variables
 dotenv.config();
@@ -8,9 +8,7 @@ dotenv.config();
 // Initialize fastify
 const fastify = Fastify({ logger: true });
 
-fastify.register(fastifyJwt, {
-	secret: process.env.JWT_SECRET,
-})
+fastify.register(jwtPlugin);
 
 // Register routes
 await fastify.register(import('./routes/user.routes.js'))

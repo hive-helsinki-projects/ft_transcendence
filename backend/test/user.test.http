@@ -23,3 +23,12 @@ Content-Type: application/json
 	"email": "lkilpela@hive.fr",
 	"password": "password"
 }
+
+### UPDATE USER KIM
+PUT http://localhost:3001/api/users/kmatjuhi HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImttYXRqdWhpIiwiaWQiOjEsImlhdCI6MTc0MzIxNjUxMiwiZXhwIjoxNzQzMjIwMTEyfQ.Ib3qOPfMraH8c8J9P-a-u24SgQ80PMHvixnJDoTJ5wM
+
+{
+	"email": "hello@hive.fr"
+}
