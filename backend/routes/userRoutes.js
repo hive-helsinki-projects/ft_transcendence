@@ -51,7 +51,13 @@ const postUserOpts = {
 			},
 		},
 		response: {
-			201: User,
+			201: {
+				type: 'object',
+				properties: {
+					message: { type: 'string' },
+					user: User,
+				}
+			}
 		},
 	},
 	handler: userController.createUser,
@@ -64,10 +70,10 @@ const putUserOpts = {
 			required: [],
 			properties: {
 				username: { type: 'string', nullable: true },
-				password: { type: 'string', nullable: true },
+				display_name: { type: 'string', nullable: true },
 				email: { type: 'string', nullable: true },
-				avatar_url: { type: 'string', nullable: true },
-				status: { type: 'string', enum: ['online', 'offline', 'busy']}
+				password: { type: 'string', nullable: true },
+				avatar_url: { type: 'string', nullable: true }
 			},
 		},
 		response: {
@@ -94,7 +100,6 @@ function userRoutes(fastify, options) {
 	
 	// Create a user
 	fastify.post('/api/users', postUserOpts)
-	console.log(userController.createUser);
 	
 	// Update user information
 	fastify.put('/api/users/:id', { onRequest: [fastify.jwtAuth], ...putUserOpts })

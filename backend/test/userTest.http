@@ -24,11 +24,30 @@ Content-Type: application/json
 	"password": "password"
 }
 
-### UPDATE USER BY ID
+### CREATE TEST USER
+POST http://localhost:3001/api/users HTTP/1.1
+Content-Type: application/json
+
+{
+	"username": "t0010101010112323user",
+	"email": "dtte3a9199291j",
+	"password": "password"
+}
+
+### UPDATE USER BY ID - EMAIL
 PUT http://localhost:3001/api/users/1 HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImttYXRqdWhpIiwiaWQiOjEsImlhdCI6MTc0MzI4MzEyMSwiZXhwIjoxNzQzMjg2NzIxfQ.0FqVzlunBKUrhomSgLU0ONrxDa2cLDxl2XsJRRgk1cs
 
 {
-	"email": "newtest@hive.fr"
+	"email": "newtsadasst@hive.fr"
+}
+
+### UPDATE USER BY ID - DISPLAY NAME
+PUT http://localhost:3001/api/users/2 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImxraWxwZWxhIiwiaWQiOjIsImlhdCI6MTc0MzI4NTgwMywiZXhwIjoxNzQzMjg5NDAzfQ.cUhAYsv4tOsXTnM5zgY0_eAAEf0HnIj69HVBLpqDgp8
+
+{
+	"display_name": "321321"
 }
