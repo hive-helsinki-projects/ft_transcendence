@@ -71,7 +71,8 @@ const updateUser = async (req, reply) => {
 		}
 		
 		if (password) {
-				updateUser.password = await bcrypt.hash(password, process.env.SALT_ROUNDS)
+			const saltRounds = parseInt(process.env.SALT_ROUNDS, 10) || 10;
+			updateUser.password = await bcrypt.hash(password, saltRounds)
 		}
 		
 		db.prepare(`

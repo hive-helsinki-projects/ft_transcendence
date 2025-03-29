@@ -1,4 +1,4 @@
-import loginController from '../controllers/login.controller.js'
+import loginController from '../controllers/loginController.js'
 
 const loginOpts = {
 	schema: {

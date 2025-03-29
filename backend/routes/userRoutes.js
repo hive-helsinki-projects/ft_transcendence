@@ -1,4 +1,4 @@
-import userController from '../controllers/user.controller.js';
+import userController from '../controllers/userController.js';
 
 // User schema
 const User = {
