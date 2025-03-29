@@ -39,12 +39,17 @@ const createUser = async (req, reply) => {
 		const passwordHash = await bcrypt.hash(password, saltRounds);
 		const result = db.prepare('INSERT INTO users (username, display_name, email, password_hash) VALUES (?, ?, ?, ?)').run(username, username, email, passwordHash);
 		
-		const userId = parseInt(result.lastInsertRowid)
+		const userId = result.lastInsertRowid
 		
 		db.prepare('INSERT INTO user_online_status (user_id) VALUES (?)').run(userId);
 		db.prepare('INSERT INTO user_stats (user_id) VALUES (?)').run(userId);
 		
-		return reply.status(201).send({ message: 'User created successfully' });
+		const user = db.prepare('SELECT * FROM users WHERE id = ?').get(userId);
+	
+		return reply.code(201).send({ 
+			message: 'User created successfully',
+			user
+		});
 	} catch (error) {
 		if (error.message.includes('UNIQUE constraint failed')) {
 			return reply.code(409).send({ error: 'Username or email already exists' });
@@ -55,7 +60,7 @@ const createUser = async (req, reply) => {
 
 const updateUser = async (req, reply) => {
 	const { id } = req.params;
-	const { newUsername, password, email, avatar_url, status } = req.body;
+	const { username, display_name, password, email, avatar_url } = req.body;
 
 	if (req.user.id !== parseInt(id)) {
 		return reply.code(403).send({ error: 'Unauthoritized to update user information' })
@@ -67,15 +72,23 @@ const updateUser = async (req, reply) => {
 	}
 	
 	try {
-		if (newUsername && newUsername !== user.username) {
-			const existingUser = db.prepare('SELECT * FROM users WHERE username = ?').get(newUsername);
+		if (username && username !== user.username) {
+			const existingUser = db.prepare('SELECT * FROM users WHERE username = ?').get(username);
 			if (existingUser) {
 				return reply.code(400).send({ error: 'Username already taken '});
 			}
 		}
 		
+		if (display_name && display_name !== user.display_name) {
+			const existingUser = db.prepare('SELECT * FROM users WHERE display_name = ?').get(display_name);
+			if (existingUser) {
+				return reply.code(400).send({ error: 'Display name already taken '});
+			}
+		}
+		
 		const updateUser = {
-			username: newUsername ?? user.username,
+			username: username ?? user.username,
+			display_name: display_name ?? user.display_name,
 			password_hash: user.password_hash,
 			email: email ?? user.email,
 			avatar_url: avatar_url ?? user.avatar_url,
@@ -88,17 +101,13 @@ const updateUser = async (req, reply) => {
 		
 		db.prepare(`
 			UPDATE users
-			SET username = ?, password_hash = ?, email = ?, avatar_url = ?, updated_at = CURRENT_TIMESTAMP
+			SET username = ?, display_name = ?, password_hash = ?, email = ?, avatar_url = ?, updated_at = CURRENT_TIMESTAMP
 			WHERE username = ?
-		`).run(updateUser.username, updateUser.password_hash, updateUser.email, updateUser.avatar_url, user.username)
+		`).run(updateUser.username, updateUser.display_name, updateUser.password_hash, updateUser.email, updateUser.avatar_url, user.username)
 		
-		return reply.send({
+		return reply.code(200).send({
 			message: 'User updated successfully',
-			user: {
-				username: updateUser.username,
-				email: updateUser.email,
-				avatar_url: updateUser.avatar_url
-			},
+			user: updateUser
 		});
 	} catch (error) {
 		return reply.code(500).send({ error: 'Internal server error '})
