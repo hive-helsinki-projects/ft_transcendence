@@ -41,8 +41,62 @@ const createUser = async (req, reply) => {
 	}
 }
 
+const updateUser = async (req, reply) => {
+	const { username } = req.params;
+	const { newUsername, password, email, avatar_url, status } = req.body;
+	
+	if (req.user.username !== username) {
+		return reply.code(403).send({ error: 'Unauthoritized to update user information' })
+	}
+	
+	const user = db.prepare('SELECT * FROM users WHERE username = ?').get(username);
+		if (!user) {
+			return reply.code(404).send({ error: 'User not found' });
+		}
+	
+	try {
+		if (newUsername && newUsername !== user.username) {
+			const existingUser = db.prepare('SELECT * FROM users WHERE username = ?').get(username);
+			if (existingUser) {
+				return reply.code(400).send({ error: 'Username already taken '});
+			}
+		}
+		
+		const updateUser = {
+			username: newUsername ?? user.username,
+			password: user.password,
+			email: email ?? user.email,
+			avatar_url: avatar_url ?? user.avatar_url,
+			status: status ?? user.status,
+		}
+		
+		if (password) {
+				updateUser.password = await bcrypt.hash(password, process.env.SALT_ROUNDS)
+		}
+		
+		db.prepare(`
+			UPDATE users
+			set username = ?, password = ?, email = ?, avatar_url = ?, status = ?
+			WHERE username = ?
+		`).run(updateUser.username, updateUser.password, updateUser.email, updateUser.avatar_url, updateUser.status, user.username)
+		
+		return reply.send({
+			message: 'User updated successfully',
+			user: {
+				username: updateUser.username,
+				email: updateUser.email,
+				avatar_url: updateUser.avatar_url,
+				status: updateUser.status,
+			},
+		});
+	} catch (error) {
+		return reply.code(500).send({ error: 'Internal server error '})
+	}
+};
+
 export default { 
 	getUsers, 
 	getUser, 
-	createUser 
+	createUser,
+	updateUser,
 };
