@@ -1,4 +1,4 @@
-import gameController from '../controllers/game.controller.js';
+import gameController from '../controllers/gameController.js';
 
 async function gameRoutes(fastify, options) {
   fastify.get('/ws', { websocket: true }, gameController.handleWebSocket);
