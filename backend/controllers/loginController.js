@@ -10,7 +10,7 @@ const loginUser = async (req, reply) => {
 			return reply.code(401).send({ error: 'Invalid username or password' })
 		}
 		
-		const isMatch = await bcrypt.compare(password, user.password)
+		const isMatch = await bcrypt.compare(password, user.password_hash)
 		if (!isMatch) {
 			return reply.code(401).send({ error: 'Invalid username or password' })
 		}
@@ -19,7 +19,7 @@ const loginUser = async (req, reply) => {
 			username: user.username,
 			id: user.id,
 		}
-		
+
 		const token = await reply.jwtSign(
 			userForToken, 
 			{ expiresIn: '1h' }
