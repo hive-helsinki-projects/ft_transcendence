@@ -25,6 +25,11 @@ const loginUser = async (req, reply) => {
 			{ expiresIn: '1h' }
 		)
 		
+		db.prepare(`UPDATE user_online_status
+			SET online = ?
+			WHERE user_id = ?
+			`).run(1, user.id)
+		
 		return reply.send({ token, username: user.username })
 	} catch (error) {
 		return reply.code(500).send({ error: 'Internal Server Error' })

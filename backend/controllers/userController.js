@@ -88,7 +88,7 @@ const updateUser = async (req, reply) => {
 		
 		db.prepare(`
 			UPDATE users
-			set username = ?, password_hash = ?, email = ?, avatar_url = ?, updated_at = CURRENT_TIMESTAMP
+			SET username = ?, password_hash = ?, email = ?, avatar_url = ?, updated_at = CURRENT_TIMESTAMP
 			WHERE username = ?
 		`).run(updateUser.username, updateUser.password_hash, updateUser.email, updateUser.avatar_url, user.username)
 		
