@@ -1,7 +1,10 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 export default function Game() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [score, setScore] = useState({ player1: 0, player2: 0 });
+  const [gameOver, setGameOver] = useState(false);
+  const maxScore = 5; // Set the score limit to end the game
 
   useEffect(() => {
     const canvas = canvasRef.current!;
@@ -37,6 +40,8 @@ export default function Game() {
     document.addEventListener('keyup', keyUpHandler);
 
     function update() {
+      if (gameOver) return; // Stop updating if the game is over
+
       // Move paddles
       if (wPressed && paddle1Y > 0) paddle1Y -= paddleSpeed;
       if (sPressed && paddle1Y < canvas.height - paddleHeight) paddle1Y += paddleSpeed;
@@ -52,24 +57,53 @@ export default function Game() {
 
       // Ball collision with paddles
       if (
-        ballX <= paddleWidth && ballY > paddle1Y && ballY < paddle1Y + paddleHeight ||
-        ballX >= canvas.width - paddleWidth && ballY > paddle2Y && ballY < paddle2Y + paddleHeight
+        (ballX <= paddleWidth && ballY > paddle1Y && ballY < paddle1Y + paddleHeight) ||
+        (ballX >= canvas.width - paddleWidth && ballY > paddle2Y && ballY < paddle2Y + paddleHeight)
       ) {
         ballSpeedX *= -1; // Reverse direction
       }
 
-      // Ball out of bounds (reset position)
-      if (ballX < 0 || ballX > canvas.width) {
-        ballX = canvas.width / 2;
-        ballY = canvas.height / 2;
-        ballSpeedX = 3 * (Math.random() > 0.5 ? 1 : -1);
-        ballSpeedY = 3 * (Math.random() > 0.5 ? 1 : -1);
+      // Ball out of bounds (reset position and update score)
+      if (ballX < 0) {
+        if (!gameOver) {
+          setScore((prev) => {
+            const newScore = { ...prev, player2: prev.player2 + 1 };
+            if (newScore.player2 >= maxScore) setGameOver(true);
+            return newScore;
+          });
+          resetBall();
+        }
+      } else if (ballX > canvas.width) {
+        if (!gameOver) {
+          setScore((prev) => {
+            const newScore = { ...prev, player1: prev.player1 + 1 };
+            if (newScore.player1 >= maxScore) setGameOver(true);
+            return newScore;
+          });
+          resetBall();
+        }
       }
     }
 
+    function resetBall() {
+      ballX = canvas.width / 2;
+      ballY = canvas.height / 2;
+      ballSpeedX = 3 * (Math.random() > 0.5 ? 1 : -1);
+      ballSpeedY = 3 * (Math.random() > 0.5 ? 1 : -1);
+    }
+
     function draw() {
+      // Clear canvas
       ctx.fillStyle = 'black';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // Draw middle line
+      ctx.strokeStyle = 'white';
+      ctx.setLineDash([5, 5]);
+      ctx.beginPath();
+      ctx.moveTo(canvas.width / 2, 0);
+      ctx.lineTo(canvas.width / 2, canvas.height);
+      ctx.stroke();
 
       // Draw paddles
       ctx.fillStyle = 'white';
@@ -80,6 +114,26 @@ export default function Game() {
       ctx.beginPath();
       ctx.arc(ballX, ballY, 8, 0, Math.PI * 2);
       ctx.fill();
+
+      // Draw large scores
+      ctx.fillStyle = 'white';
+      ctx.font = '50px Arial';
+      ctx.textAlign = 'center';
+
+      // Player 1 score on the left
+      ctx.fillText(score.player1.toString(), canvas.width / 4, 50);
+
+      // Player 2 score on the right
+      ctx.fillText(score.player2.toString(), (canvas.width / 4) * 3, 50);
+
+      // Game Over message
+      if (gameOver) {
+        ctx.fillStyle = 'red';
+        ctx.font = '30px Arial';
+        ctx.textAlign = 'center';
+        const winner = score.player1 >= maxScore ? 'Player 1' : 'Player 2';
+        ctx.fillText(`Game Over! ${winner} Wins!`, canvas.width / 2, canvas.height / 2);
+      }
     }
 
     function gameLoop() {
@@ -94,12 +148,11 @@ export default function Game() {
       document.removeEventListener('keydown', keyDownHandler);
       document.removeEventListener('keyup', keyUpHandler);
     };
-  }, []);
+  }, [score, gameOver]);
 
   return (
     <div className="flex flex-col items-center justify-center h-screen">
       <canvas ref={canvasRef} width="800" height="400" className="border-2 border-white"></canvas>
-      <a href="/" className="mt-4 text-blue-400">Back to Home</a>
     </div>
   );
 }

@@ -1,21 +1,28 @@
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import Home from './pages/home';
-import Game from './game/pong';
-import Leaderboard from './pages/leaderboard';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import LandingPage from "./pages/LandingPage";
+import Sidebar from "./pages/SideBar";
+import Pong from "./game/Pong";
 
-export default function App() {
+const App = () => {
   return (
     <Router>
-      <nav className="p-4 bg-gray-800 text-white flex gap-4">
-        <Link to="/">Home</Link>
-        <Link to="/game">Play Pong</Link>
-        <Link to="/leaderboard">Leaderboard</Link>
-      </nav>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/game" element={<Game />} />
-		<Route path="/leaderboard" element={<Leaderboard />} />
-      </Routes>
+      <div>
+        {/* Left Sidebar */}
+        <Sidebar />
+
+        {/* Main Content Frame */}
+        <div>
+          <Routes>
+            {/* Route for the Landing Page */}
+            <Route path="/" element={<LandingPage />} />
+
+            {/* Route for the Game */}
+            <Route path="/game" element={<Pong />} />
+          </Routes>
+        </div>
+      </div>
     </Router>
   );
-}
+};
+
+export default App;
