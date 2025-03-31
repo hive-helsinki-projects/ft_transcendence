@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import LandingPage from "./pages/LandingPage";
 import Sidebar from "./pages/SideBar";
-import Pong from "./game/Pong";
+import Pong from "./game/pong";
 import Register from "./pages/Register";
 import Dashboard from "./pages/DashBoard";
 import Tournament from "./pages/Tournament";
