@@ -39,7 +39,7 @@ const createUser = async (req, reply) => {
 		const passwordHash = await bcrypt.hash(password, saltRounds);
 		const result = db.prepare('INSERT INTO users (username, display_name, email, password_hash) VALUES (?, ?, ?, ?)').run(username, username, email, passwordHash);
 		
-		const userId = result.lastInsertRowid
+		const userId = result.lastInsertRowid;
 		
 		db.prepare('INSERT INTO user_online_status (user_id) VALUES (?)').run(userId);
 		db.prepare('INSERT INTO user_stats (user_id) VALUES (?)').run(userId);
@@ -54,7 +54,7 @@ const createUser = async (req, reply) => {
 		if (error.message.includes('UNIQUE constraint failed')) {
 			return reply.code(409).send({ error: 'Username or email already exists' });
 		}
-		return reply.code(500).send({ error: 'Database error' })
+		return reply.code(500).send({ error: 'Database error' });
 	}
 }
 
