@@ -66,8 +66,7 @@ const putUserOpts = {
 			properties: {
 				username: { type: 'string', nullable: true },
 				email: { type: 'string', nullable: true },
-				password: { type: 'string', nullable: true },
-				online_status: { type: 'string', nullable: true }
+				password: { type: 'string', nullable: true }
 			},
 		},
 		response: {
