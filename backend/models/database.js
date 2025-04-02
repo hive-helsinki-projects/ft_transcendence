@@ -9,7 +9,7 @@ db.prepare(`
 		username TEXT NOT NULL UNIQUE,
 		email TEXT NOT NULL UNIQUE,
 		password_hash TEXT NOT NULL,
-		online_status TEXT DEFAULT 'OFFLINE',
+		online_status BOOLEAN DEFAULT FALSE,
 		created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
   )
 `).run();
@@ -70,6 +70,5 @@ db.prepare(`
 		FOREIGN KEY (winner_id) REFERENCES player(id)
 	)
 `)
-
 
 export default db;

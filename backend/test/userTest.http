@@ -1,11 +1,11 @@
 ### GET ALL USERS
-GET http://localhost:3001/api/users HTTP/1.1
+GET http://localhost:3001/users HTTP/1.1
 
 ### GET USER BY ID
-GET http://localhost:3001/api/users/1 HTTP/1.1
+GET http://localhost:3001/users/1 HTTP/1.1
 
 ### CREATE USER KIM
-POST http://localhost:3001/api/users HTTP/1.1
+POST http://localhost:3001/users HTTP/1.1
 Content-Type: application/json
 
 {
@@ -15,7 +15,7 @@ Content-Type: application/json
 }
 
 ### CREATE USER LUMI
-POST http://localhost:3001/api/users HTTP/1.1
+POST http://localhost:3001/users HTTP/1.1
 Content-Type: application/json
 
 {
@@ -24,30 +24,11 @@ Content-Type: application/json
 	"password": "password"
 }
 
-### CREATE TEST USER
-POST http://localhost:3001/api/users HTTP/1.1
-Content-Type: application/json
-
-{
-	"username": "t00110112323user",
-	"email": "dtte3a9199291j",
-	"password": "password"
-}
-
 ### UPDATE USER BY ID - EMAIL
-PUT http://localhost:3001/api/users/1 HTTP/1.1
+PUT http://localhost:3001/users/1 HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImttYXRqdWhpIiwiaWQiOjEsImlhdCI6MTc0MzI4MzEyMSwiZXhwIjoxNzQzMjg2NzIxfQ.0FqVzlunBKUrhomSgLU0ONrxDa2cLDxl2XsJRRgk1cs
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImttYXRqdWhpIiwiaWQiOjEsImlhdCI6MTc0MzU5NTA2OSwiZXhwIjoxNzQzNTk4NjY5fQ.ncejdJA5Vd68BEdsTatlxrgsudVnmrO_NdWtnZnUScs
 
 {
 	"email": "newtsadasst@hive.fr"
-}
-
-### UPDATE USER BY ID - DISPLAY NAME
-PUT http://localhost:3001/api/users/2 HTTP/1.1
-Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImxraWxwZWxhIiwiaWQiOjIsImlhdCI6MTc0MzI4NTgwMywiZXhwIjoxNzQzMjg5NDAzfQ.cUhAYsv4tOsXTnM5zgY0_eAAEf0HnIj69HVBLpqDgp8
-
-{
-	"display_name": "321321"
 }
