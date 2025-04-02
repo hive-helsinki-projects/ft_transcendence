@@ -73,8 +73,7 @@ const updateUser = async (req, reply) => {
 		const updateUser = {
 			username: username ?? user.username,
 			password_hash: user.password_hash,
-			email: email ?? user.email,
-			online_status: online_status ?? user.online_status,
+			email: email ?? user.email
 		}
 		
 		if (password) {
@@ -84,9 +83,9 @@ const updateUser = async (req, reply) => {
 		
 		db.prepare(`
 			UPDATE users
-			SET username = ?, password_hash = ?, email = ?, online_status = ?
+			SET username = ?, password_hash = ?, email = ?
 			WHERE username = ?
-		`).run(updateUser.username, updateUser.password_hash, updateUser.email, updateUser.online_status, user.username)
+		`).run(updateUser.username, updateUser.password_hash, updateUser.email, user.username)
 		
 		return reply.code(200).send({
 			message: 'User updated successfully',
