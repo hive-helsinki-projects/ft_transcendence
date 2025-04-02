@@ -4,11 +4,7 @@ import bcrypt from 'bcryptjs';
 const getUsers = async (req, reply) => {
 	try {
 		const users = db.prepare(`
-			SELECT * 
-			FROM users u
-			LEFT JOIN user_online_status uos ON u.id = uos.user_id
-			LEFT JOIN user_stats us ON u.id = us.user_id;`).all()
-
+			SELECT * FROM users`).all()
 		return reply.send(users);
 	} catch (error) {
 		return reply.code(500).send({ error: 'Failed to fetch users' });
@@ -37,15 +33,10 @@ const createUser = async (req, reply) => {
 
 	try {
 		const passwordHash = await bcrypt.hash(password, saltRounds);
-		const result = db.prepare('INSERT INTO users (username, display_name, email, password_hash) VALUES (?, ?, ?, ?)').run(username, username, email, passwordHash);
-		
-		const userId = result.lastInsertRowid;
-		
-		db.prepare('INSERT INTO user_online_status (user_id) VALUES (?)').run(userId);
-		db.prepare('INSERT INTO user_stats (user_id) VALUES (?)').run(userId);
-		
-		const user = db.prepare('SELECT * FROM users WHERE id = ?').get(userId);
-	
+		const result = db.prepare('INSERT INTO users (username, email, password_hash) VALUES (?, ?, ?)').run(username, email, passwordHash);
+
+		const user = db.prepare('SELECT id, username, email FROM users WHERE id = ?').get(result.lastInsertRowid);
+
 		return reply.code(201).send({ 
 			message: 'User created successfully',
 			user
@@ -60,7 +51,7 @@ const createUser = async (req, reply) => {
 
 const updateUser = async (req, reply) => {
 	const { id } = req.params;
-	const { username, display_name, password, email, avatar_url } = req.body;
+	const { username, password, email, online_status } = req.body;
 
 	if (req.user.id !== parseInt(id)) {
 		return reply.code(403).send({ error: 'Unauthoritized to update user information' })
@@ -79,19 +70,11 @@ const updateUser = async (req, reply) => {
 			}
 		}
 		
-		if (display_name && display_name !== user.display_name) {
-			const existingUser = db.prepare('SELECT * FROM users WHERE display_name = ?').get(display_name);
-			if (existingUser) {
-				return reply.code(400).send({ error: 'Display name already taken '});
-			}
-		}
-		
 		const updateUser = {
 			username: username ?? user.username,
-			display_name: display_name ?? user.display_name,
 			password_hash: user.password_hash,
 			email: email ?? user.email,
-			avatar_url: avatar_url ?? user.avatar_url,
+			online_status: online_status ?? user.online_status,
 		}
 		
 		if (password) {
@@ -101,9 +84,9 @@ const updateUser = async (req, reply) => {
 		
 		db.prepare(`
 			UPDATE users
-			SET username = ?, display_name = ?, password_hash = ?, email = ?, avatar_url = ?, updated_at = CURRENT_TIMESTAMP
+			SET username = ?, password_hash = ?, email = ?, online_status = ?
 			WHERE username = ?
-		`).run(updateUser.username, updateUser.display_name, updateUser.password_hash, updateUser.email, updateUser.avatar_url, user.username)
+		`).run(updateUser.username, updateUser.password_hash, updateUser.email, updateUser.online_status, user.username)
 		
 		return reply.code(200).send({
 			message: 'User updated successfully',

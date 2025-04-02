@@ -24,7 +24,7 @@ const loginOpts = {
 }
 
 function loginRoutes(fastify, options, done) {
-	fastify.post('/api/login', loginOpts)
+	fastify.post('/login', loginOpts)
 	
 	done()
 }

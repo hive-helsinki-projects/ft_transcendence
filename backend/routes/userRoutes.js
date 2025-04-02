@@ -6,14 +6,9 @@ const User = {
 	properties: {
 		id: { type: 'integer' },
 		username: { type: 'string' },
-		display_name: { type: 'string' },
 		email: { type: 'string' },
-		avatar_url: { type: 'string', nullable: true },
-		created_at: { type: 'string', format: 'date-time' },
-		updated_at: { type: 'string', format: 'date-time' },
-		online: { type: 'boolean' },
-		wins: { type: 'integer'},
-		losses: { type: 'integer'}
+		online_status: { type: 'boolean' },
+		created_at: { type: 'string', format: 'date-time' }
 	},
 }
 
@@ -70,10 +65,9 @@ const putUserOpts = {
 			required: [],
 			properties: {
 				username: { type: 'string', nullable: true },
-				display_name: { type: 'string', nullable: true },
 				email: { type: 'string', nullable: true },
 				password: { type: 'string', nullable: true },
-				avatar_url: { type: 'string', nullable: true }
+				online_status: { type: 'string', nullable: true }
 			},
 		},
 		response: {
@@ -92,17 +86,16 @@ const putUserOpts = {
 // Define user routes
 function userRoutes(fastify, options) {
 	// Get all users
-	fastify.get('/api/users', getUsersOpts)
-	console.log(getUsersOpts.handler);
+	fastify.get('/users', getUsersOpts)
 
 	// Get a single user by id
-	fastify.get('/api/users/:id', getUserOpts)
+	fastify.get('/users/:id', getUserOpts)
 	
 	// Create a user
-	fastify.post('/api/users', postUserOpts)
+	fastify.post('/users', postUserOpts)
 	
 	// Update user information
-	fastify.put('/api/users/:id', { onRequest: [fastify.jwtAuth], ...putUserOpts })
+	fastify.put('/users/:id', { onRequest: [fastify.jwtAuth], ...putUserOpts })
 }
 
 export default userRoutes;

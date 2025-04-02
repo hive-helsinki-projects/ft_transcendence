@@ -5,11 +5,11 @@ const loginUser = async (req, reply) => {
 	const { username, password } = req.body;
 	
 	try {
-		const user = db.prepare('SELECT * FROM users WHERE username = ?').get(username);
+		const user = db.prepare(`SELECT * FROM users WHERE username = ?`).get(username);
 		if (!user) {
 			return reply.code(401).send({ error: 'Invalid username or password' })
 		}
-		
+
 		const isMatch = await bcrypt.compare(password, user.password_hash)
 		if (!isMatch) {
 			return reply.code(401).send({ error: 'Invalid username or password' })
@@ -25,11 +25,11 @@ const loginUser = async (req, reply) => {
 			{ expiresIn: '1h' }
 		)
 		
-		db.prepare(`UPDATE user_online_status
-			SET online = ?
-			WHERE user_id = ?
+		db.prepare(`UPDATE users
+			SET online_status = ?
+			WHERE id = ?
 			`).run(1, user.id)
-		
+
 		return reply.send({ token, username: user.username })
 	} catch (error) {
 		return reply.code(500).send({ error: 'Internal Server Error' })
