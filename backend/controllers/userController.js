@@ -27,31 +27,9 @@ const getUser = async (req, reply) => {
 	}
 }
 
-const createUser = async (req, reply) => {
-	const { username, email, password } = req.body;
-	const saltRounds = parseInt(process.env.SALT_ROUNDS, 10) || 10;
-
-	try {
-		const passwordHash = await bcrypt.hash(password, saltRounds);
-		const result = db.prepare('INSERT INTO users (username, email, password_hash) VALUES (?, ?, ?)').run(username, email, passwordHash);
-
-		const user = db.prepare('SELECT id, username, email FROM users WHERE id = ?').get(result.lastInsertRowid);
-
-		return reply.code(201).send({ 
-			message: 'User created successfully',
-			user
-		});
-	} catch (error) {
-		if (error.message.includes('UNIQUE constraint failed')) {
-			return reply.code(409).send({ error: 'Username or email already exists' });
-		}
-		return reply.code(500).send({ error: 'Database error' });
-	}
-}
-
 const updateUser = async (req, reply) => {
 	const { id } = req.params;
-	const { username, password, email, online_status } = req.body;
+	const { username, password, email } = req.body;
 
 	if (req.user.id !== parseInt(id)) {
 		return reply.code(403).send({ error: 'Unauthoritized to update user information' })
@@ -98,7 +76,6 @@ const updateUser = async (req, reply) => {
 
 export default { 
 	getUsers, 
-	getUser, 
-	createUser,
-	updateUser,
+	getUser,
+	updateUser
 };
