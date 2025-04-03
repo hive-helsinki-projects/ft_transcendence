@@ -38,10 +38,9 @@ const loginUser = async (req, reply) => {
 }
 
 const logoutUser = async (req, reply) => {
+	const userId = req.user.id;
+	
 	try {
-		const userId = req.user.id;
-		console.log('User id exist:', userId);
-		
 		const userExist = db.prepare(`SELECT COUNT(*) AS count FROM users WHERE id = ?`).get(userId);
 		if (!userExist.count) {
 			return reply.code(404).send({ error: 'User not found' });
@@ -55,7 +54,6 @@ const logoutUser = async (req, reply) => {
 		if (result.changes === 0) {
 			return reply.code(404).send({ error: 'User already logged out' });
 		}
-
 		return reply.code(200).send({ message: 'Logged out successfully' })
 	} catch (error) {
 		reply.code(500).send({ error: 'Internal Server Error' })

@@ -19,7 +19,7 @@ db.prepare('PRAGMA foreign_keys = ON').run();
 
 // Create players table
 db.prepare(`
-	CREATE TABLE IF NOT EXISTS player (
+	CREATE TABLE IF NOT EXISTS players (
 		id INTEGER PRIMARY KEY AUTOINCREMENT,
 		user_id INTEGER,
 		display_name TEXT NOT NULL UNIQUE,
@@ -33,7 +33,7 @@ db.prepare(`
 
 // Create friends table
 db.prepare(`
-	CREATE TABLE IF NOT EXISTS friend (
+	CREATE TABLE IF NOT EXISTS friends (
 		user_id INTEGER,
 		friend_id INTEGER,
 		status TEXT DEFAULT 'pending',
@@ -45,7 +45,7 @@ db.prepare(`
 
 // Create tournament table
 db.prepare(`
-	CREATE TABLE IF NOT EXISTS tournament (
+	CREATE TABLE IF NOT EXISTS tournaments (
 		id INTEGER PRIMARY KEY AUTOINCREMENT,
 		name TEXT NOT NULL,
 		status TEXT DEFAULT 'pending',

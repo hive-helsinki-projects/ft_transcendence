@@ -1,0 +1,4 @@
+### GET ALL PLAYERS BELONGING TO A USER
+GET http://localhost:3001/players/2 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImttYXRqdWhpIiwiaWQiOjIsImlhdCI6MTc0MzY3MTUxNiwiZXhwIjoxNzQzNjc1MTE2fQ.tKVJLwye7xWHmLrxNlFVKHJGXANUeUFBjOMEujrEK4Q
