@@ -21,7 +21,7 @@ const getPlayer = async (req, reply) => {
 	try {
 		const player = db.prepare(`SELECT * FROM players WHERE id = ? AND user_id = ?`).get(id, user_id)
 		if (!player) {
-			return reply.code(404).send({ error: 'Player not found '})
+			return reply.code(404).send({ error: 'Player not found or user not authortized to access player info' })
 		}
 		return reply.send(player);
 	} catch (error) {
@@ -54,7 +54,7 @@ const createPlayer = async (req, reply) => {
 			player
 		})
 	} catch (error) {
-		if (error.message.includes('UNIQUE contraint failed')) {
+		if (error.message.includes('UNIQUE constraint failed: players.display_name')) {
 			return reply.code(409).send({ error: 'Display_name already exist' })
 		}
 		console.log(error);

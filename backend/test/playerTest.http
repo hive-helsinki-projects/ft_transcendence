@@ -1,10 +1,10 @@
 ### GET ALL PLAYERS BELONGING TO A USER
 GET http://localhost:3001/players HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im9uZSIsImlkIjozLCJpYXQiOjE3NDM2NzgwMTEsImV4cCI6MTc0MzY4MTYxMX0.9Yu2qpOxRg_s4FjpPMOiN8bT8nvBR0AfoOyxoFKqIBE
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImttYXRqdWhpIiwiaWQiOjIsImlhdCI6MTc0MzY3NTM4OSwiZXhwIjoxNzQzNjc4OTg5fQ.DQJ3e3OW0V4dYRkOg0hoc0Wn9GGAFkuNETOo5drfbfI
 
 ### GET A PLAYER
-GET http://localhost:3001/players/6 HTTP/1.1
+GET http://localhost:3001/players/3 HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im9uZSIsImlkIjozLCJpYXQiOjE3NDM2NzgwMTEsImV4cCI6MTc0MzY4MTYxMX0.9Yu2qpOxRg_s4FjpPMOiN8bT8nvBR0AfoOyxoFKqIBE
 
@@ -14,9 +14,9 @@ Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im9uZSIsImlkIjozLCJpYXQiOjE3NDM2NzgwMTEsImV4cCI6MTc0MzY4MTYxMX0.9Yu2qpOxRg_s4FjpPMOiN8bT8nvBR0AfoOyxoFKqIBE
 
 {
-	"display_name": "anotherore"
+	"display_name": "daisy"
 }
 
 ### DELETE A PLAYER
-DELETE http://localhost:3001/players/1 HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im9uZSIsImlkIjozLCJpYXQiOjE3NDM2NzgwMTEsImV4cCI6MTc0MzY4MTYxMX0.9Yu2qpOxRg_s4FjpPMOiN8bT8nvBR0AfoOyxoFKqIBE
+DELETE http://localhost:3001/players/2 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImttYXRqdWhpIiwiaWQiOjIsImlhdCI6MTc0MzY3NTM4OSwiZXhwIjoxNzQzNjc4OTg5fQ.DQJ3e3OW0V4dYRkOg0hoc0Wn9GGAFkuNETOo5drfbfI
