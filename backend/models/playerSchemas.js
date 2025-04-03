@@ -46,3 +46,16 @@ export const postPlayerOpts = {
 		}
 	}
 }
+
+export const deletePlayerOpts = {
+	schema: {
+		response: {
+			200: {
+				type: 'object',
+				properties: {
+					message: { type: 'string' },
+				}
+			}
+		}
+	}
+}
