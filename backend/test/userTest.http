@@ -4,30 +4,10 @@ GET http://localhost:3001/users HTTP/1.1
 ### GET USER BY ID
 GET http://localhost:3001/users/1 HTTP/1.1
 
-### CREATE USER KIM
-POST http://localhost:3001/users HTTP/1.1
-Content-Type: application/json
-
-{
-	"username": "kmatjuhi",
-	"email": "kmatjuhi@hive.fr",
-	"password": "password"
-}
-
-### CREATE USER LUMI
-POST http://localhost:3001/users HTTP/1.1
-Content-Type: application/json
-
-{
-	"username": "lkilpela",
-	"email": "lkilpela@hive.fr",
-	"password": "password"
-}
-
 ### UPDATE USER BY ID - EMAIL
 PUT http://localhost:3001/users/1 HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImttYXRqdWhpIiwiaWQiOjEsImlhdCI6MTc0MzU5NTA2OSwiZXhwIjoxNzQzNTk4NjY5fQ.ncejdJA5Vd68BEdsTatlxrgsudVnmrO_NdWtnZnUScs
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImttYXRqdWhpIiwiaWQiOjEsImlhdCI6MTc0MzY2NjE0MiwiZXhwIjoxNzQzNjY5NzQyfQ.LuN0C1LPinimuIMhlpWZ5VtztF54tISeuqKWorfypa0
 
 {
 	"email": "newtsadasst@hive.fr"
