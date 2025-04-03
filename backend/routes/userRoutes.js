@@ -4,13 +4,23 @@ import { getUsersOpts, getUserOpts, putUserOpts } from '../models/userSchemas.js
 // Define user routes
 function userRoutes(fastify, options) {
 	// Get all users
-	fastify.get('/users', { ...getUsersOpts, handler: userController.getUsers })
+	fastify.get('/users', { 
+		...getUsersOpts, 
+		handler: userController.getUsers 
+	})
 
 	// Get a single user by id
-	fastify.get('/users/:id', { ...getUserOpts, handler: userController.getUser})
+	fastify.get('/users/:id', { 
+		...getUserOpts, 
+		handler: userController.getUser 
+	})
 	
 	// Update user information
-	fastify.put('/users/:id', { onRequest: [fastify.jwtAuth], ...putUserOpts, handler: userController.updateUser })
+	fastify.put('/users/:id', { 
+		...putUserOpts,
+		onRequest: [fastify.jwtAuth], 
+		handler: userController.updateUser
+	})
 }
 
 export default userRoutes;

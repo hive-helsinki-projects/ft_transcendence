@@ -3,8 +3,7 @@ import bcrypt from 'bcryptjs';
 
 const getUsers = async (req, reply) => {
 	try {
-		const users = db.prepare(`
-			SELECT * FROM users`).all()
+		const users = db.prepare(`SELECT * FROM users`).all()
 		return reply.send(users);
 	} catch (error) {
 		return reply.code(500).send({ error: 'Failed to fetch users' });
@@ -15,8 +14,7 @@ const getUser = async (req, reply) => {
 	const { id } = req.params
 
 	try {
-		const stmt = db.prepare('SELECT * FROM users WHERE id = ?')
-		const user = stmt.get(id);
+		const user = db.prepare('SELECT * FROM users WHERE id = ?').get(id)
 		
 		if (!user) {
 			return reply.code(404).send({ error: 'User not found' })
@@ -35,12 +33,12 @@ const updateUser = async (req, reply) => {
 		return reply.code(403).send({ error: 'Unauthoritized to update user information' })
 	}
 	
-	const user = db.prepare('SELECT * FROM users WHERE id = ?').get(id);
-	if (!user) {
-		return reply.code(404).send({ error: 'User not found' });
-	}
-	
 	try {
+		const user = db.prepare('SELECT * FROM users WHERE id = ?').get(id);
+		if (!user) {
+			return reply.code(404).send({ error: 'User not found' });
+		}
+		
 		if (username && username !== user.username) {
 			const existingUser = db.prepare('SELECT * FROM users WHERE username = ?').get(username);
 			if (existingUser) {
