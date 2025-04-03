@@ -78,7 +78,7 @@ const createUser = async (req, reply) => {
 		if (error.message.includes('UNIQUE constraint failed')) {
 			return reply.code(409).send({ error: 'Username or email already exists' });
 		}
-		return reply.code(500).send({ error: 'Database error' });
+		return reply.code(500).send({ error: 'Internal server error' });
 	}
 }
 

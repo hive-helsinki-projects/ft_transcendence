@@ -22,3 +22,27 @@ export const getPlayersOpts = {
 		}
 	}
 }
+
+export const getPlayerOpts = {
+	schema: {
+		response: {
+			200: Player,
+		}
+	}
+}
+
+export const postPlayerOpts = {
+	schema: {
+		body: {
+			type: 'object',
+			required: ['display_name'],
+			properties: {
+				display_name: { type: 'string' },
+				avatar_url: { type: 'string', nullable: true },
+			}
+		},
+		response: {
+			200: Player,
+		}
+	}
+}
