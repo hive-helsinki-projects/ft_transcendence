@@ -1,13 +1,10 @@
 import db from '../models/database.js';
 
 const getPlayers = async (req, reply) => {
-	const { id } = req.params;
-	if (req.user.id !== parseInt(id)) {
-		return reply.code(403).send({ error: 'Unauthoritized to access users players info' })
-	}
+	const user_id = req.user.id;
 	
 	try {
-		const players = db.prepare(`SELECT * FROM players WHERE user_id = ?`).all(id)
+		const players = db.prepare(`SELECT * FROM players WHERE user_id = ?`).all(user_id)
 		if (players.length === 0) {
 			return reply.code(404).send({ error: 'No players found for this user' })
 		}
@@ -18,13 +15,11 @@ const getPlayers = async (req, reply) => {
 }
 
 const getPlayer = async (req, reply) => {
-	const { user_id, player_id } = req.params;
-	if (req.user.id !== parseInt(user_id)) {
-		return reply.code(403).send({ error: 'Unauthoritized to access users player info' })
-	}
+	const user_id = req.user.id;
+	const { id } = req.params;
 	
 	try {
-		const player = db.prepare(`SELECT * FROM players WHERE id = ? AND user_id = ?`).get(player_id, user_id)
+		const player = db.prepare(`SELECT * FROM players WHERE id = ? AND user_id = ?`).get(id, user_id)
 		if (!player) {
 			return reply.code(404).send({ error: 'Player not found '})
 		}
@@ -35,21 +30,17 @@ const getPlayer = async (req, reply) => {
 }
 
 const createPlayer = async (req, reply) => {
-	const { id } = req.params;	
-	if (req.user.id !== parseInt(id)) {
-		return reply.code(403).send({ error: 'Unauthoritized to create player' })
-	}
-	
+	const user_id = req.user.id;
 	const { display_name, avatar_url } = req.body;
 	
 	const newPlayer = {
-		user_id: parseInt(id),
+		user_id: parseInt(user_id),
 		display_name,
 		avatar_url: avatar_url ?? null
 	}
 	
 	try {
-		const playerCount = db.prepare(`SELECT COUNT(*) AS count FROM players WHERE user_id = ?`).get(id);
+		const playerCount = db.prepare(`SELECT COUNT(*) AS count FROM players WHERE user_id = ?`).get(user_id);
 		if (playerCount.count >= 4) {
 			return reply.code(400).send({ error: 'Cannot add another player. Max players is 4'})
 		}
@@ -69,11 +60,27 @@ const createPlayer = async (req, reply) => {
 		console.log(error);
 		return reply.code(500).send({ error: 'Internal server error' })
 	}
+}
+
+const deletePlayer = async (req, reply) => {
+	const user_id = req.user.id;
+	const { id } = req.params;
 	
+	try {
+		const result = db.prepare(`DELETE FROM players WHERE id = ? and user_id = ?`).run(id, user_id)
+		if (result.changes === 0) {
+			return reply.code(404).send({ error: 'Player not found or user not authortized to delete this player'})
+		}
+		return reply.code(200).send({ message: 'Succesfully deleted player '})
+	} catch (error) {
+		console.log(error);
+		return reply.code(500).send({ error: 'Failed to delete player' })
+	}
 }
 
 export default {
 	getPlayers,
 	getPlayer,
-	createPlayer
+	createPlayer,
+	deletePlayer
 }
