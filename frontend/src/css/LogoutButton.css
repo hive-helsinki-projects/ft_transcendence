@@ -1,0 +1,57 @@
+.logout-container {
+  position: relative;
+}
+
+.logout-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  color: white;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.logout-button:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-1px);
+}
+
+.logout-button.confirm {
+  background: rgba(229, 62, 62, 0.1);
+  border-color: rgba(229, 62, 62, 0.3);
+  color: #FFA5A5;
+  animation: pulse 1.5s infinite;
+}
+
+.logout-button.confirm:hover {
+  background: rgba(229, 62, 62, 0.2);
+}
+
+.logout-button svg {
+  transition: transform 0.3s ease;
+}
+
+.logout-button:hover svg {
+  transform: translateX(2px);
+}
+
+.logout-button span {
+  white-space: nowrap;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(229, 62, 62, 0.2);
+  }
+  70% {
+    box-shadow: 0 0 0 6px rgba(229, 62, 62, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(229, 62, 62, 0);
+  }
+} 

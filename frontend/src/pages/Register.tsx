@@ -1,45 +1,164 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { localAuth, User } from '../services/localAuth';
-import RegisterForm from '../components/RegisterForm';
+import { localAuth } from '../services/localAuth';
+import LoadingContainer from '../components/LoadingContainer';
 import '../css/Register.css';
 
 const Register: React.FC = () => {
-  const navigate = useNavigate();
-  const [isLoading, setIsLoading] = useState(false);
+  const [formData, setFormData] = useState({
+    username: '',
+    email: '',
+    password: '',
+    confirmPassword: ''
+  });
+  const [error, setError] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
-  const [registeredUsers, setRegisteredUsers] = useState<User[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
 
-  const handleSubmit = async (data: { username: string; email: string; password: string }) => {
-    setIsLoading(true);
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError('');
     setSuccessMessage('');
-    
+    setIsLoading(true);
+
     try {
-      await localAuth.register(data.username, data.email, data.password);
-      setSuccessMessage('Registration successful! Redirecting to login...');
+      // Validation
+      if (!formData.username || !formData.email || !formData.password || !formData.confirmPassword) {
+        throw new Error('Please fill in all fields');
+      }
+
+      if (formData.password !== formData.confirmPassword) {
+        throw new Error('Passwords do not match');
+      }
+
+      // Email validation
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(formData.email)) {
+        throw new Error('Please enter a valid email address');
+      }
+
+      const response = await localAuth.register(formData.username, formData.email, formData.password);
+      setSuccessMessage(response.message + ' Redirecting to login...');
+      
+      // Redirect after successful registration
       setTimeout(() => {
-        navigate('/login');
+        navigate('/');
       }, 2000);
     } catch (error) {
-      console.error('Registration error:', error);
+      setError(error instanceof Error ? error.message : 'Registration failed');
     } finally {
       setIsLoading(false);
     }
   };
 
-  const handleShowUsers = () => {
-    const users = JSON.parse(localStorage.getItem('ft_transcendence_users') || '[]');
-    setRegisteredUsers(users);
-  };
-
   return (
-    <RegisterForm
-      onSubmit={handleSubmit}
-      isLoading={isLoading}
-      successMessage={successMessage}
-      onShowUsers={handleShowUsers}
-      registeredUsers={registeredUsers}
-    />
+    <LoadingContainer>
+      <div className="register-content">
+        <section className="register-section">
+          <h2>Create Your Account</h2>
+          
+          {error && <div className="error-message">{error}</div>}
+          {successMessage && <div className="success-message">{successMessage}</div>}
+
+          <form onSubmit={handleSubmit} className="register-form">
+            <div className="form-group">
+              <input
+                type="text"
+                name="username"
+                placeholder="Choose a username"
+                value={formData.username}
+                onChange={handleInputChange}
+                disabled={isLoading}
+                required
+              />
+            </div>
+
+            <div className="form-group">
+              <input
+                type="email"
+                name="email"
+                placeholder="Enter your email"
+                value={formData.email}
+                onChange={handleInputChange}
+                disabled={isLoading}
+                required
+              />
+            </div>
+
+            <div className="form-group">
+              <input
+                type="password"
+                name="password"
+                placeholder="Create a password"
+                value={formData.password}
+                onChange={handleInputChange}
+                disabled={isLoading}
+                required
+              />
+            </div>
+
+            <div className="form-group">
+              <input
+                type="password"
+                name="confirmPassword"
+                placeholder="Confirm your password"
+                value={formData.confirmPassword}
+                onChange={handleInputChange}
+                disabled={isLoading}
+                required
+              />
+            </div>
+
+            <button 
+              type="submit" 
+              className="submit-button"
+              disabled={isLoading}
+            >
+              {isLoading ? "Creating Account..." : "Create Account"}
+            </button>
+          </form>
+
+          <div className="auth-options">
+            <div className="google-auth">
+              <span>Or</span>
+              <button 
+                type="button"
+                className="google-button"
+                onClick={() => {/* Handle Google Auth */}}
+                disabled={isLoading}
+              >
+                <img 
+                  src="https://www.google.com/favicon.ico" 
+                  alt="Google"
+                  width="20"
+                  height="20"
+                />
+                Sign up with Google
+              </button>
+            </div>
+          </div>
+
+          <div className="login-link">
+            <p>
+              Already have an account?{' '}
+              <button 
+                type="button"
+                className="link-button"
+                onClick={() => navigate('/')}
+              >
+                Sign in here
+              </button>
+            </p>
+          </div>
+        </section>
+      </div>
+    </LoadingContainer>
   );
 };
 
