@@ -95,7 +95,7 @@ graph TD
 
 - ✅ Major: Implement Two-Factor Authentication (2FA) and JWT.
 ```mermaid
-graph LR
+graph TD
     %% Entry Points
     LP[Landing Page]-->|1. New User|RF[Register]
     LP-->|2. Existing|LF[Login]
