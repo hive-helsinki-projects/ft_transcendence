@@ -94,6 +94,43 @@ graph TD
 ### Cybersecurity
 
 - ✅ Major: Implement Two-Factor Authentication (2FA) and JWT.
+```mermaid
+graph LR
+    %% Entry Points
+    LP[Landing Page]-->|1. New User|RF[Register]
+    LP-->|2. Existing|LF[Login]
+
+    %% First Factor
+    RF-->|3. POST|REG[api-users]
+    REG-->DB[(DB)]
+    REG-->LF
+    LF-->|4. Username/Password|LOGIN[api-login]
+    LOGIN-->DB
+
+    %% 2FA Step
+    LOGIN-->|5. Success|TFA[2FA Verification]
+    TFA-->|6. Send Code|AUTH2[Authenticator/Email/SMS]
+    AUTH2-->|7. Verify Code|TFA
+    
+    %% JWT Issue
+    TFA-->|8. Valid 2FA|TOKEN[Generate JWT]
+    TOKEN-->LS[Local Storage]
+    LS-->AUTHCTX[Auth Context]
+
+    %% Protected Routes
+    AUTHCTX-->|9. Valid Token|PROT[Protected Routes]
+    PROT-->DASH[Dashboard]
+    PROT-->|Invalid|LF
+    
+    %% API Calls
+    DASH-->|10. JWT|API[Protected API]
+    API-->DASH
+
+    classDef frontend fill:#90EE90,stroke:#000,stroke-width:2px,color:#000,font-weight:bold
+    classDef backend fill:#FFB6C1,stroke:#000,stroke-width:2px,color:#000,font-weight:bold
+    class LP,RF,LF,LS,AUTHCTX,PROT,DASH frontend
+    class REG,LOGIN,DB,TFA,TOKEN,AUTH2,API backend
+```
 
 ### Accessibility
 
