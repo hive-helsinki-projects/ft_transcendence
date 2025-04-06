@@ -3,6 +3,7 @@ import { useAuth } from '../hooks/useAuth';
 import LoadingContainer from '../components/LoadingContainer';
 import { LogOut, Settings, Pencil, UserPlus } from 'lucide-react';
 import '../css/Dashboard.css';
+import { useNavigate } from 'react-router-dom';
 
 interface GameStats {
   wins: number;
@@ -24,6 +25,22 @@ interface UserPlayer {
   avatar: string;
   isActive: boolean;
   points: number;
+}
+
+interface MatchHistory {
+  id: string;
+  player: {
+    name: string;
+    avatar: string;
+  };
+  opponent: {
+    name: string;
+    avatar: string;
+  };
+  result: 'win' | 'loss';
+  score: string;
+  date: string;
+  mode: '1v1' | 'tournament';
 }
 
 const CreatePlayerModal: React.FC<{
@@ -93,18 +110,85 @@ const GameStatsSection: React.FC<{ stats: GameStats }> = ({ stats }) => (
   </div>
 );
 
-const QuickPlaySection: React.FC = () => (
-  <div className="quick-play-section">
-    <h2>Game Modes</h2>
-    <div className="play-options">
-      <button className="play-button one-vs-one">
-        <span className="button-icon">⚔️</span>
-        1v1 Match
-      </button>
-      <button className="play-button matchmaking">
-        <span className="button-icon">🏆</span>
-        Tournament Mode
-      </button>
+const QuickPlaySection: React.FC<{ userPlayers: UserPlayer[] }> = ({ userPlayers }) => {
+  const navigate = useNavigate();
+  const hasActivePlayers = userPlayers.length > 0;
+
+  const handleTournamentClick = () => {
+    if (!hasActivePlayers) {
+      alert('Please create a player before joining a tournament');
+      return;
+    }
+    navigate('/tournament');
+  };
+
+  return (
+    <div className="quick-play-section">
+      <h2>Game Modes</h2>
+      <div className="play-options">
+        <button className="play-button one-vs-one">
+          <span className="button-icon">🏓</span>
+          1v1 Match
+        </button>
+        <button 
+          className="play-button matchmaking"
+          onClick={handleTournamentClick}
+          title="Tournament Mode (4-8 players)"
+        >
+          <span className="button-icon">🏆</span>
+          Tournament Mode
+          <span className="tournament-info">4-8 players</span>
+        </button>
+      </div>
+    </div>
+  );
+};
+
+const RecentMatchesSection: React.FC<{ matches: MatchHistory[] }> = ({ matches }) => (
+  <div className="recent-matches-section">
+    <h2>Recent Matches</h2>
+    <div className="matches-list">
+      {matches.map(match => (
+        <div key={match.id} className={`match-item ${match.result}`}>
+          <div className="match-info">
+            <span className="match-mode">
+              {match.mode === '1v1' ? '🏓' : '🏆'}
+            </span>
+            <div className="match-players">
+              {match.mode === '1v1' ? (
+                // 1v1 match - show both players
+                <>
+                  <div className="player">
+                    <img src={match.player.avatar} alt={match.player.name} className="player-avatar" />
+                    <span className="player-name">{match.player.name}</span>
+                  </div>
+                  <span className="vs">vs</span>
+                  <div className="player">
+                    <img src={match.opponent.avatar} alt={match.opponent.name} className="player-avatar" />
+                    <span className="player-name">{match.opponent.name}</span>
+                  </div>
+                </>
+              ) : (
+                // Tournament match - show only winner
+                <div className="player">
+                  <img 
+                    src={match.result === 'win' ? match.player.avatar : match.opponent.avatar} 
+                    alt="Winner" 
+                    className="player-avatar"
+                  />
+                  <span className="player-name tournament-winner">
+                    {match.result === 'win' ? match.player.name : match.opponent.name}
+                  </span>
+                </div>
+              )}
+            </div>
+          </div>
+          <div className="match-details">
+            {match.mode === '1v1' && <span className="match-score">{match.score}</span>}
+            <span className="match-date">{match.date}</span>
+          </div>
+        </div>
+      ))}
     </div>
   </div>
 );
@@ -146,6 +230,54 @@ const Dashboard: React.FC = () => {
       name: 'Player4',
       points: 7415,
       avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=player4'
+    }
+  ];
+
+  const recentMatches: MatchHistory[] = [
+    {
+      id: '1',
+      player: {
+        name: 'Player1',
+        avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=player1'
+      },
+      opponent: {
+        name: 'Player4',
+        avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=player4'
+      },
+      result: 'win',
+      score: '11-9',
+      date: '2h ago',
+      mode: '1v1'
+    },
+    {
+      id: '2',
+      player: {
+        name: 'Player2',
+        avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=player2'
+      },
+      opponent: {
+        name: 'Player5',
+        avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=player5'
+      },
+      result: 'loss',
+      score: '9-11',
+      date: '3h ago',
+      mode: 'tournament'
+    },
+    {
+      id: '3',
+      player: {
+        name: 'Player3',
+        avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=player3'
+      },
+      opponent: {
+        name: 'Player6',
+        avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=player6'
+      },
+      result: 'win',
+      score: '11-7',
+      date: '5h ago',
+      mode: '1v1'
     }
   ];
 
@@ -223,22 +355,11 @@ const Dashboard: React.FC = () => {
           </div>
         </div>
 
-        <div className="quick-play-section">
-          <h2>Game Modes</h2>
-          <div className="play-options">
-            <button className="play-button one-vs-one">
-              <span className="button-icon">⚔️</span>
-              1v1 Match
-            </button>
-            <button className="play-button matchmaking">
-              <span className="button-icon">🏆</span>
-              Tournament Mode
-            </button>
-          </div>
-        </div>
+        <QuickPlaySection userPlayers={userPlayers} />
 
         <div className="dashboard-grid">
           <GameStatsSection stats={gameStats} />
+          <RecentMatchesSection matches={recentMatches} />
         </div>
 
         <div className="top-players-section">
