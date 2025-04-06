@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Home, User, Gamepad2, Trophy, Settings, HelpCircle } from "lucide-react";
+import "../css/Sidebar.css";
 
 const Sidebar = () => {
   const [selected, setSelected] = useState("home");
@@ -15,13 +16,13 @@ const Sidebar = () => {
   ];
 
   return (
-    <div>
+    <div className="sidebar">
       {menuItems.map(({ id, icon: Icon, path }) => (
         <Link to={path} key={id} onClick={() => setSelected(id)}>
           <button
-            className={`w-12 h-12 flex items-center justify-center rounded-lg transition ${
-              selected === id ? "bg-gray-700" : "bg-transparent"
-            }`}
+            type="button"
+            aria-label={id}
+            className={`sidebar-button ${selected === id ? "selected" : ""}`}
           >
             <Icon size={24} />
           </button>

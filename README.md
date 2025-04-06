@@ -1,5 +1,17 @@
 # ft_transcendence
 
+## 📋 Table of Contents
+- [Overview](#overview)
+- [Team](#team)
+- [Features](#features)
+- [Chosen Modules](#chosen-modules)
+- [Technology Stack](#technology-stack)
+- [Installation & Setup](#installation--setup)
+- [Project Structure](#project-structure)
+- [Development Guidelines](#development-guidelines)
+- [Roadmap](#roadmap)
+- [Authentication System Architecture](#authentication-system-architecture)
+
 ## Overview
 
 ft_transcendence is a web-based multiplayer Pong game that integrates real-time gameplay with modern web technologies. Developed as part of our Hive Helsinki project, it pushes us to adapt to new technologies and implement a secure, scalable, and interactive application.
@@ -14,58 +26,42 @@ We are a team of five developers working together to complete this project withi
 - [Valle Vaalanti](https://github.com/Vallehtelia)
 - [Oliver Hertzberg](https://github.com/oliverhertzberg)
 - [Lumi Kilpeläinen](https://github.com/lkilpela)
-  
+
 ## Features
 
-- 🎮 Pong gameplay: Play 1v1 Pong matches & multiplayers locally.
-
-- 🔐 User management: Registration, authentication, and user profiles.
-
-- 🏆 Tournament system: Matchmaking, leaderboards, and competitive play.
-
-- 🛡️ Security: HTTPS enforcement, input validation, hashed passwords, and protection against SQL injection and XSS.
-
-- 🐳 Dockerized deployment: Easy setup with a single command.
-
-- 🚀 Custom modules: Additional features like AI opponents, chat functionality, and enhanced accessibility.
+### Core Features
+- 🎮 **Pong Gameplay**: Play 1v1 Pong matches & multiplayers locally
+- 🔐 **User Management**: Registration, authentication, and user profiles
+- 🏆 **Tournament System**: Matchmaking, leaderboards, and competitive play
+- 🛡️ **Security**: HTTPS enforcement, input validation, hashed passwords, and protection against SQL injection and XSS
+- 🐳 **Dockerized Deployment**: Easy setup with a single command
 
 ## Chosen Modules
 
 ### Web
-
-- ✅ Major: Use a framework to build the backend.
-
-- ✅ Minor: Use a framework or toolkit to build the frontend.
-
-- ✅ Minor: Use a database for the backend.
-
-- ✅ Major: Store the score of a tournament in the Blockchain.
+- ✅ **Major**: Use a framework to build the backend
+- ✅ **Minor**: Use a framework or toolkit to build the frontend
+- ✅ **Minor**: Use a database for the backend
+- ✅ **Major**: Store the score of a tournament in the Blockchain
 
 ### User Management
-
-- ✅ Major: Standard user management, authentication, users across tournaments.
-
-- ✅ Major: Implementing remote authentication.
+- ✅ **Major**: Standard user management, authentication, users across tournaments
+- ✅ **Major**: Implementing remote authentication
 
 ### Gameplay & User Experience
-
-- ✅ Major: Multiplayer (more than 2 players in the same game).
-
-- ✅ Major: Add another game with user history and matchmaking.
-
-- 🎯 Nice to Have: Live chat.
+- ✅ **Major**: Multiplayer (more than 2 players in the same game)
+- ✅ **Major**: Add another game with user history and matchmaking
+- 🎯 **Nice to Have**: Live chat
 
 ### Cybersecurity
-
-- ✅ Major: Implement Two-Factor Authentication (2FA) and JWT.
+- ✅ **Major**: Implement Two-Factor Authentication (2FA) and JWT
 
 ### Accessibility
+- ✅ **Minor**: Expanding browser compatibility
+- ✅ **Minor**: Supports multiple languages
 
-- ✅ Minor: Expanding browser compatibility.
+## Project Architecture
 
-- ✅ Minor: Supports multiple languages.
-
-### Mindmap
 ```mermaid
 graph LR
 
@@ -129,114 +125,197 @@ graph LR
 
 ## Technology Stack
 
-- Frontend: TypeScript with Tailwind CSS & React
+### Frontend
+- TypeScript
+- React
+- Tailwind CSS
 
-- Backend: Fastify with Node.js
+### Backend
+- Fastify
+- Node.js
+- SQLite
 
-- Database: SQLite
+### DevOps
+- Docker
+- GitHub Actions
 
-- Containerization: Docker
-
-- Security: HTTPS, JWT authentication, and secure storage of credentials.
+### Security
+- HTTPS
+- JWT authentication
+- Secure credential storage
 
 ## Installation & Setup
 
-- Access the application via http://localhost:xxxx/. (FINAL PORT TO BE CONFIRMED)
+1. Clone the repository
+2. Run `docker-compose up`
+3. Access the application at `http://localhost:xxxx/` (port to be confirmed)
 
-## Project Structure
+## Development Guidelines
 
-### Development Guidelines
+- Follow coding standards and best practices
+- Use Git for version control with meaningful commit messages
+- Ensure project security and compliance
+- Peer-review all contributions before merging
 
-- Follow the coding standards and best practices.
+## Roadmap
 
-- Use Git for version control with meaningful commit messages.
-
-- Ensure the project remains secure and compliant.
-
-- Contributions should be peer-reviewed before merging.
-
-### Roadmap
-Phase | Tasks
--- | --
-Week 1-2 | Initial setup, project planning, and architecture decisions
-Week 3-4 | Core game mechanics, authentication, and database integration
-Week 5-6 | Enhancing gameplay, additional features, and security implementation
-Week 7-8 | Testing, debugging, and final deployment
+| Phase | Duration | Tasks |
+|-------|----------|-------|
+| Planning | Week 1-2 | Initial setup, project planning, architecture decisions |
+| Development | Week 3-4 | Core game mechanics, authentication, database integration |
+| Enhancement | Week 5-6 | Gameplay improvements, additional features, security implementation |
+| Finalization | Week 7-8 | Testing, debugging, and deployment |
 
 ## Authentication System Architecture
-- JWT Authentication
-- Two-Factor Authentication (2FA)
-- Google OAuth Integration
 
 ```mermaid
 graph TD
-    %% Frontend Components
+    %% === Frontend ===
     subgraph Frontend
         LP[Landing Page]
         LF[Login Form]
         RF[Register Form]
+        GS[Google Sign-In]
+        TFA[2FA Input]
         LS[Local Storage]
         AC[Auth Context]
         PR[Protected Routes]
         DASH[Dashboard/Game]
-        TFA[2FA Input]
-        GS[Google Sign-In]
     end
 
-    %% Backend Components
+    %% === Backend ===
     subgraph Backend
-        RE[api/login]
-        RGE[api/users]
-        JWTAuth[JWT Auth Middleware]
-        DB[(SQLite DB)]
-        PE[Protected Endpoints]
-        TFAV[2FA Verify]
+        RGE[api/users - Register]
+        RE[api/login - Login]
         GAUTH[Google Auth]
+        TFAV[2FA Verify]
+        JWTAuth[JWT Middleware]
+        PE[Protected Endpoints]
+        DB[(SQLite DB)]
     end
 
-    %% Initial Flow
+    %% === User Entry Points ===
     LP -->|New User| RF
-    LP -->|Existing User| LF
-    LF -->|Google Auth| GS
+    LP -->|Existing User - Email/Password| LF
+    LP -->|Sign in with Google| GS
 
-    %% Google Auth Flow
-    GS -->|OAuth| GAUTH
-    GAUTH -->|Verify| DB
-    GAUTH -->|Success + JWT| LS
-    
-    %% Registration Flow
-    RF -->|POST username,email,password| RGE
-    RGE -->|Hash Password & Save| DB
-    RGE -->|Success/Error| RF
-    
-    %% Login Flow
-    LF -->|POST username,password| RE
-    RE -->|Check| DB
-    DB -->|If 2FA enabled| TFAV
-    TFAV -->|Request Code| TFA
-    TFA -->|Submit Code| TFAV
-    TFAV -->|Verified| RE
-    RE -->|Generate JWT| LS
-    
-    %% Auth State
+    %% === Google Auth Flow ===
+    GS -->|OAuth Login| GAUTH
+    GAUTH -->|Lookup/Create User| DB
+    GAUTH -->|Issue JWT| LS
     LS -->|Set Auth| AC
 
-    %% Protected Route Access
+    %% === Registration Flow ===
+    RF -->|POST Register| RGE
+    RGE -->|Save Hashed User| DB
+    RGE -->|Auto Login| RE
+
+    %% === Login Flow (Shared) ===
+    LF -->|POST Login| RE
+    RE -->|Verify Credentials| DB
+    DB -->|2FA Required?| TFAV
+    TFAV -->|Send Code| TFA
+    TFA -->|Submit Code| TFAV
+    TFAV -->|Verified| RE
+    RE -->|Issue JWT| LS
+    LS -->|Set Auth| AC
+
+    %% === Authenticated Navigation ===
     AC -->|Check Auth| PR
-    PR -->|If Not Auth| LF
-    PR -->|Auth OK| DASH
-    
-    %% Protected API Calls
-    DASH -->|Request + JWT Header| JWTAuth
+    PR -->|If Authenticated| DASH
+    PR -->|Else| LF
+
+    %% === Protected API Call ===
+    DASH -->|Request + JWT| JWTAuth
     JWTAuth -->|Verify Token| PE
-    PE -->|Query Data| DB
+    PE -->|Query DB| DB
     DB -->|Return Data| PE
-    PE -->|Response| DASH
+    PE -->|Send Data| DASH
 
     %% Styling
     classDef frontend fill:#FFFFFF,stroke:#000,stroke-width:2px,color:#000,font-weight:bold
     classDef backend fill:#e8d8ff,stroke:#000,stroke-width:2px,color:#000,font-weight:bold
+
+    class LP,LF,RF,GS,TFA,LS,AC,PR,DASH frontend
+    class RGE,RE,GAUTH,TFAV,JWTAuth,PE,DB backend
+```
+
+```mermaid
+graph TB
+    %% === Main Components ===
+    subgraph Frontend["Frontend Components"]
+        direction TB
+        subgraph Entry["Entry Points"]
+            LP[Landing Page]
+            LF[Login Form]
+            RF[Register Form]
+            GS[Google Sign-In]
+        end
+        
+        subgraph Auth["Authentication State"]
+            LS[Local Storage]
+            AC[Auth Context]
+            PR[Protected Routes]
+        end
+        
+        subgraph Game["Game Interface"]
+            DASH[Dashboard/Game]
+        end
+    end
+
+    subgraph Backend["Backend Services"]
+        direction TB
+        subgraph AuthAPI["Authentication API"]
+            RGE[Register Endpoint]
+            RE[Login Endpoint]
+            GAUTH[Google Auth]
+            TFAV[2FA Verify]
+        end
+        
+        subgraph Security["Security Layer"]
+            JWTAuth[JWT Middleware]
+            PE[Protected Endpoints]
+        end
+        
+        subgraph Data["Data Layer"]
+            DB[(SQLite DB)]
+        end
+    end
+
+    %% === Connections ===
+    %% Entry Points to Auth API
+    Entry -->|"User Credentials"| AuthAPI
     
-    class LP,LF,RF,LS,AC,PR,DASH,TFA,GS frontend
-    class RE,RGE,JWTAuth,DB,PE,TFAV,GAUTH backend
+    %% Auth Flow
+    AuthAPI -->|"Validate & Process"| Security
+    Security -->|"Store/Retrieve"| Data
+    
+    %% State Management
+    AuthAPI -->|"Update Auth State"| Auth
+    Auth -->|"Enable Access"| Game
+    
+    %% Protected Access
+    Game -->|"Secure Request"| Security
+    Security -->|"Query"| Data
+    Data -->|"Return Data"| Game
+
+    %% === Styling ===
+    classDef frontend fill:#FFFFFF,stroke:#000,stroke-width:2px,color:#000,font-weight:bold
+    classDef backend fill:#e8d8ff,stroke:#000,stroke-width:2px,color:#000,font-weight:bold
+    classDef entry fill:#f0f0f0,stroke:#000,stroke-width:1px
+    classDef auth fill:#f0f0f0,stroke:#000,stroke-width:1px
+    classDef game fill:#f0f0f0,stroke:#000,stroke-width:1px
+    classDef api fill:#e8d8ff,stroke:#000,stroke-width:1px
+    classDef security fill:#e8d8ff,stroke:#000,stroke-width:1px
+    classDef data fill:#e8d8ff,stroke:#000,stroke-width:1px
+
+    %% === Component Classes ===
+    class LP,LF,RF,GS,LS,AC,PR,DASH frontend
+    class RGE,RE,GAUTH,TFAV,JWTAuth,PE,DB backend
+    class Entry entry
+    class Auth auth
+    class Game game
+    class AuthAPI api
+    class Security security
+    class Data data
 ```
