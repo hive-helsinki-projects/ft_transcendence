@@ -46,7 +46,7 @@ We are a team of five developers working together to complete this project withi
 - ✅ Major: Standard user management, authentication, users across tournaments.
 ```mermaid
 graph TD
-    T[JWT authentication process]
+    T[JWT basic authentication process]
     %% Entry Points
     LP[Landing Page] -->|New User| RF[Register Form]
     LP -->|Existing User| LF[Login Form]
@@ -96,37 +96,38 @@ graph TD
 - ✅ Major: Implement Two-Factor Authentication (2FA) and JWT.
 ```mermaid
 graph TD
+  T[2FA and JWT authentication process]
     %% Entry Points
-    LP[Landing Page]-->|1. New User|RF[Register]
-    LP-->|2. Existing|LF[Login]
+    LP[Landing Page]-->|New User|RF[Register]
+    LP-->|Existing User|LF[Login]
 
     %% First Factor
-    RF-->|3. POST|REG[api-users]
+    RF-->|POST|REG[api-users]
     REG-->DB[(DB)]
     REG-->LF
-    LF-->|4. Username/Password|LOGIN[api-login]
+    LF-->|Username/Password|LOGIN[api-login]
     LOGIN-->DB
 
     %% 2FA Step
-    LOGIN-->|5. Success|TFA[2FA Verification]
-    TFA-->|6. Send Code|AUTH2[Authenticator/Email/SMS]
-    AUTH2-->|7. Verify Code|TFA
+    LOGIN-->|Success|TFA[2FA Verification]
+    TFA-->|Send Code|AUTH2[Authenticator/Email/SMS]
+    AUTH2-->|Verify Code|TFA
     
     %% JWT Issue
-    TFA-->|8. Valid 2FA|TOKEN[Generate JWT]
+    TFA-->|Valid 2FA|TOKEN[Generate JWT]
     TOKEN-->LS[Local Storage]
     LS-->AUTHCTX[Auth Context]
 
     %% Protected Routes
-    AUTHCTX-->|9. Valid Token|PROT[Protected Routes]
+    AUTHCTX-->|Valid Token|PROT[Protected Routes]
     PROT-->DASH[Dashboard]
     PROT-->|Invalid|LF
     
     %% API Calls
-    DASH-->|10. JWT|API[Protected API]
+    DASH-->|JWT|API[Protected API]
     API-->DASH
 
-    classDef frontend fill:#90EE90,stroke:#000,stroke-width:2px,color:#000,font-weight:bold
+    classDef frontend fill:#FFFFFF,stroke:#000,stroke-width:2px,color:#000,font-weight:bold
     classDef backend fill:#FFB6C1,stroke:#000,stroke-width:2px,color:#000,font-weight:bold
     class LP,RF,LF,LS,AUTHCTX,PROT,DASH frontend
     class REG,LOGIN,DB,TFA,TOKEN,AUTH2,API backend
