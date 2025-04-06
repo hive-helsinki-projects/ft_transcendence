@@ -44,42 +44,6 @@ We are a team of five developers working together to complete this project withi
 ### User Management
 
 - ✅ Major: Standard user management, authentication, users across tournaments.
-```mermaid
-graph TD
-    T[JWT basic authentication process]
-    %% Entry Points
-    LP[Landing Page] -->|New User| RF[Register Form]
-    LP -->|Existing User| LF[Login Form]
-
-    %% Registration Flow
-    RF -->|POST| REG[api/users]
-    REG -->|Create| DB[(Database)]
-    REG -->|Success| LF
-
-    %% Login Flow
-    LF -->|POST| LOGIN[api/login]
-    LOGIN -->|Check| DB
-    LOGIN -->|JWT Token| LS[Local Storage]
-    LS -->|Update| AUTH[Auth Context]
-
-    %% Protected Access
-    AUTH -->|Valid Token| PROT[Protected Routes]
-    PROT -->|Access| DASH[Dashboard/Game]
-    PROT -->|No Token| LF
-
-    %% API Calls
-    DASH -->|Request + JWT| CHECK[JWT Check]
-    CHECK -->|Valid| API[Protected API]
-    API -->|Data| DASH
-    CHECK -->|Invalid| LF
-
-    %% Styling with colors and black text
-    classDef frontend fill:#FFFFFF,stroke:#000000,stroke-width:2px,color:#000000,font-weight:bold
-    classDef backend fill:#FFB6C1,stroke:#000000,stroke-width:2px,color:#000000,font-weight:bold
-    
-    class LP,RF,LF,LS,AUTH,PROT,DASH frontend
-    class REG,LOGIN,DB,CHECK,API backend
-```
 
 - ✅ Major: Implementing remote authentication.
 
@@ -94,44 +58,6 @@ graph TD
 ### Cybersecurity
 
 - ✅ Major: Implement Two-Factor Authentication (2FA) and JWT.
-```mermaid
-graph TD
-  T[2FA and JWT authentication process]
-    %% Entry Points
-    LP[Landing Page]-->|New User|RF[Register]
-    LP-->|Existing User|LF[Login]
-
-    %% First Factor
-    RF-->|POST|REG[api-users]
-    REG-->DB[(DB)]
-    REG-->LF
-    LF-->|Username/Password|LOGIN[api-login]
-    LOGIN-->DB
-
-    %% 2FA Step
-    LOGIN-->|Success|TFA[2FA Verification]
-    TFA-->|Send Code|AUTH2[Authenticator/Email/SMS]
-    AUTH2-->|Verify Code|TFA
-    
-    %% JWT Issue
-    TFA-->|Valid 2FA|TOKEN[Generate JWT]
-    TOKEN-->LS[Local Storage]
-    LS-->AUTHCTX[Auth Context]
-
-    %% Protected Routes
-    AUTHCTX-->|Valid Token|PROT[Protected Routes]
-    PROT-->DASH[Dashboard]
-    PROT-->|Invalid|LF
-    
-    %% API Calls
-    DASH-->|JWT|API[Protected API]
-    API-->DASH
-
-    classDef frontend fill:#FFFFFF,stroke:#000,stroke-width:2px,color:#000,font-weight:bold
-    classDef backend fill:#FFB6C1,stroke:#000,stroke-width:2px,color:#000,font-weight:bold
-    class LP,RF,LF,LS,AUTHCTX,PROT,DASH frontend
-    class REG,LOGIN,DB,TFA,TOKEN,AUTH2,API backend
-```
 
 ### Accessibility
 
@@ -236,3 +162,81 @@ Week 1-2 | Initial setup, project planning, and architecture decisions
 Week 3-4 | Core game mechanics, authentication, and database integration
 Week 5-6 | Enhancing gameplay, additional features, and security implementation
 Week 7-8 | Testing, debugging, and final deployment
+
+## Authentication System Architecture
+- JWT Authentication
+- Two-Factor Authentication (2FA)
+- Google OAuth Integration
+
+```mermaid
+graph TD
+    %% Frontend Components
+    subgraph Frontend
+        LP[Landing Page]
+        LF[Login Form]
+        RF[Register Form]
+        LS[Local Storage]
+        AC[Auth Context]
+        PR[Protected Routes]
+        DASH[Dashboard/Game]
+        TFA[2FA Input]
+        GS[Google Sign-In]
+    end
+
+    %% Backend Components
+    subgraph Backend
+        RE[api/login]
+        RGE[api/users]
+        JWTAuth[JWT Auth Middleware]
+        DB[(SQLite DB)]
+        PE[Protected Endpoints]
+        TFAV[2FA Verify]
+        GAUTH[Google Auth]
+    end
+
+    %% Initial Flow
+    LP -->|New User| RF
+    LP -->|Existing User| LF
+    LF -->|Google Auth| GS
+
+    %% Google Auth Flow
+    GS -->|OAuth| GAUTH
+    GAUTH -->|Verify| DB
+    GAUTH -->|Success + JWT| LS
+    
+    %% Registration Flow
+    RF -->|POST username,email,password| RGE
+    RGE -->|Hash Password & Save| DB
+    RGE -->|Success/Error| RF
+    
+    %% Login Flow
+    LF -->|POST username,password| RE
+    RE -->|Check| DB
+    DB -->|If 2FA enabled| TFAV
+    TFAV -->|Request Code| TFA
+    TFA -->|Submit Code| TFAV
+    TFAV -->|Verified| RE
+    RE -->|Generate JWT| LS
+    
+    %% Auth State
+    LS -->|Set Auth| AC
+
+    %% Protected Route Access
+    AC -->|Check Auth| PR
+    PR -->|If Not Auth| LF
+    PR -->|Auth OK| DASH
+    
+    %% Protected API Calls
+    DASH -->|Request + JWT Header| JWTAuth
+    JWTAuth -->|Verify Token| PE
+    PE -->|Query Data| DB
+    DB -->|Return Data| PE
+    PE -->|Response| DASH
+
+    %% Styling
+    classDef frontend fill:#FFFFFF,stroke:#000,stroke-width:2px,color:#000,font-weight:bold
+    classDef backend fill:#e8d8ff,stroke:#000,stroke-width:2px,color:#000,font-weight:bold
+    
+    class LP,LF,RF,LS,AC,PR,DASH,TFA,GS frontend
+    class RE,RGE,JWTAuth,DB,PE,TFAV,GAUTH backend
+```
