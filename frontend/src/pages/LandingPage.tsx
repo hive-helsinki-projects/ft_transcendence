@@ -97,7 +97,7 @@ const LandingPage: React.FC = () => {
 
         <div className="auth-options">
           <div className="google-auth">
-            <span>Or continue with</span>
+            <span>Or</span>
             <button 
               type="button"
               className="google-button"
