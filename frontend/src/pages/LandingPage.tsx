@@ -1,29 +1,43 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../contexts/AuthContext";
-import { api } from "../services/api";
+import { useAuth } from "../hooks/useAuth";
+import { localAuth } from "../services/localAuth";
+import "../css/LandingPage.css";
 
 const LandingPage: React.FC = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [formData, setFormData] = useState({
+    username: "",
+    password: ""
+  });
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
+  
   const navigate = useNavigate();
   const { login } = useAuth();
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
+    setSuccessMessage("");
     setIsLoading(true);
 
     try {
-      if (!username || !password) {
+      if (!formData.username || !formData.password) {
         setError("Please fill in all fields");
         return;
       }
 
-      const response = await api.login(username, password);
-      login(response.token);
+      const response = await localAuth.login(formData.username, formData.password);
+      setSuccessMessage("Login successful! Redirecting to dashboard...");
+      
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      login(response.token, response.username);
       navigate('/dashboard');
     } catch (error) {
       setError(error instanceof Error ? error.message : "Login failed. Please try again.");
@@ -33,74 +47,85 @@ const LandingPage: React.FC = () => {
   };
 
   return (
-    <div>
-      <div>
-        <div>
-          <h1>Ping. Pong. Play!</h1>
-          <h2>Level Up Your Ping Pong Skills</h2>
-          <p>
-            Smash, spin, and dominate the table. Prove you're the ultimate paddle master.
-          </p>
-        </div>
-      </div>
+    <div className="landing-container">
+      <section className="hero-section">
+        <h1>Ping. Pong. Play!</h1>
+        <h2>Level Up Your Ping Pong Skills</h2>
+        <p>Smash, spin, and dominate the table. Prove you're the ultimate paddle master.</p>
+      </section>
 
-      <div>
-        <div>
-          <h2>Let's Play!</h2>
+      <section className="auth-section">
+        <h2>Let's Play!</h2>
 
-          {error && <div>{error}</div>}
+        {error && <div className="error-message">{error}</div>}
+        {successMessage && <div className="success-message">{successMessage}</div>}
 
-          <form onSubmit={handleSubmit}>
-            <div>
-              <label>Username</label>
-              <input
-                type="text"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                disabled={isLoading}
-                required
+        <form onSubmit={handleSubmit} className="auth-form">
+          <div className="form-group">
+            <input
+              type="text"
+              name="username"
+              placeholder="Enter your username"
+              value={formData.username}
+              onChange={handleInputChange}
+              disabled={isLoading}
+              required
+            />
+          </div>
+
+          <div className="form-group">
+            <input
+              type="password"
+              name="password"
+              placeholder="Enter your password"
+              value={formData.password}
+              onChange={handleInputChange}
+              disabled={isLoading}
+              required
+            />
+          </div>
+
+          <button 
+            type="submit" 
+            className="submit-button"
+            disabled={isLoading}
+          >
+            {isLoading ? "Signing in..." : "Sign In"}
+          </button>
+        </form>
+
+        <div className="auth-options">
+          <div className="google-auth">
+            <span>Or Sign in with Google</span>
+            <button 
+              type="button"
+              className="google-button"
+              onClick={() => {/* Handle Google Auth */}}
+              disabled={isLoading}
+            >
+              <img 
+                src="https://www.google.com/favicon.ico" 
+                alt="Google"
+                width="20"
+                height="20"
               />
-            </div>
-
-            <div>
-              <label>Password</label>
-              <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                disabled={isLoading}
-                required
-              />
-            </div>
-
-            <button type="submit" disabled={isLoading}>
-              {isLoading ? "Signing in..." : "Sign In"}
             </button>
-          </form>
+          </div>
 
-          <div>
-            <div>
-              <span>Or continue with</span>
-            </div>
-
-            <div>
-              <button onClick={() => {/* Handle Google Auth */}} disabled={isLoading}>
-                Sign in with Google
+          <div className="register-link">
+            <p>
+              Don't have an account?{' '}
+              <button 
+                type="button"
+                className="link-button"
+                onClick={() => navigate('/register')}
+              >
+                Register here
               </button>
-            </div>
-
-            <div>
-              <span>Or</span>
-            </div>
-
-            <div>
-              <button onClick={() => navigate('/register')} disabled={isLoading}>
-                Don't have an account?
-              </button>
-            </div>
+            </p>
           </div>
         </div>
-      </div>
+      </section>
     </div>
   );
 };
