@@ -44,7 +44,7 @@ We are a team of five developers working together to complete this project withi
 ### User Management
 
 - ✅ Major: Standard user management, authentication, users across tournaments.
-<div class="mermaid" style="width: 30%;">
+```mermaid
 graph TD
     T[JWT authentication process]
     %% Entry Points
@@ -79,7 +79,7 @@ graph TD
     
     class LP,RF,LF,LS,AUTH,PROT,DASH frontend
     class REG,LOGIN,DB,CHECK,API backend
-</div>
+```
 
 - ✅ Major: Implementing remote authentication.
 
