@@ -1,5 +1,8 @@
 import React from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
+import { api } from '../services/api';
+import { useAuth } from '../contexts/AuthContext';
 
 interface RegisterFormInputs {
   username: string;
@@ -7,11 +10,24 @@ interface RegisterFormInputs {
 }
 
 const Register: React.FC = () => {
+  const navigate = useNavigate();
+  const { login } = useAuth();
   const { register, handleSubmit, formState: { errors } } = useForm<RegisterFormInputs>();
 
-  const onSubmit: SubmitHandler<RegisterFormInputs> = (data) => {
-    console.log('Form Data:', data);
-    // Handle registration logic here (e.g., API call)
+  const onSubmit: SubmitHandler<RegisterFormInputs> = async (data) => {
+    try {
+      // 1. Register the user
+      await api.register(data.username, data.password);
+      
+      // 2. Automatically log in the new user
+      const response = await api.login(data.username, data.password);
+      
+      // 3. Store the token and navigate to dashboard
+      login(response.token);
+      navigate('/dashboard');
+    } catch (error) {
+      console.error('Registration failed:', error);
+    }
   };
 
   return (
@@ -38,6 +54,10 @@ const Register: React.FC = () => {
         </div>
         <button type="submit">Register</button>
       </form>
+      <p>
+        Already have an account?{' '}
+        <button onClick={() => navigate('/login')}>Login here</button>
+      </p>
     </div>
   );
 };
