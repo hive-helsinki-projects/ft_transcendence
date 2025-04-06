@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import '../css/PongBackground.css';
 
 const PongBackground: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -163,29 +164,8 @@ const PongBackground: React.FC = () => {
   }, []);
 
   return (
-    <div 
-      ref={containerRef} 
-      style={{ 
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
-        overflow: 'hidden',
-        borderRadius: 'inherit',
-        zIndex: 0
-      }}
-    >
-      <canvas
-        ref={canvasRef}
-        style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          width: '100%',
-          height: '100%',
-        }}
-      />
+    <div ref={containerRef} className="pong-container">
+      <canvas ref={canvasRef} className="pong-canvas" />
     </div>
   );
 };
