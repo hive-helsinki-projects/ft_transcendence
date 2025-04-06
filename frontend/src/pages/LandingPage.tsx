@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 import { localAuth } from "../services/localAuth";
+import LoadingContainer from '../components/LoadingContainer';
 import "../css/LandingPage.css";
 
 const LandingPage: React.FC = () => {
@@ -47,7 +48,7 @@ const LandingPage: React.FC = () => {
   };
 
   return (
-    <div className="landing-container">
+    <LoadingContainer showPongBackground>
       <section className="hero-section">
         <h1>Ping. Pong. Play!</h1>
         <h2>Level Up Your Ping Pong Skills</h2>
@@ -96,7 +97,7 @@ const LandingPage: React.FC = () => {
 
         <div className="auth-options">
           <div className="google-auth">
-            <span>Or Sign in with Google</span>
+            <span>Or continue with</span>
             <button 
               type="button"
               className="google-button"
@@ -109,6 +110,7 @@ const LandingPage: React.FC = () => {
                 width="20"
                 height="20"
               />
+              Sign in with Google
             </button>
           </div>
 
@@ -126,7 +128,7 @@ const LandingPage: React.FC = () => {
           </div>
         </div>
       </section>
-    </div>
+    </LoadingContainer>
   );
 };
 
