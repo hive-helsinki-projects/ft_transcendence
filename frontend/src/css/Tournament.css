@@ -1,0 +1,252 @@
+.tournament-lobby {
+  min-height: 100vh;
+  padding: 1.5rem;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(135deg, #1A1B2E, #2A2B4A);
+}
+
+.tournament-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding: 0.75rem 1.5rem;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.tournament-header h1 {
+  font-size: 1.5rem;
+  color: white;
+  margin: 0;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+
+.reset-tournament-button {
+  padding: 0.5rem 1rem;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  color: white;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.reset-tournament-button:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.tournament-bracket {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  flex: 1;
+}
+
+.semifinals {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  padding: 0 1.5rem;
+}
+
+.match-card {
+  background: rgba(42, 43, 74, 0.5);
+  border-radius: 8px;
+  padding: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.match-card h3 {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-align: center;
+  font-weight: 500;
+}
+
+.match-players {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+  flex: 1;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.player {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  width: 40%;
+}
+
+.player-avatar {
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  object-fit: cover;
+}
+
+.player-name {
+  color: white;
+  font-size: 0.9rem;
+  font-weight: 400;
+  text-align: center;
+  word-break: break-word;
+}
+
+.vs {
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 1rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  padding: 0.5rem 0.75rem;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+/* Final Match Styles */
+.match-card.final {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 2rem;
+  background: rgba(42, 43, 74, 0.6);
+}
+
+.match-card.final .player {
+  width: 45%;
+}
+
+.match-card.final .player-avatar {
+  border-width: 2px;
+}
+
+.match-card.final .player-name {
+  font-size: 1rem;
+}
+
+/* Champion Styles */
+.match-card.champion {
+  max-width: 500px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 2rem;
+  background: rgba(42, 43, 74, 0.7);
+  border: 1px solid rgba(74, 226, 175, 0.1);
+}
+
+.champion-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.champion-avatar {
+  width: 80%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  object-fit: cover;
+}
+
+.champion-name {
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+/* Match Actions and Status */
+.match-actions {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.start-match-button {
+  width: 100%;
+  padding: 0.75rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  color: white;
+  font-size: 0.9rem;
+  font-weight: 400;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.start-match-button:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.match-status, .match-result {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+  font-weight: 400;
+  padding: 0.75rem;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+  margin-top: 1.5rem;
+}
+
+@media (min-width: 1600px) {
+  .tournament-bracket {
+    max-width: 1400px;
+    gap: 3rem;
+  }
+
+  .semifinals {
+    gap: 2rem;
+    padding: 0 2rem;
+  }
+
+  .match-card {
+    padding: 2rem;
+  }
+
+  .player-name {
+    font-size: 1rem;
+  }
+
+  .match-card.final {
+    max-width: 800px;
+    padding: 2.5rem;
+  }
+
+  .match-card.final .player-name {
+    font-size: 1.1rem;
+  }
+
+  .match-card.champion {
+    max-width: 600px;
+    padding: 3rem;
+  }
+
+  .champion-name {
+    font-size: 1.8rem;
+  }
+} 

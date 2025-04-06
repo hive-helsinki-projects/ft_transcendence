@@ -113,6 +113,7 @@ const GameStatsSection: React.FC<{ stats: GameStats }> = ({ stats }) => (
 const QuickPlaySection: React.FC<{ userPlayers: UserPlayer[] }> = ({ userPlayers }) => {
   const navigate = useNavigate();
   const hasActivePlayers = userPlayers.length > 0;
+  const hasEnoughPlayers = userPlayers.length >= 2;
 
   const handleTournamentClick = () => {
     if (!hasActivePlayers) {
@@ -122,11 +123,26 @@ const QuickPlaySection: React.FC<{ userPlayers: UserPlayer[] }> = ({ userPlayers
     navigate('/tournament');
   };
 
+  const handleOneVsOneClick = () => {
+    if (!hasActivePlayers) {
+      alert('Please create a player before starting a 1v1 match');
+      return;
+    }
+    if (!hasEnoughPlayers) {
+      alert('You need at least 2 players to start a 1v1 match');
+      return;
+    }
+    navigate('/game');
+  };
+
   return (
     <div className="quick-play-section">
       <h2>Game Modes</h2>
       <div className="play-options">
-        <button className="play-button one-vs-one">
+        <button 
+          className="play-button one-vs-one"
+          onClick={handleOneVsOneClick}
+        >
           <span className="button-icon">🏓</span>
           1v1 Match
         </button>
