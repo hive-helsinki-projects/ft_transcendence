@@ -36,11 +36,6 @@ We are a team of five developers working together to complete this project withi
 - 🛡️ **Security**: HTTPS enforcement, input validation, hashed passwords, and protection against SQL injection and XSS
 - 🐳 **Dockerized Deployment**: Easy setup with a single command
 
-### Additional Features
-- 🤖 AI opponents
-- 💬 Chat functionality
-- ♿ Enhanced accessibility
-
 ## Chosen Modules
 
 ### Web
@@ -68,60 +63,64 @@ We are a team of five developers working together to complete this project withi
 ## Project Architecture
 
 ```mermaid
-graph TD
-    %% === Core Components ===
-    subgraph Core[Core Components]
-        Backend[Backend]
-        Frontend[Frontend]
-        Game[Game Engine]
-        Security[Security]
-    end
+graph LR
 
-    %% === Backend ===
-    subgraph Backend
-        API[API Layer]
-        DB[Database]
-        Auth[Authentication]
-    end
+  A[ft_transcendence] -->|Core| B[BACKEND]
+  A -->|Core| C[Frontend]
+  A -->|Core| D[Game]
+  A -->|Core| E[Security]
+  A -->|Feature| F[Blockchain]
+  A -->|DevOps| G[Deployment]
+  A -->|DevOps| H[Testing]
 
-    %% === Frontend ===
-    subgraph Frontend
-        UI[User Interface]
-        State[State Management]
-    end
+  subgraph B [BACKEND]
+    B1[API] --> B1a[Fastify - Routing]
+    B1 --> B1b[WebSockets - Real-time]
+    B2[Database] --> B2a[SQLite - Persistent]
+    B3[Authentication] --> B3a[JWT - if used]
+    B3 --> B3b[Secure user validation - Google OAuth]
+  end
 
-    %% === Game ===
-    subgraph Game
-        Mechanics[Game Mechanics]
-        Multiplayer[Multiplayer]
-        Tournament[Tournament]
-    end
+  subgraph C [Frontend]
+    C1[UI] --> C1a[Tailwind CSS]
+    C1 --> C1b[Single-Page Application Navigation]
+    C2[Logic] --> C2a[TypeScript - Strict] 
+    C2 --> C2b[State Management]
+  end
 
-    %% === Security ===
-    subgraph Security
-        WebSec[Web Security]
-        AuthSec[Auth Security]
-    end
+  subgraph D [Game]
+    D1[Pong Mechanics] --> D1a[Paddle Physics]
+    D1 --> D1b[Collision Detection]
+    D2[Multiplayer] --> D2a[WebSockets]
+    D3[Tournament] --> D3a[Player Registration]
+    D3 --> D3b[Score Tracking]
+  end
 
-    %% === Connections ===
-    Core --> Backend
-    Core --> Frontend
-    Core --> Game
-    Core --> Security
+  subgraph E [Security]
+    E1[Web Security] --> E1a[SQL Injection]
+    E1 --> E1b[XSS Protection]
+    E2[Auth Security] --> E2a[Password Hashing]
+    E2 --> E2b[HTTPS Enforcement]
+  end
 
-    Backend --> API
-    Backend --> DB
-    Backend --> Auth
+  subgraph F [Blockchain]
+    F1[Avalanche] --> F1a[Smart Contracts]
+    F1 --> F1b[Score Storage]
+  end
 
-    Frontend --> UI
-    Frontend --> State
+  subgraph G [Deployment]
+    G1[Docker] --> G1a[Containerization]
+    G1 --> G1b[One-command startup]
+    G2[CI/CD] --> G2a[GitHub Actions]
+    G2 --> G2b[Automated Testing]
+  end
 
-    Game --> Mechanics
-    Game --> Multiplayer
-    Game --> Tournament
+  subgraph H [Testing]
+    H1[Unit Tests] --> H1a[Jest - Backend]
+    H1 --> H1b[Supertest - API]
+    H2[Frontend Tests] --> H2a[Playwright - UI]
+  end
 
-    Security --> WebSec
-    Security --> AuthSec
 ```
 
 ## Technology Stack
@@ -239,3 +238,84 @@ graph TD
 
     class LP,LF,RF,GS,TFA,LS,AC,PR,DASH frontend
     class RGE,RE,GAUTH,TFAV,JWTAuth,PE,DB backend
+```
+
+```mermaid
+graph TB
+    %% === Main Components ===
+    subgraph Frontend["Frontend Components"]
+        direction TB
+        subgraph Entry["Entry Points"]
+            LP[Landing Page]
+            LF[Login Form]
+            RF[Register Form]
+            GS[Google Sign-In]
+        end
+        
+        subgraph Auth["Authentication State"]
+            LS[Local Storage]
+            AC[Auth Context]
+            PR[Protected Routes]
+        end
+        
+        subgraph Game["Game Interface"]
+            DASH[Dashboard/Game]
+        end
+    end
+
+    subgraph Backend["Backend Services"]
+        direction TB
+        subgraph AuthAPI["Authentication API"]
+            RGE[Register Endpoint]
+            RE[Login Endpoint]
+            GAUTH[Google Auth]
+            TFAV[2FA Verify]
+        end
+        
+        subgraph Security["Security Layer"]
+            JWTAuth[JWT Middleware]
+            PE[Protected Endpoints]
+        end
+        
+        subgraph Data["Data Layer"]
+            DB[(SQLite DB)]
+        end
+    end
+
+    %% === Connections ===
+    %% Entry Points to Auth API
+    Entry -->|"User Credentials"| AuthAPI
+    
+    %% Auth Flow
+    AuthAPI -->|"Validate & Process"| Security
+    Security -->|"Store/Retrieve"| Data
+    
+    %% State Management
+    AuthAPI -->|"Update Auth State"| Auth
+    Auth -->|"Enable Access"| Game
+    
+    %% Protected Access
+    Game -->|"Secure Request"| Security
+    Security -->|"Query"| Data
+    Data -->|"Return Data"| Game
+
+    %% === Styling ===
+    classDef frontend fill:#FFFFFF,stroke:#000,stroke-width:2px,color:#000,font-weight:bold
+    classDef backend fill:#e8d8ff,stroke:#000,stroke-width:2px,color:#000,font-weight:bold
+    classDef entry fill:#f0f0f0,stroke:#000,stroke-width:1px
+    classDef auth fill:#f0f0f0,stroke:#000,stroke-width:1px
+    classDef game fill:#f0f0f0,stroke:#000,stroke-width:1px
+    classDef api fill:#e8d8ff,stroke:#000,stroke-width:1px
+    classDef security fill:#e8d8ff,stroke:#000,stroke-width:1px
+    classDef data fill:#e8d8ff,stroke:#000,stroke-width:1px
+
+    %% === Component Classes ===
+    class LP,LF,RF,GS,LS,AC,PR,DASH frontend
+    class RGE,RE,GAUTH,TFAV,JWTAuth,PE,DB backend
+    class Entry entry
+    class Auth auth
+    class Game game
+    class AuthAPI api
+    class Security security
+    class Data data
+```
