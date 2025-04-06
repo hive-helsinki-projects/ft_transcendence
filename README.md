@@ -44,42 +44,6 @@ We are a team of five developers working together to complete this project withi
 ### User Management
 
 - ✅ Major: Standard user management, authentication, users across tournaments.
-```mermaid
-graph TD
-    T[JWT basic authentication process]
-    %% Entry Points
-    LP[Landing Page] -->|New User| RF[Register Form]
-    LP -->|Existing User| LF[Login Form]
-
-    %% Registration Flow
-    RF -->|POST| REG[api/users]
-    REG -->|Create| DB[(Database)]
-    REG -->|Success| LF
-
-    %% Login Flow
-    LF -->|POST| LOGIN[api/login]
-    LOGIN -->|Check| DB
-    LOGIN -->|JWT Token| LS[Local Storage]
-    LS -->|Update| AUTH[Auth Context]
-
-    %% Protected Access
-    AUTH -->|Valid Token| PROT[Protected Routes]
-    PROT -->|Access| DASH[Dashboard/Game]
-    PROT -->|No Token| LF
-
-    %% API Calls
-    DASH -->|Request + JWT| CHECK[JWT Check]
-    CHECK -->|Valid| API[Protected API]
-    API -->|Data| DASH
-    CHECK -->|Invalid| LF
-
-    %% Styling with colors and black text
-    classDef frontend fill:#FFFFFF,stroke:#000000,stroke-width:2px,color:#000000,font-weight:bold
-    classDef backend fill:#FFB6C1,stroke:#000000,stroke-width:2px,color:#000000,font-weight:bold
-    
-    class LP,RF,LF,LS,AUTH,PROT,DASH frontend
-    class REG,LOGIN,DB,CHECK,API backend
-```
 
 - ✅ Major: Implementing remote authentication.
 
@@ -94,44 +58,6 @@ graph TD
 ### Cybersecurity
 
 - ✅ Major: Implement Two-Factor Authentication (2FA) and JWT.
-```mermaid
-graph TD
-  T[2FA and JWT authentication process]
-    %% Entry Points
-    LP[Landing Page]-->|New User|RF[Register]
-    LP-->|Existing User|LF[Login]
-
-    %% First Factor
-    RF-->|POST|REG[api-users]
-    REG-->DB[(DB)]
-    REG-->LF
-    LF-->|Username/Password|LOGIN[api-login]
-    LOGIN-->DB
-
-    %% 2FA Step
-    LOGIN-->|Success|TFA[2FA Verification]
-    TFA-->|Send Code|AUTH2[Authenticator/Email/SMS]
-    AUTH2-->|Verify Code|TFA
-    
-    %% JWT Issue
-    TFA-->|Valid 2FA|TOKEN[Generate JWT]
-    TOKEN-->LS[Local Storage]
-    LS-->AUTHCTX[Auth Context]
-
-    %% Protected Routes
-    AUTHCTX-->|Valid Token|PROT[Protected Routes]
-    PROT-->DASH[Dashboard]
-    PROT-->|Invalid|LF
-    
-    %% API Calls
-    DASH-->|JWT|API[Protected API]
-    API-->DASH
-
-    classDef frontend fill:#FFFFFF,stroke:#000,stroke-width:2px,color:#000,font-weight:bold
-    classDef backend fill:#FFB6C1,stroke:#000,stroke-width:2px,color:#000,font-weight:bold
-    class LP,RF,LF,LS,AUTHCTX,PROT,DASH frontend
-    class REG,LOGIN,DB,TFA,TOKEN,AUTH2,API backend
-```
 
 ### Accessibility
 
