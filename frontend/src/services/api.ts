@@ -45,4 +45,20 @@ export const api = {
     const data = await response.json();
     return data;
   },
+
+  async register(username: string, email: string, password: string) {
+    const response = await fetch(`${API_URL}/api/users`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ username, email, password }),
+    });
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.error || `Registration failed: ${response.status}`);
+    }
+    const data = await response.json();
+    return data;
+  },
 }; 
