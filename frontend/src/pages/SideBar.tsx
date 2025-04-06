@@ -19,6 +19,8 @@ const Sidebar = () => {
       {menuItems.map(({ id, icon: Icon, path }) => (
         <Link to={path} key={id} onClick={() => setSelected(id)}>
           <button
+            type="button"
+            aria-label={id}
             className={`w-12 h-12 flex items-center justify-center rounded-lg transition ${
               selected === id ? "bg-gray-700" : "bg-transparent"
             }`}

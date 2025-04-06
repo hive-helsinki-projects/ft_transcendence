@@ -1,64 +1,45 @@
-import React from 'react';
-import { useForm, SubmitHandler } from 'react-hook-form';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { api } from '../services/api';
-import { useAuth } from '../contexts/AuthContext';
-
-interface RegisterFormInputs {
-  username: string;
-  password: string;
-}
+import { localAuth, User } from '../services/localAuth';
+import RegisterForm from '../components/RegisterForm';
+import '../css/Register.css';
 
 const Register: React.FC = () => {
   const navigate = useNavigate();
-  const { login } = useAuth();
-  const { register, handleSubmit, formState: { errors } } = useForm<RegisterFormInputs>();
+  const [isLoading, setIsLoading] = useState(false);
+  const [successMessage, setSuccessMessage] = useState('');
+  const [registeredUsers, setRegisteredUsers] = useState<User[]>([]);
 
-  const onSubmit: SubmitHandler<RegisterFormInputs> = async (data) => {
+  const handleSubmit = async (data: { username: string; email: string; password: string }) => {
+    setIsLoading(true);
+    setSuccessMessage('');
+    
     try {
-      // 1. Register the user
-      await api.register(data.username, data.password);
-      
-      // 2. Automatically log in the new user
-      const response = await api.login(data.username, data.password);
-      
-      // 3. Store the token and navigate to dashboard
-      login(response.token);
-      navigate('/dashboard');
+      await localAuth.register(data.username, data.email, data.password);
+      setSuccessMessage('Registration successful! Redirecting to login...');
+      setTimeout(() => {
+        navigate('/login');
+      }, 2000);
     } catch (error) {
-      console.error('Registration failed:', error);
+      console.error('Registration error:', error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
+  const handleShowUsers = () => {
+    const users = JSON.parse(localStorage.getItem('ft_transcendence_users') || '[]');
+    setRegisteredUsers(users);
+  };
+
   return (
-    <div className="register-container">
-      <h1>Register</h1>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <div>
-          <label htmlFor="username">Username</label>
-          <input
-            id="username"
-            type="text"
-            {...register('username', { required: 'Username is required' })}
-          />
-          {errors.username && <p>{errors.username.message}</p>}
-        </div>
-        <div>
-          <label htmlFor="password">Password</label>
-          <input
-            id="password"
-            type="password"
-            {...register('password', { required: 'Password is required' })}
-          />
-          {errors.password && <p>{errors.password.message}</p>}
-        </div>
-        <button type="submit">Register</button>
-      </form>
-      <p>
-        Already have an account?{' '}
-        <button onClick={() => navigate('/login')}>Login here</button>
-      </p>
-    </div>
+    <RegisterForm
+      onSubmit={handleSubmit}
+      isLoading={isLoading}
+      successMessage={successMessage}
+      onShowUsers={handleShowUsers}
+      registeredUsers={registeredUsers}
+    />
   );
 };
 
