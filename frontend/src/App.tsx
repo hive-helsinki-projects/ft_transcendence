@@ -8,7 +8,7 @@ import Dashboard from "./pages/DashBoard";
 import Tournament from "./pages/Tournament";
 import Help from "./pages/Help";
 import Settings from "./pages/Settings";
-
+import Login from "./pages/Login";
 const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   const { isAuthenticated } = useAuth();
   return isAuthenticated ? <>{children}</> : <Navigate to="/" />;
@@ -30,6 +30,9 @@ const App = () => {
 
               {/* Route for the Register Page */}
               <Route path="/register" element={<Register />} />
+
+              {/* Route for the Login Page */}
+              <Route path="/login" element={<Login />} />
 
               {/* Route for the Dashboard Page*/}
               <Route path="/dashboard" element={
