@@ -189,6 +189,7 @@
   border-radius: 50%;
   border: 2px solid rgba(255, 255, 255, 0.1);
   transition: all 0.3s ease;
+  position: relative;
 }
 
 .avatar-container:hover .welcome-avatar {
@@ -612,14 +613,27 @@
 
 .online-status {
   position: absolute;
-  bottom: 2px;
-  right: 8px;
-  width: 8px;
-  height: 8px;
-  background-color: #2C3E50;
+  bottom: 0;
+  right: 0;
+  width: 10px;
+  height: 10px;
+  background-color: #4AE44A;
   border-radius: 50%;
   border: 2px solid #1E1E2E;
-  box-shadow: 0 0 0 2px rgba(44, 62, 80, 0.3);
+  box-shadow: 0 0 0 2px rgba(74, 228, 74, 0.3);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(74, 228, 74, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 6px rgba(74, 228, 74, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(74, 228, 74, 0);
+  }
 }
 
 .avatar-menu {
