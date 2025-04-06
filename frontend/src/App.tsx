@@ -1,5 +1,7 @@
+import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
-import { AuthProvider, useAuth } from "./contexts/AuthContext";
+import { AuthProvider } from "./contexts/AuthContext";
+import { useAuth } from "./hooks/useAuth";
 import LandingPage from "./pages/LandingPage";
 import Sidebar from "./pages/SideBar";
 import Pong from "./game/pong";
@@ -14,7 +16,7 @@ const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   return isAuthenticated ? <>{children}</> : <Navigate to="/" />;
 };
 
-const App = () => {
+const App: React.FC = () => {
   return (
     <AuthProvider>
       <Router>
@@ -30,7 +32,6 @@ const App = () => {
 
               {/* Route for the Register Page */}
               <Route path="/register" element={<Register />} />
-
 
               {/* Route for the Dashboard Page*/}
               <Route path="/dashboard" element={
