@@ -44,6 +44,42 @@ We are a team of five developers working together to complete this project withi
 ### User Management
 
 - ✅ Major: Standard user management, authentication, users across tournaments.
+<div class="mermaid" style="width: 30%;">
+graph TD
+    T[JWT authentication process]
+    %% Entry Points
+    LP[Landing Page] -->|New User| RF[Register Form]
+    LP -->|Existing User| LF[Login Form]
+
+    %% Registration Flow
+    RF -->|POST| REG[api/users]
+    REG -->|Create| DB[(Database)]
+    REG -->|Success| LF
+
+    %% Login Flow
+    LF -->|POST| LOGIN[api/login]
+    LOGIN -->|Check| DB
+    LOGIN -->|JWT Token| LS[Local Storage]
+    LS -->|Update| AUTH[Auth Context]
+
+    %% Protected Access
+    AUTH -->|Valid Token| PROT[Protected Routes]
+    PROT -->|Access| DASH[Dashboard/Game]
+    PROT -->|No Token| LF
+
+    %% API Calls
+    DASH -->|Request + JWT| CHECK[JWT Check]
+    CHECK -->|Valid| API[Protected API]
+    API -->|Data| DASH
+    CHECK -->|Invalid| LF
+
+    %% Styling with colors and black text
+    classDef frontend fill:#FFFFFF,stroke:#000000,stroke-width:2px,color:#000000,font-weight:bold
+    classDef backend fill:#FFB6C1,stroke:#000000,stroke-width:2px,color:#000000,font-weight:bold
+    
+    class LP,RF,LF,LS,AUTH,PROT,DASH frontend
+    class REG,LOGIN,DB,CHECK,API backend
+</div>
 
 - ✅ Major: Implementing remote authentication.
 
