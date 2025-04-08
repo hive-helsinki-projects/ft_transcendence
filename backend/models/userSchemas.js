@@ -48,7 +48,7 @@ export const putUserOpts = {
 				type: 'object',
 				properties: {
 					message: { type: 'string' },
-					user: User,
+					item: User,
 				}
 			}
 		},

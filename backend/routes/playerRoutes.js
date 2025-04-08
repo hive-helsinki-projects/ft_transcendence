@@ -1,5 +1,5 @@
 import playerController from '../controllers/playerController.js'
-import { getPlayersOpts, getPlayerOpts, postPlayerOpts, deletePlayerOpts } from '../models/playerSchemas.js';
+import { getPlayersOpts, getPlayerOpts, postPlayerOpts, putPlayerOpts, deletePlayerOpts } from '../models/playerSchemas.js';
 
 function playerRoutes(fastify, options) {
 	// Get all players belonging to a user
@@ -28,6 +28,13 @@ function playerRoutes(fastify, options) {
 		...deletePlayerOpts,
 		onRequest: [fastify.jwtAuth],
 		handler: playerController.deletePlayer
+	})
+
+	// Update a player display_name or avatar_url
+	fastify.put('/players/:id', {
+		...putPlayerOpts,
+		onRequest: [fastify.jwtAuth],
+		handler: playerController.updatePlayer
 	})
 }
 
