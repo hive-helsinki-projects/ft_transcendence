@@ -11,7 +11,7 @@ db.prepare(`
 		password_hash TEXT NOT NULL,
 		online_status BOOLEAN DEFAULT FALSE,
 		created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-  )
+	)
 `).run();
 
 // Enable foreign key constraints
@@ -52,7 +52,7 @@ db.prepare(`
 		player_count INTEGER DEFAULT 0,
 		created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 	)
-`)
+`).run();
 
 // Create match history
 db.prepare(`
@@ -61,7 +61,7 @@ db.prepare(`
 		type TEXT NOT NULL,
 		date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 	)
-`)
+`).run();
 
 // Create match player history
 db.prepare(`
@@ -75,7 +75,7 @@ db.prepare(`
 		FOREIGN KEY (player_id) REFERENCES player(id),
 		UNIQUE (match_id, player_id)
 	)
-`)
+`).run();
 
 // Create match winner history
 db.prepare(`
@@ -86,6 +86,6 @@ db.prepare(`
 		FOREIGN KEY (match_id) REFERENCES match_history(id),
 		FOREIGN KEY (winner_id) REFERENCES player(id)
 	)
-`)
+`).run();
 
 export default db;
