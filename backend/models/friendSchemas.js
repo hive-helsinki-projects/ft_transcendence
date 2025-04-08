@@ -36,10 +36,15 @@ export const deleteFriendOpts = {
 
 export const postFriendOpts = {
     schema: {
+        response: {
         200: {
-            type: 'object',
-            properties: {
-                message: { type: 'string' },
+            response: {
+                type: 'object',
+                properties: {
+                    message: { type: 'string' },
+                    item: Friend,
+                }
+            }
             }
         }
     }
@@ -48,7 +53,15 @@ export const postFriendOpts = {
 export const patchFriendOpts = {
     schema: {
         response: {
-            200: Friend,
+        200: {
+            response: {
+                type: 'object',
+                properties: {
+                    message: { type: 'string' },
+                    item: Friend,
+                }
+            }
+            }
         }
     }
 }
