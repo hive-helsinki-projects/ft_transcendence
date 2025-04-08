@@ -27,7 +27,7 @@ const getUser = async (req, reply) => {
 
 const updateUser = async (req, reply) => {
 	const { id } = req.params;
-	const { username, password, email } = req.body;
+	const { username, password, email, avatar_url } = req.body;
 
 	if (req.user.id !== parseInt(id)) {
 		return reply.code(403).send({ error: 'Unauthoritized to update user information' })
@@ -49,7 +49,8 @@ const updateUser = async (req, reply) => {
 		const updateUser = {
 			username: username ?? user.username,
 			password_hash: user.password_hash,
-			email: email ?? user.email
+			email: email ?? user.email,
+			avatar_url: avatar_url ?? user.avatar_url
 		}
 		
 		if (password) {
@@ -59,9 +60,9 @@ const updateUser = async (req, reply) => {
 		
 		db.prepare(`
 			UPDATE users
-			SET username = ?, password_hash = ?, email = ?
+			SET username = ?, password_hash = ?, email = ?, avatar_url = ?
 			WHERE username = ?
-		`).run(updateUser.username, updateUser.password_hash, updateUser.email, user.username)
+		`).run(updateUser.username, updateUser.password_hash, updateUser.email, updateUser.avatar_url, user.username)
 		
 		return reply.code(200).send({
 			message: 'User updated successfully',

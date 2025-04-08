@@ -3,7 +3,7 @@ POST http://localhost:3001/login
 Content-Type: application/json
 
 {
-	"username": "kim",
+	"username": "kmatjuhi",
 	"password": "password"
 }
 
@@ -28,4 +28,4 @@ Content-Type: application/json
 
 ### LOGOUT
 POST http://localhost:3001/logout HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImttYXRqdWhpIiwiaWQiOjEsImlhdCI6MTc0NDEwMTE0MSwiZXhwIjoxNzQ0MTA0NzQxfQ.tOkSi2r2i1-dPwgJSQFZkNqoNiO9ocUGG2J-3GwJVwY
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImtpbSIsImlkIjoyLCJpYXQiOjE3NDQxMDYxODEsImV4cCI6MTc0NDEwOTc4MX0.EX-UiFAit6cuLlhXQxb7QPnjMOn37P4cVw9tX_wzlIA

@@ -6,6 +6,7 @@ export const User = {
 		username: { type: 'string' },
 		email: { type: 'string' },
 		online_status: { type: 'boolean' },
+		avatar_url: { type: 'string' },
 		created_at: { type: 'string', format: 'date-time' }
 	},
 }
@@ -38,7 +39,8 @@ export const putUserOpts = {
 			properties: {
 				username: { type: 'string', nullable: true },
 				email: { type: 'string', nullable: true },
-				password: { type: 'string', nullable: true }
+				password: { type: 'string', nullable: true },
+				avatar_url: { type: 'string', nullable: true },
 			},
 		},
 		response: {

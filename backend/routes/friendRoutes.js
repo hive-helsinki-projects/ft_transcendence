@@ -1,5 +1,5 @@
 import friendController from '../controllers/friendController.js';
-import { getFriendsOpts, deleteFriendOpts, postFriendOpts, patchFriendOpts } from '../models/friendSchemas.js'; 
+import { getFriendsOpts, getFriendStatusOpts, deleteFriendOpts, postFriendOpts, patchFriendOpts } from '../models/friendSchemas.js'; 
 
 function friendRoutes(fastify, options) {
     // Route to get all friends of a user
@@ -7,6 +7,13 @@ function friendRoutes(fastify, options) {
         ...getFriendsOpts,
         onRequest: [fastify.jwtAuth],
         handler: friendController.getFriends
+    });
+
+    // Route to get a friends status
+    fastify.get('/friends/:id/status', {
+        ...getFriendStatusOpts,
+        onRequest: [fastify.jwtAuth],
+        handler: friendController.getFriendStatus
     });
 
     // Route to remove a friend
@@ -20,14 +27,14 @@ function friendRoutes(fastify, options) {
     fastify.post('/friend-requests/:id', {
         ...postFriendOpts,
         onRequest: [fastify.jwtAuth],
-        handler: friendController.sendRequest
+        handler: friendController.sendFriendRequest
     });
 
     // Route to accept a friend request
     fastify.patch('/friend-requests/:id', {
         ...patchFriendOpts,
         onRequest: [fastify.jwtAuth],
-        handler: friendController.acceptRequest
+        handler: friendController.acceptFriendRequest
     });
 }
 

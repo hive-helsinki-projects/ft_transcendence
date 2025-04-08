@@ -1,7 +1,7 @@
 ### GET ALL FRIENDS BELONGING TO A USER
 GET http://localhost:3001/friends HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImttYXRqdWhpIiwiaWQiOjEsImlhdCI6MTc0NDEwMTIwOCwiZXhwIjoxNzQ0MTA0ODA4fQ.lDIXDS3lUspjzw848kdgDkd-aeyySVFssU0S7nMTBOc
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImtpbSIsImlkIjoyLCJpYXQiOjE3NDQxMDYxODEsImV4cCI6MTc0NDEwOTc4MX0.EX-UiFAit6cuLlhXQxb7QPnjMOn37P4cVw9tX_wzlIA
 
 ### SEND FRIEND REQUEST
 POST http://localhost:3001/friend-requests/2 HTTP/1.1
@@ -14,3 +14,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImttY
 ### ACCEPT FRIEND REQUEST
 PATCH http://localhost:3001/friend-requests/2 HTTP/1.1
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImttYXRqdWhpIiwiaWQiOjEsImlhdCI6MTc0NDEwMTIwOCwiZXhwIjoxNzQ0MTA0ODA4fQ.lDIXDS3lUspjzw848kdgDkd-aeyySVFssU0S7nMTBOc
+
+### GET FRIENDS ONLINE STATUS
+GET http://localhost:3001/friends/2/status HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImttYXRqdWhpIiwiaWQiOjEsImlhdCI6MTc0NDEwNjI5OSwiZXhwIjoxNzQ0MTA5ODk5fQ.KcL7qf_KGiVwq3hHPtARyWkmyP_jwisNjWcbfzTkUqQ

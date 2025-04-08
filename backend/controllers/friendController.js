@@ -37,7 +37,7 @@ const deleteFriend = async (req, reply) => {
     }
 }
 
-const sendRequest = async (req, reply) => {
+const sendFriendRequest = async (req, reply) => {
     const user_id = req.user.id;
     const friend_id = parseInt(req.params.id);
 
@@ -79,7 +79,7 @@ const sendRequest = async (req, reply) => {
     }
 }
 
-const acceptRequest = async (req, reply) => {
+const acceptFriendRequest = async (req, reply) => {
     const user_id = req.user.id;
     const friend_id = parseInt(req.params.id);
 
@@ -109,7 +109,6 @@ const acceptRequest = async (req, reply) => {
             SELECT * FROM friends 
             WHERE user_id = ? AND friend_id = ?
         `).get(friend_id, user_id);
-        console.log("Friend after update:", friend);
         return reply.code(200).send({ 
             message: 'Friend request accepted successfully', 
             friend
@@ -120,9 +119,37 @@ const acceptRequest = async (req, reply) => {
     }
 }
 
+const getFriendStatus = async (req, reply) => {
+    const user_id = req.user.id;
+    const friend_id = parseInt(req.params.id);
+
+    try {
+        const friends = db.prepare(`
+            SELECT status 
+            FROM friends 
+            WHERE (user_id = ? AND friend_id = ?) OR (user_id = ? AND friend_id = ?)
+        `).get(user_id, friend_id, friend_id, user_id);
+        if (!friends) {
+            return reply.code(404).send({ error: 'Friend not found' });
+        } else if (friends.status === 'pending') {
+            return reply.code(400).send({ error: 'Friend request pending' });
+        }
+
+        const friend = db.prepare(`
+            SELECT username, online_status FROM users 
+            WHERE id = ?
+        `).get(friend_id);
+        return reply.code(200).send(friend);
+    } catch (error) {
+        console.log(error);
+        return reply.code(500).send({ error: 'Failed to fetch friend status' });
+    }
+}
+
 export default {
     getFriends,
-    sendRequest,
+    sendFriendRequest,
     deleteFriend,
-    acceptRequest
+    acceptFriendRequest,
+    getFriendStatus
 }
