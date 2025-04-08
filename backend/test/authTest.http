@@ -3,7 +3,7 @@ POST http://localhost:3001/login
 Content-Type: application/json
 
 {
-	"username": "kim23213",
+	"username": "kim",
 	"password": "password"
 }
 
@@ -21,11 +21,11 @@ POST http://localhost:3001/register HTTP/1.1
 Content-Type: application/json
 
 {
-	"username": "one342131",
-	"email": "km3412412hi@hive.fr",
+	"username": "kim",
+	"email": "km342hi@hive.fr",
 	"password": "password"
 }
 
 ### LOGOUT
 POST http://localhost:3001/logout HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImtpbTIzMjEzIiwiaWQiOjEsImlhdCI6MTc0NDAyMDEyOSwiZXhwIjoxNzQ0MDIzNzI5fQ.Io_FUWqMWMGBCP6Sm_FxeOj15u3JXgwAmi2BJeuR78w
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImttYXRqdWhpIiwiaWQiOjEsImlhdCI6MTc0NDEwMTE0MSwiZXhwIjoxNzQ0MTA0NzQxfQ.tOkSi2r2i1-dPwgJSQFZkNqoNiO9ocUGG2J-3GwJVwY
