@@ -59,7 +59,9 @@ db.prepare(`
 	CREATE TABLE IF NOT EXISTS match_history (
 		id INTEGER PRIMARY KEY AUTOINCREMENT,
 		type TEXT NOT NULL,
-		date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+		tournament_id INTEGER,
+		date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+		FOREIGN KEY (tournament_id) REFERENCES tournaments(id) ON DELETE CASCADE
 	)
 `).run();
 
@@ -71,6 +73,7 @@ db.prepare(`
 		player_id INTEGER NOT NULL,
 		score INTEGER DEFAULT 0 NOT NULL,
 		team INTEGER CHECK (team IN (1, 2)) NOT NULL,
+		round INTEGER,
 		FOREIGN KEY (match_id) REFERENCES match_history(id),
 		FOREIGN KEY (player_id) REFERENCES player(id),
 		UNIQUE (match_id, player_id)
