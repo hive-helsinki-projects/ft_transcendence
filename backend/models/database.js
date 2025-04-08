@@ -58,15 +58,32 @@ db.prepare(`
 db.prepare(`
 	CREATE TABLE IF NOT EXISTS match_history (
 		id INTEGER PRIMARY KEY AUTOINCREMENT,
-		tournament_id INTEGER,
-		player_one_id INTEGER,
-		player_two_id INTEGER,
-		round TEXT NOT NULL,
-		winner_id INTEGER,
-		date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-		FOREIGN KEY (tournament_id) REFERENCES tournament(id),
-		FOREIGN KEY (player_one_id) REFERENCES player(id),
-		FOREIGN KEY (player_two_id) REFERENCES player(id),
+		type TEXT NOT NULL,
+		date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+	)
+`)
+
+// Create match player history
+db.prepare(`
+	CREATE TABLE IF NOT EXISTS match_player_history (
+		id INTEGER PRIMARY KEY AUTOINCREMENT,
+		match_id INTEGER NOT NULL,
+		player_id INTEGER NOT NULL,
+		score INTEGER DEFAULT 0 NOT NULL,
+		team INTEGER CHECK (team IN (1, 2)) NOT NULL,
+		FOREIGN KEY (match_id) REFERENCES match_history(id),
+		FOREIGN KEY (player_id) REFERENCES player(id),
+		UNIQUE (match_id, player_id)
+	)
+`)
+
+// Create match winner history
+db.prepare(`
+	CREATE TABLE IF NOT EXISTS match_winner_history (
+		id INTEGER PRIMARY KEY AUTOINCREMENT,
+		match_id INTEGER NOT NULL,
+		winner_id INTEGER NOT NULL,
+		FOREIGN KEY (match_id) REFERENCES match_history(id),
 		FOREIGN KEY (winner_id) REFERENCES player(id)
 	)
 `)
