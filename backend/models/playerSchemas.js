@@ -47,6 +47,28 @@ export const postPlayerOpts = {
 	}
 }
 
+export const putPlayerOpts = {
+	schema: {
+		body: {
+			type: 'object',
+			required: [],
+			properties: {
+				display_name: { type: 'string', nullable: true },
+				avatar_url: { type: 'string', nullable: true },
+			}
+		},
+		response: {
+			200: {
+				type: 'object',
+				properties: {
+					message: { type: 'string' },
+					item: Player,
+				}
+			}
+		}
+	}
+}
+
 export const deletePlayerOpts = {
 	schema: {
 		response: {

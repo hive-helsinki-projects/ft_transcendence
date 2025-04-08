@@ -78,11 +78,44 @@ const deletePlayer = async (req, reply) => {
 	}
 }
 
-// Update player display_name or avatar_url
+const updatePlayer = async (req, reply) => {
+	const { id } = req.params;
+	const { display_name, avatar_url } = req.body;
+	
+	try {
+		const player = db.prepare(`SELECT * FROM players WHERE id = ?`).get(id)
+		if (!player) {
+			return reply.code(404).send({ error: 'Player not found or user not authortized to update this player'})
+		}
+
+		if (display_name && display_name !== player.display_name) {
+			const existingPlayer = db.prepare(`SELECT * FROM players WHERE display_name = ?`).get(display_name);
+			if (existingPlayer) {
+				return reply.code(400).send({ error: 'Display name already taken' });
+			}
+		}
+		
+		const updatedPlayer = {
+			display_name: display_name ?? player.display_name,
+			avatar_url: avatar_url ?? player.avatar_url
+		}
+		
+		db.prepare(`UPDATE players SET display_name = ?, avatar_url = ? WHERE id = ?`).run(updatedPlayer.display_name, updatedPlayer.avatar_url, id);
+		
+		return reply.code(200).send({
+			message: 'Player updated successfully',
+			item: updatedPlayer
+		})
+	} catch (error) {
+		console.log(error);
+		return reply.code(500).send({ error: 'Failed to update player' })
+	}
+}
 
 export default {
 	getPlayers,
 	getPlayer,
 	createPlayer,
-	deletePlayer
+	deletePlayer,
+	updatePlayer
 }

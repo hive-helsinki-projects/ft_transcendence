@@ -66,7 +66,7 @@ const updateUser = async (req, reply) => {
 		
 		return reply.code(200).send({
 			message: 'User updated successfully',
-			user: updateUser
+			item: updateUser
 		});
 	} catch (error) {
 		return reply.code(500).send({ error: 'Internal server error '})
