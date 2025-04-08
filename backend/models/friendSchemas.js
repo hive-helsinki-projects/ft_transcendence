@@ -65,3 +65,17 @@ export const patchFriendOpts = {
         }
     }
 }
+
+export const getFriendStatusOpts = {
+    schema: {
+        response: {
+            200: {
+                type: 'object',
+                properties: {
+                    username: { type: 'string' },
+                    online_status: { type: 'string', enum: ['online', 'offline'] },
+                }
+            }
+        }
+    }
+}

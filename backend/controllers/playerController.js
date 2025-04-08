@@ -78,6 +78,8 @@ const deletePlayer = async (req, reply) => {
 	}
 }
 
+// Update player display_name or avatar_url
+
 export default {
 	getPlayers,
 	getPlayer,
