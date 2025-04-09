@@ -50,7 +50,9 @@ db.prepare(`
 		name TEXT NOT NULL,
 		status TEXT DEFAULT 'pending',
 		player_count INTEGER DEFAULT 0,
-		created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+		winner_id INTEGER,
+		created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+		FOREIGN KEY (winner_id) REFERENCES player(id)
 	)
 `).run();
 
