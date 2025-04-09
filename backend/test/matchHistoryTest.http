@@ -1,21 +1,26 @@
 ### GET MATCH HISTORIES
 GET http://localhost:3001/match-histories
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImtpbSIsImlkIjoxLCJpYXQiOjE3NDQxOTc2NTIsImV4cCI6MTc0NDIwMTI1Mn0.p4NezU17r5DEa7E1PVA8IlkxL4rgK_3-uFRWA-3rUrw
 
 ### GET ONE MATCH HISTORY
 GET http://localhost:3001/match-histories/1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImtpbSIsImlkIjoxLCJpYXQiOjE3NDQxOTc2NTIsImV4cCI6MTc0NDIwMTI1Mn0.p4NezU17r5DEa7E1PVA8IlkxL4rgK_3-uFRWA-3rUrw
 
 ### CREATE MATCH HISTORY
 POST http://localhost:3001/match-histories
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImtpbSIsImlkIjoxLCJpYXQiOjE3NDQxOTc2NTIsImV4cCI6MTc0NDIwMTI1Mn0.p4NezU17r5DEa7E1PVA8IlkxL4rgK_3-uFRWA-3rUrw
 
 {
     "type": "1v1",
     "tournament_id": null,
     "players": [
-        { "player_id": 1, "score": 2, "team": null, "round": null },
-        { "player_id": 2, "score": 2, "team": null, "round": null }
+        { "player_id": 2, "score": 2, "team": null, "round": null },
+        { "player_id": 1, "score": 2, "team": null, "round": null }
     ],
     "winners": [
-        { "winner_id": 1}
+        { "winner_id": 2}
     ]
 }

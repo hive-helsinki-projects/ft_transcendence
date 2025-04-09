@@ -112,7 +112,7 @@ const createMatchHistory = async (req, reply) => {
             db.prepare(`UPDATE players SET wins = wins + 1 WHERE id = ?`).run(winner.winner_id);
         }
 
-        // add loss into players also 
+        const winnerIds = winners.map(winner => winner.winner_id);
 
         for (const player of players) {
             db.prepare(`
@@ -121,6 +121,10 @@ const createMatchHistory = async (req, reply) => {
                 VALUES (?, ?, ?, ?, ?)    
             `)
             .run(result.lastInsertRowid, player.player_id, player.score, player.team, player.round)
+
+            if (!winnerIds.includes(player.player_id)) {
+                db.prepare(`UPDATE players SET losses = losses + 1 WHERE id = ?`).run(player.player_id);
+            }
         }
 
         return reply.code(200).send({ message: 'Successfully created match-history '})
