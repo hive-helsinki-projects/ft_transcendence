@@ -2,7 +2,7 @@
 GET http://localhost:3001/match-histories
 
 ### GET ONE MATCH HISTORY
-GET http://locahost:3001/match-histories/1
+GET http://localhost:3001/match-histories/1
 
 ### CREATE MATCH HISTORY
 POST http://localhost:3001/match-histories
