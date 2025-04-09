@@ -34,12 +34,6 @@ const getMatchHistories = async (req, reply) => {
             FROM match_history mh
         `).all();
 
-        const try1 = db.prepare(`SELECT * FROM match_winner_history`).all();
-        console.log(try1);
-
-        const try2 = db.prepare(`SELECT * FROM match_player_history`).all();
-        console.log(try2);
-
         const matches = rows.map(({ winners, players, ...rest }) => ({
             ...rest,
             winners: JSON.parse(winners),
@@ -57,26 +51,49 @@ const getMatchHistory = async (req, reply) => {
     const { id } = req.params;
 
     try {
-        const match = db.prepare(`
+        const row = db.prepare(`
             SELECT
-                mh.id AS match_id = ?,
+                mh.id,
                 mh.type,
                 mh.tournament_id,
                 mh.date,
-                mwh.winner_id,
-                mph.player_id,
-                mph.score,
-                mph.team,
-                mph.round
+                COALESCE(
+                    (
+                        SELECT json_group_array(
+                        json_object('winner_id', mwh.winner_id)
+                        )
+                        FROM match_winner_history mwh
+                        WHERE mwh.match_id = mh.id
+                        ), '[]'
+                ) AS winners,
+                COALESCE(
+                    (
+                        SELECT json_group_array(
+                        json_object(
+                        'player_id', mph.player_id, 
+                        'score', mph.score, 
+                        'team', mph.team, 
+                        'round', mph.round
+                        )
+                    )
+                    FROM match_player_history mph
+                    WHERE mph.match_id = mh.id
+                    ), '[]'
+                ) AS players
             FROM match_history mh
-            LEFT JOIN match_winner_history mwh
-                ON mh.id = mwh.match_id
-            LEFT JOIN match_player_history mph
-                ON mh.id = mph.match_id;
+            WHERE mh.id = ?
             `).get(id);
-        if (!match) {
+
+        if (!row) {
             return reply.code(404).send({ error: 'Match not found '});
         }
+
+        const match = {
+            ...row,
+            winners: JSON.parse(row.winners),
+            players: JSON.parse(row.players)
+        };
+        
         return reply.code(200).send(match);
     } catch (error) {
         console.log(error);
