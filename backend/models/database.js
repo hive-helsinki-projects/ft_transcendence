@@ -72,7 +72,7 @@ db.prepare(`
 		match_id INTEGER NOT NULL,
 		player_id INTEGER NOT NULL,
 		score INTEGER DEFAULT 0 NOT NULL,
-		team INTEGER CHECK (team IN (1, 2)) NOT NULL,
+		team INTEGER CHECK (team IN (1, 2)),
 		round INTEGER,
 		FOREIGN KEY (match_id) REFERENCES match_history(id),
 		FOREIGN KEY (player_id) REFERENCES player(id),
