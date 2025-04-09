@@ -62,7 +62,25 @@ const createMatchHistory = async (req, reply) => {
 
     try {
         const result = db.prepare(`INSERT INTO match_history (type, tournament_id) VALUES (?, ?)`).run(type, tournament_id);
-        db.prepare()
+        console.log(result.lastInsertRowid);
+
+        for (const winner of winners) {
+            db.prepare(`INSERT INTO match_winner_history (match_id, winner_id) VALUES (?, ?)`).run(result.lastInsertRowid, winner.winner_id);
+        }
+
+        for (const player of players) {
+            db.prepare(`
+                INSERT INTO match_player_history
+                (match_id, player_id, score, team, round)
+                VALUES (?, ?, ?, ?, ?)    
+            `)
+            .run(result.lastInsertRowid, player.player_id, player.score, player.team, player.round)
+        }
+
+        return reply.code(200).send({ message: 'Successfully created match-history '})
+    } catch (error) {
+        console.log(error);
+        return reply.code(500).send({ error: 'Failed to create a match-history' })
     }
 }
 
@@ -70,5 +88,4 @@ export default {
     getMatchHistories,
     getMatchHistory,
     createMatchHistory
-
 }

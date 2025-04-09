@@ -1,4 +1,4 @@
-import matchHistoryController from '../controllers/matchController.js';
+import matchHistoryController from '../controllers/matchHistoryController.js';
 import { getMatchHistoriesOpts, getMatchHistoryOpts, postMatchHistoryOpts } from '../models/matchHistorySchemas.js';
 
 function matchHistoryRoutes(fastify, options) {
