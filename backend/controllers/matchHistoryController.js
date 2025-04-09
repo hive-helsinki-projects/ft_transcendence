@@ -2,23 +2,50 @@ import db from '../models/database.js';
 
 const getMatchHistories = async (req, reply) => {
     try {
-        const matches = db.prepare(`
+        const rows = db.prepare(`
             SELECT
-                mh.id AS match_id,
+                mh.id,
                 mh.type,
                 mh.tournament_id,
                 mh.date,
-                mwh.winner_id,
-                mph.player_id,
-                mph.score,
-                mph.team,
-                mph.round
+                COALESCE(
+                    (
+                        SELECT json_group_array(
+                        json_object('winner_id', mwh.winner_id)
+                        )
+                        FROM match_winner_history mwh
+                        WHERE mwh.match_id = mh.id
+                        ), '[]'
+                ) AS winners,
+                COALESCE(
+                    (
+                        SELECT json_group_array(
+                        json_object(
+                        'player_id', mph.player_id, 
+                        'score', mph.score, 
+                        'team', mph.team, 
+                        'round', mph.round
+                        )
+                    )
+                    FROM match_player_history mph
+                    WHERE mph.match_id = mh.id
+                    ), '[]'
+                ) AS players
             FROM match_history mh
-            LEFT JOIN match_winner_history mwh
-                ON mh.id = mwh.match_id
-            LEFT JOIN match_player_history mph
-                ON mh.id = mph.match_id;
-        `)
+        `).all();
+
+        const try1 = db.prepare(`SELECT * FROM match_winner_history`).all();
+        console.log(try1);
+
+        const try2 = db.prepare(`SELECT * FROM match_player_history`).all();
+        console.log(try2);
+
+        const matches = rows.map(({ winners, players, ...rest }) => ({
+            ...rest,
+            winners: JSON.parse(winners),
+            players: JSON.parse(players)
+        }));
+
         return reply.code(200).send(matches);
     } catch (error) {
         console.log(error);
@@ -67,6 +94,7 @@ const createMatchHistory = async (req, reply) => {
         for (const winner of winners) {
             db.prepare(`INSERT INTO match_winner_history (match_id, winner_id) VALUES (?, ?)`).run(result.lastInsertRowid, winner.winner_id);
         }
+        console.log("hello");
 
         for (const player of players) {
             db.prepare(`
@@ -76,6 +104,8 @@ const createMatchHistory = async (req, reply) => {
             `)
             .run(result.lastInsertRowid, player.player_id, player.score, player.team, player.round)
         }
+
+        console.log("hello1");
 
         return reply.code(200).send({ message: 'Successfully created match-history '})
     } catch (error) {
