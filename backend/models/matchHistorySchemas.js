@@ -4,7 +4,7 @@ export const MatchHistory = {
     properties: {
         id: { type: 'integer' },
         type: { type: 'string' },
-        tournament_id: { type: 'integer' },
+        tournament_id: { type: 'integer', nullable: true},
         date: { type: 'string', format: 'date-time' },
         winners: { 
             type: 'array',

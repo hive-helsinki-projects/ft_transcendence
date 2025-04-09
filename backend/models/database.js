@@ -52,7 +52,7 @@ db.prepare(`
 		player_count INTEGER DEFAULT 0,
 		winner_id INTEGER,
 		created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-		FOREIGN KEY (winner_id) REFERENCES player(id)
+		FOREIGN KEY (winner_id) REFERENCES players(id)
 	)
 `).run();
 
@@ -77,7 +77,7 @@ db.prepare(`
 		team INTEGER CHECK (team IN (1, 2)),
 		round INTEGER,
 		FOREIGN KEY (match_id) REFERENCES match_history(id),
-		FOREIGN KEY (player_id) REFERENCES player(id),
+		FOREIGN KEY (player_id) REFERENCES players(id),
 		UNIQUE (match_id, player_id)
 	)
 `).run();
@@ -89,7 +89,7 @@ db.prepare(`
 		match_id INTEGER NOT NULL,
 		winner_id INTEGER NOT NULL,
 		FOREIGN KEY (match_id) REFERENCES match_history(id),
-		FOREIGN KEY (winner_id) REFERENCES player(id)
+		FOREIGN KEY (winner_id) REFERENCES players(id)
 	)
 `).run();
 

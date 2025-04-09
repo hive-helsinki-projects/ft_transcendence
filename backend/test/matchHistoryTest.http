@@ -12,9 +12,9 @@ Content-Type: application/json
     "type": "1v1",
     "tournament_id": null,
     "players": [
-        { "player_id": 1, "score": 5, "team": null, "round": null },
-        { "player_id": 2, "score": 2, "team": null, "round": null },
-    ]
+        { "player_id": 1, "score": 2, "team": null, "round": null },
+        { "player_id": 2, "score": 2, "team": null, "round": null }
+    ],
     "winners": [
         { "winner_id": 1}
     ]
