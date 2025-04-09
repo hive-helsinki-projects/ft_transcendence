@@ -93,7 +93,7 @@ const getMatchHistory = async (req, reply) => {
             winners: JSON.parse(row.winners),
             players: JSON.parse(row.players)
         };
-        
+
         return reply.code(200).send(match);
     } catch (error) {
         console.log(error);
@@ -106,12 +106,13 @@ const createMatchHistory = async (req, reply) => {
 
     try {
         const result = db.prepare(`INSERT INTO match_history (type, tournament_id) VALUES (?, ?)`).run(type, tournament_id);
-        console.log(result.lastInsertRowid);
 
         for (const winner of winners) {
             db.prepare(`INSERT INTO match_winner_history (match_id, winner_id) VALUES (?, ?)`).run(result.lastInsertRowid, winner.winner_id);
+            db.prepare(`UPDATE players SET wins = wins + 1 WHERE id = ?`).run(winner.winner_id);
         }
-        console.log("hello");
+
+        // add loss into players also 
 
         for (const player of players) {
             db.prepare(`
@@ -121,8 +122,6 @@ const createMatchHistory = async (req, reply) => {
             `)
             .run(result.lastInsertRowid, player.player_id, player.score, player.team, player.round)
         }
-
-        console.log("hello1");
 
         return reply.code(200).send({ message: 'Successfully created match-history '})
     } catch (error) {
