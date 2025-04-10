@@ -115,7 +115,9 @@ const LandingPage: React.FC = () => {
               />
               Sign in with Google
             </button> */}
-            <GoogleSignIn />
+            <GoogleSignIn 
+              isLoading={isLoading}
+            />
 
           </div>
 
