@@ -5,6 +5,8 @@ import { localAuth } from "../services/localAuth";
 import LoadingContainer from '../components/LoadingContainer';
 import "../css/LandingPage.css";
 
+import GoogleSignIn from "../components/GoogleSignIn";
+
 const LandingPage: React.FC = () => {
   const [formData, setFormData] = useState({
     username: "",
@@ -95,13 +97,14 @@ const LandingPage: React.FC = () => {
           </button>
         </form>
 
+
         <div className="auth-options">
           <div className="google-auth">
             <span>Or</span>
-            <button 
+            {/* <button 
               type="button"
               className="google-button"
-              onClick={() => {/* Handle Google Auth */}}
+              onClick={() => {}}
               disabled={isLoading}
             >
               <img 
@@ -111,7 +114,9 @@ const LandingPage: React.FC = () => {
                 height="20"
               />
               Sign in with Google
-            </button>
+            </button> */}
+            <GoogleSignIn />
+
           </div>
 
           <div className="register-link">
