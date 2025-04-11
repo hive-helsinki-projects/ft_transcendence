@@ -45,7 +45,7 @@ export const getTournamentsOpts = {
     schema: {
         response: {
             200: {
-                type: 'object',
+                type: 'array',
                 properties: {
                     items: Tournament,
                 }

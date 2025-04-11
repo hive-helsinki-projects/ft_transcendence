@@ -2,11 +2,11 @@ import tournamentController from '../controllers/tournamentController.js';
 import { getTournamentsOpts, getTournamentOpts, postTournamentOpts } from '../models/tournamentSchemas.js';
 
 function tournamentRoutes(fastify, options) {
-    // // Get all tournaments
-    // fastify.get('/tournaments', {
-    //     ...getTournamentsOpts,
-    //     handler: tournamentController.getTournaments
-    // });
+    // Get all tournaments
+    fastify.get('/tournaments', {
+        ...getTournamentsOpts,
+        handler: tournamentController.getTournaments
+    });
 
     // Get tournament details
     fastify.get('/tournaments/:id', {
