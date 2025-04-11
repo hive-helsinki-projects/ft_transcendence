@@ -6,6 +6,7 @@ import userRoutes from './routes/userRoutes.js';
 import playerRoutes from './routes/playerRoutes.js';
 import friendRoutes from './routes/friendRoutes.js';
 import matchHistoryRoutes from './routes/matchHistoryRoute.js'
+import tournamentRoutes from './routes/tournamentRoute.js';
 
 // Load environment variables
 dotenv.config();
@@ -20,5 +21,6 @@ fastify.register(userRoutes);
 fastify.register(playerRoutes);
 fastify.register(friendRoutes);
 fastify.register(matchHistoryRoutes);
+fastify.register(tournamentRoutes);
 
 export default fastify;

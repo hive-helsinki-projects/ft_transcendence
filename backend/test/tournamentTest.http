@@ -1,0 +1,8 @@
+### CREATE TOURNAMENT
+POST http://localhost:3001/tournaments
+Content-Type: application/json
+
+{
+    "name": "a1234221nt",
+    "player_ids": [4, 5, 6]
+}

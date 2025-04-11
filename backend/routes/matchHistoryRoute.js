@@ -1,5 +1,5 @@
 import matchHistoryController from '../controllers/matchHistoryController.js';
-import { getMatchHistoriesOpts, getMatchHistoryOpts, postMatchHistoryOpts } from '../models/matchHistorySchemas.js';
+import { getMatchHistoriesOpts, getMatchHistoryOpts, postMatchHistoryOpts, putMatchHistoryOpts } from '../models/matchHistorySchemas.js';
 
 function matchHistoryRoutes(fastify, options) {
     // Get match history for current user
@@ -23,6 +23,13 @@ function matchHistoryRoutes(fastify, options) {
         ...postMatchHistoryOpts,
         onRequest: [fastify.jwtAuth],
         handler: matchHistoryController.createMatchHistory
+    });
+
+    // Update a match history players scores and winners
+    fastify.put('/match-histories/:id', {
+        ...putMatchHistoryOpts,
+        onRequest: [fastify.jwtAuth],
+        handler: matchHistoryController.updateMatchHistory
     });
 }
 

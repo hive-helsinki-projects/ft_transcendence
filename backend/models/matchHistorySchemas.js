@@ -21,7 +21,7 @@ export const MatchHistory = {
                 type: 'object',
                 properties: {
                     player_id: { type: 'integer' },
-                    score: { type: 'integer' },
+                    score: { type: 'integer', nullable: true },
                     team: { type: 'integer', nullable: true },
                     round: { type: 'integer', nullable: true }
                 }
@@ -54,7 +54,51 @@ export const postMatchHistoryOpts = {
     schema: {
         body: {
             type: 'object',
-            required: [ 'type', 'winners', 'players' ],
+            required: [ 'type', 'players' ],
+            properties: {
+                type: { type: 'string' },
+                tournament_id: { type: 'integer', nullable: true },
+                winners: { 
+                    type: 'array', nullable: true,
+                    items: {
+                        type: 'object',
+                        properties: {
+                            winner_id: { type: 'integer' }
+                        },
+                    }
+                },
+                players: { 
+                    type: 'array',
+                    items: {
+                        type: 'object',
+                        properties: {
+                            player_id: { type: 'integer' },
+                            score: { type: 'integer', nullable: true },
+                            team: { type: 'integer', nullable: true },
+                            round: { type: 'integer', nullable: true }
+                        },
+                        required: ['player_id']
+                    }
+                },
+            }
+        },
+        response: {
+            200: {
+                type: 'object',
+                properties: {
+                    message: { type: 'string' },
+                    item: MatchHistory,
+                }
+            }
+        }
+    }
+}
+
+export const putMatchHistoryOpts = {
+    schema: {
+        body: {
+            type: 'object',
+            required: [ 'winners', 'players' ],
             properties: {
                 type: { type: 'string' },
                 tournament_id: { type: 'integer', nullable: true },
@@ -65,7 +109,6 @@ export const postMatchHistoryOpts = {
                         properties: {
                             winner_id: { type: 'integer' }
                         },
-                        required: ['winner_id'],
                     }
                 },
                 players: { 

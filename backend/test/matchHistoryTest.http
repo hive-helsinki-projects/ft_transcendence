@@ -1,26 +1,38 @@
 ### GET MATCH HISTORIES
 GET http://localhost:3001/match-histories
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImtpbSIsImlkIjoxLCJpYXQiOjE3NDQxOTc2NTIsImV4cCI6MTc0NDIwMTI1Mn0.p4NezU17r5DEa7E1PVA8IlkxL4rgK_3-uFRWA-3rUrw
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImtpbSIsImlkIjoxLCJpYXQiOjE3NDQzNjEzODAsImV4cCI6MTc0NDM2NDk4MH0.bowuZsZj--kjUzpWF1QJz1teNZukOfl7PmYgwkScREY
+
 
 ### GET ONE MATCH HISTORY
-GET http://localhost:3001/match-histories/1
+GET http://localhost:3001/match-histories/2
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImtpbSIsImlkIjoxLCJpYXQiOjE3NDQxOTc2NTIsImV4cCI6MTc0NDIwMTI1Mn0.p4NezU17r5DEa7E1PVA8IlkxL4rgK_3-uFRWA-3rUrw
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImtpbSIsImlkIjoxLCJpYXQiOjE3NDQyODA3OTUsImV4cCI6MTc0NDI4NDM5NX0.Dq9zM9nRllzUWvMojPKAM98VZBh-UaR-9vkH6CoyrLE
 
 ### CREATE MATCH HISTORY
 POST http://localhost:3001/match-histories
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImtpbSIsImlkIjoxLCJpYXQiOjE3NDQxOTc2NTIsImV4cCI6MTc0NDIwMTI1Mn0.p4NezU17r5DEa7E1PVA8IlkxL4rgK_3-uFRWA-3rUrw
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImtpbSIsImlkIjoxLCJpYXQiOjE3NDQyODA3OTUsImV4cCI6MTc0NDI4NDM5NX0.Dq9zM9nRllzUWvMojPKAM98VZBh-UaR-9vkH6CoyrLE
 
 {
     "type": "1v1",
-    "tournament_id": null,
     "players": [
-        { "player_id": 2, "score": 2, "team": null, "round": null },
-        { "player_id": 1, "score": 2, "team": null, "round": null }
+        { "player_id": 6 },
+        { "player_id": 5}
+    ]
+}
+
+### UPDATE MATCH HISTORY
+PUT http://localhost:3001/match-histories/2
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImtpbSIsImlkIjoxLCJpYXQiOjE3NDQyODA3OTUsImV4cCI6MTc0NDI4NDM5NX0.Dq9zM9nRllzUWvMojPKAM98VZBh-UaR-9vkH6CoyrLE
+
+{
+    "players": [
+        { "player_id": 6, "score": 3 },
+        { "player_id": 5, "score": 2}
     ],
     "winners": [
-        { "winner_id": 2}
+        { "winner_id": 5}
     ]
 }
