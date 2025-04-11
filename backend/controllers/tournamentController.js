@@ -1,5 +1,62 @@
 import db from '../models/database.js';
 
+const getTournament = async (req, reply) => {
+    const { id } = req.params;
+
+    try {
+        const rows = db.prepare(`
+            SELECT
+                t.id AS tournament_id,
+                t.name,
+                t.status,
+                t.current_round,
+                mh.id as match_id,
+                mh.type,
+                mh.date,
+                COALESCE(
+                    (
+                        SELECT json_group_array(
+                        json_object(
+                        'player_id', mph.player_id, 
+                        'team', mph.team, 
+                        'round', mph.round
+                        )
+                    )
+                    FROM match_player_history mph
+                    WHERE mph.match_id = mh.id
+                    ), '[]'
+                ) AS players
+            FROM match_history mh
+            JOIN tournaments t ON t.id = mh.tournament_id
+            WHERE t.id = ?
+        `).all(id);
+
+        if (rows.length === 0) {
+            return reply.code(404).send({ error: 'Tournament not found' });
+        }
+        
+        const { id: tournament_id, name: tournament_name, status, current_round } = rows[0];
+
+        const matches = rows.map(row => ({
+            match_id: row.match_id,
+            type: row.type,
+            date: row.date,
+            players: JSON.parse(row.players)
+        }));
+
+        return reply.code(200).send({
+            id: tournament_id,
+            name: tournament_name,
+            status,
+            current_round,
+            matches
+        });
+    } catch (error) {
+        console.log(error);
+        return reply.code(500).send({ error: 'Failed to fetch tournaments' });
+    }
+};
+
 const generateMatchups = (players) => {
     const shuffledPlayers = [...players];
     shuffledPlayers.sort(() => Math.random() - 0.5);
@@ -103,6 +160,7 @@ const createTournament = async (req, reply) => {
 }   
 
 export default {
+    getTournament,
     createTournament
 }
 
