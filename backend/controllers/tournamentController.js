@@ -1,5 +1,71 @@
 import db from '../models/database.js';
 
+const getTournaments = async (req, reply) => {
+    try {
+        const rows = db.prepare(`
+            SELECT
+                t.id AS tournament_id,
+                t.name,
+                t.status,
+                t.current_round,
+                mh.id as match_id,
+                mh.type,
+                mh.date,
+                COALESCE(
+                    (
+                        SELECT json_group_array(
+                            json_object(
+                                'player_id', mph.player_id, 
+                                'team', mph.team, 
+                                'round', mph.round
+                            )
+                        )
+                        FROM match_player_history mph
+                        WHERE mph.match_id = mh.id
+                    ), '[]'
+                ) AS players
+            FROM match_history mh
+            JOIN tournaments t ON t.id = mh.tournament_id
+        `).all();
+
+        if (rows.length === 0) {
+            return reply.code(404).send({ error: 'No tournaments found' });
+        }
+
+        const tournamentsMap = new Map();
+
+        for (const row of rows) {
+            const tid = row.tournament_id;
+
+            if (!tournamentsMap.has(tid)) {
+                tournamentsMap.set(tid, {
+                    id: tid,
+                    name: row.name,
+                    status: row.status,
+                    current_round: row.current_round,
+                    matches: []
+                });
+            }
+
+            const match = {
+                match_id: row.match_id,
+                type: row.type,
+                date: row.date,
+                players: JSON.parse(row.players)
+            };
+
+            tournamentsMap.get(tid).matches.push(match);
+        }
+
+        const tournaments = Array.from(tournamentsMap.values());
+
+        return reply.code(200).send(tournaments);
+    } catch (error) {
+        console.log(error);
+        return reply.code(500).send({ error: 'Failed to fetch tournaments' });
+    }
+};
+
 const getTournament = async (req, reply) => {
     const { id } = req.params;
 
@@ -34,7 +100,7 @@ const getTournament = async (req, reply) => {
         if (rows.length === 0) {
             return reply.code(404).send({ error: 'Tournament not found' });
         }
-        
+
         const { id: tournament_id, name: tournament_name, status, current_round } = rows[0];
 
         const matches = rows.map(row => ({
@@ -160,6 +226,7 @@ const createTournament = async (req, reply) => {
 }   
 
 export default {
+    getTournaments,
     getTournament,
     createTournament
 }
