@@ -102,29 +102,18 @@ const getMatchHistory = async (req, reply) => {
 }
 
 const createMatchHistory = async (req, reply) => {
-    const { type, tournament_id, winners, players } = req.body;
+    const { type, tournament_id, players } = req.body;
 
     try {
         const result = db.prepare(`INSERT INTO match_history (type, tournament_id) VALUES (?, ?)`).run(type, tournament_id);
 
-        for (const winner of winners) {
-            db.prepare(`INSERT INTO match_winner_history (match_id, winner_id) VALUES (?, ?)`).run(result.lastInsertRowid, winner.winner_id);
-            db.prepare(`UPDATE players SET wins = wins + 1 WHERE id = ?`).run(winner.winner_id);
-        }
-
-        const winnerIds = winners.map(winner => winner.winner_id);
-
         for (const player of players) {
             db.prepare(`
                 INSERT INTO match_player_history
-                (match_id, player_id, score, team, round)
-                VALUES (?, ?, ?, ?, ?)    
+                (match_id, player_id, team, round)
+                VALUES (?, ?, ?, ?)    
             `)
-            .run(result.lastInsertRowid, player.player_id, player.score, player.team, player.round)
-
-            if (!winnerIds.includes(player.player_id)) {
-                db.prepare(`UPDATE players SET losses = losses + 1 WHERE id = ?`).run(player.player_id);
-            }
+            .run(result.lastInsertRowid, player.player_id, player.team, player.round)
         }
 
         return reply.code(200).send({ message: 'Successfully created match-history '})
@@ -134,8 +123,47 @@ const createMatchHistory = async (req, reply) => {
     }
 }
 
+const updateMatchHistory = async (req, reply) => {
+    const id = req.params.id;
+    const { winners, players } = req.body;
+
+    try {
+        for (const winner of winners) {
+            const existingWinner = db.prepare(`SELECT * FROM match_winner_history WHERE match_id = ? AND winner_id = ?`).get(id, winner.winner_id);
+            if (!existingWinner) {
+                db.prepare(`INSERT INTO match_winner_history (match_id, winner_id) VALUES (?, ?)`).run(id, winner.winner_id);
+                db.prepare(`UPDATE players SET wins = wins + 1 WHERE id = ?`).run(winner.winner_id);
+            }
+        }
+
+        const winnerIds = winners.map(winner => winner.winner_id);
+
+        for (const player of players) {
+            db.prepare(`
+                UPDATE match_player_history SET
+                score = ? WHERE match_id = ? AND player_id = ?  
+            `)
+            .run(player.score, id, player.player_id)
+
+            if (!winnerIds.includes(player.player_id)) {
+                db.prepare(`UPDATE players SET losses = losses + 1 WHERE id = ?`).run(player.player_id);
+            }
+        }
+
+        return reply.code(200).send({ 
+            message: 'Successfully updated match-history' })
+    } catch (error) {
+        console.log(error);
+        if (error.message.includes('FOREIGN KEY constraint failed')) {
+            return reply.code(409).send({ error: 'Match not found' });
+        }
+        return reply.code(500).send({ error: 'Failed to update a match-history' })
+    }
+}
+
 export default {
     getMatchHistories,
     getMatchHistory,
-    createMatchHistory
+    createMatchHistory,
+    updateMatchHistory
 }

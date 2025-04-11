@@ -49,7 +49,7 @@ db.prepare(`
 		id INTEGER PRIMARY KEY AUTOINCREMENT,
 		name TEXT NOT NULL,
 		status TEXT DEFAULT 'pending',
-		player_count INTEGER DEFAULT 0,
+		current_round INTEGER DEFAULT 0,
 		winner_id INTEGER,
 		created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 		FOREIGN KEY (winner_id) REFERENCES players(id)
@@ -61,7 +61,7 @@ db.prepare(`
 	CREATE TABLE IF NOT EXISTS match_history (
 		id INTEGER PRIMARY KEY AUTOINCREMENT,
 		type TEXT NOT NULL,
-		tournament_id INTEGER,
+		tournament_id INTEGER DEFAULT NULL,
 		date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 		FOREIGN KEY (tournament_id) REFERENCES tournaments(id) ON DELETE CASCADE
 	)
