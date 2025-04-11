@@ -5,7 +5,6 @@ export const Tournament = {
         name: { type: 'string' },
         status: { type: 'string' },
         current_round: { type: 'integer' },
-        player_count: { type: 'integer' },
         winner_id: { type: 'integer', nullable: true },
         created_at: { type: 'string', format: 'date-time' },
         matches: {
@@ -14,7 +13,6 @@ export const Tournament = {
                 type: 'object',
                 properties: {
                     match_id: { type: 'integer' },
-                    round: { type: 'integer' },
                     date: { type: 'string', format: 'date-time' },
                     players: {
                         type: 'array',
@@ -22,10 +20,9 @@ export const Tournament = {
                             type: 'object',
                             properties: {
                                 player_id: { type: 'integer' },
-                                name: { type: 'string' },
                                 score: { type: 'integer' },
                             },
-                            required: ['player_id', 'name']
+                            required: ['player_id']
                             }
                         },
                         winner: {
@@ -33,15 +30,14 @@ export const Tournament = {
                             nullable: true,
                             properties: {
                                 player_id: { type: 'integer' },
-                                name: { type: 'string' }
                             }
                         }
                     },
-                required: ['match_id', 'round', 'players']
+                required: ['match_id', 'players']
                 }
             }
         },
-        required: ['id', 'name', 'status', 'current_round', 'player_count', 'created_at']
+        required: ['id', 'name', 'status', 'current_round', 'created_at']
 }
 
 // Schemas for tournament operations
@@ -49,8 +45,10 @@ export const getTournamentsOpts = {
     schema: {
         response: {
             200: {
-                type: 'array',
-                items: Tournament,
+                type: 'object',
+                properties: {
+                    items: Tournament,
+                }
             }
         }
     }
@@ -58,8 +56,20 @@ export const getTournamentsOpts = {
 
 export const getTournamentOpts = {
     schema: {
+        params: {
+            type: 'object',
+            required: ['id'],
+            properties: {
+                id: { type: 'integer' }
+            },
+        },
         response: {
-            200: Tournament,
+            201: {
+                type: 'object',
+                properties: {
+                    item: Tournament,
+                }    
+            }
         }
     }
 }
