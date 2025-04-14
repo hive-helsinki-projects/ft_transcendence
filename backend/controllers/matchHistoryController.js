@@ -8,6 +8,7 @@ const getMatchHistories = async (req, reply) => {
                 mh.type,
                 mh.tournament_id,
                 mh.date,
+                mh.round, 
                 COALESCE(
                     (
                         SELECT json_group_array(
@@ -23,8 +24,7 @@ const getMatchHistories = async (req, reply) => {
                         json_object(
                         'player_id', mph.player_id, 
                         'score', mph.score, 
-                        'team', mph.team, 
-                        'round', mph.round
+                        'team', mph.team
                         )
                     )
                     FROM match_player_history mph
@@ -57,6 +57,7 @@ const getMatchHistory = async (req, reply) => {
                 mh.type,
                 mh.tournament_id,
                 mh.date,
+                mh.round,
                 COALESCE(
                     (
                         SELECT json_group_array(
@@ -72,8 +73,7 @@ const getMatchHistory = async (req, reply) => {
                         json_object(
                         'player_id', mph.player_id, 
                         'score', mph.score, 
-                        'team', mph.team, 
-                        'round', mph.round
+                        'team', mph.team 
                         )
                     )
                     FROM match_player_history mph
@@ -102,18 +102,18 @@ const getMatchHistory = async (req, reply) => {
 }
 
 const createMatchHistory = async (req, reply) => {
-    const { type, tournament_id, players } = req.body;
+    const { type, tournament_id, players, round } = req.body;
 
     try {
-        const result = db.prepare(`INSERT INTO match_history (type, tournament_id) VALUES (?, ?)`).run(type, tournament_id);
+        const result = db.prepare(`INSERT INTO match_history (type, tournament_id, round) VALUES (?, ?, ?)`).run(type, tournament_id, round);
 
         for (const player of players) {
             db.prepare(`
                 INSERT INTO match_player_history
-                (match_id, player_id, team, round)
-                VALUES (?, ?, ?, ?)    
+                (match_id, player_id, team)
+                VALUES (?, ?, ?)    
             `)
-            .run(result.lastInsertRowid, player.player_id, player.team, player.round)
+            .run(result.lastInsertRowid, player.player_id, player.team)
         }
 
         return reply.code(200).send({ message: 'Successfully created match-history '})
@@ -161,9 +161,27 @@ const updateMatchHistory = async (req, reply) => {
     }
 }
 
+const deleteMatchHistory = async (req, reply) => {
+	const user_id = req.user.id;
+	const { id } = req.params;
+	
+	try {
+		const result = db.prepare(`DELETE FROM match_history WHERE id = ?`).run(id)
+		if (result.changes === 0) {
+			return reply.code(404).send({ error: 'Player not found or user not authortized to delete this player'})
+		}
+		return reply.code(200).send({ message: 'Succesfully deleted match '})
+	} catch (error) {
+		console.log(error);
+		return reply.code(500).send({ error: 'Failed to delete player' })
+	}
+}
+
+
 export default {
     getMatchHistories,
     getMatchHistory,
     createMatchHistory,
-    updateMatchHistory
+    updateMatchHistory,
+    deleteMatchHistory
 }

@@ -1,6 +1,5 @@
 import { User } from './userSchemas.js'
 
-
 export const postLoginOpts = {
 	schema: {
 			body: {

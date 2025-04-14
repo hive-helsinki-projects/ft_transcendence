@@ -6,6 +6,7 @@ export const MatchHistory = {
         type: { type: 'string' },
         tournament_id: { type: 'integer', nullable: true},
         date: { type: 'string', format: 'date-time' },
+        round: { type: 'integer', nullable: true },
         winners: { 
             type: 'array',
             items: {
@@ -22,8 +23,7 @@ export const MatchHistory = {
                 properties: {
                     player_id: { type: 'integer' },
                     score: { type: 'integer', nullable: true },
-                    team: { type: 'integer', nullable: true },
-                    round: { type: 'integer', nullable: true }
+                    team: { type: 'integer', nullable: true }
                 }
             }
         },
@@ -136,4 +136,17 @@ export const putMatchHistoryOpts = {
             }
         }
     }
+}
+
+export const deleteMatchHistoryOpts = {
+	schema: {
+		response: {
+			200: {
+				type: 'object',
+				properties: {
+					message: { type: 'string' },
+				}
+			}
+		}
+	}
 }

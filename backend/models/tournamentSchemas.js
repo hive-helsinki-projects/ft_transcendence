@@ -14,6 +14,7 @@ export const Tournament = {
                 properties: {
                     match_id: { type: 'integer' },
                     date: { type: 'string', format: 'date-time' },
+                    round: { type: 'integer' },
                     players: {
                         type: 'array',
                         items: {
@@ -85,6 +86,27 @@ export const postTournamentOpts = {
                 minItems: 3,
                 items: { type: 'integer' }
             }
+        },
+        response: {
+            201: {
+                type: 'object',
+                properties: {
+                    message: { type: 'string' },
+                    item: Tournament,
+                }    
+            }
+        }
+    }
+}
+
+export const putTournamentOpts = {
+    schema: {
+        params: {
+            type: 'object',
+            required: ['id'],
+            properties: {
+                id: { type: 'integer' }
+            },
         },
         response: {
             201: {
