@@ -34,7 +34,7 @@ contract TournamentScores {
 
     function recordTournament(uint256 _tournamentId, bytes32[] calldata _players, bytes32 _winner) public playerCount(_players) {
         require(msg.sender == owner, "Only owner can record tournament");
-        
+
         Score memory score = Score({
             tournamentId: _tournamentId,
             players: _players,
