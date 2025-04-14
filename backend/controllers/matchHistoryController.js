@@ -102,20 +102,22 @@ const getMatchHistory = async (req, reply) => {
 }
 
 const createMatchHistory = async (req, reply) => {
-    const { type, tournament_id, players, round } = req.body;
+    const { type, tournament_id, players = [], round } = req.body;
+    const insertMatch = db.prepare(`INSERT INTO match_history (type, tournament_id, round) VALUES (?, ?, ?)`);
+    const insertMatchPlayer =  db.prepare(`
+        INSERT INTO match_player_history
+        (match_id, player_id, team)
+        VALUES (?, ?, ?)`)
+
+    const transaction = db.transaction((type, tournament_id, round, players) => {
+        const result = insertMatch.run(type, tournament_id, round);
+        for (const player of players) {
+            insertMatchPlayer.run(result.lastInsertRowid, player.player_id, player.team)
+        }
+    })
 
     try {
-        const result = db.prepare(`INSERT INTO match_history (type, tournament_id, round) VALUES (?, ?, ?)`).run(type, tournament_id, round);
-
-        for (const player of players) {
-            db.prepare(`
-                INSERT INTO match_player_history
-                (match_id, player_id, team)
-                VALUES (?, ?, ?)    
-            `)
-            .run(result.lastInsertRowid, player.player_id, player.team)
-        }
-
+        transaction(type, tournament_id, round, players);
         return reply.code(200).send({ message: 'Successfully created match-history '})
     } catch (error) {
         console.log(error);
@@ -126,30 +128,51 @@ const createMatchHistory = async (req, reply) => {
 const updateMatchHistory = async (req, reply) => {
     const id = req.params.id;
     const { winners, players } = req.body;
+    const getExistingPlayer = db.prepare(`SELECT * FROM match_player_history WHERE match_id = ? and player_id = ?`);
+    const getExistingWinner = db.prepare(`SELECT * FROM match_winner_history WHERE match_id = ? AND winner_id = ?`);
+    const insertMatchWinner =  db.prepare(`INSERT INTO match_winner_history (match_id, winner_id) VALUES (?, ?)`);
+    const updatePlayerWin = db.prepare(`UPDATE players SET wins = wins + 1 WHERE id = ?`);
+    const updateMatchPlayerHistory =  db.prepare(`
+        UPDATE match_player_history SET
+        score = ? WHERE match_id = ? AND player_id = ?  
+    `)
+    const updatePlayerLoss =  db.prepare(`UPDATE players SET losses = losses + 1 WHERE id = ?`);
 
-    try {
-        for (const winner of winners) {
-            const existingWinner = db.prepare(`SELECT * FROM match_winner_history WHERE match_id = ? AND winner_id = ?`).get(id, winner.winner_id);
-            if (!existingWinner) {
-                db.prepare(`INSERT INTO match_winner_history (match_id, winner_id) VALUES (?, ?)`).run(id, winner.winner_id);
-                db.prepare(`UPDATE players SET wins = wins + 1 WHERE id = ?`).run(winner.winner_id);
-            }
-        }
+    const allWinnersArePlayers = winners.every(winner =>
+        players.some(player => player.player_id == winner.winner_id)
+    );
+    
+    if (!allWinnersArePlayers) {
+        return reply.code(400).send({ error: 'All winners must be part of the players list' });
+    }
 
+    const transaction = db.transaction((id, winners, players) => {
         const winnerIds = winners.map(winner => winner.winner_id);
 
         for (const player of players) {
-            db.prepare(`
-                UPDATE match_player_history SET
-                score = ? WHERE match_id = ? AND player_id = ?  
-            `)
-            .run(player.score, id, player.player_id)
+            const existingPlayer = getExistingPlayer.get(id, player.player_id);
+            if (!existingPlayer) {
+                return reply.code(404).send({ error: 'Player not found in this match' });
+            }
 
+            updateMatchPlayerHistory.run(player.score, id, player.player_id)
+    
             if (!winnerIds.includes(player.player_id)) {
-                db.prepare(`UPDATE players SET losses = losses + 1 WHERE id = ?`).run(player.player_id);
+                updatePlayerLoss.run(player.player_id);
             }
         }
 
+        for (const winner of winners) {
+            const existingWinner = getExistingWinner.get(id, winner.winner_id);
+            if (!existingWinner) {
+                insertMatchWinner.run(id, winner.winner_id);
+                updatePlayerWin.run(winner.winner_id);
+            }
+        }
+    })
+
+    try {
+        transaction(id, winners, players);
         return reply.code(200).send({ 
             message: 'Successfully updated match-history' })
     } catch (error) {
