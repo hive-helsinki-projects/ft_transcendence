@@ -1,5 +1,5 @@
 import tournamentController from '../controllers/tournamentController.js';
-import { getTournamentsOpts, getTournamentOpts, postTournamentOpts } from '../models/tournamentSchemas.js';
+import { getTournamentsOpts, getTournamentOpts, postTournamentOpts, putTournamentOpts } from '../models/tournamentSchemas.js';
 
 function tournamentRoutes(fastify, options) {
     // Get all tournaments
@@ -17,15 +17,16 @@ function tournamentRoutes(fastify, options) {
     // Create a tournament
     fastify.post('/tournaments', {
         ...postTournamentOpts,
-        // onRequest: [fastify.jwtAuth],
+        onRequest: [fastify.jwtAuth],
         handler: tournamentController.createTournament
     });
 
-    // // Update a tournament
-    // fastify.put('/tournaments/:id', {
-    //     onRequest: [fastify.jwtAuth],
-    //     handler: tournamentController.updateTournament
-    // });
+    // Update a tournament
+    fastify.put('/tournaments/:id/advance', {
+        ...putTournamentOpts,
+        onRequest: [fastify.jwtAuth],
+        handler: tournamentController.advanceTournament
+    });
 }
 
 export default tournamentRoutes;

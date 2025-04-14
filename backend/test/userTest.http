@@ -5,10 +5,10 @@ GET http://localhost:3001/users HTTP/1.1
 GET http://localhost:3001/users/1 HTTP/1.1
 
 ### UPDATE USER BY ID - EMAIL
-PUT http://localhost:3001/users/1 HTTP/1.1
+PUT http://localhost:3001/users/2 HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImttYXRqdWhpIiwiaWQiOjEsImlhdCI6MTc0NDEwMTE0MSwiZXhwIjoxNzQ0MTA0NzQxfQ.tOkSi2r2i1-dPwgJSQFZkNqoNiO9ocUGG2J-3GwJVwY
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImtpbSIsImlkIjoxLCJpYXQiOjE3NDQ2NTIzMjEsImV4cCI6MTc0NDY1NTkyMX0.JN6RUcONj7DCCzpH03czvq_xvQS2x6e5mo7iOL4GrKo
 
 {
-	"email": "newtsadasst@hive.fr"
+	"email": "new@hive.fr"
 }
