@@ -19,7 +19,7 @@ interface Match {
 const Tournament: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  
+
   // Initialize state from localStorage or default values
   const [semifinals, setSemifinals] = useState<Match[]>(() => {
     const saved = localStorage.getItem('tournamentSemifinals');
@@ -109,14 +109,14 @@ const Tournament: React.FC = () => {
     }
 
     // Navigate to game with match information
-    navigate('/game', { 
-      state: { 
+    navigate('/game', {
+      state: {
         matchType: round,
         matchIndex,
         player1: round === "semifinal" ? semifinals[matchIndex].player1 : finalMatch.player1,
         player2: round === "semifinal" ? semifinals[matchIndex].player2 : finalMatch.player2,
         returnTo: '/tournament'
-      } 
+      }
     });
   };
 
@@ -132,20 +132,20 @@ const Tournament: React.FC = () => {
       const otherMatchIndex = matchIndex === 0 ? 1 : 0;
       if (updatedSemifinals[otherMatchIndex].winner) {
         const finalist1 = {
-          name: updatedSemifinals[0].winner === updatedSemifinals[0].player1.name 
-            ? updatedSemifinals[0].player1.name 
+          name: updatedSemifinals[0].winner === updatedSemifinals[0].player1.name
+            ? updatedSemifinals[0].player1.name
             : updatedSemifinals[0].player2.name,
-          avatar: updatedSemifinals[0].winner === updatedSemifinals[0].player1.name 
-            ? updatedSemifinals[0].player1.avatar 
+          avatar: updatedSemifinals[0].winner === updatedSemifinals[0].player1.name
+            ? updatedSemifinals[0].player1.avatar
             : updatedSemifinals[0].player2.avatar
         };
-        
+
         const finalist2 = {
-          name: updatedSemifinals[1].winner === updatedSemifinals[1].player1.name 
-            ? updatedSemifinals[1].player1.name 
+          name: updatedSemifinals[1].winner === updatedSemifinals[1].player1.name
+            ? updatedSemifinals[1].player1.name
             : updatedSemifinals[1].player2.name,
-          avatar: updatedSemifinals[1].winner === updatedSemifinals[1].player1.name 
-            ? updatedSemifinals[1].player1.avatar 
+          avatar: updatedSemifinals[1].winner === updatedSemifinals[1].player1.name
+            ? updatedSemifinals[1].player1.avatar
             : updatedSemifinals[1].player2.avatar
         };
 
@@ -158,8 +158,8 @@ const Tournament: React.FC = () => {
       }
     } else {
       setFinalMatch(prev => ({ ...prev, winner, status: 'completed' }));
-      const winnerPlayer = winner === finalMatch.player1.name 
-        ? finalMatch.player1 
+      const winnerPlayer = winner === finalMatch.player1.name
+        ? finalMatch.player1
         : finalMatch.player2;
       setChampion(winnerPlayer);
     }
@@ -182,7 +182,7 @@ const Tournament: React.FC = () => {
             Reset Tournament
           </button>
         </div>
-        
+
         <div className="tournament-bracket">
           {/* Semifinals */}
           <div className="semifinals">
@@ -202,7 +202,7 @@ const Tournament: React.FC = () => {
                 </div>
                 {match.status === 'pending' && (
                   <div className="match-actions">
-                    <button 
+                    <button
                       onClick={() => startMatch("semifinal", index)}
                       className="start-match-button"
                     >
@@ -241,7 +241,7 @@ const Tournament: React.FC = () => {
               </div>
               {finalMatch.status === 'pending' && (
                 <div className="match-actions">
-                  <button 
+                  <button
                     onClick={() => startMatch("final", 0)}
                     className="start-match-button"
                   >
