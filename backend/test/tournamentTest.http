@@ -2,13 +2,16 @@
 GET http://localhost:3001/tournaments HTTP/1.1
 
 ### GET TOURNAMENT BY ID
-GET http://localhost:3001/tournaments/21 HTTP/1.1
+GET http://localhost:3001/tournaments/4 HTTP/1.1
 
 ### CREATE TOURNAMENT
 POST http://localhost:3001/tournaments HTTP/1.1
 Content-Type: application/json
 
 {
-    "name": "first",
+    "name": "third",
     "player_ids": [1, 2, 3, 4, 5, 6, 7, 9]
 }
+
+### DELETE TOURNAMENT
+DELETE http://localhost:3001/tournaments/3 HTTP/1.1

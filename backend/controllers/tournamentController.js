@@ -1,5 +1,32 @@
 import db from '../models/database.js';
 
+const getExistingTournament = db.prepare(`
+    SELECT
+        t.id AS tournament_id,
+        t.name,
+        t.status,
+        t.current_round,
+        mh.id as match_id,
+        mh.type,
+        mh.round,
+        mh.date,
+        COALESCE(
+            (
+                SELECT json_group_array(
+                json_object(
+                'player_id', mph.player_id, 
+                'team', mph.team
+                )
+            )
+            FROM match_player_history mph
+            WHERE mph.match_id = mh.id
+            ), '[]'
+        ) AS players
+    FROM match_history mh
+    JOIN tournaments t ON t.id = mh.tournament_id
+    WHERE t.id = ?
+`);
+
 const getTournaments = async (req, reply) => {
     try {
         const rows = db.prepare(`
@@ -71,32 +98,7 @@ const getTournament = async (req, reply) => {
     const { id } = req.params;
 
     try {
-        const rows = db.prepare(`
-            SELECT
-                t.id AS tournament_id,
-                t.name,
-                t.status,
-                t.current_round,
-                mh.id as match_id,
-                mh.type,
-                mh.round,
-                mh.date,
-                COALESCE(
-                    (
-                        SELECT json_group_array(
-                        json_object(
-                        'player_id', mph.player_id, 
-                        'team', mph.team
-                        )
-                    )
-                    FROM match_player_history mph
-                    WHERE mph.match_id = mh.id
-                    ), '[]'
-                ) AS players
-            FROM match_history mh
-            JOIN tournaments t ON t.id = mh.tournament_id
-            WHERE t.id = ?
-        `).all(id);
+        const rows = getExistingTournament.all(id);
 
         if (rows.length === 0) {
             return reply.code(404).send({ error: 'Tournament not found' });
@@ -145,8 +147,14 @@ const generateMatchups = (players) => {
     return { matchups, byePlayers };
 }
 
+const insertMatchHistory = db.prepare('INSERT INTO match_history (type, tournament_id, round) VALUES (?, ?, ?)');
+const insertMatchPlayer = db.prepare(`INSERT INTO match_player_history (match_id, player_id, team) VALUES (?, ?, ?)`);
+
 const createTournament = async (req, reply) => {
     const { name, player_ids } = req.body;
+
+    const insertTournamentName = db.prepare('INSERT INTO tournaments (name) VALUES (?)');
+    const insertMatchWinner = db.prepare(`INSERT INTO match_winner_history (match_id, winner_id) VALUES (?, ?)`);
     
     try {
         const existingTournament = db.prepare('SELECT * FROM tournaments WHERE name = ?').get(name);
@@ -165,49 +173,21 @@ const createTournament = async (req, reply) => {
             return reply.code(400).send({ error: 'Min 3 and max 8 players are required to create a tournament' });
         }
     
-        let tournament = db.prepare('INSERT INTO tournaments (name) VALUES (?)').run(name);
+        let tournament = insertTournamentName.run(name);
         const { matchups, byePlayers } = generateMatchups(player_ids);
     
         for (const [player1, player2] of matchups) {
-            const result = db.prepare('INSERT INTO match_history (type, tournament_id, round) VALUES (?, ?, ?)').run('tournament', tournament.lastInsertRowid, 0);
-            db.prepare(`INSERT INTO match_player_history (match_id, player_id, team)
-                    VALUES (?, ?, ?, ?)`).run(result.lastInsertRowid, player1, 1);
-            db.prepare(`INSERT INTO match_player_history (match_id, player_id, team)
-                VALUES (?, ?, ?, ?)`).run(result.lastInsertRowid, player2, 2);
+            const result = insertMatchHistory.run('tournament', tournament.lastInsertRowid, 0);
+            insertMatchPlayer.run(result.lastInsertRowid, player1, 1);
+            insertMatchPlayer.run(result.lastInsertRowid, player2, 2);
         }
         for (const byePlayer of byePlayers) {
-            const result = db.prepare('INSERT INTO match_history (type, tournament_id, round) VALUES (?, ?)').run('tournament', tournament.lastInsertRowid, 0);
-            db.prepare(`INSERT INTO match_player_history (match_id, player_id, team)
-                    VALUES (?, ?, ?, ?)`).run(result.lastInsertRowid, byePlayer, 1);
-            db.prepare(`INSERT INTO match_winner_history (match_id, winner_id) VALUES (?, ?)`).run(result.lastInsertRowid, byePlayer);
+            const result = insertMatchHistory.run('tournament', tournament.lastInsertRowid, 0);
+            insertMatchHistory.run(result.lastInsertRowid, byePlayer, 1);
+            insertMatchWinner.run(result.lastInsertRowid, byePlayer);
         }
 
-        const rows = db.prepare(`
-            SELECT
-                t.id AS tournament_id,
-                t.name,
-                t.status,
-                t.current_round,
-                mh.id as match_id,
-                mh.type,
-                mh.round,
-                mh.date,
-                COALESCE(
-                    (
-                        SELECT json_group_array(
-                        json_object(
-                        'player_id', mph.player_id, 
-                        'team', mph.team, 
-                        )
-                    )
-                    FROM match_player_history mph
-                    WHERE mph.match_id = mh.id
-                    ), '[]'
-                ) AS players
-            FROM match_history mh
-            JOIN tournaments t ON t.id = mh.tournament_id
-            WHERE t.id = ?
-        `).all(tournament.lastInsertRowid);
+        const rows = getExistingTournament.all(tournament.lastInsertRowid);
 
         const { tournament_id, name: tournament_name, status, current_round } = rows[0];
 
@@ -235,6 +215,8 @@ const createTournament = async (req, reply) => {
 const advanceTournament = async(req, reply) => {
     const { id } = req.params;
 
+    const updateTournamentRound =  db.prepare(`UPDATE tournaments SET current_round = current_round + 1 WHERE id = ?`)
+
     try {
         const tournament = db.prepare('SELECT * FROM tournaments WHERE id = ?').get(id);
         if (!tournament) {
@@ -258,40 +240,13 @@ const advanceTournament = async(req, reply) => {
         const { matchups } = generateMatchups(winners_id);
 
         for (const [player1, player2] of matchups) {
-            const result = db.prepare('INSERT INTO match_history (type, tournament_id, round) VALUES (?, ?, ?)').run('tournament', id, tournament.current_round + 1);
-            db.prepare(`INSERT INTO match_player_history (match_id, player_id, team)
-                    VALUES (?, ?, ?, ?)`).run(result.lastInsertRowid, player1, 1);
-            db.prepare(`INSERT INTO match_player_history (match_id, player_id, team)
-                VALUES (?, ?, ?, ?)`).run(result.lastInsertRowid, player2, 2);
+            const result = insertMatchHistory.run('tournament', id, tournament.current_round + 1);
+            insertMatchPlayer.run(result.lastInsertRowid, player1, 1);
+            insertMatchPlayer.run(result.lastInsertRowid, player2, 2);
         }
 
-        db.prepare(`UPDATE tournaments SET current_round = current_round + 1 WHERE id = ?`).run(id);
-        const rows = db.prepare(`
-            SELECT
-                t.id AS tournament_id,
-                t.name,
-                t.status,
-                t.current_round,
-                mh.id as match_id,
-                mh.type,
-                mh.round,
-                mh.date,
-                COALESCE(
-                    (
-                        SELECT json_group_array(
-                        json_object(
-                        'player_id', mph.player_id, 
-                        'team', mph.team, 
-                        )
-                    )
-                    FROM match_player_history mph
-                    WHERE mph.match_id = mh.id
-                    ), '[]'
-                ) AS players
-            FROM match_history mh
-            JOIN tournaments t ON t.id = mh.tournament_id
-            WHERE t.id = ?
-        `).all(tournament.lastInsertRowid);
+        updateTournamentRound.run(id);
+        const rows = getExistingTournament.all(tournament.lastInsertRowid);
 
         const { tournament_id, name: tournament_name, status, current_round } = rows[0];
 

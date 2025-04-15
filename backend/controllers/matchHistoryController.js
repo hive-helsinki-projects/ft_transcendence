@@ -128,6 +128,7 @@ const createMatchHistory = async (req, reply) => {
 const updateMatchHistory = async (req, reply) => {
     const id = req.params.id;
     const { winners, players } = req.body;
+    
     const getExistingPlayer = db.prepare(`SELECT * FROM match_player_history WHERE match_id = ? and player_id = ?`);
     const getExistingWinner = db.prepare(`SELECT * FROM match_winner_history WHERE match_id = ? AND winner_id = ?`);
     const insertMatchWinner =  db.prepare(`INSERT INTO match_winner_history (match_id, winner_id) VALUES (?, ?)`);
