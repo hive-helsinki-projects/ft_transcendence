@@ -1,41 +1,45 @@
 ### GET MATCH HISTORIES
 GET http://localhost:3001/match-histories
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImtpbSIsImlkIjoxLCJpYXQiOjE3NDQ2NTY1NDEsImV4cCI6MTc0NDY2MDE0MX0.7_t4cziwNeqtERgt-2_VmqkcWVa9bNSUVShs4yKKjMM
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImtpbSIsImlkIjoxLCJpYXQiOjE3NDQ3MDk0NDMsImV4cCI6MTc0NDcxMzA0M30.yXS0Abl41sNEzS1opmhdtzPxnRAjnwYxFcLO0WwFutU
 
 ### GET ONE MATCH HISTORY
 GET http://localhost:3001/match-histories/9
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImtpbSIsImlkIjoxLCJpYXQiOjE3NDQ2NTY1NDEsImV4cCI6MTc0NDY2MDE0MX0.7_t4cziwNeqtERgt-2_VmqkcWVa9bNSUVShs4yKKjMM
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImtpbSIsImlkIjoxLCJpYXQiOjE3NDQ3MDk0NDMsImV4cCI6MTc0NDcxMzA0M30.yXS0Abl41sNEzS1opmhdtzPxnRAjnwYxFcLO0WwFutU
 
 ### CREATE MATCH HISTORY
 POST http://localhost:3001/match-histories
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImtpbSIsImlkIjoxLCJpYXQiOjE3NDQ2NTY1NDEsImV4cCI6MTc0NDY2MDE0MX0.7_t4cziwNeqtERgt-2_VmqkcWVa9bNSUVShs4yKKjMM
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImtpbSIsImlkIjoxLCJpYXQiOjE3NDQ3MDk0NDMsImV4cCI6MTc0NDcxMzA0M30.yXS0Abl41sNEzS1opmhdtzPxnRAjnwYxFcLO0WwFutU
 
 {
     "type": "1v1",
     "players": [
-        { "player_id": 9 },
-        { "player_id": 2}
+        { "player_id": 9, "team": 1 },
+        { "player_id": 2, "team": 1 },
+        { "player_id": 1, "team": 2 },
+        { "player_id": 5, "team": 2 }
     ]
 }
 
 ### UPDATE MATCH HISTORY
-PUT http://localhost:3001/match-histories/9
+PUT http://localhost:3001/match-histories/16
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImtpbSIsImlkIjoxLCJpYXQiOjE3NDQ2NTY1NDEsImV4cCI6MTc0NDY2MDE0MX0.7_t4cziwNeqtERgt-2_VmqkcWVa9bNSUVShs4yKKjMM
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImtpbSIsImlkIjoxLCJpYXQiOjE3NDQ3MDk0NDMsImV4cCI6MTc0NDcxMzA0M30.yXS0Abl41sNEzS1opmhdtzPxnRAjnwYxFcLO0WwFutU
 
 {
     "players": [
         { "player_id": 9, "score": 3 },
-        { "player_id": 2, "score": 2}
+        { "player_id": 2, "score": 2},
+        { "player_id": 1, "score": 1 },
+        { "player_id": 5, "score": 0 }
     ],
     "winners": [
-        { "winner_id": 9} 
+        { "winner_id": 9 }
     ]
 }
 
 ### DELETE MATCH HISTORY
 DELETE http://localhost:3001/match-histories/3
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImtpbSIsImlkIjoxLCJpYXQiOjE3NDQ2NTY1NDEsImV4cCI6MTc0NDY2MDE0MX0.7_t4cziwNeqtERgt-2_VmqkcWVa9bNSUVShs4yKKjMM
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImtpbSIsImlkIjoxLCJpYXQiOjE3NDQ3MDk0NDMsImV4cCI6MTc0NDcxMzA0M30.yXS0Abl41sNEzS1opmhdtzPxnRAjnwYxFcLO0WwFutU

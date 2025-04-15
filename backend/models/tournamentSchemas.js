@@ -119,3 +119,16 @@ export const putTournamentOpts = {
         }
     }
 }
+
+export const deleteTournamentOpts = {
+    schema: {
+		response: {
+			200: {
+				type: 'object',
+				properties: {
+					message: { type: 'string' },
+				}
+			}
+		}
+	}
+}

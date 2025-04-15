@@ -185,18 +185,17 @@ const updateMatchHistory = async (req, reply) => {
 }
 
 const deleteMatchHistory = async (req, reply) => {
-	const user_id = req.user.id;
 	const { id } = req.params;
 	
 	try {
 		const result = db.prepare(`DELETE FROM match_history WHERE id = ?`).run(id)
 		if (result.changes === 0) {
-			return reply.code(404).send({ error: 'Player not found or user not authortized to delete this player'})
+			return reply.code(404).send({ error: 'Match-history not found or user not authortized to delete this player'})
 		}
-		return reply.code(200).send({ message: 'Succesfully deleted match '})
+		return reply.code(200).send({ message: 'Succesfully deleted match-history '})
 	} catch (error) {
 		console.log(error);
-		return reply.code(500).send({ error: 'Failed to delete player' })
+		return reply.code(500).send({ error: 'Failed to delete match-history' })
 	}
 }
 
