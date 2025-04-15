@@ -316,11 +316,27 @@ const advanceTournament = async(req, reply) => {
     }
 }
 
+const deleteTournament = async(req, reply) => {
+    const { id } = req.params;
+    
+    try {
+        const result = db.prepare('DELETE FROM tournaments WHERE id = ?').run(id);
+        if (result.changes === 0) {
+            return reply.code(404).send({ error: 'Tournament not found' });
+        }
+        return reply.code(200).send({ message: 'Successfully deleted tournament' });
+    } catch (error) {
+        console.log(error);
+        return reply.code(500).send({ error: 'Failed to delete tournament' });
+    }
+}
+
 export default {
     getTournaments,
     getTournament,
     createTournament,
-    advanceTournament
+    advanceTournament,
+    deleteTournament
 }
 
 // update tournament status when tournament is finished and also the winner_id 

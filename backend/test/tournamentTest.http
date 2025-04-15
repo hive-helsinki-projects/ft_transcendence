@@ -9,6 +9,6 @@ POST http://localhost:3001/tournaments HTTP/1.1
 Content-Type: application/json
 
 {
-    "name": "n6l9922l",
-    "player_ids": [4, 5, 6, 7, 9, 10, 11]
+    "name": "first",
+    "player_ids": [1, 2, 3, 4, 5, 6, 7, 9]
 }
