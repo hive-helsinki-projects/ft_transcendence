@@ -6,6 +6,7 @@ const getExistingTournament = db.prepare(`
         t.name,
         t.status,
         t.current_round,
+        t.winner_id,
         mh.id as match_id,
         mh.type,
         mh.round,
@@ -35,6 +36,7 @@ const getTournaments = async (req, reply) => {
                 t.name,
                 t.status,
                 t.current_round,
+                t.winner_id,
                 mh.id as match_id,
                 mh.type,
                 mh.date,
@@ -70,6 +72,7 @@ const getTournaments = async (req, reply) => {
                     name: row.name,
                     status: row.status,
                     current_round: row.current_round,
+                    winner_id: row.winner_id,
                     matches: []
                 });
             }
@@ -104,7 +107,7 @@ const getTournament = async (req, reply) => {
             return reply.code(404).send({ error: 'Tournament not found' });
         }
 
-        const { id: tournament_id, name: tournament_name, status, current_round } = rows[0];
+        const { id: tournament_id, name: tournament_name, status, current_round, winner_id } = rows[0];
 
         const matches = rows.map(row => ({
             match_id: row.match_id,
@@ -119,6 +122,7 @@ const getTournament = async (req, reply) => {
             name: tournament_name,
             status,
             current_round,
+            winner_id,
             matches
         });
     } catch (error) {
@@ -156,26 +160,26 @@ const createTournament = async (req, reply) => {
     const insertTournamentName = db.prepare('INSERT INTO tournaments (name) VALUES (?)');
     const insertMatchWinner = db.prepare(`INSERT INTO match_winner_history (match_id, winner_id) VALUES (?, ?)`);
     
-    try {
+    const transaction = db.transaction((name, player_ids) => {
         const existingTournament = db.prepare('SELECT * FROM tournaments WHERE name = ?').get(name);
         if (existingTournament) {
             return reply.code(400).send({ error: 'Tournament already exists' });
         }
-    
+
         for (const player_id of player_ids) {
             const player = db.prepare('SELECT * FROM players WHERE id = ?').get(player_id);
             if (!player) {
                 return reply.code(400).send({ error: `Player with ID ${player_id} does not exist` });
             }
         }
-    
+
         if (player_ids.length < 3 || player_ids.length > 8) {
             return reply.code(400).send({ error: 'Min 3 and max 8 players are required to create a tournament' });
         }
-    
+
         let tournament = insertTournamentName.run(name);
         const { matchups, byePlayers } = generateMatchups(player_ids);
-    
+
         for (const [player1, player2] of matchups) {
             const result = insertMatchHistory.run('tournament', tournament.lastInsertRowid, 0);
             insertMatchPlayer.run(result.lastInsertRowid, player1, 1);
@@ -186,10 +190,13 @@ const createTournament = async (req, reply) => {
             insertMatchHistory.run(result.lastInsertRowid, byePlayer, 1);
             insertMatchWinner.run(result.lastInsertRowid, byePlayer);
         }
-
         const rows = getExistingTournament.all(tournament.lastInsertRowid);
+        return rows;
+    })
 
-        const { tournament_id, name: tournament_name, status, current_round } = rows[0];
+    try {
+        const rows = transaction(name, player_ids);
+        const { tournament_id, name: tournament_name, status, current_round, winner_id } = rows[0];
 
         const matches = rows.map(row => ({
             match_id: row.match_id,
@@ -204,6 +211,7 @@ const createTournament = async (req, reply) => {
             name: tournament_name,
             status,
             current_round,
+            winner_id,
             matches
         } });
     } catch (error) {
@@ -217,38 +225,44 @@ const advanceTournament = async(req, reply) => {
 
     const updateTournamentRound =  db.prepare(`UPDATE tournaments SET current_round = current_round + 1 WHERE id = ?`)
 
-    try {
+    const transaction = db.transaction((id) => {
         const tournament = db.prepare('SELECT * FROM tournaments WHERE id = ?').get(id);
         if (!tournament) {
             return reply.code(404).send({ error: 'Tournament not found' });
+        } else if (tournament.status === 'finished') {
+            return reply.code(400).send({ error: 'Tournament already finished' });
         }
         
         let matches = db.prepare('SELECT * FROM match_history WHERE tournament_id = ? AND round = ?').all(id, tournament.current_round);
         if (matches.length === 0) {
             return reply.code(404).send({ error: 'No matches found for this tournament or round' });
         }
-
+    
         let winners_id = [];
         for (const match of matches) {
-            winner = db.prepare(`SELECT * FROM match_winner_history WHERE match_id = ?`).all(match.id);
-            if (winner.length === 0) {
+            const winner = db.prepare(`SELECT * FROM match_winner_history WHERE match_id = ?`).all(match.id);
+            if (!winner[0]) {
                 return reply.code(404).send({ error: 'No winner found for this match' });
             }
-            winners_id.push(winner.id);
+            winners_id.push(winner[0].winner_id);
         }
-
+    
         const { matchups } = generateMatchups(winners_id);
-
+    
         for (const [player1, player2] of matchups) {
             const result = insertMatchHistory.run('tournament', id, tournament.current_round + 1);
             insertMatchPlayer.run(result.lastInsertRowid, player1, 1);
             insertMatchPlayer.run(result.lastInsertRowid, player2, 2);
         }
-
+    
         updateTournamentRound.run(id);
         const rows = getExistingTournament.all(tournament.lastInsertRowid);
+        return rows;
+    })
 
-        const { tournament_id, name: tournament_name, status, current_round } = rows[0];
+    try {
+        const rows = transaction(id);
+        const { tournament_id, name: tournament_name, status, current_round, winner_id } = rows[0];
 
         matches = rows.map(row => ({
             match_id: row.match_id,
@@ -263,11 +277,45 @@ const advanceTournament = async(req, reply) => {
             name: tournament_name,
             status,
             current_round,
+            winner_id,
             matches
         } });
     } catch (error) {
         console.log(error);
         return reply.code(500).send({ error: 'Failed to update tournament' });
+    }
+}
+
+const finishTournament = async(req, reply) => {
+    const { id } = req.params;
+
+    const updateTournamentStatus = db.prepare(`UPDATE tournaments SET status = 'finished', winner_id = ?, current_round = ? WHERE id = ?`);
+
+    try {
+        const tournament = db.prepare('SELECT * FROM tournaments WHERE id = ?').get(id);
+        if (!tournament) {
+            return reply.code(404).send({ error: 'Tournament not found' });
+        } else if (tournament.status === 'finished') {
+            return reply.code(400).send({ error: 'Tournament already finished' });
+        } else if (tournament.current_round != 2) {
+            return reply.code(400).send({ error: 'Tournament cannot be finished before round 2' });
+        }
+
+        const match = db.prepare('SELECT * FROM match_history WHERE tournament_id = ? AND round = ?').all(id, tournament.current_round);
+        if (match.length === 0) {
+            return reply.code(404).send({ error: 'No matches found for this tournament or round' });
+        }
+
+        const winner = db.prepare(`SELECT * FROM match_winner_history WHERE match_id = ?`).all(match[0].id);
+        if (!winner[0]) {
+            return reply.code(404).send({ error: 'No winner found for this match' });
+        }
+
+        updateTournamentStatus.run(winner[0].winner_id, tournament.current_round + 1, id);
+        return reply.code(200).send({ message: 'Successfully finished tournament' });
+    } catch (error) {
+        console.log(error);
+        return reply.code(500).send({ error: 'Failed to finish tournament' });
     }
 }
 
@@ -291,7 +339,6 @@ export default {
     getTournament,
     createTournament,
     advanceTournament,
-    deleteTournament
+    deleteTournament,
+    finishTournament
 }
-
-// update tournament status when tournament is finished and also the winner_id 

@@ -21,11 +21,18 @@ function tournamentRoutes(fastify, options) {
         handler: tournamentController.createTournament
     });
 
-    // Update a tournament
+    // Advance a tournament to next round
     fastify.put('/tournaments/:id/advance', {
         ...putTournamentOpts,
         // onRequest: [fastify.jwtAuth],
         handler: tournamentController.advanceTournament
+    });
+
+    // Finish a tournament
+    fastify.put('/tournaments/:id/finish', {
+        ...putTournamentOpts,
+        // onRequest: [fastify.jwtAuth],
+        handler: tournamentController.finishTournament
     });
 
     fastify.delete('/tournaments/:id', {
