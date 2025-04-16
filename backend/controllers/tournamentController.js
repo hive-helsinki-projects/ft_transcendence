@@ -16,7 +16,7 @@ const getExistingTournament = db.prepare(`
                 SELECT json_group_array(
                 json_object(
                 'player_id', mph.player_id, 
-                'team', mph.team
+                'score', mph.score
                 )
             )
             FROM match_player_history mph
@@ -46,7 +46,7 @@ const getTournaments = async (req, reply) => {
                         SELECT json_group_array(
                             json_object(
                                 'player_id', mph.player_id, 
-                                'team', mph.team
+                                'score', mph.score
                             )
                         )
                         FROM match_player_history mph
