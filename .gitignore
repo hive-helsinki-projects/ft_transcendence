@@ -135,6 +135,8 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
-
 .vscode/
 .DS_Store
+
+# certs/
+# .env

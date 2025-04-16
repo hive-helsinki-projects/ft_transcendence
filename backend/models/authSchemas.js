@@ -1,6 +1,5 @@
 import { User } from './userSchemas.js'
 
-
 export const postLoginOpts = {
 	schema: {
 			body: {
@@ -42,9 +41,9 @@ export const postRegisterOpts = {
 			type: 'object',
 			required: ['username', 'email', 'password'],
 			properties: {
-				username: { type: 'string' },
-				email: { type: 'string' },
-				password: { type: 'string' },
+				username: { type: 'string', minLength: 3, maxLength: 20, pattern: '^[a-zA-Z0-9]+$' },
+				email: { type: 'string', format: 'email' },
+				password: { type: 'string', minLength: 6 },
 			},
 		},
 		response: {

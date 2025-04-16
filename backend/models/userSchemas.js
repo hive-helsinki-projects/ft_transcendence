@@ -4,7 +4,7 @@ export const User = {
 	properties: {
 		id: { type: 'integer' },
 		username: { type: 'string' },
-		email: { type: 'string' },
+		email: { type: 'string', format: 'email' },
 		online_status: { type: 'boolean' },
 		avatar_url: { type: 'string' },
 		created_at: { type: 'string', format: 'date-time' }
@@ -37,9 +37,9 @@ export const putUserOpts = {
 			type: 'object',
 			required: [],
 			properties: {
-				username: { type: 'string', nullable: true },
-				email: { type: 'string', nullable: true },
-				password: { type: 'string', nullable: true },
+				username: { type: 'string', minLength: 3, maxLength: 20, pattern: '^[a-zA-Z0-9]+$', nullable: true },
+				email: { type: 'string', format: 'email', nullable: true },
+				password: { type: 'string', minLength: 6, nullable: true },
 				avatar_url: { type: 'string', nullable: true },
 			},
 		},

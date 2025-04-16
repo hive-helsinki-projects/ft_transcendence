@@ -9,6 +9,7 @@ db.prepare(`
 		username TEXT NOT NULL UNIQUE,
 		email TEXT NOT NULL UNIQUE,
 		password_hash TEXT NOT NULL,
+		avatar_url TEXT DEFAULT NULL,
 		online_status BOOLEAN DEFAULT FALSE,
 		created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 	)
@@ -49,8 +50,10 @@ db.prepare(`
 		id INTEGER PRIMARY KEY AUTOINCREMENT,
 		name TEXT NOT NULL,
 		status TEXT DEFAULT 'pending',
-		player_count INTEGER DEFAULT 0,
-		created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+		current_round INTEGER DEFAULT 0,
+		winner_id INTEGER,
+		created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+		FOREIGN KEY (winner_id) REFERENCES players(id)
 	)
 `).run();
 
@@ -59,7 +62,8 @@ db.prepare(`
 	CREATE TABLE IF NOT EXISTS match_history (
 		id INTEGER PRIMARY KEY AUTOINCREMENT,
 		type TEXT NOT NULL,
-		tournament_id INTEGER,
+		tournament_id INTEGER DEFAULT NULL,
+		round INTEGER,
 		date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 		FOREIGN KEY (tournament_id) REFERENCES tournaments(id) ON DELETE CASCADE
 	)
@@ -73,9 +77,8 @@ db.prepare(`
 		player_id INTEGER NOT NULL,
 		score INTEGER DEFAULT 0 NOT NULL,
 		team INTEGER CHECK (team IN (1, 2)),
-		round INTEGER,
-		FOREIGN KEY (match_id) REFERENCES match_history(id),
-		FOREIGN KEY (player_id) REFERENCES player(id),
+		FOREIGN KEY (match_id) REFERENCES match_history(id) ON DELETE CASCADE,
+		FOREIGN KEY (player_id) REFERENCES players(id),
 		UNIQUE (match_id, player_id)
 	)
 `).run();
@@ -86,8 +89,8 @@ db.prepare(`
 		id INTEGER PRIMARY KEY AUTOINCREMENT,
 		match_id INTEGER NOT NULL,
 		winner_id INTEGER NOT NULL,
-		FOREIGN KEY (match_id) REFERENCES match_history(id),
-		FOREIGN KEY (winner_id) REFERENCES player(id)
+		FOREIGN KEY (match_id) REFERENCES match_history(id) ON DELETE CASCADE,
+		FOREIGN KEY (winner_id) REFERENCES players(id)
 	)
 `).run();
 
