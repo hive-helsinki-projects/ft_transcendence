@@ -4,7 +4,7 @@ Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImtpbSIsImlkIjoxLCJpYXQiOjE3NDQ3MDk0NDMsImV4cCI6MTc0NDcxMzA0M30.yXS0Abl41sNEzS1opmhdtzPxnRAjnwYxFcLO0WwFutU
 
 ### GET ONE MATCH HISTORY
-GET http://localhost:3001/match-histories/48
+GET http://localhost:3001/match-histories/85
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImtpbSIsImlkIjoxLCJpYXQiOjE3NDQ3MDk0NDMsImV4cCI6MTc0NDcxMzA0M30.yXS0Abl41sNEzS1opmhdtzPxnRAjnwYxFcLO0WwFutU
 
@@ -22,17 +22,17 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Imtpb
 }
 
 ### UPDATE MATCH HISTORY
-PUT http://localhost:3001/match-histories/48
+PUT http://localhost:3001/match-histories/86
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImtpbSIsImlkIjoxLCJpYXQiOjE3NDQ3MDk0NDMsImV4cCI6MTc0NDcxMzA0M30.yXS0Abl41sNEzS1opmhdtzPxnRAjnwYxFcLO0WwFutU
 
 {
     "players": [
-        { "player_id": 1, "score": 3 },
-        { "player_id": 2, "score": 2}
+        { "player_id": 5, "score": 3 },
+        { "player_id": 9, "score": 2}
     ],
     "winners": [
-        { "winner_id": 1 }
+        { "winner_id": 5 }
     ]
 }
 
