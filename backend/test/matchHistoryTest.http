@@ -1,15 +1,15 @@
 ### GET MATCH HISTORIES
-GET http://localhost:3001/match-histories
+GET https://localhost:3001/match-histories
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImtpbSIsImlkIjoxLCJpYXQiOjE3NDQ3MDk0NDMsImV4cCI6MTc0NDcxMzA0M30.yXS0Abl41sNEzS1opmhdtzPxnRAjnwYxFcLO0WwFutU
 
 ### GET ONE MATCH HISTORY
-GET http://localhost:3001/match-histories/85
+GET https://localhost:3001/match-histories/85
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImtpbSIsImlkIjoxLCJpYXQiOjE3NDQ3MDk0NDMsImV4cCI6MTc0NDcxMzA0M30.yXS0Abl41sNEzS1opmhdtzPxnRAjnwYxFcLO0WwFutU
 
 ### CREATE MATCH HISTORY
-POST http://localhost:3001/match-histories
+POST https://localhost:3001/match-histories
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImtpbSIsImlkIjoxLCJpYXQiOjE3NDQ3MDk0NDMsImV4cCI6MTc0NDcxMzA0M30.yXS0Abl41sNEzS1opmhdtzPxnRAjnwYxFcLO0WwFutU
 
@@ -22,7 +22,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Imtpb
 }
 
 ### UPDATE MATCH HISTORY
-PUT http://localhost:3001/match-histories/86
+PUT https://localhost:3001/match-histories/86
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImtpbSIsImlkIjoxLCJpYXQiOjE3NDQ3MDk0NDMsImV4cCI6MTc0NDcxMzA0M30.yXS0Abl41sNEzS1opmhdtzPxnRAjnwYxFcLO0WwFutU
 
@@ -37,5 +37,5 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Imtpb
 }
 
 ### DELETE MATCH HISTORY
-DELETE http://localhost:3001/match-histories/3
+DELETE https://localhost:3001/match-histories/3
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImtpbSIsImlkIjoxLCJpYXQiOjE3NDQ3MDk0NDMsImV4cCI6MTc0NDcxMzA0M30.yXS0Abl41sNEzS1opmhdtzPxnRAjnwYxFcLO0WwFutU
