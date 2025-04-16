@@ -185,9 +185,10 @@ const createTournament = async (req, reply) => {
             insertMatchPlayer.run(result.lastInsertRowid, player1, 1);
             insertMatchPlayer.run(result.lastInsertRowid, player2, 2);
         }
+
         for (const byePlayer of byePlayers) {
             const result = insertMatchHistory.run('tournament', tournament.lastInsertRowid, 0);
-            insertMatchHistory.run(result.lastInsertRowid, byePlayer, 1);
+            insertMatchPlayer.run(result.lastInsertRowid, byePlayer, 1);
             insertMatchWinner.run(result.lastInsertRowid, byePlayer);
         }
         const rows = getExistingTournament.all(tournament.lastInsertRowid);
@@ -248,6 +249,9 @@ const advanceTournament = async(req, reply) => {
         }
     
         const { matchups } = generateMatchups(winners_id);
+        if (matchups.length === 1) {
+            return reply.code(400).send({ error: 'Tournament cannot be advanced, only one player left' });
+        }
     
         for (const [player1, player2] of matchups) {
             const result = insertMatchHistory.run('tournament', id, tournament.current_round + 1);
@@ -256,7 +260,7 @@ const advanceTournament = async(req, reply) => {
         }
     
         updateTournamentRound.run(id);
-        const rows = getExistingTournament.all(tournament.lastInsertRowid);
+        const rows = getExistingTournament.all(id);
         return rows;
     })
 
@@ -264,7 +268,7 @@ const advanceTournament = async(req, reply) => {
         const rows = transaction(id);
         const { tournament_id, name: tournament_name, status, current_round, winner_id } = rows[0];
 
-        matches = rows.map(row => ({
+        const matches = rows.map(row => ({
             match_id: row.match_id,
             type: row.type,
             round: row.round,
