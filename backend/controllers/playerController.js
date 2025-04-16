@@ -41,8 +41,8 @@ const createPlayer = async (req, reply) => {
 	
 	try {
 		const playerCount = db.prepare(`SELECT COUNT(*) AS count FROM players WHERE user_id = ?`).get(user_id);
-		if (playerCount.count >= 4) {
-			return reply.code(400).send({ error: 'Cannot add another player. Max players is 4'})
+		if (playerCount.count >= 8) {
+			return reply.code(400).send({ error: 'Cannot add another player. Max players is 8'})
 		}
 		
 		const result = db.prepare(`INSERT INTO players (user_id, display_name, avatar_url) VALUES (?, ?, ?)`).run(newPlayer.user_id, newPlayer.display_name, newPlayer.avatar_url);
