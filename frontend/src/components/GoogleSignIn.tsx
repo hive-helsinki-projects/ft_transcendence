@@ -15,56 +15,92 @@ declare global {
     }
   }
 
-const GoogleSignIn: React.FC<GoogleSignInProps> = ({ isLoading }) => {
-    // to init google sign-in client
+
+  const GoogleSignIn: React.FC<GoogleSignInProps> = ( {isLoading} ) => {
     useEffect(() => {
-        if (window.gapi) {
-            window.gapi.load('auth2', () => {
-                window.gapi.auth2.init({
-                    client_id: clientId,
-                    redirect_uri: 'http://localhost:5173'
-                });
-            });
-        } else {
-            console.log('Google API is not loaded');
-        }
-    }, [])
-
-    const handleLogin = () => {
-        console.log('Google signin buton are pressed!');
-        const auth2 = window.gapi.auth2.getAuthInstance();
-        auth2.signIn().then(
-            (googleUser: any) => {
-                const id_token = googleUser.getAuthResponse().id_token;
-                console.log('Google TD Token: ', id_token);
-                // send the token to the server
-                // sendTokenToBackend(id_token);
-                // navigate('/dashboard') // do we need it?
-            },
-            (error: any) => {
-                console.log('Login error: ', error); // do error handlings
-            }
+      if (window.google) {
+        window.google.accounts.id.initialize({
+          client_id: clientId,
+          callback: handleCredentialResponse
+        });
+        window.google.accounts.id.renderButton(
+          document.getElementById("google-signin-btn"), // ボタンを表示する要素のID
+          { theme: "outline", size: "large" }           // ボタンのスタイルオプション
         );
+      } else {
+        console.error("Google Identity SDK is not loaded.");
+      }
+    }, []);
+  
+    const handleCredentialResponse = (response: any) => {
+        if (isLoading) {
+            return ;
+        }
+      const idToken = response.credential; // ID トークンを取得
+      console.log("Google ID Token: ", idToken);
+      // サーバーにトークンを送信してユーザーを認証する
     };
+  
+    return (
+      <div>
+        <div id="google-signin-btn"></div> {/* Google サインインボタンをここに表示 */}
+      </div>
+    );
+  };
 
-  return (
-    <div>
-        <button
-            onClick={handleLogin}
-            type="button"
-            className="google-button"
-            disabled={isLoading}
-        >
-        <img 
-            src="https://www.google.com/favicon.ico" 
-            alt="Google"
-            width="20"
-            height="20"
-            />
-            Sign in with Google
-        </button>
-    </div>
-  )
-}
+// const GoogleSignIn: React.FC<GoogleSignInProps> = ({ isLoading }) => {
+//     // to init google sign-in client
+//     useEffect(() => {
+//         if (window.gapi) {
+//             window.gapi.load('auth2', () => {
+//                 window.gapi.auth2.init({
+//                     client_id: clientId,
+//                     // redirect_uri: 'http://localhost:5173/dashboard'
+//                 });
+//             });
+//         } else {
+//             console.log('Google API is not loaded');
+//         }
+//     }, [])
+
+//     const handleLogin = () => {
+//         if (isLoading) {
+//             return ;
+//         }
+//         console.log('Google signin button are pressed!'); // for debugging
+//         const auth2 = window.gapi.auth2.getAuthInstance();
+//         console.log(auth2);
+//         auth2.signIn().then(
+//             (googleUser) => {
+//                 const id_token = googleUser.getAuthResponse().id_token;
+//                 console.log('Google ID Token: ', id_token);
+//                 // send the token to the server
+//                 // sendTokenToBackend(id_token);
+//             },
+//             (error) => {
+//                 console.log('Login error: ', error); // do error handlings
+//             }
+//         );
+//     };
+
+//   return (
+//     <div>
+//         <button
+//             onClick={handleLogin}
+//             type="button"
+//             className="google-button"
+//             disabled={isLoading}
+//         >
+//         <img 
+//             src="https://www.google.com/favicon.ico" 
+//             alt="Google"
+//             width="20"
+//             height="20"
+//             />
+//             Sign in with Google
+//         </button>
+//     </div>
+//   )
+// }
 
 export default GoogleSignIn
