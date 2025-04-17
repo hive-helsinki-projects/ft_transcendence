@@ -1,31 +1,41 @@
 ### LOGIN
-POST http://localhost:3001/login
-Content-Type: application/json
-
-{
-	"username": "kmatjuhi",
-	"password": "password"
-}
-
-### INVALID PASSWORD
-POST http://localhost:3001/login
-Content-Type: application/json
-
-{
-	"username": "kmatjuhi",
-	"password": "passwdawdk"
-}
-
-### CREATE USER KIM
-POST http://localhost:3001/register HTTP/1.1
+POST https://localhost:3001/login
 Content-Type: application/json
 
 {
 	"username": "kim",
-	"email": "km342hi@hive.fr",
+	"password": "password"
+}
+
+### INVALID PASSWORD
+POST https://localhost:3001/login
+Content-Type: application/json
+
+{
+	"username": "kim",
+	"password": "passwdawdk"
+}
+
+### CREATE USER KIM
+POST https://localhost:3001/register HTTP/1.1
+Content-Type: application/json
+
+{
+	"username": "kimmm",
+	"email": "kim@hive.fr",
+	"password": "ess"
+}
+
+### CREATE USER LUMI
+POST https://localhost:3001/register HTTP/1.1
+Content-Type: application/json
+
+{
+	"username": "lumi",
+	"email": "lumi@hive.fr",
 	"password": "password"
 }
 
 ### LOGOUT
-POST http://localhost:3001/logout HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImtpbSIsImlkIjoyLCJpYXQiOjE3NDQxMDYxODEsImV4cCI6MTc0NDEwOTc4MX0.EX-UiFAit6cuLlhXQxb7QPnjMOn37P4cVw9tX_wzlIA
+POST https://localhost:3001/logout HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImtpbSIsImlkIjoxLCJpYXQiOjE3NDQ2NTIyOTYsImV4cCI6MTc0NDY1NTg5Nn0.WWLfcBvpi1O2bjhdDBMJ-3DSFsnogMsCmwoHo1izB7E
