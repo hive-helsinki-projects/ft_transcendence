@@ -34,7 +34,7 @@ const updateUser = async (req, reply) => {
 	}
 	
 	try {
-		const user = db.prepare('SELECT * FROM users WHERE id = ?').get(id);
+		const user = db.prepare('SELECT * FROM users WHERE id = ?').get(parseInt(id));
 		if (!user) {
 			return reply.code(404).send({ error: 'User not found' });
 		}
@@ -69,6 +69,7 @@ const updateUser = async (req, reply) => {
 			item: updateUser
 		});
 	} catch (error) {
+		console.log(error)
 		return reply.code(500).send({ error: 'Internal server error '})
 	}
 };

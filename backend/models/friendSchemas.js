@@ -10,6 +10,7 @@ export const Friend = {
 }
 
 // Schemas for friend-related operations
+
 export const getFriendsOpts = {
     schema: {
         response: {
@@ -34,37 +35,23 @@ export const deleteFriendOpts = {
     }
 }
 
-export const postFriendOpts = {
+const sharedFriendSchema = {
     schema: {
         response: {
-        200: {
-            response: {
+            200: {
                 type: 'object',
                 properties: {
                     message: { type: 'string' },
                     item: Friend,
                 }
-            }
             }
         }
     }
 }
 
-export const patchFriendOpts = {
-    schema: {
-        response: {
-        200: {
-            response: {
-                type: 'object',
-                properties: {
-                    message: { type: 'string' },
-                    item: Friend,
-                }
-            }
-            }
-        }
-    }
-}
+export const postFriendOpts = sharedFriendSchema
+
+export const patchFriendOpts = sharedFriendSchema
 
 export const getFriendStatusOpts = {
     schema: {

@@ -1,0 +1,23 @@
+### GET TOURNAMENTS
+GET https://localhost:3001/tournaments HTTP/1.1
+
+### GET TOURNAMENT BY ID
+GET https://localhost:3001/tournaments/15 HTTP/1.1
+
+### CREATE TOURNAMENT
+POST https://localhost:3001/tournaments HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "check 7",
+    "player_ids": [1, 5, 6, 7, 9]
+}
+
+### ADVANCE TOURNAMENT
+PUT https://localhost:3001/tournaments/15/advance HTTP/1.1
+
+### FINISH TOURNAMENT
+PUT https://localhost:3001/tournaments/15/finish HTTP/1.1
+
+### DELETE TOURNAMENT
+DELETE https://localhost:3001/tournaments/6 HTTP/1.1
