@@ -8,5 +8,8 @@ export default defineConfig({
 	],
 	server: {
 		host: '0.0.0.0',
+		headers: {
+			'Content-Security-Policy': "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.gstatic.com https://apis.google.com; frame-ancestors 'self' https://accounts.google.com"
+        }
 	},
 })

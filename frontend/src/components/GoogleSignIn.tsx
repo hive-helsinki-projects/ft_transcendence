@@ -1,15 +1,19 @@
 import React, { useEffect } from 'react';
 import "../css/LandingPage.css"; // should I move this to its own css file
 
+const clientId = '847383291975-9ten21d8j1vf3m2m1kod2i2js9c28o6e.apps.googleusercontent.com';
+
 // Display the google signin button and tell the parent component if the signin succeeed or not
 
 interface GoogleSignInProps {
     isLoading: boolean;
-}
+  }
 
-interface Window {
-    gapi: any;
-}
+declare global {
+    interface Window {
+      gapi: any;
+    }
+  }
 
 const GoogleSignIn: React.FC<GoogleSignInProps> = ({ isLoading }) => {
     // to init google sign-in client
@@ -17,8 +21,8 @@ const GoogleSignIn: React.FC<GoogleSignInProps> = ({ isLoading }) => {
         if (window.gapi) {
             window.gapi.load('auth2', () => {
                 window.gapi.auth2.init({
-                    client_id: '847383291975-9ten21d8j1vf3m2m1kod2i2js9c28o6e.apps.googleusercontent.com', // modify this part
-                    redirect_uri: 'http://localhost:5173/dashboard'
+                    client_id: clientId,
+                    redirect_uri: 'http://localhost:5173'
                 });
             });
         } else {
