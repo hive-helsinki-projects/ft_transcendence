@@ -7,4 +7,5 @@ export { default as AppRoutes } from './routing/AppRoutes'
 
 // Sidebar components
 export { default as SidebarItem} from './sidebar/SidebarItem'
+export { default as SideBar } from './sidebar/SideBar'
 export { menuItems } from './sidebar/menuItems'
