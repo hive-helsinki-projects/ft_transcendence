@@ -7,24 +7,21 @@
 // Entry point of the application
 // - Initializes React application
 // - Sets up root rendering
-// - Imports global styles
 // - Configures React.StrictMode
 
 BEGIN
     IMPORT React
-    IMPORT ReactDOM
+    IMPORT ReactDOM from react-dom/client
     IMPORT App
-    IMPORT globalStyles
     
     // Configure root element
     root = document.getElementById('root')
     
-    // Render application
-    ReactDOM.render(
+    // Create and render application using createRoot (React 18 way)
+    ReactDOM.createRoot(root).render(
         <React.StrictMode>
             <App />
-        </React.StrictMode>,
-        root
+        </React.StrictMode>
     )
 END
 ```

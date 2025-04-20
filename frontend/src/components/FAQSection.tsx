@@ -1,8 +1,8 @@
-import React from 'react';
-import { FAQ } from '../data/helpData';
+import React from 'react'
+import { FAQ } from '../data/helpData'
 
 interface FAQSectionProps {
-  faqs: FAQ[];
+  faqs: FAQ[]
 }
 
 const FAQSection: React.FC<FAQSectionProps> = ({ faqs }) => (
@@ -17,6 +17,6 @@ const FAQSection: React.FC<FAQSectionProps> = ({ faqs }) => (
       ))}
     </ul>
   </section>
-);
+)
 
-export default FAQSection; 
+export default FAQSection
