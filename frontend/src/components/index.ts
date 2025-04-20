@@ -13,8 +13,8 @@ export { type MenuItem } from './sidebar/SidebarItem'
 
 // Auth Components
 export { default as AuthForm } from './auth/AuthForm'
-export { default as AuthSection } from './auth/AuthSection'
-export { default as HeroSection } from './auth/HeroSection'
+export { default as AuthSection } from './landing/AuthSection'
+export { default as HeroSection } from './landing/HeroSection'
 
 // Common Components
 export { default as LoadingContainer } from './LoadingContainer'
