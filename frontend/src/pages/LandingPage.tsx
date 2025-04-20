@@ -5,6 +5,22 @@ import { useAuth } from '../hooks/useAuth'
 import { localAuth } from '../services/localAuth'
 import '../css/LandingPage.css'
 
+// Constants
+const AUTH_MESSAGES = {
+  SUCCESS: 'Login successful! Redirecting to dashboard...',
+  ERROR: {
+    REQUIRED_FIELDS: 'Please fill in all fields',
+    DEFAULT: 'Login failed. Please try again.',
+  },
+  BUTTON: {
+    SIGN_IN: 'Sign In',
+    SIGNING_IN: 'Signing in...',
+  },
+} as const
+
+const REDIRECT_DELAY = 2000
+
+// Types
 interface FormData {
   username: string
   password: string
@@ -17,6 +33,35 @@ interface AuthFormProps {
   successMessage: string
 }
 
+interface AuthSectionProps {
+  onGoogleAuth: () => void
+  onNavigateToRegister: () => void
+  children: React.ReactNode
+}
+
+// Custom Hook
+const useAuthForm = () => {
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState('')
+  const [successMessage, setSuccessMessage] = useState('')
+
+  const resetMessages = () => {
+    setError('')
+    setSuccessMessage('')
+  }
+
+  return {
+    isLoading,
+    setIsLoading,
+    error,
+    setError,
+    successMessage,
+    setSuccessMessage,
+    resetMessages,
+  }
+}
+
+// Components
 const AuthForm: React.FC<AuthFormProps> = ({
   onSubmit,
   isLoading,
@@ -52,6 +97,10 @@ const AuthForm: React.FC<AuthFormProps> = ({
           onChange={handleInputChange}
           disabled={isLoading}
           required
+          minLength={3}
+          maxLength={20}
+          pattern="[a-zA-Z0-9]+"
+          title="Username must contain only letters and numbers"
         />
       </div>
 
@@ -64,11 +113,13 @@ const AuthForm: React.FC<AuthFormProps> = ({
           onChange={handleInputChange}
           disabled={isLoading}
           required
+          minLength={6}
+          title="Password must be at least 6 characters long"
         />
       </div>
 
       <button type="submit" className="submit-button" disabled={isLoading}>
-        {isLoading ? 'Signing in...' : 'Sign In'}
+        {isLoading ? AUTH_MESSAGES.BUTTON.SIGNING_IN : AUTH_MESSAGES.BUTTON.SIGN_IN}
       </button>
     </form>
   )
@@ -85,11 +136,11 @@ const HeroSection: React.FC = () => (
   </section>
 )
 
-const AuthSection: React.FC<{
-  onGoogleAuth: () => void
-  onNavigateToRegister: () => void
-  children: React.ReactNode
-}> = ({ onGoogleAuth, onNavigateToRegister, children }) => (
+const AuthSection: React.FC<AuthSectionProps> = ({
+  onGoogleAuth,
+  onNavigateToRegister,
+  children,
+}) => (
   <section className="auth-section">
     <h2>Let's Play!</h2>
     {children}
@@ -128,21 +179,25 @@ const AuthSection: React.FC<{
 )
 
 const LandingPage: React.FC = () => {
-  const [isLoading, setIsLoading] = useState(false)
-  const [error, setError] = useState('')
-  const [successMessage, setSuccessMessage] = useState('')
-
   const navigate = useNavigate()
   const { login } = useAuth()
+  const {
+    isLoading,
+    setIsLoading,
+    error,
+    setError,
+    successMessage,
+    setSuccessMessage,
+    resetMessages,
+  } = useAuthForm()
 
   const handleAuthSubmit = async (formData: FormData) => {
-    setError('')
-    setSuccessMessage('')
+    resetMessages()
     setIsLoading(true)
 
     try {
       if (!formData.username || !formData.password) {
-        setError('Please fill in all fields')
+        setError(AUTH_MESSAGES.ERROR.REQUIRED_FIELDS)
         return
       }
 
@@ -150,16 +205,16 @@ const LandingPage: React.FC = () => {
         formData.username,
         formData.password,
       )
-      setSuccessMessage('Login successful! Redirecting to dashboard...')
+      setSuccessMessage(AUTH_MESSAGES.SUCCESS)
 
-      await new Promise((resolve) => setTimeout(resolve, 2000))
+      await new Promise((resolve) => setTimeout(resolve, REDIRECT_DELAY))
       login(response.token, response.username)
       navigate('/dashboard')
     } catch (error) {
       setError(
         error instanceof Error
           ? error.message
-          : 'Login failed. Please try again.',
+          : AUTH_MESSAGES.ERROR.DEFAULT,
       )
     } finally {
       setIsLoading(false)
