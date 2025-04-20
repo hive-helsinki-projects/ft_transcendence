@@ -1,4 +1,6 @@
-import fastify from './app.js'
+import buildApp from './app.js'
+
+const fastify = buildApp();
 
 // Start the server
 const start = async () => {
