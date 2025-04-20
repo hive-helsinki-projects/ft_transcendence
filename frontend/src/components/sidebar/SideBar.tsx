@@ -1,10 +1,10 @@
 import { useState } from 'react'
-import { SidebarItem, menuItems } from '..'
-import { type MenuItem } from './SidebarItem'
+import { SidebarItem, menuItems, MenuItem } from '..'
 import '../../css'
 
 /**
  * Sidebar Component
+ * 
  * A vertical navigation bar that displays menu items as icons
  * Allows users to navigate between different sections of the application
  */
