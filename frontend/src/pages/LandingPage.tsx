@@ -3,54 +3,37 @@ import { useNavigate } from 'react-router-dom'
 import { LoadingContainer, AuthForm, AuthSection, HeroSection } from '../components'
 import { useAuth } from '../hooks/useAuth'
 import { useAuthForm } from '../hooks/useAuthForm'
-import { localAuth } from '../services/localAuth'
-import { FormData } from '../types/auth'
-
-// Constants
-const AUTH_MESSAGES = {
-  SUCCESS: 'Login successful! Redirecting to dashboard...',
-  ERROR: {
-    DEFAULT: 'Login failed. Please try again.',
-  },
-} as const
-
-const REDIRECT_DELAY = 2000
+import { AuthService } from '../services/authService'
+import { AuthFormData, REDIRECT_DELAY } from '../types/auth'
 
 const LandingPage: React.FC = () => {
   const navigate = useNavigate()
   const { login } = useAuth()
   const {
     isLoading,
-    setIsLoading,
     error,
-    setError,
     successMessage,
-    setSuccessMessage,
+    setLoading,
     resetMessages,
+    handleAuthError,
+    handleAuthSuccess,
   } = useAuthForm()
 
-  const handleAuthSubmit = async (formData: FormData) => {
+  const handleAuthSubmit = async (formData: AuthFormData) => {
     resetMessages()
-    setIsLoading(true)
+    setLoading(true)
 
     try {
-      const response = await localAuth.login(
-        formData.username,
-        formData.password,
-      )
-      setSuccessMessage(AUTH_MESSAGES.SUCCESS)
+      const response = await AuthService.login(formData)
+      handleAuthSuccess()
 
       await new Promise((resolve) => setTimeout(resolve, REDIRECT_DELAY))
       login(response.token, response.username)
       navigate('/dashboard')
     } catch (error) {
-      setError(
-        error instanceof Error
-          ? error.message
-          : AUTH_MESSAGES.ERROR.DEFAULT,
-      )
+      handleAuthError(error)
     } finally {
-      setIsLoading(false)
+      setLoading(false)
     }
   }
 

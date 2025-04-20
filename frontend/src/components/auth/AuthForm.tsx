@@ -1,16 +1,16 @@
 import React, { useState } from 'react'
 import { useFormValidation } from '../../hooks/useFormValidation'
-import { FormData, AuthFormProps } from '../../types/auth'
+import { AuthFormData, AuthFormProps } from '../../types/auth'
 import LoadingState from '../LoadingState'
 import '../../css/LandingPage.css'
 
 const AuthForm: React.FC<AuthFormProps> = ({
   onSubmit,
-  isLoading,
-  error,
-  successMessage,
+  isLoading = false,
+  error = '',
+  successMessage = '',
 }) => {
-  const [formData, setFormData] = useState<FormData>({
+  const [formData, setFormData] = useState<AuthFormData>({
     username: '',
     password: '',
   })
@@ -18,7 +18,7 @@ const AuthForm: React.FC<AuthFormProps> = ({
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
-    setFormData((prev) => ({ ...prev, [name]: value }))
+    setFormData((prev: AuthFormData) => ({ ...prev, [name]: value }))
     updateValidation({ ...formData, [name]: value })
   }
 
@@ -48,10 +48,6 @@ const AuthForm: React.FC<AuthFormProps> = ({
           onChange={handleInputChange}
           disabled={isLoading}
           required
-          minLength={3}
-          maxLength={20}
-          pattern="[a-zA-Z0-9]+"
-          title="Username must contain only letters and numbers"
           aria-invalid={!!validation.errors.username}
           aria-describedby={validation.errors.username ? 'username-error' : undefined}
         />
@@ -73,8 +69,6 @@ const AuthForm: React.FC<AuthFormProps> = ({
           onChange={handleInputChange}
           disabled={isLoading}
           required
-          minLength={6}
-          title="Password must be at least 6 characters long"
           aria-invalid={!!validation.errors.password}
           aria-describedby={validation.errors.password ? 'password-error' : undefined}
         />

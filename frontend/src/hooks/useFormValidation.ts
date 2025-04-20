@@ -1,19 +1,26 @@
 import { useState, useCallback } from 'react'
-import { FormData, FormValidation } from '../types/auth'
+import { AuthFormData, FormValidation } from '../types/auth'
 
-const validateUsername = (username: string): string => {
-  if (!username) return 'Username is required'
-  if (username.length < 3) return 'Username must be at least 3 characters'
-  if (username.length > 20) return 'Username must be less than 20 characters'
-  if (!/^[a-zA-Z0-9]+$/.test(username)) return 'Username must contain only letters and numbers'
-  return ''
-}
-
-const validatePassword = (password: string): string => {
-  if (!password) return 'Password is required'
-  if (password.length < 6) return 'Password must be at least 6 characters'
-  return ''
-}
+const VALIDATION_RULES = {
+  username: {
+    minLength: 3,
+    maxLength: 20,
+    pattern: /^[a-zA-Z0-9]+$/,
+    messages: {
+      required: 'Username is required',
+      minLength: 'Username must be at least 3 characters',
+      maxLength: 'Username must be less than 20 characters',
+      pattern: 'Username must contain only letters and numbers',
+    },
+  },
+  password: {
+    minLength: 6,
+    messages: {
+      required: 'Password is required',
+      minLength: 'Password must be at least 6 characters',
+    },
+  },
+} as const
 
 export const useFormValidation = () => {
   const [validation, setValidation] = useState<FormValidation>({
@@ -21,18 +28,27 @@ export const useFormValidation = () => {
     errors: {},
   })
 
-  const validateForm = useCallback((formData: FormData): FormValidation => {
+  const validateField = useCallback((name: keyof AuthFormData, value: string): string => {
+    const rules = VALIDATION_RULES[name]
+    if (!value) return rules.messages.required
+    if (value.length < rules.minLength) return rules.messages.minLength
+    if ('maxLength' in rules && value.length > rules.maxLength) return rules.messages.maxLength
+    if ('pattern' in rules && !rules.pattern.test(value)) return rules.messages.pattern
+    return ''
+  }, [])
+
+  const validateForm = useCallback((formData: AuthFormData): FormValidation => {
     const errors = {
-      username: validateUsername(formData.username),
-      password: validatePassword(formData.password),
+      username: validateField('username', formData.username),
+      password: validateField('password', formData.password),
     }
 
     const isValid = Object.values(errors).every((error) => !error)
 
     return { isValid, errors }
-  }, [])
+  }, [validateField])
 
-  const updateValidation = useCallback((formData: FormData) => {
+  const updateValidation = useCallback((formData: AuthFormData) => {
     const newValidation = validateForm(formData)
     setValidation(newValidation)
     return newValidation
