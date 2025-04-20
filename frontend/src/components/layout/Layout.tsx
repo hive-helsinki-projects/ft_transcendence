@@ -1,5 +1,5 @@
 import React from 'react'
-import Sidebar from '../pages/SideBar'
+import Sidebar from '../../pages/SideBar'
 
 /**
  * Layout Component
