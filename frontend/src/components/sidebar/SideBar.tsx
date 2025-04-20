@@ -1,31 +1,25 @@
 import { useState } from 'react'
 import { SidebarItem, menuItems } from '..'
+import { type MenuItem } from './SidebarItem'
 import '../../css'
 
 /**
- * Sidebar Component
- * 
- * A navigation component that displays a vertical menu of icons
+ * A vertical navigation bar with icons
  * Each icon represents a different section of the application
- * 
- * Features:
- * - Visual icons for easy navigation
- * - Selected state highlighting
- * - Responsive design with CSS
  */
 const Sidebar = () => {
-  // State to track which menu item is currently selected
+  // Track currently selected menu item
   const [selected, setSelected] = useState('home')
 
   return (
     <nav className="sidebar" role="navigation" aria-label="Main navigation">
-      {menuItems.map(({ id, icon, path }) => (
+      {menuItems.map((item: MenuItem) => (
         <SidebarItem
-          key={id}
-          id={id}
-          icon={icon}
-          path={path}
-          isSelected={selected === id}
+          key={item.id}
+          id={item.id}
+          icon={item.icon}
+          path={item.path}
+          isSelected={selected === item.id}
           onClick={setSelected}
         />
       ))}
