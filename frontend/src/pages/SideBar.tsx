@@ -1,41 +1,35 @@
-import {
-  Gamepad2,
-  HelpCircle,
-  Home,
-  Settings,
-  Trophy,
-  User,
-} from 'lucide-react'
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { SidebarItem, menuItems } from '../components'
 import '../css/Sidebar.css'
 
+/**
+ * Sidebar Component
+ * 
+ * A navigation component that displays a vertical menu of icons
+ * Each icon represents a different section of the application
+ * 
+ * Features:
+ * - Visual icons for easy navigation
+ * - Selected state highlighting
+ * - Responsive design with CSS
+ */
 const Sidebar = () => {
-  const [selected, setSelected] = useState('home')
-
-  const menuItems = [
-    { id: 'home', icon: Home, path: '/' },
-    { id: 'user', icon: User, path: '/dashboard' },
-    { id: 'game', icon: Gamepad2, path: '/game' },
-    { id: 'trophy', icon: Trophy, path: '/tournament' },
-    { id: 'settings', icon: Settings, path: '/settings' },
-    { id: 'help', icon: HelpCircle, path: '/help' },
-  ]
+  // State to track which menu item is currently selected
+  const [selected, setSelected] = useState<string>('home')
 
   return (
-    <div className="sidebar">
-      {menuItems.map(({ id, icon: Icon, path }) => (
-        <Link to={path} key={id} onClick={() => setSelected(id)}>
-          <button
-            type="button"
-            aria-label={id}
-            className={`sidebar-button ${selected === id ? 'selected' : ''}`}
-          >
-            <Icon size={24} />
-          </button>
-        </Link>
+    <nav className="sidebar" role="navigation" aria-label="Main navigation">
+      {menuItems.map(({ id, icon, path }) => (
+        <SidebarItem
+          key={id}
+          id={id}
+          icon={icon}
+          path={path}
+          isSelected={selected === id}
+          onClick={setSelected}
+        />
       ))}
-    </div>
+    </nav>
   )
 }
 
