@@ -13,20 +13,24 @@ import tournamentRoutes from './routes/tournamentRoute.js';
 dotenv.config();
 
 // Initialize fastify HTTPS
-const fastify = Fastify({ 
-    logger: true,
-    https: {
-        key: fs.readFileSync(process.env.SSL_KEY),
-        cert: fs.readFileSync(process.env.SSL_CERT)
-    }});
+function buildApp() {
+    const fastify = Fastify({ 
+        logger: true,
+        https: {
+            key: fs.readFileSync(process.env.SSL_KEY),
+            cert: fs.readFileSync(process.env.SSL_CERT)
+        }});
+    
+    // Register routes
+    fastify.register(jwtPlugin);
+    fastify.register(authRoutes);
+    fastify.register(userRoutes);
+    fastify.register(playerRoutes);
+    fastify.register(friendRoutes);
+    fastify.register(matchHistoryRoutes);
+    fastify.register(tournamentRoutes);
+    
+    return fastify;
+}
 
-// Register routes
-fastify.register(jwtPlugin);
-fastify.register(authRoutes);
-fastify.register(userRoutes);
-fastify.register(playerRoutes);
-fastify.register(friendRoutes);
-fastify.register(matchHistoryRoutes);
-fastify.register(tournamentRoutes);
-
-export default fastify;
+export default buildApp;;
