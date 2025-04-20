@@ -1,13 +1,5 @@
 import { LucideIcon } from 'lucide-react'
 import { Link } from 'react-router-dom'
-import {
-  Gamepad2,
-  HelpCircle,
-  Home,
-  Settings,
-  Trophy,
-  User,
-} from 'lucide-react'
 
 // Types
 export type MenuItem = {
@@ -16,24 +8,11 @@ export type MenuItem = {
   path: string
 }
 
-// Configuration
-export const menuItems: MenuItem[] = [
-  { id: 'home', icon: Home, path: '/' },
-  { id: 'user', icon: User, path: '/dashboard' },
-  { id: 'game', icon: Gamepad2, path: '/game' },
-  { id: 'trophy', icon: Trophy, path: '/tournament' },
-  { id: 'settings', icon: Settings, path: '/settings' },
-  { id: 'help', icon: HelpCircle, path: '/help' },
-]
-
 // Component Props
-type SidebarItemProps = {
-  id: string
-  icon: LucideIcon
-  path: string
-  isSelected: boolean
-  onClick: (id: string) => void
-}
+type SidebarItemProps = MenuItem & {
+  isSelected: boolean;
+  onClick: (id: string) => void;
+};
 
 /**
  * SidebarItem Component

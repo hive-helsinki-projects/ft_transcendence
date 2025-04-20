@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { SidebarItem, menuItems } from '../components'
-import '../css/Sidebar.css'
+import { SidebarItem, menuItems } from '..'
+import '../../css'
 
 /**
  * Sidebar Component
@@ -15,7 +15,7 @@ import '../css/Sidebar.css'
  */
 const Sidebar = () => {
   // State to track which menu item is currently selected
-  const [selected, setSelected] = useState<string>('home')
+  const [selected, setSelected] = useState('home')
 
   return (
     <nav className="sidebar" role="navigation" aria-label="Main navigation">
