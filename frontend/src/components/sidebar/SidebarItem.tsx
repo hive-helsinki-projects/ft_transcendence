@@ -14,17 +14,16 @@ export type MenuItem = {
   id: string
   icon: LucideIcon
   path: string
-  label: string
 }
 
 // Configuration
 export const menuItems: MenuItem[] = [
-  { id: 'home', icon: Home, path: '/', label: 'Home' },
-  { id: 'user', icon: User, path: '/dashboard', label: 'Dashboard' },
-  { id: 'game', icon: Gamepad2, path: '/game', label: 'Game' },
-  { id: 'trophy', icon: Trophy, path: '/tournament', label: 'Tournament' },
-  { id: 'settings', icon: Settings, path: '/settings', label: 'Settings' },
-  { id: 'help', icon: HelpCircle, path: '/help', label: 'Help' },
+  { id: 'home', icon: Home, path: '/' },
+  { id: 'user', icon: User, path: '/dashboard' },
+  { id: 'game', icon: Gamepad2, path: '/game' },
+  { id: 'trophy', icon: Trophy, path: '/tournament' },
+  { id: 'settings', icon: Settings, path: '/settings' },
+  { id: 'help', icon: HelpCircle, path: '/help' },
 ]
 
 // Component Props
