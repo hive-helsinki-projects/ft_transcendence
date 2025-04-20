@@ -18,81 +18,70 @@ import Tournament from './pages/Tournament'
 
 const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   const { isAuthenticated } = useAuth()
-  return isAuthenticated ? <>{children}</> : <Navigate to="/" />
+  if (!isAuthenticated) {
+    return <Navigate to="/" />
+  }
+  return <>{children}</>
+}
+
+const Layout = ({ children }: { children: React.ReactNode }) => {
+  return (
+    <div className="app-layout">
+      <Sidebar />
+      <div className="main-content">
+        {children}
+      </div>
+    </div>
+  )
+}
+
+const AppRoutes = () => {
+  return (
+    <Routes>
+      {/* Public Routes */}
+      <Route path="/" element={<LandingPage />} />
+      <Route path="/register" element={<Register />} />
+
+      {/* Protected Routes */}
+      <Route path="/dashboard" element={
+        <ProtectedRoute>
+          <Dashboard />
+        </ProtectedRoute>
+      } />
+      <Route path="/game" element={
+        <ProtectedRoute>
+          <Pong />
+        </ProtectedRoute>
+      } />
+      <Route path="/tournament" element={
+        <ProtectedRoute>
+          <Tournament />
+        </ProtectedRoute>
+      } />
+      <Route path="/help" element={
+        <ProtectedRoute>
+          <Help />
+        </ProtectedRoute>
+      } />
+      <Route path="/settings" element={
+        <ProtectedRoute>
+          <Settings />
+        </ProtectedRoute>
+      } />
+
+      {/* 404 Route */}
+      <Route path="*" element={<div>404 Not Found</div>} />
+    </Routes>
+  )
 }
 
 const App: React.FC = () => {
   return (
     <AuthProvider>
       <Router>
-        <div>
-          {/* Left Sidebar */}
-          <Sidebar />
-
-          {/* Main Content Frame */}
-          <div>
-            <Routes>
-              {/* Route for the Landing Page */}
-              <Route path="/" element={<LandingPage />} />
-
-              {/* Route for the Register Page */}
-              <Route path="/register" element={<Register />} />
-
-              {/* Route for the Dashboard Page*/}
-              <Route
-                path="/dashboard"
-                element={
-                  <ProtectedRoute>
-                    <Dashboard />
-                  </ProtectedRoute>
-                }
-              />
-
-              {/* Route for the Game Page*/}
-              <Route
-                path="/game"
-                element={
-                  <ProtectedRoute>
-                    <Pong />
-                  </ProtectedRoute>
-                }
-              />
-
-              {/* Route for the Tournament Page */}
-              <Route
-                path="/tournament"
-                element={
-                  <ProtectedRoute>
-                    <Tournament />
-                  </ProtectedRoute>
-                }
-              />
-
-              {/* Route for the Help Page */}
-              <Route
-                path="/help"
-                element={
-                  <ProtectedRoute>
-                    <Help />
-                  </ProtectedRoute>
-                }
-              />
-
-              {/* Route for the Settings Page */}
-              <Route
-                path="/settings"
-                element={
-                  <ProtectedRoute>
-                    <Settings />
-                  </ProtectedRoute>
-                }
-              />
-
-              {/* Fallback Route */}
-              <Route path="*" element={<div>404 Not Found</div>} />
-            </Routes>
-          </div>
-        </div>
+        <Layout>
+          <AppRoutes />
+        </Layout>
       </Router>
     </AuthProvider>
   )
