@@ -1,70 +1,81 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { localAuth } from '../services/localAuth';
-import LoadingContainer from '../components/LoadingContainer';
-import '../css/Register.css';
+import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import LoadingContainer from '../components/LoadingContainer'
+import { localAuth } from '../services/localAuth'
+import '../css/Register.css'
 
 const Register: React.FC = () => {
   const [formData, setFormData] = useState({
     username: '',
     email: '',
     password: '',
-    confirmPassword: ''
-  });
-  const [error, setError] = useState('');
-  const [successMessage, setSuccessMessage] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
-  const navigate = useNavigate();
+    confirmPassword: '',
+  })
+  const [error, setError] = useState('')
+  const [successMessage, setSuccessMessage] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
+  const navigate = useNavigate()
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-  };
+    const { name, value } = e.target
+    setFormData((prev) => ({ ...prev, [name]: value }))
+  }
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setError('');
-    setSuccessMessage('');
-    setIsLoading(true);
+    e.preventDefault()
+    setError('')
+    setSuccessMessage('')
+    setIsLoading(true)
 
     try {
       // Validation
-      if (!formData.username || !formData.email || !formData.password || !formData.confirmPassword) {
-        throw new Error('Please fill in all fields');
+      if (
+        !formData.username ||
+        !formData.email ||
+        !formData.password ||
+        !formData.confirmPassword
+      ) {
+        throw new Error('Please fill in all fields')
       }
 
       if (formData.password !== formData.confirmPassword) {
-        throw new Error('Passwords do not match');
+        throw new Error('Passwords do not match')
       }
 
       // Email validation
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
       if (!emailRegex.test(formData.email)) {
-        throw new Error('Please enter a valid email address');
+        throw new Error('Please enter a valid email address')
       }
 
-      const response = await localAuth.register(formData.username, formData.email, formData.password);
-      setSuccessMessage(response.message + ' Redirecting to login...');
-      
+      const response = await localAuth.register(
+        formData.username,
+        formData.email,
+        formData.password,
+      )
+      setSuccessMessage(response.message + ' Redirecting to login...')
+
       // Redirect after successful registration
       setTimeout(() => {
-        navigate('/');
-      }, 2000);
+        navigate('/')
+      }, 2000)
     } catch (error) {
-      setError(error instanceof Error ? error.message : 'Registration failed');
+      setError(error instanceof Error ? error.message : 'Registration failed')
     } finally {
-      setIsLoading(false);
+      setIsLoading(false)
     }
-  };
+  }
 
   return (
     <LoadingContainer>
       <div className="register-content">
         <section className="register-section">
           <h2>Create Your Account</h2>
-          
+
           {error && <div className="error-message">{error}</div>}
-          {successMessage && <div className="success-message">{successMessage}</div>}
+          {successMessage && (
+            <div className="success-message">{successMessage}</div>
+          )}
 
           <form onSubmit={handleSubmit} className="register-form">
             <div className="form-group">
@@ -115,26 +126,28 @@ const Register: React.FC = () => {
               />
             </div>
 
-            <button 
-              type="submit" 
+            <button
+              type="submit"
               className="submit-button"
               disabled={isLoading}
             >
-              {isLoading ? "Creating Account..." : "Create Account"}
+              {isLoading ? 'Creating Account...' : 'Create Account'}
             </button>
           </form>
 
           <div className="auth-options">
             <div className="google-auth">
               <span>Or</span>
-              <button 
+              <button
                 type="button"
                 className="google-button"
-                onClick={() => {/* Handle Google Auth */}}
+                onClick={() => {
+                  /* Handle Google Auth */
+                }}
                 disabled={isLoading}
               >
-                <img 
-                  src="https://www.google.com/favicon.ico" 
+                <img
+                  src="https://www.google.com/favicon.ico"
                   alt="Google"
                   width="20"
                   height="20"
@@ -147,7 +160,7 @@ const Register: React.FC = () => {
           <div className="login-link">
             <p>
               Already have an account?{' '}
-              <button 
+              <button
                 type="button"
                 className="link-button"
                 onClick={() => navigate('/')}
@@ -159,7 +172,7 @@ const Register: React.FC = () => {
         </section>
       </div>
     </LoadingContainer>
-  );
-};
+  )
+}
 
-export default Register;
+export default Register

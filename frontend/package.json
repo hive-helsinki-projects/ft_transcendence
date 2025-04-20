@@ -8,7 +8,8 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "build:css": "postcss src/css/tailwind.css -o public/build/tailwind.css"
+    "build:css": "postcss src/css/tailwind.css -o public/build/tailwind.css",
+    "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\""
   },
   "dependencies": {
     "@fontsource/turret-road": "^5.2.5",
@@ -23,8 +24,9 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",
+    "@ianvs/prettier-plugin-sort-imports": "^4.4.1",
     "@types/node": "^22.14.0",
-    "@types/react": "^18.2.0",
+    "@types/react": "^18.3.20",
     "@types/react-dom": "^18.3.6",
     "@vitejs/plugin-react": "^4.3.4",
     "autoprefixer": "^10.4.21",

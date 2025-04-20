@@ -138,3 +138,6 @@ dist
 
 .vscode/
 .DS_Store
+.prettierignore
+build
+dist

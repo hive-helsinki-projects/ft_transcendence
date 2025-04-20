@@ -1,34 +1,34 @@
-const API_URL = 'http://localhost:3001';
+const API_URL = 'http://localhost:3001'
 
 export const api = {
   async get(url: string) {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('token')
     const response = await fetch(`${API_URL}${url}`, {
       headers: {
-        'Authorization': `Bearer ${token}`,
+        Authorization: `Bearer ${token}`,
         'Content-Type': 'application/json',
       },
-    });
+    })
     if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+      throw new Error(`HTTP error! status: ${response.status}`)
     }
-    return response.json();
+    return response.json()
   },
 
   async post(url: string, data: any) {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('token')
     const response = await fetch(`${API_URL}${url}`, {
       method: 'POST',
       headers: {
-        'Authorization': `Bearer ${token}`,
+        Authorization: `Bearer ${token}`,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(data),
-    });
+    })
     if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+      throw new Error(`HTTP error! status: ${response.status}`)
     }
-    return response.json();
+    return response.json()
   },
 
   async login(username: string, password: string) {
@@ -38,12 +38,12 @@ export const api = {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({ username, password }),
-    });
+    })
     if (!response.ok) {
-      throw new Error(`Login failed: ${response.status}`);
+      throw new Error(`Login failed: ${response.status}`)
     }
-    const data = await response.json();
-    return data;
+    const data = await response.json()
+    return data
   },
 
   async register(username: string, email: string, password: string) {
@@ -53,12 +53,14 @@ export const api = {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({ username, email, password }),
-    });
+    })
     if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(errorData.error || `Registration failed: ${response.status}`);
+      const errorData = await response.json()
+      throw new Error(
+        errorData.error || `Registration failed: ${response.status}`,
+      )
     }
-    const data = await response.json();
-    return data;
+    const data = await response.json()
+    return data
   },
-}; 
+}

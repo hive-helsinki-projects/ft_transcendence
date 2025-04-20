@@ -1,142 +1,158 @@
-import React, { useState, useContext } from "react";
-import { Settings as SettingsIcon, User, Globe, Moon, LogOut, Trash2, Mail, Lock, Edit2, Check, X } from "lucide-react";
-import "../css/Settings.css";
-import { AuthContext } from "../contexts/AuthContext";
-import { useNavigate } from "react-router-dom";
+import {
+  Check,
+  Edit2,
+  Globe,
+  Lock,
+  LogOut,
+  Mail,
+  Moon,
+  Settings as SettingsIcon,
+  Trash2,
+  User,
+  X,
+} from 'lucide-react'
+import React, { useContext, useState } from 'react'
+import '../css/Settings.css'
+import { useNavigate } from 'react-router-dom'
+import { AuthContext } from '../contexts/AuthContext'
 
 interface UserData {
-  username: string;
-  email: string;
-  password?: string;
+  username: string
+  email: string
+  password?: string
 }
 
 const Settings: React.FC = () => {
-  const authContext = useContext(AuthContext);
+  const authContext = useContext(AuthContext)
   if (!authContext) {
-    throw new Error("AuthContext must be used within an AuthProvider");
+    throw new Error('AuthContext must be used within an AuthProvider')
   }
-  const { token, username, logout } = authContext;
-  const navigate = useNavigate();
+  const { token, username, logout } = authContext
+  const navigate = useNavigate()
   const [userData, setUserData] = useState<UserData>({
-    username: username || "",
-    email: "",
-    password: ""
-  });
+    username: username || '',
+    email: '',
+    password: '',
+  })
   const [tempData, setTempData] = useState<UserData>({
-    username: "",
-    email: "",
-    password: ""
-  });
-  const [editingField, setEditingField] = useState<keyof UserData | null>(null);
-  const [language, setLanguage] = useState("English");
-  const [theme, setTheme] = useState("Dark");
-  const [error, setError] = useState<string | null>(null);
-  const [success, setSuccess] = useState<string | null>(null);
+    username: '',
+    email: '',
+    password: '',
+  })
+  const [editingField, setEditingField] = useState<keyof UserData | null>(null)
+  const [language, setLanguage] = useState('English')
+  const [theme, setTheme] = useState('Dark')
+  const [error, setError] = useState<string | null>(null)
+  const [success, setSuccess] = useState<string | null>(null)
 
   const handleEditClick = (field: keyof UserData) => {
-    setEditingField(field);
-    setTempData(prev => ({
+    setEditingField(field)
+    setTempData((prev) => ({
       ...prev,
-      [field]: field === "password" ? "" : userData[field]
-    }));
-    setError(null);
-    setSuccess(null);
-  };
+      [field]: field === 'password' ? '' : userData[field],
+    }))
+    setError(null)
+    setSuccess(null)
+  }
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setTempData(prev => ({
+    const { name, value } = e.target
+    setTempData((prev) => ({
       ...prev,
-      [name]: value
-    }));
-  };
+      [name]: value,
+    }))
+  }
 
   const handleSaveClick = async () => {
-    if (!editingField) return;
+    if (!editingField) return
 
     try {
-      const fieldToUpdate = editingField;
-      const newValue = tempData[fieldToUpdate] || "";
+      const fieldToUpdate = editingField
+      const newValue = tempData[fieldToUpdate] || ''
 
       if (!newValue.trim()) {
-        setError(`${fieldToUpdate} cannot be empty`);
-        return;
+        setError(`${fieldToUpdate} cannot be empty`)
+        return
       }
 
       // Call API to update user data
       const response = await fetch(`/api/users/${token}`, {
-        method: "PATCH",
+        method: 'PATCH',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          [fieldToUpdate]: newValue
+          [fieldToUpdate]: newValue,
         }),
-      });
+      })
 
       if (!response.ok) {
-        throw new Error("Failed to update user data");
+        throw new Error('Failed to update user data')
       }
 
       // Update local state
-      setUserData(prev => ({
+      setUserData((prev) => ({
         ...prev,
-        [fieldToUpdate]: fieldToUpdate === "password" ? "********" : newValue
-      }));
+        [fieldToUpdate]: fieldToUpdate === 'password' ? '********' : newValue,
+      }))
 
       // Update auth context if username or email changed
-      if (fieldToUpdate === "username" || fieldToUpdate === "email") {
+      if (fieldToUpdate === 'username' || fieldToUpdate === 'email') {
         // Assuming updateUser function is called elsewhere in the code
       }
 
-      setEditingField(null);
-      setSuccess(`${fieldToUpdate} updated successfully`);
-      setTimeout(() => setSuccess(null), 3000);
+      setEditingField(null)
+      setSuccess(`${fieldToUpdate} updated successfully`)
+      setTimeout(() => setSuccess(null), 3000)
     } catch (error) {
-      setError(error instanceof Error ? error.message : "An error occurred");
+      setError(error instanceof Error ? error.message : 'An error occurred')
     }
-  };
+  }
 
   const handleCancelClick = () => {
-    setEditingField(null);
-    setError(null);
-  };
+    setEditingField(null)
+    setError(null)
+  }
 
   const handleLogout = async () => {
     try {
-      await logout();
-      navigate("/login");
+      await logout()
+      navigate('/login')
     } catch {
-      setError("Failed to logout");
+      setError('Failed to logout')
     }
-  };
+  }
 
   const handleDeleteAccount = async () => {
-    if (window.confirm("Are you sure you want to delete your account? This action cannot be undone.")) {
+    if (
+      window.confirm(
+        'Are you sure you want to delete your account? This action cannot be undone.',
+      )
+    ) {
       try {
         const response = await fetch(`/api/users/${token}`, {
-          method: "DELETE",
-        });
+          method: 'DELETE',
+        })
 
         if (!response.ok) {
-          throw new Error("Failed to delete account");
+          throw new Error('Failed to delete account')
         }
 
-        await logout();
-        navigate("/login");
+        await logout()
+        navigate('/login')
       } catch {
-        setError("Failed to delete account");
+        setError('Failed to delete account')
       }
     }
-  };
+  }
 
   const renderEditableField = (
     field: keyof UserData,
     value: string,
     icon: React.ReactNode,
-    type: string = "text"
+    type: string = 'text',
   ) => {
-    const isEditing = editingField === field;
+    const isEditing = editingField === field
 
     return (
       <div className="form-group">
@@ -156,12 +172,15 @@ const Settings: React.FC = () => {
           />
         ) : (
           <div className="field-display">
-            {field === "password" ? "********" : value}
+            {field === 'password' ? '********' : value}
           </div>
         )}
         <div className="field-actions">
           {!isEditing ? (
-            <button className="edit-button" onClick={() => handleEditClick(field)}>
+            <button
+              className="edit-button"
+              onClick={() => handleEditClick(field)}
+            >
               <Edit2 size={16} />
               Edit
             </button>
@@ -179,8 +198,8 @@ const Settings: React.FC = () => {
           )}
         </div>
       </div>
-    );
-  };
+    )
+  }
 
   return (
     <div className="settings-page">
@@ -200,9 +219,18 @@ const Settings: React.FC = () => {
             Account Settings
           </h2>
           <div className="settings-form">
-            {renderEditableField("username", userData.username, <User size={16} />)}
-            {renderEditableField("email", userData.email, <Mail size={16} />)}
-            {renderEditableField("password", userData.password || "", <Lock size={16} />, "password")}
+            {renderEditableField(
+              'username',
+              userData.username,
+              <User size={16} />,
+            )}
+            {renderEditableField('email', userData.email, <Mail size={16} />)}
+            {renderEditableField(
+              'password',
+              userData.password || '',
+              <Lock size={16} />,
+              'password',
+            )}
           </div>
         </div>
 
@@ -260,7 +288,10 @@ const Settings: React.FC = () => {
               <LogOut size={16} />
               Logout
             </button>
-            <button className="settings-button delete" onClick={handleDeleteAccount}>
+            <button
+              className="settings-button delete"
+              onClick={handleDeleteAccount}
+            >
               <Trash2 size={16} />
               Delete Account
             </button>
@@ -268,7 +299,7 @@ const Settings: React.FC = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Settings;
+export default Settings

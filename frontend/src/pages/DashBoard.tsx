@@ -1,61 +1,61 @@
-import React, { useState, useEffect } from 'react';
-import { useAuth } from '../hooks/useAuth';
-import LoadingContainer from '../components/LoadingContainer';
-import { LogOut, Settings, Pencil, UserPlus } from 'lucide-react';
-import '../css/Dashboard.css';
-import { useNavigate } from 'react-router-dom';
+import { LogOut, Pencil, Settings, UserPlus } from 'lucide-react'
+import React, { useEffect, useState } from 'react'
+import LoadingContainer from '../components/LoadingContainer'
+import { useAuth } from '../hooks/useAuth'
+import '../css/Dashboard.css'
+import { useNavigate } from 'react-router-dom'
 
 interface GameStats {
-  wins: number;
-  losses: number;
-  winRate: number;
-  totalGames: number;
+  wins: number
+  losses: number
+  winRate: number
+  totalGames: number
 }
 
 interface TopPlayer {
-  id: string;
-  name: string;
-  points: number;
-  avatar: string;
+  id: string
+  name: string
+  points: number
+  avatar: string
 }
 
 interface UserPlayer {
-  id: string;
-  name: string;
-  avatar: string;
-  isActive: boolean;
-  points: number;
+  id: string
+  name: string
+  avatar: string
+  isActive: boolean
+  points: number
 }
 
 interface MatchHistory {
-  id: string;
+  id: string
   player: {
-    name: string;
-    avatar: string;
-  };
+    name: string
+    avatar: string
+  }
   opponent: {
-    name: string;
-    avatar: string;
-  };
-  result: 'win' | 'loss';
-  score: string;
-  date: string;
-  mode: '1v1' | 'tournament';
+    name: string
+    avatar: string
+  }
+  result: 'win' | 'loss'
+  score: string
+  date: string
+  mode: '1v1' | 'tournament'
 }
 
 const CreatePlayerModal: React.FC<{
-  onClose: () => void;
-  onCreatePlayer: (playerName: string) => void;
+  onClose: () => void
+  onCreatePlayer: (playerName: string) => void
 }> = ({ onClose, onCreatePlayer }) => {
-  const [playerName, setPlayerName] = useState('');
+  const [playerName, setPlayerName] = useState('')
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+    e.preventDefault()
     if (playerName.trim()) {
-      onCreatePlayer(playerName.trim());
-      onClose();
+      onCreatePlayer(playerName.trim())
+      onClose()
     }
-  };
+  }
 
   return (
     <div className="modal-overlay">
@@ -83,8 +83,8 @@ const CreatePlayerModal: React.FC<{
         </form>
       </div>
     </div>
-  );
-};
+  )
+}
 
 const GameStatsSection: React.FC<{ stats: GameStats }> = ({ stats }) => (
   <div className="stats-section">
@@ -108,45 +108,47 @@ const GameStatsSection: React.FC<{ stats: GameStats }> = ({ stats }) => (
       </div>
     </div>
   </div>
-);
+)
 
-const QuickPlaySection: React.FC<{ userPlayers: UserPlayer[] }> = ({ userPlayers }) => {
-  const navigate = useNavigate();
-  const hasActivePlayers = userPlayers.length > 0;
-  const hasEnoughPlayers = userPlayers.length >= 2;
+const QuickPlaySection: React.FC<{ userPlayers: UserPlayer[] }> = ({
+  userPlayers,
+}) => {
+  const navigate = useNavigate()
+  const hasActivePlayers = userPlayers.length > 0
+  const hasEnoughPlayers = userPlayers.length >= 2
 
   const handleTournamentClick = () => {
     if (!hasActivePlayers) {
-      alert('Please create a player before joining a tournament');
-      return;
+      alert('Please create a player before joining a tournament')
+      return
     }
-    navigate('/tournament');
-  };
+    navigate('/tournament')
+  }
 
   const handleOneVsOneClick = () => {
     if (!hasActivePlayers) {
-      alert('Please create a player before starting a 1v1 match');
-      return;
+      alert('Please create a player before starting a 1v1 match')
+      return
     }
     if (!hasEnoughPlayers) {
-      alert('You need at least 2 players to start a 1v1 match');
-      return;
+      alert('You need at least 2 players to start a 1v1 match')
+      return
     }
-    navigate('/game');
-  };
+    navigate('/game')
+  }
 
   return (
     <div className="quick-play-section">
       <h2>Game Modes</h2>
       <div className="play-options">
-        <button 
+        <button
           className="play-button one-vs-one"
           onClick={handleOneVsOneClick}
         >
           <span className="button-icon">🏓</span>
           1v1 Match
         </button>
-        <button 
+        <button
           className="play-button matchmaking"
           onClick={handleTournamentClick}
           title="Tournament Mode (4-8 players)"
@@ -157,14 +159,16 @@ const QuickPlaySection: React.FC<{ userPlayers: UserPlayer[] }> = ({ userPlayers
         </button>
       </div>
     </div>
-  );
-};
+  )
+}
 
-const RecentMatchesSection: React.FC<{ matches: MatchHistory[] }> = ({ matches }) => (
+const RecentMatchesSection: React.FC<{ matches: MatchHistory[] }> = ({
+  matches,
+}) => (
   <div className="recent-matches-section">
     <h2>Recent Matches</h2>
     <div className="matches-list">
-      {matches.map(match => (
+      {matches.map((match) => (
         <div key={match.id} className={`match-item ${match.result}`}>
           <div className="match-info">
             <span className="match-mode">
@@ -175,127 +179,143 @@ const RecentMatchesSection: React.FC<{ matches: MatchHistory[] }> = ({ matches }
                 // 1v1 match - show both players
                 <>
                   <div className="player">
-                    <img src={match.player.avatar} alt={match.player.name} className="player-avatar" />
+                    <img
+                      src={match.player.avatar}
+                      alt={match.player.name}
+                      className="player-avatar"
+                    />
                     <span className="player-name">{match.player.name}</span>
                   </div>
                   <span className="vs">vs</span>
                   <div className="player">
-                    <img src={match.opponent.avatar} alt={match.opponent.name} className="player-avatar" />
+                    <img
+                      src={match.opponent.avatar}
+                      alt={match.opponent.name}
+                      className="player-avatar"
+                    />
                     <span className="player-name">{match.opponent.name}</span>
                   </div>
                 </>
               ) : (
                 // Tournament match - show only winner
                 <div className="player">
-                  <img 
-                    src={match.result === 'win' ? match.player.avatar : match.opponent.avatar} 
-                    alt="Winner" 
+                  <img
+                    src={
+                      match.result === 'win'
+                        ? match.player.avatar
+                        : match.opponent.avatar
+                    }
+                    alt="Winner"
                     className="player-avatar"
                   />
                   <span className="player-name tournament-winner">
-                    {match.result === 'win' ? match.player.name : match.opponent.name}
+                    {match.result === 'win'
+                      ? match.player.name
+                      : match.opponent.name}
                   </span>
                 </div>
               )}
             </div>
           </div>
           <div className="match-details">
-            {match.mode === '1v1' && <span className="match-score">{match.score}</span>}
+            {match.mode === '1v1' && (
+              <span className="match-score">{match.score}</span>
+            )}
             <span className="match-date">{match.date}</span>
           </div>
         </div>
       ))}
     </div>
   </div>
-);
+)
 
 const Dashboard: React.FC = () => {
-  const { username, logout } = useAuth();
-  const [avatar, setAvatar] = useState('');
-  const [showCreateModal, setShowCreateModal] = useState(false);
-  const [userPlayers, setUserPlayers] = useState<UserPlayer[]>([]);
+  const { username, logout } = useAuth()
+  const [avatar, setAvatar] = useState('')
+  const [showCreateModal, setShowCreateModal] = useState(false)
+  const [userPlayers, setUserPlayers] = useState<UserPlayer[]>([])
 
   const gameStats: GameStats = {
     wins: 15,
     losses: 8,
     winRate: 65,
-    totalGames: 23
-  };
+    totalGames: 23,
+  }
 
   const topPlayers: TopPlayer[] = [
     {
       id: '1',
       name: 'Player1',
       points: 12565,
-      avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=player1'
+      avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=player1',
     },
     {
       id: '2',
       name: 'Player2',
       points: 10558,
-      avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=player2'
+      avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=player2',
     },
     {
       id: '3',
       name: 'Player3',
       points: 9856,
-      avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=player3'
+      avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=player3',
     },
     {
       id: '4',
       name: 'Player4',
       points: 7415,
-      avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=player4'
-    }
-  ];
+      avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=player4',
+    },
+  ]
 
   const recentMatches: MatchHistory[] = [
     {
       id: '1',
       player: {
         name: 'Player1',
-        avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=player1'
+        avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=player1',
       },
       opponent: {
         name: 'Player4',
-        avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=player4'
+        avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=player4',
       },
       result: 'win',
       score: '11-9',
       date: '2h ago',
-      mode: '1v1'
+      mode: '1v1',
     },
     {
       id: '2',
       player: {
         name: 'Player2',
-        avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=player2'
+        avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=player2',
       },
       opponent: {
         name: 'Player5',
-        avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=player5'
+        avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=player5',
       },
       result: 'loss',
       score: '9-11',
       date: '3h ago',
-      mode: 'tournament'
+      mode: 'tournament',
     },
     {
       id: '3',
       player: {
         name: 'Player3',
-        avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=player3'
+        avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=player3',
       },
       opponent: {
         name: 'Player6',
-        avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=player6'
+        avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=player6',
       },
       result: 'win',
       score: '11-7',
       date: '5h ago',
-      mode: '1v1'
-    }
-  ];
+      mode: '1v1',
+    },
+  ]
 
   const handleCreatePlayer = (playerName: string) => {
     const newPlayer: UserPlayer = {
@@ -304,37 +324,37 @@ const Dashboard: React.FC = () => {
       avatar: `https://api.dicebear.com/7.x/avataaars/svg?seed=${playerName}-${Date.now()}`,
       isActive: true,
       points: 0,
-    };
-    
-    setUserPlayers(prev => [...prev, newPlayer]);
-  };
+    }
+
+    setUserPlayers((prev) => [...prev, newPlayer])
+  }
 
   useEffect(() => {
-    const savedAvatar = localStorage.getItem('avatar');
+    const savedAvatar = localStorage.getItem('avatar')
     if (savedAvatar) {
-      setAvatar(savedAvatar);
+      setAvatar(savedAvatar)
     } else {
-      const randomAvatar = `https://api.dicebear.com/7.x/avataaars/svg?seed=${username}&size=100`;
-      setAvatar(randomAvatar);
-      localStorage.setItem('avatar', randomAvatar);
+      const randomAvatar = `https://api.dicebear.com/7.x/avataaars/svg?seed=${username}&size=100`
+      setAvatar(randomAvatar)
+      localStorage.setItem('avatar', randomAvatar)
     }
-  }, [username]);
+  }, [username])
 
   const handleAvatarChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
+    const file = event.target.files?.[0]
     if (file) {
-      const reader = new FileReader();
+      const reader = new FileReader()
       reader.onloadend = () => {
-        const newAvatar = reader.result as string;
-        setAvatar(newAvatar);
-        localStorage.setItem('avatar', newAvatar);
-      };
-      reader.readAsDataURL(file);
+        const newAvatar = reader.result as string
+        setAvatar(newAvatar)
+        localStorage.setItem('avatar', newAvatar)
+      }
+      reader.readAsDataURL(file)
     }
-  };
+  }
 
   if (!username) {
-    return <div>Please log in to view the dashboard</div>;
+    return <div>Please log in to view the dashboard</div>
   }
 
   return (
@@ -347,7 +367,7 @@ const Dashboard: React.FC = () => {
         <div className="players-management">
           <div className="players-header">
             <h2>Your Players</h2>
-            <button 
+            <button
               className="create-player-button"
               onClick={() => setShowCreateModal(true)}
             >
@@ -356,15 +376,21 @@ const Dashboard: React.FC = () => {
             </button>
           </div>
           <div className="players-list">
-            {userPlayers.map(player => (
-              <div 
-                key={player.id} 
+            {userPlayers.map((player) => (
+              <div
+                key={player.id}
                 className={`player-item ${player.isActive ? 'active' : ''}`}
               >
-                <img src={player.avatar} alt={`${player.name}'s avatar`} className="player-item-avatar" />
+                <img
+                  src={player.avatar}
+                  alt={`${player.name}'s avatar`}
+                  className="player-item-avatar"
+                />
                 <div className="player-item-info">
                   <span className="player-item-name">{player.name}</span>
-                  <span className="player-item-points">{player.points} points</span>
+                  <span className="player-item-points">
+                    {player.points} points
+                  </span>
                 </div>
               </div>
             ))}
@@ -381,9 +407,13 @@ const Dashboard: React.FC = () => {
         <div className="top-players-section">
           <h2>TOP PLAYERS</h2>
           <div className="players-grid">
-            {topPlayers.map(player => (
+            {topPlayers.map((player) => (
               <div key={player.id} className="player-card">
-                <img src={player.avatar} alt={`${player.name}'s avatar`} className="player-avatar" />
+                <img
+                  src={player.avatar}
+                  alt={`${player.name}'s avatar`}
+                  className="player-avatar"
+                />
                 <div className="player-info">
                   <span className="player-name">{player.name}</span>
                   <span className="player-points">{player.points} points</span>
@@ -399,10 +429,12 @@ const Dashboard: React.FC = () => {
           <div className="avatar-menu">
             <div className="settings-avatar-container">
               <img src={avatar} alt="User avatar" className="settings-avatar" />
-              <button 
+              <button
                 type="button"
                 className="settings-edit-button"
-                onClick={() => document.getElementById('avatar-upload')?.click()}
+                onClick={() =>
+                  document.getElementById('avatar-upload')?.click()
+                }
                 aria-label="Edit avatar"
               >
                 <Pencil size={14} />
@@ -421,10 +453,7 @@ const Dashboard: React.FC = () => {
               <Settings size={16} />
               <span>Profile Settings</span>
             </button>
-            <button 
-              className="avatar-menu-button logout"
-              onClick={logout}
-            >
+            <button className="avatar-menu-button logout" onClick={logout}>
               <LogOut size={16} />
               <span>Sign Out</span>
             </button>
@@ -439,7 +468,7 @@ const Dashboard: React.FC = () => {
         )}
       </div>
     </LoadingContainer>
-  );
-};
+  )
+}
 
-export default Dashboard;
+export default Dashboard
