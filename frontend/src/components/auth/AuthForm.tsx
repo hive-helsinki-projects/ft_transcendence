@@ -2,7 +2,41 @@ import React, { useState } from 'react'
 import { useFormValidation } from '../../hooks/useFormValidation'
 import { AuthFormData, AuthFormProps } from '../../types/auth'
 import LoadingState from '../LoadingState'
-import '../../css/LandingPage.css'
+import '../../css'
+
+interface FormInputProps {
+  name: keyof AuthFormData
+  type: string
+  value: string
+  placeholder: string
+  error?: string
+  disabled: boolean
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
+}
+
+const FormInput: React.FC<FormInputProps> = ({
+  name,
+  type,
+  value,
+  placeholder,
+  error,
+  disabled,
+  onChange,
+}) => (
+  <div className="form-group">
+    <input
+      type={type}
+      name={name}
+      placeholder={placeholder}
+      value={value}
+      onChange={onChange}
+      disabled={disabled}
+      required
+      className={error ? 'error' : ''}
+    />
+    {error && <span className="error-text">{error}</span>}
+  </div>
+)
 
 const AuthForm: React.FC<AuthFormProps> = ({
   onSubmit,
@@ -18,7 +52,7 @@ const AuthForm: React.FC<AuthFormProps> = ({
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
-    setFormData((prev: AuthFormData) => ({ ...prev, [name]: value }))
+    setFormData(prev => ({ ...prev, [name]: value }))
     updateValidation({ ...formData, [name]: value })
   }
 
@@ -26,70 +60,45 @@ const AuthForm: React.FC<AuthFormProps> = ({
     e.preventDefault()
     const { isValid } = updateValidation(formData)
     if (isValid) {
-      await onSubmit(formData)
+      try {
+        await onSubmit(formData)
+      } catch (err) {
+        console.error('Form submission error:', err)
+      }
     }
   }
 
   return (
     <form onSubmit={handleSubmit} className="auth-form" noValidate>
-      {error && <div className="error-message" role="alert">{error}</div>}
-      {successMessage && (
-        <div className="success-message" role="status">{successMessage}</div>
-      )}
+      {error && <div className="error-message">{error}</div>}
+      {successMessage && <div className="success-message">{successMessage}</div>}
 
-      <div className="form-group">
-        <label htmlFor="username" className="sr-only">Username</label>
-        <input
-          id="username"
-          type="text"
-          name="username"
-          placeholder="Enter your username"
-          value={formData.username}
-          onChange={handleInputChange}
-          disabled={isLoading}
-          required
-          aria-invalid={!!validation.errors.username}
-          aria-describedby={validation.errors.username ? 'username-error' : undefined}
-        />
-        {validation.errors.username && (
-          <span id="username-error" className="error-text" role="alert">
-            {validation.errors.username}
-          </span>
-        )}
-      </div>
+      <FormInput
+        name="username"
+        type="text"
+        value={formData.username}
+        placeholder="Username"
+        error={validation.errors.username}
+        disabled={isLoading}
+        onChange={handleInputChange}
+      />
 
-      <div className="form-group">
-        <label htmlFor="password" className="sr-only">Password</label>
-        <input
-          id="password"
-          type="password"
-          name="password"
-          placeholder="Enter your password"
-          value={formData.password}
-          onChange={handleInputChange}
-          disabled={isLoading}
-          required
-          aria-invalid={!!validation.errors.password}
-          aria-describedby={validation.errors.password ? 'password-error' : undefined}
-        />
-        {validation.errors.password && (
-          <span id="password-error" className="error-text" role="alert">
-            {validation.errors.password}
-          </span>
-        )}
-      </div>
+      <FormInput
+        name="password"
+        type="password"
+        value={formData.password}
+        placeholder="Password"
+        error={validation.errors.password}
+        disabled={isLoading}
+        onChange={handleInputChange}
+      />
 
       <button
         type="submit"
         className="submit-button"
         disabled={isLoading || !validation.isValid}
-        aria-busy={isLoading}
       >
-        {isLoading ? (
-          <LoadingState size="small" message="Signing in..." />
-        ) : (
-          'Sign In'
-        )}
+        {isLoading ? <LoadingState size="small" message="Signing in..." /> : 'Sign In'}
       </button>
     </form>
   )
