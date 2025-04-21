@@ -54,7 +54,7 @@ const logoutUser = async (req, reply) => {
 		if (result.changes === 0) {
 			return reply.code(404).send({ error: 'User already logged out' });
 		}
-		return reply.code(200).send({ message: 'Logged out successfully' })
+		return reply.code(200).send({ message: 'Logout successful' })
 	} catch (error) {
 		reply.code(500).send({ error: 'Internal Server Error' })
 	}
@@ -87,4 +87,3 @@ export default {
 	logoutUser,
 	createUser
 }
- 
