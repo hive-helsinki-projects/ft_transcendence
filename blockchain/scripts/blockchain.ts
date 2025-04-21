@@ -1,5 +1,6 @@
-// src/services/blockchain.ts
+
 import { ethers } from "ethers";
+import "dotenv/config";
 
 // Define a type for tournament scores as returned from your contract
 export interface TournamentScore {
@@ -9,7 +10,7 @@ export interface TournamentScore {
   timestamp: number;
 }
 
-const CONTRACT_ADDRESS = "0x50FBdC4200b9f358225D5f2f9e1bB5972116F35c";
+const CONTRACT_ADDRESS = "0x9773c1Ea5C7E13CC45793B7114DA6A32E990D4AF";
 
 // Minimal ABI for TournamentScores
 const CONTRACT_ABI = [
@@ -17,15 +18,16 @@ const CONTRACT_ABI = [
   "function getScores() view external returns (tuple(uint256 tournamentId, bytes32[] players, bytes32 winner, uint256 timestamp)[])"
 ];
 
-// Helper function to get provider and signer using MetaMask's injected provider.
-const getProviderAndSigner = (): { provider: ethers.BrowserProvider; signer: ethers.JsonRpcSigner } => {
-  if (typeof window !== "undefined" && (window as any).ethereum) {
-    // Use ethers v6 BrowserProvider (for MetaMask)
-    const provider = new ethers.BrowserProvider((window as any).ethereum);
-    const signer = provider.getSigner();
-    return { provider, signer };
+// Helper function to get provider and signer.
+const getProviderAndSigner = () => {
+  const url = process.env.AVAX_RPC_URL;
+  const pk  = process.env.AVAX_PRIVATE_KEY;
+  if (!url || !pk) {
+    throw new Error("Both AVAX_RPC_URL and AVAX_PRIVATE_KEY must be set in .env");
   }
-  throw new Error("No Ethereum provider found. Please install MetaMask.");
+  const provider = new ethers.JsonRpcProvider(url);
+  const signer   = new ethers.Wallet(pk, provider);
+  return { provider, signer };
 };
 
 // Returns an instance of your contract connected to the signer.
