@@ -17,6 +17,9 @@ interface GameState {
   returnTo?: string;
 }
 
+let ballSpeedX = 5;
+let ballSpeedY = 5;
+
 export default function Game() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const location = useLocation();
@@ -38,8 +41,6 @@ export default function Game() {
     let paddle2Y = canvas.height / 2 - 50;
     let ballX = canvas.width / 2;
     let ballY = canvas.height / 2;
-    let ballSpeedX = 5;
-    let ballSpeedY = 5;
     const paddleWidth = 10;
     const paddleHeight = 100;
     let paddle1Up = false;
@@ -136,11 +137,11 @@ export default function Game() {
         if (Math.abs(currentScores.player1 - currentScores.player2) >= 2) {
           setGameOver(true);
           setMatchStatus('completed');
-          const winner = currentScores.player1 > currentScores.player2 
-            ? gameState?.player1?.name 
+          const winner = currentScores.player1 > currentScores.player2
+            ? gameState?.player1?.name
             : gameState?.player2?.name;
           setMatchResult(`Winner: ${winner}`);
-          
+
           // Wait a moment before navigating back
           setTimeout(() => {
             if (gameState?.returnTo) {
@@ -251,10 +252,10 @@ export default function Game() {
             </div>
           </div>
         )}
-        <canvas 
-          ref={canvasRef} 
-          width="800" 
-          height="600" 
+        <canvas
+          ref={canvasRef}
+          width="800"
+          height="600"
           className="game-canvas"
         />
       </div>

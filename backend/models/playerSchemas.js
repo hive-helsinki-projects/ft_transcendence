@@ -3,7 +3,7 @@ export const Player = {
 	type: 'object',
 	properties: {
 		id: { type: 'integer' },
-		display_name: { type: 'string' },
+		display_name: { type: 'string', minLength: 3, maxLength: 20, pattern: '^[a-zA-Z0-9]+$' },
 		wins: { type: 'integer' },
 		losses: { type: 'integer' },
 		avatar_url: { type: 'string' },
@@ -37,7 +37,7 @@ export const postPlayerOpts = {
 			type: 'object',
 			required: ['display_name'],
 			properties: {
-				display_name: { type: 'string' },
+				display_name: { type: 'string', minLength: 3, maxLength: 20, pattern: '^[a-zA-Z0-9]+$' },
 				avatar_url: { type: 'string', nullable: true },
 			}
 		},
@@ -53,7 +53,7 @@ export const putPlayerOpts = {
 			type: 'object',
 			required: [],
 			properties: {
-				display_name: { type: 'string', nullable: true },
+				display_name: { type: 'string', minLength: 3, maxLength: 20, pattern: '^[a-zA-Z0-9]+$', nullable: true },
 				avatar_url: { type: 'string', nullable: true },
 			}
 		},
