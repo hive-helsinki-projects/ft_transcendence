@@ -1,8 +1,25 @@
+## Dependencies
+
+``npm install ethers dotenv``
+
+``npm install --save-dev hardhat @nomicfoundation/hardhat-toolbox``
+
+``npm install --save-dev @nomicfoundation/hardhat-ignition``
 
 ## Launch smartcontract
 - Make sure to include privateKey in .env file
-  
-```npx hardhat ignition deploy ignition/modules/TournamentScoresV3.js --network fuji```
+
+````
+AVAX_RPC_URL=https://api.avax-test.network/ext/bc/C/rpc
+
+AVAX_PRIVATE_KEY="YOUR PRIVATE KEY HERE"
+
+AVAX_CONTRACT_ADDRESS="CONTRACT ADDRESS HERE"
+````
+- Run command
+````
+npx hardhat ignition deploy ignition/modules/TournamentScoresV3.js --network fuji
+````
 
 - After deployment add ``contract address`` to .env file
 
@@ -33,7 +50,7 @@ main().catch((e) => {
 });
 ````
 
-- Returns json from tx and scores:
+- Returns json from tx and scores example:
 ````
 ✔ tx hash: ContractTransactionResponse {
   provider: JsonRpcProvider {},
