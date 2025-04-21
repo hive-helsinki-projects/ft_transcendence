@@ -1,6 +1,14 @@
 import Database from 'better-sqlite3';
+import dotenv from 'dotenv';
 
-const db = new Database('database/pong.db', { verbose: console.log });
+dotenv.config();
+const isTestEnv = process.env.NODE_ENV === 'test';
+
+const db = isTestEnv ? 
+	new Database('database/testPong.db', { verbose: console.log }) :
+	new Database('database/pong.db', { verbose: console.log });
+
+console.log(`Using ${isTestEnv ? 'testPong.db' : 'pong.db'}`);
 
 // Create users table
 db.prepare(`
