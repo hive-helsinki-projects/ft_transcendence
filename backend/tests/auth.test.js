@@ -76,6 +76,20 @@ function runAuthTests(app, t) {
             t.equal(response.statusCode, 400, 'Status code 400');
             t.equal(response.json().message, "body must have required property 'password'");
         });
+
+        t.test('POST `/register` returns 400 if invalid password', async (t) => {
+            const response = await app.inject({
+                method: 'POST',
+                url: '/register',
+                payload: {
+                    email: 'testuse@email.com',
+                    password: '123',
+                    username: 'testuser',
+                },
+            });
+            t.equal(response.statusCode, 400, 'Status code 400');
+            t.equal(response.json().message, 'body/password must NOT have fewer than 6 characters');
+        });
     
         t.test('POST `/register` returns 201 if successfully created user', async (t) => {
             const response = await app.inject({

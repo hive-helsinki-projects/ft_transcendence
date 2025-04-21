@@ -10,7 +10,7 @@ t.test('All Test', async (t) => {
     
     t.teardown(async () => {
         await app.close();
-        await resetTestDb();
+        resetTestDb();
     })
     
     runAuthTests(app, t);
