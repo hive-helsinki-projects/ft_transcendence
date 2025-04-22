@@ -1,4 +1,6 @@
 import React, { useEffect } from 'react';
+import { useNavigate } from "react-router-dom";
+
 import "../css/LandingPage.css"; // should I move this to its own css file?
 
 const clientId = '847383291975-9ten21d8j1vf3m2m1kod2i2js9c28o6e.apps.googleusercontent.com';
@@ -13,7 +15,7 @@ declare global {
   }
 }
 
-const GoogleSignIn: React.FC<GoogleSignInProps> = ( {isLoading} ) => {
+const GoogleSignIn: React.FC<GoogleSignInProps> = ({ isLoading }) => {
   useEffect(() => {
     if (window.google) {
       window.google.accounts.id.initialize({
@@ -29,7 +31,32 @@ const GoogleSignIn: React.FC<GoogleSignInProps> = ( {isLoading} ) => {
     }
   }, []);
 
+  const sendTokenToServer = async (idToken: string) => {
+    try {
+      console.log("You're in sentTokenToServer function!");
+      const response = await fetch('https://172.18.0.2:3001/api/auth/google', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ token: idToken })
+      });
+
+      const data = await response.json();
+      if (response.ok) {
+        console.log('User authenticated:', data);
+        navigate('/dashboard');
+      } else {
+        console.log('Authentication failed:', data);
+      }
+    } catch (error) {
+      console.error("Error sending token to server: ", error);
+    }
+  };
+
   const handleCredentialResponse = (response: any) => {
+    console.log("isLoading is:", isLoading); // for debugging
+    
       if (isLoading) {
           return ;
       }
@@ -40,14 +67,6 @@ const GoogleSignIn: React.FC<GoogleSignInProps> = ( {isLoading} ) => {
     sendTokenToServer(idToken);
 
   };
-
-  const sendTokenToServer = (idToken: string) => {
-    try {
-      console.log("test test!!");
-    } catch (error) {
-      console.error("test test!!");
-    }
-  }
 
   return (
     <div>
