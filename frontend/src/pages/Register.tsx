@@ -134,7 +134,7 @@ const Register: React.FC = () => {
                 disabled={isLoading}
               >
                 <img 
-                  src="https://www.google.com/favicon.icon" 
+                  src="https://www.google.com/favicon.ico" 
                   alt="Google"
                   width="20"
                   height="20"
