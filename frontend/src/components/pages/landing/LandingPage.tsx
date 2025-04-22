@@ -1,12 +1,21 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import { LoadingContainer, AuthForm, AuthSection, HeroSection } from '../components'
-import { useAuth } from '../hooks/useAuth'
-import { useAuthForm } from '../hooks/useAuthForm'
-import { AuthService } from '../services/authService'
-import { AuthFormData, REDIRECT_DELAY } from '../types/auth'
+import { LoadingContainer, AuthForm, AuthSection, HeroSection } from '../../index'
+import { useAuth } from '../../../hooks/auth/useAuth'
+import { useAuthForm } from '../../../hooks/auth/useAuthForm'
+import { AuthService } from '../../../services/authService'
+import { AuthFormData, REDIRECT_DELAY } from '../../../types/auth'
 
+/**
+ * LandingPage Component
+ * 
+ * Main entry point for unauthenticated users.
+ * Displays a hero section and authentication form.
+ * Handles user login functionality and
+ * navigation to dashboard upon successful authentication.
+ */
 const LandingPage: React.FC = () => {
+  // Hooks
   const navigate = useNavigate()
   const { login } = useAuth()
   const {
@@ -19,6 +28,7 @@ const LandingPage: React.FC = () => {
     handleAuthSuccess,
   } = useAuthForm()
 
+  // Handlers
   const handleAuthSubmit = async (formData: AuthFormData) => {
     resetMessages()
     setLoading(true)
@@ -26,7 +36,6 @@ const LandingPage: React.FC = () => {
     try {
       const response = await AuthService.login(formData)
       handleAuthSuccess()
-
       await new Promise((resolve) => setTimeout(resolve, REDIRECT_DELAY))
       login(response.token, response.username)
       navigate('/dashboard')
@@ -37,11 +46,19 @@ const LandingPage: React.FC = () => {
     }
   }
 
-  const handleGoogleAuth = () => {
-    // TODO: Implement Google authentication
-    console.log('Google auth clicked')
+  const handleGoogleAuth = async () => {
+    try {
+      const response = await AuthService.googleAuth()
+      handleAuthSuccess()
+      await new Promise((resolve) => setTimeout(resolve, REDIRECT_DELAY))
+      login(response.token, response.username)
+      navigate('/dashboard')
+    } catch (error) {
+      handleAuthError(error)
+    }
   }
 
+  // Render
   return (
     <LoadingContainer showPongBackground>
       <HeroSection />

@@ -1,6 +1,6 @@
 import React from 'react'
 import PongBackground from './PongBackground'
-import '../css/LoadingContainer.css'
+import '../assets/styles/index.css'
 
 interface LoadingContainerProps {
   children: React.ReactNode

@@ -1,4 +1,4 @@
-import React from 'react'
+/* import React from 'react'
 import '../css/Help.css'
 import FAQSection from '../components/FAQSection'
 import RulesSection from '../components/RulesSection'
@@ -56,3 +56,4 @@ const Help: React.FC = () => {
 }
 
 export default Help
+ */

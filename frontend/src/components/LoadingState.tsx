@@ -1,5 +1,5 @@
 import React from 'react'
-import '../css/LoadingState.css'
+import '../assets/styles/index.css'
 
 interface LoadingStateProps {
   message?: string

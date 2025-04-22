@@ -12,9 +12,9 @@ export { menuItems } from './sidebar/menuItems'
 export { type MenuItem } from './sidebar/SidebarItem'
 
 // Auth Components
-export { default as AuthForm } from './auth/AuthForm'
-export { default as AuthSection } from './landing/AuthSection'
-export { default as HeroSection } from './landing/HeroSection'
+export { default as AuthForm } from './features/auth/AuthForm'
+export { default as AuthSection } from './features/auth/AuthSection'
+export { default as HeroSection } from './pages/landing/HeroSection'
 
 // Common Components
 export { default as LoadingContainer } from './LoadingContainer'
