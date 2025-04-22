@@ -1,6 +1,6 @@
 import React from 'react'
 import { AuthSectionProps } from '../../../types/auth'
-import '../../../assets/styles'
+import '../../../assets/styles/index.css'
 
 const AuthSection: React.FC<AuthSectionProps> = ({
   onGoogleAuth,
