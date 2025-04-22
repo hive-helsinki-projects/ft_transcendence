@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { SidebarItem, menuItems, MenuItem } from '..'
-import '../../css'
+import '../../assets/styles/index.css'
 
 /**
  * Sidebar Component

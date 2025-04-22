@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
-import LoadingContainer from '../components/LoadingContainer'
-import '../css/Pong.css'
+import LoadingContainer from '../../LoadingContainer'
+import '../../../assets/styles/Pong.css'
 
 interface GameState {
   matchType?: 'semifinal' | 'final' | '1v1'

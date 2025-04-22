@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react'
-import '../css/PongBackground.css'
+import '../assets/styles/index.css'
 
 const PongBackground: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null)

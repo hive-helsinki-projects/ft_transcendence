@@ -1,19 +1,26 @@
 import React, { useState } from 'react'
-import { useFormValidation } from '../../hooks/useFormValidation'
-import { AuthFormData, AuthFormProps } from '../../types/auth'
-import LoadingState from '../LoadingState'
-import '../../css'
+import { useFormValidation } from '../../../hooks/auth/useFormValidation'
+import { AuthFormData, AuthFormProps } from '../../../types/auth'
+import LoadingState from '../../LoadingState'
+import '../../../assets/styles/index.css'
 
+/**
+ * Props for the FormInput component
+ */
 interface FormInputProps {
-  name: keyof AuthFormData
-  type: string
-  value: string
-  placeholder: string
-  error?: string
-  disabled: boolean
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
+  name: keyof AuthFormData        // Name of the input field
+  type: string                    // Type of input (text, password, etc.)
+  value: string                   // Current value of the input
+  placeholder: string             // Placeholder text
+  error?: string                  // Error message to display
+  disabled: boolean               // Whether the input is disabled
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void // Change handler
 }
 
+/**
+ * Reusable input component for the authentication form
+ * Handles input display, validation errors, and disabled state
+ */
 const FormInput: React.FC<FormInputProps> = ({
   name,
   type,
@@ -38,27 +45,49 @@ const FormInput: React.FC<FormInputProps> = ({
   </div>
 )
 
+const StatusMessage: React.FC<{ type: 'error' | 'success'; message: string }> = ({ type, message }) => (
+  <div className={`${type}-message`}>{message}</div>
+)
+
+/**
+ * Authentication Form Component
+ * 
+ * Handles user authentication through a form with username and password fields.
+ * Includes validation, loading states, and error handling.
+ */
 const AuthForm: React.FC<AuthFormProps> = ({
   onSubmit,
   isLoading = false,
   error = '',
   successMessage = '',
 }) => {
+  // Form state
   const [formData, setFormData] = useState<AuthFormData>({
     username: '',
     password: '',
   })
+
+  // Form validation
   const { validation, updateValidation } = useFormValidation()
 
+  /**
+   * Handles input changes and updates form validation
+   */
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
-    setFormData(prev => ({ ...prev, [name]: value }))
-    updateValidation({ ...formData, [name]: value })
+    const newFormData = { ...formData, [name]: value }
+    setFormData(newFormData)
+    updateValidation(newFormData)
   }
 
+  /**
+   * Handles form submission
+   * Validates the form before submitting
+   */
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     const { isValid } = updateValidation(formData)
+    
     if (isValid) {
       try {
         await onSubmit(formData)
@@ -70,9 +99,10 @@ const AuthForm: React.FC<AuthFormProps> = ({
 
   return (
     <form onSubmit={handleSubmit} className="auth-form" noValidate>
-      {error && <div className="error-message">{error}</div>}
-      {successMessage && <div className="success-message">{successMessage}</div>}
+      {error && <StatusMessage type="error" message={error} />}
+      {successMessage && <StatusMessage type="success" message={successMessage} />}
 
+      {/* Username Input */}
       <FormInput
         name="username"
         type="text"
@@ -83,6 +113,7 @@ const AuthForm: React.FC<AuthFormProps> = ({
         onChange={handleInputChange}
       />
 
+      {/* Password Input */}
       <FormInput
         name="password"
         type="password"
@@ -93,6 +124,7 @@ const AuthForm: React.FC<AuthFormProps> = ({
         onChange={handleInputChange}
       />
 
+      {/* Submit Button */}
       <button
         type="submit"
         className="submit-button"

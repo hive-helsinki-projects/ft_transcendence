@@ -1,6 +1,12 @@
 import { useState, useCallback } from 'react'
-import { AuthFormData, FormValidation } from '../types/auth'
+import { AuthFormData, FormValidation } from '../../types/auth'
 
+/**
+ * Validation rules for the authentication form
+ * 
+ * This object defines the validation rules for the authentication form fields
+ * It includes rules for the username and password fields
+ */
 const VALIDATION_RULES = {
   username: {
     minLength: 3,
@@ -22,6 +28,13 @@ const VALIDATION_RULES = {
   },
 } as const
 
+/**
+ * Custom hook for handling form validation
+ * 
+ * This hook provides a validation state and methods for validating form fields
+ * It includes a validateField function for validating individual fields
+ * and a validateForm function for validating the entire form
+ */
 export const useFormValidation = () => {
   const [validation, setValidation] = useState<FormValidation>({
     isValid: false,

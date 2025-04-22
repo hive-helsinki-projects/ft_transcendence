@@ -1,6 +1,6 @@
 import { LogOut } from 'lucide-react'
 import React, { useState } from 'react'
-import '../css/LogoutButton.css'
+import '../assets/styles/index.css'
 
 interface LogoutButtonProps {
   onLogout: () => void
