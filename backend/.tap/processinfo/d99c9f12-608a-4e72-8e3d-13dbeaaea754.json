@@ -1,5 +1,5 @@
 {
-  "date": "2025-04-23T06:58:03.609Z",
+  "date": "2025-04-23T07:40:26.720Z",
   "argv": [
     "/Users/kale/.nvm/versions/node/v18.20.8/bin/node",
     "/Users/kale/Desktop/ft_transcendence/backend/tests/index.test.js"
@@ -12,16 +12,16 @@
   ],
   "NODE_OPTIONS": "\"--import=file:///Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/processinfo/dist/esm/import.mjs\"",
   "cwd": "/Users/kale/Desktop/ft_transcendence/backend",
-  "pid": 95035,
-  "ppid": 95034,
+  "pid": 98644,
+  "ppid": 98642,
   "parent": null,
-  "uuid": "f67a6e82-a48e-4fc3-8dad-ce89778e0e3e",
+  "uuid": "d99c9f12-608a-4e72-8e3d-13dbeaaea754",
   "files": [
     "/Users/kale/Desktop/ft_transcendence/backend/tests/index.test.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/walk-up-path/dist/mjs/index.js",
-    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/node_modules/glob/dist/esm/index.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/dist/esm/read-json.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/dist/esm/find-star-match.js",
+    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/node_modules/glob/dist/esm/index.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/node_modules/minimatch/dist/esm/index.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/node_modules/glob/dist/esm/glob.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/node_modules/glob/dist/esm/has-magic.js",
@@ -31,47 +31,47 @@
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/node_modules/minimatch/dist/esm/ast.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/node_modules/minimatch/dist/esm/escape.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/node_modules/minimatch/dist/esm/unescape.js",
-    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/path-scurry/dist/esm/index.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/node_modules/glob/dist/esm/pattern.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/node_modules/glob/dist/esm/walker.js",
+    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/path-scurry/dist/esm/index.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/node_modules/minimatch/dist/esm/brace-expressions.js",
-    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/lru-cache/dist/esm/index.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/minipass/dist/esm/index.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/node_modules/glob/dist/esm/processor.js",
+    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/lru-cache/dist/esm/index.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/mock/dist/esm/loader.mjs",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/mock/dist/esm/hooks.mjs",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/mock/dist/esm/mock-service-client.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/mock/dist/esm/mock-service.js",
-    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/stack/dist/esm/index.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/dist/esm/index.js",
-    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/mock/dist/esm/munge-mocks.js",
+    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/stack/dist/esm/index.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/dist/esm/is-relative-require.js",
+    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/mock/dist/esm/munge-mocks.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/mock/dist/esm/export-line.js",
-    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/mock/dist/esm/service-key.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/mock/dist/esm/resolve-mock-entry-point.js",
+    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/mock/dist/esm/service-key.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/mock/dist/commonjs/service-key.js",
-    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/stack/dist/esm/call-site-like.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/dist/esm/get-all-conditional-values.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/dist/esm/get-all-conditions.js",
-    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/dist/esm/resolve-all-exports.js",
-    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/stack/dist/esm/require-resolve.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/dist/esm/get-unique-condition-sets.js",
-    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/dist/esm/resolve-import.js",
-    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/dist/esm/resolve-all-local-imports.js",
+    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/dist/esm/resolve-all-exports.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/dist/esm/resolve-conditional-value.js",
+    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/stack/dist/esm/require-resolve.js",
+    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/dist/esm/resolve-import.js",
+    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/stack/dist/esm/call-site-like.js",
+    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/dist/esm/resolve-all-local-imports.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/dist/esm/is-windows.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/dist/esm/get-conditional-values-list.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/dist/esm/errors.js",
-    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/stack/dist/esm/parse.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/dist/esm/get-named-exports-list.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/dist/esm/read-pkg.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/dist/esm/star-glob.js",
-    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/dist/esm/resolve-export.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/dist/esm/to-path.js",
-    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/dist/esm/file-exists.js",
+    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/dist/esm/resolve-export.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/dist/esm/resolve-dependency-export.js",
-    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/dist/esm/to-file-url.js",
+    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/dist/esm/file-exists.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/dist/esm/resolve-package-import.js",
+    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/stack/dist/esm/parse.js",
+    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/dist/esm/to-file-url.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/dist/esm/find-dep-package.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/tap/dist/esm/index.js",
     "/Users/kale/Desktop/ft_transcendence/backend/app.js",
@@ -80,19 +80,20 @@
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/tap/dist/esm/main.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/fastify.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/dotenv/lib/main.js",
-    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/better-sqlite3/lib/index.js",
     "/Users/kale/Desktop/ft_transcendence/backend/plugins/jwt-plugin.js",
     "/Users/kale/Desktop/ft_transcendence/backend/routes/authRoutes.js",
     "/Users/kale/Desktop/ft_transcendence/backend/routes/userRoutes.js",
+    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/better-sqlite3/lib/index.js",
     "/Users/kale/Desktop/ft_transcendence/backend/routes/playerRoutes.js",
     "/Users/kale/Desktop/ft_transcendence/backend/routes/friendRoutes.js",
     "/Users/kale/Desktop/ft_transcendence/backend/routes/matchHistoryRoute.js",
     "/Users/kale/Desktop/ft_transcendence/backend/routes/tournamentRoute.js",
+    "/Users/kale/Desktop/ft_transcendence/backend/tests/utils/helpers.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/core/dist/esm/index.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/test/dist/esm/index.js",
-    "/Users/kale/Desktop/ft_transcendence/backend/controllers/authController.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify-plugin/plugin.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@fastify/jwt/jwt.js",
+    "/Users/kale/Desktop/ft_transcendence/backend/controllers/authController.js",
     "/Users/kale/Desktop/ft_transcendence/backend/models/authSchemas.js",
     "/Users/kale/Desktop/ft_transcendence/backend/controllers/userController.js",
     "/Users/kale/Desktop/ft_transcendence/backend/models/userSchemas.js",
@@ -108,10 +109,10 @@
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/core/dist/esm/base.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/core/dist/esm/counts.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/core/dist/esm/extra-from-error.js",
+    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/core/dist/esm/lists.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/core/dist/esm/main-script.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/core/dist/esm/minimal.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/core/dist/esm/normalize-message-extra.js",
-    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/core/dist/esm/lists.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/core/dist/esm/parse-test-args.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/core/dist/esm/proc.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/core/dist/esm/spawn.js",
@@ -139,9 +140,9 @@
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/after/dist/esm/index.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/after-each/dist/esm/index.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/asserts/dist/esm/index.js",
-    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/before-each/dist/esm/index.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/before/dist/esm/index.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/chdir/dist/esm/index.js",
+    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/before-each/dist/esm/index.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/filter/dist/esm/index.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/fixture/dist/esm/index.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/intercept/dist/esm/index.js",
@@ -153,14 +154,9 @@
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/typescript/dist/esm/index.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/worker/dist/esm/index.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/jackspeak/dist/esm/index.js",
-    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/rimraf/dist/esm/index.js",
-    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/fixture/dist/esm/fixture.js",
-    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/function-loop/dist/mjs/index.js",
+    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/jackspeak/dist/esm/parse-args.js",
+    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@isaacs/cliui/index.mjs",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/tap-yaml/dist/esm/index.js",
-    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/core/dist/esm/clean-yaml-object.js",
-    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/processinfo/dist/esm/child_process.js",
-    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/processinfo/dist/esm/process-info-node.js",
-    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/processinfo/dist/esm/json-file.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/tap-parser/dist/esm/final-results.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/tap-parser/dist/esm/line-type.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/tap-parser/dist/esm/parse-directive.js",
@@ -168,31 +164,28 @@
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/tap-parser/dist/esm/result.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/tap-parser/dist/esm/statics.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/tap-parser/dist/esm/escape.js",
+    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/core/dist/esm/clean-yaml-object.js",
+    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/processinfo/dist/esm/child_process.js",
+    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/processinfo/dist/esm/process-info-node.js",
+    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/processinfo/dist/esm/json-file.js",
+    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/function-loop/dist/mjs/index.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/tcompare/dist/esm/index.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/asserts/dist/esm/normalize-throws-args.js",
+    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/rimraf/dist/esm/index.js",
+    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/fixture/dist/esm/fixture.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/mock/dist/esm/mock-require.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/node-serialize/dist/esm/serialize.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/snapshot/dist/esm/clean-cwd.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/snapshot/dist/esm/provider.js",
-    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/jackspeak/dist/esm/parse-args.js",
-    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@isaacs/cliui/index.mjs",
-    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/rimraf/node_modules/glob/dist/esm/index.js",
-    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/rimraf/dist/esm/opt-arg.js",
-    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/rimraf/dist/esm/path-arg.js",
-    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/rimraf/dist/esm/rimraf-manual.js",
-    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/rimraf/dist/esm/rimraf-move-remove.js",
-    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/rimraf/dist/esm/rimraf-native.js",
-    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/rimraf/dist/esm/rimraf-posix.js",
-    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/rimraf/dist/esm/rimraf-windows.js",
-    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/rimraf/dist/esm/use-native.js",
-    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/mkdirp/dist/mjs/index.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/tap-yaml/dist/esm/parse.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/tap-yaml/dist/esm/stringify.js",
-    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/diff/lib/index.mjs",
-    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/events-to-array/index.js",
-    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/processinfo/dist/esm/spawn-opts.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/tap-parser/dist/esm/final-plan.js",
+    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@isaacs/cliui/build/lib/index.js",
+    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@isaacs/cliui/node_modules/string-width/index.js",
+    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/strip-ansi/index.js",
+    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@isaacs/cliui/node_modules/wrap-ansi/index.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/tap-parser/dist/esm/brace-patterns.js",
+    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/events-to-array/index.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/tcompare/dist/esm/format.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/tcompare/dist/esm/has-strict.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/tcompare/dist/esm/has.js",
@@ -203,17 +196,32 @@
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/tcompare/dist/esm/same.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/tcompare/dist/esm/strict.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/tcompare/dist/esm/styles.js",
-    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/snapshot/dist/esm/require.js",
+    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/diff/lib/index.mjs",
+    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/processinfo/dist/esm/spawn-opts.js",
+    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/rimraf/node_modules/glob/dist/esm/index.js",
+    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/rimraf/dist/esm/opt-arg.js",
+    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/rimraf/dist/esm/path-arg.js",
+    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/rimraf/dist/esm/rimraf-manual.js",
+    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/rimraf/dist/esm/rimraf-move-remove.js",
+    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/rimraf/dist/esm/rimraf-native.js",
+    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/rimraf/dist/esm/rimraf-posix.js",
+    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/rimraf/dist/esm/rimraf-windows.js",
+    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/rimraf/dist/esm/use-native.js",
+    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/mkdirp/dist/mjs/index.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/error-serdes/dist/esm/index.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/node-serialize/dist/esm/comment.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/node-serialize/dist/esm/on-add.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/node-serialize/dist/esm/print-messages.js",
+    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/yaml/dist/index.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/node-serialize/dist/esm/stdio.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/node-serialize/dist/esm/test-map.js",
-    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@isaacs/cliui/build/lib/index.js",
-    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@isaacs/cliui/node_modules/string-width/index.js",
-    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/strip-ansi/index.js",
-    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@isaacs/cliui/node_modules/wrap-ansi/index.js",
+    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/eastasianwidth/eastasianwidth.js",
+    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@isaacs/cliui/node_modules/emoji-regex/index.js",
+    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/snapshot/dist/esm/require.js",
+    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/tap-yaml/dist/esm/types/index.js",
+    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/ansi-regex/index.js",
+    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/ansi-styles/index.js",
+    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/tcompare/dist/esm/react-element-to-jsx-string.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/rimraf/node_modules/minimatch/dist/esm/index.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/rimraf/node_modules/glob/dist/esm/glob.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/rimraf/node_modules/glob/dist/esm/has-magic.js",
@@ -226,13 +234,10 @@
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/rimraf/dist/esm/fix-eperm.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/rimraf/dist/esm/retry-busy.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/mkdirp/dist/mjs/mkdirp-manual.js",
-    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/yaml/dist/index.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/mkdirp/dist/mjs/mkdirp-native.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/mkdirp/dist/mjs/opts-arg.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/mkdirp/dist/mjs/path-arg.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/mkdirp/dist/mjs/use-native.js",
-    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/tap-yaml/dist/esm/types/index.js",
-    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/tcompare/dist/esm/react-element-to-jsx-string.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/error-serdes/dist/esm/serialize.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/error-serdes/dist/esm/deserialize.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/error-serdes/dist/esm/test-stream-serialize.js",
@@ -241,25 +246,21 @@
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/error-serdes/dist/esm/constants.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/node-serialize/dist/esm/loc-from-at.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/node-serialize/dist/esm/test-nested-location.js",
+    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/yaml-types/dist/index.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/node-serialize/dist/esm/test-message-data.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/node-serialize/dist/esm/test-point-message-data.js",
-    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/eastasianwidth/eastasianwidth.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/node-serialize/dist/esm/test-point-results.js",
-    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@isaacs/cliui/node_modules/emoji-regex/index.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/node-serialize/dist/esm/test-results.js",
+    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/tap-yaml/dist/esm/types/date.js",
+    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/tap-yaml/dist/esm/types/timestamp.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/rimraf/node_modules/brace-expansion/index.js",
-    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/ansi-regex/index.js",
-    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/ansi-styles/index.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/rimraf/node_modules/minimatch/dist/esm/assert-valid-pattern.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/rimraf/node_modules/minimatch/dist/esm/ast.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/rimraf/node_modules/minimatch/dist/esm/escape.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/rimraf/node_modules/minimatch/dist/esm/unescape.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/rimraf/node_modules/glob/dist/esm/pattern.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/rimraf/node_modules/glob/dist/esm/walker.js",
-    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/yaml-types/dist/index.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/mkdirp/dist/mjs/find-made.js",
-    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/tap-yaml/dist/esm/types/date.js",
-    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/tap-yaml/dist/esm/types/timestamp.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/node-serialize/dist/esm/loc-from-callsite.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/node-serialize/dist/esm/result-to-error.js",
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/rimraf/node_modules/minimatch/dist/esm/brace-expressions.js",
@@ -270,14 +271,14 @@
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/walk-up-path/dist/mjs/index.js": [
       "/Users/kale/Desktop/ft_transcendence/backend/node_modules/walk-up-path/src/index.ts"
     ],
-    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/node_modules/glob/dist/esm/index.js": [
-      "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/node_modules/glob/src/index.ts"
-    ],
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/dist/esm/read-json.js": [
       "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/src/read-json.ts"
     ],
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/dist/esm/find-star-match.js": [
       "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/src/find-star-match.ts"
+    ],
+    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/node_modules/glob/dist/esm/index.js": [
+      "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/node_modules/glob/src/index.ts"
     ],
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/node_modules/minimatch/dist/esm/index.js": [
       "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/node_modules/minimatch/src/index.ts"
@@ -303,20 +304,17 @@
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/node_modules/minimatch/dist/esm/unescape.js": [
       "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/node_modules/minimatch/src/unescape.ts"
     ],
-    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/path-scurry/dist/esm/index.js": [
-      "/Users/kale/Desktop/ft_transcendence/backend/node_modules/path-scurry/src/index.ts"
-    ],
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/node_modules/glob/dist/esm/pattern.js": [
       "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/node_modules/glob/src/pattern.ts"
     ],
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/node_modules/glob/dist/esm/walker.js": [
       "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/node_modules/glob/src/walker.ts"
     ],
+    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/path-scurry/dist/esm/index.js": [
+      "/Users/kale/Desktop/ft_transcendence/backend/node_modules/path-scurry/src/index.ts"
+    ],
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/node_modules/minimatch/dist/esm/brace-expressions.js": [
       "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/node_modules/minimatch/src/brace-expressions.ts"
-    ],
-    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/lru-cache/dist/esm/index.js": [
-      "/Users/kale/Desktop/ft_transcendence/backend/node_modules/lru-cache/src/index.ts"
     ],
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/minipass/dist/esm/index.js": [
       "/Users/kale/Desktop/ft_transcendence/backend/node_modules/minipass/src/index.ts"
@@ -324,35 +322,35 @@
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/node_modules/glob/dist/esm/processor.js": [
       "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/node_modules/glob/src/processor.ts"
     ],
+    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/lru-cache/dist/esm/index.js": [
+      "/Users/kale/Desktop/ft_transcendence/backend/node_modules/lru-cache/src/index.ts"
+    ],
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/mock/dist/esm/mock-service.js": [
       "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/mock/src/mock-service.ts"
-    ],
-    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/stack/dist/esm/index.js": [
-      "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/stack/src/index.ts"
     ],
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/dist/esm/index.js": [
       "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/src/index.ts"
     ],
-    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/mock/dist/esm/munge-mocks.js": [
-      "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/mock/src/munge-mocks.ts"
+    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/stack/dist/esm/index.js": [
+      "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/stack/src/index.ts"
     ],
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/dist/esm/is-relative-require.js": [
       "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/src/is-relative-require.ts"
     ],
+    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/mock/dist/esm/munge-mocks.js": [
+      "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/mock/src/munge-mocks.ts"
+    ],
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/mock/dist/esm/export-line.js": [
       "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/mock/src/export-line.ts"
-    ],
-    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/mock/dist/esm/service-key.js": [
-      "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/mock/src/service-key.ts"
     ],
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/mock/dist/esm/resolve-mock-entry-point.js": [
       "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/mock/src/resolve-mock-entry-point.ts"
     ],
+    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/mock/dist/esm/service-key.js": [
+      "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/mock/src/service-key.ts"
+    ],
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/mock/dist/commonjs/service-key.js": [
       "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/mock/src/service-key-cjs.cts"
-    ],
-    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/stack/dist/esm/call-site-like.js": [
-      "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/stack/src/call-site-like.ts"
     ],
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/dist/esm/get-all-conditional-values.js": [
       "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/src/get-all-conditional-values.ts"
@@ -360,23 +358,26 @@
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/dist/esm/get-all-conditions.js": [
       "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/src/get-all-conditions.ts"
     ],
+    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/dist/esm/get-unique-condition-sets.js": [
+      "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/src/get-unique-condition-sets.ts"
+    ],
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/dist/esm/resolve-all-exports.js": [
       "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/src/resolve-all-exports.ts"
+    ],
+    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/dist/esm/resolve-conditional-value.js": [
+      "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/src/resolve-conditional-value.ts"
     ],
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/stack/dist/esm/require-resolve.js": [
       "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/stack/src/require-resolve.ts"
     ],
-    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/dist/esm/get-unique-condition-sets.js": [
-      "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/src/get-unique-condition-sets.ts"
-    ],
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/dist/esm/resolve-import.js": [
       "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/src/resolve-import.ts"
     ],
+    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/stack/dist/esm/call-site-like.js": [
+      "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/stack/src/call-site-like.ts"
+    ],
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/dist/esm/resolve-all-local-imports.js": [
       "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/src/resolve-all-local-imports.ts"
-    ],
-    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/dist/esm/resolve-conditional-value.js": [
-      "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/src/resolve-conditional-value.ts"
     ],
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/dist/esm/is-windows.js": [
       "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/src/is-windows.ts"
@@ -387,9 +388,6 @@
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/dist/esm/errors.js": [
       "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/src/errors.ts"
     ],
-    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/stack/dist/esm/parse.js": [
-      "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/stack/src/parse.ts"
-    ],
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/dist/esm/get-named-exports-list.js": [
       "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/src/get-named-exports-list.ts"
     ],
@@ -399,23 +397,26 @@
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/dist/esm/star-glob.js": [
       "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/src/star-glob.ts"
     ],
-    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/dist/esm/resolve-export.js": [
-      "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/src/resolve-export.ts"
-    ],
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/dist/esm/to-path.js": [
       "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/src/to-path.ts"
     ],
-    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/dist/esm/file-exists.js": [
-      "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/src/file-exists.ts"
+    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/dist/esm/resolve-export.js": [
+      "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/src/resolve-export.ts"
     ],
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/dist/esm/resolve-dependency-export.js": [
       "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/src/resolve-dependency-export.ts"
     ],
-    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/dist/esm/to-file-url.js": [
-      "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/src/to-file-url.ts"
+    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/dist/esm/file-exists.js": [
+      "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/src/file-exists.ts"
     ],
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/dist/esm/resolve-package-import.js": [
       "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/src/resolve-package-import.ts"
+    ],
+    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/stack/dist/esm/parse.js": [
+      "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/stack/src/parse.ts"
+    ],
+    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/dist/esm/to-file-url.js": [
+      "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/src/to-file-url.ts"
     ],
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/dist/esm/find-dep-package.js": [
       "/Users/kale/Desktop/ft_transcendence/backend/node_modules/resolve-import/src/find-dep-package.ts"
@@ -444,6 +445,9 @@
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/core/dist/esm/extra-from-error.js": [
       "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/core/src/extra-from-error.ts"
     ],
+    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/core/dist/esm/lists.js": [
+      "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/core/src/lists.ts"
+    ],
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/core/dist/esm/main-script.js": [
       "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/core/src/main-script.ts"
     ],
@@ -452,9 +456,6 @@
     ],
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/core/dist/esm/normalize-message-extra.js": [
       "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/core/src/normalize-message-extra.ts"
-    ],
-    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/core/dist/esm/lists.js": [
-      "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/core/src/lists.ts"
     ],
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/core/dist/esm/parse-test-args.js": [
       "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/core/src/parse-test-args.ts"
@@ -531,14 +532,14 @@
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/asserts/dist/esm/index.js": [
       "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/asserts/src/index.ts"
     ],
-    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/before-each/dist/esm/index.js": [
-      "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/before-each/src/index.ts"
-    ],
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/before/dist/esm/index.js": [
       "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/before/src/index.ts"
     ],
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/chdir/dist/esm/index.js": [
       "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/chdir/src/index.ts"
+    ],
+    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/before-each/dist/esm/index.js": [
+      "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/before-each/src/index.ts"
     ],
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/filter/dist/esm/index.js": [
       "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/filter/src/index.ts"
@@ -573,29 +574,11 @@
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/jackspeak/dist/esm/index.js": [
       "/Users/kale/Desktop/ft_transcendence/backend/node_modules/jackspeak/src/index.ts"
     ],
-    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/rimraf/dist/esm/index.js": [
-      "/Users/kale/Desktop/ft_transcendence/backend/node_modules/rimraf/src/index.ts"
-    ],
-    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/fixture/dist/esm/fixture.js": [
-      "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/fixture/src/fixture.ts"
-    ],
-    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/function-loop/dist/mjs/index.js": [
-      "/Users/kale/Desktop/ft_transcendence/backend/node_modules/function-loop/src/index.ts"
+    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/jackspeak/dist/esm/parse-args.js": [
+      "/Users/kale/Desktop/ft_transcendence/backend/node_modules/jackspeak/src/parse-args.ts"
     ],
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/tap-yaml/dist/esm/index.js": [
       "/Users/kale/Desktop/ft_transcendence/backend/node_modules/tap-yaml/src/index.ts"
-    ],
-    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/core/dist/esm/clean-yaml-object.js": [
-      "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/core/src/clean-yaml-object.ts"
-    ],
-    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/processinfo/dist/esm/child_process.js": [
-      "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/processinfo/src/child_process.ts"
-    ],
-    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/processinfo/dist/esm/process-info-node.js": [
-      "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/processinfo/src/process-info-node.ts"
-    ],
-    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/processinfo/dist/esm/json-file.js": [
-      "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/processinfo/src/json-file.ts"
     ],
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/tap-parser/dist/esm/final-results.js": [
       "/Users/kale/Desktop/ft_transcendence/backend/node_modules/tap-parser/src/final-results.ts"
@@ -618,11 +601,32 @@
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/tap-parser/dist/esm/escape.js": [
       "/Users/kale/Desktop/ft_transcendence/backend/node_modules/tap-parser/src/escape.ts"
     ],
+    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/core/dist/esm/clean-yaml-object.js": [
+      "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/core/src/clean-yaml-object.ts"
+    ],
+    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/processinfo/dist/esm/child_process.js": [
+      "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/processinfo/src/child_process.ts"
+    ],
+    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/processinfo/dist/esm/process-info-node.js": [
+      "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/processinfo/src/process-info-node.ts"
+    ],
+    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/processinfo/dist/esm/json-file.js": [
+      "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/processinfo/src/json-file.ts"
+    ],
+    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/function-loop/dist/mjs/index.js": [
+      "/Users/kale/Desktop/ft_transcendence/backend/node_modules/function-loop/src/index.ts"
+    ],
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/tcompare/dist/esm/index.js": [
       "/Users/kale/Desktop/ft_transcendence/backend/node_modules/tcompare/src/index.ts"
     ],
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/asserts/dist/esm/normalize-throws-args.js": [
       "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/asserts/src/normalize-throws-args.ts"
+    ],
+    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/rimraf/dist/esm/index.js": [
+      "/Users/kale/Desktop/ft_transcendence/backend/node_modules/rimraf/src/index.ts"
+    ],
+    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/fixture/dist/esm/fixture.js": [
+      "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/fixture/src/fixture.ts"
     ],
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/mock/dist/esm/mock-require.js": [
       "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/mock/src/mock-require.ts"
@@ -636,47 +640,11 @@
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/snapshot/dist/esm/provider.js": [
       "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/snapshot/src/provider.ts"
     ],
-    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/jackspeak/dist/esm/parse-args.js": [
-      "/Users/kale/Desktop/ft_transcendence/backend/node_modules/jackspeak/src/parse-args.ts"
-    ],
-    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/rimraf/node_modules/glob/dist/esm/index.js": [
-      "/Users/kale/Desktop/ft_transcendence/backend/node_modules/rimraf/node_modules/glob/src/index.ts"
-    ],
-    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/rimraf/dist/esm/opt-arg.js": [
-      "/Users/kale/Desktop/ft_transcendence/backend/node_modules/rimraf/src/opt-arg.ts"
-    ],
-    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/rimraf/dist/esm/path-arg.js": [
-      "/Users/kale/Desktop/ft_transcendence/backend/node_modules/rimraf/src/path-arg.ts"
-    ],
-    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/rimraf/dist/esm/rimraf-manual.js": [
-      "/Users/kale/Desktop/ft_transcendence/backend/node_modules/rimraf/src/rimraf-manual.ts"
-    ],
-    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/rimraf/dist/esm/rimraf-move-remove.js": [
-      "/Users/kale/Desktop/ft_transcendence/backend/node_modules/rimraf/src/rimraf-move-remove.ts"
-    ],
-    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/rimraf/dist/esm/rimraf-native.js": [
-      "/Users/kale/Desktop/ft_transcendence/backend/node_modules/rimraf/src/rimraf-native.ts"
-    ],
-    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/rimraf/dist/esm/rimraf-posix.js": [
-      "/Users/kale/Desktop/ft_transcendence/backend/node_modules/rimraf/src/rimraf-posix.ts"
-    ],
-    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/rimraf/dist/esm/rimraf-windows.js": [
-      "/Users/kale/Desktop/ft_transcendence/backend/node_modules/rimraf/src/rimraf-windows.ts"
-    ],
-    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/rimraf/dist/esm/use-native.js": [
-      "/Users/kale/Desktop/ft_transcendence/backend/node_modules/rimraf/src/use-native.ts"
-    ],
-    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/mkdirp/dist/mjs/index.js": [
-      "/Users/kale/Desktop/ft_transcendence/backend/node_modules/mkdirp/src/index.ts"
-    ],
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/tap-yaml/dist/esm/parse.js": [
       "/Users/kale/Desktop/ft_transcendence/backend/node_modules/tap-yaml/src/parse.ts"
     ],
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/tap-yaml/dist/esm/stringify.js": [
       "/Users/kale/Desktop/ft_transcendence/backend/node_modules/tap-yaml/src/stringify.ts"
-    ],
-    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/processinfo/dist/esm/spawn-opts.js": [
-      "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/processinfo/src/spawn-opts.ts"
     ],
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/tap-parser/dist/esm/final-plan.js": [
       "/Users/kale/Desktop/ft_transcendence/backend/node_modules/tap-parser/src/final-plan.ts"
@@ -714,8 +682,38 @@
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/tcompare/dist/esm/styles.js": [
       "/Users/kale/Desktop/ft_transcendence/backend/node_modules/tcompare/src/styles.ts"
     ],
-    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/snapshot/dist/esm/require.js": [
-      "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/snapshot/src/require.ts"
+    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/processinfo/dist/esm/spawn-opts.js": [
+      "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/processinfo/src/spawn-opts.ts"
+    ],
+    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/rimraf/node_modules/glob/dist/esm/index.js": [
+      "/Users/kale/Desktop/ft_transcendence/backend/node_modules/rimraf/node_modules/glob/src/index.ts"
+    ],
+    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/rimraf/dist/esm/opt-arg.js": [
+      "/Users/kale/Desktop/ft_transcendence/backend/node_modules/rimraf/src/opt-arg.ts"
+    ],
+    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/rimraf/dist/esm/path-arg.js": [
+      "/Users/kale/Desktop/ft_transcendence/backend/node_modules/rimraf/src/path-arg.ts"
+    ],
+    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/rimraf/dist/esm/rimraf-manual.js": [
+      "/Users/kale/Desktop/ft_transcendence/backend/node_modules/rimraf/src/rimraf-manual.ts"
+    ],
+    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/rimraf/dist/esm/rimraf-move-remove.js": [
+      "/Users/kale/Desktop/ft_transcendence/backend/node_modules/rimraf/src/rimraf-move-remove.ts"
+    ],
+    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/rimraf/dist/esm/rimraf-native.js": [
+      "/Users/kale/Desktop/ft_transcendence/backend/node_modules/rimraf/src/rimraf-native.ts"
+    ],
+    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/rimraf/dist/esm/rimraf-posix.js": [
+      "/Users/kale/Desktop/ft_transcendence/backend/node_modules/rimraf/src/rimraf-posix.ts"
+    ],
+    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/rimraf/dist/esm/rimraf-windows.js": [
+      "/Users/kale/Desktop/ft_transcendence/backend/node_modules/rimraf/src/rimraf-windows.ts"
+    ],
+    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/rimraf/dist/esm/use-native.js": [
+      "/Users/kale/Desktop/ft_transcendence/backend/node_modules/rimraf/src/use-native.ts"
+    ],
+    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/mkdirp/dist/mjs/index.js": [
+      "/Users/kale/Desktop/ft_transcendence/backend/node_modules/mkdirp/src/index.ts"
     ],
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/error-serdes/dist/esm/index.js": [
       "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/error-serdes/src/index.ts"
@@ -734,6 +732,15 @@
     ],
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/node-serialize/dist/esm/test-map.js": [
       "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/node-serialize/src/test-map.ts"
+    ],
+    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/snapshot/dist/esm/require.js": [
+      "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/snapshot/src/require.ts"
+    ],
+    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/tap-yaml/dist/esm/types/index.js": [
+      "/Users/kale/Desktop/ft_transcendence/backend/node_modules/tap-yaml/src/types/index.ts"
+    ],
+    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/tcompare/dist/esm/react-element-to-jsx-string.js": [
+      "/Users/kale/Desktop/ft_transcendence/backend/node_modules/tcompare/src/react-element-to-jsx-string.ts"
     ],
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/rimraf/node_modules/minimatch/dist/esm/index.js": [
       "/Users/kale/Desktop/ft_transcendence/backend/node_modules/rimraf/node_modules/minimatch/src/index.ts"
@@ -783,12 +790,6 @@
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/mkdirp/dist/mjs/use-native.js": [
       "/Users/kale/Desktop/ft_transcendence/backend/node_modules/mkdirp/src/use-native.ts"
     ],
-    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/tap-yaml/dist/esm/types/index.js": [
-      "/Users/kale/Desktop/ft_transcendence/backend/node_modules/tap-yaml/src/types/index.ts"
-    ],
-    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/tcompare/dist/esm/react-element-to-jsx-string.js": [
-      "/Users/kale/Desktop/ft_transcendence/backend/node_modules/tcompare/src/react-element-to-jsx-string.ts"
-    ],
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/error-serdes/dist/esm/serialize.js": [
       "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/error-serdes/src/serialize.ts"
     ],
@@ -825,6 +826,12 @@
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/node-serialize/dist/esm/test-results.js": [
       "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/node-serialize/src/test-results.ts"
     ],
+    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/tap-yaml/dist/esm/types/date.js": [
+      "/Users/kale/Desktop/ft_transcendence/backend/node_modules/tap-yaml/src/types/date.ts"
+    ],
+    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/tap-yaml/dist/esm/types/timestamp.js": [
+      "/Users/kale/Desktop/ft_transcendence/backend/node_modules/tap-yaml/src/types/timestamp.ts"
+    ],
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/rimraf/node_modules/minimatch/dist/esm/assert-valid-pattern.js": [
       "/Users/kale/Desktop/ft_transcendence/backend/node_modules/rimraf/node_modules/minimatch/src/assert-valid-pattern.ts"
     ],
@@ -846,12 +853,6 @@
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/mkdirp/dist/mjs/find-made.js": [
       "/Users/kale/Desktop/ft_transcendence/backend/node_modules/mkdirp/src/find-made.ts"
     ],
-    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/tap-yaml/dist/esm/types/date.js": [
-      "/Users/kale/Desktop/ft_transcendence/backend/node_modules/tap-yaml/src/types/date.ts"
-    ],
-    "/Users/kale/Desktop/ft_transcendence/backend/node_modules/tap-yaml/dist/esm/types/timestamp.js": [
-      "/Users/kale/Desktop/ft_transcendence/backend/node_modules/tap-yaml/src/types/timestamp.ts"
-    ],
     "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/node-serialize/dist/esm/loc-from-callsite.js": [
       "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/node-serialize/src/loc-from-callsite.ts"
     ],
@@ -868,9 +869,9 @@
       "/Users/kale/Desktop/ft_transcendence/backend/node_modules/@tapjs/node-serialize/src/pretty-diff.ts"
     ]
   },
-  "root": "f67a6e82-a48e-4fc3-8dad-ce89778e0e3e",
+  "root": "d99c9f12-608a-4e72-8e3d-13dbeaaea754",
   "externalID": "tests/index.test.js",
   "code": 0,
   "signal": null,
-  "runtime": 1220.807125
+  "runtime": 1245.140833
 }
