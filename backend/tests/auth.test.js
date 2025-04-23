@@ -165,7 +165,7 @@ function runAuthTests(app, t) {
             );
     
             t.test('POST `/login` returns 200 if login is successful', async (t) => {
-                const response = await loginResponse(app, { username: 'kim', password: 'password' });
+                let response = await loginResponse(app, { username: 'kim', password: 'password' });
                 const authToken = await response.json().token;
                 t.equal(response.statusCode, 200, 'Status code 200');
                 t.ok(authToken, 'Token is present');
@@ -173,16 +173,46 @@ function runAuthTests(app, t) {
                     token: authToken,
                     username: 'kim',
                 });
+
+                response = await app.inject({
+                    method: 'GET',
+                    url: '/users/2'
+                });
+                t.equal(response.statusCode, 200, 'Status code 200');
+                const user = await response.json();
+                t.same(user, {
+                    id: 2,
+                    username: 'kim',
+                    email: 'kim@email.com',
+                    avatar_url: "",
+                    online_status: true,
+                    created_at: user.created_at,
+                })
                 
                 // Logout test
                 t.test('POST `/logout`', async(t) => {
                     t.test('POST `/logout` returns 200 if logout is successful', async (t) => {
-                        const response = await logoutResponse(app, authToken);
+                        let response = await logoutResponse(app, authToken);
         
                         t.equal(response.statusCode, 200, 'Status code 200');
                         t.equal(response.json().message, 'Logout successful');
+
+                        response = await app.inject({
+                            method: 'GET',
+                            url: '/users/2'
+                        });
+                        t.equal(response.statusCode, 200, 'Status code 200');
+                        const user = await response.json();
+                        t.same(user, {
+                            id: 2,
+                            username: 'kim',
+                            email: 'kim@email.com',
+                            avatar_url: "",
+                            online_status: false,
+                            created_at: user.created_at,
+                        })
                 });
-        
+
                     t.test('POST `/logout` returns 400 if user already logged out', async (t) => {
                         const response = await logoutResponse(app, authToken);
         
