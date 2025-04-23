@@ -3,6 +3,7 @@ import buildApp from '../app.js';
 import { resetTestDb } from './utils/resetTestDb.js';
 
 import runAuthTests from './auth.test.js';
+import runUserTests from './user.test.js';
 
 t.test('All Test', async (t) => {
     const app = buildApp();
@@ -10,9 +11,9 @@ t.test('All Test', async (t) => {
     
     t.teardown(async () => {
         await app.close();
-        await resetTestDb();
+        resetTestDb();
     })
     
     runAuthTests(app, t);
-    
+    runUserTests(app, t);
 })
