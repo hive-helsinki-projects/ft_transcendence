@@ -50,10 +50,9 @@ const sendFriendRequest = async (req, reply) => {
             SELECT status 
             FROM friends 
             WHERE user_id = ? AND friend_id = ?
-        `).get(friend_id, user_id);
-        if (existingRequest && existingRequest.status === 'pending') {
-            return reply.code(400).send({ error: 'Friend request already exists' });
-        } else if (existingRequest && existingRequest.status === 'accepted') {
+            OR friend_id = ? AND user_id = ?
+        `).get(friend_id, user_id, friend_id, user_id);
+        if (existingRequest && existingRequest.status === 'accepted') {
             return reply.code(400).send({ error: 'Already friends' });
         }
         db.prepare(`
@@ -111,7 +110,7 @@ const acceptFriendRequest = async (req, reply) => {
         `).get(friend_id, user_id);
         return reply.code(200).send({ 
             message: 'Friend request accepted successfully', 
-            friend
+            item: friend
         });
     } catch (error) {
         console.log(error);
