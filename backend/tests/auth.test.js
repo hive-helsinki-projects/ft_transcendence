@@ -1,3 +1,4 @@
+let authToken;
 
 function runAuthTests(app, t) {
     function loginResponse (credentials = { username, password}) {
@@ -204,8 +205,8 @@ function runAuthTests(app, t) {
 
         t.test('POST `/logout` returns 200 if logout is successful', async (t) => {
             let response = await loginResponse({ username: 'kim', password: 'password' });
-            const token = response.json().token;
-            response = await logoutResponse(token);
+            authToken = response.json().token;
+            response = await logoutResponse(authToken);
 
             t.equal(response.statusCode, 200, 'Status code 200');
             t.equal(response.json().message, 'Logout successful');
@@ -214,13 +215,13 @@ function runAuthTests(app, t) {
         t.test('POST `/logout` returns 400 if user already logged out', async (t) => {
             let response = await loginResponse({ username: 'kim', password: 'password' });
 
-            const token = response.json().token;
-            response = await logoutResponse(token);
+            authToken = response.json().token;
+            response = await logoutResponse(authToken);
 
             t.equal(response.statusCode, 200, 'Status code 200');
             t.equal(response.json().message, 'Logout successful');
 
-            response = await logoutResponse(token);
+            response = await logoutResponse(authToken);
 
             t.equal(response.statusCode, 404, 'Status code 404');
             t.equal(response.json().error, 'User already logged out');
