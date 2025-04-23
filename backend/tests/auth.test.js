@@ -166,7 +166,7 @@ function runAuthTests(app, t) {
     
             t.test('POST `/login` returns 200 if login is successful', async (t) => {
                 const response = await loginResponse(app, { username: 'kim', password: 'password' });
-                const authToken = response.json().token;
+                const authToken = await response.json().token;
                 t.equal(response.statusCode, 200, 'Status code 200');
                 t.ok(authToken, 'Token is present');
                 t.same(response.json(), {

@@ -82,6 +82,60 @@ function runUserTests(app, t) {
             t.equal(response.json().error, 'Email already in use');
         })
 
+        t.test('PUT `/users/1` returns 200 if email updated', async (t) => {
+            const response = await updateUserResponse(app, 1, authToken, { email: "new@email.com" });
+            t.equal(response.statusCode, 200, 'Status code 200');
+            
+            const data = await response.json();
+
+            t.equal(data.message, 'User updated successfully');
+            t.same(data.item, {
+                username: 'testuser',
+                email: 'new@email.com',
+                avatar_url: ""
+            })
+        })
+
+        t.test('PUT `/users/1` returns 200 if username and avatar_url updated', async (t) => {
+            const response = await updateUserResponse(app, 1, authToken, { username: 'lumi', avatar_url: 'newlink.com' });
+            t.equal(response.statusCode, 200, 'Status code 200');
+            
+            const data = await response.json();
+
+            t.equal(data.message, 'User updated successfully');
+            t.same(data.item, {
+                username: 'lumi',
+                email: 'new@email.com',
+                avatar_url: 'newlink.com'
+            })
+        })
+
+        t.test('PUT `/users/1` returns 200 if password updated', async (t) => {
+            let response = await updateUserResponse(app, 1, authToken, { password: 'newpassword' });
+            t.equal(response.statusCode, 200, 'Status code 200');
+            
+            let data = await response.json();
+
+            t.equal(data.message, 'User updated successfully');
+            t.same(data.item, {
+                username: 'lumi',
+                email: 'new@email.com',
+                avatar_url: 'newlink.com'
+            })
+
+            response = await loginResponse(app, { username: 'lumi', password: 'testpassword' });
+            t.equal(response.statusCode, 401, 'Status code 401');
+            t.equal(response.json().error, 'Invalid username or password')
+
+            response = await loginResponse(app, { username: 'lumi', password: 'newpassword' });
+            data = await response.json();
+            t.ok(data.token, 'Token is present');
+            t.equal(response.statusCode, 200, 'Status code 200');
+            t.same(data, {
+                token: data.token,
+                username: 'lumi',
+            });
+        })
         
     })
 })
