@@ -1,4 +1,14 @@
+
 function runAuthTests(app, t) {
+    function loginResponse (credentials = { username: 'kim', password: 'password' }) {
+        const response = app.inject({
+            method: 'POST',
+            url: '/login',
+            payload: credentials,
+        });
+        return response;
+    }
+    
     t.test('Auth Routes Suite', async (t) => {
         t.test('GET `/users` returns empty array', async (t) => {
             const response = await app.inject({
@@ -218,15 +228,7 @@ function runAuthTests(app, t) {
         );
 
         t.test('POST `/login` returns 200 if login is successful', async (t) => {
-            const response = await app.inject({
-                method: 'POST',
-                url: '/login',
-                payload: {
-                    username: 'kim',
-                    password: 'password',
-                },
-            });
-
+            const response = await loginResponse();
             t.equal(response.statusCode, 200, 'Status code 200');
             t.ok(response.json().token, 'Token is present');
             t.same(response.json(), {
