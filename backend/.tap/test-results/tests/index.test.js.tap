@@ -77,224 +77,210 @@ PRAGMA foreign_keys = ON
 
 TAP version 14
 # Subtest: All Test
-{"level":30,"time":1745391484222,"pid":95035,"hostname":"k2matu.local","reqId":"req-1","req":{"method":"GET","url":"/users","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1745394027177,"pid":98644,"hostname":"k2matu.local","reqId":"req-1","req":{"method":"GET","url":"/users","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
 SELECT * FROM users
     # Subtest: Auth Routes Suite
         # Subtest: GET `/users` returns empty array
             ok 1 - Status code 200
             ok 2 - should be equivalent
             1..2
-        ok 1 - GET `/users` returns empty array # time=180.705ms
+        ok 1 - GET `/users` returns empty array # time=29.014ms
         
-        # Subtest: POST `/register` returns 400 if email is missing
-            ok 1 - Status code 400
-            ok 2 - should be equal
-            1..2
-        ok 2 - POST `/register` returns 400 if email is missing # time=2.991ms
-        
-{"level":30,"time":1745391484225,"pid":95035,"hostname":"k2matu.local","reqId":"req-1","res":{"statusCode":200},"responseTime":3.063000202178955,"msg":"request completed"}
-{"level":30,"time":1745391484228,"pid":95035,"hostname":"k2matu.local","reqId":"req-2","req":{"method":"POST","url":"/register","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
-{"level":30,"time":1745391484230,"pid":95035,"hostname":"k2matu.local","reqId":"req-2","res":{"statusCode":400},"err":{"type":"Error","message":"body must have required property 'email'","stack":"Error: body must have required property 'email'\n    at defaultSchemaErrorFormatter (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/context.js:92:10)\n    at wrapValidationError (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/validation.js:249:17)\n    at validate (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/validation.js:167:16)\n    at preValidationCallback (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/handleRequest.js:89:25)\n    at handler (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/handleRequest.js:73:7)\n    at /Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/contentTypeParser.js:214:9\n    at AsyncResource.runInAsyncScope (node:async_hooks:203:9)\n    at done (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/contentTypeParser.js:207:14)\n    at Parser.defaultJsonParser [as fn] (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/contentTypeParser.js:312:7)\n    at Request.onEnd (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/contentTypeParser.js:296:27)","statusCode":400,"code":"FST_ERR_VALIDATION","validation":[{"instancePath":"","schemaPath":"#/required","keyword":"required","params":{"missingProperty":"email"},"message":"must have required property 'email'"}],"validationContext":"body"},"msg":"body must have required property 'email'"}
-{"level":30,"time":1745391484231,"pid":95035,"hostname":"k2matu.local","reqId":"req-2","res":{"statusCode":400},"responseTime":2.4036669731140137,"msg":"request completed"}
-{"level":30,"time":1745391484231,"pid":95035,"hostname":"k2matu.local","reqId":"req-3","req":{"method":"POST","url":"/register","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
-        # Subtest: POST `/register` returns 400 if invalid email
-            ok 1 - Status code 400
-            ok 2 - should be equal
-            1..2
-        ok 3 - POST `/register` returns 400 if invalid email # time=1.244ms
-        
-{"level":30,"time":1745391484232,"pid":95035,"hostname":"k2matu.local","reqId":"req-3","res":{"statusCode":400},"err":{"type":"Error","message":"body/email must match format \"email\"","stack":"Error: body/email must match format \"email\"\n    at defaultSchemaErrorFormatter (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/context.js:92:10)\n    at wrapValidationError (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/validation.js:249:17)\n    at validate (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/validation.js:167:16)\n    at preValidationCallback (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/handleRequest.js:89:25)\n    at handler (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/handleRequest.js:73:7)\n    at /Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/contentTypeParser.js:214:9\n    at AsyncResource.runInAsyncScope (node:async_hooks:203:9)\n    at done (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/contentTypeParser.js:207:14)\n    at Parser.defaultJsonParser [as fn] (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/contentTypeParser.js:312:7)\n    at Request.onEnd (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/contentTypeParser.js:296:27)","statusCode":400,"code":"FST_ERR_VALIDATION","validation":[{"instancePath":"/email","schemaPath":"#/properties/email/format","keyword":"format","params":{"format":"email"},"message":"must match format \"email\""}],"validationContext":"body"},"msg":"body/email must match format \"email\""}
-{"level":30,"time":1745391484232,"pid":95035,"hostname":"k2matu.local","reqId":"req-3","res":{"statusCode":400},"responseTime":0.8215827941894531,"msg":"request completed"}
-{"level":30,"time":1745391484233,"pid":95035,"hostname":"k2matu.local","reqId":"req-4","req":{"method":"POST","url":"/register","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
-        # Subtest: POST `/register` returns 400 if invalid username (min 3 char)
-            ok 1 - Status code 400
-            ok 2 - should be equal
-            1..2
-        ok 4 - POST `/register` returns 400 if invalid username (min 3 char) # time=0.708ms
-        
-{"level":30,"time":1745391484233,"pid":95035,"hostname":"k2matu.local","reqId":"req-4","res":{"statusCode":400},"err":{"type":"Error","message":"body/username must NOT have fewer than 3 characters","stack":"Error: body/username must NOT have fewer than 3 characters\n    at defaultSchemaErrorFormatter (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/context.js:92:10)\n    at wrapValidationError (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/validation.js:249:17)\n    at validate (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/validation.js:167:16)\n    at preValidationCallback (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/handleRequest.js:89:25)\n    at handler (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/handleRequest.js:73:7)\n    at /Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/contentTypeParser.js:214:9\n    at AsyncResource.runInAsyncScope (node:async_hooks:203:9)\n    at done (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/contentTypeParser.js:207:14)\n    at Parser.defaultJsonParser [as fn] (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/contentTypeParser.js:312:7)\n    at Request.onEnd (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/contentTypeParser.js:296:27)","statusCode":400,"code":"FST_ERR_VALIDATION","validation":[{"instancePath":"/username","schemaPath":"#/properties/username/minLength","keyword":"minLength","params":{"limit":3},"message":"must NOT have fewer than 3 characters"}],"validationContext":"body"},"msg":"body/username must NOT have fewer than 3 characters"}
-{"level":30,"time":1745391484233,"pid":95035,"hostname":"k2matu.local","reqId":"req-4","res":{"statusCode":400},"responseTime":0.31366729736328125,"msg":"request completed"}
-{"level":30,"time":1745391484234,"pid":95035,"hostname":"k2matu.local","reqId":"req-5","req":{"method":"POST","url":"/register","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
-        # Subtest: POST `/register` returns 400 if username is missing
-            ok 1 - Status code 400
-            ok 2 - should be equal
-            1..2
-        ok 5 - POST `/register` returns 400 if username is missing # time=0.786ms
-        
-{"level":30,"time":1745391484234,"pid":95035,"hostname":"k2matu.local","reqId":"req-5","res":{"statusCode":400},"err":{"type":"Error","message":"body must have required property 'username'","stack":"Error: body must have required property 'username'\n    at defaultSchemaErrorFormatter (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/context.js:92:10)\n    at wrapValidationError (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/validation.js:249:17)\n    at validate (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/validation.js:167:16)\n    at preValidationCallback (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/handleRequest.js:89:25)\n    at handler (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/handleRequest.js:73:7)\n    at /Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/contentTypeParser.js:214:9\n    at AsyncResource.runInAsyncScope (node:async_hooks:203:9)\n    at done (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/contentTypeParser.js:207:14)\n    at Parser.defaultJsonParser [as fn] (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/contentTypeParser.js:312:7)\n    at Request.onEnd (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/contentTypeParser.js:296:27)","statusCode":400,"code":"FST_ERR_VALIDATION","validation":[{"instancePath":"","schemaPath":"#/required","keyword":"required","params":{"missingProperty":"username"},"message":"must have required property 'username'"}],"validationContext":"body"},"msg":"body must have required property 'username'"}
-{"level":30,"time":1745391484234,"pid":95035,"hostname":"k2matu.local","reqId":"req-5","res":{"statusCode":400},"responseTime":0.2870826721191406,"msg":"request completed"}
-{"level":30,"time":1745391484235,"pid":95035,"hostname":"k2matu.local","reqId":"req-6","req":{"method":"POST","url":"/register","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
-        # Subtest: POST `/register` returns 400 if password is missing
-            ok 1 - Status code 400
-            ok 2 - should be equal
-            1..2
-        ok 6 - POST `/register` returns 400 if password is missing # time=1.569ms
-        
-        # Subtest: POST `/register` returns 400 if invalid password
-            ok 1 - Status code 400
-            ok 2 - should be equal
-            1..2
-        ok 7 - POST `/register` returns 400 if invalid password # time=0.811ms
-        
-INSERT INTO users (username, email, password_hash) VALUES ('testuser', 'testuse@email.com', '$2b$10$rQXDUtxgdLo3mFRogYe8DOmz5'/*+28 bytes*/)
+        # Subtest: POST `/register`
+            # Subtest: POST `/register` returns 400 if email is missing
+                ok 1 - Status code 400
+                ok 2 - should be equal
+                1..2
+            ok 1 - POST `/register` returns 400 if email is missing # time=130.391ms
+            
+{"level":30,"time":1745394027181,"pid":98644,"hostname":"k2matu.local","reqId":"req-1","res":{"statusCode":200},"responseTime":2.868166923522949,"msg":"request completed"}
+{"level":30,"time":1745394027324,"pid":98644,"hostname":"k2matu.local","reqId":"req-2","req":{"method":"POST","url":"/register","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1745394027326,"pid":98644,"hostname":"k2matu.local","reqId":"req-2","res":{"statusCode":400},"err":{"type":"Error","message":"body must have required property 'email'","stack":"Error: body must have required property 'email'\n    at defaultSchemaErrorFormatter (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/context.js:92:10)\n    at wrapValidationError (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/validation.js:249:17)\n    at validate (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/validation.js:167:16)\n    at preValidationCallback (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/handleRequest.js:89:25)\n    at handler (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/handleRequest.js:73:7)\n    at /Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/contentTypeParser.js:214:9\n    at AsyncResource.runInAsyncScope (node:async_hooks:203:9)\n    at done (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/contentTypeParser.js:207:14)\n    at Parser.defaultJsonParser [as fn] (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/contentTypeParser.js:312:7)\n    at Request.onEnd (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/contentTypeParser.js:296:27)","statusCode":400,"code":"FST_ERR_VALIDATION","validation":[{"instancePath":"","schemaPath":"#/required","keyword":"required","params":{"missingProperty":"email"},"message":"must have required property 'email'"}],"validationContext":"body"},"msg":"body must have required property 'email'"}
+{"level":30,"time":1745394027327,"pid":98644,"hostname":"k2matu.local","reqId":"req-2","res":{"statusCode":400},"responseTime":2.5367093086242676,"msg":"request completed"}
+{"level":30,"time":1745394027328,"pid":98644,"hostname":"k2matu.local","reqId":"req-3","req":{"method":"POST","url":"/register","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+            # Subtest: POST `/register` returns 400 if invalid email
+                ok 1 - Status code 400
+                ok 2 - should be equal
+                1..2
+            ok 2 - POST `/register` returns 400 if invalid email # time=1.524ms
+            
+{"level":30,"time":1745394027328,"pid":98644,"hostname":"k2matu.local","reqId":"req-3","res":{"statusCode":400},"err":{"type":"Error","message":"body/email must match format \"email\"","stack":"Error: body/email must match format \"email\"\n    at defaultSchemaErrorFormatter (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/context.js:92:10)\n    at wrapValidationError (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/validation.js:249:17)\n    at validate (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/validation.js:167:16)\n    at preValidationCallback (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/handleRequest.js:89:25)\n    at handler (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/handleRequest.js:73:7)\n    at /Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/contentTypeParser.js:214:9\n    at AsyncResource.runInAsyncScope (node:async_hooks:203:9)\n    at done (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/contentTypeParser.js:207:14)\n    at Parser.defaultJsonParser [as fn] (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/contentTypeParser.js:312:7)\n    at Request.onEnd (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/contentTypeParser.js:296:27)","statusCode":400,"code":"FST_ERR_VALIDATION","validation":[{"instancePath":"/email","schemaPath":"#/properties/email/format","keyword":"format","params":{"format":"email"},"message":"must match format \"email\""}],"validationContext":"body"},"msg":"body/email must match format \"email\""}
+{"level":30,"time":1745394027329,"pid":98644,"hostname":"k2matu.local","reqId":"req-3","res":{"statusCode":400},"responseTime":0.986875057220459,"msg":"request completed"}
+{"level":30,"time":1745394027329,"pid":98644,"hostname":"k2matu.local","reqId":"req-4","req":{"method":"POST","url":"/register","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+            # Subtest: POST `/register` returns 400 if invalid username (min 3 char)
+                ok 1 - Status code 400
+                ok 2 - should be equal
+                1..2
+            ok 3 - POST `/register` returns 400 if invalid username (min 3 char) # time=0.822ms
+            
+{"level":30,"time":1745394027330,"pid":98644,"hostname":"k2matu.local","reqId":"req-4","res":{"statusCode":400},"err":{"type":"Error","message":"body/username must NOT have fewer than 3 characters","stack":"Error: body/username must NOT have fewer than 3 characters\n    at defaultSchemaErrorFormatter (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/context.js:92:10)\n    at wrapValidationError (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/validation.js:249:17)\n    at validate (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/validation.js:167:16)\n    at preValidationCallback (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/handleRequest.js:89:25)\n    at handler (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/handleRequest.js:73:7)\n    at /Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/contentTypeParser.js:214:9\n    at AsyncResource.runInAsyncScope (node:async_hooks:203:9)\n    at done (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/contentTypeParser.js:207:14)\n    at Parser.defaultJsonParser [as fn] (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/contentTypeParser.js:312:7)\n    at Request.onEnd (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/contentTypeParser.js:296:27)","statusCode":400,"code":"FST_ERR_VALIDATION","validation":[{"instancePath":"/username","schemaPath":"#/properties/username/minLength","keyword":"minLength","params":{"limit":3},"message":"must NOT have fewer than 3 characters"}],"validationContext":"body"},"msg":"body/username must NOT have fewer than 3 characters"}
+{"level":30,"time":1745394027330,"pid":98644,"hostname":"k2matu.local","reqId":"req-4","res":{"statusCode":400},"responseTime":0.3349580764770508,"msg":"request completed"}
+{"level":30,"time":1745394027330,"pid":98644,"hostname":"k2matu.local","reqId":"req-5","req":{"method":"POST","url":"/register","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+            # Subtest: POST `/register` returns 400 if username is missing
+                ok 1 - Status code 400
+                ok 2 - should be equal
+                1..2
+            ok 4 - POST `/register` returns 400 if username is missing # time=0.752ms
+            
+{"level":30,"time":1745394027331,"pid":98644,"hostname":"k2matu.local","reqId":"req-5","res":{"statusCode":400},"err":{"type":"Error","message":"body must have required property 'username'","stack":"Error: body must have required property 'username'\n    at defaultSchemaErrorFormatter (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/context.js:92:10)\n    at wrapValidationError (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/validation.js:249:17)\n    at validate (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/validation.js:167:16)\n    at preValidationCallback (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/handleRequest.js:89:25)\n    at handler (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/handleRequest.js:73:7)\n    at /Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/contentTypeParser.js:214:9\n    at AsyncResource.runInAsyncScope (node:async_hooks:203:9)\n    at done (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/contentTypeParser.js:207:14)\n    at Parser.defaultJsonParser [as fn] (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/contentTypeParser.js:312:7)\n    at Request.onEnd (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/contentTypeParser.js:296:27)","statusCode":400,"code":"FST_ERR_VALIDATION","validation":[{"instancePath":"","schemaPath":"#/required","keyword":"required","params":{"missingProperty":"username"},"message":"must have required property 'username'"}],"validationContext":"body"},"msg":"body must have required property 'username'"}
+{"level":30,"time":1745394027331,"pid":98644,"hostname":"k2matu.local","reqId":"req-5","res":{"statusCode":400},"responseTime":0.30791711807250977,"msg":"request completed"}
+{"level":30,"time":1745394027331,"pid":98644,"hostname":"k2matu.local","reqId":"req-6","req":{"method":"POST","url":"/register","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+            # Subtest: POST `/register` returns 400 if password is missing
+                ok 1 - Status code 400
+                ok 2 - should be equal
+                1..2
+            ok 5 - POST `/register` returns 400 if password is missing # time=0.729ms
+            
+            # Subtest: POST `/register` returns 400 if invalid password
+                ok 1 - Status code 400
+                ok 2 - should be equal
+                1..2
+            ok 6 - POST `/register` returns 400 if invalid password # time=0.812ms
+            
+INSERT INTO users (username, email, password_hash) VALUES ('testuser', 'testuse@email.com', '$2b$10$gAODyWxGxo2v1InzXzgwg.5xx'/*+28 bytes*/)
 SELECT id, username, email FROM users WHERE id = 1.0
-        # Subtest: POST `/register` returns 201 if successfully created user
-            ok 1 - Status code 201
-            ok 2 - should be equal
+            # Subtest: POST `/register` returns 201 if successfully created user
+                ok 1 - Status code 201
+                ok 2 - should be equal
 SELECT * FROM users
-            ok 3 - Status code 200
-            ok 4 - One user in the database
-            ok 5 - should be equivalent
-            1..5
-        ok 8 - POST `/register` returns 201 if successfully created user # time=79.769ms
-        
-{"level":30,"time":1745391484236,"pid":95035,"hostname":"k2matu.local","reqId":"req-6","res":{"statusCode":400},"err":{"type":"Error","message":"body must have required property 'password'","stack":"Error: body must have required property 'password'\n    at defaultSchemaErrorFormatter (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/context.js:92:10)\n    at wrapValidationError (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/validation.js:249:17)\n    at validate (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/validation.js:167:16)\n    at preValidationCallback (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/handleRequest.js:89:25)\n    at handler (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/handleRequest.js:73:7)\n    at /Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/contentTypeParser.js:214:9\n    at AsyncResource.runInAsyncScope (node:async_hooks:203:9)\n    at done (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/contentTypeParser.js:207:14)\n    at Parser.defaultJsonParser [as fn] (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/contentTypeParser.js:312:7)\n    at Request.onEnd (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/contentTypeParser.js:296:27)","statusCode":400,"code":"FST_ERR_VALIDATION","validation":[{"instancePath":"","schemaPath":"#/required","keyword":"required","params":{"missingProperty":"password"},"message":"must have required property 'password'"}],"validationContext":"body"},"msg":"body must have required property 'password'"}
-{"level":30,"time":1745391484236,"pid":95035,"hostname":"k2matu.local","reqId":"req-6","res":{"statusCode":400},"responseTime":1.057499885559082,"msg":"request completed"}
-{"level":30,"time":1745391484237,"pid":95035,"hostname":"k2matu.local","reqId":"req-7","req":{"method":"POST","url":"/register","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
-INSERT INTO users (username, email, password_hash) VALUES ('testuser', 'new@email.com', '$2b$10$l2uQKvgY4JIqlHFUFOB8Se5qi'/*+28 bytes*/)
-        # Subtest: POST `/register` returns 400 if duplicate name
-            ok 1 - Status code 409
-            ok 2 - should be equal
-            1..2
-        ok 9 - POST `/register` returns 400 if duplicate name # time=70.38ms
-        
-{"level":30,"time":1745391484237,"pid":95035,"hostname":"k2matu.local","reqId":"req-7","res":{"statusCode":400},"err":{"type":"Error","message":"body/password must NOT have fewer than 6 characters","stack":"Error: body/password must NOT have fewer than 6 characters\n    at defaultSchemaErrorFormatter (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/context.js:92:10)\n    at wrapValidationError (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/validation.js:249:17)\n    at validate (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/validation.js:167:16)\n    at preValidationCallback (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/handleRequest.js:89:25)\n    at handler (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/handleRequest.js:73:7)\n    at /Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/contentTypeParser.js:214:9\n    at AsyncResource.runInAsyncScope (node:async_hooks:203:9)\n    at done (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/contentTypeParser.js:207:14)\n    at Parser.defaultJsonParser [as fn] (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/contentTypeParser.js:312:7)\n    at Request.onEnd (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/contentTypeParser.js:296:27)","statusCode":400,"code":"FST_ERR_VALIDATION","validation":[{"instancePath":"/password","schemaPath":"#/properties/password/minLength","keyword":"minLength","params":{"limit":6},"message":"must NOT have fewer than 6 characters"}],"validationContext":"body"},"msg":"body/password must NOT have fewer than 6 characters"}
-{"level":30,"time":1745391484237,"pid":95035,"hostname":"k2matu.local","reqId":"req-7","res":{"statusCode":400},"responseTime":0.3960418701171875,"msg":"request completed"}
-{"level":30,"time":1745391484238,"pid":95035,"hostname":"k2matu.local","reqId":"req-8","req":{"method":"POST","url":"/register","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
-{"level":30,"time":1745391484316,"pid":95035,"hostname":"k2matu.local","reqId":"req-8","res":{"statusCode":201},"responseTime":78.02529096603394,"msg":"request completed"}
-{"level":30,"time":1745391484316,"pid":95035,"hostname":"k2matu.local","reqId":"req-9","req":{"method":"GET","url":"/users","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
-{"level":30,"time":1745391484316,"pid":95035,"hostname":"k2matu.local","reqId":"req-9","res":{"statusCode":200},"responseTime":0.32775020599365234,"msg":"request completed"}
-{"level":30,"time":1745391484317,"pid":95035,"hostname":"k2matu.local","reqId":"req-a","req":{"method":"POST","url":"/register","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
-{"level":30,"time":1745391484387,"pid":95035,"hostname":"k2matu.local","reqId":"req-a","res":{"statusCode":409},"responseTime":69.86562490463257,"msg":"request completed"}
-{"level":30,"time":1745391484388,"pid":95035,"hostname":"k2matu.local","reqId":"req-b","req":{"method":"POST","url":"/register","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
-INSERT INTO users (username, email, password_hash) VALUES ('newuser', 'testuse@email.com', '$2b$10$42SWaBvqy.BSiTopbUpO8eveY'/*+28 bytes*/)
-{"level":30,"time":1745391484459,"pid":95035,"hostname":"k2matu.local","reqId":"req-b","res":{"statusCode":409},"responseTime":70.64812469482422,"msg":"request completed"}
-        # Subtest: POST `/register` returns 400 if duplicate email
-            ok 1 - Status code 409
-            ok 2 - should be equal
-            1..2
-        ok 10 - POST `/register` returns 400 if duplicate email # time=71.255ms
-        
-{"level":30,"time":1745391484460,"pid":95035,"hostname":"k2matu.local","reqId":"req-c","req":{"method":"POST","url":"/register","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
-INSERT INTO users (username, email, password_hash) VALUES ('kim', 'kim@email.com', '$2b$10$310iQoIU0LksnpBrbK/qKeQMn'/*+28 bytes*/)
+                ok 3 - Status code 200
+                ok 4 - One user in the database
+                ok 5 - should be equivalent
+                1..5
+            ok 7 - POST `/register` returns 201 if successfully created user # time=80.618ms
+            
+{"level":30,"time":1745394027332,"pid":98644,"hostname":"k2matu.local","reqId":"req-6","res":{"statusCode":400},"err":{"type":"Error","message":"body must have required property 'password'","stack":"Error: body must have required property 'password'\n    at defaultSchemaErrorFormatter (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/context.js:92:10)\n    at wrapValidationError (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/validation.js:249:17)\n    at validate (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/validation.js:167:16)\n    at preValidationCallback (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/handleRequest.js:89:25)\n    at handler (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/handleRequest.js:73:7)\n    at /Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/contentTypeParser.js:214:9\n    at AsyncResource.runInAsyncScope (node:async_hooks:203:9)\n    at done (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/contentTypeParser.js:207:14)\n    at Parser.defaultJsonParser [as fn] (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/contentTypeParser.js:312:7)\n    at Request.onEnd (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/contentTypeParser.js:296:27)","statusCode":400,"code":"FST_ERR_VALIDATION","validation":[{"instancePath":"","schemaPath":"#/required","keyword":"required","params":{"missingProperty":"password"},"message":"must have required property 'password'"}],"validationContext":"body"},"msg":"body must have required property 'password'"}
+{"level":30,"time":1745394027332,"pid":98644,"hostname":"k2matu.local","reqId":"req-6","res":{"statusCode":400},"responseTime":0.27545785903930664,"msg":"request completed"}
+{"level":30,"time":1745394027332,"pid":98644,"hostname":"k2matu.local","reqId":"req-7","req":{"method":"POST","url":"/register","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+INSERT INTO users (username, email, password_hash) VALUES ('testuser', 'new@email.com', '$2b$10$1b59yz71DbbuGj2STuJgi.AiU'/*+28 bytes*/)
+            # Subtest: POST `/register` returns 400 if duplicate name
+                ok 1 - Status code 409
+                ok 2 - should be equal
+                1..2
+            ok 8 - POST `/register` returns 400 if duplicate name # time=70.629ms
+            
+{"level":30,"time":1745394027333,"pid":98644,"hostname":"k2matu.local","reqId":"req-7","res":{"statusCode":400},"err":{"type":"Error","message":"body/password must NOT have fewer than 6 characters","stack":"Error: body/password must NOT have fewer than 6 characters\n    at defaultSchemaErrorFormatter (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/context.js:92:10)\n    at wrapValidationError (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/validation.js:249:17)\n    at validate (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/validation.js:167:16)\n    at preValidationCallback (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/handleRequest.js:89:25)\n    at handler (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/handleRequest.js:73:7)\n    at /Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/contentTypeParser.js:214:9\n    at AsyncResource.runInAsyncScope (node:async_hooks:203:9)\n    at done (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/contentTypeParser.js:207:14)\n    at Parser.defaultJsonParser [as fn] (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/contentTypeParser.js:312:7)\n    at Request.onEnd (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/contentTypeParser.js:296:27)","statusCode":400,"code":"FST_ERR_VALIDATION","validation":[{"instancePath":"/password","schemaPath":"#/properties/password/minLength","keyword":"minLength","params":{"limit":6},"message":"must NOT have fewer than 6 characters"}],"validationContext":"body"},"msg":"body/password must NOT have fewer than 6 characters"}
+{"level":30,"time":1745394027333,"pid":98644,"hostname":"k2matu.local","reqId":"req-7","res":{"statusCode":400},"responseTime":0.3766660690307617,"msg":"request completed"}
+{"level":30,"time":1745394027333,"pid":98644,"hostname":"k2matu.local","reqId":"req-8","req":{"method":"POST","url":"/register","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1745394027412,"pid":98644,"hostname":"k2matu.local","reqId":"req-8","res":{"statusCode":201},"responseTime":78.66912508010864,"msg":"request completed"}
+{"level":30,"time":1745394027413,"pid":98644,"hostname":"k2matu.local","reqId":"req-9","req":{"method":"GET","url":"/users","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1745394027413,"pid":98644,"hostname":"k2matu.local","reqId":"req-9","res":{"statusCode":200},"responseTime":0.36254072189331055,"msg":"request completed"}
+{"level":30,"time":1745394027414,"pid":98644,"hostname":"k2matu.local","reqId":"req-a","req":{"method":"POST","url":"/register","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1745394027484,"pid":98644,"hostname":"k2matu.local","reqId":"req-a","res":{"statusCode":409},"responseTime":69.8995418548584,"msg":"request completed"}
+{"level":30,"time":1745394027485,"pid":98644,"hostname":"k2matu.local","reqId":"req-b","req":{"method":"POST","url":"/register","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+INSERT INTO users (username, email, password_hash) VALUES ('newuser', 'testuse@email.com', '$2b$10$Owmc0RhmxTFr0gyuzrwLQOogV'/*+28 bytes*/)
+{"level":30,"time":1745394027557,"pid":98644,"hostname":"k2matu.local","reqId":"req-b","res":{"statusCode":409},"responseTime":71.95195817947388,"msg":"request completed"}
+            # Subtest: POST `/register` returns 400 if duplicate email
+                ok 1 - Status code 409
+                ok 2 - should be equal
+                1..2
+            ok 9 - POST `/register` returns 400 if duplicate email # time=72.727ms
+            
+{"level":30,"time":1745394027558,"pid":98644,"hostname":"k2matu.local","reqId":"req-c","req":{"method":"POST","url":"/register","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+INSERT INTO users (username, email, password_hash) VALUES ('kim', 'kim@email.com', '$2b$10$0ap/9GLjualGNVslGA45mOuKC'/*+28 bytes*/)
 SELECT id, username, email FROM users WHERE id = 2.0
-{"level":30,"time":1745391484530,"pid":95035,"hostname":"k2matu.local","reqId":"req-c","res":{"statusCode":201},"responseTime":70.71587467193604,"msg":"request completed"}
-        # Subtest: POST `/register` returns 201 if successfully created user
-            ok 1 - Status code 201
-            ok 2 - should be equal
-            1..2
-        ok 11 - POST `/register` returns 201 if successfully created user # time=71.366ms
+{"level":30,"time":1745394027629,"pid":98644,"hostname":"k2matu.local","reqId":"req-c","res":{"statusCode":201},"responseTime":71.14124965667725,"msg":"request completed"}
+            # Subtest: POST `/register` returns 201 if successfully created user
+                ok 1 - Status code 201
+                ok 2 - should be equal
+                1..2
+            ok 10 - POST `/register` returns 201 if successfully created user # time=71.823ms
+            
+            1..10
+        ok 2 - POST `/register` # time=446.508ms
         
-{"level":30,"time":1745391484531,"pid":95035,"hostname":"k2matu.local","reqId":"req-d","req":{"method":"POST","url":"/login","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
-        # Subtest: POST `/login` returns 400 if username is missing
-            ok 1 - Status code 400
-            ok 2 - should be equal
-            1..2
-        ok 12 - POST `/login` returns 400 if username is missing # time=1.451ms
-        
-{"level":30,"time":1745391484532,"pid":95035,"hostname":"k2matu.local","reqId":"req-d","res":{"statusCode":400},"err":{"type":"Error","message":"body must have required property 'username'","stack":"Error: body must have required property 'username'\n    at defaultSchemaErrorFormatter (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/context.js:92:10)\n    at wrapValidationError (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/validation.js:249:17)\n    at validate (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/validation.js:167:16)\n    at preValidationCallback (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/handleRequest.js:89:25)\n    at handler (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/handleRequest.js:73:7)\n    at /Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/contentTypeParser.js:214:9\n    at AsyncResource.runInAsyncScope (node:async_hooks:203:9)\n    at done (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/contentTypeParser.js:207:14)\n    at Parser.defaultJsonParser [as fn] (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/contentTypeParser.js:312:7)\n    at Request.onEnd (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/contentTypeParser.js:296:27)","statusCode":400,"code":"FST_ERR_VALIDATION","validation":[{"instancePath":"","schemaPath":"#/required","keyword":"required","params":{"missingProperty":"username"},"message":"must have required property 'username'"}],"validationContext":"body"},"msg":"body must have required property 'username'"}
-{"level":30,"time":1745391484532,"pid":95035,"hostname":"k2matu.local","reqId":"req-d","res":{"statusCode":400},"responseTime":0.777707576751709,"msg":"request completed"}
-{"level":30,"time":1745391484533,"pid":95035,"hostname":"k2matu.local","reqId":"req-e","req":{"method":"POST","url":"/login","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
-        # Subtest: POST `/login` returns 400 if password is missing
-            ok 1 - Status code 400
-            ok 2 - should be equal
-            1..2
-        ok 13 - POST `/login` returns 400 if password is missing # time=0.705ms
-        
-{"level":30,"time":1745391484533,"pid":95035,"hostname":"k2matu.local","reqId":"req-e","res":{"statusCode":400},"err":{"type":"Error","message":"body must have required property 'password'","stack":"Error: body must have required property 'password'\n    at defaultSchemaErrorFormatter (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/context.js:92:10)\n    at wrapValidationError (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/validation.js:249:17)\n    at validate (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/validation.js:167:16)\n    at preValidationCallback (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/handleRequest.js:89:25)\n    at handler (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/handleRequest.js:73:7)\n    at /Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/contentTypeParser.js:214:9\n    at AsyncResource.runInAsyncScope (node:async_hooks:203:9)\n    at done (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/contentTypeParser.js:207:14)\n    at Parser.defaultJsonParser [as fn] (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/contentTypeParser.js:312:7)\n    at Request.onEnd (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/contentTypeParser.js:296:27)","statusCode":400,"code":"FST_ERR_VALIDATION","validation":[{"instancePath":"","schemaPath":"#/required","keyword":"required","params":{"missingProperty":"password"},"message":"must have required property 'password'"}],"validationContext":"body"},"msg":"body must have required property 'password'"}
-{"level":30,"time":1745391484533,"pid":95035,"hostname":"k2matu.local","reqId":"req-e","res":{"statusCode":400},"responseTime":0.30500030517578125,"msg":"request completed"}
-{"level":30,"time":1745391484533,"pid":95035,"hostname":"k2matu.local","reqId":"req-f","req":{"method":"POST","url":"/login","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1745394027787,"pid":98644,"hostname":"k2matu.local","reqId":"req-d","req":{"method":"POST","url":"/login","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+        # Subtest: POST `/login`
+            # Subtest: POST `/login` returns 400 if username is missing
+                ok 1 - Status code 400
+                ok 2 - should be equal
+                1..2
+            ok 1 - POST `/login` returns 400 if username is missing # time=127.26ms
+            
+{"level":30,"time":1745394027788,"pid":98644,"hostname":"k2matu.local","reqId":"req-d","res":{"statusCode":400},"err":{"type":"Error","message":"body must have required property 'username'","stack":"Error: body must have required property 'username'\n    at defaultSchemaErrorFormatter (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/context.js:92:10)\n    at wrapValidationError (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/validation.js:249:17)\n    at validate (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/validation.js:167:16)\n    at preValidationCallback (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/handleRequest.js:89:25)\n    at handler (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/handleRequest.js:73:7)\n    at /Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/contentTypeParser.js:214:9\n    at AsyncResource.runInAsyncScope (node:async_hooks:203:9)\n    at done (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/contentTypeParser.js:207:14)\n    at Parser.defaultJsonParser [as fn] (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/contentTypeParser.js:312:7)\n    at Request.onEnd (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/contentTypeParser.js:296:27)","statusCode":400,"code":"FST_ERR_VALIDATION","validation":[{"instancePath":"","schemaPath":"#/required","keyword":"required","params":{"missingProperty":"username"},"message":"must have required property 'username'"}],"validationContext":"body"},"msg":"body must have required property 'username'"}
+{"level":30,"time":1745394027788,"pid":98644,"hostname":"k2matu.local","reqId":"req-d","res":{"statusCode":400},"responseTime":1.4638338088989258,"msg":"request completed"}
+{"level":30,"time":1745394027789,"pid":98644,"hostname":"k2matu.local","reqId":"req-e","req":{"method":"POST","url":"/login","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+            # Subtest: POST `/login` returns 400 if password is missing
+                ok 1 - Status code 400
+                ok 2 - should be equal
+                1..2
+            ok 2 - POST `/login` returns 400 if password is missing # time=0.757ms
+            
+{"level":30,"time":1745394027789,"pid":98644,"hostname":"k2matu.local","reqId":"req-e","res":{"statusCode":400},"err":{"type":"Error","message":"body must have required property 'password'","stack":"Error: body must have required property 'password'\n    at defaultSchemaErrorFormatter (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/context.js:92:10)\n    at wrapValidationError (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/validation.js:249:17)\n    at validate (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/validation.js:167:16)\n    at preValidationCallback (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/handleRequest.js:89:25)\n    at handler (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/handleRequest.js:73:7)\n    at /Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/contentTypeParser.js:214:9\n    at AsyncResource.runInAsyncScope (node:async_hooks:203:9)\n    at done (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/contentTypeParser.js:207:14)\n    at Parser.defaultJsonParser [as fn] (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/contentTypeParser.js:312:7)\n    at Request.onEnd (/Users/kale/Desktop/ft_transcendence/backend/node_modules/fastify/lib/contentTypeParser.js:296:27)","statusCode":400,"code":"FST_ERR_VALIDATION","validation":[{"instancePath":"","schemaPath":"#/required","keyword":"required","params":{"missingProperty":"password"},"message":"must have required property 'password'"}],"validationContext":"body"},"msg":"body must have required property 'password'"}
+{"level":30,"time":1745394027789,"pid":98644,"hostname":"k2matu.local","reqId":"req-e","res":{"statusCode":400},"responseTime":0.3019580841064453,"msg":"request completed"}
+{"level":30,"time":1745394027790,"pid":98644,"hostname":"k2matu.local","reqId":"req-f","req":{"method":"POST","url":"/login","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
 SELECT * FROM users WHERE username = 'nonexistentuser'
-        # Subtest: POST `/login` returns 401 if user not found
-            ok 1 - Status code 401
-            ok 2 - should be equal
-            1..2
-        ok 14 - POST `/login` returns 401 if user not found # time=0.881ms
-        
-{"level":30,"time":1745391484534,"pid":95035,"hostname":"k2matu.local","reqId":"req-f","res":{"statusCode":401},"responseTime":0.4724578857421875,"msg":"request completed"}
-{"level":30,"time":1745391484535,"pid":95035,"hostname":"k2matu.local","reqId":"req-g","req":{"method":"POST","url":"/login","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+            # Subtest: POST `/login` returns 401 if user not found
+                ok 1 - Status code 401
+                ok 2 - should be equal
+                1..2
+            ok 3 - POST `/login` returns 401 if user not found # time=0.984ms
+            
+{"level":30,"time":1745394027791,"pid":98644,"hostname":"k2matu.local","reqId":"req-f","res":{"statusCode":401},"responseTime":0.45954179763793945,"msg":"request completed"}
+{"level":30,"time":1745394027791,"pid":98644,"hostname":"k2matu.local","reqId":"req-g","req":{"method":"POST","url":"/login","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
 SELECT * FROM users WHERE username = 'kim'
-{"level":30,"time":1745391484605,"pid":95035,"hostname":"k2matu.local","reqId":"req-g","res":{"statusCode":401},"responseTime":70.18187522888184,"msg":"request completed"}
-        # Subtest: POST `/login` returns 401 if password is incorrect
-            ok 1 - Status code 401
-            ok 2 - should be equal
-            1..2
-        ok 15 - POST `/login` returns 401 if password is incorrect # time=70.808ms
-        
-{"level":30,"time":1745391484606,"pid":95035,"hostname":"k2matu.local","reqId":"req-h","req":{"method":"POST","url":"/login","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
-SELECT * FROM users WHERE username = 'kim'
-UPDATE users
-			SET online_status = TRUE
-			WHERE id = 2.0 
-			AND online_status = FALSE
-			
-{"level":30,"time":1745391484677,"pid":95035,"hostname":"k2matu.local","reqId":"req-h","res":{"statusCode":200},"responseTime":71.56970930099487,"msg":"request completed"}
-        # Subtest: POST `/login` returns 200 if login is successful
-            ok 1 - Status code 200
-            ok 2 - Token is present
-            ok 3 - should be equivalent
-            1..3
-        ok 16 - POST `/login` returns 200 if login is successful # time=72.351ms
-        
-{"level":30,"time":1745391484678,"pid":95035,"hostname":"k2matu.local","reqId":"req-i","req":{"method":"POST","url":"/login","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1745394027862,"pid":98644,"hostname":"k2matu.local","reqId":"req-g","res":{"statusCode":401},"responseTime":70.65333271026611,"msg":"request completed"}
+            # Subtest: POST `/login` returns 401 if password is incorrect
+                ok 1 - Status code 401
+                ok 2 - should be equal
+                1..2
+            ok 4 - POST `/login` returns 401 if password is incorrect # time=71.163ms
+            
+{"level":30,"time":1745394027863,"pid":98644,"hostname":"k2matu.local","reqId":"req-h","req":{"method":"POST","url":"/login","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
 SELECT * FROM users WHERE username = 'kim'
 UPDATE users
 			SET online_status = TRUE
 			WHERE id = 2.0 
 			AND online_status = FALSE
 			
-{"level":30,"time":1745391484748,"pid":95035,"hostname":"k2matu.local","reqId":"req-i","res":{"statusCode":200},"responseTime":69.99741697311401,"msg":"request completed"}
+{"level":30,"time":1745394027934,"pid":98644,"hostname":"k2matu.local","reqId":"req-h","res":{"statusCode":200},"responseTime":71.28754186630249,"msg":"request completed"}
+            # Subtest: POST `/login` returns 200 if login is successful
+                ok 1 - Status code 200
+                ok 2 - Token is present
+                ok 3 - should be equivalent
 SELECT COUNT(*) AS count FROM users WHERE id = 2.0
 UPDATE users 
 			SET online_status = FALSE 
 			WHERE id = 2.0 
 			AND online_status = TRUE
 			
-        # Subtest: POST `/logout` returns 200 if logout is successful
-            ok 1 - Status code 200
-            ok 2 - should be equal
-            1..2
-        ok 17 - POST `/logout` returns 200 if logout is successful # time=73.273ms
+                # Subtest: POST `/logout`
+                    # Subtest: POST `/logout` returns 200 if logout is successful
+                        ok 1 - Status code 200
+                        ok 2 - should be equal
+                        1..2
+                    ok 1 - POST `/logout` returns 200 if logout is successful # time=12.548ms
+                    
+SELECT COUNT(*) AS count FROM users WHERE id = 2.0
+UPDATE users 
+			SET online_status = FALSE 
+			WHERE id = 2.0 
+			AND online_status = TRUE
+			
+                    # Subtest: POST `/logout` returns 400 if user already logged out
+                        ok 1 - Status code 404
+                        ok 2 - should be equal
+                        1..2
+                    ok 2 - POST `/logout` returns 400 if user already logged out # time=1.001ms
+                    
+                    1..2
+                ok 4 - POST `/logout` # time=24.108ms
+                
+                1..4
+            ok 5 - POST `/login` returns 200 if login is successful # time=97.044ms
+            
+            1..5
+        ok 3 - POST `/login` # time=329.515ms
         
-{"level":30,"time":1745391484748,"pid":95035,"hostname":"k2matu.local","reqId":"req-j","req":{"method":"POST","url":"/logout","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
-{"level":30,"time":1745391484751,"pid":95035,"hostname":"k2matu.local","reqId":"req-j","res":{"statusCode":200},"responseTime":2.4212088584899902,"msg":"request completed"}
-{"level":30,"time":1745391484752,"pid":95035,"hostname":"k2matu.local","reqId":"req-k","req":{"method":"POST","url":"/login","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
-SELECT * FROM users WHERE username = 'kim'
-UPDATE users
-			SET online_status = TRUE
-			WHERE id = 2.0 
-			AND online_status = FALSE
-			
-{"level":30,"time":1745391484823,"pid":95035,"hostname":"k2matu.local","reqId":"req-k","res":{"statusCode":200},"responseTime":71.11708307266235,"msg":"request completed"}
-SELECT COUNT(*) AS count FROM users WHERE id = 2.0
-UPDATE users 
-			SET online_status = FALSE 
-			WHERE id = 2.0 
-			AND online_status = TRUE
-			
-        # Subtest: POST `/logout` returns 400 if user already logged out
-            ok 1 - Status code 200
-            ok 2 - should be equal
-SELECT COUNT(*) AS count FROM users WHERE id = 2.0
-UPDATE users 
-			SET online_status = FALSE 
-			WHERE id = 2.0 
-			AND online_status = TRUE
-			
-            ok 3 - Status code 404
-            ok 4 - should be equal
-            1..4
-        ok 18 - POST `/logout` returns 400 if user already logged out # time=73.462ms
-        
-        1..18
-    ok 1 - Auth Routes Suite # time=788.51ms
+        1..3
+    ok 1 - Auth Routes Suite # time=815.908ms
     
     1..1
 🧹 testPong.db wiped clean for next test
-ok 1 - All Test # time=878.622ms
+ok 1 - All Test # time=908.046ms
 
-{"level":30,"time":1745391484823,"pid":95035,"hostname":"k2matu.local","reqId":"req-l","req":{"method":"POST","url":"/logout","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
-{"level":30,"time":1745391484824,"pid":95035,"hostname":"k2matu.local","reqId":"req-l","res":{"statusCode":200},"responseTime":0.9185843467712402,"msg":"request completed"}
-{"level":30,"time":1745391484824,"pid":95035,"hostname":"k2matu.local","reqId":"req-m","req":{"method":"POST","url":"/logout","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
-{"level":30,"time":1745391484825,"pid":95035,"hostname":"k2matu.local","reqId":"req-m","res":{"statusCode":404},"responseTime":0.33612489700317383,"msg":"request completed"}
+{"level":30,"time":1745394027955,"pid":98644,"hostname":"k2matu.local","reqId":"req-i","req":{"method":"POST","url":"/logout","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1745394027957,"pid":98644,"hostname":"k2matu.local","reqId":"req-i","res":{"statusCode":200},"responseTime":2.0300421714782715,"msg":"request completed"}
+{"level":30,"time":1745394027958,"pid":98644,"hostname":"k2matu.local","reqId":"req-j","req":{"method":"POST","url":"/logout","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1745394027959,"pid":98644,"hostname":"k2matu.local","reqId":"req-j","res":{"statusCode":404},"responseTime":0.43416738510131836,"msg":"request completed"}
 1..1
