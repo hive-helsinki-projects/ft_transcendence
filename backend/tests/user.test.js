@@ -97,7 +97,7 @@ function runUserTests(app, t) {
         })
 
         t.test('PUT `/users/1` returns 200 if username and avatar_url updated', async (t) => {
-            const response = await updateUserResponse(app, 1, authToken, { username: 'lumi', avatar_url: 'newlink.com' });
+            let response = await updateUserResponse(app, 1, authToken, { username: 'lumi', avatar_url: 'newlink.com' });
             t.equal(response.statusCode, 200, 'Status code 200');
             
             const data = await response.json();
@@ -107,6 +107,21 @@ function runUserTests(app, t) {
                 username: 'lumi',
                 email: 'new@email.com',
                 avatar_url: 'newlink.com'
+            })
+
+            response = await app.inject({
+                method: 'GET',
+                url: '/users/1'
+            });
+            t.equal(response.statusCode, 200, 'Status code 200');
+            const user = await response.json();
+            t.same(user, {
+                id: 1,
+                username: 'lumi',
+                email: 'new@email.com',
+                avatar_url: "newlink.com",
+                online_status: true,
+                created_at: user.created_at,
             })
         })
 
