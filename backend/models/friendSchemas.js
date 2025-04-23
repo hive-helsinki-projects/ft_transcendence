@@ -4,8 +4,7 @@ export const Friend = {
     properties: {
         user_id: { type: 'integer' },
         friend_id: { type: 'integer' },
-        status: { type: 'string', enum: ['pending', 'accepted'] },
-        created_at: { type: 'string', format: 'date-time' }
+        status: { type: 'string', enum: ['pending', 'accepted'] }
     }
 }
 

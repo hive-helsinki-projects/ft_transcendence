@@ -38,3 +38,14 @@ export function updateUserResponse (app, id, token, user = { username, password,
     });
     return response;
 }
+
+export function sendFriendRequestResponse (app, id, token) {
+    const response = app.inject({
+        method: 'POST',
+        url: `/friend-requests/${id}`,
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    });
+    return response;
+}

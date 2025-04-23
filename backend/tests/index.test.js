@@ -4,6 +4,7 @@ import { resetTestDb } from './utils/resetTestDb.js';
 
 import runAuthTests from './auth.test.js';
 import runUserTests from './user.test.js';
+import runFriendTests from './friend.test.js';
 
 t.test('All Test', async (t) => {
     const app = buildApp();
@@ -16,4 +17,5 @@ t.test('All Test', async (t) => {
     
     runAuthTests(app, t);
     runUserTests(app, t);
+    runFriendTests(app, t);
 })

@@ -68,7 +68,7 @@ const sendFriendRequest = async (req, reply) => {
 
         return reply.code(200).send({ 
             message: 'Friend request sent successfully', 
-            friend
+            item: friend
         });
     } catch (error) {
         if (error.message.includes('UNIQUE constraint failed')) {
