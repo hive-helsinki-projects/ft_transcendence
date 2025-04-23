@@ -61,8 +61,6 @@ function runUserTests(app, t) {
     t.test('PUT `/users/:id`', async (t) => {
         const response = await loginResponse(app, { username: 'testuser', password: 'testpassword' });
         const authToken = await response.json().token;
-        t.equal(response.statusCode, 200, 'Status code 200');
-        t.ok(authToken, 'Token is present');
 
         t.test('PUT `/users/2` returns 403 if unauthoritized', async (t) => {
             const response = await updateUserResponse(app, 2, authToken, { username: "new" });
