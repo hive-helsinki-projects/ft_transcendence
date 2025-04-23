@@ -42,7 +42,14 @@ const updateUser = async (req, reply) => {
 		if (username && username !== user.username) {
 			const existingUser = db.prepare('SELECT * FROM users WHERE username = ?').get(username);
 			if (existingUser) {
-				return reply.code(400).send({ error: 'Username already taken '});
+				return reply.code(400).send({ error: 'Username already taken'});
+			}
+		}
+
+		if (email && email !== user.email) {
+			const existingUser = db.prepare('SELECT * FROM users WHERE email = ?').get(email);
+			if (existingUser) {
+				return reply.code(400).send({ error: 'Email already in use'});
 			}
 		}
 		
