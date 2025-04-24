@@ -69,10 +69,12 @@ db.prepare(`
 db.prepare(`
 	CREATE TABLE IF NOT EXISTS match_history (
 		id INTEGER PRIMARY KEY AUTOINCREMENT,
+		user_id INTEGER,
 		type TEXT NOT NULL,
 		tournament_id INTEGER DEFAULT NULL,
 		round INTEGER,
 		date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+		FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
 		FOREIGN KEY (tournament_id) REFERENCES tournaments(id) ON DELETE CASCADE
 	)
 `).run();
