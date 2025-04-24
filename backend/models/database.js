@@ -84,7 +84,6 @@ db.prepare(`
 		match_id INTEGER NOT NULL,
 		player_id INTEGER NOT NULL,
 		score INTEGER DEFAULT 0 NOT NULL,
-		team INTEGER CHECK (team IN (1, 2)),
 		FOREIGN KEY (match_id) REFERENCES match_history(id) ON DELETE CASCADE,
 		FOREIGN KEY (player_id) REFERENCES players(id),
 		UNIQUE (match_id, player_id)

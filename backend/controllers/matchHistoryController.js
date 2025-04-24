@@ -11,32 +11,29 @@ const getMatchHistories = async (req, reply) => {
                 mh.round, 
                 COALESCE(
                     (
-                        SELECT json_group_array(
-                        json_object('winner_id', mwh.winner_id)
-                        )
+                        SELECT mwh.winner_id
                         FROM match_winner_history mwh
                         WHERE mwh.match_id = mh.id
-                        ), '[]'
-                ) AS winners,
+                        LIMIT 1
+                    ), NULL
+                ) AS winner_id,
                 COALESCE(
                     (
                         SELECT json_group_array(
-                        json_object(
-                        'player_id', mph.player_id, 
-                        'score', mph.score, 
-                        'team', mph.team
+                            json_object(
+                                'player_id', mph.player_id, 
+                                'score', mph.score
+                            )
                         )
-                    )
-                    FROM match_player_history mph
-                    WHERE mph.match_id = mh.id
+                        FROM match_player_history mph
+                        WHERE mph.match_id = mh.id
                     ), '[]'
                 ) AS players
             FROM match_history mh
         `).all();
 
-        const matches = rows.map(({ winners, players, ...rest }) => ({
+        const matches = rows.map(({ players, ...rest }) => ({
             ...rest,
-            winners: JSON.parse(winners),
             players: JSON.parse(players)
         }));
 
@@ -57,27 +54,25 @@ const getMatchHistory = async (req, reply) => {
                 mh.type,
                 mh.tournament_id,
                 mh.date,
-                mh.round,
+                mh.round, 
                 COALESCE(
                     (
-                        SELECT json_group_array(
-                        json_object('winner_id', mwh.winner_id)
-                        )
+                        SELECT mwh.winner_id
                         FROM match_winner_history mwh
                         WHERE mwh.match_id = mh.id
-                        ), '[]'
-                ) AS winners,
+                        LIMIT 1
+                    ), NULL
+                ) AS winner_id,
                 COALESCE(
                     (
                         SELECT json_group_array(
-                        json_object(
-                        'player_id', mph.player_id, 
-                        'score', mph.score, 
-                        'team', mph.team 
+                            json_object(
+                                'player_id', mph.player_id, 
+                                'score', mph.score
+                            )
                         )
-                    )
-                    FROM match_player_history mph
-                    WHERE mph.match_id = mh.id
+                        FROM match_player_history mph
+                        WHERE mph.match_id = mh.id
                     ), '[]'
                 ) AS players
             FROM match_history mh
@@ -85,40 +80,44 @@ const getMatchHistory = async (req, reply) => {
             `).get(id);
 
         if (!row) {
-            return reply.code(404).send({ error: 'Match not found '});
+            return reply.code(404).send({ error: 'Match not found' });
         }
 
         const match = {
             ...row,
-            winners: JSON.parse(row.winners),
+            winner_id: row.winner_id,
             players: JSON.parse(row.players)
         };
 
         return reply.code(200).send(match);
     } catch (error) {
         console.log(error);
-        return reply.code(500).send({ error: 'Failed to fetch match-history '})
+        return reply.code(500).send({ error: 'Failed to fetch match-history' })
     }
 }
 
 const createMatchHistory = async (req, reply) => {
     const { type, tournament_id, players = [], round } = req.body;
+
+    if (players.length != 2) {
+        return reply.code(400).send({ error: 'Must have 2 players' });
+    }
     const insertMatch = db.prepare(`INSERT INTO match_history (type, tournament_id, round) VALUES (?, ?, ?)`);
     const insertMatchPlayer =  db.prepare(`
         INSERT INTO match_player_history
-        (match_id, player_id, team)
-        VALUES (?, ?, ?)`)
+        (match_id, player_id)
+        VALUES (?, ?)`)
 
     const transaction = db.transaction((type, tournament_id, round, players) => {
         const result = insertMatch.run(type, tournament_id, round);
         for (const player of players) {
-            insertMatchPlayer.run(result.lastInsertRowid, player.player_id, player.team)
+            insertMatchPlayer.run(result.lastInsertRowid, player.player_id)
         }
     })
 
     try {
         transaction(type, tournament_id, round, players);
-        return reply.code(200).send({ message: 'Successfully created match-history '})
+        return reply.code(200).send({ message: 'Successfully created match-history'})
     } catch (error) {
         console.log(error);
         return reply.code(500).send({ error: 'Failed to create a match-history' })
@@ -144,7 +143,7 @@ const updateMatchHistory = async (req, reply) => {
     );
     
     if (!allWinnersArePlayers) {
-        return reply.code(400).send({ error: 'All winners must be part of the players list' });
+        return reply.code(400).send({ error: 'Winner must be part of the players list' });
     }
 
     const transaction = db.transaction((id, winners, players) => {

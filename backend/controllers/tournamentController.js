@@ -152,7 +152,7 @@ const generateMatchups = (players) => {
 }
 
 const insertMatchHistory = db.prepare('INSERT INTO match_history (type, tournament_id, round) VALUES (?, ?, ?)');
-const insertMatchPlayer = db.prepare(`INSERT INTO match_player_history (match_id, player_id, team) VALUES (?, ?, ?)`);
+const insertMatchPlayer = db.prepare(`INSERT INTO match_player_history (match_id, player_id) VALUES (?, ?)`);
 
 const createTournament = async (req, reply) => {
     const { name, player_ids } = req.body;
