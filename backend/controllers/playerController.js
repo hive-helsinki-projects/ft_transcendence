@@ -46,12 +46,11 @@ const createPlayer = async (req, reply) => {
 		}
 		
 		const result = db.prepare(`INSERT INTO players (user_id, display_name, avatar_url) VALUES (?, ?, ?)`).run(newPlayer.user_id, newPlayer.display_name, newPlayer.avatar_url);
-		
 		const player = db.prepare('SELECT id, display_name, avatar_url, wins, losses, created_at FROM players WHERE id = ?').get(result.lastInsertRowid);
 		
 		return reply.code(201).send({
 			message: 'Player created succesfully',
-			player
+			item: player
 		})
 	} catch (error) {
 		if (error.message.includes('UNIQUE constraint failed: players.display_name')) {
@@ -71,7 +70,7 @@ const deletePlayer = async (req, reply) => {
 		if (result.changes === 0) {
 			return reply.code(404).send({ error: 'Player not found or user not authortized to delete this player'})
 		}
-		return reply.code(200).send({ message: 'Succesfully deleted player '})
+		return reply.code(200).send({ message: 'Succesfully deleted player'})
 	} catch (error) {
 		console.log(error);
 		return reply.code(500).send({ error: 'Failed to delete player' })
@@ -79,11 +78,12 @@ const deletePlayer = async (req, reply) => {
 }
 
 const updatePlayer = async (req, reply) => {
+	const user_id = req.user.id;
 	const { id } = req.params;
 	const { display_name, avatar_url } = req.body;
 	
 	try {
-		const player = db.prepare(`SELECT * FROM players WHERE id = ?`).get(id)
+		const player = db.prepare(`SELECT * FROM players WHERE id = ? and user_id = ?`).get(id, user_id)
 		if (!player) {
 			return reply.code(404).send({ error: 'Player not found or user not authortized to update this player'})
 		}

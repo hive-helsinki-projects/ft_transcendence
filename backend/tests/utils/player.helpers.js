@@ -1,54 +1,56 @@
-export function sendFriendRequestResponse (app, id, token) {
+export function getPlayersResponse (app, token) {
+    const response = app.inject({
+        method: 'GET',
+        url: '/players',
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    });
+    return response;
+}
+
+export function getPlayerResponse (app, token, id) {
+    const response = app.inject({
+        method: 'GET',
+        url: `/players/${id}`,
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    });
+    return response;
+}
+
+export function createPlayerResponse (app, token, player = { display_name, avatar_url }) {
     const response = app.inject({
         method: 'POST',
-        url: `/friend-requests/${id}`,
+        url: '/players',
         headers: {
             Authorization: `Bearer ${token}`,
         },
+        payload: player,
     });
     return response;
 }
 
-export function getFriendStatusResponse (app, id, token) {
+export function updatePlayerResponse (app, token, id, player = { display_name, avatar_url }) {
     const response = app.inject({
-        method: 'GET',
-        url: `/friends/${id}/status`,
+        method: 'PUT',
+        url: `/players/${id}`,
         headers: {
             Authorization: `Bearer ${token}`,
         },
-    });
+        payload: player,
+    })
     return response;
 }
 
-export function acceptFriendResponse (app, id, token) {
-    const response = app.inject({
-        method: 'PATCH',
-        url: `/friend-requests/${id}`,
-        headers: {
-            Authorization: `Bearer ${token}`,
-        },
-    });
-    return response;
-}
-
-export function getFriendsResponse (app, token) {
-    const response = app.inject({
-        method: 'GET',
-        url: '/friends',
-        headers: {
-            Authorization: `Bearer ${token}`,
-        },
-    });
-    return response;
-}
-
-export function deleteFriendResponse (app, token, id) {
+export function deletePlayerResponse (app, token, id) {
     const response = app.inject({
         method: 'DELETE',
-        url: `/friends/${id}`,
+        url: `/players/${id}`,
         headers: {
             Authorization: `Bearer ${token}`,
-        },
-    });
+        }
+    })
     return response;
 }
