@@ -1,4 +1,5 @@
-import { getFriendStatusResponse, loginResponse, sendFriendRequestResponse, acceptFriendResponse } from './utils/helpers.js';
+import { loginResponse } from './utils/auth.helpers.js';
+import { getFriendStatusResponse, sendFriendRequestResponse, acceptFriendResponse } from './utils/friend.helpers.js';
 
 function runFriendTests(app, t) {
     t.test('', async (t) => {
