@@ -78,43 +78,52 @@ export default function Game() {
 
     function update() {
       if (gameOver) return;
-
+    
+      const ballRadius = 8;
+    
       // Move paddles
       if (paddle1Up && paddle1Y > 0) paddle1Y -= paddleSpeed;
       if (paddle1Down && paddle1Y < canvas.height - paddleHeight) paddle1Y += paddleSpeed;
       if (paddle2Up && paddle2Y > 0) paddle2Y -= paddleSpeed;
       if (paddle2Down && paddle2Y < canvas.height - paddleHeight) paddle2Y += paddleSpeed;
-
+    
       // Move ball
       ballX += ballSpeedX;
       ballY += ballSpeedY;
-
+    
       // Ball collision with top and bottom
-      if (ballY < 0 || ballY > canvas.height) {
+      if (ballY - ballRadius < 0 || ballY + ballRadius > canvas.height) {
         ballSpeedY = -ballSpeedY;
       }
-
-      // Ball collision with paddles
+    
+      // Ball collision with left paddle
       if (
-        ballX < paddleWidth &&
-        ballY > paddle1Y &&
-        ballY < paddle1Y + paddleHeight
+        ballX - ballRadius <= paddleWidth &&
+        ballY + ballRadius >= paddle1Y &&
+        ballY - ballRadius <= paddle1Y + paddleHeight
       ) {
-        ballSpeedX = -ballSpeedX * 1.1; // Increase speed slightly
-        ballSpeedY += (ballY - (paddle1Y + paddleHeight / 2)) * 0.1; // Add angle based on hit position
+        ballX = paddleWidth + ballRadius; // Prevent overlap
+        ballSpeedX = -ballSpeedX * 1.1;
+        ballSpeedY += (ballY - (paddle1Y + paddleHeight / 2)) * 0.1;
       }
-
+    
+      // Ball collision with right paddle
       if (
-        ballX > canvas.width - paddleWidth &&
-        ballY > paddle2Y &&
-        ballY < paddle2Y + paddleHeight
+        ballX + ballRadius >= canvas.width - paddleWidth &&
+        ballY + ballRadius >= paddle2Y &&
+        ballY - ballRadius <= paddle2Y + paddleHeight
       ) {
-        ballSpeedX = -ballSpeedX * 1.1; // Increase speed slightly
-        ballSpeedY += (ballY - (paddle2Y + paddleHeight / 2)) * 0.1; // Add angle based on hit position
+        ballX = canvas.width - paddleWidth - ballRadius; // Prevent overlap
+        ballSpeedX = -ballSpeedX * 1.1;
+        ballSpeedY += (ballY - (paddle2Y + paddleHeight / 2)) * 0.1;
       }
-
+    
+      // Clamp ball speed to prevent it from getting too fast
+      ballSpeedX = Math.max(Math.min(ballSpeedX, 10), -10);
+      ballSpeedY = Math.max(Math.min(ballSpeedY, 10), -10);
+    
       // Score points
-      if (ballX < 0) {
+      if (ballX - ballRadius < 0) {
         setScores(prev => {
           const newScores = { ...prev, player2: prev.player2 + 1 };
           checkWinCondition(newScores);
@@ -122,7 +131,8 @@ export default function Game() {
         });
         resetBall();
       }
-      if (ballX > canvas.width) {
+    
+      if (ballX + ballRadius > canvas.width) {
         setScores(prev => {
           const newScores = { ...prev, player1: prev.player1 + 1 };
           checkWinCondition(newScores);
