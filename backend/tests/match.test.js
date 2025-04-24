@@ -12,6 +12,10 @@ function runMatchHistoryTests(app, t) {
         let response = await loginResponse(app, { username: 'kim', password: 'password' });
         const authToken = await response.json().token;
 
+        // Login as user `lumi`
+        response = await loginResponse(app, { username: 'lumi', password: 'newpassword' });
+        const authSecondToken = await response.json().token;
+
         // Test when no match exist for the user
         t.test('GET `/match-histories` returns 200 empty array when no matches found for user', async (t) => {
             response = await getMatchHistoriesResponse(app, authToken);
@@ -59,11 +63,16 @@ function runMatchHistoryTests(app, t) {
             t.equal(response.statusCode, 404, 'Status code 404');
             t.equal(response.json().error, 'Match not found')
         })
+        
+        t.test('GET `/match-histories/1` returns 500 when unauthoritized', async (t) => {
+            response = await getMatchHistoryResponse(app, authSecondToken, 1);
+            t.equal(response.statusCode, 500, 'Status code 500');
+            t.equal(response.json().error, 'Unauthoritized')
+        })
 
         t.test('GET `/match-histories/1` returns 200', async (t) => {
             response = await getMatchHistoryResponse(app, authToken, 1);
             t.equal(response.statusCode, 200, 'Status code 200');
-            console.log("HERE STARTS", response.json());
             t.same(response.json(), {
                 id: 1,
                 type: '1v1',

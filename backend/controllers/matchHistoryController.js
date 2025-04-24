@@ -85,7 +85,6 @@ const getMatchHistory = async (req, reply) => {
 
         const match = {
             ...row,
-            winner_id: row.winner_id,
             players: JSON.parse(row.players)
         };
 
@@ -96,6 +95,7 @@ const getMatchHistory = async (req, reply) => {
     }
 }
 
+// add user_id to create, update and delete match history
 const createMatchHistory = async (req, reply) => {
     const { type, tournament_id, players = [], round } = req.body;
 

@@ -7,14 +7,12 @@ function matchHistoryRoutes(fastify, options) {
     // GET /match-history?type=multiplayer
     fastify.get('/match-histories', {
         ...getMatchHistoriesOpts,
-        onRequest: [fastify.jwtAuth],
         handler: matchHistoryController.getMatchHistories
     });
     
     // Get match details
     fastify.get('/match-histories/:id', {
         ...getMatchHistoryOpts,
-        onRequest: [fastify.jwtAuth],
         handler: matchHistoryController.getMatchHistory
     });
     
