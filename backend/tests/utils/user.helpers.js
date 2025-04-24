@@ -17,3 +17,11 @@ export function getUsersResponse (app) {
     });
     return response;
 }
+
+export function getUserResponse (app, id) {
+    const response = app.inject({
+        method: 'GET',
+        url: `/users/${id}`
+    });
+    return response;
+}
