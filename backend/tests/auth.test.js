@@ -1,12 +1,10 @@
-import { loginResponse, logoutResponse, registerResponse } from './utils/helpers.js';
+import { loginResponse, logoutResponse, registerResponse } from './utils/auth.helpers.js';
+import { getUsersResponse  } from './utils/user.helpers.js';
 
 function runAuthTests(app, t) {
     t.test('Auth Routes Suite', async (t) => {
         t.test('GET `/users` returns empty array', async (t) => {
-            const response = await app.inject({
-                method: 'GET',
-                url: '/users',
-            });
+            const response = await getUsersResponse(app);
             t.equal(response.statusCode, 200, 'Status code 200');
             t.same(response.json(), []);
         });

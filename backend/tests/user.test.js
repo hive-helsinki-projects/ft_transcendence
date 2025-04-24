@@ -1,13 +1,11 @@
-import { loginResponse, updateUserResponse } from "./utils/helpers.js";
+import { loginResponse } from "./utils/auth.helpers.js";
+import { getUsersResponse, updateUserResponse } from "./utils/user.helpers.js";
 
 function runUserTests(app, t) {
     t.test('User Routes Suite', async(t) => {
         // Test retrieving all users
         t.test('GET `/users` returns two users', async (t) => {
-            const response = await app.inject({
-                method: 'GET',
-                url: '/users'
-        });
+            const response = await getUsersResponse(app);
         t.equal(response.statusCode, 200, 'Status code 200');
         const users = await response.json();
         t.equal(users.length, 2, 'Two user in the database'); 
