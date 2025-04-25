@@ -190,7 +190,7 @@ const deleteMatchHistory = async (req, reply) => {
 		if (result.changes === 0) {
 			return reply.code(404).send({ error: 'Match-history not found or user not authortized to delete this player'})
 		}
-		return reply.code(200).send({ message: 'Succesfully deleted match-history'})
+		return reply.code(200).send({ message: 'Successfully deleted match-history'})
 	} catch (error) {
 		console.log(error);
 		return reply.code(500).send({ error: 'Failed to delete match-history' })
