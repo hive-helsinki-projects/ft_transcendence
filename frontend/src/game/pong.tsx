@@ -51,7 +51,7 @@ export default function Game() {
     const maxScore = 11;
 
     function keyDownHandler(e: KeyboardEvent) {
-      e.preventDefault();
+      if (["ArrowUp", "ArrowDown"].includes(e.key)) e.preventDefault();
       if (e.key === 'w' || e.key === 'W') paddle1Up = true;
       if (e.key === 's' || e.key === 'S') paddle1Down = true;
       if (e.key === 'ArrowUp') paddle2Up = true;
@@ -59,7 +59,7 @@ export default function Game() {
     }
 
     function keyUpHandler(e: KeyboardEvent) {
-      e.preventDefault();
+      if (["ArrowUp", "ArrowDown"].includes(e.key)) e.preventDefault();
       if (e.key === 'w' || e.key === 'W') paddle1Up = false;
       if (e.key === 's' || e.key === 'S') paddle1Down = false;
       if (e.key === 'ArrowUp') paddle2Up = false;
