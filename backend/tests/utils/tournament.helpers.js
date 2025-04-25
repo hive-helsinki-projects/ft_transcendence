@@ -30,3 +30,5 @@ export function createTournamentResponse(app, token, {
         payload: tournament
     });
 }
+
+// export function advanceTournamentResponse(app, token, )
