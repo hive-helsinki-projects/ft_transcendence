@@ -97,26 +97,27 @@ const getMatchHistory = async (req, reply) => {
 
 // add user_id to create, update and delete match history
 const createMatchHistory = async (req, reply) => {
+    const user_id = req.user.id;
     const { type, tournament_id, players = [], round } = req.body;
 
     if (players.length != 2) {
         return reply.code(400).send({ error: 'Must have 2 players' });
     }
-    const insertMatch = db.prepare(`INSERT INTO match_history (type, tournament_id, round) VALUES (?, ?, ?)`);
+    const insertMatch = db.prepare(`INSERT INTO match_history (type, tournament_id, round, user_id) VALUES (?, ?, ?, ?)`);
     const insertMatchPlayer =  db.prepare(`
         INSERT INTO match_player_history
         (match_id, player_id)
         VALUES (?, ?)`)
 
-    const transaction = db.transaction((type, tournament_id, round, players) => {
-        const result = insertMatch.run(type, tournament_id, round);
+    const transaction = db.transaction((type, tournament_id, round, players, user_id) => {
+        const result = insertMatch.run(type, tournament_id, round, user_id);
         for (const player of players) {
             insertMatchPlayer.run(result.lastInsertRowid, player.player_id)
         }
     })
 
     try {
-        transaction(type, tournament_id, round, players);
+        transaction(type, tournament_id, round, players, user_id);
         return reply.code(200).send({ message: 'Successfully created match-history'})
     } catch (error) {
         console.log(error);
@@ -125,6 +126,7 @@ const createMatchHistory = async (req, reply) => {
 }
 
 const updateMatchHistory = async (req, reply) => {
+    const user_id = req.user.id;
     const id = req.params.id;
     const { winners, players } = req.body;
     
@@ -137,6 +139,11 @@ const updateMatchHistory = async (req, reply) => {
         score = ? WHERE match_id = ? AND player_id = ?  
     `)
     const updatePlayerLoss =  db.prepare(`UPDATE players SET losses = losses + 1 WHERE id = ?`);
+
+    const authoritized = db.prepare(`SELECT * FROM match_history WHERE match_id = ? AND user_id = ?`).get(id, user_id);
+    if (!authoritized) {
+        return reply.code(400).send({ error: 'Unauthoritized to update match-history'});
+    }
 
     const allWinnersArePlayers = winners.every(winner =>
         players.some(player => player.player_id == winner.winner_id)
@@ -186,9 +193,10 @@ const updateMatchHistory = async (req, reply) => {
 
 const deleteMatchHistory = async (req, reply) => {
 	const { id } = req.params;
+    const user_id = req.user.id;
 	
 	try {
-		const result = db.prepare(`DELETE FROM match_history WHERE id = ?`).run(id)
+		const result = db.prepare(`DELETE FROM match_history WHERE id = ? AND user_id = ?`).run(id, user_id);
 		if (result.changes === 0) {
 			return reply.code(404).send({ error: 'Match-history not found or user not authortized to delete this player'})
 		}
