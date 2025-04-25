@@ -84,6 +84,7 @@ export const postTournamentOpts = {
                 player_ids: {
                     type: 'array',
                     minItems: 3,
+                    maxItems: 8,
                     items: { type: 'integer' },
                 },
             },

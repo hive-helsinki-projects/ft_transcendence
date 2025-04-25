@@ -35,6 +35,7 @@ function tournamentRoutes(fastify, options) {
         handler: tournamentController.finishTournament
     });
 
+     // Delete a match tournament
     fastify.delete('/tournaments/:id', {
         ...deleteTournamentOpts,
         onRequest: [fastify.jwtAuth],
