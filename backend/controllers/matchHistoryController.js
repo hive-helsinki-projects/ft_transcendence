@@ -128,7 +128,7 @@ const createMatchHistory = async (req, reply) => {
 const updateMatchHistory = async (req, reply) => {
     const user_id = req.user.id;
     const id = req.params.id;
-    const { winners, players } = req.body;
+    const { winner_id, players } = req.body;
     
     const getExistingPlayer = db.prepare(`SELECT * FROM match_player_history WHERE match_id = ? and player_id = ?`);
     const getExistingWinner = db.prepare(`SELECT * FROM match_winner_history WHERE match_id = ? AND winner_id = ?`);
@@ -140,22 +140,12 @@ const updateMatchHistory = async (req, reply) => {
     `)
     const updatePlayerLoss =  db.prepare(`UPDATE players SET losses = losses + 1 WHERE id = ?`);
 
-    const authoritized = db.prepare(`SELECT * FROM match_history WHERE match_id = ? AND user_id = ?`).get(id, user_id);
-    if (!authoritized) {
-        return reply.code(400).send({ error: 'Unauthoritized to update match-history'});
-    }
-
-    const allWinnersArePlayers = winners.every(winner =>
-        players.some(player => player.player_id == winner.winner_id)
-    );
-    
-    if (!allWinnersArePlayers) {
+    const winnerIsPlayer = players.some(player => player.player_id == winner_id)
+    if (!winnerIsPlayer) {
         return reply.code(400).send({ error: 'Winner must be part of the players list' });
     }
 
-    const transaction = db.transaction((id, winners, players) => {
-        const winnerIds = winners.map(winner => winner.winner_id);
-
+    const transaction = db.transaction((id, winner_id, players) => {
         for (const player of players) {
             const existingPlayer = getExistingPlayer.get(id, player.player_id);
             if (!existingPlayer) {
@@ -164,29 +154,29 @@ const updateMatchHistory = async (req, reply) => {
 
             updateMatchPlayerHistory.run(player.score, id, player.player_id)
     
-            if (!winnerIds.includes(player.player_id)) {
+            if (winner_id != player.player_id) {
                 updatePlayerLoss.run(player.player_id);
             }
         }
 
-        for (const winner of winners) {
-            const existingWinner = getExistingWinner.get(id, winner.winner_id);
-            if (!existingWinner) {
-                insertMatchWinner.run(id, winner.winner_id);
-                updatePlayerWin.run(winner.winner_id);
-            }
+        const existingWinner = getExistingWinner.get(id, winner_id);
+        if (!existingWinner) {
+            insertMatchWinner.run(id, winner_id);
+            updatePlayerWin.run(winner_id);
         }
     })
 
     try {
-        transaction(id, winners, players);
+        const authorized = db.prepare(`SELECT * FROM match_history WHERE id = ? AND user_id = ?`).get(id, user_id);
+        if (!authorized) {
+            return reply.code(403).send({ error: 'Unauthorized to update match-history or match not found'});
+        }
+
+        transaction(id, winner_id, players);
         return reply.code(200).send({ 
             message: 'Successfully updated match-history' })
     } catch (error) {
         console.log(error);
-        if (error.message.includes('FOREIGN KEY constraint failed')) {
-            return reply.code(409).send({ error: 'Match not found' });
-        }
         return reply.code(500).send({ error: 'Failed to update a match-history' })
     }
 }
@@ -200,13 +190,12 @@ const deleteMatchHistory = async (req, reply) => {
 		if (result.changes === 0) {
 			return reply.code(404).send({ error: 'Match-history not found or user not authortized to delete this player'})
 		}
-		return reply.code(200).send({ message: 'Succesfully deleted match-history '})
+		return reply.code(200).send({ message: 'Succesfully deleted match-history'})
 	} catch (error) {
 		console.log(error);
 		return reply.code(500).send({ error: 'Failed to delete match-history' })
 	}
 }
-
 
 export default {
     getMatchHistories,
