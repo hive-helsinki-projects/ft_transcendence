@@ -1,3 +1,4 @@
+// Tournament schema
 export const Tournament = {
     type: 'object',
     properties: {
@@ -23,23 +24,23 @@ export const Tournament = {
                                 player_id: { type: 'integer' },
                                 score: { type: 'integer' },
                             },
-                            required: ['player_id']
-                            }
+                            required: ['player_id'],
                         },
-                        winner: {
-                            type: 'object',
-                            nullable: true,
-                            properties: {
-                                player_id: { type: 'integer' },
-                            }
-                        }
                     },
-                required: ['match_id', 'players']
-                }
-            }
+                    winner: {
+                        type: 'object',
+                        nullable: true,
+                        properties: {
+                            player_id: { type: 'integer' },
+                        },
+                    },
+                },
+                required: ['match_id', 'players'],
+            },
         },
-        required: ['id', 'name', 'status', 'current_round', 'created_at']
-}
+    },
+    required: ['id', 'name', 'status', 'current_round', 'created_at'],
+};
 
 // Schemas for tournament operations
 export const getTournamentsOpts = {
@@ -47,13 +48,11 @@ export const getTournamentsOpts = {
         response: {
             200: {
                 type: 'array',
-                properties: {
-                    items: Tournament,
-                }
-            }
-        }
-    }
-}
+                items: Tournament,
+            },
+        },
+    },
+};
 
 export const getTournamentOpts = {
     schema: {
@@ -61,31 +60,33 @@ export const getTournamentOpts = {
             type: 'object',
             required: ['id'],
             properties: {
-                id: { type: 'integer' }
+                id: { type: 'integer' },
             },
         },
         response: {
-            201: {
+            200: {
                 type: 'object',
                 properties: {
                     item: Tournament,
-                }    
-            }
-        }
-    }
-}
+                },
+            },
+        },
+    },
+};
 
 export const postTournamentOpts = {
     schema: {
-        type: 'object',
-        required: ['name', 'player_ids'],
-        properties: {
-            name: { type: 'string' },
-            player_ids: {
-                type: 'array',
-                minItems: 3,
-                items: { type: 'integer' }
-            }
+        body: {
+            type: 'object',
+            required: ['name', 'player_ids'],
+            properties: {
+                name: { type: 'string' },
+                player_ids: {
+                    type: 'array',
+                    minItems: 3,
+                    items: { type: 'integer' },
+                },
+            },
         },
         response: {
             201: {
@@ -93,11 +94,11 @@ export const postTournamentOpts = {
                 properties: {
                     message: { type: 'string' },
                     item: Tournament,
-                }    
-            }
-        }
-    }
-}
+                },
+            },
+        },
+    },
+};
 
 export const putTournamentOpts = {
     schema: {
@@ -105,30 +106,30 @@ export const putTournamentOpts = {
             type: 'object',
             required: ['id'],
             properties: {
-                id: { type: 'integer' }
+                id: { type: 'integer' },
             },
         },
         response: {
-            201: {
+            200: {
                 type: 'object',
                 properties: {
                     message: { type: 'string' },
                     item: Tournament,
-                }    
-            }
-        }
-    }
-}
+                },
+            },
+        },
+    },
+};
 
 export const deleteTournamentOpts = {
     schema: {
-		response: {
-			200: {
-				type: 'object',
-				properties: {
-					message: { type: 'string' },
-				}
-			}
-		}
-	}
-}
+        response: {
+            200: {
+                type: 'object',
+                properties: {
+                    message: { type: 'string' },
+                },
+            },
+        },
+    },
+};

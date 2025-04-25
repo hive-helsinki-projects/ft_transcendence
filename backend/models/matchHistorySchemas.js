@@ -4,22 +4,22 @@ export const MatchHistory = {
     properties: {
         id: { type: 'integer' },
         type: { type: 'string' },
-        tournament_id: { type: 'integer', nullable: true},
+        tournament_id: { type: 'integer', nullable: true },
         date: { type: 'string', format: 'date-time' },
         round: { type: 'integer', nullable: true },
         winner_id: { type: 'integer', nullable: true },
-        players: { 
+        players: {
             type: 'array',
             items: {
                 type: 'object',
                 properties: {
                     player_id: { type: 'integer' },
-                    score: { type: 'integer', nullable: true }
-                }
-            }
+                    score: { type: 'integer', nullable: true },
+                },
+            },
         },
-    }
-}
+    },
+};
 
 // Schemas for match-history operations
 export const getMatchHistoriesOpts = {
@@ -28,41 +28,41 @@ export const getMatchHistoriesOpts = {
             200: {
                 type: 'array',
                 items: MatchHistory,
-            }
-        }
-    }
-}
+            },
+        },
+    },
+};
 
 export const getMatchHistoryOpts = {
     schema: {
         response: {
             200: MatchHistory,
-        }
-    }
-}
+        },
+    },
+};
 
 export const postMatchHistoryOpts = {
     schema: {
         body: {
             type: 'object',
-            required: [ 'type', 'players' ],
+            required: ['type', 'players'],
             properties: {
                 type: { type: 'string' },
                 tournament_id: { type: 'integer', nullable: true },
                 winner_id: { type: 'integer', nullable: true },
-                players: { 
+                players: {
                     type: 'array',
                     items: {
                         type: 'object',
                         properties: {
                             player_id: { type: 'integer' },
                             score: { type: 'integer', nullable: true },
-                            round: { type: 'integer', nullable: true }
+                            round: { type: 'integer', nullable: true },
                         },
-                        required: ['player_id']
-                    }
+                        required: ['player_id'],
+                    },
                 },
-            }
+            },
         },
         response: {
             200: {
@@ -70,34 +70,34 @@ export const postMatchHistoryOpts = {
                 properties: {
                     message: { type: 'string' },
                     item: MatchHistory,
-                }
-            }
-        }
-    }
-}
+                },
+            },
+        },
+    },
+};
 
 export const putMatchHistoryOpts = {
     schema: {
         body: {
             type: 'object',
-            required: [ 'winner_id', 'players' ],
+            required: ['winner_id', 'players'],
             properties: {
                 type: { type: 'string' },
                 tournament_id: { type: 'integer', nullable: true },
                 winner_id: { type: 'integer' },
-                players: { 
+                players: {
                     type: 'array',
                     items: {
                         type: 'object',
                         properties: {
                             player_id: { type: 'integer' },
                             score: { type: 'integer' },
-                            round: { type: 'integer', nullable: true }
+                            round: { type: 'integer', nullable: true },
                         },
-                        required: ['player_id', 'score']
-                    }
+                        required: ['player_id', 'score'],
+                    },
                 },
-            }
+            },
         },
         response: {
             200: {
@@ -105,21 +105,21 @@ export const putMatchHistoryOpts = {
                 properties: {
                     message: { type: 'string' },
                     item: MatchHistory,
-                }
-            }
-        }
-    }
-}
+                },
+            },
+        },
+    },
+};
 
 export const deleteMatchHistoryOpts = {
-	schema: {
-		response: {
-			200: {
-				type: 'object',
-				properties: {
-					message: { type: 'string' },
-				}
-			}
-		}
-	}
-}
+    schema: {
+        response: {
+            200: {
+                type: 'object',
+                properties: {
+                    message: { type: 'string' },
+                },
+            },
+        },
+    },
+};
