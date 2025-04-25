@@ -44,4 +44,32 @@ export function createMatchHistoryResponse (app, token, {
     });
 }
 
-// export function updateMatchHistory (app, token, match = { players: [{player_id, score}, {player_id, score}]})
+export function updateMatchHistoryResponse (app, token, id, { 
+    players = [],
+    winner_id = null
+    } = {}) {
+    const match = {
+        players,
+        winner_id,
+    };
+
+    return app.inject({
+        method: 'PUT',
+        url: `/match-histories/${id}`,
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+        payload: match
+    });
+}
+
+export function deleteMatchHistoryResponse (app, token, id) {
+    const response = app.inject({
+        method: 'DELETE',
+        url: `/match-histories/${id}`,
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    })
+    return response;
+}
