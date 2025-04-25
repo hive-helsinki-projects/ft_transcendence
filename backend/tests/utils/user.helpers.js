@@ -1,5 +1,5 @@
-export function updateUserResponse (app, id, token, user = { username, password, email, avatar_url }) {
-    const response = app.inject({
+export function updateUserResponse(app, id, token, user = { username, password, email, avatar_url }) {
+    return app.inject({
         method: 'PUT',
         url: `/users/${id}`,
         headers: {
@@ -7,21 +7,18 @@ export function updateUserResponse (app, id, token, user = { username, password,
         },
         payload: user,
     });
-    return response;
 }
 
-export function getUsersResponse (app) {
-    const response = app.inject({
+export function getUsersResponse(app) {
+    return app.inject({
         method: 'GET',
         url: '/users',
     });
-    return response;
 }
 
-export function getUserResponse (app, id) {
-    const response = app.inject({
+export function getUserResponse(app, id) {
+    return app.inject({
         method: 'GET',
-        url: `/users/${id}`
+        url: `/users/${id}`,
     });
-    return response;
 }

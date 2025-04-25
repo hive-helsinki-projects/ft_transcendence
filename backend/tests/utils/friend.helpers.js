@@ -1,54 +1,49 @@
-export function sendFriendRequestResponse (app, id, token) {
-    const response = app.inject({
+export function sendFriendRequestResponse(app, id, token) {
+    return app.inject({
         method: 'POST',
         url: `/friend-requests/${id}`,
         headers: {
             Authorization: `Bearer ${token}`,
         },
     });
-    return response;
 }
 
-export function getFriendStatusResponse (app, id, token) {
-    const response = app.inject({
+export function getFriendStatusResponse(app, id, token) {
+    return app.inject({
         method: 'GET',
         url: `/friends/${id}/status`,
         headers: {
             Authorization: `Bearer ${token}`,
         },
     });
-    return response;
 }
 
-export function acceptFriendResponse (app, id, token) {
-    const response = app.inject({
+export function acceptFriendResponse(app, id, token) {
+    return app.inject({
         method: 'PATCH',
         url: `/friend-requests/${id}`,
         headers: {
             Authorization: `Bearer ${token}`,
         },
     });
-    return response;
 }
 
-export function getFriendsResponse (app, token) {
-    const response = app.inject({
+export function getFriendsResponse(app, token) {
+    return app.inject({
         method: 'GET',
         url: '/friends',
         headers: {
             Authorization: `Bearer ${token}`,
         },
     });
-    return response;
 }
 
-export function deleteFriendResponse (app, token, id) {
-    const response = app.inject({
+export function deleteFriendResponse(app, token, id) {
+    return app.inject({
         method: 'DELETE',
         url: `/friends/${id}`,
         headers: {
             Authorization: `Bearer ${token}`,
         },
     });
-    return response;
 }

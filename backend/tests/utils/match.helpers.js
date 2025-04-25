@@ -1,32 +1,29 @@
-export function getMatchHistoriesResponse (app, token) {
-    const response = app.inject({
+export function getMatchHistoriesResponse(app, token) {
+    return app.inject({
         method: 'GET',
         url: '/match-histories',
         headers: {
             Authorization: `Bearer ${token}`,
         },
-        
-    })
-    return response;
+    });
 }
 
-export function getMatchHistoryResponse (app, token, id) {
-    const response = app.inject({
+export function getMatchHistoryResponse(app, token, id) {
+    return app.inject({
         method: 'GET',
         url: `/match-histories/${id}`,
         headers: {
             Authorization: `Bearer ${token}`,
         },
-    })
-    return response;
+    });
 }
 
-export function createMatchHistoryResponse (app, token, { 
+export function createMatchHistoryResponse(app, token, { 
     type = '1v1',
     tournament_id = null,
     round = null,
     players = []
-    } = {}) {
+} = {}) {
     const match = {
         type,
         tournament_id,
@@ -44,10 +41,10 @@ export function createMatchHistoryResponse (app, token, {
     });
 }
 
-export function updateMatchHistoryResponse (app, token, id, { 
+export function updateMatchHistoryResponse(app, token, id, { 
     players = [],
     winner_id = null
-    } = {}) {
+} = {}) {
     const match = {
         players,
         winner_id,
@@ -63,13 +60,12 @@ export function updateMatchHistoryResponse (app, token, id, {
     });
 }
 
-export function deleteMatchHistoryResponse (app, token, id) {
-    const response = app.inject({
+export function deleteMatchHistoryResponse(app, token, id) {
+    return app.inject({
         method: 'DELETE',
         url: `/match-histories/${id}`,
         headers: {
             Authorization: `Bearer ${token}`,
         },
-    })
-    return response;
+    });
 }
