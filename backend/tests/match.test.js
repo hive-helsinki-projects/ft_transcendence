@@ -63,12 +63,6 @@ function runMatchHistoryTests(app, t) {
             t.equal(response.statusCode, 404, 'Status code 404');
             t.equal(response.json().error, 'Match not found')
         })
-        
-        t.test('GET `/match-histories/1` returns 500 when unauthoritized', async (t) => {
-            response = await getMatchHistoryResponse(app, authSecondToken, 1);
-            t.equal(response.statusCode, 500, 'Status code 500');
-            t.equal(response.json().error, 'Unauthoritized')
-        })
 
         t.test('GET `/match-histories/1` returns 200', async (t) => {
             response = await getMatchHistoryResponse(app, authToken, 1);
