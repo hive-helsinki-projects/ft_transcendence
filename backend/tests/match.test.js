@@ -47,11 +47,11 @@ function runMatchHistoryTests(app, t) {
                 ]
             });
             t.equal(response.statusCode, 500, 'Status code should be 500');
-            t.equal(response.json().error, 'Failed to create a match-history');
+            t.equal(response.json().error, 'Failed to create match history');
         });
 
         // Test creating match-history successfully
-        t.test('POST `/match-histories` returns 200 when match is successfully created', async (t) => {
+        t.test('POST `/match-histories` returns 201 when match is successfully created', async (t) => {
             response = await createMatchHistoryResponse(app, authToken, {
                 type: '1v1',
                 players: [
@@ -59,8 +59,8 @@ function runMatchHistoryTests(app, t) {
                     { player_id: 2 },
                 ]
             });
-            t.equal(response.statusCode, 200, 'Status code should be 200');
-            t.equal(response.json().message, 'Successfully created match-history');
+            t.equal(response.statusCode, 201, 'Status code should be 201');
+            t.equal(response.json().message, 'Match history created successfully');
         });
 
         // Test fetching a non-existing match by ID
@@ -98,7 +98,7 @@ function runMatchHistoryTests(app, t) {
                 winner_id: 1,
             });
             t.equal(response.statusCode, 403, 'Status code should be 403');
-            t.equal(response.json().error, 'Unauthorized to update match-history or match not found');
+            t.equal(response.json().error, 'Unauthorized to update this match history');
         });
 
         // Test updating match-history with a non-existing match
@@ -111,7 +111,7 @@ function runMatchHistoryTests(app, t) {
                 winner_id: 1,
             });
             t.equal(response.statusCode, 403, 'Status code should be 403');
-            t.equal(response.json().error, 'Unauthorized to update match-history or match not found');
+            t.equal(response.json().error, 'Unauthorized to update this match history');
         });
 
         // Test updating match-history with missing score
@@ -163,7 +163,7 @@ function runMatchHistoryTests(app, t) {
                 winner_id: 2,
             });
             t.equal(response.statusCode, 200, 'Status code should be 200');
-            t.equal(response.json().message, 'Successfully updated match-history');
+            t.equal(response.json().message, 'Match history updated successfully');
 
             // Verify updated match-history
             response = await getMatchHistoryResponse(app, authToken, 1);
@@ -185,21 +185,21 @@ function runMatchHistoryTests(app, t) {
         t.test('DELETE /match-histories/:id returns 404 when unauthorized', async (t) => {
             response = await deleteMatchHistoryResponse(app, authSecondToken, 1);
             t.equal(response.statusCode, 404, 'Status code should be 404');
-            t.equal(response.json().error, 'Match-history not found or user not authortized to delete this player');
+            t.equal(response.json().error, 'Match history not found or user not authorized');
         });
 
         // Test deleting non-existing match-history
         t.test('DELETE /match-histories/:id returns 404 when match does not exist', async (t) => {
             response = await deleteMatchHistoryResponse(app, authToken, 100);
             t.equal(response.statusCode, 404, 'Status code should be 404');
-            t.equal(response.json().error, 'Match-history not found or user not authortized to delete this player');
+            t.equal(response.json().error, 'Match history not found or user not authorized');
         });
 
         // Test successfully deleting match-history
         t.test('DELETE /match-histories/:id returns 200 on success', async (t) => {
             response = await deleteMatchHistoryResponse(app, authToken, 1);
             t.equal(response.statusCode, 200, 'Status code should be 200');
-            t.equal(response.json().message, 'Successfully deleted match-history');
+            t.equal(response.json().message, 'Match history deleted successfully');
         });
     });
 }

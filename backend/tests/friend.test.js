@@ -153,7 +153,7 @@ function runFriendTests(app, t) {
         t.test('DELETE `/friends/:id` returns 404 when unauthorized action', async (t) => {
             response = await deleteFriendResponse(app, authToken, 4);
             t.equal(response.statusCode, 404, 'Status code 404');
-            t.equal(response.json().error, 'Friend not found user not authoritized to delete friend');
+            t.equal(response.json().error, 'Friend not found or user not authorized to delete friend');
         });
 
         // DELETE friend - success

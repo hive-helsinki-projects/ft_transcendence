@@ -32,7 +32,7 @@ function runPlayerTests(app, t) {
             });
             t.equal(response.statusCode, 201);
             const player = await response.json();
-            t.equal(player.message, "Player created succesfully");
+            t.equal(player.message, 'Player created successfully');
             t.same(player.item, {
                 id: 1,
                 display_name: 'Player1',
@@ -49,7 +49,7 @@ function runPlayerTests(app, t) {
                 display_name: 'Player1',
             });
             t.equal(response.statusCode, 409);
-            t.equal(response.json().error, 'Display_name already exist');
+            t.equal(response.json().error, 'Display name already exists');
         });
 
         // Test max player creation limit (8)
@@ -67,14 +67,14 @@ function runPlayerTests(app, t) {
         t.test('GET `/players/:id` returns 404 when unauthorized', async (t) => {
             const response = await getPlayerResponse(app, authSecondToken, 8);
             t.equal(response.statusCode, 404);
-            t.equal(response.json().error, 'Player not found or user not authortized to access player info');
+            t.equal(response.json().error, 'Player not found or user not authorized to access player info');
         });
 
         // Test getting a non-existent player
         t.test('GET `/players/:id` returns 404 when player does not exist', async (t) => {
             const response = await getPlayerResponse(app, authToken, 100);
             t.equal(response.statusCode, 404);
-            t.equal(response.json().error, 'Player not found or user not authortized to access player info');
+            t.equal(response.json().error, 'Player not found or user not authorized to access player info');
         });
 
         // Test retrieving a player successfully
@@ -96,21 +96,21 @@ function runPlayerTests(app, t) {
         t.test('DELETE `/players/:id` returns 404 when unauthorized', async (t) => {
             const response = await deletePlayerResponse(app, authSecondToken, 3);
             t.equal(response.statusCode, 404);
-            t.equal(response.json().error, 'Player not found or user not authortized to delete this player');
+            t.equal(response.json().error, 'Player not found or user not authorized to delete this player');
         });
 
         // Test deletion of non-existent player
         t.test('DELETE `/players/:id` returns 404 when player does not exist', async (t) => {
             const response = await deletePlayerResponse(app, authToken, 100);
             t.equal(response.statusCode, 404);
-            t.equal(response.json().error, 'Player not found or user not authortized to delete this player');
+            t.equal(response.json().error, 'Player not found or user not authorized to delete this player');
         });
 
         // Test successful player deletion
         t.test('DELETE `/players/:id` returns 200 on success', async (t) => {
             const response = await deletePlayerResponse(app, authToken, 3);
             t.equal(response.statusCode, 200);
-            t.equal(response.json().message, 'Succesfully deleted player');
+            t.equal(response.json().message, 'Player deleted successfully');
         });
 
         // Test retrieving players after one deletion
@@ -151,7 +151,7 @@ function runPlayerTests(app, t) {
                 avatar_url: "notnull.com",
             });
             t.equal(response.statusCode, 404);
-            t.equal(response.json().error, 'Player not found or user not authortized to update this player');
+            t.equal(response.json().error, 'Player not found or user not authorized to update this player');
         });
 
         // Test update on non-existent player
@@ -161,7 +161,7 @@ function runPlayerTests(app, t) {
                 avatar_url: "notnull.com",
             });
             t.equal(response.statusCode, 404);
-            t.equal(response.json().error, 'Player not found or user not authortized to update this player');
+            t.equal(response.json().error, 'Player not found or user not authorized to update this player');
         });
 
         // Test update with duplicate display name
