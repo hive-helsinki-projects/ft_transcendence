@@ -163,7 +163,7 @@ const createTournament = async (req, reply) => {
     const transaction = db.transaction((name, player_ids) => {
         const existingTournament = db.prepare('SELECT * FROM tournaments WHERE name = ?').get(name);
         if (existingTournament) {
-            return reply.code(400).send({ error: 'Tournament already exists' });
+            return reply.code(400).send({ error: 'Tournament name already taken' });
         }
 
         for (const player_id of player_ids) {
@@ -178,13 +178,13 @@ const createTournament = async (req, reply) => {
 
         for (const [player1, player2] of matchups) {
             const result = insertMatchHistory.run('tournament', tournament.lastInsertRowid, 0);
-            insertMatchPlayer.run(result.lastInsertRowid, player1, 1);
-            insertMatchPlayer.run(result.lastInsertRowid, player2, 2);
+            insertMatchPlayer.run(result.lastInsertRowid, player1);
+            insertMatchPlayer.run(result.lastInsertRowid, player2);
         }
 
         for (const byePlayer of byePlayers) {
             const result = insertMatchHistory.run('tournament', tournament.lastInsertRowid, 0);
-            insertMatchPlayer.run(result.lastInsertRowid, byePlayer, 1);
+            insertMatchPlayer.run(result.lastInsertRowid, byePlayer);
             insertMatchWinner.run(result.lastInsertRowid, byePlayer);
         }
         const rows = getExistingTournament.all(tournament.lastInsertRowid);
