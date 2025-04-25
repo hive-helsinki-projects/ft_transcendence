@@ -17,8 +17,8 @@ interface GameState {
   returnTo?: string;
 }
 
-let ballSpeedX = 5;
-let ballSpeedY = 5;
+let ballSpeedX = 2;
+let ballSpeedY = 2;
 
 export default function Game() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -73,7 +73,7 @@ export default function Game() {
       ballX = canvas.width / 2;
       ballY = canvas.height / 2;
       // Randomize initial direction
-      ballSpeedX = (Math.random() > 0.5 ? 1 : -1) * 5;
+      ballSpeedX = (Math.random() > 0.5 ? 1 : -1) * 2;
       // Ensure minimum vertical movement
       ballSpeedY = (Math.random() > 0.5 ? 1 : -1) * (Math.random() * 3 + 2);
     }
@@ -225,15 +225,20 @@ export default function Game() {
 
     // Start the game when component mounts
     setMatchStatus('in_progress');
-    const gameLoop = setInterval(() => {
+    let animationFrameId: number;
+
+    const loop = () => {
       update();
       draw();
-    }, 1000 / 60);
+      animationFrameId = requestAnimationFrame(loop);
+    };
+
+    loop(); // Start the game loop
 
     return () => {
       document.removeEventListener('keydown', keyDownHandler);
       document.removeEventListener('keyup', keyUpHandler);
-      clearInterval(gameLoop);
+      cancelAnimationFrame(animationFrameId);
     };
   }, [scores, gameOver, matchStatus, matchResult, navigate, gameState]);
 
