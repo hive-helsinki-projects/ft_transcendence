@@ -62,7 +62,7 @@ function runUserTests(app, t) {
             t.test('PUT `/users/2` returns 403 if unauthoritized', async (t) => {
                 const response = await updateUserResponse(app, 2, authToken, { username: "new" });
                 t.equal(response.statusCode, 403, 'Status code 403');
-                t.equal((await response.json()).error, 'Unauthoritized to update user information');
+                t.equal((await response.json()).error, "Unauthorized to update this user's information");
             });
 
             // Test update with username already taken
