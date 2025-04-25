@@ -16,11 +16,15 @@ declare global {
 }
 
 const GoogleSignIn: React.FC<GoogleSignInProps> = ({ isLoading }) => {
+
+  const navigate = useNavigate();
+  
   useEffect(() => {
     if (window.google) {
       window.google.accounts.id.initialize({
         client_id: clientId,
-        callback: handleCredentialResponse
+        callback: handleCredentialResponse,
+        auto_select: false,
       });
       window.google.accounts.id.renderButton(
         document.getElementById("google-signin-btn"),
@@ -34,18 +38,18 @@ const GoogleSignIn: React.FC<GoogleSignInProps> = ({ isLoading }) => {
   const sendTokenToServer = async (idToken: string) => {
     try {
       console.log("You're in sentTokenToServer function!");
-      const response = await fetch('https://172.18.0.2:3001/api/auth/google', {
+      const response = await fetch('https://localhost:3001/api/auth/google', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ token: idToken })
       });
-
+      console.log("Hello?");
       const data = await response.json();
       if (response.ok) {
         console.log('User authenticated:', data);
-        navigate('/dashboard');
+        // navigate('/dashboard');
       } else {
         console.log('Authentication failed:', data);
       }
@@ -64,13 +68,26 @@ const GoogleSignIn: React.FC<GoogleSignInProps> = ({ isLoading }) => {
     console.log("Google ID Token: ", idToken); // for debugging
 
     // send the token to the sever
-    sendTokenToServer(idToken);
-
+    sendTokenToServer(idToken).then(() => {
+      navigate('/dashboard');
+    }).catch((error) => {
+      console.error("Error sending token to server: ", error);
+    })
   };
 
   return (
     <div>
       <div id="google-signin-btn"></div> {/* display button here */}
+      {/*<button onClick={handleSignOut}>Sign Out</button> Sign out botton for testing, delete it from here!!! */}
+      <button onClick={() => {
+        window.google.accounts.id.disableAutoSelect();
+        window.google.accounts.id.revoke('your-email@gmail.com', () => {
+          console.log("Disconnected from Google");
+          window.location.reload();
+        });
+      }}>
+        Google Session Reset for testing
+      </button>
     </div>
   );
 };
