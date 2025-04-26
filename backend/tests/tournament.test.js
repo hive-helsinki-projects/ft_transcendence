@@ -3,8 +3,10 @@ import { createPlayerResponse } from "./utils/player.helpers.js";
 import {
     getTournamentsResponse,
     getTournamentResponse,
-    createTournamentResponse
+    createTournamentResponse,
+    advanceTournamentResponse
 } from './utils/tournament.helpers.js'
+import { updateMatchHistoryResponse, getMatchHistoryResponse } from './utils/match.helpers.js'
 import db from '../models/database.js';
 
 function runTournamentTests(app, t) {
@@ -59,6 +61,7 @@ function runTournamentTests(app, t) {
                 player_ids: [1, 2, 100]
             });
             t.equal(response.statusCode, 400, 'Status code 400');
+            console.log(response.json());
             t.equal(response.json().error, `Player with ID 100 does not exist`);
         });
 
@@ -88,6 +91,10 @@ function runTournamentTests(app, t) {
             });
             t.equal(response.statusCode, 200, 'Status code 200');
             const data = response.json();
+
+            const p1 = data.item.matches[0].players[0].player_id;
+            const p2 = data.item.matches[0].players[1].player_id;
+
             t.equal(data.message, 'Successfully created tournament');
             t.same(data.item, {
                 tournament_id: 1,
@@ -102,11 +109,11 @@ function runTournamentTests(app, t) {
                     date: data.item.matches[0].date,
                     players: [
                         {
-                            player_id: data.item.matches[0].players[0].player_id,
+                            player_id: p1,
                             score: 0
                         },
                         {
-                            player_id: data.item.matches[0].players[1].player_id,
+                            player_id: p2,
                             score: 0
                         }
                     ]
@@ -123,6 +130,22 @@ function runTournamentTests(app, t) {
                     ]
                 }]
             })
+
+            // Test advancing tournament returns 404 when match not played
+            t.test('PUT `/tournaments/:id returns 404 when match not played', async (t) => {
+                response = await advanceTournamentResponse(app, authToken, 1);
+                t.equal(response.statusCode, 404, 'Status code 404');
+                t.equal(response.json().error, `No winner found for match 1`);
+            })
+
+            response = await updateMatchHistoryResponse(app, authToken, 1, {
+                players: [
+                    { player_id: p1, score: 2 },
+                    { player_id: p2, score: 5 },
+                ],
+                winner_id: p2,
+            })
+            t.equal(response.statusCode, 200, 'Status code 200');
         });
 
         // Test creating tournament with duplicate name
@@ -135,7 +158,6 @@ function runTournamentTests(app, t) {
             t.equal(response.json().error, 'Tournament name already taken');
         });
 
-        // Test advancing tournament returns 
 
 
 

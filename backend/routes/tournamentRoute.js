@@ -22,7 +22,7 @@ function tournamentRoutes(fastify, options) {
     });
 
     // Advance a tournament to next round
-    fastify.put('/tournaments/:id/advance', {
+    fastify.put('/tournaments/:id', {
         ...putTournamentOpts,
         onRequest: [fastify.jwtAuth],
         handler: tournamentController.advanceTournament

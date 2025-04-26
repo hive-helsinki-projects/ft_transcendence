@@ -56,11 +56,13 @@ db.prepare(`
 db.prepare(`
 	CREATE TABLE IF NOT EXISTS tournaments (
 		id INTEGER PRIMARY KEY AUTOINCREMENT,
+		user_id INTEGER,
 		name TEXT NOT NULL,
 		status TEXT DEFAULT 'pending',
 		current_round INTEGER DEFAULT 0,
 		winner_id INTEGER,
 		created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+		FOREIGN KEY (user_id) REFERENCES users(id)
 		FOREIGN KEY (winner_id) REFERENCES players(id)
 	)
 `).run();

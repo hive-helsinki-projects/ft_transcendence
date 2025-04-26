@@ -151,16 +151,17 @@ const generateMatchups = (players) => {
     return { matchups, byePlayers };
 }
 
-const insertMatchHistory = db.prepare('INSERT INTO match_history (type, tournament_id, round) VALUES (?, ?, ?)');
+const insertMatchHistory = db.prepare('INSERT INTO match_history (type, tournament_id, round, user_id) VALUES (?, ?, ?, ?)');
 const insertMatchPlayer = db.prepare(`INSERT INTO match_player_history (match_id, player_id) VALUES (?, ?)`);
 
 const createTournament = async (req, reply) => {
+    const user_id = req.user.id;
     const { name, player_ids } = req.body;
 
-    const insertTournamentName = db.prepare('INSERT INTO tournaments (name) VALUES (?)');
+    const insertTournamentName = db.prepare('INSERT INTO tournaments (name, user_id) VALUES (?, ?)');
     const insertMatchWinner = db.prepare(`INSERT INTO match_winner_history (match_id, winner_id) VALUES (?, ?)`);
     
-    const transaction = db.transaction((name, player_ids) => {
+    const transaction = db.transaction((name, player_ids, user_id) => {
         const existingTournament = db.prepare('SELECT * FROM tournaments WHERE name = ?').get(name);
         if (existingTournament) {
             return reply.code(400).send({ error: 'Tournament name already taken' });
@@ -173,17 +174,17 @@ const createTournament = async (req, reply) => {
             }
         }
 
-        let tournament = insertTournamentName.run(name);
+        let tournament = insertTournamentName.run(name, user_id);
         const { matchups, byePlayers } = generateMatchups(player_ids);
 
         for (const [player1, player2] of matchups) {
-            const result = insertMatchHistory.run('tournament', tournament.lastInsertRowid, 0);
+            const result = insertMatchHistory.run('tournament', tournament.lastInsertRowid, 0, user_id);
             insertMatchPlayer.run(result.lastInsertRowid, player1);
             insertMatchPlayer.run(result.lastInsertRowid, player2);
         }
 
         for (const byePlayer of byePlayers) {
-            const result = insertMatchHistory.run('tournament', tournament.lastInsertRowid, 0);
+            const result = insertMatchHistory.run('tournament', tournament.lastInsertRowid, 0, user_id);
             insertMatchPlayer.run(result.lastInsertRowid, byePlayer);
             insertMatchWinner.run(result.lastInsertRowid, byePlayer);
         }
@@ -192,7 +193,7 @@ const createTournament = async (req, reply) => {
     })
 
     try {
-        const rows = transaction(name, player_ids);
+        const rows = transaction(name, player_ids, user_id);
         const { tournament_id, name: tournament_name, status, current_round, winner_id } = rows[0];
 
         const matches = rows.map(row => ({
@@ -218,14 +219,15 @@ const createTournament = async (req, reply) => {
 }
 
 const advanceTournament = async(req, reply) => {
+    const user_id = req.user.id;
     const { id } = req.params;
 
     const updateTournamentRound =  db.prepare(`UPDATE tournaments SET current_round = current_round + 1 WHERE id = ?`)
 
-    const transaction = db.transaction((id) => {
-        const tournament = db.prepare('SELECT * FROM tournaments WHERE id = ?').get(id);
+    const transaction = db.transaction((id, user_id) => {
+        const tournament = db.prepare('SELECT * FROM tournaments WHERE id = ? AND user_id = ?').get(id, user_id);
         if (!tournament) {
-            return reply.code(404).send({ error: 'Tournament not found' });
+            return reply.code(404).send({ error: 'Tournament not found or unauthoritized' });
         } else if (tournament.status === 'finished') {
             return reply.code(400).send({ error: 'Tournament already finished' });
         }
@@ -234,34 +236,35 @@ const advanceTournament = async(req, reply) => {
         if (matches.length === 0) {
             return reply.code(404).send({ error: 'No matches found for this tournament or round' });
         }
-    
+
         let winners_id = [];
         for (const match of matches) {
             const winner = db.prepare(`SELECT * FROM match_winner_history WHERE match_id = ?`).all(match.id);
             if (!winner[0]) {
-                return reply.code(404).send({ error: 'No winner found for this match' });
+                return reply.code(404).send({ error: `No winner found for match ${match.id}` });
             }
             winners_id.push(winner[0].winner_id);
         }
-    
+        
         const { matchups } = generateMatchups(winners_id);
         if (matchups.length === 1) {
             return reply.code(400).send({ error: 'Tournament cannot be advanced, only one player left' });
         }
-    
+
         for (const [player1, player2] of matchups) {
-            const result = insertMatchHistory.run('tournament', id, tournament.current_round + 1);
+            const result = insertMatchHistory.run('tournament', id, tournament.current_round + 1, user_id);
             insertMatchPlayer.run(result.lastInsertRowid, player1, 1);
             insertMatchPlayer.run(result.lastInsertRowid, player2, 2);
         }
-    
+        
         updateTournamentRound.run(id);
         const rows = getExistingTournament.all(id);
         return rows;
     })
 
     try {
-        const rows = transaction(id);
+        const rows = transaction(id, user_id);
+        console.log("6");
         const { tournament_id, name: tournament_name, status, current_round, winner_id } = rows[0];
 
         const matches = rows.map(row => ({
