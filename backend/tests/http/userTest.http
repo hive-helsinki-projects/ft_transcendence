@@ -1,0 +1,14 @@
+### GET ALL USERS
+GET https://localhost:3001/users HTTP/1.1
+
+### GET USER BY ID
+GET https://localhost:3001/users/1 HTTP/1.1
+
+### UPDATE USER BY ID - EMAIL
+PUT https://localhost:3001/users/2 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImtpbSIsImlkIjoxLCJpYXQiOjE3NDQ2NTIzMjEsImV4cCI6MTc0NDY1NTkyMX0.JN6RUcONj7DCCzpH03czvq_xvQS2x6e5mo7iOL4GrKo
+
+{
+	"email": "new@hive.fr"
+}

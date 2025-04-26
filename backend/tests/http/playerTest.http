@@ -1,0 +1,31 @@
+### GET ALL PLAYERS BELONGING TO A USER
+GET https://localhost:3001/players HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImtpbSIsImlkIjoxLCJpYXQiOjE3NDQ3MDk0NDMsImV4cCI6MTc0NDcxMzA0M30.yXS0Abl41sNEzS1opmhdtzPxnRAjnwYxFcLO0WwFutU
+
+### GET A PLAYER
+GET https://localhost:3001/players/2 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImtpbSIsImlkIjoxLCJpYXQiOjE3NDQ3MDk0NDMsImV4cCI6MTc0NDcxMzA0M30.yXS0Abl41sNEzS1opmhdtzPxnRAjnwYxFcLO0WwFutU
+
+### CREATE A PLAYER
+POST https://localhost:3001/players HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImtpbSIsImlkIjoxLCJpYXQiOjE3NDQ3MDk0NDMsImV4cCI6MTc0NDcxMzA0M30.yXS0Abl41sNEzS1opmhdtzPxnRAjnwYxFcLO0WwFutU
+
+{
+	"display_name": "player 9"
+}
+
+### DELETE A PLAYER
+DELETE https://localhost:3001/players/8 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImtpbSIsImlkIjoxLCJpYXQiOjE3NDQ3MDk0NDMsImV4cCI6MTc0NDcxMzA0M30.yXS0Abl41sNEzS1opmhdtzPxnRAjnwYxFcLO0WwFutU
+
+### UPDATE A PLAYER
+PUT https://localhost:3001/players/8 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImtpbSIsImlkIjoxLCJpYXQiOjE3NDQ3MDk0NDMsImV4cCI6MTc0NDcxMzA0M30.yXS0Abl41sNEzS1opmhdtzPxnRAjnwYxFcLO0WwFutU
+
+{
+	"display_name": "something else"
+}

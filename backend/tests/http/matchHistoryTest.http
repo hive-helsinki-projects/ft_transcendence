@@ -1,0 +1,41 @@
+### GET MATCH HISTORIES
+GET https://localhost:3001/match-histories
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImtpbSIsImlkIjoxLCJpYXQiOjE3NDQ3MDk0NDMsImV4cCI6MTc0NDcxMzA0M30.yXS0Abl41sNEzS1opmhdtzPxnRAjnwYxFcLO0WwFutU
+
+### GET ONE MATCH HISTORY
+GET https://localhost:3001/match-histories/85
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImtpbSIsImlkIjoxLCJpYXQiOjE3NDQ3MDk0NDMsImV4cCI6MTc0NDcxMzA0M30.yXS0Abl41sNEzS1opmhdtzPxnRAjnwYxFcLO0WwFutU
+
+### CREATE MATCH HISTORY
+POST https://localhost:3001/match-histories
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImtpbSIsImlkIjoxLCJpYXQiOjE3NDQ3MDk0NDMsImV4cCI6MTc0NDcxMzA0M30.yXS0Abl41sNEzS1opmhdtzPxnRAjnwYxFcLO0WwFutU
+
+{
+    "type": "1v1",
+    "players": [
+        { "player_id": 9, "team": 1 },
+        { "player_id": 2, "team": 1 },
+    ]
+}
+
+### UPDATE MATCH HISTORY
+PUT https://localhost:3001/match-histories/86
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImtpbSIsImlkIjoxLCJpYXQiOjE3NDQ3MDk0NDMsImV4cCI6MTc0NDcxMzA0M30.yXS0Abl41sNEzS1opmhdtzPxnRAjnwYxFcLO0WwFutU
+
+{
+    "players": [
+        { "player_id": 5, "score": 3 },
+        { "player_id": 9, "score": 2}
+    ],
+    "winners": [
+        { "winner_id": 5 }
+    ]
+}
+
+### DELETE MATCH HISTORY
+DELETE https://localhost:3001/match-histories/3
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImtpbSIsImlkIjoxLCJpYXQiOjE3NDQ3MDk0NDMsImV4cCI6MTc0NDcxMzA0M30.yXS0Abl41sNEzS1opmhdtzPxnRAjnwYxFcLO0WwFutU
