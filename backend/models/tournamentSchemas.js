@@ -39,7 +39,6 @@ export const Tournament = {
             },
         },
     },
-    required: ['id', 'name', 'status', 'current_round', 'created_at'],
 };
 
 // Schemas for tournament operations

@@ -28,13 +28,6 @@ function tournamentRoutes(fastify, options) {
         handler: tournamentController.advanceTournament
     });
 
-    // Finish a tournament
-    fastify.put('/tournaments/:id/finish', {
-        ...putTournamentOpts,
-        onRequest: [fastify.jwtAuth],
-        handler: tournamentController.finishTournament
-    });
-
      // Delete a match tournament
     fastify.delete('/tournaments/:id', {
         ...deleteTournamentOpts,
