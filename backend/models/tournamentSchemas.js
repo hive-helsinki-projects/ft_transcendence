@@ -44,6 +44,8 @@ export const Tournament = {
 // Schemas for tournament operations
 export const getTournamentsOpts = {
     schema: {
+        summary: 'Get all tournaments',
+		tags: ['tournament'],
         response: {
             200: {
                 type: 'array',
@@ -55,6 +57,8 @@ export const getTournamentsOpts = {
 
 export const getTournamentOpts = {
     schema: {
+        summary: 'Get tournament details',
+		tags: ['tournament'],
         params: {
             type: 'object',
             required: ['id'],
@@ -75,6 +79,13 @@ export const getTournamentOpts = {
 
 export const postTournamentOpts = {
     schema: {
+        security: [
+            {
+                bearerAuth: []
+            }
+        ],
+        summary: 'Create a tournament',
+		tags: ['tournament'],
         body: {
             type: 'object',
             required: ['name', 'player_ids'],
@@ -102,6 +113,13 @@ export const postTournamentOpts = {
 
 export const putTournamentOpts = {
     schema: {
+        security: [
+            {
+                bearerAuth: []
+            }
+        ],
+        summary: 'Advance a tournament to next round',
+		tags: ['tournament'],
         params: {
             type: 'object',
             required: ['id'],
@@ -123,6 +141,20 @@ export const putTournamentOpts = {
 
 export const deleteTournamentOpts = {
     schema: {
+        security: [
+            {
+                bearerAuth: []
+            }
+        ],
+        summary: 'Delete a match tournament',
+		tags: ['tournament'],
+        params: {
+            type: 'object',
+            required: ['id'],
+            properties: {
+                id: { type: 'integer' },
+            },
+        },
         response: {
             200: {
                 type: 'object',

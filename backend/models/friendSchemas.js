@@ -11,7 +11,12 @@ export const Friend = {
 // Schemas for friend-related operations
 export const getFriendsOpts = {
     schema: {
-        summary: 'Fetch friends',
+        security: [
+            {
+                bearerAuth: []
+            }
+        ],
+        summary: 'Get all friends of a user',
 		tags: ['friend'],
         response: {
             200: {
@@ -24,8 +29,20 @@ export const getFriendsOpts = {
 
 export const deleteFriendOpts = {
     schema: {
-        summary: 'Delete a friend or deny friend request',
+        security: [
+            {
+                bearerAuth: []
+            }
+        ],
+        summary: 'Remove a friend or deny friend request',
 		tags: ['friend'],
+        params: {
+            type: 'object',
+            required: ['id'],
+            properties: {
+                id: { type: 'integer' },
+            },
+        },
         response: {
             200: {
                 type: 'object',
@@ -51,8 +68,20 @@ const sharedFriendResponse = {
 
 export const postFriendOpts = {
     schema: {
-        summary: 'Send friend request',
+        security: [
+            {
+                bearerAuth: []
+            }
+        ],
+        summary: 'Send a friend request',
 		tags: ['friend'],
+        params: {
+            type: 'object',
+            required: ['id'],
+            properties: {
+                id: { type: 'integer' },
+            },
+        },
         sharedFriendResponse
     }
 };
@@ -60,16 +89,40 @@ export const postFriendOpts = {
 
 export const patchFriendOpts = {
     schema: {
-        summary: 'Accept friend request',
+        security: [
+            {
+                bearerAuth: []
+            }
+        ],
+        summary: 'Accept a friend request',
 		tags: ['friend'],
+        params: {
+            type: 'object',
+            required: ['id'],
+            properties: {
+                id: { type: 'integer' },
+            },
+        },
         sharedFriendResponse
     }
 }
 
 export const getFriendStatusOpts = {
     schema: {
-        summary: 'Fetch a friends online status',
+        security: [
+            {
+                bearerAuth: []
+            }
+        ],
+        summary: 'Get a friends status',
 		tags: ['friend'],
+        params: {
+            type: 'object',
+            required: ['id'],
+            properties: {
+                id: { type: 'integer' },
+            },
+        },
         response: {
             200: {
                 type: 'object',

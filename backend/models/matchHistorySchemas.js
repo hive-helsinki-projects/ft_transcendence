@@ -24,12 +24,7 @@ export const MatchHistory = {
 // Schemas for match-history operations
 export const getMatchHistoriesOpts = {
     schema: {
-        security: [
-            {
-                bearerAuth: []
-            }
-        ],
-        summary: 'Fetch all match histories',
+        summary: 'Get match history for current user',
         tags: ['match-history'],
         response: {
             200: {
@@ -42,8 +37,15 @@ export const getMatchHistoriesOpts = {
 
 export const getMatchHistoryOpts = {
     schema: {
-        summary: 'Fetch a match history',
+        summary: 'Get match details',
         tags: ['match-history'],
+        params: {
+            type: 'object',
+            required: ['id'],
+            properties: {
+                id: { type: 'integer' },
+            },
+        },
         response: {
             200: MatchHistory,
         },
@@ -52,6 +54,11 @@ export const getMatchHistoryOpts = {
 
 export const postMatchHistoryOpts = {
     schema: {
+        security: [
+            {
+                bearerAuth: []
+            }
+        ],
         summary: 'Create a match',
         tags: ['match-history'],
         body: {
@@ -89,8 +96,20 @@ export const postMatchHistoryOpts = {
 
 export const putMatchHistoryOpts = {
     schema: {
-        summary: 'Advance or finish a match',
+        security: [
+            {
+                bearerAuth: []
+            }
+        ],
+        summary: 'Update a match history players scores and winners',
         tags: ['match-history'],
+        params: {
+            type: 'object',
+            required: ['id'],
+            properties: {
+                id: { type: 'integer' },
+            },
+        },
         body: {
             type: 'object',
             required: ['winner_id', 'players'],
@@ -126,8 +145,20 @@ export const putMatchHistoryOpts = {
 
 export const deleteMatchHistoryOpts = {
     schema: {
+        security: [
+            {
+                bearerAuth: []
+            }
+        ],
         summary: 'Delete a match history',
         tags: ['match-history'],
+        params: {
+            type: 'object',
+            required: ['id'],
+            properties: {
+                id: { type: 'integer' },
+            },
+        },
         response: {
             200: {
                 type: 'object',
