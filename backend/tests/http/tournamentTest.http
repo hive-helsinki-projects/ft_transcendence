@@ -14,10 +14,7 @@ Content-Type: application/json
 }
 
 ### ADVANCE TOURNAMENT
-PUT https://localhost:3001/tournaments/15/advance HTTP/1.1
-
-### FINISH TOURNAMENT
-PUT https://localhost:3001/tournaments/15/finish HTTP/1.1
+PUT https://localhost:3001/tournaments/15 HTTP/1.1
 
 ### DELETE TOURNAMENT
 DELETE https://localhost:3001/tournaments/6 HTTP/1.1
