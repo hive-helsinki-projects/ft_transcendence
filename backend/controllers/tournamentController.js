@@ -280,7 +280,7 @@ const advanceTournament = async(req, reply) => {
         // If only one player remains, finish the tournament
         if (matchups.length === 1 && matchups[0][1] === undefined) {
             updateTournamentStatus.run(winners_id[0], tournament.current_round + 1, id);
-            return reply.code(200).send({ message: 'Successfully finished tournament', item: { winners_id }});
+            return reply.code(200).send({ message: 'Successfully finished tournament' });
         }
 
         // Insert new matches for the next round
