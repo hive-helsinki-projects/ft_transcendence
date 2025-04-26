@@ -14,6 +14,8 @@ export const User = {
 // Schemas for user-related operations
 export const getUsersOpts = {
     schema: {
+        summary: 'Get all users',
+		tags: ['user'],
         response: {
             200: {
                 type: 'array',
@@ -25,6 +27,8 @@ export const getUsersOpts = {
 
 export const getUserOpts = {
     schema: {
+        summary: 'Get a single user by id',
+		tags: ['user'],
         response: {
             200: User,
         },
@@ -33,6 +37,13 @@ export const getUserOpts = {
 
 export const putUserOpts = {
     schema: {
+        security: [
+            {
+                bearerAuth: []
+            }
+        ],
+        summary: 'Update user information',
+		tags: ['user'],
         body: {
             type: 'object',
             required: [],

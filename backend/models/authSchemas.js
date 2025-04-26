@@ -2,7 +2,7 @@ import { User } from './userSchemas.js';
 
 export const postLoginOpts = {
 	schema: {
-		summary: 'Login user',
+		summary: 'Login a user',
 		tags: ['auth'],
 		body: {
 			type: 'object',
@@ -31,7 +31,7 @@ export const postLogoutOpts = {
                 bearerAuth: []
             }
         ],
-		summary: 'Logout user',
+		summary: 'Logout a user',
 		tags: ['auth'],
 		response: {
 			200: {
@@ -46,7 +46,7 @@ export const postLogoutOpts = {
 
 export const postRegisterOpts = {
 	schema: {
-		summary: 'Register user',
+		summary: 'Register a user',
 		tags: ['auth'],
 		body: {
 			type: 'object',
