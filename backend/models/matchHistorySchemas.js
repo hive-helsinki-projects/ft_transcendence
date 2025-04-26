@@ -24,6 +24,13 @@ export const MatchHistory = {
 // Schemas for match-history operations
 export const getMatchHistoriesOpts = {
     schema: {
+        security: [
+            {
+                bearerAuth: []
+            }
+        ],
+        summary: 'Fetch all match histories',
+        tags: ['match-history'],
         response: {
             200: {
                 type: 'array',
@@ -35,6 +42,8 @@ export const getMatchHistoriesOpts = {
 
 export const getMatchHistoryOpts = {
     schema: {
+        summary: 'Fetch a match history',
+        tags: ['match-history'],
         response: {
             200: MatchHistory,
         },
@@ -43,6 +52,8 @@ export const getMatchHistoryOpts = {
 
 export const postMatchHistoryOpts = {
     schema: {
+        summary: 'Create a match',
+        tags: ['match-history'],
         body: {
             type: 'object',
             required: ['type', 'players'],
@@ -78,6 +89,8 @@ export const postMatchHistoryOpts = {
 
 export const putMatchHistoryOpts = {
     schema: {
+        summary: 'Advance or finish a match',
+        tags: ['match-history'],
         body: {
             type: 'object',
             required: ['winner_id', 'players'],
@@ -113,6 +126,8 @@ export const putMatchHistoryOpts = {
 
 export const deleteMatchHistoryOpts = {
     schema: {
+        summary: 'Delete a match history',
+        tags: ['match-history'],
         response: {
             200: {
                 type: 'object',

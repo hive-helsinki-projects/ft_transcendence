@@ -2,6 +2,8 @@ import { User } from './userSchemas.js';
 
 export const postLoginOpts = {
 	schema: {
+		summary: 'Login user',
+		tags: ['auth'],
 		body: {
 			type: 'object',
 			required: ['username', 'password'],
@@ -24,6 +26,13 @@ export const postLoginOpts = {
 
 export const postLogoutOpts = {
 	schema: {
+		security: [
+            {
+                bearerAuth: []
+            }
+        ],
+		summary: 'Logout user',
+		tags: ['auth'],
 		response: {
 			200: {
 				type: 'object',
@@ -37,6 +46,8 @@ export const postLogoutOpts = {
 
 export const postRegisterOpts = {
 	schema: {
+		summary: 'Register user',
+		tags: ['auth'],
 		body: {
 			type: 'object',
 			required: ['username', 'email', 'password'],

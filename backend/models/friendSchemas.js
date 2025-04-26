@@ -11,6 +11,8 @@ export const Friend = {
 // Schemas for friend-related operations
 export const getFriendsOpts = {
     schema: {
+        summary: 'Fetch friends',
+		tags: ['friend'],
         response: {
             200: {
                 type: 'array',
@@ -22,6 +24,8 @@ export const getFriendsOpts = {
 
 export const deleteFriendOpts = {
     schema: {
+        summary: 'Delete a friend or deny friend request',
+		tags: ['friend'],
         response: {
             200: {
                 type: 'object',
@@ -33,8 +37,7 @@ export const deleteFriendOpts = {
     },
 };
 
-const sharedFriendSchema = {
-    schema: {
+const sharedFriendResponse = {
         response: {
             200: {
                 type: 'object',
@@ -44,15 +47,29 @@ const sharedFriendSchema = {
                 },
             },
         },
-    },
 };
 
-export const postFriendOpts = sharedFriendSchema;
+export const postFriendOpts = {
+    schema: {
+        summary: 'Send friend request',
+		tags: ['friend'],
+        sharedFriendResponse
+    }
+};
+    
 
-export const patchFriendOpts = sharedFriendSchema;
+export const patchFriendOpts = {
+    schema: {
+        summary: 'Accept friend request',
+		tags: ['friend'],
+        sharedFriendResponse
+    }
+}
 
 export const getFriendStatusOpts = {
     schema: {
+        summary: 'Fetch a friends online status',
+		tags: ['friend'],
         response: {
             200: {
                 type: 'object',
