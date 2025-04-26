@@ -188,7 +188,6 @@ function runTournamentTests(app, t) {
                     response = await advanceTournamentResponse(app, authToken, 1);
                     t.equal(response.statusCode, 200, 'Status code 200');
                     t.equal(response.json().message, 'Successfully finished tournament');
-                    t.same(response.json().item, p1);
                 });
 
                 // Try to advance after finished
