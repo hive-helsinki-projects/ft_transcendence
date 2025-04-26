@@ -31,4 +31,22 @@ export function createTournamentResponse(app, token, {
     });
 }
 
-// export function advanceTournamentResponse(app, token, )
+export function advanceTournamentResponse(app, token, id) {
+    return app.inject({
+        method: 'PUT',
+        url: `/tournaments/${id}`,
+        headers: {
+            Authorization: `Bearer ${token}`,
+        }
+    });
+}
+
+export function deleteTournamentResponse(app, token, id) {
+    return app.inject({
+        method: 'DELETE',
+        url: `/tournaments/${id}`,
+        headers: {
+            Authorization: `Bearer ${token}`,
+        }
+    });
+}
