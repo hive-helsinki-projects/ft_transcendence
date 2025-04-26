@@ -250,9 +250,11 @@ const advanceTournament = async(req, reply) => {
         }
         
         const { matchups } = generateMatchups(winners_id);
-        if (matchups.length === 1 && matchups[0].length === 1) {
-            updateTournamentStatus.run(winner[0].winner_id, tournament.current_round + 1, id);
-            return reply.code(200).send({ message: 'Successfully finished tournament' });
+
+        if (matchups.length === 1 && matchups[0][1] === undefined) {
+            updateTournamentStatus.run(winners_id[0], tournament.current_round + 1, id);
+            // returns empty {} right now instead of winner_id. why
+            return reply.code(200).send({ message: 'Successfully finished tournament', item: { winners_id }});
         }
 
         for (const [player1, player2] of matchups) {
@@ -290,12 +292,13 @@ const advanceTournament = async(req, reply) => {
 }
 
 const deleteTournament = async(req, reply) => {
+    const user_id = req.user.id;
     const { id } = req.params;
     
     try {
-        const result = db.prepare('DELETE FROM tournaments WHERE id = ?').run(id);
+        const result = db.prepare('DELETE FROM tournaments WHERE id = ? and user_id = ?').run(id, user_id);
         if (result.changes === 0) {
-            return reply.code(404).send({ error: 'Tournament not found' });
+            return reply.code(404).send({ error: 'Tournament not found or unauthoritized' });
         }
         return reply.code(200).send({ message: 'Successfully deleted tournament' });
     } catch (error) {
