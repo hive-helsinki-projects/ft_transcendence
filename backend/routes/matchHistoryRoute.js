@@ -3,8 +3,6 @@ import { getMatchHistoriesOpts, getMatchHistoryOpts, postMatchHistoryOpts, putMa
 
 function matchHistoryRoutes(fastify, options) {
     // Get match history for current user
-    // GET /match-history?type=1v1
-    // GET /match-history?type=multiplayer
     fastify.get('/match-histories', {
         ...getMatchHistoriesOpts,
         handler: matchHistoryController.getMatchHistories

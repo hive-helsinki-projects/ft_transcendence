@@ -29,6 +29,13 @@ export const getUserOpts = {
     schema: {
         summary: 'Get a single user by id',
 		tags: ['user'],
+        params: {
+            type: 'object',
+            required: ['id'],
+            properties: {
+                id: { type: 'integer' },
+            },
+        },
         response: {
             200: User,
         },
@@ -44,6 +51,13 @@ export const putUserOpts = {
         ],
         summary: 'Update user information',
 		tags: ['user'],
+        params: {
+            type: 'object',
+            required: ['id'],
+            properties: {
+                id: { type: 'integer' },
+            },
+        },
         body: {
             type: 'object',
             required: [],

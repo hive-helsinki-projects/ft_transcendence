@@ -44,6 +44,13 @@ export const getPlayerOpts = {
         ],
         summary: 'Get a player belonging to a user',
 		tags: ['player'],
+        params: {
+            type: 'object',
+            required: ['id'],
+            properties: {
+                id: { type: 'integer' },
+            },
+        },
         response: {
             200: Player,
         },
@@ -87,6 +94,13 @@ export const putPlayerOpts = {
         ],
         summary: 'Update a players display_name or avatar_url',
 		tags: ['player'],
+        params: {
+            type: 'object',
+            required: ['id'],
+            properties: {
+                id: { type: 'integer' },
+            },
+        },
         body: {
             type: 'object',
             required: [],
@@ -122,6 +136,13 @@ export const deletePlayerOpts = {
         ],
         summary: 'Delete a player',
 		tags: ['player'],
+        params: {
+            type: 'object',
+            required: ['id'],
+            properties: {
+                id: { type: 'integer' },
+            },
+        },
         response: {
             200: {
                 type: 'object',
