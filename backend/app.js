@@ -23,15 +23,25 @@ function buildApp() {
             cert: fs.readFileSync(process.env.SSL_CERT)
         }});
 
-    fastify.register(swagger, {
-        openapi: {
-            info: {
-                title: 'Ping Pong API',
-                description: 'API documentation',
-                version: '1.0.0'
+        fastify.register(swagger, {
+            openapi: {
+                info: {
+                    title: 'Ping Pong API',
+                    description: 'API documentation',
+                    version: '1.0.0'
+                },
+                components: {
+                    securitySchemes: {
+                        bearerAuth: {
+                            type: 'https',
+                            scheme: 'bearer',
+                            bearerFormat: 'JWT'
+                        }
+                    }
+                },
             }
-        }
-    });
+        });
+        
 
     fastify.register(swaggerUi, {
         routePrefix: '/docs',
