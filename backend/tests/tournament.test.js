@@ -92,8 +92,8 @@ function runTournamentTests(app, t) {
             t.equal(response.statusCode, 200, 'Status code 200');
             const data = response.json();
 
-            const p1 = data.item.matches[0].players[0].player_id;
-            const p2 = data.item.matches[0].players[1].player_id;
+            let p1 = data.item.matches[0].players[0].player_id;
+            let p2 = data.item.matches[0].players[1].player_id;
 
             t.equal(data.message, 'Successfully created tournament');
             t.same(data.item, {
@@ -138,14 +138,44 @@ function runTournamentTests(app, t) {
                 t.equal(response.json().error, `No winner found for match 1`);
             })
 
-            response = await updateMatchHistoryResponse(app, authToken, 1, {
-                players: [
-                    { player_id: p1, score: 2 },
-                    { player_id: p2, score: 5 },
-                ],
-                winner_id: p2,
+            // Test advancing tournament returns 200 on success
+            t.test('PUT `/tournaments/:id returns 200 on success', async (t) => {
+                response = await updateMatchHistoryResponse(app, authToken, 1, {
+                    players: [
+                        { player_id: p1, score: 2 },
+                        { player_id: p2, score: 5 },
+                    ],
+                    winner_id: p2,
+                })
+                t.equal(response.statusCode, 200, 'Status code 200');
+
+                response = await advanceTournamentResponse(app, authToken, 1);
+                const data = response.json();
+
+                p1 = data.item.matches[0].players[0].player_id;
+                p2 = data.item.matches[0].players[1].player_id;
+
+                t.equal(response.statusCode, 200, 'Status code 200');
+                t.equal(data.message, `Successfully advanced tournament`);
+                t.same(data.item, {
+                    matches: [ {
+                        match_id: 3,
+                        players: [
+                            {
+                                player_id: p1,
+                                score: 0
+                            },
+                            {
+                                player_id: p2,
+                                score: 0
+                            }
+                        ],
+                        date: data.item.matches[0].date,
+                        round: 1,
+                    }]
+                })
             })
-            t.equal(response.statusCode, 200, 'Status code 200');
+
         });
 
         // Test creating tournament with duplicate name
