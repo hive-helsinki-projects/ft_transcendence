@@ -1,4 +1,6 @@
 import Fastify from 'fastify';
+import swagger from '@fastify/swagger';
+import swaggerUi from '@fastify/swagger-ui';
 import dotenv from 'dotenv';
 import fs from 'fs';
 import jwtPlugin from './plugins/jwt-plugin.js';
@@ -20,6 +22,20 @@ function buildApp() {
             key: fs.readFileSync(process.env.SSL_KEY),
             cert: fs.readFileSync(process.env.SSL_CERT)
         }});
+
+    fastify.register(swagger, {
+        openapi: {
+            info: {
+                title: 'Ping Pong API',
+                description: 'API documentation',
+                version: '1.0.0'
+            }
+        }
+    });
+
+    fastify.register(swaggerUi, {
+        routePrefix: '/docs',
+    });
     
     // Register routes
     fastify.register(jwtPlugin);
