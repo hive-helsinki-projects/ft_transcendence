@@ -1,5 +1,6 @@
 import db from '../models/database.js';
 
+// Fetch all match histories
 const getMatchHistories = async (req, reply) => {
     try {
         const rows = db.prepare(`
@@ -11,42 +12,41 @@ const getMatchHistories = async (req, reply) => {
                 mh.round, 
                 COALESCE(
                     (
-                        SELECT json_group_array(
-                        json_object('winner_id', mwh.winner_id)
-                        )
+                        SELECT mwh.winner_id
                         FROM match_winner_history mwh
                         WHERE mwh.match_id = mh.id
-                        ), '[]'
-                ) AS winners,
+                        LIMIT 1
+                    ), NULL
+                ) AS winner_id,
                 COALESCE(
                     (
                         SELECT json_group_array(
-                        json_object(
-                        'player_id', mph.player_id, 
-                        'score', mph.score, 
-                        'team', mph.team
+                            json_object(
+                                'player_id', mph.player_id, 
+                                'score', mph.score
+                            )
                         )
-                    )
-                    FROM match_player_history mph
-                    WHERE mph.match_id = mh.id
+                        FROM match_player_history mph
+                        WHERE mph.match_id = mh.id
                     ), '[]'
                 ) AS players
             FROM match_history mh
         `).all();
 
-        const matches = rows.map(({ winners, players, ...rest }) => ({
+        // Parse the players data from JSON format
+        const matches = rows.map(({ players, ...rest }) => ({
             ...rest,
-            winners: JSON.parse(winners),
             players: JSON.parse(players)
         }));
 
         return reply.code(200).send(matches);
     } catch (error) {
-        console.log(error);
-        return reply.code(500).send({ error: 'Failed to fetch match-histories' })
+        console.error(error);
+        return reply.code(500).send({ error: 'Failed to fetch match histories' });
     }
-}
+};
 
+// Fetch a specific match history by ID
 const getMatchHistory = async (req, reply) => {
     const { id } = req.params;
 
@@ -57,149 +57,153 @@ const getMatchHistory = async (req, reply) => {
                 mh.type,
                 mh.tournament_id,
                 mh.date,
-                mh.round,
+                mh.round, 
                 COALESCE(
                     (
-                        SELECT json_group_array(
-                        json_object('winner_id', mwh.winner_id)
-                        )
+                        SELECT mwh.winner_id
                         FROM match_winner_history mwh
                         WHERE mwh.match_id = mh.id
-                        ), '[]'
-                ) AS winners,
+                        LIMIT 1
+                    ), NULL
+                ) AS winner_id,
                 COALESCE(
                     (
                         SELECT json_group_array(
-                        json_object(
-                        'player_id', mph.player_id, 
-                        'score', mph.score, 
-                        'team', mph.team 
+                            json_object(
+                                'player_id', mph.player_id, 
+                                'score', mph.score
+                            )
                         )
-                    )
-                    FROM match_player_history mph
-                    WHERE mph.match_id = mh.id
+                        FROM match_player_history mph
+                        WHERE mph.match_id = mh.id
                     ), '[]'
                 ) AS players
             FROM match_history mh
             WHERE mh.id = ?
-            `).get(id);
+        `).get(id);
 
         if (!row) {
-            return reply.code(404).send({ error: 'Match not found '});
+            return reply.code(404).send({ error: 'Match not found' });
         }
 
         const match = {
             ...row,
-            winners: JSON.parse(row.winners),
             players: JSON.parse(row.players)
         };
 
         return reply.code(200).send(match);
     } catch (error) {
-        console.log(error);
-        return reply.code(500).send({ error: 'Failed to fetch match-history '})
+        console.error(error);
+        return reply.code(500).send({ error: 'Failed to fetch match history' });
     }
-}
+};
 
+// Create a new match history
 const createMatchHistory = async (req, reply) => {
+    const user_id = req.user.id;
     const { type, tournament_id, players = [], round } = req.body;
-    const insertMatch = db.prepare(`INSERT INTO match_history (type, tournament_id, round) VALUES (?, ?, ?)`);
-    const insertMatchPlayer =  db.prepare(`
-        INSERT INTO match_player_history
-        (match_id, player_id, team)
-        VALUES (?, ?, ?)`)
 
-    const transaction = db.transaction((type, tournament_id, round, players) => {
-        const result = insertMatch.run(type, tournament_id, round);
+    // Ensure there are exactly 2 players
+    if (players.length !== 2) {
+        return reply.code(400).send({ error: 'Must have 2 players' });
+    }
+
+    const insertMatch = db.prepare(`INSERT INTO match_history (type, tournament_id, round, user_id) VALUES (?, ?, ?, ?)`);
+    const insertMatchPlayer = db.prepare(`
+        INSERT INTO match_player_history
+        (match_id, player_id)
+        VALUES (?, ?)
+    `);
+
+    const transaction = db.transaction((type, tournament_id, round, players, user_id) => {
+        const result = insertMatch.run(type, tournament_id, round, user_id);
         for (const player of players) {
-            insertMatchPlayer.run(result.lastInsertRowid, player.player_id, player.team)
+            insertMatchPlayer.run(result.lastInsertRowid, player.player_id);
         }
-    })
+    });
 
     try {
-        transaction(type, tournament_id, round, players);
-        return reply.code(200).send({ message: 'Successfully created match-history '})
+        transaction(type, tournament_id, round, players, user_id);
+        return reply.code(201).send({ message: 'Match history created successfully' });
     } catch (error) {
-        console.log(error);
-        return reply.code(500).send({ error: 'Failed to create a match-history' })
+        console.error(error);
+        return reply.code(500).send({ error: 'Failed to create match history' });
     }
-}
+};
 
+// Update an existing match history
 const updateMatchHistory = async (req, reply) => {
-    const id = req.params.id;
-    const { winners, players } = req.body;
-    
-    const getExistingPlayer = db.prepare(`SELECT * FROM match_player_history WHERE match_id = ? and player_id = ?`);
-    const getExistingWinner = db.prepare(`SELECT * FROM match_winner_history WHERE match_id = ? AND winner_id = ?`);
-    const insertMatchWinner =  db.prepare(`INSERT INTO match_winner_history (match_id, winner_id) VALUES (?, ?)`);
-    const updatePlayerWin = db.prepare(`UPDATE players SET wins = wins + 1 WHERE id = ?`);
-    const updateMatchPlayerHistory =  db.prepare(`
-        UPDATE match_player_history SET
-        score = ? WHERE match_id = ? AND player_id = ?  
-    `)
-    const updatePlayerLoss =  db.prepare(`UPDATE players SET losses = losses + 1 WHERE id = ?`);
+    const user_id = req.user.id;
+    const { id } = req.params;
+    const { winner_id, players } = req.body;
 
-    const allWinnersArePlayers = winners.every(winner =>
-        players.some(player => player.player_id == winner.winner_id)
-    );
-    
-    if (!allWinnersArePlayers) {
-        return reply.code(400).send({ error: 'All winners must be part of the players list' });
+    // Ensure winner is part of the players list
+    const winnerIsPlayer = players.some(player => player.player_id === winner_id);
+    if (!winnerIsPlayer) {
+        return reply.code(400).send({ error: 'Winner must be part of the players list' });
     }
 
-    const transaction = db.transaction((id, winners, players) => {
-        const winnerIds = winners.map(winner => winner.winner_id);
+    const getExistingPlayer = db.prepare(`SELECT * FROM match_player_history WHERE match_id = ? AND player_id = ?`);
+    const getExistingWinner = db.prepare(`SELECT * FROM match_winner_history WHERE match_id = ? AND winner_id = ?`);
+    const insertMatchWinner = db.prepare(`INSERT INTO match_winner_history (match_id, winner_id) VALUES (?, ?)`);
+    const updatePlayerWin = db.prepare(`UPDATE players SET wins = wins + 1 WHERE id = ?`);
+    const updateMatchPlayerHistory = db.prepare(`
+        UPDATE match_player_history SET score = ? WHERE match_id = ? AND player_id = ?
+    `);
+    const updatePlayerLoss = db.prepare(`UPDATE players SET losses = losses + 1 WHERE id = ?`);
 
+    const transaction = db.transaction((id, winner_id, players) => {
         for (const player of players) {
             const existingPlayer = getExistingPlayer.get(id, player.player_id);
             if (!existingPlayer) {
                 return reply.code(404).send({ error: 'Player not found in this match' });
             }
 
-            updateMatchPlayerHistory.run(player.score, id, player.player_id)
-    
-            if (!winnerIds.includes(player.player_id)) {
+            updateMatchPlayerHistory.run(player.score, id, player.player_id);
+
+            // Update player records for wins and losses
+            if (winner_id !== player.player_id) {
                 updatePlayerLoss.run(player.player_id);
             }
         }
 
-        for (const winner of winners) {
-            const existingWinner = getExistingWinner.get(id, winner.winner_id);
-            if (!existingWinner) {
-                insertMatchWinner.run(id, winner.winner_id);
-                updatePlayerWin.run(winner.winner_id);
-            }
+        const existingWinner = getExistingWinner.get(id, winner_id);
+        if (!existingWinner) {
+            insertMatchWinner.run(id, winner_id);
+            updatePlayerWin.run(winner_id);
         }
-    })
+    });
 
     try {
-        transaction(id, winners, players);
-        return reply.code(200).send({ 
-            message: 'Successfully updated match-history' })
-    } catch (error) {
-        console.log(error);
-        if (error.message.includes('FOREIGN KEY constraint failed')) {
-            return reply.code(409).send({ error: 'Match not found' });
+        const authorized = db.prepare(`SELECT * FROM match_history WHERE id = ? AND user_id = ?`).get(id, user_id);
+        if (!authorized) {
+            return reply.code(403).send({ error: 'Unauthorized to update this match history' });
         }
-        return reply.code(500).send({ error: 'Failed to update a match-history' })
+
+        transaction(id, winner_id, players);
+        return reply.code(200).send({ message: 'Match history updated successfully' });
+    } catch (error) {
+        console.error(error);
+        return reply.code(500).send({ error: 'Failed to update match history' });
+    }
+};
+
+// Delete a match history
+const deleteMatchHistory = async (req, reply) => {
+    const { id } = req.params;
+    const user_id = req.user.id;
+
+    try {
+        const result = db.prepare(`DELETE FROM match_history WHERE id = ? AND user_id = ?`).run(id, user_id);
+        if (result.changes === 0) {
+            return reply.code(404).send({ error: 'Match history not found or user not authorized' });
+        }
+        return reply.code(200).send({ message: 'Match history deleted successfully' });
+    } catch (error) {
+        console.error(error);
+        return reply.code(500).send({ error: 'Failed to delete match history' });
     }
 }
-
-const deleteMatchHistory = async (req, reply) => {
-	const { id } = req.params;
-	
-	try {
-		const result = db.prepare(`DELETE FROM match_history WHERE id = ?`).run(id)
-		if (result.changes === 0) {
-			return reply.code(404).send({ error: 'Match-history not found or user not authortized to delete this player'})
-		}
-		return reply.code(200).send({ message: 'Succesfully deleted match-history '})
-	} catch (error) {
-		console.log(error);
-		return reply.code(500).send({ error: 'Failed to delete match-history' })
-	}
-}
-
 
 export default {
     getMatchHistories,
@@ -207,4 +211,4 @@ export default {
     createMatchHistory,
     updateMatchHistory,
     deleteMatchHistory
-}
+};

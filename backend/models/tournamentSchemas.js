@@ -1,3 +1,4 @@
+// Tournament schema
 export const Tournament = {
     type: 'object',
     properties: {
@@ -23,89 +24,79 @@ export const Tournament = {
                                 player_id: { type: 'integer' },
                                 score: { type: 'integer' },
                             },
-                            required: ['player_id']
-                            }
+                            required: ['player_id'],
                         },
-                        winner: {
-                            type: 'object',
-                            nullable: true,
-                            properties: {
-                                player_id: { type: 'integer' },
-                            }
-                        }
                     },
-                required: ['match_id', 'players']
-                }
-            }
+                    winner: {
+                        type: 'object',
+                        nullable: true,
+                        properties: {
+                            player_id: { type: 'integer' },
+                        },
+                    },
+                },
+                required: ['match_id', 'players'],
+            },
         },
-        required: ['id', 'name', 'status', 'current_round', 'created_at']
-}
+    },
+};
 
 // Schemas for tournament operations
 export const getTournamentsOpts = {
     schema: {
+        summary: 'Get all tournaments',
+		tags: ['tournament'],
         response: {
             200: {
                 type: 'array',
-                properties: {
-                    items: Tournament,
-                }
-            }
-        }
-    }
-}
+                items: Tournament,
+            },
+        },
+    },
+};
 
 export const getTournamentOpts = {
     schema: {
+        summary: 'Get tournament details',
+		tags: ['tournament'],
         params: {
             type: 'object',
             required: ['id'],
             properties: {
-                id: { type: 'integer' }
+                id: { type: 'integer' },
             },
         },
         response: {
-            201: {
+            200: {
                 type: 'object',
                 properties: {
                     item: Tournament,
-                }    
-            }
-        }
-    }
-}
+                },
+            },
+        },
+    },
+};
 
 export const postTournamentOpts = {
     schema: {
-        type: 'object',
-        required: ['name', 'player_ids'],
-        properties: {
-            name: { type: 'string' },
-            player_ids: {
-                type: 'array',
-                minItems: 3,
-                items: { type: 'integer' }
+        security: [
+            {
+                bearerAuth: []
             }
-        },
-        response: {
-            201: {
-                type: 'object',
-                properties: {
-                    message: { type: 'string' },
-                    item: Tournament,
-                }    
-            }
-        }
-    }
-}
-
-export const putTournamentOpts = {
-    schema: {
-        params: {
+        ],
+        summary: 'Create a tournament',
+		tags: ['tournament'],
+        body: {
             type: 'object',
-            required: ['id'],
+            required: ['name', 'player_ids'],
             properties: {
-                id: { type: 'integer' }
+                name: { type: 'string' },
+                player_ids: {
+                    type: 'array',
+                    minItems: 3,
+                    maxItems: 8,
+                    items: { type: 'integer' },
+                },
             },
         },
         response: {
@@ -114,21 +105,63 @@ export const putTournamentOpts = {
                 properties: {
                     message: { type: 'string' },
                     item: Tournament,
-                }    
+                },
+            },
+        },
+    },
+};
+
+export const putTournamentOpts = {
+    schema: {
+        security: [
+            {
+                bearerAuth: []
             }
-        }
-    }
-}
+        ],
+        summary: 'Advance a tournament to next round',
+		tags: ['tournament'],
+        params: {
+            type: 'object',
+            required: ['id'],
+            properties: {
+                id: { type: 'integer' },
+            },
+        },
+        response: {
+            200: {
+                type: 'object',
+                properties: {
+                    message: { type: 'string' },
+                    item: Tournament,
+                },
+            },
+        },
+    },
+};
 
 export const deleteTournamentOpts = {
     schema: {
-		response: {
-			200: {
-				type: 'object',
-				properties: {
-					message: { type: 'string' },
-				}
-			}
-		}
-	}
-}
+        security: [
+            {
+                bearerAuth: []
+            }
+        ],
+        summary: 'Delete a match tournament',
+		tags: ['tournament'],
+        params: {
+            type: 'object',
+            required: ['id'],
+            properties: {
+                id: { type: 'integer' },
+            },
+        },
+        response: {
+            200: {
+                type: 'object',
+                properties: {
+                    message: { type: 'string' },
+                },
+            },
+        },
+    },
+};
