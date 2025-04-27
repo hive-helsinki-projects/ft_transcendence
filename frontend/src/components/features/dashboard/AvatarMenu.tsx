@@ -1,5 +1,6 @@
 import React from 'react'
 import { LogOut, Pencil, Settings } from 'lucide-react'
+import { useNavigate } from 'react-router-dom'
 
 interface AvatarMenuProps {
   avatar: string
@@ -12,6 +13,8 @@ const AvatarMenu: React.FC<AvatarMenuProps> = ({
   onAvatarChange,
   onLogout,
 }) => {
+  const navigate = useNavigate()
+
   return (
     <div className="avatar-container">
       <img src={avatar} alt="User avatar" className="welcome-avatar" />
@@ -37,7 +40,7 @@ const AvatarMenu: React.FC<AvatarMenuProps> = ({
             style={{ display: 'none' }}
           />
         </div>
-        <button className="avatar-menu-button">
+        <button className="avatar-menu-button" onClick={() => navigate('/settings')}>
           <Settings size={16} />
           <span>Profile Settings</span>
         </button>
