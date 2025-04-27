@@ -6,7 +6,7 @@ import Help from '../../pages/Help'
 import LandingPage from '../../pages/landing/LandingPage'
 import Register from '../../pages/Register'
 import Settings from '../../pages/Settings'
-// import Tournament from '../../pages/Tournament'
+import Tournament from '../../pages/Tournament'
 import Pong from '../features/game/pong'
 import { useAuth } from '../../hooks/auth/useAuth'
 
@@ -35,11 +35,11 @@ const AppRoutes: React.FC = () => {
           <Pong />
         </ProtectedRoute>
       } />
-      {/* <Route path="/tournament" element={
+      {<Route path="/tournament" element={
         <ProtectedRoute>
           <Tournament />
         </ProtectedRoute>
-      } /> */}
+      } />}
       <Route path="/help" element={
         <ProtectedRoute>
           <Help />
