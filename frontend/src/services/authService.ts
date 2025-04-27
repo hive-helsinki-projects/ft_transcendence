@@ -1,6 +1,7 @@
 import { AuthFormData } from '../types/auth'
 import { API_ENDPOINTS } from '../utils/constants'
 import { formatErrorMessage } from '../utils/helpers'
+import { localAuth } from './localAuth'
 
 interface LoginResponse {
   token: string
@@ -11,13 +12,13 @@ interface LoginResponse {
  * Authentication Service
  * Handles all authentication-related API calls
  */
-export const AuthService = {
+export class AuthService {
   /**
    * Authenticates a user with username and password
    * @param formData - User credentials
    * @returns Promise with token and username
    */
-  login: async (formData: AuthFormData): Promise<LoginResponse> => {
+  static async login(formData: AuthFormData): Promise<LoginResponse> {
     try {
       const response = await fetch(API_ENDPOINTS.LOGIN, {
         method: 'POST',
@@ -33,13 +34,13 @@ export const AuthService = {
     } catch (error) {
       throw new Error(formatErrorMessage(error))
     }
-  },
+  }
 
   /**
    * Handles Google authentication
    * @returns Promise with token and username
    */
-  googleAuth: async (): Promise<LoginResponse> => {
+  static async googleAuth(): Promise<LoginResponse> {
     try {
       const response = await fetch(API_ENDPOINTS.GOOGLE_AUTH, {
         method: 'POST',
@@ -54,5 +55,31 @@ export const AuthService = {
     } catch (error) {
       throw new Error(formatErrorMessage(error))
     }
-  },
+  }
+
+  /**
+   * Registers a new user and automatically logs them in
+   * @param formData - User registration data
+   * @returns Promise with token and username
+   */
+  static async registerAndLogin(formData: AuthFormData): Promise<LoginResponse> {
+    try {
+      // Register the user
+      await localAuth.register(
+        formData.username,
+        formData.email || '',
+        formData.password,
+      )
+
+      // Automatically log in after successful registration
+      const loginResponse = await localAuth.login(
+        formData.username,
+        formData.password,
+      )
+
+      return loginResponse
+    } catch (error) {
+      throw new Error(error instanceof Error ? error.message : 'Authentication failed')
+    }
+  }
 } 
