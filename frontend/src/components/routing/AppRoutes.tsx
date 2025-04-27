@@ -3,8 +3,8 @@ import { Routes, Route } from 'react-router-dom'
 //import { ProtectedRoute } from '../'
 // import Dashboard from '../pages/DashBoard'
 // import Help from '../pages/Help'
-import LandingPage from '../pages/landing/LandingPage'
-// import Register from '../pages/Register'
+import LandingPage from '../../pages/landing/LandingPage'
+import Register from '../../pages/Register'
 // import Settings from '../pages/Settings'
 // import Tournament from '../pages/Tournament'
 // import Pong from '../features/game/pong'
@@ -19,7 +19,7 @@ const AppRoutes: React.FC = () => {
     <Routes>
       {/* Public Routes - Accessible to everyone */}
       <Route path="/" element={<LandingPage />} />
-      {/* <Route path="/register" element={<Register />} /> */}
+      {<Route path="/register" element={<Register />} />}
 
       {/* Protected Routes - Only accessible to authenticated users */}
       {/* <Route path="/dashboard" element={

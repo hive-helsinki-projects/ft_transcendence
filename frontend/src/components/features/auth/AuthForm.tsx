@@ -1,53 +1,10 @@
 import React, { useState } from 'react'
 import { useFormValidation } from '../../../hooks/auth/useFormValidation'
 import { AuthFormData, AuthFormProps } from '../../../types/auth'
+import { FormInput } from './FormInput'
+import { StatusMessage } from './StatusMessage'
 import LoadingState from '../../LoadingState'
 import '../../../assets/styles/index.css'
-
-/**
- * Props for the FormInput component
- */
-interface FormInputProps {
-  name: keyof AuthFormData        // Name of the input field
-  type: string                    // Type of input (text, password, etc.)
-  value: string                   // Current value of the input
-  placeholder: string             // Placeholder text
-  error?: string                  // Error message to display
-  disabled: boolean               // Whether the input is disabled
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void // Change handler
-}
-
-/**
- * Reusable input component for the authentication form
- * Handles input display, validation errors, and disabled state
- */
-const FormInput: React.FC<FormInputProps> = ({
-  name,
-  type,
-  value,
-  placeholder,
-  error,
-  disabled,
-  onChange,
-}) => (
-  <div className="form-group">
-    <input
-      type={type}
-      name={name}
-      placeholder={placeholder}
-      value={value}
-      onChange={onChange}
-      disabled={disabled}
-      required
-      className={error ? 'error' : ''}
-    />
-    {error && <span className="error-text">{error}</span>}
-  </div>
-)
-
-const StatusMessage: React.FC<{ type: 'error' | 'success'; message: string }> = ({ type, message }) => (
-  <div className={`${type}-message`}>{message}</div>
-)
 
 /**
  * Authentication Form Component
@@ -60,6 +17,10 @@ const AuthForm: React.FC<AuthFormProps> = ({
   isLoading = false,
   error = '',
   successMessage = '',
+  fields = [
+    { name: 'username', type: 'text', placeholder: 'Username' },
+    { name: 'password', type: 'password', placeholder: 'Password' },
+  ],
 }) => {
   // Form state
   const [formData, setFormData] = useState<AuthFormData>({
@@ -102,29 +63,19 @@ const AuthForm: React.FC<AuthFormProps> = ({
       {error && <StatusMessage type="error" message={error} />}
       {successMessage && <StatusMessage type="success" message={successMessage} />}
 
-      {/* Username Input */}
-      <FormInput
-        name="username"
-        type="text"
-        value={formData.username}
-        placeholder="Username"
-        error={validation.errors.username}
-        disabled={isLoading}
-        onChange={handleInputChange}
-      />
+      {fields.map((field) => (
+        <FormInput
+          key={field.name}
+          name={field.name}
+          type={field.type}
+          value={formData[field.name as keyof AuthFormData] || ''}
+          placeholder={field.placeholder}
+          error={validation.errors[field.name]}
+          disabled={isLoading}
+          onChange={handleInputChange}
+        />
+      ))}
 
-      {/* Password Input */}
-      <FormInput
-        name="password"
-        type="password"
-        value={formData.password}
-        placeholder="Password"
-        error={validation.errors.password}
-        disabled={isLoading}
-        onChange={handleInputChange}
-      />
-
-      {/* Submit Button */}
       <button
         type="submit"
         className="submit-button"
