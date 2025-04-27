@@ -1,18 +1,13 @@
 import React, { useState } from 'react'
-import { UserPlus } from 'lucide-react'
+import { UserPlus, Edit2, Trash2 } from 'lucide-react'
 import { StatusMessage } from '../auth/StatusMessage'
-
-interface UserPlayer {
-  id: string
-  name: string
-  avatar: string
-  isActive: boolean
-  points: number
-}
+import { UserPlayer } from '../../../types/dashboard'
 
 interface PlayerManagementProps {
   userPlayers: UserPlayer[]
   onCreatePlayer: (playerName: string) => void
+  onUpdatePlayer: (playerId: string, updates: Partial<UserPlayer>) => void
+  onDeletePlayer: (playerId: string) => void
 }
 
 const CreatePlayerModal: React.FC<{
@@ -72,8 +67,14 @@ const CreatePlayerModal: React.FC<{
 const PlayerManagement: React.FC<PlayerManagementProps> = ({
   userPlayers,
   onCreatePlayer,
+  onUpdatePlayer,
+  onDeletePlayer,
 }) => {
   const [showCreateModal, setShowCreateModal] = useState(false)
+
+  const handleToggleActive = (player: UserPlayer) => {
+    onUpdatePlayer(player.id, { isActive: !player.isActive })
+  }
 
   return (
     <div className="players-management">
@@ -100,9 +101,23 @@ const PlayerManagement: React.FC<PlayerManagementProps> = ({
             />
             <div className="player-item-info">
               <span className="player-item-name">{player.name}</span>
-              <span className="player-item-points">
-                {player.points} points
-              </span>
+              <span className="player-item-points">{player.points} points</span>
+            </div>
+            <div className="player-item-actions">
+              <button
+                className="action-button"
+                onClick={() => handleToggleActive(player)}
+                title="Toggle active status"
+              >
+                <Edit2 size={16} />
+              </button>
+              <button
+                className="action-button delete"
+                onClick={() => onDeletePlayer(player.id)}
+                title="Delete player"
+              >
+                <Trash2 size={16} />
+              </button>
             </div>
           </div>
         ))}

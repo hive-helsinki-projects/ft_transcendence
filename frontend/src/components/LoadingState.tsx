@@ -3,17 +3,13 @@ import '../assets/styles/index.css'
 
 interface LoadingStateProps {
   message?: string
-  size?: 'small' | 'medium' | 'large'
 }
 
-const LoadingState: React.FC<LoadingStateProps> = ({
-  message = 'Loading...',
-  size = 'medium',
-}) => {
+const LoadingState: React.FC<LoadingStateProps> = ({ message = 'Loading...' }) => {
   return (
-    <div className={`loading-state ${size}`} role="status" aria-live="polite">
+    <div className="loading-state">
       <div className="loading-spinner" />
-      <span className="loading-message">{message}</span>
+      <p className="loading-message">{message}</p>
     </div>
   )
 }
