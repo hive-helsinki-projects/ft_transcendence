@@ -20,17 +20,18 @@ export class AuthService {
    */
   static async login(formData: AuthFormData): Promise<LoginResponse> {
     try {
-      const response = await fetch(API_ENDPOINTS.LOGIN, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      })
+      // const response = await fetch(API_ENDPOINTS.LOGIN, {
+      //   method: 'POST',
+      //   headers: { 'Content-Type': 'application/json' },
+      //   body: JSON.stringify(formData),
+      return await localAuth.login(formData.username, formData.password) // TODO: Replace with backend API call
+      // })
 
-      if (!response.ok) {
-        throw new Error(formatErrorMessage(await response.json()))
-      }
+      // if (!response.ok) {
+      //   throw new Error(formatErrorMessage(await response.json()))
+      // }
 
-      return response.json()
+      // return response.json()
     } catch (error) {
       throw new Error(formatErrorMessage(error))
     }
