@@ -1,5 +1,5 @@
 import React from 'react'
-import '../../../assets/styles/index.css'
+import '../../assets/styles/index.css'
 
 const HeroSection: React.FC = () => (
   <section className="hero-section">

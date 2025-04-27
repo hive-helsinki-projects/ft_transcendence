@@ -10,6 +10,14 @@
 export interface AuthFormData {
   username: string  // The user's chosen username
   password: string  // The user's password
+  email?: string   // The user's email (optional)
+  confirmPassword?: string // Password confirmation (optional)
+}
+
+export interface FormFieldConfig {
+  name: keyof AuthFormData
+  type: string
+  placeholder: string
 }
 
 // Component Props Types
@@ -19,6 +27,7 @@ export interface AuthFormProps {
   isLoading?: boolean                                  // Whether the form is currently processing
   error?: string                                      // Any error message to display
   successMessage?: string                             // Any success message to display
+  fields?: FormFieldConfig[]                          // Configuration for form fields
 }
 
 export interface AuthSectionProps {
