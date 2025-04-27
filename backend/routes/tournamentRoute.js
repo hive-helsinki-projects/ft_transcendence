@@ -17,27 +17,21 @@ function tournamentRoutes(fastify, options) {
     // Create a tournament
     fastify.post('/tournaments', {
         ...postTournamentOpts,
-        // onRequest: [fastify.jwtAuth],
+        onRequest: [fastify.jwtAuth],
         handler: tournamentController.createTournament
     });
 
     // Advance a tournament to next round
-    fastify.put('/tournaments/:id/advance', {
+    fastify.put('/tournaments/:id', {
         ...putTournamentOpts,
-        // onRequest: [fastify.jwtAuth],
+        onRequest: [fastify.jwtAuth],
         handler: tournamentController.advanceTournament
     });
 
-    // Finish a tournament
-    fastify.put('/tournaments/:id/finish', {
-        ...putTournamentOpts,
-        // onRequest: [fastify.jwtAuth],
-        handler: tournamentController.finishTournament
-    });
-
+     // Delete a match tournament
     fastify.delete('/tournaments/:id', {
         ...deleteTournamentOpts,
-        // onRequest: [fastify.jwtAuth],
+        onRequest: [fastify.jwtAuth],
         handler: tournamentController.deleteTournament
     });
 }

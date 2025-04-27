@@ -1,6 +1,14 @@
 import Database from 'better-sqlite3';
+import dotenv from 'dotenv';
 
-const db = new Database('database/pong.db', { verbose: console.log });
+dotenv.config();
+const isTestEnv = process.env.NODE_ENV === 'test';
+
+const db = isTestEnv ? 
+	new Database('database/testPong.db', { verbose: console.log }) :
+	new Database('database/pong.db', { verbose: console.log });
+
+console.log(`Using ${isTestEnv ? 'testPong.db' : 'pong.db'}`);
 
 // Create users table
 db.prepare(`
@@ -48,11 +56,13 @@ db.prepare(`
 db.prepare(`
 	CREATE TABLE IF NOT EXISTS tournaments (
 		id INTEGER PRIMARY KEY AUTOINCREMENT,
+		user_id INTEGER,
 		name TEXT NOT NULL,
 		status TEXT DEFAULT 'pending',
 		current_round INTEGER DEFAULT 0,
 		winner_id INTEGER,
 		created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+		FOREIGN KEY (user_id) REFERENCES users(id)
 		FOREIGN KEY (winner_id) REFERENCES players(id)
 	)
 `).run();
@@ -61,10 +71,12 @@ db.prepare(`
 db.prepare(`
 	CREATE TABLE IF NOT EXISTS match_history (
 		id INTEGER PRIMARY KEY AUTOINCREMENT,
+		user_id INTEGER,
 		type TEXT NOT NULL,
 		tournament_id INTEGER DEFAULT NULL,
 		round INTEGER,
 		date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+		FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
 		FOREIGN KEY (tournament_id) REFERENCES tournaments(id) ON DELETE CASCADE
 	)
 `).run();
@@ -76,7 +88,6 @@ db.prepare(`
 		match_id INTEGER NOT NULL,
 		player_id INTEGER NOT NULL,
 		score INTEGER DEFAULT 0 NOT NULL,
-		team INTEGER CHECK (team IN (1, 2)),
 		FOREIGN KEY (match_id) REFERENCES match_history(id) ON DELETE CASCADE,
 		FOREIGN KEY (player_id) REFERENCES players(id),
 		UNIQUE (match_id, player_id)
