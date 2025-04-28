@@ -44,26 +44,12 @@ function buildApp() {
             }
         });
         
-// register CORS
-fastify.register(fastifyCors, {
-    origin: 'http://localhost:5173',
-    credentials: true
-});
-
-// Register routes
-fastify.register(jwtPlugin);
-fastify.register(authRoutes);
-fastify.register(userRoutes);
-fastify.register(playerRoutes);
-fastify.register(friendRoutes);
-fastify.register(matchHistoryRoutes);
-fastify.register(tournamentRoutes);
-fastify.register(googleRoutes);
-
-    fastify.register(swaggerUi, {
-        routePrefix: '/docs',
+    // register CORS
+    fastify.register(fastifyCors, {
+        origin: 'http://localhost:5173',
+        credentials: true
     });
-    
+
     // Register routes
     fastify.register(jwtPlugin);
     fastify.register(authRoutes);
@@ -72,7 +58,8 @@ fastify.register(googleRoutes);
     fastify.register(friendRoutes);
     fastify.register(matchHistoryRoutes);
     fastify.register(tournamentRoutes);
-    
+    fastify.register(googleRoutes);
+
     return fastify;
 }
 
