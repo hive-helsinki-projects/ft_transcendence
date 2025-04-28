@@ -1,7 +1,7 @@
-import { useRef, useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-import LoadingContainer from '../components/LoadingContainer';
-import '../css/Pong.css';
+import { useEffect, useRef, useState } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
+import LoadingContainer from '../../LoadingContainer'
+import '../../../assets/styles/Pong.css'
 
 // Constants
 const CANVAS_WIDTH = 800;
