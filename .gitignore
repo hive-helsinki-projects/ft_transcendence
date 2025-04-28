@@ -137,6 +137,6 @@ dist
 
 .vscode/
 .DS_Store
-
-# certs/
-# .env
+.prettierignore
+build
+dist

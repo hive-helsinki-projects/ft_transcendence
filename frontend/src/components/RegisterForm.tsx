@@ -1,20 +1,20 @@
-import React from 'react';
-import { useForm, SubmitHandler } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
-import { User } from '../services/localAuth';
+import React from 'react'
+import { SubmitHandler, useForm } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom'
+import { User } from '../services/localAuth'
 
 interface RegisterFormProps {
-  onSubmit: SubmitHandler<RegisterFormInputs>;
-  isLoading: boolean;
-  successMessage: string;
-  onShowUsers: () => void;
-  registeredUsers: User[];
+  onSubmit: SubmitHandler<RegisterFormInputs>
+  isLoading: boolean
+  successMessage: string
+  onShowUsers: () => void
+  registeredUsers: User[]
 }
 
 interface RegisterFormInputs {
-  username: string;
-  email: string;
-  password: string;
+  username: string
+  email: string
+  password: string
 }
 
 const RegisterForm: React.FC<RegisterFormProps> = ({
@@ -22,16 +22,22 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
   isLoading,
   successMessage,
   onShowUsers,
-  registeredUsers
+  registeredUsers,
 }) => {
-  const navigate = useNavigate();
-  const { register, handleSubmit, formState: { errors } } = useForm<RegisterFormInputs>();
+  const navigate = useNavigate()
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<RegisterFormInputs>()
 
   return (
     <div className="register-container">
       <h1>Register</h1>
-      {successMessage && <div className="success-message">{successMessage}</div>}
-      
+      {successMessage && (
+        <div className="success-message">{successMessage}</div>
+      )}
+
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="form-group">
           <label htmlFor="username">Username</label>
@@ -41,7 +47,9 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
             {...register('username', { required: 'Username is required' })}
             disabled={isLoading}
           />
-          {errors.username && <p className="error-message">{errors.username.message}</p>}
+          {errors.username && (
+            <p className="error-message">{errors.username.message}</p>
+          )}
         </div>
 
         <div className="form-group">
@@ -52,7 +60,9 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
             {...register('email', { required: 'Email is required' })}
             disabled={isLoading}
           />
-          {errors.email && <p className="error-message">{errors.email.message}</p>}
+          {errors.email && (
+            <p className="error-message">{errors.email.message}</p>
+          )}
         </div>
 
         <div className="form-group">
@@ -63,7 +73,9 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
             {...register('password', { required: 'Password is required' })}
             disabled={isLoading}
           />
-          {errors.password && <p className="error-message">{errors.password.message}</p>}
+          {errors.password && (
+            <p className="error-message">{errors.password.message}</p>
+          )}
         </div>
 
         <button type="submit" disabled={isLoading} className="submit-button">
@@ -74,14 +86,22 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
       <div className="action-links">
         <p>
           Already have an account?{' '}
-          <button type="button" onClick={() => navigate('/')} className="link-button">
+          <button
+            type="button"
+            onClick={() => navigate('/')}
+            className="link-button"
+          >
             Login here
           </button>
         </p>
       </div>
 
       <div className="registered-users">
-        <button type="button" onClick={onShowUsers} className="show-users-button">
+        <button
+          type="button"
+          onClick={onShowUsers}
+          className="show-users-button"
+        >
           Show Registered Users
         </button>
         {registeredUsers.length > 0 && (
@@ -98,7 +118,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
         )}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default RegisterForm; 
+export default RegisterForm

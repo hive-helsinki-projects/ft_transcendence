@@ -1,54 +1,84 @@
-# React + TypeScript + Vite
+# Frontend Documentation
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Project Structure
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+```
+frontend/
+├── src/
+│   ├── assets/
+│   │   └── styles/           # CSS and styling files
+│   ├── components/
+│   │   ├── features/        # Feature-specific components
+│   │   │   ├── auth/       # Authentication components
+│   │   │   └── game/       # Game-related components
+│   │   ├── layout/         # Layout components
+│   │   ├── pages/          # Page components
+│   │   ├── routing/        # Routing components
+│   │   └── sidebar/        # Sidebar components
+│   ├── hooks/
+│   │   └── auth/           # Authentication-related hooks
+│   ├── services/           # API and service integrations
+│   ├── store/              # State management
+│   ├── types/              # TypeScript type definitions
+│   ├── utils/              # Utility functions
+│   ├── App.tsx             # Main application component
+│   └── main.tsx            # Application entry point
+├── public/                 # Static assets
+├── tests/                  # Test files
+└── ...                     # Configuration files
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Key Features
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- **Authentication System**: Complete authentication flow with login and registration
+- **Game Interface**: Pong game implementation with real-time updates
+- **Dashboard**: User dashboard with game statistics and settings
+- **Tournament System**: Tournament management and viewing
+- **Responsive Design**: Mobile-friendly interface using Tailwind CSS
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+## Getting Started
+
+1. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+2. Start the development server:
+   ```bash
+   npm run dev
+   ```
+
+3. Build for production:
+   ```bash
+   npm run build
+   ```
+
+## Technology Stack
+
+- React with TypeScript
+- Tailwind CSS for styling
+- Vite as build tool
+- Custom hooks for state management
+- Context API for global state
+- CSS Modules for component styling
+
+## Development Guidelines
+
+1. Follow the component structure in `src/components`
+2. Use TypeScript for type safety
+3. Implement responsive design using Tailwind CSS
+4. Write tests for new features
+5. Follow the established file naming conventions
+
+## Directory Structure Details
+
+- `components/`: Reusable UI components
+- `features/`: Feature-specific components and logic
+- `hooks/`: Custom React hooks
+- `services/`: API and service integrations
+- `store/`: State management
+- `types/`: TypeScript type definitions
+- `utils/`: Helper functions and constants
+- `assets/`: Static assets and styles
+
+Each directory contains its own README.md with specific documentation.
