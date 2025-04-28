@@ -5,6 +5,7 @@ import { useAuth } from '../../hooks/auth/useAuth'
 import { useAuthForm } from '../../hooks/auth/useAuthForm'
 import { AuthService } from '../../services/authService'
 import { AuthFormData, REDIRECT_DELAY } from '../../types/auth'
+import GoogleSignIn from "../../components/GoogleSignIn";
 
 /**
  * LandingPage Component
@@ -62,17 +63,15 @@ const LandingPage: React.FC = () => {
   return (
     <LoadingContainer showPongBackground>
       <HeroSection />
-      <AuthSection
-        onGoogleAuth={handleGoogleAuth}
-        onNavigateToRegister={() => navigate('/register')}
-      >
         <AuthForm
           onSubmit={handleAuthSubmit}
           isLoading={isLoading}
           error={error}
           successMessage={successMessage}
         />
-      </AuthSection>
+      <GoogleSignIn 
+              isLoading={isLoading}
+            />
     </LoadingContainer>
   )
 }
