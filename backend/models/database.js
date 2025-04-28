@@ -16,7 +16,7 @@ db.prepare(`
 		id INTEGER PRIMARY KEY AUTOINCREMENT,
 		username TEXT NOT NULL UNIQUE,
 		email TEXT NOT NULL UNIQUE,
-		password_hash TEXT NOT NULL,
+		password_hash TEXT,
 		avatar_url TEXT DEFAULT NULL,
 		online_status BOOLEAN DEFAULT FALSE,
 		created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
