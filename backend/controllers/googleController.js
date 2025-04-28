@@ -1,6 +1,3 @@
-// ビジネスロジックやデータの操作を実行し、レスポンスを返す。
-// リクエストに対する具体的な処理（データベース操作、外部APIとの通信、エラー処理など）を含む。 
-
 import { OAuth2Client } from 'google-auth-library';
 
 async function verifyGoogleToken(idToken) {
