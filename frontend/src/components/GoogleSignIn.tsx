@@ -2,8 +2,7 @@ import React, { useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 
-import "../css/LandingPage.css"; // should I move this to its own css file?
-
+import "../css/LandingPage.css";
 const clientId = '847383291975-9ten21d8j1vf3m2m1kod2i2js9c28o6e.apps.googleusercontent.com';
 
 interface GoogleSignInProps {
@@ -39,7 +38,6 @@ const GoogleSignIn: React.FC<GoogleSignInProps> = ({ isLoading }) => {
 
   const sendTokenToServer = async (idToken: string) => {
     try {
-      console.log("You're in sentTokenToServer function!");
       const response = await fetch('https://localhost:3001/api/auth/google', {
         method: 'POST',
         headers: {
@@ -47,10 +45,8 @@ const GoogleSignIn: React.FC<GoogleSignInProps> = ({ isLoading }) => {
         },
         body: JSON.stringify({ token: idToken })
       });
-      console.log("Hello?");
       const data = await response.json();
       if (response.ok) {
-        console.log('User authenticated:', data);
         login(data.user.token, data.user.username);
         navigate('/dashboard');
       } else {
@@ -61,14 +57,11 @@ const GoogleSignIn: React.FC<GoogleSignInProps> = ({ isLoading }) => {
     }
   };
 
-  const handleCredentialResponse = (response: any) => {
-    console.log("isLoading is:", isLoading); // for debugging
-    
+  const handleCredentialResponse = (response: any) => {    
       if (isLoading) {
           return ;
       }
     const idToken = response.credential; // obtain the ID
-    console.log("Google ID Token: ", idToken); // for debugging
 
     // send the token to the sever
     sendTokenToServer(idToken).then(() => {
@@ -80,17 +73,7 @@ const GoogleSignIn: React.FC<GoogleSignInProps> = ({ isLoading }) => {
 
   return (
     <div>
-      <div id="google-signin-btn"></div> {/* display button here */}
-      {/*<button onClick={handleSignOut}>Sign Out</button> Sign out botton for testing, delete it from here!!! */}
-      <button onClick={() => {
-        window.google.accounts.id.disableAutoSelect();
-        window.google.accounts.id.revoke('your-email@gmail.com', () => {
-          console.log("Disconnected from Google");
-          window.location.reload();
-        });
-      }}>
-        Google Session Reset for testing
-      </button>
+      <div id="google-signin-btn"></div>
     </div>
   );
 };
