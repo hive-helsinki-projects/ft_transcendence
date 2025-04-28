@@ -1,32 +1,28 @@
 import React from 'react'
 import { AuthSectionProps } from '../../../types/auth'
 import '../../../assets/styles/index.css'
+import GoogleSignIn from "../../../components/GoogleSignIn";
+import { useAuthForm } from '../../../hooks/auth/useAuthForm'
 
 const AuthSection: React.FC<AuthSectionProps> = ({
   onGoogleAuth,
   onNavigateToRegister,
   children,
 }) => (
+
+    // const {
+    //   isLoading
+    // } = useAuthForm()
+  
   <section className="auth-section">
     <h2>Let's Play!</h2>
     {children}
     <div className="auth-options">
       <div className="google-auth">
         <span>Or</span>
-        <button
-          type="button"
-          className="google-button"
-          onClick={onGoogleAuth}
-          aria-label="Sign in with Google"
-        >
-          <img
-            src="https://www.google.com/favicon.ico"
-            alt="Google"
-            width="20"
-            height="20"
-          />
-          Sign in with Google
-        </button>
+          <GoogleSignIn 
+              // isLoading={isLoading}
+            />
       </div>
 
       <div className="register-link">

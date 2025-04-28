@@ -63,15 +63,17 @@ const LandingPage: React.FC = () => {
   return (
     <LoadingContainer showPongBackground>
       <HeroSection />
+      <AuthSection
+        onGoogleAuth={handleGoogleAuth}
+        onNavigateToRegister={() => navigate('/register')}
+      >
         <AuthForm
           onSubmit={handleAuthSubmit}
           isLoading={isLoading}
           error={error}
           successMessage={successMessage}
         />
-      <GoogleSignIn 
-              isLoading={isLoading}
-            />
+        </AuthSection>
     </LoadingContainer>
   )
 }
