@@ -125,7 +125,7 @@
 }
 
 .google-auth span {
-  display: block;
+  display: inline-block;
   color: rgba(255, 255, 255, 0.6);
   font-size: 0.9rem;
   margin-bottom: 1rem;

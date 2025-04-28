@@ -1,0 +1,6 @@
+export { default as HelpSection } from './HelpSection'
+export { default as FAQSection } from './FAQSection'
+export { default as RulesSection } from './RulesSection'
+export { default as ContactSection } from './ContactSection'
+export { default as TroubleshootingSection } from './TroubleshootingSection'
+export { default as FeedbackSection } from './FeedbackSection' 
