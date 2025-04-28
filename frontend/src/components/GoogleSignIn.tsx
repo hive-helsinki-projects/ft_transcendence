@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../hooks/useAuth";
 
 import "../css/LandingPage.css"; // should I move this to its own css file?
 
@@ -18,6 +19,7 @@ declare global {
 const GoogleSignIn: React.FC<GoogleSignInProps> = ({ isLoading }) => {
 
   const navigate = useNavigate();
+  const { login } = useAuth();
   
   useEffect(() => {
     if (window.google) {
@@ -49,7 +51,8 @@ const GoogleSignIn: React.FC<GoogleSignInProps> = ({ isLoading }) => {
       const data = await response.json();
       if (response.ok) {
         console.log('User authenticated:', data);
-        // navigate('/dashboard');
+        login(data.user.token, data.user.username);
+        navigate('/dashboard');
       } else {
         console.log('Authentication failed:', data);
       }
