@@ -141,7 +141,7 @@ export default function Game() {
 
     function checkWinCondition(currentScores: { player1: number; player2: number }) {
       if (currentScores.player1 >= MAX_SCORE || currentScores.player2 >= MAX_SCORE) {
-        if (Math.abs(currentScores.player1 - currentScores.player2) >= 2) {
+        if ((currentScores.player1 > 20 || currentScores.player2 > 20) || Math.abs(currentScores.player1 - currentScores.player2) >= 2) {
           setGameOver(true);
           setMatchStatus('completed');
           const winner = currentScores.player1 > currentScores.player2
