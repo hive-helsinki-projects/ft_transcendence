@@ -9,7 +9,7 @@ const CANVAS_HEIGHT = 600;
 const PADDLE_WIDTH = 10;
 const PADDLE_HEIGHT = 100;
 const BALL_RADIUS = 8;
-const PADDLE_SPEED = 6;
+const PADDLE_SPEED = 9;
 const MAX_SCORE = 11;
 
 interface GameState {
@@ -22,8 +22,8 @@ interface GameState {
 
 export default function Game() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const ballSpeedX = useRef(2);
-  const ballSpeedY = useRef(2);
+  const ballSpeedX = useRef(5);
+  const ballSpeedY = useRef(5);
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -71,8 +71,8 @@ export default function Game() {
     function resetBall() {
       ballX = CANVAS_WIDTH / 2;
       ballY = CANVAS_HEIGHT / 2;
-      ballSpeedX.current = (Math.random() > 0.5 ? 1 : -1) * 2;
-      ballSpeedY.current = (Math.random() > 0.5 ? 1 : -1) * (Math.random() * 3 + 2);
+      ballSpeedX.current = (Math.random() > 0.5 ? 1 : -1) * 4;
+      ballSpeedY.current = (Math.random() > 0.5 ? 1 : -1) * (Math.random() * 5 + 2);
     }
 
     function update() {
