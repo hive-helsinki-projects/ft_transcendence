@@ -43,6 +43,11 @@ function buildApp() {
                 },
             }
         });
+
+    // http://localhost:3001/docs
+    fastify.register(swaggerUi, {
+        routePrefix: '/docs',
+    });
         
     // register CORS
     fastify.register(fastifyCors, {
