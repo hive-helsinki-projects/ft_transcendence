@@ -1,7 +1,7 @@
-import React from 'react';
+import React from 'react'
 
 interface RulesSectionProps {
-  rules: string[];
+  rules: string[]
 }
 
 const RulesSection: React.FC<RulesSectionProps> = ({ rules }) => (
@@ -9,10 +9,12 @@ const RulesSection: React.FC<RulesSectionProps> = ({ rules }) => (
     <h2>Game Rules</h2>
     <ul className="help-list">
       {rules.map((rule, index) => (
-        <li key={index} className="help-item">{rule}</li>
+        <li key={index} className="help-item">
+          {rule}
+        </li>
       ))}
     </ul>
   </section>
-);
+)
 
-export default RulesSection; 
+export default RulesSection

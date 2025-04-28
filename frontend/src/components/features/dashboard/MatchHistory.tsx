@@ -1,0 +1,86 @@
+import React from 'react'
+
+interface MatchHistory {
+  id: string
+  player: {
+    name: string
+    avatar: string
+  }
+  opponent: {
+    name: string
+    avatar: string
+  }
+  result: 'win' | 'loss'
+  score: string
+  date: string
+  mode: '1v1' | 'tournament'
+}
+
+interface MatchHistoryProps {
+  matches: MatchHistory[]
+}
+
+const MatchHistory: React.FC<MatchHistoryProps> = ({ matches }) => (
+  <div className="recent-matches-section">
+    <h2>Recent Matches</h2>
+    <div className="matches-list">
+      {matches.map((match) => (
+        <div key={match.id} className={`match-item ${match.result}`}>
+          <div className="match-info">
+            <span className="match-mode">
+              {match.mode === '1v1' ? '🏓' : '🏆'}
+            </span>
+            <div className="match-players">
+              {match.mode === '1v1' ? (
+                <>
+                  <div className="player">
+                    <img
+                      src={match.player.avatar}
+                      alt={match.player.name}
+                      className="player-avatar"
+                    />
+                    <span className="player-name">{match.player.name}</span>
+                  </div>
+                  <span className="vs">vs</span>
+                  <div className="player">
+                    <img
+                      src={match.opponent.avatar}
+                      alt={match.opponent.name}
+                      className="player-avatar"
+                    />
+                    <span className="player-name">{match.opponent.name}</span>
+                  </div>
+                </>
+              ) : (
+                <div className="player">
+                  <img
+                    src={
+                      match.result === 'win'
+                        ? match.player.avatar
+                        : match.opponent.avatar
+                    }
+                    alt="Winner"
+                    className="player-avatar"
+                  />
+                  <span className="player-name tournament-winner">
+                    {match.result === 'win'
+                      ? match.player.name
+                      : match.opponent.name}
+                  </span>
+                </div>
+              )}
+            </div>
+          </div>
+          <div className="match-details">
+            {match.mode === '1v1' && (
+              <span className="match-score">{match.score}</span>
+            )}
+            <span className="match-date">{match.date}</span>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+)
+
+export default MatchHistory 

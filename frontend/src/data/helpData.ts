@@ -1,34 +1,37 @@
-export interface FAQ {
-  question: string;
-  answer: string;
-}
+export const faqs = [
+  {
+    question: 'How do I start playing?',
+    answer: 'To start playing, create an account and log in. Then you can join a game or create your own tournament.',
+  },
+  {
+    question: 'Can I play with friends?',
+    answer: 'Yes! You can invite friends to play by sharing your game room code or tournament link.',
+  },
+  {
+    question: 'How do tournaments work?',
+    answer: 'Tournaments are organized in brackets. Players compete in matches, and winners advance to the next round until a champion is crowned.',
+  },
+]
 
 export const gameRules = [
-  "The game is played between two players.",
-  "Each player takes turns hitting the ball across the table.",
-  "The ball must bounce once on the opponent's side of the table before they return it.",
-  "A point is scored if the opponent fails to return the ball or hits it out of bounds.",
-  "The first player to reach 11 points with a 2-point lead wins the game.",
-  "If the score reaches 10-10, the game continues until one player has a 2-point lead.",
-];
-
-export const faqs: FAQ[] = [
   {
-    question: "How do I register an account?",
-    answer: "Click on the 'Register' button on the landing page and fill out the form.",
+    title: 'Basic Rules',
+    description: 'Players control paddles to hit the ball back and forth. The goal is to make the ball pass your opponent\'s paddle.',
   },
   {
-    question: "How do I reset my password?",
-    answer: "Go to the login page and click on 'Forgot Password' to reset your password.",
+    title: 'Scoring',
+    description: 'A point is scored when the ball passes the opponent\'s paddle. The first player to reach 11 points wins the game.',
   },
   {
-    question: "How do I start a game?",
-    answer: "Navigate to the 'Game' section from the sidebar and click 'Start Game'.",
+    title: 'Power-ups',
+    description: 'Special power-ups appear during gameplay. Collect them to gain temporary advantages like speed boosts or paddle size changes.',
   },
-];
+]
 
 export const troubleshootingSteps = [
-  "Ensure you have a stable internet connection.",
-  "Clear your browser cache and cookies.",
-  "Restart the application.",
-]; 
+  'Check your internet connection',
+  'Clear your browser cache',
+  'Try using a different browser',
+  'Make sure your browser is up to date',
+  'Disable any ad blockers or extensions that might interfere',
+] 

@@ -1,30 +1,34 @@
-import { useRef, useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-import LoadingContainer from '../components/LoadingContainer';
-import '../css/Pong.css';
+import { useEffect, useRef, useState } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
+import LoadingContainer from '../../LoadingContainer'
+import '../../../assets/styles/Pong.css'
+
+// Constants
+const CANVAS_WIDTH = 800;
+const CANVAS_HEIGHT = 600;
+const PADDLE_WIDTH = 10;
+const PADDLE_HEIGHT = 100;
+const BALL_RADIUS = 8;
+const PADDLE_SPEED = 7;
+const MAX_SCORE = 11;
 
 interface GameState {
   matchType?: 'semifinal' | 'final' | '1v1';
   matchIndex?: number;
-  player1?: {
-    name: string;
-    avatar: string;
-  };
-  player2?: {
-    name: string;
-    avatar: string;
-  };
+  player1?: { name: string; avatar: string };
+  player2?: { name: string; avatar: string };
   returnTo?: string;
 }
 
-let ballSpeedX = 5;
-let ballSpeedY = 5;
-
 export default function Game() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const ballSpeedX = useRef(4);
+  const ballSpeedY = useRef(4);
+
   const location = useLocation();
   const navigate = useNavigate();
   const gameState = location.state as GameState;
+
   const [scores, setScores] = useState({ player1: 0, player2: 0 });
   const [gameOver, setGameOver] = useState(false);
   const [matchStatus, setMatchStatus] = useState<'pending' | 'in_progress' | 'completed'>('pending');
@@ -33,24 +37,23 @@ export default function Game() {
   useEffect(() => {
     const canvas = canvasRef.current!;
     const ctx = canvas.getContext('2d')!;
-    canvas.width = 800;
-    canvas.height = 600;
+    canvas.width = CANVAS_WIDTH;
+    canvas.height = CANVAS_HEIGHT;
+    document.addEventListener('keydown', keyDownHandler);
+    document.addEventListener('keyup', keyUpHandler);
 
     // Game variables
-    let paddle1Y = canvas.height / 2 - 50;
-    let paddle2Y = canvas.height / 2 - 50;
-    let ballX = canvas.width / 2;
-    let ballY = canvas.height / 2;
-    const paddleWidth = 10;
-    const paddleHeight = 100;
+    let paddle1Y = CANVAS_HEIGHT / 2 - PADDLE_HEIGHT / 2;
+    let paddle2Y = CANVAS_HEIGHT / 2 - PADDLE_HEIGHT / 2;
+    let ballX = CANVAS_WIDTH / 2;
+    let ballY = CANVAS_HEIGHT / 2;
     let paddle1Up = false;
     let paddle1Down = false;
     let paddle2Up = false;
     let paddle2Down = false;
-    const paddleSpeed = 8;
-    const maxScore = 11;
 
     function keyDownHandler(e: KeyboardEvent) {
+      if (["ArrowUp", "ArrowDown"].includes(e.key)) e.preventDefault();
       if (e.key === 'w' || e.key === 'W') paddle1Up = true;
       if (e.key === 's' || e.key === 'S') paddle1Down = true;
       if (e.key === 'ArrowUp') paddle2Up = true;
@@ -58,63 +61,66 @@ export default function Game() {
     }
 
     function keyUpHandler(e: KeyboardEvent) {
+      if (["ArrowUp", "ArrowDown"].includes(e.key)) e.preventDefault();
       if (e.key === 'w' || e.key === 'W') paddle1Up = false;
       if (e.key === 's' || e.key === 'S') paddle1Down = false;
       if (e.key === 'ArrowUp') paddle2Up = false;
       if (e.key === 'ArrowDown') paddle2Down = false;
     }
 
-    document.addEventListener('keydown', keyDownHandler);
-    document.addEventListener('keyup', keyUpHandler);
-
     function resetBall() {
-      ballX = canvas.width / 2;
-      ballY = canvas.height / 2;
-      // Randomize initial direction
-      ballSpeedX = (Math.random() > 0.5 ? 1 : -1) * 5;
-      // Ensure minimum vertical movement
-      ballSpeedY = (Math.random() > 0.5 ? 1 : -1) * (Math.random() * 3 + 2);
+      ballX = CANVAS_WIDTH / 2;
+      ballY = CANVAS_HEIGHT / 2;
+      ballSpeedX.current = (Math.random() > 0.5 ? 1 : -1) * 3;
+      ballSpeedY.current = (Math.random() > 0.5 ? 1 : -1) * (Math.random() * 4 + 2);
     }
 
     function update() {
       if (gameOver) return;
 
       // Move paddles
-      if (paddle1Up && paddle1Y > 0) paddle1Y -= paddleSpeed;
-      if (paddle1Down && paddle1Y < canvas.height - paddleHeight) paddle1Y += paddleSpeed;
-      if (paddle2Up && paddle2Y > 0) paddle2Y -= paddleSpeed;
-      if (paddle2Down && paddle2Y < canvas.height - paddleHeight) paddle2Y += paddleSpeed;
+      if (paddle1Up && paddle1Y > 0) paddle1Y -= PADDLE_SPEED;
+      if (paddle1Down && paddle1Y < CANVAS_HEIGHT - PADDLE_HEIGHT) paddle1Y += PADDLE_SPEED;
+      if (paddle2Up && paddle2Y > 0) paddle2Y -= PADDLE_SPEED;
+      if (paddle2Down && paddle2Y < CANVAS_HEIGHT - PADDLE_HEIGHT) paddle2Y += PADDLE_SPEED;
 
       // Move ball
-      ballX += ballSpeedX;
-      ballY += ballSpeedY;
+      ballX += ballSpeedX.current;
+      ballY += ballSpeedY.current;
 
       // Ball collision with top and bottom
-      if (ballY < 0 || ballY > canvas.height) {
-        ballSpeedY = -ballSpeedY;
+      if (ballY - BALL_RADIUS < 0 || ballY + BALL_RADIUS > CANVAS_HEIGHT) {
+        ballSpeedY.current = -ballSpeedY.current;
       }
 
-      // Ball collision with paddles
+      // Ball collision with left paddle
       if (
-        ballX < paddleWidth &&
-        ballY > paddle1Y &&
-        ballY < paddle1Y + paddleHeight
+        ballX - BALL_RADIUS <= PADDLE_WIDTH &&
+        ballY + BALL_RADIUS >= paddle1Y &&
+        ballY - BALL_RADIUS <= paddle1Y + PADDLE_HEIGHT
       ) {
-        ballSpeedX = -ballSpeedX * 1.1; // Increase speed slightly
-        ballSpeedY += (ballY - (paddle1Y + paddleHeight / 2)) * 0.1; // Add angle based on hit position
+        ballX = PADDLE_WIDTH + BALL_RADIUS;
+        ballSpeedX.current = -ballSpeedX.current * 1.1;
+        ballSpeedY.current += (ballY - (paddle1Y + PADDLE_HEIGHT / 2)) * 0.1;
       }
 
+      // Ball collision with right paddle
       if (
-        ballX > canvas.width - paddleWidth &&
-        ballY > paddle2Y &&
-        ballY < paddle2Y + paddleHeight
+        ballX + BALL_RADIUS >= CANVAS_WIDTH - PADDLE_WIDTH &&
+        ballY + BALL_RADIUS >= paddle2Y &&
+        ballY - BALL_RADIUS <= paddle2Y + PADDLE_HEIGHT
       ) {
-        ballSpeedX = -ballSpeedX * 1.1; // Increase speed slightly
-        ballSpeedY += (ballY - (paddle2Y + paddleHeight / 2)) * 0.1; // Add angle based on hit position
+        ballX = CANVAS_WIDTH - PADDLE_WIDTH - BALL_RADIUS;
+        ballSpeedX.current = -ballSpeedX.current * 1.1;
+        ballSpeedY.current += (ballY - (paddle2Y + PADDLE_HEIGHT / 2)) * 0.1;
       }
+
+      // Clamp ball speed
+      ballSpeedX.current = Math.max(Math.min(ballSpeedX.current, 10), -10);
+      ballSpeedY.current = Math.max(Math.min(ballSpeedY.current, 10), -10);
 
       // Score points
-      if (ballX < 0) {
+      if (ballX - BALL_RADIUS < 0) {
         setScores(prev => {
           const newScores = { ...prev, player2: prev.player2 + 1 };
           checkWinCondition(newScores);
@@ -122,7 +128,8 @@ export default function Game() {
         });
         resetBall();
       }
-      if (ballX > canvas.width) {
+
+      if (ballX + BALL_RADIUS > CANVAS_WIDTH) {
         setScores(prev => {
           const newScores = { ...prev, player1: prev.player1 + 1 };
           checkWinCondition(newScores);
@@ -133,7 +140,7 @@ export default function Game() {
     }
 
     function checkWinCondition(currentScores: { player1: number; player2: number }) {
-      if (currentScores.player1 >= maxScore || currentScores.player2 >= maxScore) {
+      if (currentScores.player1 >= MAX_SCORE || currentScores.player2 >= MAX_SCORE) {
         if (Math.abs(currentScores.player1 - currentScores.player2) >= 2) {
           setGameOver(true);
           setMatchStatus('completed');
@@ -142,7 +149,6 @@ export default function Game() {
             : gameState?.player2?.name;
           setMatchResult(`Winner: ${winner}`);
 
-          // Wait a moment before navigating back
           setTimeout(() => {
             if (gameState?.returnTo) {
               navigate(gameState.returnTo, {
@@ -159,69 +165,65 @@ export default function Game() {
     }
 
     function draw() {
-      // Clear canvas
       ctx.fillStyle = 'black';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
 
-      // Draw middle line
       ctx.strokeStyle = 'white';
       ctx.setLineDash([5, 5]);
       ctx.beginPath();
-      ctx.moveTo(canvas.width / 2, 0);
-      ctx.lineTo(canvas.width / 2, canvas.height);
+      ctx.moveTo(CANVAS_WIDTH / 2, 0);
+      ctx.lineTo(CANVAS_WIDTH / 2, CANVAS_HEIGHT);
       ctx.stroke();
 
-      // Draw paddles
       ctx.fillStyle = 'white';
-      ctx.fillRect(0, paddle1Y, paddleWidth, paddleHeight);
-      ctx.fillRect(canvas.width - paddleWidth, paddle2Y, paddleWidth, paddleHeight);
+      ctx.fillRect(0, paddle1Y, PADDLE_WIDTH, PADDLE_HEIGHT);
+      ctx.fillRect(CANVAS_WIDTH - PADDLE_WIDTH, paddle2Y, PADDLE_WIDTH, PADDLE_HEIGHT);
 
-      // Draw ball
       ctx.beginPath();
-      ctx.arc(ballX, ballY, 8, 0, Math.PI * 2);
+      ctx.arc(ballX, ballY, BALL_RADIUS, 0, Math.PI * 2);
       ctx.fill();
 
-      // Draw scores
       ctx.font = '32px Arial';
       ctx.fillStyle = 'white';
       ctx.textAlign = 'center';
-      ctx.fillText(scores.player1.toString(), canvas.width / 4, 50);
-      ctx.fillText(scores.player2.toString(), (canvas.width / 4) * 3, 50);
+      ctx.fillText(scores.player1.toString(), CANVAS_WIDTH / 4, 50);
+      ctx.fillText(scores.player2.toString(), (CANVAS_WIDTH / 4) * 3, 50);
 
-      // Draw player names
       ctx.font = '16px Arial';
-      ctx.fillText(gameState?.player1?.name || 'Player 1', canvas.width / 4, 80);
-      ctx.fillText(gameState?.player2?.name || 'Player 2', (canvas.width / 4) * 3, 80);
+      ctx.fillText(gameState?.player1?.name || 'Player 1', CANVAS_WIDTH / 4, 80);
+      ctx.fillText(gameState?.player2?.name || 'Player 2', (CANVAS_WIDTH / 4) * 3, 80);
 
-      // Draw match status
       if (matchStatus === 'in_progress') {
         ctx.font = '20px Arial';
         ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
-        ctx.fillText('Match in Progress...', canvas.width / 2, 30);
+        ctx.fillText('Match in Progress...', CANVAS_WIDTH / 2, 30);
       }
 
-      // Draw match result
       if (matchResult) {
         ctx.font = '24px Arial';
         ctx.fillStyle = 'white';
-        ctx.fillText(matchResult, canvas.width / 2, canvas.height / 2);
+        ctx.fillText(matchResult, CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2);
         ctx.font = '16px Arial';
         ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
-        ctx.fillText('Returning to lobby...', canvas.width / 2, canvas.height / 2 + 30);
+        ctx.fillText('Returning to lobby...', CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2 + 30);
       }
     }
 
-    // Start the game when component mounts
     setMatchStatus('in_progress');
-    const gameLoop = setInterval(() => {
+    let animationFrameId: number;
+
+    const loop = () => {
       update();
       draw();
-    }, 1000 / 60);
+      animationFrameId = requestAnimationFrame(loop);
+    };
+
+    loop();
 
     return () => {
       document.removeEventListener('keydown', keyDownHandler);
       document.removeEventListener('keyup', keyUpHandler);
-      clearInterval(gameLoop);
+      cancelAnimationFrame(animationFrameId);
     };
   }, [scores, gameOver, matchStatus, matchResult, navigate, gameState]);
 
