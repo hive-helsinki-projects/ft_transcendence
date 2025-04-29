@@ -44,14 +44,14 @@ function buildApp() {
             }
         });
 
-    // http://localhost:3001/docs
+    // https://localhost:3001/docs
     fastify.register(swaggerUi, {
         routePrefix: '/docs',
     });
         
     // register CORS
     fastify.register(fastifyCors, {
-        origin: 'http://localhost:5173',
+        origin: 'https://localhost:5173',
         credentials: true
     });
 
