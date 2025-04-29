@@ -1,5 +1,6 @@
 // scripts/test-contract.js
-import { recordTournament, getScores } from "./blockchain";
+import "dotenv/config";
+import { recordTournament, getScores } from "./blockchain.js";
 
 async function main() {
   const id      = 1;
@@ -8,14 +9,14 @@ async function main() {
 
   console.log("⏳ recording…");
   const tx = await recordTournament(id, players, winner);
-  console.log("✔ tx hash:", tx);
+  console.log("✔ tx hash:", tx.hash);
 
   console.log("⏳ fetching…");
   const data = await getScores();
   console.log("📝 data:", data);
 }
 
-main().catch((e) => {
+main().catch(e => {
   console.error(e);
   process.exit(1);
 });
