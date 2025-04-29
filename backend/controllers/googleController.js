@@ -58,7 +58,6 @@ const loginGoogleSignin = async (req, reply) => {
             WHERE id = ? AND online_status = FALSE
         `).run(user.id);
 
-        console.log("HERE");
         // Respond with the token and username
         return reply.send({
             message: 'Verified',
