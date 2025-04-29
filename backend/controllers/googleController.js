@@ -2,10 +2,10 @@ import db from '../models/database.js';
 import { OAuth2Client } from 'google-auth-library';
 
 async function verifyGoogleToken(idToken) {
-    const client = await new OAuth2Client('847383291975-9ten21d8j1vf3m2m1kod2i2js9c28o6e.apps.googleusercontent.com');
+    const client = await new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
     const ticket = await client.verifyIdToken({
         idToken,
-        audience: '847383291975-9ten21d8j1vf3m2m1kod2i2js9c28o6e.apps.googleusercontent.com'
+        audience: process.env.GOOGLE_CLIENT_ID
     });
 
     const payload = ticket.getPayload();
