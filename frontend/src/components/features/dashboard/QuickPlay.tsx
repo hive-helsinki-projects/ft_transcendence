@@ -40,7 +40,6 @@ const QuickPlay: React.FC<QuickPlayProps> = ({ userPlayers }) => {
       return
     }
     setShowModal(true);
-    //navigate('/game')
   }
 
   const handleStartMatch = () => {
