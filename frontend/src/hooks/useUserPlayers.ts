@@ -1,30 +1,81 @@
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useEffect } from 'react'
 import { UserPlayer } from '../types/dashboard'
 
 export const useUserPlayers = () => {
   const [userPlayers, setUserPlayers] = useState<UserPlayer[]>([])
 
-  const createPlayer = useCallback((playerName: string) => {
-    const newPlayer: UserPlayer = {
-      id: Date.now().toString(),
-      name: playerName,
-      avatar: `https://api.dicebear.com/7.x/avataaars/svg?seed=${playerName}-${Date.now()}`,
-      isActive: true,
-      points: 0,
+  // get all players from backend when component mounts
+  useEffect(() => {
+    const fetchPlayers = async () => {
+      const response = await fetch('https://localhost:3001/players')
+      const players = await response.json()
+      setUserPlayers(players)
     }
-    setUserPlayers((prev) => [...prev, newPlayer])
+
+    fetchPlayers()
   }, [])
 
-  const updatePlayer = useCallback((playerId: string, updates: Partial<UserPlayer>) => {
-    setUserPlayers((prev) =>
-      prev.map((player) =>
-        player.id === playerId ? { ...player, ...updates } : player
+  const createPlayer = useCallback(async (playerName: string) => {
+    try {
+      const response = await fetch('https://localhost:3001/players', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: playerName}),
+      })
+
+      if (!response.ok) {
+        throw new Error('Failed to create player')
+      }
+
+      const newPlayer: UserPlayer = await response.json()
+      setUserPlayers((prev) => [...prev, newPlayer])
+
+    } catch (error) {
+      console.log(error)
+      alert(`Failed to create player: ${playerName}`)
+    }
+  }, [])
+
+  const updatePlayer = useCallback(async (playerId: string, updates: Partial<UserPlayer>) => {
+    try {
+      const response = await fetch(`https://localhost:3001/players/${playerId}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json'},
+        body: JSON.stringify(updates),
+      })
+
+      if(!response.ok) {
+        throw new Error('Failed to update player')
+      }
+
+      const updatedPlayer: userPlayer = await response.json()
+
+      setUserPlayers((prev) => 
+        prev.map((player) =>
+          player.id === playerId ? updatedPlayer : player
       )
     )
+    } catch (error) {
+      console.log(error)
+      alert(`Failed to update player: ${playerId}`)
+    }
   }, [])
 
-  const deletePlayer = useCallback((playerId: string) => {
-    setUserPlayers((prev) => prev.filter((player) => player.id !== playerId))
+  const deletePlayer = useCallback(async (playerId: string) => {
+    try {
+      const response = await fetch(`https://localhost:3001/players/${playerId}`, {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json'},
+      })
+
+      if (!response.ok) {
+        throw new Error('Failed to delete user')
+      }
+
+      setUserPlayers((prev) => prev.filter((player) => player.id !== playerId))
+    } catch (error) {
+      alert(`Failed to delete player: ${playerId}`)
+    }
   }, [])
 
   return {
