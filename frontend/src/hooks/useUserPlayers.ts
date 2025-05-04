@@ -1,17 +1,19 @@
 import { useState, useCallback, useEffect } from 'react'
 import { UserPlayer } from '../types/dashboard'
-import { api } from '../services/api'
+import { BaseService } from '../services/BaseService'
 
 export const useUserPlayers = () => {
   const [userPlayers, setUserPlayers] = useState<UserPlayer[]>([])
 
+  // Fetch all players when component mounts
   useEffect(() => {
     const fetchPlayers = async () => {
       try {
-        const players = await api.get('/players')
+        const players = await BaseService.get<UserPlayer[]>('/players')
+        console.log("players logged: ", players)
         setUserPlayers(players)
-      } catch (err) {
-        console.error('Failed to fetch players', err)
+      } catch (error) {
+        console.error(error)
       }
     }
 
@@ -20,10 +22,12 @@ export const useUserPlayers = () => {
 
   const createPlayer = useCallback(async (playerName: string) => {
     try {
-      const newPlayer = await api.post('/players', { name: playerName })
+      const newPlayer = await BaseService.post<UserPlayer>('/players', {
+        display_name: playerName,
+      })
       setUserPlayers((prev) => [...prev, newPlayer])
-    } catch (err) {
-      console.error(err)
+    } catch (error) {
+      console.error(error)
       alert(`Failed to create player: ${playerName}`)
     }
   }, [])
@@ -31,28 +35,24 @@ export const useUserPlayers = () => {
   const updatePlayer = useCallback(
     async (playerId: string, updates: Partial<UserPlayer>) => {
       try {
-        const updatedPlayer = await api.post(`/players/${playerId}`, updates) // You may want PUT or PATCH here depending on backend
+        const updatedPlayer = await BaseService.put<UserPlayer>(`/players/${playerId}`, updates)
         setUserPlayers((prev) =>
-          prev.map((player) =>
-            player.id === playerId ? updatedPlayer : player
-          )
+          prev.map((player) => (player.id === playerId ? updatedPlayer : player)),
         )
-      } catch (err) {
-        console.error(err)
+      } catch (error) {
+        console.error(error)
         alert(`Failed to update player: ${playerId}`)
       }
     },
-    []
+    [],
   )
 
   const deletePlayer = useCallback(async (playerId: string) => {
     try {
-      await api.post(`/players/${playerId}/delete`, {}) // if your backend needs POST or DELETE, adjust here
-      setUserPlayers((prev) =>
-        prev.filter((player) => player.id !== playerId)
-      )
-    } catch (err) {
-      console.error(err)
+      await BaseService.delete<string>(`/players/${playerId}`)
+      setUserPlayers((prev) => prev.filter((player) => player.id !== playerId))
+    } catch (error) {
+      console.error(error)
       alert(`Failed to delete player: ${playerId}`)
     }
   }, [])

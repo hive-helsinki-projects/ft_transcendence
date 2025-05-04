@@ -6,7 +6,7 @@ interface ErrorResponse {
 }
 
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL,
+  baseURL: 'https://localhost:3001',
   headers: {
     'Content-Type': 'application/json',
   },
@@ -18,6 +18,7 @@ const api = axios.create({
 api.interceptors.request.use(
   (config: InternalAxiosRequestConfig) => {
     const token = localStorage.getItem('token');
+    console.log("token = ", token)
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
