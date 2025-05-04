@@ -1,26 +1,40 @@
-// GameStats.tsx
-import React, { useMemo } from 'react'
+import React, { useState, useEffect, useMemo } from 'react'
 import { MatchHistory } from '../../types/match'
-import { UserPlayer } from '../../types/dashboard'
 
 interface GameStatsProps {
   matches: MatchHistory[]
-  playerId: number
-  setPlayerId: (id: number) => void
-  userPlayers: UserPlayer[]
+  userPlayers: { id: number; display_name: string }[]
 }
 
-const GameStats: React.FC<GameStatsProps> = ({ matches, playerId, setPlayerId, userPlayers }) => {
+const GameStats: React.FC<GameStatsProps> = ({ matches, userPlayers }) => {
+  const [selectedPlayerId, setSelectedPlayerId] = useState<number | null>(null)
+  const [filteredMatches, setFilteredMatches] = useState<MatchHistory[]>([])
+
+  // Filter matches whenever selected player changes
+  useEffect(() => {
+    if (!matches || !Array.isArray(matches)) {
+      setFilteredMatches([])
+      return
+    }
+    const updatedFilteredMatches = selectedPlayerId
+      ? matches.filter((match) =>
+          match.players.some((p) => p.player_id === selectedPlayerId)
+        )
+      : []
+    setFilteredMatches(updatedFilteredMatches)
+  }, [matches, selectedPlayerId])
+
+  // Calculate stats based on filtered matches
   const { wins, losses, totalGames, winRate } = useMemo(() => {
     let wins = 0
     let total = 0
 
-    matches.forEach((match) => {
-      const isInMatch = match.players.some(p => p.player_id === playerId)
+    filteredMatches.forEach((match) => {
+      const isInMatch = match.players.some((p) => p.player_id === selectedPlayerId)
       if (!isInMatch) return
 
       total++
-      if (match.winner_id === playerId) {
+      if (match.winner_id === selectedPlayerId) {
         wins++
       }
     })
@@ -29,26 +43,24 @@ const GameStats: React.FC<GameStatsProps> = ({ matches, playerId, setPlayerId, u
     const winRate = total > 0 ? Math.round((wins / total) * 100) : 0
 
     return { wins, losses, totalGames: total, winRate }
-  }, [matches, playerId])
+  }, [filteredMatches, selectedPlayerId])
 
   return (
     <div className="stats-section">
-      <div className="stats-header">
-        <h2>Player Stats</h2>
-        <label htmlFor="player-select">Select Player:</label>
-        <select
-          id="player-select"
-          value={playerId}
-          onChange={(e) => setPlayerId(Number(e.target.value))}
-        >
-          {userPlayers.map(player => (
-            <option key={player.id} value={player.id}>
-              {player.display_name}
-            </option>
-          ))}
-        </select>
-      </div>
-
+      <h2>Player Stats</h2>
+      {/* Player Selection */}
+      <label htmlFor="player-select">Select Player:</label>
+      <select
+        id="player-select"
+        value={selectedPlayerId ?? ''}
+        onChange={(e) => setSelectedPlayerId(Number(e.target.value))}
+      >
+        {userPlayers.map((player) => (
+          <option key={player.id} value={player.id}>
+            {player.display_name}
+          </option>
+        ))}
+      </select>
       <div className="stats-grid">
         <div className="stat-item">
           <span className="stat-value">{wins}</span>
