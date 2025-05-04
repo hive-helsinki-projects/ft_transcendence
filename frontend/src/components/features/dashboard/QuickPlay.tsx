@@ -88,7 +88,7 @@ const QuickPlay: React.FC<QuickPlayProps> = ({ userPlayers }) => {
                   <option value="">Select Player</option>
                   {userPlayers.map((player) => (
                     <option key={player.id} value={player.id}>
-                      {player.name}
+                      {player.display_name}
                     </option>
                   ))}
                 </select>
@@ -100,7 +100,7 @@ const QuickPlay: React.FC<QuickPlayProps> = ({ userPlayers }) => {
                 <option value="">Select Player</option>
                 {userPlayers.map((player) => (
                   <option key={player.id} value={player.id}>
-                    {player.name}
+                    {player.display_name}
                   </option>
                 ))}
               </select>
