@@ -50,7 +50,7 @@ const Dashboard: React.FC = () => {
             <MatchHistoryComponent matches={matches} />
           </div>
 
-          <TopPlayers players={mockTopPlayers} />
+          <TopPlayers players={userPlayers} />
 
           <AvatarMenu
             avatar={avatar}
