@@ -92,16 +92,15 @@ const PlayerManagement: React.FC<PlayerManagementProps> = ({
         {userPlayers.map((player) => (
           <div
             key={player.id}
-            className={`player-item ${player.isActive ? 'active' : ''}`}
+            className={'player-item active'}
           >
             <img
-              src={player.avatar}
-              alt={`${player.name}'s avatar`}
+              src={player.avatar_url}
+              alt={`${player.display_name}'s avatar`}
               className="player-item-avatar"
             />
             <div className="player-item-info">
-              <span className="player-item-name">{player.name}</span>
-              <span className="player-item-points">{player.points} points</span>
+              <span className="player-item-name">{player.display_name}</span>
             </div>
             <div className="player-item-actions">
               <button
