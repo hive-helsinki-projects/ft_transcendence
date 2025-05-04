@@ -22,10 +22,12 @@ export const useUserPlayers = () => {
 
   const createPlayer = useCallback(async (playerName: string) => {
     try {
-      const newPlayer = await BaseService.post<UserPlayer>('/players', {
+        await BaseService.post<UserPlayer>('/players', {
         display_name: playerName,
       })
-      setUserPlayers((prev) => [...prev, newPlayer])
+      const players = await BaseService.get<UserPlayer[]>('/players')
+      setUserPlayers(players)
+      
     } catch (error) {
       console.error(error)
       alert(`Failed to create player: ${playerName}`)
