@@ -47,7 +47,7 @@ const Dashboard: React.FC = () => {
               MatchHistory={matches}
               userPlayers={userPlayers}
             />
-            <MatchHistoryComponent matches={mockRecentMatches} />
+            <MatchHistoryComponent matches={matches} />
           </div>
 
           <TopPlayers players={mockTopPlayers} />
