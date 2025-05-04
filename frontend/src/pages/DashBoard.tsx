@@ -22,23 +22,9 @@ const Dashboard: React.FC = () => {
   const { userPlayers, createPlayer, updatePlayer, deletePlayer } = useUserPlayers()
   const { matches, loading, error } = useMatchHistories()
 
-  const [selectedPlayerId, setSelectedPlayerId] = useState<number | null>(null)
-
-  useEffect(() => {
-    if (userPlayers.length > 0 && selectedPlayerId === null) {
-      setSelectedPlayerId(userPlayers[0].id) // Default to first player
-    }
-  }, [userPlayers, selectedPlayerId])
-
   if (!username) {
     return <div>Please log in to view the dashboard</div>
   }
-
-  const filteredMatches = selectedPlayerId
-    ? matches.filter(match =>
-        match.players.some(p => p.player_id === selectedPlayerId)
-      )
-    : []
 
   return (
     <ErrorBoundary>
@@ -58,12 +44,10 @@ const Dashboard: React.FC = () => {
 
           <div className="dashboard-grid">
             <GameStats
-              matches={filteredMatches}
-              playerId={selectedPlayerId!}
-              setPlayerId={setSelectedPlayerId}
+              MatchHistory={matches}
               userPlayers={userPlayers}
             />
-            <MatchHistoryComponent matches={filteredMatches} />
+            <MatchHistoryComponent matches={mockRecentMatches} />
           </div>
 
           <TopPlayers players={mockTopPlayers} />
