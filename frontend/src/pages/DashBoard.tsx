@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { useAuth } from '../hooks/auth/useAuth'
 import { useAvatar } from '../hooks/useAvatar'
 import { useUserPlayers } from '../hooks/useUserPlayers'
@@ -25,7 +25,7 @@ const Dashboard: React.FC = () => {
   if (!username) {
     return <div>Please log in to view the dashboard</div>
   }
-
+  
   return (
     <ErrorBoundary>
       <LoadingContainer>
@@ -44,7 +44,6 @@ const Dashboard: React.FC = () => {
 
           <div className="dashboard-grid">
             <GameStats
-              MatchHistory={matches}
               userPlayers={userPlayers}
             />
             <MatchHistoryComponent matches={matches} />
