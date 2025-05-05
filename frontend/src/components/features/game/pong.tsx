@@ -35,6 +35,8 @@ export default function Game() {
     'pending' | 'in_progress' | 'completed'
   >('pending')
   const [matchResult, setMatchResult] = useState<string | null>(null)
+  const [matchStarted, setMatchStarted] = useState(false)
+
 
   useEffect(() => {
     const canvas = canvasRef.current!
@@ -60,6 +62,8 @@ export default function Game() {
       if (e.key === 's' || e.key === 'S') paddle1Down = true
       if (e.key === 'ArrowUp') paddle2Up = true
       if (e.key === 'ArrowDown') paddle2Down = true
+
+      if (e.key === 'Spacebar' || e.key === ' ') setMatchStarted(true)
     }
 
     function keyUpHandler(e: KeyboardEvent) {
@@ -79,7 +83,7 @@ export default function Game() {
     }
 
     function update() {
-      if (gameOver) return
+      if (gameOver || !matchStarted) return
 
       // Move paddles
       if (paddle1Up && paddle1Y > 0) paddle1Y -= PADDLE_SPEED
@@ -210,7 +214,7 @@ export default function Game() {
       if (matchStatus === 'in_progress') {
         ctx.font = '20px Arial'
         ctx.fillStyle = 'rgba(255, 255, 255, 0.7)'
-        ctx.fillText('Match in Progress...', CANVAS_WIDTH / 2, 30)
+        ctx.fillText(`${matchStarted ? 'Match in Progress...' : 'Press spacebar to start game...'}`, CANVAS_WIDTH / 2, 30)
       }
 
       if (matchResult) {
@@ -243,7 +247,7 @@ export default function Game() {
       document.removeEventListener('keyup', keyUpHandler)
       cancelAnimationFrame(animationFrameId)
     }
-  }, [scores, gameOver, matchStatus, matchResult, navigate, gameState])
+  }, [scores, gameOver, matchStatus, matchResult, navigate, gameState, matchStarted])
 
   return (
     <LoadingContainer>
