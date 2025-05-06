@@ -1,5 +1,6 @@
 import db from '../models/database.js';
 import { recordTournament } from '../services/blockchain.js';
+import { getScores } from '../services/blockchain.js';
 
 // Query to fetch tournament details along with match history and players
 const getExistingTournament = db.prepare(`
@@ -244,100 +245,119 @@ const createTournament = async (req, reply) => {
 }
 
 // Controller to advance a tournament to the next round
-const advanceTournament = async(req, reply) => {
-    const user_id = req.user.id;
-    const { id } = req.params;
+const advanceTournament = async (req, reply) => {
+    const userId = req.user.id;
+    const tourId = Number(req.params.id);
 
-    const updateTournamentRound =  db.prepare(`UPDATE tournaments SET current_round = current_round + 1 WHERE id = ?`);
-    const updateTournamentStatus = db.prepare(`UPDATE tournaments SET status = 'finished', winner_id = ?, current_round = ? WHERE id = ?`);
+    const bumpRound = db.prepare(`UPDATE tournaments SET current_round = current_round + 1 WHERE id = ?`);
+    const markFinished = db.prepare(`UPDATE tournaments SET status = 'finished', winner_id = ?, current_round = ? WHERE id = ?`);
 
-    const transaction = db.transaction((id, user_id) => {
-        // Fetch tournament and verify user authorization
-        const tournament = db.prepare('SELECT * FROM tournaments WHERE id = ? AND user_id = ?').get(id, user_id);
-        if (!tournament) {
-            return reply.code(404).send({ error: 'Tournament not found or unauthorized' });
-        } else if (tournament.status === 'finished') {
-            return reply.code(400).send({ error: 'Tournament already finished' });
+    // Build a “pure” transaction; no HTTP logic here
+    const txn = db.transaction((tId, uId) => {
+      // ensure tournament exists & belongs to user
+      const tour = db.prepare(`SELECT * FROM tournaments WHERE id = ? AND user_id = ?`).get(tId, uId);
+      if (!tour) {
+        throw { statusCode: 404, message: 'Tournament not found or unauthorized' };
+      }
+      if (tour.status === 'finished') {
+        throw { statusCode: 400, message: 'Tournament already finished' };
+      }
+
+      // load all matches in the current round
+      const matches = db
+        .prepare(`SELECT * FROM match_history WHERE tournament_id = ? AND round = ?`)
+        .all(tId, tour.current_round);
+      if (matches.length === 0) {
+        throw {statusCode: 404, message: 'No matches found for this tournament or round'};
+      }
+
+      // collect each match’s winner
+      const winners = [];
+      for (const m of matches) {
+        const win = db.prepare(`SELECT * FROM match_winner_history WHERE match_id = ?`).all(m.id);
+        if (!win[0]) {
+          throw {statusCode: 404, message: `No winner found for match ${m.id}`
+          };
         }
+        winners.push(win[0].winner_id);
+      }
 
-        // Fetch matches for current round
-        let matches = db.prepare('SELECT * FROM match_history WHERE tournament_id = ? AND round = ?').all(id, tournament.current_round);
-        if (matches.length === 0) {
-            return reply.code(404).send({ error: 'No matches found for this tournament or round' });
-        }
+      // generate next‐round pairings
+      const { matchups } = generateMatchups(winners);
 
-        let winners_id = [];
-        // Determine winners for each match
-        for (const match of matches) {
-            const winner = db.prepare(`SELECT * FROM match_winner_history WHERE match_id = ?`).all(match.id);
-            if (!winner[0]) {
-                return reply.code(404).send({ error: `No winner found for match ${match.id}` });
-            }
-            winners_id.push(winner[0].winner_id);
-        }
+      // if that was the final matchup, mark the tournament finished
+      if (matchups.length === 1 && matchups[0][1] == null) {
+        const champ = winners[0];
+        markFinished.run(champ, tour.current_round + 1, tId);
+        // return all the rows so outer code can decide what to send
+        return getExistingTournament.all(tId);
+      }
 
-        const { matchups } = generateMatchups(winners_id);
-
-        // If only one player remains, finish the tournament
-        if (matchups.length === 1 && matchups[0][1] === undefined) {
-            const winnerId = winners_id[0];
-            updateTournamentStatus.run(winnerId, tournament.current_round + 1, id);
-
-            return reply.code(200).send({ message: 'Successfully finished tournament' });
-            // return getExistingTournament.all(id);
-        }
-
-        // Insert new matches for the next round
-        for (const [player1, player2] of matchups) {
-            const result = insertMatchHistory.run('tournament', id, tournament.current_round + 1, user_id);
-            insertMatchPlayer.run(result.lastInsertRowid, player1);
-            insertMatchPlayer.run(result.lastInsertRowid, player2);
-        }
-
-        updateTournamentRound.run(id);
-        const rows = getExistingTournament.all(id);
-        return rows;
+      // otherwise insert the new matches and bump the round
+      for (const [p1, p2] of matchups) {
+        const res = insertMatchHistory.run(
+          'tournament',
+          tId,
+          tour.current_round + 1,
+          uId
+        );
+        insertMatchPlayer.run(res.lastInsertRowid, p1);
+        insertMatchPlayer.run(res.lastInsertRowid, p2);
+      }
+      bumpRound.run(tId);
+      return getExistingTournament.all(tId);
     });
 
+    // call the transaction, catch any “throw”-style validation errors
+    let rows;
     try {
-        const rows = transaction(id, user_id);
-        const { tournament_id, name: tournament_name, status, current_round, winner_id } = rows[0];
-
-        if (status === 'finished' && typeof winner_id === 'number') {
-            const winnerName = db.prepare('SELECT name FROM players WHERE id = ?').get(winner_id).name;
-            const playersInFinal = JSON.parse(rows[0].players)
-                .map(p => p.player_id)
-                .map(pid => db
-                    .prepare('SELECT name FROM players WHERE id = ?')
-                    .get(pid).name
-                );
-            try {
-                await recordTournament(tournament_id, playersInFinal, winnerName);
-                console.log(`Tournament ${tournament_id} recorded on blockchain`);
-            }
-            catch (error) {
-                console.error('Error recording tournament on blockchain:', error);
-            }
-        }
-
-        const matches = rows
-        .filter(row => row.round === current_round)
-        .map(row => ({
-            match_id: row.match_id,
-            type: row.type,
-            round: row.round,
-            date: row.date,
-            players: JSON.parse(row.players)
-        }));
-
-        return reply.code(200).send({ message: 'Successfully advanced tournament', item: {
-            matches
-        } });
-    } catch (error) {
-        console.log(error);
-        return reply.code(500).send({ error: 'Failed to update tournament' });
+      rows = txn(tourId, userId);
+    } catch (err) {
+      if (err.statusCode) {
+        return reply.code(err.statusCode).send({ error: err.message });
+      }
+      console.error(err);
+      return reply.code(500).send({ error: 'Failed to advance tournament' });
     }
-}
+
+    // now decide whether we just finished, or just advanced
+    const first = rows[0];
+    if (first.status === 'finished' && typeof first.winner_id === 'number') {
+      const winnerName = db.prepare(`SELECT display_name FROM players WHERE id = ?`).get(first.winner_id).display_name;
+
+      const allPlayerRows = db.prepare(`
+        SELECT DISTINCT p.display_name
+        FROM players p
+          JOIN match_player_history mph ON mph.player_id = p.id
+          JOIN match_history mh ON mh.id = mph.match_id
+        WHERE mh.tournament_id = ?`).all(first.tournament_id);
+
+        const allPlayerNames = allPlayerRows.map(r => r.display_name);
+
+      const tx = await recordTournament(first.tournament_id, allPlayerNames, winnerName).catch(console.error);
+      const txHash = tx.hash;
+      const scores = await getScores();
+      console.log('Scores from blockchain:', scores);
+      console.log('Transaction hash:', txHash);
+      return reply.code(200).send({message: 'Successfully finished tournament'});
+    }
+
+    // otherwise we “advanced”
+    const matches = rows
+      .filter(r => r.round === first.current_round)
+      .map(r => ({
+        match_id: r.match_id,
+        type:     r.type,
+        round:    r.round,
+        date:     r.date,
+        players:  JSON.parse(r.players)
+      }));
+
+    return reply.code(200).send({
+      message: 'Successfully advanced tournament',
+      item: { matches }
+    });
+  };
 
 // Controller to delete a tournament
 const deleteTournament = async(req, reply) => {
