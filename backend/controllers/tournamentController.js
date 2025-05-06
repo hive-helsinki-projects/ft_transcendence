@@ -1,4 +1,5 @@
 import db from '../models/database.js';
+import { recordTournament } from '../services/blockchain.js';
 
 // Query to fetch tournament details along with match history and players
 const getExistingTournament = db.prepare(`
@@ -16,7 +17,7 @@ const getExistingTournament = db.prepare(`
             (
                 SELECT json_group_array(
                     json_object(
-                        'player_id', mph.player_id, 
+                        'player_id', mph.player_id,
                         'score', mph.score
                     )
                 )
@@ -48,7 +49,7 @@ const getTournaments = async (req, reply) => {
                     (
                         SELECT json_group_array(
                             json_object(
-                                'player_id', mph.player_id, 
+                                'player_id', mph.player_id,
                                 'score', mph.score
                             )
                         )
@@ -174,7 +175,7 @@ const createTournament = async (req, reply) => {
 
     const insertTournamentName = db.prepare('INSERT INTO tournaments (name, user_id) VALUES (?, ?)');
     const insertMatchWinner = db.prepare(`INSERT INTO match_winner_history (match_id, winner_id) VALUES (?, ?)`);
-    
+
     const transaction = db.transaction((name, player_ids, user_id) => {
         // Check if a tournament with the same name already exists
         const existingTournament = db.prepare('SELECT * FROM tournaments WHERE name = ?').get(name);
@@ -258,7 +259,7 @@ const advanceTournament = async(req, reply) => {
         } else if (tournament.status === 'finished') {
             return reply.code(400).send({ error: 'Tournament already finished' });
         }
-        
+
         // Fetch matches for current round
         let matches = db.prepare('SELECT * FROM match_history WHERE tournament_id = ? AND round = ?').all(id, tournament.current_round);
         if (matches.length === 0) {
@@ -274,13 +275,16 @@ const advanceTournament = async(req, reply) => {
             }
             winners_id.push(winner[0].winner_id);
         }
-        
+
         const { matchups } = generateMatchups(winners_id);
 
         // If only one player remains, finish the tournament
         if (matchups.length === 1 && matchups[0][1] === undefined) {
-            updateTournamentStatus.run(winners_id[0], tournament.current_round + 1, id);
+            const winnerId = winners_id[0];
+            updateTournamentStatus.run(winnerId, tournament.current_round + 1, id);
+
             return reply.code(200).send({ message: 'Successfully finished tournament' });
+            // return getExistingTournament.all(id);
         }
 
         // Insert new matches for the next round
@@ -289,7 +293,7 @@ const advanceTournament = async(req, reply) => {
             insertMatchPlayer.run(result.lastInsertRowid, player1);
             insertMatchPlayer.run(result.lastInsertRowid, player2);
         }
-        
+
         updateTournamentRound.run(id);
         const rows = getExistingTournament.all(id);
         return rows;
@@ -298,6 +302,23 @@ const advanceTournament = async(req, reply) => {
     try {
         const rows = transaction(id, user_id);
         const { tournament_id, name: tournament_name, status, current_round, winner_id } = rows[0];
+
+        if (status === 'finished' && typeof winner_id === 'number') {
+            const winnerName = db.prepare('SELECT name FROM players WHERE id = ?').get(winner_id).name;
+            const playersInFinal = JSON.parse(rows[0].players)
+                .map(p => p.player_id)
+                .map(pid => db
+                    .prepare('SELECT name FROM players WHERE id = ?')
+                    .get(pid).name
+                );
+            try {
+                await recordTournament(tournament_id, playersInFinal, winnerName);
+                console.log(`Tournament ${tournament_id} recorded on blockchain`);
+            }
+            catch (error) {
+                console.error('Error recording tournament on blockchain:', error);
+            }
+        }
 
         const matches = rows
         .filter(row => row.round === current_round)
@@ -322,7 +343,7 @@ const advanceTournament = async(req, reply) => {
 const deleteTournament = async(req, reply) => {
     const user_id = req.user.id;
     const { id } = req.params;
-    
+
     try {
         // Delete the tournament by ID and user
         const result = db.prepare('DELETE FROM tournaments WHERE id = ? and user_id = ?').run(id, user_id);
