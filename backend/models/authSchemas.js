@@ -24,6 +24,35 @@ export const postLoginOpts = {
 	},
 };
 
+export const postLogin2faOpts = {
+    schema: {
+      summary: "Complete login with TOTP code",
+      tags: ['auth'],
+      body: {
+        type: 'object',
+        required: ['userId','code'],
+        properties: {
+          userId: { type: 'integer' },
+          code:   { type: 'string', minLength: 6, maxLength: 6 }
+        }
+      },
+      response: {
+        200: {
+          type: 'object',
+          properties: {
+            token: { type: 'string' }
+          }
+        },
+        400: {
+          type: 'object',
+          properties: {
+            error: { type: 'string' }
+          }
+        }
+      }
+    }
+  }
+
 export const postLogoutOpts = {
 	schema: {
 		security: [

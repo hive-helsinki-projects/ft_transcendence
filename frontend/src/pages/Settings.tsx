@@ -129,6 +129,11 @@ const Settings: React.FC = () => {
   const [error, setError] = useState<string | null>(null)
   const [success, setSuccess] = useState<string | null>(null)
 
+  const [twoFaEnabled, setTwoFaEnabled] = useState<boolean>(false)
+  const [qrDataUrl,    setQrDataUrl]    = useState<string | null>(null)
+  const [twoFaToken,   setTwoFaToken]   = useState<string>('')
+  const [twoFaMessage, setTwoFaMessage] = useState<string | null>(null)
+
   const handleEditClick = (field: keyof UserData) => {
     setEditingField(field)
     setTempData((prev) => ({
@@ -269,6 +274,86 @@ const Settings: React.FC = () => {
             onCancel={handleCancelClick}
             onChange={handleInputChange}
           />
+        </SettingsSection>
+
+        <SettingsSection title="Two-Factor Authentication" icon={<Lock size={18} />}>
+            { twoFaEnabled ? (
+                <>
+                <p>2FA is currently <strong>ON</strong>.</p>
+                <button
+                    className="settings-button delete"
+                    onClick={async () => {
+                    await fetch('/api/2fa', {
+                        method: 'DELETE',
+                        headers: { 'Authorization': `Bearer ${token}` }
+                    })
+                    setTwoFaEnabled(false)
+                    }}
+                >
+                    Disable 2FA
+                </button>
+                </>
+            ) : (
+                <>
+                <button
+                    className="settings-button"
+                    onClick={async () => {
+                    const res = await fetch('/api/2fa/setup', {
+                        method: 'GET',
+                        headers: { 'Authorization': `Bearer ${token}` }
+                    })
+                    if (!res.ok) {
+                        const txt = await res.text()
+                        console.error('2FA setup failed:', res.status, txt)
+                        setTwoFaMessage(`Error ${res.status}: ${txt}`)
+                        return
+                    }
+                    const { qrDataUrl } = await res.json()
+                    setQrDataUrl(qrDataUrl)
+                    }}
+                >
+                    Enable 2FA
+                </button>
+
+                { qrDataUrl && (
+                    <div className="qr-section">
+                    <img src={qrDataUrl} alt="Scan to setup 2FA" />
+                    <input
+                        type="text"
+                        value={twoFaToken}
+                        onChange={e => setTwoFaToken(e.target.value)}
+                        maxLength={6}
+                        placeholder="Enter code"
+                        className="field-input"
+                    />
+                    <button
+                        className="save-button"
+                        onClick={async () => {
+                        const res = await fetch('/api/2fa/verify', {
+                            method: 'POST',
+                            headers: {
+                            'Content-Type':  'application/json',
+                            'Authorization': `Bearer ${token}`
+                            },
+                            body: JSON.stringify({ token: twoFaToken })
+                        })
+                        if (!res.ok) {
+                            const err = await res.json()
+                            setTwoFaMessage(err.error)
+                        } else {
+                            setTwoFaEnabled(true)
+                            setQrDataUrl(null)
+                            setTwoFaMessage('2FA enabled!')
+                        }
+                        }}
+                    >
+                        Verify & Enable
+                    </button>
+                    { twoFaMessage && <p className="success-message">{twoFaMessage}</p> }
+                    </div>
+                )}
+                </>
+            )}
         </SettingsSection>
 
         <SettingsSection title="Language Preferences" icon={<Globe size={18} />}>
