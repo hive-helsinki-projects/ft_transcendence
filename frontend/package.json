@@ -15,7 +15,7 @@
     "@fontsource/turret-road": "^5.2.5",
     "@tailwindcss/postcss": "^4.1.5",
     "@tailwindcss/vite": "^4.0.17",
-    "axios": "^1.6.7",
+    "axios": "^1.9.0",
     "dotenv": "^16.4.7",
     "ethers": "^6.13.5",
     "google-auth-library": "^9.15.1",
