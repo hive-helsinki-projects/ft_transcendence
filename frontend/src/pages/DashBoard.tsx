@@ -20,7 +20,7 @@ const Dashboard: React.FC = () => {
   const { username, logout } = useAuth()
   const { avatar, handleAvatarChange } = useAvatar(username || '')
   const { userPlayers, createPlayer, updatePlayer, deletePlayer } = useUserPlayers()
-  const { matches, loading, error } = useMatchHistories()
+  const { matches } = useMatchHistories()
 
   if (!username) {
     return <div>Please log in to view the dashboard</div>
