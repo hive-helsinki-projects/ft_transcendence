@@ -12,13 +12,14 @@ import matchHistoryRoutes from './routes/matchHistoryRoute.js'
 import tournamentRoutes from './routes/tournamentRoute.js';
 import googleRoutes from './routes/googleRoutes.js';
 import fastifyCors from '@fastify/cors';
+import twoFaRoutes from './routes/twoFactorRoutes.js';
 
 // Load environment variables
 dotenv.config();
 
 // Initialize fastify HTTPS
 function buildApp() {
-    const fastify = Fastify({ 
+    const fastify = Fastify({
         logger: true,
         https: {
             key: fs.readFileSync(process.env.SSL_KEY),
@@ -48,7 +49,7 @@ function buildApp() {
     fastify.register(swaggerUi, {
         routePrefix: '/docs',
     });
-        
+
     // register CORS
     fastify.register(fastifyCors, {
         origin: 'https://localhost:5173',
@@ -59,6 +60,8 @@ function buildApp() {
     // Register routes
     fastify.register(jwtPlugin);
     fastify.register(authRoutes);
+    // fastify.register(twoFaRoutes);
+    fastify.register(twoFaRoutes, { prefix: '/api' });
     fastify.register(userRoutes);
     fastify.register(playerRoutes);
     fastify.register(friendRoutes);

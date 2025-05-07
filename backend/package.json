@@ -24,6 +24,8 @@
 		"fastify": "^5.2.1",
 		"fastify-plugin": "^5.0.1",
 		"google-auth-library": "^9.15.1",
+		"qrcode": "^1.5.4",
+		"speakeasy": "^2.0.0",
 		"typescript": "^5.8.3"
 	},
 	"devDependencies": {

@@ -1,5 +1,36 @@
 import db from '../models/database.js';
 import bcrypt from 'bcryptjs';
+import speakeasy from 'speakeasy';
+
+const login2fa = async (req, reply) => {
+    const { userId, code } = req.body;
+
+    try {
+        // Check if the user has 2FA set up
+        const row = db.prepare(`SELECT two_fa_secret FROM users WHERE id = ?`).get(userId);
+        if (!row || !row.two_fa_secret) {
+            return reply.code(400).send({ error: '2FA is not set up' });
+        }
+
+        // Verify the provided TOTP code
+        const verified = speakeasy.totp.verify({
+            secret:   row.two_fa_secret,
+            encoding: 'base32',
+            token:    code,
+            window:   1,
+        });
+
+        if (!verified) {
+            return reply.code(400).send({ error: 'Invalid 2FA code' });
+        }
+
+        // Generate a JWT token for the user
+        const token = await reply.jwtSign({ id: userId });
+        return reply.send({ token });
+    } catch (error) {
+        return reply.code(500).send({ error: 'Internal Server Error' });
+    }
+}
 
 // Login a user by verifying username and password
 const loginUser = async (req, reply) => {
@@ -18,6 +49,17 @@ const loginUser = async (req, reply) => {
             return reply.code(401).send({ error: 'Invalid username or password' });
         }
 
+        const { two_fa_enabled } = db
+            .prepare(`SELECT two_fa_enabled FROM users WHERE id = ?`)
+            .get(user.id);
+
+        if (two_fa_enabled) {
+            return reply.code(206).send({
+                message: 'Two-factor authentication required',
+                userId: user.id,
+            });
+        }
+
         // Create a payload for the JWT token
         const userForToken = {
             username: user.username,
@@ -30,7 +72,7 @@ const loginUser = async (req, reply) => {
         // Update the user's online status to TRUE
         db.prepare(`UPDATE users
             SET online_status = TRUE
-            WHERE id = ? 
+            WHERE id = ?
             AND online_status = FALSE
         `).run(user.id);
 
@@ -52,9 +94,9 @@ const logoutUser = async (req, reply) => {
         }
 
         // Update the user's online status to FALSE
-        const result = db.prepare(`UPDATE users 
-            SET online_status = FALSE 
-            WHERE id = ? 
+        const result = db.prepare(`UPDATE users
+            SET online_status = FALSE
+            WHERE id = ?
             AND online_status = TRUE
         `).run(userId);
 
@@ -84,7 +126,7 @@ const createUser = async (req, reply) => {
         // Fetch the newly created user to return in the response
         const user = db.prepare('SELECT id, username, email FROM users WHERE id = ?').get(result.lastInsertRowid);
 
-        return reply.code(201).send({ 
+        return reply.code(201).send({
             message: 'User created successfully',
             user
         });
@@ -99,6 +141,7 @@ const createUser = async (req, reply) => {
 
 export default {
     loginUser,
+    login2fa,
     logoutUser,
     createUser
 };

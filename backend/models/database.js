@@ -4,7 +4,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 const isTestEnv = process.env.NODE_ENV === 'test';
 
-const db = isTestEnv ? 
+const db = isTestEnv ?
 	new Database('database/testPong.db', { verbose: console.log }) :
 	new Database('database/pong.db', { verbose: console.log });
 
@@ -22,6 +22,16 @@ db.prepare(`
 		created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 	)
 `).run();
+
+const info = db.prepare(`PRAGMA table_info(users)`).all();
+
+if (!info.find(col => col.name === 'two_fa_secret')) {
+    db.prepare(`ALTER TABLE users ADD COLUMN two_fa_secret TEXT`).run();
+}
+
+if (!info.find(col => col.name === 'two_fa_enabled')) {
+    db.prepare(`ALTER TABLE users ADD COLUMN two_fa_enabled BOOLEAN DEFAULT 0`).run();
+}
 
 // Enable foreign key constraints
 db.prepare('PRAGMA foreign_keys = ON').run();
