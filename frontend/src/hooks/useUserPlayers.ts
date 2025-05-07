@@ -1,6 +1,6 @@
 import { useState, useCallback, useEffect } from 'react'
 import { UserPlayer } from '../types/dashboard'
-import { BaseService } from '../services/BaseService'
+import { BaseService } from '../services/baseService'
 
 export const useUserPlayers = () => {
   const [userPlayers, setUserPlayers] = useState<UserPlayer[]>([])
@@ -27,7 +27,7 @@ export const useUserPlayers = () => {
       })
       const players = await BaseService.get<UserPlayer[]>('/players')
       setUserPlayers(players)
-      
+
     } catch (error) {
       console.error(error)
       alert(`Failed to create player: ${playerName}`)
