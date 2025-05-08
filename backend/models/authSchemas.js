@@ -20,13 +20,21 @@ export const postLoginOpts = {
 					username: { type: 'string' },
 				},
 			},
+            206: {
+                description: 'Two-factor authentication required',
+                type: 'object',
+                properties: {
+                    message: { type: 'string' },
+                    userId: { type: 'integer' },
+                }
+            },
 		},
 	},
 };
 
 export const postLogin2faOpts = {
     schema: {
-      summary: "Complete login with TOTP code",
+      summary: "Complete login with 2FA code",
       tags: ['auth'],
       body: {
         type: 'object',
