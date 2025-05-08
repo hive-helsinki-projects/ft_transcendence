@@ -7,6 +7,10 @@ const getPlayers = async (req, reply) => {
     try {
         const players = db.prepare(`SELECT * FROM players WHERE user_id = ?`).all(user_id);
 
+        if (players.length === 0) {
+            return reply.code(404).send({ error: 'No players found for this user' });
+        }
+
         return reply.code(200).send(players);
     } catch (error) {
         console.error(error);
@@ -103,7 +107,7 @@ const updatePlayer = async (req, reply) => {
     try {
         // Fetch the player to check if the user is authorized to update it
         const player = db.prepare(`SELECT * FROM players WHERE id = ? AND user_id = ?`).get(id, user_id);
-        
+
         // If player not found or user is unauthorized
         if (!player) {
             return reply.code(404).send({ error: 'Player not found or user not authorized to update this player' });

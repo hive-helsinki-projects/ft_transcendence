@@ -81,9 +81,26 @@ const updateUser = async (req, reply) => {
             WHERE id = ?
         `).run(updateUser.username, updateUser.password_hash, updateUser.email, updateUser.avatar_url, parseInt(id));
 
+        const fullUser = db.prepare(`
+            SELECT
+                id,
+                username,
+                email,
+                avatar_url,
+                online_status,
+                created_at,
+                two_fa_enabled
+            FROM users
+            WHERE id = ?
+        `).get(parseInt(id));
+
+        fullUser.avatar_url = fullUser.avatar_url ?? '';
+        fullUser.online_status = Boolean(fullUser.online_status);
+        fullUser.two_fa_enabled = Boolean(fullUser.two_fa_enabled);
+
         return reply.send({
             message: 'User updated successfully',
-            item: updateUser,
+            item: fullUser,
         });
     } catch (error) {
         console.error(error);
