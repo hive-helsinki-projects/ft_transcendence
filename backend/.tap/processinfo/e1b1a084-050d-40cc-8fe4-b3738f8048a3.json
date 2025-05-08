@@ -1,5 +1,5 @@
 {
-  "date": "2025-05-08T14:02:37.351Z",
+  "date": "2025-05-08T14:43:37.425Z",
   "argv": [
     "/home/vvaalant/.var/app/com.visualstudio.code/config/nvm/versions/node/v22.14.0/bin/node",
     "/home/vvaalant/Documents/ring7/new2/backend/tests/index.test.js"
@@ -12,10 +12,10 @@
   ],
   "NODE_OPTIONS": "\"--import=file:///home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/processinfo/dist/esm/import.mjs\"",
   "cwd": "/home/vvaalant/Documents/ring7/new2/backend",
-  "pid": 1764919,
-  "ppid": 1764908,
+  "pid": 1769302,
+  "ppid": 1769291,
   "parent": null,
-  "uuid": "9edf8a6c-0d19-4386-88cc-f516e67d9638",
+  "uuid": "e1b1a084-050d-40cc-8fe4-b3738f8048a3",
   "files": [
     "/home/vvaalant/Documents/ring7/new2/backend/tests/index.test.js",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@isaacs/ts-node-temp-fork-for-pr-2009/import.mjs",
@@ -42,35 +42,35 @@
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/stack/dist/esm/parse.js",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/resolve-import/dist/esm/get-conditional-values-list.js",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/resolve-import/dist/esm/errors.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/resolve-import/dist/esm/file-exists.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/resolve-import/dist/esm/resolve-dependency-export.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/resolve-import/dist/esm/resolve-package-import.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/resolve-import/dist/esm/to-file-url.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/resolve-import/dist/esm/to-path.js",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/resolve-import/dist/esm/get-named-exports-list.js",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/resolve-import/dist/esm/read-pkg.js",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/resolve-import/dist/esm/resolve-export.js",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/resolve-import/dist/esm/star-glob.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/resolve-import/dist/esm/to-path.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/resolve-import/dist/esm/file-exists.js",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/resolve-import/dist/esm/find-dep-package.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/resolve-import/dist/esm/to-file-url.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/resolve-import/dist/esm/resolve-dependency-export.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/resolve-import/dist/esm/resolve-package-import.js",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/resolve-import/dist/esm/read-json.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/walk-up-path/dist/mjs/index.js",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/resolve-import/dist/esm/find-star-match.js",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/resolve-import/node_modules/glob/dist/esm/index.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/walk-up-path/dist/mjs/index.js",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/resolve-import/node_modules/minimatch/dist/esm/index.js",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/resolve-import/node_modules/glob/dist/esm/glob.js",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/resolve-import/node_modules/glob/dist/esm/has-magic.js",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/resolve-import/node_modules/glob/dist/esm/ignore.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/resolve-import/node_modules/glob/dist/esm/pattern.js",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/resolve-import/node_modules/minimatch/dist/esm/assert-valid-pattern.js",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/resolve-import/node_modules/minimatch/dist/esm/ast.js",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/resolve-import/node_modules/minimatch/dist/esm/escape.js",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/resolve-import/node_modules/minimatch/dist/esm/unescape.js",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/resolve-import/node_modules/path-scurry/dist/esm/index.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/resolve-import/node_modules/glob/dist/esm/pattern.js",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/resolve-import/node_modules/glob/dist/esm/walker.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/resolve-import/node_modules/minimatch/dist/esm/brace-expressions.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/resolve-import/node_modules/lru-cache/dist/esm/index.js",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/minipass/dist/esm/index.js",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/resolve-import/node_modules/glob/dist/esm/processor.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/resolve-import/node_modules/minimatch/dist/esm/brace-expressions.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/resolve-import/node_modules/lru-cache/dist/esm/index.js",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/mock/dist/esm/loader.mjs",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/mock/dist/esm/hooks.mjs",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/mock/dist/esm/mock-service-client.js",
@@ -82,7 +82,7 @@
     "/home/vvaalant/Documents/ring7/new2/backend/tests/friend.test.js",
     "/home/vvaalant/Documents/ring7/new2/backend/tests/player.test.js",
     "/home/vvaalant/Documents/ring7/new2/backend/tests/match.test.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/tests/tournament.test.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/tests/2fa.test.js",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/tap/dist/esm/main.js",
     "/home/vvaalant/Documents/ring7/new2/backend/plugins/jwt-plugin.js",
     "/home/vvaalant/Documents/ring7/new2/backend/routes/authRoutes.js",
@@ -98,18 +98,18 @@
     "/home/vvaalant/Documents/ring7/new2/backend/tests/utils/friend.helpers.js",
     "/home/vvaalant/Documents/ring7/new2/backend/tests/utils/player.helpers.js",
     "/home/vvaalant/Documents/ring7/new2/backend/tests/utils/match.helpers.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/tests/utils/tournament.helpers.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/tests/utils/2fa.helpers.js",
     "/home/vvaalant/Documents/ring7/new2/backend/models/database.js",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/core/dist/esm/index.js",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/test/dist/esm/index.js",
     "/home/vvaalant/Documents/ring7/new2/backend/controllers/authController.js",
     "/home/vvaalant/Documents/ring7/new2/backend/models/authSchemas.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/controllers/userController.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/models/userSchemas.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/controllers/playerController.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/models/playerSchemas.js",
     "/home/vvaalant/Documents/ring7/new2/backend/controllers/friendController.js",
     "/home/vvaalant/Documents/ring7/new2/backend/models/friendSchemas.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/models/userSchemas.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/controllers/userController.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/controllers/playerController.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/models/playerSchemas.js",
     "/home/vvaalant/Documents/ring7/new2/backend/controllers/matchHistoryController.js",
     "/home/vvaalant/Documents/ring7/new2/backend/models/matchHistorySchemas.js",
     "/home/vvaalant/Documents/ring7/new2/backend/controllers/tournamentController.js",
@@ -139,16 +139,16 @@
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/test/dist/esm/default-plugins.js",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/bcryptjs/index.js",
     "/home/vvaalant/Documents/ring7/new2/backend/services/blockchain.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/core/dist/esm/throw-to-parser.js",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/async-hook-domain/dist/mjs/index.js",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/tap-parser/dist/esm/index.js",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/core/dist/esm/diags.js",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/core/dist/esm/message-from-error.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/core/dist/esm/throw-to-parser.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/processinfo/dist/esm/index.js",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/is-actual-promise/dist/esm/index.js",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/trivial-deferred/dist/mjs/index.js",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/core/dist/esm/esc.js",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/core/dist/esm/implicit-end-sigil.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/processinfo/dist/esm/index.js",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/after/dist/esm/index.js",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/after-each/dist/esm/index.js",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/asserts/dist/esm/index.js",
@@ -166,7 +166,6 @@
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/typescript/dist/esm/index.js",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/worker/dist/esm/index.js",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/test/node_modules/jackspeak/dist/esm/index.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/index.js",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/tap-yaml/dist/esm/index.js",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/tap-parser/dist/esm/final-results.js",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/tap-parser/dist/esm/line-type.js",
@@ -175,29 +174,30 @@
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/tap-parser/dist/esm/result.js",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/tap-parser/dist/esm/statics.js",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/tap-parser/dist/esm/escape.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/core/dist/esm/clean-yaml-object.js",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/function-loop/dist/mjs/index.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/index.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/core/dist/esm/clean-yaml-object.js",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/processinfo/dist/esm/child_process.js",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/processinfo/dist/esm/process-info-node.js",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/processinfo/dist/esm/json-file.js",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/tcompare/dist/esm/index.js",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/asserts/dist/esm/normalize-throws-args.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/dist/esm/index.js",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/fixture/dist/esm/fixture.js",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/mock/dist/esm/mock-require.js",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/node-serialize/dist/esm/serialize.js",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/snapshot/dist/esm/clean-cwd.js",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/snapshot/dist/esm/provider.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/dist/esm/index.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/tap-parser/dist/esm/brace-patterns.js",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/test/node_modules/jackspeak/dist/esm/parse-args.js",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@isaacs/cliui/index.mjs",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/tap-parser/dist/esm/brace-patterns.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/diff/lib/index.mjs",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/ethers.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/tcompare/dist/esm/format.js",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/tap-yaml/dist/esm/parse.js",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/tap-yaml/dist/esm/stringify.js",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/tap-parser/dist/esm/final-plan.js",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/processinfo/dist/esm/spawn-opts.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/ethers.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/diff/lib/index.mjs",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/tcompare/dist/esm/format.js",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/tcompare/dist/esm/has-strict.js",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/tcompare/dist/esm/has.js",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/tcompare/dist/esm/match-only.js",
@@ -206,16 +206,7 @@
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/tcompare/dist/esm/match.js",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/tcompare/dist/esm/same.js",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/tcompare/dist/esm/strict.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/node_modules/glob/dist/esm/index.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/dist/esm/opt-arg.js",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/tcompare/dist/esm/styles.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/dist/esm/path-arg.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/dist/esm/rimraf-manual.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/dist/esm/rimraf-move-remove.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/dist/esm/rimraf-native.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/dist/esm/rimraf-posix.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/dist/esm/rimraf-windows.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/dist/esm/use-native.js",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/mkdirp/dist/mjs/index.js",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/error-serdes/dist/esm/index.js",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/node-serialize/dist/esm/comment.js",
@@ -223,6 +214,21 @@
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/node-serialize/dist/esm/print-messages.js",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/node-serialize/dist/esm/stdio.js",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/node-serialize/dist/esm/test-map.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/snapshot/dist/esm/require.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/node_modules/glob/dist/esm/index.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/dist/esm/opt-arg.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/dist/esm/path-arg.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/dist/esm/rimraf-manual.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/dist/esm/rimraf-move-remove.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/dist/esm/rimraf-native.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/dist/esm/rimraf-posix.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/dist/esm/rimraf-windows.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/dist/esm/use-native.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@isaacs/cliui/build/lib/index.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/string-width/index.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/strip-ansi/index.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/wrap-ansi/index.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/tap-yaml/dist/esm/types/index.js",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/_version.js",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/abi/index.js",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/address/index.js",
@@ -235,24 +241,7 @@
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/utils/index.js",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/wallet/index.js",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/wordlists/index.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/snapshot/dist/esm/require.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@isaacs/cliui/build/lib/index.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/string-width/index.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/strip-ansi/index.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/wrap-ansi/index.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/tap-yaml/dist/esm/types/index.js",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/tcompare/dist/esm/react-element-to-jsx-string.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/node_modules/minimatch/dist/esm/index.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/node_modules/glob/dist/esm/glob.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/node_modules/glob/dist/esm/has-magic.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/node_modules/glob/dist/esm/ignore.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/dist/esm/platform.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/dist/esm/default-tmp.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/dist/esm/ignore-enoent.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/dist/esm/fs.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/dist/esm/readdir-or-error.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/dist/esm/fix-eperm.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/dist/esm/retry-busy.js",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/mkdirp/dist/mjs/mkdirp-manual.js",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/mkdirp/dist/mjs/mkdirp-native.js",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/mkdirp/dist/mjs/opts-arg.js",
@@ -270,17 +259,51 @@
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/node-serialize/dist/esm/test-point-message-data.js",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/node-serialize/dist/esm/test-point-results.js",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/node-serialize/dist/esm/test-results.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/wallet/base-wallet.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/wallet/hdwallet.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/wallet/json-crowdsale.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/wallet/json-keystore.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/wallet/mnemonic.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/wallet/wallet.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/wordlists/wordlist.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/wordlists/lang-en.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/wordlists/wordlist-owl.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/wordlists/wordlist-owla.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/wordlists/wordlists.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/tap-yaml/dist/esm/types/date.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/tap-yaml/dist/esm/types/timestamp.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/dist/esm/fs.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/dist/esm/readdir-or-error.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/dist/esm/ignore-enoent.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/node_modules/minimatch/dist/esm/index.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/node_modules/glob/dist/esm/glob.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/node_modules/glob/dist/esm/has-magic.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/node_modules/glob/dist/esm/ignore.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/dist/esm/platform.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/dist/esm/default-tmp.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/dist/esm/fix-eperm.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/dist/esm/retry-busy.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ansi-regex/index.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ansi-styles/index.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/abi/abi-coder.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/abi/bytes32.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/abi/fragments.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/abi/interface.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/abi/typed.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/address/address.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/address/contract-address.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/address/checks.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/constants/addresses.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/constants/hashes.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/constants/numbers.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/constants/strings.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/contract/contract.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/contract/factory.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/contract/wrappers.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/crypto/hmac.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/crypto/keccak.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/crypto/ripemd160.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/crypto/pbkdf2.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/crypto/random.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/crypto/scrypt.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/crypto/sha2.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/crypto/signing-key.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/crypto/signature.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/hash/authorization.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/hash/id.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/hash/namehash.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/hash/message.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/hash/solidity.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/hash/typed-data.js",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/providers/abstract-provider.js",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/providers/abstract-signer.js",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/providers/community.js",
@@ -323,69 +346,24 @@
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/utils/units.js",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/utils/utf8.js",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/utils/uuid.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/abi/abi-coder.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/abi/bytes32.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/abi/fragments.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/abi/interface.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/abi/typed.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/address/address.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/address/contract-address.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/address/checks.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/constants/addresses.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/constants/hashes.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/constants/numbers.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/constants/strings.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/contract/contract.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/contract/factory.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/contract/wrappers.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/crypto/hmac.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/crypto/keccak.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/crypto/ripemd160.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/crypto/pbkdf2.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/crypto/random.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/crypto/scrypt.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/crypto/sha2.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/crypto/signing-key.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/crypto/signature.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/hash/authorization.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/hash/id.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/hash/namehash.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/hash/message.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/hash/solidity.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/hash/typed-data.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ansi-regex/index.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ansi-styles/index.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/tap-yaml/dist/esm/types/date.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/tap-yaml/dist/esm/types/timestamp.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/node_modules/minimatch/dist/esm/escape.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/node_modules/path-scurry/dist/esm/index.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/node_modules/minimatch/dist/esm/ast.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/node_modules/minimatch/dist/esm/unescape.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/node_modules/glob/dist/esm/pattern.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/node_modules/glob/dist/esm/walker.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/wallet/base-wallet.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/wallet/hdwallet.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/wallet/json-crowdsale.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/wallet/json-keystore.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/wallet/mnemonic.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/wallet/wallet.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/wordlists/wordlist.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/wordlists/lang-en.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/wordlists/wordlist-owl.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/wordlists/wordlist-owla.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/wordlists/wordlists.js",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/mkdirp/dist/mjs/find-made.js",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/node-serialize/dist/esm/loc-from-callsite.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/node_modules/minimatch/dist/esm/assert-valid-pattern.js",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/node-serialize/dist/esm/result-to-error.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/wordlists/lang-cz.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/wordlists/lang-es.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/wordlists/lang-fr.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/wordlists/lang-ja.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/wordlists/lang-ko.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/wordlists/lang-it.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/wordlists/lang-pt.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/wordlists/lang-zh.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/aes-js/lib.esm/index.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/wallet/utils.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/wordlists/decode-owl.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/wordlists/decode-owla.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/providers/format.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/providers/subscriber-polling.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/crypto/crypto.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@noble/hashes/esm/sha3.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@noble/hashes/esm/ripemd160.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@noble/hashes/esm/scrypt.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@noble/curves/esm/secp256k1.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/node_modules/minimatch/dist/esm/assert-valid-pattern.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/node_modules/minimatch/dist/esm/ast.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/node_modules/minimatch/dist/esm/escape.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/node_modules/minimatch/dist/esm/unescape.js",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/abi/coders/abstract-coder.js",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/abi/coders/address.js",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/abi/coders/array.js",
@@ -396,14 +374,50 @@
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/abi/coders/number.js",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/abi/coders/string.js",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/abi/coders/tuple.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@adraffy/ens-normalize/dist/index.mjs",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/node_modules/path-scurry/dist/esm/index.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/node_modules/glob/dist/esm/pattern.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/node_modules/glob/dist/esm/walker.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/wordlists/decode-owl.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/wordlists/decode-owla.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/crypto/crypto.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@noble/curves/esm/secp256k1.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/providers/format.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/providers/subscriber-polling.js",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/providers/subscriber-filterid.js",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/providers/ws.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@noble/hashes/esm/sha3.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@noble/hashes/esm/ripemd160.js",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/utils/geturl.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/node_modules/lru-cache/dist/esm/index.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/node_modules/minimatch/dist/esm/brace-expressions.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/node_modules/glob/dist/esm/processor.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@noble/hashes/esm/scrypt.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@adraffy/ens-normalize/dist/index.mjs",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/aes-js/lib.esm/index.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/wallet/utils.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/wordlists/lang-cz.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/wordlists/lang-es.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/wordlists/lang-fr.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/wordlists/lang-ja.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/wordlists/lang-ko.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/wordlists/lang-it.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/wordlists/lang-pt.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/wordlists/lang-zh.js",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/node-serialize/dist/esm/pretty-diff.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/node_modules/minimatch/dist/esm/brace-expressions.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/abi/coders/anonymous.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/node_modules/lru-cache/dist/esm/index.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/node_modules/glob/dist/esm/processor.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/wordlists/bit-reader.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@noble/hashes/esm/sha256.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@noble/hashes/esm/utils.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@noble/curves/esm/abstract/modular.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@noble/curves/esm/abstract/weierstrass.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@noble/curves/esm/abstract/utils.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@noble/curves/esm/abstract/hash-to-curve.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@noble/curves/esm/_shortw_utils.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/node_modules/ws/wrapper.mjs",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@noble/hashes/esm/_assert.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@noble/hashes/esm/_u64.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@noble/hashes/esm/_sha2.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@noble/hashes/esm/pbkdf2.js",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/aes-js/lib.esm/aes.js",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/aes-js/lib.esm/mode.js",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/aes-js/lib.esm/mode-cbc.js",
@@ -412,23 +426,9 @@
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/aes-js/lib.esm/mode-ecb.js",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/aes-js/lib.esm/mode-ofb.js",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/aes-js/lib.esm/padding.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/wordlists/bit-reader.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@noble/hashes/esm/_assert.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@noble/hashes/esm/_u64.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@noble/hashes/esm/utils.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@noble/hashes/esm/_sha2.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@noble/hashes/esm/sha256.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@noble/hashes/esm/pbkdf2.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@noble/curves/esm/abstract/modular.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@noble/curves/esm/abstract/weierstrass.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@noble/curves/esm/abstract/utils.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@noble/curves/esm/abstract/hash-to-curve.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@noble/curves/esm/_shortw_utils.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/abi/coders/anonymous.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/node_modules/ws/wrapper.mjs",
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@noble/hashes/esm/cryptoNode.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@noble/hashes/esm/hmac.js",
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@noble/curves/esm/abstract/curve.js"
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@noble/curves/esm/abstract/curve.js",
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@noble/hashes/esm/hmac.js"
   ],
   "sources": {
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/mock/dist/esm/import.mjs": [
@@ -497,6 +497,21 @@
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/resolve-import/dist/esm/errors.js": [
       "/home/vvaalant/Documents/ring7/new2/backend/node_modules/resolve-import/src/errors.ts"
     ],
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/resolve-import/dist/esm/file-exists.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/resolve-import/src/file-exists.ts"
+    ],
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/resolve-import/dist/esm/resolve-dependency-export.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/resolve-import/src/resolve-dependency-export.ts"
+    ],
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/resolve-import/dist/esm/resolve-package-import.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/resolve-import/src/resolve-package-import.ts"
+    ],
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/resolve-import/dist/esm/to-file-url.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/resolve-import/src/to-file-url.ts"
+    ],
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/resolve-import/dist/esm/to-path.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/resolve-import/src/to-path.ts"
+    ],
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/resolve-import/dist/esm/get-named-exports-list.js": [
       "/home/vvaalant/Documents/ring7/new2/backend/node_modules/resolve-import/src/get-named-exports-list.ts"
     ],
@@ -509,35 +524,20 @@
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/resolve-import/dist/esm/star-glob.js": [
       "/home/vvaalant/Documents/ring7/new2/backend/node_modules/resolve-import/src/star-glob.ts"
     ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/resolve-import/dist/esm/to-path.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/resolve-import/src/to-path.ts"
-    ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/resolve-import/dist/esm/file-exists.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/resolve-import/src/file-exists.ts"
-    ],
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/resolve-import/dist/esm/find-dep-package.js": [
       "/home/vvaalant/Documents/ring7/new2/backend/node_modules/resolve-import/src/find-dep-package.ts"
     ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/resolve-import/dist/esm/to-file-url.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/resolve-import/src/to-file-url.ts"
-    ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/resolve-import/dist/esm/resolve-dependency-export.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/resolve-import/src/resolve-dependency-export.ts"
-    ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/resolve-import/dist/esm/resolve-package-import.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/resolve-import/src/resolve-package-import.ts"
-    ],
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/resolve-import/dist/esm/read-json.js": [
       "/home/vvaalant/Documents/ring7/new2/backend/node_modules/resolve-import/src/read-json.ts"
+    ],
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/walk-up-path/dist/mjs/index.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/walk-up-path/src/index.ts"
     ],
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/resolve-import/dist/esm/find-star-match.js": [
       "/home/vvaalant/Documents/ring7/new2/backend/node_modules/resolve-import/src/find-star-match.ts"
     ],
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/resolve-import/node_modules/glob/dist/esm/index.js": [
       "/home/vvaalant/Documents/ring7/new2/backend/node_modules/resolve-import/node_modules/glob/src/index.ts"
-    ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/walk-up-path/dist/mjs/index.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/walk-up-path/src/index.ts"
     ],
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/resolve-import/node_modules/minimatch/dist/esm/index.js": [
       "/home/vvaalant/Documents/ring7/new2/backend/node_modules/resolve-import/node_modules/minimatch/src/index.ts"
@@ -550,9 +550,6 @@
     ],
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/resolve-import/node_modules/glob/dist/esm/ignore.js": [
       "/home/vvaalant/Documents/ring7/new2/backend/node_modules/resolve-import/node_modules/glob/src/ignore.ts"
-    ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/resolve-import/node_modules/glob/dist/esm/pattern.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/resolve-import/node_modules/glob/src/pattern.ts"
     ],
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/resolve-import/node_modules/minimatch/dist/esm/assert-valid-pattern.js": [
       "/home/vvaalant/Documents/ring7/new2/backend/node_modules/resolve-import/node_modules/minimatch/src/assert-valid-pattern.ts"
@@ -569,20 +566,23 @@
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/resolve-import/node_modules/path-scurry/dist/esm/index.js": [
       "/home/vvaalant/Documents/ring7/new2/backend/node_modules/resolve-import/node_modules/path-scurry/src/index.ts"
     ],
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/resolve-import/node_modules/glob/dist/esm/pattern.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/resolve-import/node_modules/glob/src/pattern.ts"
+    ],
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/resolve-import/node_modules/glob/dist/esm/walker.js": [
       "/home/vvaalant/Documents/ring7/new2/backend/node_modules/resolve-import/node_modules/glob/src/walker.ts"
-    ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/resolve-import/node_modules/minimatch/dist/esm/brace-expressions.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/resolve-import/node_modules/minimatch/src/brace-expressions.ts"
-    ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/resolve-import/node_modules/lru-cache/dist/esm/index.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/resolve-import/node_modules/lru-cache/src/index.ts"
     ],
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/minipass/dist/esm/index.js": [
       "/home/vvaalant/Documents/ring7/new2/backend/node_modules/minipass/src/index.ts"
     ],
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/resolve-import/node_modules/glob/dist/esm/processor.js": [
       "/home/vvaalant/Documents/ring7/new2/backend/node_modules/resolve-import/node_modules/glob/src/processor.ts"
+    ],
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/resolve-import/node_modules/minimatch/dist/esm/brace-expressions.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/resolve-import/node_modules/minimatch/src/brace-expressions.ts"
+    ],
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/resolve-import/node_modules/lru-cache/dist/esm/index.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/resolve-import/node_modules/lru-cache/src/index.ts"
     ],
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/tap/dist/esm/index.js": [
       "/home/vvaalant/Documents/ring7/new2/backend/node_modules/tap/src/index.ts"
@@ -656,6 +656,9 @@
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/test/dist/esm/default-plugins.js": [
       "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/test/src/default-plugins.ts"
     ],
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/core/dist/esm/throw-to-parser.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/core/src/throw-to-parser.ts"
+    ],
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/async-hook-domain/dist/mjs/index.js": [
       "/home/vvaalant/Documents/ring7/new2/backend/node_modules/async-hook-domain/src/index.ts"
     ],
@@ -668,8 +671,8 @@
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/core/dist/esm/message-from-error.js": [
       "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/core/src/message-from-error.ts"
     ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/core/dist/esm/throw-to-parser.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/core/src/throw-to-parser.ts"
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/processinfo/dist/esm/index.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/processinfo/src/index.ts"
     ],
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/is-actual-promise/dist/esm/index.js": [
       "/home/vvaalant/Documents/ring7/new2/backend/node_modules/is-actual-promise/src/index.ts"
@@ -682,9 +685,6 @@
     ],
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/core/dist/esm/implicit-end-sigil.js": [
       "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/core/src/implicit-end-sigil.ts"
-    ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/processinfo/dist/esm/index.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/processinfo/src/index.ts"
     ],
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/after/dist/esm/index.js": [
       "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/after/src/index.ts"
@@ -737,6 +737,12 @@
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/test/node_modules/jackspeak/dist/esm/index.js": [
       "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/test/node_modules/jackspeak/src/index.ts"
     ],
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/tap-yaml/dist/esm/index.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/tap-yaml/src/index.ts"
+    ],
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/tap-parser/dist/esm/final-results.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/tap-parser/src/final-results.ts"
+    ],
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/tap-parser/dist/esm/line-type.js": [
       "/home/vvaalant/Documents/ring7/new2/backend/node_modules/tap-parser/src/line-type.ts"
     ],
@@ -755,18 +761,6 @@
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/tap-parser/dist/esm/escape.js": [
       "/home/vvaalant/Documents/ring7/new2/backend/node_modules/tap-parser/src/escape.ts"
     ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/core/dist/esm/clean-yaml-object.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/core/src/clean-yaml-object.ts"
-    ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/index.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/index.ts"
-    ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/tap-yaml/dist/esm/index.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/tap-yaml/src/index.ts"
-    ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/tap-parser/dist/esm/final-results.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/tap-parser/src/final-results.ts"
-    ],
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/function-loop/dist/mjs/index.js": [
       "/home/vvaalant/Documents/ring7/new2/backend/node_modules/function-loop/src/index.ts"
     ],
@@ -775,6 +769,12 @@
     ],
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/processinfo/dist/esm/process-info-node.js": [
       "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/processinfo/src/process-info-node.ts"
+    ],
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/index.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/index.ts"
+    ],
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/core/dist/esm/clean-yaml-object.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/core/src/clean-yaml-object.ts"
     ],
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/processinfo/dist/esm/json-file.js": [
       "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/processinfo/src/json-file.ts"
@@ -785,9 +785,6 @@
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/asserts/dist/esm/normalize-throws-args.js": [
       "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/asserts/src/normalize-throws-args.ts"
     ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/dist/esm/index.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/src/index.ts"
-    ],
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/fixture/dist/esm/fixture.js": [
       "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/fixture/src/fixture.ts"
     ],
@@ -797,23 +794,20 @@
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/node-serialize/dist/esm/serialize.js": [
       "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/node-serialize/src/serialize.ts"
     ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/ethers.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/ethers.ts"
-    ],
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/snapshot/dist/esm/clean-cwd.js": [
       "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/snapshot/src/clean-cwd.ts"
     ],
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/snapshot/dist/esm/provider.js": [
       "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/snapshot/src/provider.ts"
     ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/test/node_modules/jackspeak/dist/esm/parse-args.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/test/node_modules/jackspeak/src/parse-args.ts"
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/dist/esm/index.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/src/index.ts"
     ],
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/tap-parser/dist/esm/brace-patterns.js": [
       "/home/vvaalant/Documents/ring7/new2/backend/node_modules/tap-parser/src/brace-patterns.ts"
     ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/tcompare/dist/esm/format.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/tcompare/src/format.ts"
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/test/node_modules/jackspeak/dist/esm/parse-args.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/test/node_modules/jackspeak/src/parse-args.ts"
     ],
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/tap-yaml/dist/esm/parse.js": [
       "/home/vvaalant/Documents/ring7/new2/backend/node_modules/tap-yaml/src/parse.ts"
@@ -826,6 +820,12 @@
     ],
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/processinfo/dist/esm/spawn-opts.js": [
       "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/processinfo/src/spawn-opts.ts"
+    ],
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/ethers.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/ethers.ts"
+    ],
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/tcompare/dist/esm/format.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/tcompare/src/format.ts"
     ],
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/tcompare/dist/esm/has-strict.js": [
       "/home/vvaalant/Documents/ring7/new2/backend/node_modules/tcompare/src/has-strict.ts"
@@ -851,14 +851,41 @@
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/tcompare/dist/esm/strict.js": [
       "/home/vvaalant/Documents/ring7/new2/backend/node_modules/tcompare/src/strict.ts"
     ],
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/tcompare/dist/esm/styles.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/tcompare/src/styles.ts"
+    ],
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/mkdirp/dist/mjs/index.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/mkdirp/src/index.ts"
+    ],
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/error-serdes/dist/esm/index.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/error-serdes/src/index.ts"
+    ],
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/node-serialize/dist/esm/comment.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/node-serialize/src/comment.ts"
+    ],
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/node-serialize/dist/esm/on-add.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/node-serialize/src/on-add.ts"
+    ],
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/node-serialize/dist/esm/print-messages.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/node-serialize/src/print-messages.ts"
+    ],
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/node-serialize/dist/esm/stdio.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/node-serialize/src/stdio.ts"
+    ],
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/tap-yaml/dist/esm/types/index.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/tap-yaml/src/types/index.ts"
+    ],
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/node-serialize/dist/esm/test-map.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/node-serialize/src/test-map.ts"
+    ],
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/snapshot/dist/esm/require.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/snapshot/src/require.ts"
+    ],
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/node_modules/glob/dist/esm/index.js": [
       "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/node_modules/glob/src/index.ts"
     ],
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/dist/esm/opt-arg.js": [
       "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/src/opt-arg.ts"
-    ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/tcompare/dist/esm/styles.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/tcompare/src/styles.ts"
     ],
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/dist/esm/path-arg.js": [
       "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/src/path-arg.ts"
@@ -880,27 +907,6 @@
     ],
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/dist/esm/use-native.js": [
       "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/src/use-native.ts"
-    ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/mkdirp/dist/mjs/index.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/mkdirp/src/index.ts"
-    ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/error-serdes/dist/esm/index.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/error-serdes/src/index.ts"
-    ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/node-serialize/dist/esm/comment.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/node-serialize/src/comment.ts"
-    ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/node-serialize/dist/esm/on-add.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/node-serialize/src/on-add.ts"
-    ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/node-serialize/dist/esm/print-messages.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/node-serialize/src/print-messages.ts"
-    ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/node-serialize/dist/esm/stdio.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/node-serialize/src/stdio.ts"
-    ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/node-serialize/dist/esm/test-map.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/node-serialize/src/test-map.ts"
     ],
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/_version.js": [
       "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/_version.ts"
@@ -938,47 +944,8 @@
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/wordlists/index.js": [
       "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/wordlists/index.ts"
     ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/snapshot/dist/esm/require.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/snapshot/src/require.ts"
-    ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/tap-yaml/dist/esm/types/index.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/tap-yaml/src/types/index.ts"
-    ],
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/tcompare/dist/esm/react-element-to-jsx-string.js": [
       "/home/vvaalant/Documents/ring7/new2/backend/node_modules/tcompare/src/react-element-to-jsx-string.ts"
-    ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/node_modules/minimatch/dist/esm/index.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/node_modules/minimatch/src/index.ts"
-    ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/node_modules/glob/dist/esm/glob.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/node_modules/glob/src/glob.ts"
-    ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/node_modules/glob/dist/esm/has-magic.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/node_modules/glob/src/has-magic.ts"
-    ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/node_modules/glob/dist/esm/ignore.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/node_modules/glob/src/ignore.ts"
-    ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/dist/esm/platform.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/src/platform.ts"
-    ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/dist/esm/default-tmp.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/src/default-tmp.ts"
-    ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/dist/esm/ignore-enoent.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/src/ignore-enoent.ts"
-    ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/dist/esm/fs.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/src/fs.ts"
-    ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/dist/esm/readdir-or-error.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/src/readdir-or-error.ts"
-    ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/dist/esm/fix-eperm.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/src/fix-eperm.ts"
-    ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/dist/esm/retry-busy.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/src/retry-busy.ts"
     ],
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/mkdirp/dist/mjs/mkdirp-manual.js": [
       "/home/vvaalant/Documents/ring7/new2/backend/node_modules/mkdirp/src/mkdirp-manual.ts"
@@ -1031,38 +998,134 @@
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/node-serialize/dist/esm/test-results.js": [
       "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/node-serialize/src/test-results.ts"
     ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/wallet/base-wallet.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/wallet/base-wallet.ts"
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/tap-yaml/dist/esm/types/date.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/tap-yaml/src/types/date.ts"
     ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/wallet/hdwallet.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/wallet/hdwallet.ts"
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/tap-yaml/dist/esm/types/timestamp.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/tap-yaml/src/types/timestamp.ts"
     ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/wallet/json-crowdsale.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/wallet/json-crowdsale.ts"
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/dist/esm/fs.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/src/fs.ts"
     ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/wallet/json-keystore.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/wallet/json-keystore.ts"
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/dist/esm/readdir-or-error.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/src/readdir-or-error.ts"
     ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/wallet/mnemonic.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/wallet/mnemonic.ts"
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/dist/esm/ignore-enoent.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/src/ignore-enoent.ts"
     ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/wallet/wallet.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/wallet/wallet.ts"
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/node_modules/minimatch/dist/esm/index.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/node_modules/minimatch/src/index.ts"
     ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/wordlists/wordlist.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/wordlists/wordlist.ts"
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/node_modules/glob/dist/esm/glob.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/node_modules/glob/src/glob.ts"
     ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/wordlists/lang-en.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/wordlists/lang-en.ts"
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/node_modules/glob/dist/esm/has-magic.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/node_modules/glob/src/has-magic.ts"
     ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/wordlists/wordlist-owl.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/wordlists/wordlist-owl.ts"
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/node_modules/glob/dist/esm/ignore.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/node_modules/glob/src/ignore.ts"
     ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/wordlists/wordlist-owla.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/wordlists/wordlist-owla.ts"
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/dist/esm/platform.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/src/platform.ts"
     ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/wordlists/wordlists.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/wordlists/wordlists.ts"
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/dist/esm/default-tmp.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/src/default-tmp.ts"
+    ],
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/dist/esm/fix-eperm.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/src/fix-eperm.ts"
+    ],
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/dist/esm/retry-busy.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/src/retry-busy.ts"
+    ],
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/abi/abi-coder.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/abi/abi-coder.ts"
+    ],
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/abi/bytes32.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/abi/bytes32.ts"
+    ],
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/abi/fragments.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/abi/fragments.ts"
+    ],
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/abi/interface.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/abi/interface.ts"
+    ],
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/abi/typed.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/abi/typed.ts"
+    ],
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/address/address.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/address/address.ts"
+    ],
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/address/contract-address.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/address/contract-address.ts"
+    ],
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/address/checks.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/address/checks.ts"
+    ],
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/constants/addresses.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/constants/addresses.ts"
+    ],
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/constants/hashes.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/constants/hashes.ts"
+    ],
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/constants/numbers.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/constants/numbers.ts"
+    ],
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/constants/strings.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/constants/strings.ts"
+    ],
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/contract/contract.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/contract/contract.ts"
+    ],
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/contract/factory.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/contract/factory.ts"
+    ],
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/contract/wrappers.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/contract/wrappers.ts"
+    ],
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/crypto/hmac.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/crypto/hmac.ts"
+    ],
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/crypto/keccak.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/crypto/keccak.ts"
+    ],
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/crypto/ripemd160.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/crypto/ripemd160.ts"
+    ],
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/crypto/pbkdf2.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/crypto/pbkdf2.ts"
+    ],
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/crypto/random.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/crypto/random.ts"
+    ],
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/crypto/scrypt.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/crypto/scrypt.ts"
+    ],
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/crypto/sha2.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/crypto/sha2.ts"
+    ],
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/crypto/signing-key.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/crypto/signing-key.ts"
+    ],
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/crypto/signature.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/crypto/signature.ts"
+    ],
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/hash/authorization.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/hash/authorization.ts"
+    ],
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/hash/id.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/hash/id.ts"
+    ],
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/hash/namehash.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/hash/namehash.ts"
+    ],
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/hash/message.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/hash/message.ts"
+    ],
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/hash/solidity.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/hash/solidity.ts"
+    ],
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/hash/typed-data.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/hash/typed-data.ts"
     ],
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/providers/abstract-provider.js": [
       "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/providers/abstract-provider.ts"
@@ -1190,119 +1253,38 @@
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/utils/uuid.js": [
       "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/utils/uuid.ts"
     ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/abi/abi-coder.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/abi/abi-coder.ts"
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/wallet/base-wallet.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/wallet/base-wallet.ts"
     ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/abi/bytes32.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/abi/bytes32.ts"
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/wallet/hdwallet.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/wallet/hdwallet.ts"
     ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/abi/fragments.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/abi/fragments.ts"
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/wallet/json-crowdsale.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/wallet/json-crowdsale.ts"
     ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/abi/interface.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/abi/interface.ts"
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/wallet/json-keystore.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/wallet/json-keystore.ts"
     ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/abi/typed.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/abi/typed.ts"
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/wallet/mnemonic.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/wallet/mnemonic.ts"
     ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/address/address.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/address/address.ts"
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/wallet/wallet.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/wallet/wallet.ts"
     ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/address/contract-address.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/address/contract-address.ts"
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/wordlists/wordlist.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/wordlists/wordlist.ts"
     ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/address/checks.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/address/checks.ts"
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/wordlists/lang-en.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/wordlists/lang-en.ts"
     ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/constants/addresses.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/constants/addresses.ts"
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/wordlists/wordlist-owl.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/wordlists/wordlist-owl.ts"
     ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/constants/hashes.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/constants/hashes.ts"
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/wordlists/wordlist-owla.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/wordlists/wordlist-owla.ts"
     ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/constants/numbers.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/constants/numbers.ts"
-    ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/constants/strings.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/constants/strings.ts"
-    ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/contract/contract.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/contract/contract.ts"
-    ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/contract/factory.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/contract/factory.ts"
-    ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/contract/wrappers.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/contract/wrappers.ts"
-    ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/crypto/hmac.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/crypto/hmac.ts"
-    ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/crypto/keccak.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/crypto/keccak.ts"
-    ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/crypto/ripemd160.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/crypto/ripemd160.ts"
-    ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/crypto/pbkdf2.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/crypto/pbkdf2.ts"
-    ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/crypto/random.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/crypto/random.ts"
-    ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/crypto/scrypt.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/crypto/scrypt.ts"
-    ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/crypto/sha2.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/crypto/sha2.ts"
-    ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/crypto/signing-key.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/crypto/signing-key.ts"
-    ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/crypto/signature.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/crypto/signature.ts"
-    ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/hash/authorization.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/hash/authorization.ts"
-    ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/hash/id.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/hash/id.ts"
-    ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/hash/namehash.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/hash/namehash.ts"
-    ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/hash/message.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/hash/message.ts"
-    ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/hash/solidity.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/hash/solidity.ts"
-    ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/hash/typed-data.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/hash/typed-data.ts"
-    ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/tap-yaml/dist/esm/types/date.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/tap-yaml/src/types/date.ts"
-    ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/tap-yaml/dist/esm/types/timestamp.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/tap-yaml/src/types/timestamp.ts"
-    ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/node_modules/minimatch/dist/esm/escape.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/node_modules/minimatch/src/escape.ts"
-    ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/node_modules/path-scurry/dist/esm/index.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/node_modules/path-scurry/src/index.ts"
-    ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/node_modules/minimatch/dist/esm/ast.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/node_modules/minimatch/src/ast.ts"
-    ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/node_modules/minimatch/dist/esm/unescape.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/node_modules/minimatch/src/unescape.ts"
-    ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/node_modules/glob/dist/esm/pattern.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/node_modules/glob/src/pattern.ts"
-    ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/node_modules/glob/dist/esm/walker.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/node_modules/glob/src/walker.ts"
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/wordlists/wordlists.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/wordlists/wordlists.ts"
     ],
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/mkdirp/dist/mjs/find-made.js": [
       "/home/vvaalant/Documents/ring7/new2/backend/node_modules/mkdirp/src/find-made.ts"
@@ -1310,68 +1292,20 @@
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/node-serialize/dist/esm/loc-from-callsite.js": [
       "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/node-serialize/src/loc-from-callsite.ts"
     ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/node_modules/minimatch/dist/esm/assert-valid-pattern.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/node_modules/minimatch/src/assert-valid-pattern.ts"
-    ],
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/node-serialize/dist/esm/result-to-error.js": [
       "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/node-serialize/src/result-to-error.ts"
     ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/wordlists/lang-cz.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/wordlists/lang-cz.ts"
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/node_modules/minimatch/dist/esm/assert-valid-pattern.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/node_modules/minimatch/src/assert-valid-pattern.ts"
     ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/wordlists/lang-es.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/wordlists/lang-es.ts"
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/node_modules/minimatch/dist/esm/ast.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/node_modules/minimatch/src/ast.ts"
     ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/wordlists/lang-fr.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/wordlists/lang-fr.ts"
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/node_modules/minimatch/dist/esm/escape.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/node_modules/minimatch/src/escape.ts"
     ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/wordlists/lang-ja.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/wordlists/lang-ja.ts"
-    ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/wordlists/lang-ko.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/wordlists/lang-ko.ts"
-    ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/wordlists/lang-it.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/wordlists/lang-it.ts"
-    ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/wordlists/lang-pt.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/wordlists/lang-pt.ts"
-    ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/wordlists/lang-zh.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/wordlists/lang-zh.ts"
-    ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/aes-js/lib.esm/index.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/aes-js/src.ts/index.ts"
-    ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/wallet/utils.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/wallet/utils.ts"
-    ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/wordlists/decode-owl.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/wordlists/decode-owl.ts"
-    ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/wordlists/decode-owla.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/wordlists/decode-owla.ts"
-    ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/providers/format.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/providers/format.ts"
-    ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/providers/subscriber-polling.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/providers/subscriber-polling.ts"
-    ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/crypto/crypto.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/crypto/crypto.ts"
-    ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@noble/hashes/esm/sha3.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@noble/hashes/src/sha3.ts"
-    ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@noble/hashes/esm/ripemd160.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@noble/hashes/src/ripemd160.ts"
-    ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@noble/hashes/esm/scrypt.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@noble/hashes/src/scrypt.ts"
-    ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@noble/curves/esm/secp256k1.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@noble/curves/src/secp256k1.ts"
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/node_modules/minimatch/dist/esm/unescape.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/node_modules/minimatch/src/unescape.ts"
     ],
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/abi/coders/abstract-coder.js": [
       "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/abi/coders/abstract-coder.ts"
@@ -1403,26 +1337,131 @@
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/abi/coders/tuple.js": [
       "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/abi/coders/tuple.ts"
     ],
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/node_modules/path-scurry/dist/esm/index.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/node_modules/path-scurry/src/index.ts"
+    ],
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/node_modules/glob/dist/esm/pattern.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/node_modules/glob/src/pattern.ts"
+    ],
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/node_modules/glob/dist/esm/walker.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/node_modules/glob/src/walker.ts"
+    ],
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/wordlists/decode-owl.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/wordlists/decode-owl.ts"
+    ],
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/wordlists/decode-owla.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/wordlists/decode-owla.ts"
+    ],
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/crypto/crypto.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/crypto/crypto.ts"
+    ],
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@noble/curves/esm/secp256k1.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@noble/curves/src/secp256k1.ts"
+    ],
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/providers/format.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/providers/format.ts"
+    ],
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/providers/subscriber-polling.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/providers/subscriber-polling.ts"
+    ],
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/providers/subscriber-filterid.js": [
       "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/providers/subscriber-filterid.ts"
     ],
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/providers/ws.js": [
       "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/providers/ws.ts"
     ],
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@noble/hashes/esm/sha3.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@noble/hashes/src/sha3.ts"
+    ],
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@noble/hashes/esm/ripemd160.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@noble/hashes/src/ripemd160.ts"
+    ],
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/utils/geturl.js": [
       "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/utils/geturl.ts"
     ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/node_modules/lru-cache/dist/esm/index.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/node_modules/lru-cache/src/index.ts"
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@noble/hashes/esm/scrypt.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@noble/hashes/src/scrypt.ts"
+    ],
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/aes-js/lib.esm/index.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/aes-js/src.ts/index.ts"
+    ],
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/wallet/utils.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/wallet/utils.ts"
+    ],
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/wordlists/lang-cz.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/wordlists/lang-cz.ts"
+    ],
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/wordlists/lang-es.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/wordlists/lang-es.ts"
+    ],
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/wordlists/lang-fr.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/wordlists/lang-fr.ts"
+    ],
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/wordlists/lang-ja.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/wordlists/lang-ja.ts"
+    ],
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/wordlists/lang-ko.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/wordlists/lang-ko.ts"
+    ],
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/wordlists/lang-it.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/wordlists/lang-it.ts"
+    ],
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/wordlists/lang-pt.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/wordlists/lang-pt.ts"
+    ],
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/wordlists/lang-zh.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/wordlists/lang-zh.ts"
+    ],
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/node-serialize/dist/esm/pretty-diff.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/node-serialize/src/pretty-diff.ts"
     ],
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/node_modules/minimatch/dist/esm/brace-expressions.js": [
       "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/node_modules/minimatch/src/brace-expressions.ts"
     ],
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/abi/coders/anonymous.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/abi/coders/anonymous.ts"
+    ],
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/node_modules/lru-cache/dist/esm/index.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/node_modules/lru-cache/src/index.ts"
+    ],
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/node_modules/glob/dist/esm/processor.js": [
       "/home/vvaalant/Documents/ring7/new2/backend/node_modules/rimraf/node_modules/glob/src/processor.ts"
     ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/node-serialize/dist/esm/pretty-diff.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@tapjs/node-serialize/src/pretty-diff.ts"
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/wordlists/bit-reader.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/wordlists/bit-reader.ts"
+    ],
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@noble/hashes/esm/sha256.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@noble/hashes/src/sha256.ts"
+    ],
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@noble/hashes/esm/utils.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@noble/hashes/src/utils.ts"
+    ],
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@noble/curves/esm/abstract/modular.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@noble/curves/src/abstract/modular.ts"
+    ],
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@noble/curves/esm/abstract/weierstrass.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@noble/curves/src/abstract/weierstrass.ts"
+    ],
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@noble/curves/esm/abstract/utils.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@noble/curves/src/abstract/utils.ts"
+    ],
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@noble/curves/esm/abstract/hash-to-curve.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@noble/curves/src/abstract/hash-to-curve.ts"
+    ],
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@noble/curves/esm/_shortw_utils.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@noble/curves/src/_shortw_utils.ts"
+    ],
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@noble/hashes/esm/_assert.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@noble/hashes/src/_assert.ts"
+    ],
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@noble/hashes/esm/_u64.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@noble/hashes/src/_u64.ts"
+    ],
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@noble/hashes/esm/_sha2.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@noble/hashes/src/_sha2.ts"
+    ],
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@noble/hashes/esm/pbkdf2.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@noble/hashes/src/pbkdf2.ts"
     ],
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/aes-js/lib.esm/aes.js": [
       "/home/vvaalant/Documents/ring7/new2/backend/node_modules/aes-js/src.ts/aes.ts"
@@ -1448,58 +1487,19 @@
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/aes-js/lib.esm/padding.js": [
       "/home/vvaalant/Documents/ring7/new2/backend/node_modules/aes-js/src.ts/padding.ts"
     ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/wordlists/bit-reader.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/wordlists/bit-reader.ts"
-    ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@noble/hashes/esm/_assert.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@noble/hashes/src/_assert.ts"
-    ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@noble/hashes/esm/_u64.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@noble/hashes/src/_u64.ts"
-    ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@noble/hashes/esm/utils.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@noble/hashes/src/utils.ts"
-    ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@noble/hashes/esm/_sha2.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@noble/hashes/src/_sha2.ts"
-    ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@noble/hashes/esm/sha256.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@noble/hashes/src/sha256.ts"
-    ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@noble/hashes/esm/pbkdf2.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@noble/hashes/src/pbkdf2.ts"
-    ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@noble/curves/esm/abstract/modular.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@noble/curves/src/abstract/modular.ts"
-    ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@noble/curves/esm/abstract/weierstrass.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@noble/curves/src/abstract/weierstrass.ts"
-    ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@noble/curves/esm/abstract/utils.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@noble/curves/src/abstract/utils.ts"
-    ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@noble/curves/esm/abstract/hash-to-curve.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@noble/curves/src/abstract/hash-to-curve.ts"
-    ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@noble/curves/esm/_shortw_utils.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@noble/curves/src/_shortw_utils.ts"
-    ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/lib.esm/abi/coders/anonymous.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/ethers/src.ts/abi/coders/anonymous.ts"
-    ],
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@noble/hashes/esm/cryptoNode.js": [
       "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@noble/hashes/src/cryptoNode.ts"
     ],
-    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@noble/hashes/esm/hmac.js": [
-      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@noble/hashes/src/hmac.ts"
-    ],
     "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@noble/curves/esm/abstract/curve.js": [
       "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@noble/curves/src/abstract/curve.ts"
+    ],
+    "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@noble/hashes/esm/hmac.js": [
+      "/home/vvaalant/Documents/ring7/new2/backend/node_modules/@noble/hashes/src/hmac.ts"
     ]
   },
-  "root": "9edf8a6c-0d19-4386-88cc-f516e67d9638",
+  "root": "e1b1a084-050d-40cc-8fe4-b3738f8048a3",
   "externalID": "tests/index.test.js",
   "code": 0,
   "signal": null,
-  "runtime": 10873.499357
+  "runtime": 4229.372182
 }

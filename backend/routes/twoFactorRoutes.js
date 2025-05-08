@@ -15,9 +15,8 @@ export default function twoFaRoutes(fastify, opts, done) {
       db.prepare("UPDATE users SET two_fa_secret = ? WHERE id = ?")
         .run(secret.base32, userId);
 
-      console.log("am i here?", secret);
-
       const qrDataUrl = await qrcode.toDataURL(secret.otpauth_url);
+
       return reply.send({ qrDataUrl });
     });
 
