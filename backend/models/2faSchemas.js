@@ -33,6 +33,13 @@ export const setup2faOpts = {
             message: { type: "string" },
           },
         },
+        400: {
+          description: "Invalid 2FA code or 2FA not set up",
+          type: "object",
+          properties: {
+            error: { type: "string" },
+          },
+        },
       },
     },
   };
@@ -47,6 +54,13 @@ export const setup2faOpts = {
           type: "object",
           properties: {
             message: { type: "string" },
+          },
+        },
+        400: {
+          description: "2FA not set up",
+          type: "object",
+          properties: {
+            error: { type: "string" },
           },
         },
       },

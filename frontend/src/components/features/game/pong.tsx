@@ -12,6 +12,21 @@ const BALL_RADIUS = 8
 const PADDLE_SPEED = 7
 const MAX_SCORE = 11
 
+let trailLength = 20
+let rightPaddleHit = 0
+let leftPaddleHit = 0
+
+let trailT = 0;
+let trailInv = 0;
+let trailR = 0;
+let trailG = 0;
+let trailB = 0;
+let trailAlpha = 0;
+let trailX = 0;
+let trailY = 0;
+let trailRad = 0;
+
+
 interface GameState {
   matchType?: 'semifinal' | 'final' | '1v1'
   matchIndex?: number
@@ -55,6 +70,8 @@ export default function Game() {
     let paddle1Down = false
     let paddle2Up = false
     let paddle2Down = false
+    let ballDirectionX = 0
+    let ballDirectionY = 0
 
     function keyDownHandler(e: KeyboardEvent) {
       if (['ArrowUp', 'ArrowDown'].includes(e.key)) e.preventDefault()
@@ -93,6 +110,11 @@ export default function Game() {
       if (paddle2Down && paddle2Y < CANVAS_HEIGHT - PADDLE_HEIGHT)
         paddle2Y += PADDLE_SPEED
 
+      // update ball direction from previous frame for trail effect
+      ballDirectionX = ballSpeedX.current
+      ballDirectionY = ballSpeedY.current
+
+
       // Move ball
       ballX += ballSpeedX.current
       ballY += ballSpeedY.current
@@ -111,6 +133,7 @@ export default function Game() {
         ballX = PADDLE_WIDTH + BALL_RADIUS
         ballSpeedX.current = -ballSpeedX.current * 1.1
         ballSpeedY.current += (ballY - (paddle1Y + PADDLE_HEIGHT / 2)) * 0.1
+        leftPaddleHit++
       }
 
       // Ball collision with right paddle
@@ -122,11 +145,15 @@ export default function Game() {
         ballX = CANVAS_WIDTH - PADDLE_WIDTH - BALL_RADIUS
         ballSpeedX.current = -ballSpeedX.current * 1.1
         ballSpeedY.current += (ballY - (paddle2Y + PADDLE_HEIGHT / 2)) * 0.1
+        rightPaddleHit++
       }
 
       // Clamp ball speed
       ballSpeedX.current = Math.max(Math.min(ballSpeedX.current, 10), -10)
       ballSpeedY.current = Math.max(Math.min(ballSpeedY.current, 10), -10)
+
+      trailLength = Math.max(Math.abs(ballSpeedX.current), Math.abs(ballSpeedY.current)) * 1.4
+      if (trailLength < 10) trailLength = 10
 
       // Score points
       if (ballX - BALL_RADIUS < 0) {
@@ -193,6 +220,58 @@ export default function Game() {
         PADDLE_HEIGHT,
       )
 
+      // baddle bounce effect
+      if (rightPaddleHit > 0) {
+        ctx.fillStyle = 'white'
+        ctx.fillRect(
+          CANVAS_WIDTH - PADDLE_WIDTH - rightPaddleHit,
+          paddle2Y,
+          PADDLE_WIDTH + 5,
+          PADDLE_HEIGHT,
+        )
+        rightPaddleHit++
+        if (rightPaddleHit > 5) {
+            rightPaddleHit = 0
+        }
+      }
+
+      if (leftPaddleHit > 0) {
+          ctx.fillStyle = 'white'
+          ctx.fillRect(0, paddle1Y, PADDLE_WIDTH + leftPaddleHit, PADDLE_HEIGHT)
+          leftPaddleHit++
+          if (leftPaddleHit > 5) {
+              leftPaddleHit = 0
+          }
+      }
+
+      // ball trail effect
+      const endColor = ballDirectionX > 0 ? { r:   0, g:   0, b: 255 } : { r: 255, g:   0, b:   0 };
+      for (let i = 0; i < trailLength; i++) {
+        trailT = i / trailLength;
+        trailInv = 1 - trailT;
+        trailR = Math.round(255 * trailInv + endColor.r * trailT);
+        trailG = Math.round(255 * trailInv + endColor.g * trailT);
+        trailB = Math.round(255 * trailInv + endColor.b * trailT);
+        trailAlpha = trailInv;
+
+        ctx.fillStyle = `rgba(${trailR},${trailG},${trailB},${trailAlpha})`;
+
+        trailX = ballX - ballDirectionX * i;
+        trailY = ballY - ballDirectionY * i;
+        trailRad = BALL_RADIUS * trailInv;
+
+        ctx.beginPath();
+        ctx.arc(trailX, trailY, trailRad, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      // head:
+      ctx.fillStyle = 'white';
+      ctx.beginPath();
+      ctx.arc(ballX, ballY, BALL_RADIUS, 0, Math.PI * 2);
+      ctx.fill();
+
+      ctx.fillStyle = 'white'
       ctx.beginPath()
       ctx.arc(ballX, ballY, BALL_RADIUS, 0, Math.PI * 2)
       ctx.fill()
