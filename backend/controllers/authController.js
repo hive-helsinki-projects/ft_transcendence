@@ -124,7 +124,7 @@ const createUser = async (req, reply) => {
         const result = db.prepare('INSERT INTO users (username, email, password_hash) VALUES (?, ?, ?)').run(username, email, passwordHash);
 
         // Fetch the newly created user to return in the response
-        const user = db.prepare('SELECT id, username, email FROM users WHERE id = ?').get(result.lastInsertRowid);
+        const user = db.prepare('SELECT id, username, email, online_status, two_fa_enabled, created_at FROM users WHERE id = ?').get(result.lastInsertRowid);
 
         return reply.code(201).send({
             message: 'User created successfully',

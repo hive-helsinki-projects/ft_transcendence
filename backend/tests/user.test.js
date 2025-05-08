@@ -4,7 +4,7 @@ import { getUserResponse, getUsersResponse, updateUserResponse } from "./utils/u
 // Group of tests for User routes
 function runUserTests(app, t) {
     t.test('User Routes Suite', async (t) => {
-        
+
         // Test retrieving all users
         t.test('GET `/users` returns two users', async (t) => {
             const response = await getUsersResponse(app);
@@ -19,6 +19,7 @@ function runUserTests(app, t) {
                 avatar_url: "",
                 online_status: false,
                 created_at: users[0].created_at,
+                two_fa_enabled: false,
             });
             t.same(users[1], {
                 id: 2,
@@ -27,6 +28,7 @@ function runUserTests(app, t) {
                 avatar_url: "",
                 online_status: false,
                 created_at: users[1].created_at,
+                two_fa_enabled: false,
             });
         });
 
@@ -43,6 +45,7 @@ function runUserTests(app, t) {
                 avatar_url: "",
                 online_status: false,
                 created_at: user.created_at,
+                two_fa_enabled: false,
             });
         });
 
@@ -87,9 +90,13 @@ function runUserTests(app, t) {
                 const data = await response.json();
                 t.equal(data.message, 'User updated successfully');
                 t.same(data.item, {
+                    id: 1,
                     username: 'testuser',
                     email: 'new@email.com',
-                    avatar_url: ""
+                    avatar_url: "",
+                    online_status: true,
+                    created_at: data.item.created_at,
+                    two_fa_enabled: false
                 });
             });
 
@@ -101,9 +108,13 @@ function runUserTests(app, t) {
                 let data = await response.json();
                 t.equal(data.message, 'User updated successfully');
                 t.same(data.item, {
+                    id: 1,
                     username: 'lumi',
                     email: 'new@email.com',
-                    avatar_url: 'newlink.com'
+                    avatar_url: 'newlink.com',
+                    online_status: true,
+                    created_at: data.item.created_at,
+                    two_fa_enabled: false
                 });
 
                 response = await getUserResponse(app, 1);
@@ -117,6 +128,7 @@ function runUserTests(app, t) {
                     avatar_url: "newlink.com",
                     online_status: true,
                     created_at: user.created_at,
+                    two_fa_enabled: false,
                 });
             });
 
@@ -128,9 +140,13 @@ function runUserTests(app, t) {
                 let data = await response.json();
                 t.equal(data.message, 'User updated successfully');
                 t.same(data.item, {
+                    id: 1,
                     username: 'lumi',
                     email: 'new@email.com',
-                    avatar_url: 'newlink.com'
+                    avatar_url: 'newlink.com',
+                    online_status: true,
+                    created_at: data.item.created_at,
+                    two_fa_enabled: false
                 });
 
                 response = await loginResponse(app, { username: 'lumi', password: 'testpassword' });

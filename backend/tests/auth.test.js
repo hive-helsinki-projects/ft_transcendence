@@ -97,6 +97,7 @@ function runAuthTests(app, t) {
                     avatar_url: "",
                     online_status: false,
                     created_at: users[0].created_at,
+                    two_fa_enabled: false,
                 });
             });
 
@@ -194,6 +195,7 @@ function runAuthTests(app, t) {
                     avatar_url: "",
                     online_status: true,
                     created_at: user.created_at,
+                    two_fa_enabled: false,
                 });
 
                 // Logout Tests
@@ -216,6 +218,7 @@ function runAuthTests(app, t) {
                             avatar_url: "",
                             online_status: false,
                             created_at: user.created_at,
+                            two_fa_enabled: false,
                         });
                     });
 
