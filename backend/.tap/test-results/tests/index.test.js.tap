@@ -81,75 +81,75 @@ PRAGMA foreign_keys = ON
 
 TAP version 14
 # Subtest: All Test
-{"level":30,"time":1746712958827,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-1","req":{"method":"GET","url":"/users","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1746715418941,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-1","req":{"method":"GET","url":"/users","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
 SELECT * FROM users
     # Subtest: Auth Routes Suite
         # Subtest: GET `/users` returns empty array
             ok 1 - Status code 200
             ok 2 - should be equivalent
             1..2
-        ok 1 - GET `/users` returns empty array # time=19.991ms
+        ok 1 - GET `/users` returns empty array # time=19.835ms
         
         # Subtest: POST `/register`
             # Subtest: returns 400 if email is missing
                 ok 1 - Status code 400
                 ok 2 - should be equal
                 1..2
-            ok 1 - returns 400 if email is missing # time=9.22ms
+            ok 1 - returns 400 if email is missing # time=9.241ms
             
-{"level":30,"time":1746712958832,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-1","res":{"statusCode":200},"responseTime":4.321516036987305,"msg":"request completed"}
-{"level":30,"time":1746712958842,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-2","req":{"method":"POST","url":"/register","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
-{"level":30,"time":1746712958845,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-2","res":{"statusCode":400},"err":{"type":"Error","message":"body must have required property 'email'","stack":"Error: body must have required property 'email'\n    at defaultSchemaErrorFormatter (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/context.js:92:10)\n    at wrapValidationError (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/validation.js:249:17)\n    at validate (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/validation.js:167:16)\n    at preValidationCallback (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/handleRequest.js:89:25)\n    at handler (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/handleRequest.js:73:7)\n    at /home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/contentTypeParser.js:214:9\n    at AsyncResource.runInAsyncScope (node:async_hooks:211:14)\n    at done (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/contentTypeParser.js:207:14)\n    at Parser.defaultJsonParser [as fn] (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/contentTypeParser.js:312:7)\n    at Request.onEnd (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/contentTypeParser.js:296:27)","statusCode":400,"code":"FST_ERR_VALIDATION","validation":[{"instancePath":"","schemaPath":"#/required","keyword":"required","params":{"missingProperty":"email"},"message":"must have required property 'email'"}],"validationContext":"body"},"msg":"body must have required property 'email'"}
-{"level":30,"time":1746712958846,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-2","res":{"statusCode":400},"responseTime":3.855921745300293,"msg":"request completed"}
-{"level":30,"time":1746712958848,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-3","req":{"method":"POST","url":"/register","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1746715418946,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-1","res":{"statusCode":200},"responseTime":4.3275041580200195,"msg":"request completed"}
+{"level":30,"time":1746715418956,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-2","req":{"method":"POST","url":"/register","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1746715418959,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-2","res":{"statusCode":400},"err":{"type":"Error","message":"body must have required property 'email'","stack":"Error: body must have required property 'email'\n    at defaultSchemaErrorFormatter (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/context.js:92:10)\n    at wrapValidationError (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/validation.js:249:17)\n    at validate (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/validation.js:167:16)\n    at preValidationCallback (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/handleRequest.js:89:25)\n    at handler (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/handleRequest.js:73:7)\n    at /home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/contentTypeParser.js:214:9\n    at AsyncResource.runInAsyncScope (node:async_hooks:211:14)\n    at done (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/contentTypeParser.js:207:14)\n    at Parser.defaultJsonParser [as fn] (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/contentTypeParser.js:312:7)\n    at Request.onEnd (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/contentTypeParser.js:296:27)","statusCode":400,"code":"FST_ERR_VALIDATION","validation":[{"instancePath":"","schemaPath":"#/required","keyword":"required","params":{"missingProperty":"email"},"message":"must have required property 'email'"}],"validationContext":"body"},"msg":"body must have required property 'email'"}
+{"level":30,"time":1746715418960,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-2","res":{"statusCode":400},"responseTime":4.021638870239258,"msg":"request completed"}
+{"level":30,"time":1746715418962,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-3","req":{"method":"POST","url":"/register","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
             # Subtest: returns 400 if invalid email
                 ok 1 - Status code 400
                 ok 2 - should be equal
                 1..2
             ok 2 - returns 400 if invalid email # time=2.312ms
             
-{"level":30,"time":1746712958849,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-3","res":{"statusCode":400},"err":{"type":"Error","message":"body/email must match format \"email\"","stack":"Error: body/email must match format \"email\"\n    at defaultSchemaErrorFormatter (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/context.js:92:10)\n    at wrapValidationError (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/validation.js:249:17)\n    at validate (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/validation.js:167:16)\n    at preValidationCallback (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/handleRequest.js:89:25)\n    at handler (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/handleRequest.js:73:7)\n    at /home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/contentTypeParser.js:214:9\n    at AsyncResource.runInAsyncScope (node:async_hooks:211:14)\n    at done (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/contentTypeParser.js:207:14)\n    at Parser.defaultJsonParser [as fn] (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/contentTypeParser.js:312:7)\n    at Request.onEnd (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/contentTypeParser.js:296:27)","statusCode":400,"code":"FST_ERR_VALIDATION","validation":[{"instancePath":"/email","schemaPath":"#/properties/email/format","keyword":"format","params":{"format":"email"},"message":"must match format \"email\""}],"validationContext":"body"},"msg":"body/email must match format \"email\""}
-{"level":30,"time":1746712958849,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-3","res":{"statusCode":400},"responseTime":1.191084861755371,"msg":"request completed"}
-{"level":30,"time":1746712958850,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-4","req":{"method":"POST","url":"/register","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1746715418963,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-3","res":{"statusCode":400},"err":{"type":"Error","message":"body/email must match format \"email\"","stack":"Error: body/email must match format \"email\"\n    at defaultSchemaErrorFormatter (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/context.js:92:10)\n    at wrapValidationError (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/validation.js:249:17)\n    at validate (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/validation.js:167:16)\n    at preValidationCallback (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/handleRequest.js:89:25)\n    at handler (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/handleRequest.js:73:7)\n    at /home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/contentTypeParser.js:214:9\n    at AsyncResource.runInAsyncScope (node:async_hooks:211:14)\n    at done (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/contentTypeParser.js:207:14)\n    at Parser.defaultJsonParser [as fn] (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/contentTypeParser.js:312:7)\n    at Request.onEnd (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/contentTypeParser.js:296:27)","statusCode":400,"code":"FST_ERR_VALIDATION","validation":[{"instancePath":"/email","schemaPath":"#/properties/email/format","keyword":"format","params":{"format":"email"},"message":"must match format \"email\""}],"validationContext":"body"},"msg":"body/email must match format \"email\""}
+{"level":30,"time":1746715418963,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-3","res":{"statusCode":400},"responseTime":1.226297378540039,"msg":"request completed"}
+{"level":30,"time":1746715418965,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-4","req":{"method":"POST","url":"/register","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
             # Subtest: returns 400 if username < 3 chars
                 ok 1 - Status code 400
                 ok 2 - should be equal
                 1..2
-            ok 3 - returns 400 if username < 3 chars # time=1.601ms
+            ok 3 - returns 400 if username < 3 chars # time=1.563ms
             
-{"level":30,"time":1746712958851,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-4","res":{"statusCode":400},"err":{"type":"Error","message":"body/username must NOT have fewer than 3 characters","stack":"Error: body/username must NOT have fewer than 3 characters\n    at defaultSchemaErrorFormatter (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/context.js:92:10)\n    at wrapValidationError (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/validation.js:249:17)\n    at validate (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/validation.js:167:16)\n    at preValidationCallback (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/handleRequest.js:89:25)\n    at handler (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/handleRequest.js:73:7)\n    at /home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/contentTypeParser.js:214:9\n    at AsyncResource.runInAsyncScope (node:async_hooks:211:14)\n    at done (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/contentTypeParser.js:207:14)\n    at Parser.defaultJsonParser [as fn] (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/contentTypeParser.js:312:7)\n    at Request.onEnd (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/contentTypeParser.js:296:27)","statusCode":400,"code":"FST_ERR_VALIDATION","validation":[{"instancePath":"/username","schemaPath":"#/properties/username/minLength","keyword":"minLength","params":{"limit":3},"message":"must NOT have fewer than 3 characters"}],"validationContext":"body"},"msg":"body/username must NOT have fewer than 3 characters"}
-{"level":30,"time":1746712958851,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-4","res":{"statusCode":400},"responseTime":0.5523157119750977,"msg":"request completed"}
-{"level":30,"time":1746712958852,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-5","req":{"method":"POST","url":"/register","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1746715418965,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-4","res":{"statusCode":400},"err":{"type":"Error","message":"body/username must NOT have fewer than 3 characters","stack":"Error: body/username must NOT have fewer than 3 characters\n    at defaultSchemaErrorFormatter (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/context.js:92:10)\n    at wrapValidationError (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/validation.js:249:17)\n    at validate (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/validation.js:167:16)\n    at preValidationCallback (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/handleRequest.js:89:25)\n    at handler (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/handleRequest.js:73:7)\n    at /home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/contentTypeParser.js:214:9\n    at AsyncResource.runInAsyncScope (node:async_hooks:211:14)\n    at done (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/contentTypeParser.js:207:14)\n    at Parser.defaultJsonParser [as fn] (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/contentTypeParser.js:312:7)\n    at Request.onEnd (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/contentTypeParser.js:296:27)","statusCode":400,"code":"FST_ERR_VALIDATION","validation":[{"instancePath":"/username","schemaPath":"#/properties/username/minLength","keyword":"minLength","params":{"limit":3},"message":"must NOT have fewer than 3 characters"}],"validationContext":"body"},"msg":"body/username must NOT have fewer than 3 characters"}
+{"level":30,"time":1746715418965,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-4","res":{"statusCode":400},"responseTime":0.5351076126098633,"msg":"request completed"}
+{"level":30,"time":1746715418967,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-5","req":{"method":"POST","url":"/register","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
             # Subtest: returns 400 if username is missing
                 ok 1 - Status code 400
                 ok 2 - should be equal
                 1..2
-            ok 4 - returns 400 if username is missing # time=1.557ms
+            ok 4 - returns 400 if username is missing # time=1.488ms
             
-{"level":30,"time":1746712958853,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-5","res":{"statusCode":400},"err":{"type":"Error","message":"body must have required property 'username'","stack":"Error: body must have required property 'username'\n    at defaultSchemaErrorFormatter (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/context.js:92:10)\n    at wrapValidationError (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/validation.js:249:17)\n    at validate (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/validation.js:167:16)\n    at preValidationCallback (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/handleRequest.js:89:25)\n    at handler (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/handleRequest.js:73:7)\n    at /home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/contentTypeParser.js:214:9\n    at AsyncResource.runInAsyncScope (node:async_hooks:211:14)\n    at done (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/contentTypeParser.js:207:14)\n    at Parser.defaultJsonParser [as fn] (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/contentTypeParser.js:312:7)\n    at Request.onEnd (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/contentTypeParser.js:296:27)","statusCode":400,"code":"FST_ERR_VALIDATION","validation":[{"instancePath":"","schemaPath":"#/required","keyword":"required","params":{"missingProperty":"username"},"message":"must have required property 'username'"}],"validationContext":"body"},"msg":"body must have required property 'username'"}
-{"level":30,"time":1746712958853,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-5","res":{"statusCode":400},"responseTime":0.5352792739868164,"msg":"request completed"}
-{"level":30,"time":1746712958854,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-6","req":{"method":"POST","url":"/register","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1746715418967,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-5","res":{"statusCode":400},"err":{"type":"Error","message":"body must have required property 'username'","stack":"Error: body must have required property 'username'\n    at defaultSchemaErrorFormatter (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/context.js:92:10)\n    at wrapValidationError (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/validation.js:249:17)\n    at validate (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/validation.js:167:16)\n    at preValidationCallback (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/handleRequest.js:89:25)\n    at handler (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/handleRequest.js:73:7)\n    at /home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/contentTypeParser.js:214:9\n    at AsyncResource.runInAsyncScope (node:async_hooks:211:14)\n    at done (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/contentTypeParser.js:207:14)\n    at Parser.defaultJsonParser [as fn] (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/contentTypeParser.js:312:7)\n    at Request.onEnd (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/contentTypeParser.js:296:27)","statusCode":400,"code":"FST_ERR_VALIDATION","validation":[{"instancePath":"","schemaPath":"#/required","keyword":"required","params":{"missingProperty":"username"},"message":"must have required property 'username'"}],"validationContext":"body"},"msg":"body must have required property 'username'"}
+{"level":30,"time":1746715418967,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-5","res":{"statusCode":400},"responseTime":0.4968881607055664,"msg":"request completed"}
+{"level":30,"time":1746715418968,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-6","req":{"method":"POST","url":"/register","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
             # Subtest: returns 400 if password is missing
                 ok 1 - Status code 400
                 ok 2 - should be equal
                 1..2
-            ok 5 - returns 400 if password is missing # time=4.216ms
+            ok 5 - returns 400 if password is missing # time=1.457ms
             
-{"level":30,"time":1746712958857,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-6","res":{"statusCode":400},"err":{"type":"Error","message":"body must have required property 'password'","stack":"Error: body must have required property 'password'\n    at defaultSchemaErrorFormatter (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/context.js:92:10)\n    at wrapValidationError (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/validation.js:249:17)\n    at validate (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/validation.js:167:16)\n    at preValidationCallback (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/handleRequest.js:89:25)\n    at handler (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/handleRequest.js:73:7)\n    at /home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/contentTypeParser.js:214:9\n    at AsyncResource.runInAsyncScope (node:async_hooks:211:14)\n    at done (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/contentTypeParser.js:207:14)\n    at Parser.defaultJsonParser [as fn] (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/contentTypeParser.js:312:7)\n    at Request.onEnd (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/contentTypeParser.js:296:27)","statusCode":400,"code":"FST_ERR_VALIDATION","validation":[{"instancePath":"","schemaPath":"#/required","keyword":"required","params":{"missingProperty":"password"},"message":"must have required property 'password'"}],"validationContext":"body"},"msg":"body must have required property 'password'"}
-{"level":30,"time":1746712958857,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-6","res":{"statusCode":400},"responseTime":3.13858699798584,"msg":"request completed"}
-{"level":30,"time":1746712958859,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-7","req":{"method":"POST","url":"/register","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1746715418969,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-6","res":{"statusCode":400},"err":{"type":"Error","message":"body must have required property 'password'","stack":"Error: body must have required property 'password'\n    at defaultSchemaErrorFormatter (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/context.js:92:10)\n    at wrapValidationError (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/validation.js:249:17)\n    at validate (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/validation.js:167:16)\n    at preValidationCallback (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/handleRequest.js:89:25)\n    at handler (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/handleRequest.js:73:7)\n    at /home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/contentTypeParser.js:214:9\n    at AsyncResource.runInAsyncScope (node:async_hooks:211:14)\n    at done (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/contentTypeParser.js:207:14)\n    at Parser.defaultJsonParser [as fn] (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/contentTypeParser.js:312:7)\n    at Request.onEnd (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/contentTypeParser.js:296:27)","statusCode":400,"code":"FST_ERR_VALIDATION","validation":[{"instancePath":"","schemaPath":"#/required","keyword":"required","params":{"missingProperty":"password"},"message":"must have required property 'password'"}],"validationContext":"body"},"msg":"body must have required property 'password'"}
+{"level":30,"time":1746715418969,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-6","res":{"statusCode":400},"responseTime":0.4704322814941406,"msg":"request completed"}
+{"level":30,"time":1746715418970,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-7","req":{"method":"POST","url":"/register","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
             # Subtest: returns 400 if invalid password
                 ok 1 - Status code 400
                 ok 2 - should be equal
                 1..2
-            ok 6 - returns 400 if invalid password # time=2.587ms
+            ok 6 - returns 400 if invalid password # time=1.642ms
             
-{"level":30,"time":1746712958860,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-7","res":{"statusCode":400},"err":{"type":"Error","message":"body/password must NOT have fewer than 6 characters","stack":"Error: body/password must NOT have fewer than 6 characters\n    at defaultSchemaErrorFormatter (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/context.js:92:10)\n    at wrapValidationError (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/validation.js:249:17)\n    at validate (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/validation.js:167:16)\n    at preValidationCallback (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/handleRequest.js:89:25)\n    at handler (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/handleRequest.js:73:7)\n    at /home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/contentTypeParser.js:214:9\n    at AsyncResource.runInAsyncScope (node:async_hooks:211:14)\n    at done (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/contentTypeParser.js:207:14)\n    at Parser.defaultJsonParser [as fn] (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/contentTypeParser.js:312:7)\n    at Request.onEnd (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/contentTypeParser.js:296:27)","statusCode":400,"code":"FST_ERR_VALIDATION","validation":[{"instancePath":"/password","schemaPath":"#/properties/password/minLength","keyword":"minLength","params":{"limit":6},"message":"must NOT have fewer than 6 characters"}],"validationContext":"body"},"msg":"body/password must NOT have fewer than 6 characters"}
-{"level":30,"time":1746712958860,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-7","res":{"statusCode":400},"responseTime":1.4344072341918945,"msg":"request completed"}
-{"level":30,"time":1746712958862,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-8","req":{"method":"POST","url":"/register","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
-INSERT INTO users (username, email, password_hash) VALUES ('testuser', 'testuse@email.com', '$2b$10$Ja5PSFv40EH.efDtLqxH6.1bX'/*+28 bytes*/)
+{"level":30,"time":1746715418971,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-7","res":{"statusCode":400},"err":{"type":"Error","message":"body/password must NOT have fewer than 6 characters","stack":"Error: body/password must NOT have fewer than 6 characters\n    at defaultSchemaErrorFormatter (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/context.js:92:10)\n    at wrapValidationError (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/validation.js:249:17)\n    at validate (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/validation.js:167:16)\n    at preValidationCallback (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/handleRequest.js:89:25)\n    at handler (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/handleRequest.js:73:7)\n    at /home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/contentTypeParser.js:214:9\n    at AsyncResource.runInAsyncScope (node:async_hooks:211:14)\n    at done (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/contentTypeParser.js:207:14)\n    at Parser.defaultJsonParser [as fn] (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/contentTypeParser.js:312:7)\n    at Request.onEnd (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/contentTypeParser.js:296:27)","statusCode":400,"code":"FST_ERR_VALIDATION","validation":[{"instancePath":"/password","schemaPath":"#/properties/password/minLength","keyword":"minLength","params":{"limit":6},"message":"must NOT have fewer than 6 characters"}],"validationContext":"body"},"msg":"body/password must NOT have fewer than 6 characters"}
+{"level":30,"time":1746715418971,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-7","res":{"statusCode":400},"responseTime":0.6136131286621094,"msg":"request completed"}
+{"level":30,"time":1746715418972,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-8","req":{"method":"POST","url":"/register","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+INSERT INTO users (username, email, password_hash) VALUES ('testuser', 'testuse@email.com', '$2b$10$TqJ3EC0omEK3cuGaiOeOX.yL2'/*+28 bytes*/)
 SELECT id, username, email, online_status, two_fa_enabled, created_at FROM users WHERE id = 1.0
-{"level":30,"time":1746712959006,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-8","res":{"statusCode":201},"responseTime":143.4667272567749,"msg":"request completed"}
+{"level":30,"time":1746715419125,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-8","res":{"statusCode":201},"responseTime":152.7760772705078,"msg":"request completed"}
             # Subtest: returns 201 if successfully created user
                 ok 1 - Status code 201
                 ok 2 - should be equal
@@ -158,79 +158,79 @@ SELECT * FROM users
                 ok 4 - One user in the database
                 ok 5 - should be equivalent
                 1..5
-            ok 7 - returns 201 if successfully created user # time=147.307ms
+            ok 7 - returns 201 if successfully created user # time=156.833ms
             
-{"level":30,"time":1746712959006,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-9","req":{"method":"GET","url":"/users","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
-{"level":30,"time":1746712959007,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-9","res":{"statusCode":200},"responseTime":0.6594314575195312,"msg":"request completed"}
-{"level":30,"time":1746712959010,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-a","req":{"method":"POST","url":"/register","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
-INSERT INTO users (username, email, password_hash) VALUES ('testuser', 'new@email.com', '$2b$10$fuxM7b2081js5CwcgVJ1Re8xP'/*+28 bytes*/)
-{"level":30,"time":1746712959116,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-a","res":{"statusCode":409},"responseTime":106.53242015838623,"msg":"request completed"}
+{"level":30,"time":1746715419126,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-9","req":{"method":"GET","url":"/users","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1746715419127,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-9","res":{"statusCode":200},"responseTime":0.7001419067382812,"msg":"request completed"}
+{"level":30,"time":1746715419130,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-a","req":{"method":"POST","url":"/register","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+INSERT INTO users (username, email, password_hash) VALUES ('testuser', 'new@email.com', '$2b$10$AnHNmG7bbbUG8ZyIgcnNGu3Ua'/*+28 bytes*/)
+{"level":30,"time":1746715419236,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-a","res":{"statusCode":409},"responseTime":106.01804447174072,"msg":"request completed"}
             # Subtest: returns 400 if duplicate name
                 ok 1 - Status code 409
                 ok 2 - should be equal
                 1..2
-            ok 8 - returns 400 if duplicate name # time=107.805ms
+            ok 8 - returns 400 if duplicate name # time=107.285ms
             
-{"level":30,"time":1746712959118,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-b","req":{"method":"POST","url":"/register","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
-INSERT INTO users (username, email, password_hash) VALUES ('newuser', 'testuse@email.com', '$2b$10$LEhbTAqOBE.WeCQRzZ37ruO7Z'/*+28 bytes*/)
-{"level":30,"time":1746712959224,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-b","res":{"statusCode":409},"responseTime":106.14179420471191,"msg":"request completed"}
+{"level":30,"time":1746715419237,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-b","req":{"method":"POST","url":"/register","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+INSERT INTO users (username, email, password_hash) VALUES ('newuser', 'testuse@email.com', '$2b$10$jwgLcEhIZX5zEmH2YN1ux.EjY'/*+28 bytes*/)
+{"level":30,"time":1746715419348,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-b","res":{"statusCode":409},"responseTime":110.9419412612915,"msg":"request completed"}
             # Subtest: returns 400 if duplicate email
                 ok 1 - Status code 409
                 ok 2 - should be equal
                 1..2
-            ok 9 - returns 400 if duplicate email # time=107.32ms
+            ok 9 - returns 400 if duplicate email # time=112.113ms
             
-{"level":30,"time":1746712959226,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-c","req":{"method":"POST","url":"/register","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
-INSERT INTO users (username, email, password_hash) VALUES ('kim', 'kim@email.com', '$2b$10$6W4Neep6dRzxoHRyFQmPmujBz'/*+28 bytes*/)
+{"level":30,"time":1746715419350,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-c","req":{"method":"POST","url":"/register","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+INSERT INTO users (username, email, password_hash) VALUES ('kim', 'kim@email.com', '$2b$10$PtOjquK6/nYp35LhPGBgMeBEs'/*+28 bytes*/)
 SELECT id, username, email, online_status, two_fa_enabled, created_at FROM users WHERE id = 2.0
-{"level":30,"time":1746712959336,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-c","res":{"statusCode":201},"responseTime":110.42043113708496,"msg":"request completed"}
+{"level":30,"time":1746715419460,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-c","res":{"statusCode":201},"responseTime":109.79349899291992,"msg":"request completed"}
             # Subtest: returns 201 if successfully created another user
                 ok 1 - Status code 201
                 ok 2 - should be equal
                 1..2
-            ok 10 - returns 201 if successfully created another user # time=111.599ms
+            ok 10 - returns 201 if successfully created another user # time=111.003ms
             
             1..10
-        ok 2 - POST `/register` # time=500.696ms
+        ok 2 - POST `/register` # time=509.937ms
         
-{"level":30,"time":1746712959343,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-d","req":{"method":"POST","url":"/login","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1746715419466,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-d","req":{"method":"POST","url":"/login","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
         # Subtest: POST `/login`
             # Subtest: returns 400 if username is missing
                 ok 1 - Status code 400
                 ok 2 - should be equal
                 1..2
-            ok 1 - returns 400 if username is missing # time=5.204ms
+            ok 1 - returns 400 if username is missing # time=5.211ms
             
-{"level":30,"time":1746712959344,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-d","res":{"statusCode":400},"err":{"type":"Error","message":"body must have required property 'username'","stack":"Error: body must have required property 'username'\n    at defaultSchemaErrorFormatter (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/context.js:92:10)\n    at wrapValidationError (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/validation.js:249:17)\n    at validate (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/validation.js:167:16)\n    at preValidationCallback (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/handleRequest.js:89:25)\n    at handler (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/handleRequest.js:73:7)\n    at /home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/contentTypeParser.js:214:9\n    at AsyncResource.runInAsyncScope (node:async_hooks:211:14)\n    at done (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/contentTypeParser.js:207:14)\n    at Parser.defaultJsonParser [as fn] (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/contentTypeParser.js:312:7)\n    at Request.onEnd (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/contentTypeParser.js:296:27)","statusCode":400,"code":"FST_ERR_VALIDATION","validation":[{"instancePath":"","schemaPath":"#/required","keyword":"required","params":{"missingProperty":"username"},"message":"must have required property 'username'"}],"validationContext":"body"},"msg":"body must have required property 'username'"}
-{"level":30,"time":1746712959344,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-d","res":{"statusCode":400},"responseTime":0.74688720703125,"msg":"request completed"}
-{"level":30,"time":1746712959345,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-e","req":{"method":"POST","url":"/login","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1746715419467,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-d","res":{"statusCode":400},"err":{"type":"Error","message":"body must have required property 'username'","stack":"Error: body must have required property 'username'\n    at defaultSchemaErrorFormatter (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/context.js:92:10)\n    at wrapValidationError (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/validation.js:249:17)\n    at validate (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/validation.js:167:16)\n    at preValidationCallback (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/handleRequest.js:89:25)\n    at handler (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/handleRequest.js:73:7)\n    at /home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/contentTypeParser.js:214:9\n    at AsyncResource.runInAsyncScope (node:async_hooks:211:14)\n    at done (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/contentTypeParser.js:207:14)\n    at Parser.defaultJsonParser [as fn] (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/contentTypeParser.js:312:7)\n    at Request.onEnd (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/contentTypeParser.js:296:27)","statusCode":400,"code":"FST_ERR_VALIDATION","validation":[{"instancePath":"","schemaPath":"#/required","keyword":"required","params":{"missingProperty":"username"},"message":"must have required property 'username'"}],"validationContext":"body"},"msg":"body must have required property 'username'"}
+{"level":30,"time":1746715419467,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-d","res":{"statusCode":400},"responseTime":0.860905647277832,"msg":"request completed"}
+{"level":30,"time":1746715419469,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-e","req":{"method":"POST","url":"/login","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
             # Subtest: returns 400 if password is missing
                 ok 1 - Status code 400
                 ok 2 - should be equal
                 1..2
-            ok 2 - returns 400 if password is missing # time=1.7ms
+            ok 2 - returns 400 if password is missing # time=1.675ms
             
-{"level":30,"time":1746712959346,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-e","res":{"statusCode":400},"err":{"type":"Error","message":"body must have required property 'password'","stack":"Error: body must have required property 'password'\n    at defaultSchemaErrorFormatter (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/context.js:92:10)\n    at wrapValidationError (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/validation.js:249:17)\n    at validate (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/validation.js:167:16)\n    at preValidationCallback (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/handleRequest.js:89:25)\n    at handler (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/handleRequest.js:73:7)\n    at /home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/contentTypeParser.js:214:9\n    at AsyncResource.runInAsyncScope (node:async_hooks:211:14)\n    at done (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/contentTypeParser.js:207:14)\n    at Parser.defaultJsonParser [as fn] (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/contentTypeParser.js:312:7)\n    at Request.onEnd (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/contentTypeParser.js:296:27)","statusCode":400,"code":"FST_ERR_VALIDATION","validation":[{"instancePath":"","schemaPath":"#/required","keyword":"required","params":{"missingProperty":"password"},"message":"must have required property 'password'"}],"validationContext":"body"},"msg":"body must have required property 'password'"}
-{"level":30,"time":1746712959346,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-e","res":{"statusCode":400},"responseTime":0.5709819793701172,"msg":"request completed"}
-{"level":30,"time":1746712959347,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-f","req":{"method":"POST","url":"/login","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1746715419469,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-e","res":{"statusCode":400},"err":{"type":"Error","message":"body must have required property 'password'","stack":"Error: body must have required property 'password'\n    at defaultSchemaErrorFormatter (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/context.js:92:10)\n    at wrapValidationError (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/validation.js:249:17)\n    at validate (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/validation.js:167:16)\n    at preValidationCallback (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/handleRequest.js:89:25)\n    at handler (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/handleRequest.js:73:7)\n    at /home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/contentTypeParser.js:214:9\n    at AsyncResource.runInAsyncScope (node:async_hooks:211:14)\n    at done (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/contentTypeParser.js:207:14)\n    at Parser.defaultJsonParser [as fn] (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/contentTypeParser.js:312:7)\n    at Request.onEnd (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/contentTypeParser.js:296:27)","statusCode":400,"code":"FST_ERR_VALIDATION","validation":[{"instancePath":"","schemaPath":"#/required","keyword":"required","params":{"missingProperty":"password"},"message":"must have required property 'password'"}],"validationContext":"body"},"msg":"body must have required property 'password'"}
+{"level":30,"time":1746715419469,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-e","res":{"statusCode":400},"responseTime":0.6090316772460938,"msg":"request completed"}
+{"level":30,"time":1746715419471,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-f","req":{"method":"POST","url":"/login","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
 SELECT * FROM users WHERE username = 'nonexistentuser'
             # Subtest: returns 401 if user not found
                 ok 1 - Status code 401
                 ok 2 - should be equal
                 1..2
-            ok 3 - returns 401 if user not found # time=2.013ms
+            ok 3 - returns 401 if user not found # time=1.902ms
             
-{"level":30,"time":1746712959348,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-f","res":{"statusCode":401},"responseTime":0.8917407989501953,"msg":"request completed"}
-{"level":30,"time":1746712959350,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-g","req":{"method":"POST","url":"/login","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1746715419472,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-f","res":{"statusCode":401},"responseTime":0.83251953125,"msg":"request completed"}
+{"level":30,"time":1746715419473,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-g","req":{"method":"POST","url":"/login","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
 SELECT * FROM users WHERE username = 'kim'
-{"level":30,"time":1746712959456,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-g","res":{"statusCode":401},"responseTime":106.28192710876465,"msg":"request completed"}
+{"level":30,"time":1746715419580,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-g","res":{"statusCode":401},"responseTime":106.81918621063232,"msg":"request completed"}
             # Subtest: returns 401 if password is incorrect
                 ok 1 - Status code 401
                 ok 2 - should be equal
                 1..2
-            ok 4 - returns 401 if password is incorrect # time=107.537ms
+            ok 4 - returns 401 if password is incorrect # time=108.052ms
             
-{"level":30,"time":1746712959458,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-h","req":{"method":"POST","url":"/login","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1746715419581,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-h","req":{"method":"POST","url":"/login","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
 SELECT * FROM users WHERE username = 'kim'
 SELECT two_fa_enabled FROM users WHERE id = 2.0
 UPDATE users
@@ -238,7 +238,7 @@ UPDATE users
             WHERE id = 2.0
             AND online_status = FALSE
         
-{"level":30,"time":1746712959569,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-h","res":{"statusCode":200},"responseTime":111.54784107208252,"msg":"request completed"}
+{"level":30,"time":1746715419697,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-h","res":{"statusCode":200},"responseTime":115.08360958099365,"msg":"request completed"}
             # Subtest: returns 200 if login is successful
                 ok 1 - Status code 200
                 ok 2 - Token is present
@@ -260,7 +260,7 @@ SELECT * FROM users WHERE id = 2.0
                         ok 3 - Status code 200
                         ok 4 - should be equivalent
                         1..4
-                    ok 1 - returns 200 if logout is successful # time=10.042ms
+                    ok 1 - returns 200 if logout is successful # time=10.548ms
                     
 SELECT COUNT(*) AS count FROM users WHERE id = 2.0
 UPDATE users
@@ -272,19 +272,19 @@ UPDATE users
                         ok 1 - Status code 404
                         ok 2 - should be equal
                         1..2
-                    ok 2 - returns 400 if user already logged out # time=1.977ms
+                    ok 2 - returns 400 if user already logged out # time=1.979ms
                     
                     1..2
-                ok 6 - POST `/logout` # time=13.648ms
+                ok 6 - POST `/logout` # time=14.166ms
                 
                 1..6
-            ok 5 - returns 200 if login is successful # time=129.308ms
+            ok 5 - returns 200 if login is successful # time=133.397ms
             
             1..5
-        ok 3 - POST `/login` # time=249.049ms
+        ok 3 - POST `/login` # time=253.448ms
         
         1..3
-    ok 1 - Auth Routes Suite # time=772.592ms
+    ok 1 - Auth Routes Suite # time=786.101ms
     
 SELECT * FROM users
     # Subtest: User Routes Suite
@@ -294,37 +294,37 @@ SELECT * FROM users
             ok 3 - should be equivalent
             ok 4 - should be equivalent
             1..4
-        ok 1 - GET `/users` returns two users # time=7.65ms
+        ok 1 - GET `/users` returns two users # time=7.85ms
         
 SELECT * FROM users WHERE id = 2.0
         # Subtest: GET `/users/:id` returns second user
             ok 1 - Status code 200
             ok 2 - should be equivalent
             1..2
-        ok 2 - GET `/users/:id` returns second user # time=1.585ms
+        ok 2 - GET `/users/:id` returns second user # time=1.614ms
         
 SELECT * FROM users WHERE id = 3.0
         # Subtest: GET `/users/:id` returns 404 user not found
             ok 1 - Status code 404
             ok 2 - should be equal
             1..2
-        ok 3 - GET `/users/:id` returns 404 user not found # time=1.403ms
+        ok 3 - GET `/users/:id` returns 404 user not found # time=1.416ms
         
-{"level":30,"time":1746712959571,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-i","req":{"method":"GET","url":"/users/2","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
-{"level":30,"time":1746712959572,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-i","res":{"statusCode":200},"responseTime":0.9076814651489258,"msg":"request completed"}
-{"level":30,"time":1746712959574,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-j","req":{"method":"POST","url":"/logout","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
-{"level":30,"time":1746712959580,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-j","res":{"statusCode":200},"responseTime":6.141878128051758,"msg":"request completed"}
-{"level":30,"time":1746712959582,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-k","req":{"method":"GET","url":"/users/2","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
-{"level":30,"time":1746712959582,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-k","res":{"statusCode":200},"responseTime":0.5751705169677734,"msg":"request completed"}
-{"level":30,"time":1746712959584,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-l","req":{"method":"POST","url":"/logout","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
-{"level":30,"time":1746712959585,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-l","res":{"statusCode":404},"responseTime":0.7528066635131836,"msg":"request completed"}
-{"level":30,"time":1746712959596,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-m","req":{"method":"GET","url":"/users","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
-{"level":30,"time":1746712959596,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-m","res":{"statusCode":200},"responseTime":0.5508222579956055,"msg":"request completed"}
-{"level":30,"time":1746712959598,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-n","req":{"method":"GET","url":"/users/2","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
-{"level":30,"time":1746712959598,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-n","res":{"statusCode":200},"responseTime":0.5101041793823242,"msg":"request completed"}
-{"level":30,"time":1746712959600,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-o","req":{"method":"GET","url":"/users/3","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
-{"level":30,"time":1746712959600,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-o","res":{"statusCode":404},"responseTime":0.49362754821777344,"msg":"request completed"}
-{"level":30,"time":1746712959602,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-p","req":{"method":"POST","url":"/login","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1746715419698,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-i","req":{"method":"GET","url":"/users/2","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1746715419699,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-i","res":{"statusCode":200},"responseTime":0.92120361328125,"msg":"request completed"}
+{"level":30,"time":1746715419701,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-j","req":{"method":"POST","url":"/logout","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1746715419708,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-j","res":{"statusCode":200},"responseTime":6.777002334594727,"msg":"request completed"}
+{"level":30,"time":1746715419710,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-k","req":{"method":"GET","url":"/users/2","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1746715419710,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-k","res":{"statusCode":200},"responseTime":0.5413789749145508,"msg":"request completed"}
+{"level":30,"time":1746715419712,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-l","req":{"method":"POST","url":"/logout","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1746715419713,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-l","res":{"statusCode":404},"responseTime":0.7610292434692383,"msg":"request completed"}
+{"level":30,"time":1746715419724,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-m","req":{"method":"GET","url":"/users","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1746715419724,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-m","res":{"statusCode":200},"responseTime":0.5894584655761719,"msg":"request completed"}
+{"level":30,"time":1746715419726,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-n","req":{"method":"GET","url":"/users/2","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1746715419727,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-n","res":{"statusCode":200},"responseTime":0.5242300033569336,"msg":"request completed"}
+{"level":30,"time":1746715419728,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-o","req":{"method":"GET","url":"/users/3","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1746715419729,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-o","res":{"statusCode":404},"responseTime":0.5076026916503906,"msg":"request completed"}
+{"level":30,"time":1746715419730,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-p","req":{"method":"POST","url":"/login","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
 SELECT * FROM users WHERE username = 'testuser'
 SELECT two_fa_enabled FROM users WHERE id = 1.0
 UPDATE users
@@ -332,42 +332,42 @@ UPDATE users
             WHERE id = 1.0
             AND online_status = FALSE
         
-{"level":30,"time":1746712959713,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-p","res":{"statusCode":200},"responseTime":111.15094947814941,"msg":"request completed"}
-{"level":30,"time":1746712959715,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-q","req":{"method":"PUT","url":"/users/2","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1746715419844,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-p","res":{"statusCode":200},"responseTime":114.31198310852051,"msg":"request completed"}
+{"level":30,"time":1746715419846,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-q","req":{"method":"PUT","url":"/users/2","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
         # Subtest: PUT `/users/:id`
             # Subtest: PUT `/users/2` returns 403 if unauthoritized
                 ok 1 - Status code 403
                 ok 2 - should be equal
                 1..2
-            ok 1 - PUT `/users/2` returns 403 if unauthoritized # time=3.863ms
+            ok 1 - PUT `/users/2` returns 403 if unauthoritized # time=3.457ms
             
+{"level":30,"time":1746715419848,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-q","res":{"statusCode":403},"responseTime":1.263413429260254,"msg":"request completed"}
+{"level":30,"time":1746715419849,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-r","req":{"method":"PUT","url":"/users/1","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
 SELECT * FROM users WHERE id = 1.0
 SELECT * FROM users WHERE username = 'kim'
             # Subtest: PUT `/users/1` returns 400 if username already taken
                 ok 1 - Status code 400
                 ok 2 - should be equal
                 1..2
-            ok 2 - PUT `/users/1` returns 400 if username already taken # time=2.302ms
+            ok 2 - PUT `/users/1` returns 400 if username already taken # time=1.945ms
             
-{"level":30,"time":1746712959716,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-q","res":{"statusCode":403},"responseTime":1.3652219772338867,"msg":"request completed"}
-{"level":30,"time":1746712959718,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-r","req":{"method":"PUT","url":"/users/1","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1746715419850,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-r","res":{"statusCode":400},"responseTime":0.9501657485961914,"msg":"request completed"}
+{"level":30,"time":1746715419851,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-s","req":{"method":"PUT","url":"/users/1","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
 SELECT * FROM users WHERE id = 1.0
 SELECT * FROM users WHERE email = 'kim@email.com'
             # Subtest: PUT `/users/1` returns 400 if email already in use
                 ok 1 - Status code 400
                 ok 2 - should be equal
                 1..2
-            ok 3 - PUT `/users/1` returns 400 if email already in use # time=2.242ms
+            ok 3 - PUT `/users/1` returns 400 if email already in use # time=1.991ms
             
-{"level":30,"time":1746712959719,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-r","res":{"statusCode":400},"responseTime":1.1246614456176758,"msg":"request completed"}
-{"level":30,"time":1746712959721,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-s","req":{"method":"PUT","url":"/users/1","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
-{"level":30,"time":1746712959722,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-s","res":{"statusCode":400},"responseTime":1.0445146560668945,"msg":"request completed"}
-{"level":30,"time":1746712959723,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-t","req":{"method":"PUT","url":"/users/1","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1746715419852,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-s","res":{"statusCode":400},"responseTime":0.9483890533447266,"msg":"request completed"}
+{"level":30,"time":1746715419854,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-t","req":{"method":"PUT","url":"/users/1","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
 SELECT * FROM users WHERE id = 1.0
 SELECT * FROM users WHERE email = 'new@email.com'
 
             UPDATE users
-            SET username = 'testuser', password_hash = '$2b$10$Ja5PSFv40EH.efDtLqxH6.1bX'/*+28 bytes*/, email = 'new@email.com', avatar_url = NULL
+            SET username = 'testuser', password_hash = '$2b$10$TqJ3EC0omEK3cuGaiOeOX.yL2'/*+28 bytes*/, email = 'new@email.com', avatar_url = NULL
             WHERE id = 1.0
         
 
@@ -387,17 +387,17 @@ SELECT * FROM users WHERE email = 'new@email.com'
                 ok 2 - should be equal
                 ok 3 - should be equivalent
                 1..3
-            ok 4 - PUT `/users/1` returns 200 if email updated # time=9.912ms
+            ok 4 - PUT `/users/1` returns 200 if email updated # time=8.39ms
             
+{"level":30,"time":1746715419860,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-t","res":{"statusCode":200},"responseTime":6.918025970458984,"msg":"request completed"}
+{"level":30,"time":1746715419862,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-u","req":{"method":"PUT","url":"/users/1","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
 SELECT * FROM users WHERE id = 1.0
 SELECT * FROM users WHERE username = 'lumi'
 
             UPDATE users
-            SET username = 'lumi', password_hash = '$2b$10$Ja5PSFv40EH.efDtLqxH6.1bX'/*+28 bytes*/, email = 'new@email.com', avatar_url = 'newlink.com'
+            SET username = 'lumi', password_hash = '$2b$10$TqJ3EC0omEK3cuGaiOeOX.yL2'/*+28 bytes*/, email = 'new@email.com', avatar_url = 'newlink.com'
             WHERE id = 1.0
         
-{"level":30,"time":1746712959732,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-t","res":{"statusCode":200},"responseTime":8.336584091186523,"msg":"request completed"}
-{"level":30,"time":1746712959734,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-u","req":{"method":"PUT","url":"/users/1","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
 
             SELECT
                 id,
@@ -418,16 +418,16 @@ SELECT * FROM users WHERE id = 1.0
                 ok 4 - Status code 200
                 ok 5 - should be equivalent
                 1..5
-            ok 5 - PUT `/users/1` returns 200 if username and avatar_url updated # time=12.397ms
+            ok 5 - PUT `/users/1` returns 200 if username and avatar_url updated # time=10.017ms
             
+{"level":30,"time":1746715419869,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-u","res":{"statusCode":200},"responseTime":7.106042861938477,"msg":"request completed"}
+{"level":30,"time":1746715419871,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-v","req":{"method":"GET","url":"/users/1","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1746715419871,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-v","res":{"statusCode":200},"responseTime":0.49869537353515625,"msg":"request completed"}
+{"level":30,"time":1746715419873,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-w","req":{"method":"PUT","url":"/users/1","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
 SELECT * FROM users WHERE id = 1.0
-{"level":30,"time":1746712959743,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-u","res":{"statusCode":200},"responseTime":9.113450050354004,"msg":"request completed"}
-{"level":30,"time":1746712959744,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-v","req":{"method":"GET","url":"/users/1","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
-{"level":30,"time":1746712959745,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-v","res":{"statusCode":200},"responseTime":0.5748348236083984,"msg":"request completed"}
-{"level":30,"time":1746712959746,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-w","req":{"method":"PUT","url":"/users/1","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
 
             UPDATE users
-            SET username = 'lumi', password_hash = '$2b$10$J26eQryFCCacYtzRmMiAkONWx'/*+28 bytes*/, email = 'new@email.com', avatar_url = 'newlink.com'
+            SET username = 'lumi', password_hash = '$2b$10$nmUEEOVk2NjIVtkZXdZSEuY/I'/*+28 bytes*/, email = 'new@email.com', avatar_url = 'newlink.com'
             WHERE id = 1.0
         
 
@@ -442,17 +442,17 @@ SELECT * FROM users WHERE id = 1.0
             FROM users
             WHERE id = 1.0
         
-{"level":30,"time":1746712959868,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-w","res":{"statusCode":200},"responseTime":121.95344257354736,"msg":"request completed"}
+{"level":30,"time":1746715419983,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-w","res":{"statusCode":200},"responseTime":110.30416202545166,"msg":"request completed"}
             # Subtest: PUT `/users/1` returns 200 if password updated
                 ok 1 - Status code 200
                 ok 2 - should be equal
                 ok 3 - should be equivalent
-{"level":30,"time":1746712959870,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-x","req":{"method":"POST","url":"/login","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1746715419984,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-x","req":{"method":"POST","url":"/login","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
 SELECT * FROM users WHERE username = 'lumi'
-{"level":30,"time":1746712959984,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-x","res":{"statusCode":401},"responseTime":114.47492218017578,"msg":"request completed"}
+{"level":30,"time":1746715420091,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-x","res":{"statusCode":401},"responseTime":106.65125465393066,"msg":"request completed"}
                 ok 4 - Status code 401
                 ok 5 - should be equal
-{"level":30,"time":1746712959985,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-y","req":{"method":"POST","url":"/login","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1746715420092,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-y","req":{"method":"POST","url":"/login","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
 SELECT * FROM users WHERE username = 'lumi'
 SELECT two_fa_enabled FROM users WHERE id = 1.0
 UPDATE users
@@ -460,20 +460,20 @@ UPDATE users
             WHERE id = 1.0
             AND online_status = FALSE
         
-{"level":30,"time":1746712960099,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-y","res":{"statusCode":200},"responseTime":114.55548477172852,"msg":"request completed"}
+{"level":30,"time":1746715420198,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-y","res":{"statusCode":200},"responseTime":105.83233833312988,"msg":"request completed"}
                 ok 6 - Token is present
                 ok 7 - Status code 200
                 ok 8 - should be equivalent
                 1..8
-            ok 6 - PUT `/users/1` returns 200 if password updated # time=354.33ms
+            ok 6 - PUT `/users/1` returns 200 if password updated # time=326.012ms
             
             1..6
-        ok 4 - PUT `/users/:id` # time=499.455ms
+        ok 4 - PUT `/users/:id` # time=469.309ms
         
         1..4
-    ok 2 - User Routes Suite # time=513.492ms
+    ok 2 - User Routes Suite # time=483.671ms
     
-{"level":30,"time":1746712960102,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-z","req":{"method":"POST","url":"/login","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1746715420200,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-z","req":{"method":"POST","url":"/login","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
 SELECT * FROM users WHERE username = 'lumi'
 SELECT two_fa_enabled FROM users WHERE id = 1.0
 UPDATE users
@@ -481,7 +481,7 @@ UPDATE users
             WHERE id = 1.0
             AND online_status = FALSE
         
-{"level":30,"time":1746712960217,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-z","res":{"statusCode":200},"responseTime":115.11811637878418,"msg":"request completed"}
+{"level":30,"time":1746715420307,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-z","res":{"statusCode":200},"responseTime":107.26595687866211,"msg":"request completed"}
 
             SELECT * 
             FROM friends 
@@ -492,7 +492,7 @@ UPDATE users
             ok 1 - Status code 404
             ok 2 - should be equal
             1..2
-        ok 1 - GET `/friends` returns 404 when no friends found for user # time=3.887ms
+        ok 1 - GET `/friends` returns 404 when no friends found for user # time=3.964ms
         
 SELECT * FROM friends WHERE user_id = 1.0 AND friend_id = 2.0
 SELECT * FROM friends WHERE user_id = 2.0 AND friend_id = 1.0
@@ -500,14 +500,14 @@ SELECT * FROM friends WHERE user_id = 2.0 AND friend_id = 1.0
             ok 1 - Status code 404
             ok 2 - should be equal
             1..2
-        ok 2 - PATCH `/friends-requests/2` returns 404 when friend request not found # time=1.941ms
+        ok 2 - PATCH `/friends-requests/2` returns 404 when friend request not found # time=1.883ms
         
         # Subtest: POST `/friend-requests/:id`
             # Subtest: POST `/friend-requests/1` returns 400 when request to itself
                 ok 1 - Status code 400
                 ok 2 - should be equal
                 1..2
-            ok 1 - POST `/friend-requests/1` returns 400 when request to itself # time=2.591ms
+            ok 1 - POST `/friend-requests/1` returns 400 when request to itself # time=2.738ms
             
 
             SELECT status 
@@ -536,7 +536,7 @@ SqliteError: FOREIGN KEY constraint failed
                 ok 1 - Status code 500
                 ok 2 - should be equal
                 1..2
-            ok 2 - POST `/friend-requests/0` returns 500 when invalid id # time=2.32ms
+            ok 2 - POST `/friend-requests/0` returns 500 when invalid id # time=2.446ms
             
 
             SELECT status 
@@ -557,7 +557,7 @@ SqliteError: FOREIGN KEY constraint failed
                 ok 2 - should be equal
                 ok 3 - should be equivalent
                 1..3
-            ok 3 - POST `/friend-requests/2` returns 200 when successfully sent # time=6.789ms
+            ok 3 - POST `/friend-requests/2` returns 200 when successfully sent # time=6.59ms
             
 
             SELECT status 
@@ -573,10 +573,10 @@ SqliteError: FOREIGN KEY constraint failed
                 ok 1 - Status code 409
                 ok 2 - should be equal
                 1..2
-            ok 4 - POST `/friend-requests/2` returns 409 when friend request already exists # time=1.83ms
+            ok 4 - POST `/friend-requests/2` returns 409 when friend request already exists # time=1.869ms
             
             1..4
-        ok 3 - POST `/friend-requests/:id` # time=15.676ms
+        ok 3 - POST `/friend-requests/:id` # time=15.76ms
         
 
             SELECT status 
@@ -588,7 +588,7 @@ SqliteError: FOREIGN KEY constraint failed
                 ok 1 - Status code 404
                 ok 2 - should be equal
                 1..2
-            ok 1 - GET `/friends/:id/status` returns 404 when friend not found # time=3.079ms
+            ok 1 - GET `/friends/:id/status` returns 404 when friend not found # time=2.965ms
             
 
             SELECT status 
@@ -599,37 +599,37 @@ SqliteError: FOREIGN KEY constraint failed
                 ok 1 - Status code 400
                 ok 2 - should be equal
                 1..2
-            ok 2 - GET `/friends/:id/status` returns 400 when friend request pending # time=1.68ms
+            ok 2 - GET `/friends/:id/status` returns 400 when friend request pending # time=1.683ms
             
             1..2
-        ok 4 - GET `/friends/:id/status` # time=6.585ms
+        ok 4 - GET `/friends/:id/status` # time=6.494ms
         
 SELECT * FROM friends WHERE user_id = 1.0 AND friend_id = 2.0
         # Subtest: PATCH `/friends-requests/2` returns 400 waiting for friend to accept request
             ok 1 - Status code 400
             ok 2 - should be equal
             1..2
-        ok 5 - PATCH `/friends-requests/2` returns 400 waiting for friend to accept request # time=1.784ms
+        ok 5 - PATCH `/friends-requests/2` returns 400 waiting for friend to accept request # time=1.739ms
         
-{"level":30,"time":1746712960220,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-10","req":{"method":"GET","url":"/friends","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
-{"level":30,"time":1746712960221,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-10","res":{"statusCode":404},"responseTime":0.8233909606933594,"msg":"request completed"}
-{"level":30,"time":1746712960222,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-11","req":{"method":"PATCH","url":"/friend-requests/2","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
-{"level":30,"time":1746712960223,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-11","res":{"statusCode":404},"responseTime":0.9337568283081055,"msg":"request completed"}
-{"level":30,"time":1746712960226,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-12","req":{"method":"POST","url":"/friend-requests/1","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
-{"level":30,"time":1746712960227,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-12","res":{"statusCode":400},"responseTime":0.5522184371948242,"msg":"request completed"}
-{"level":30,"time":1746712960228,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-13","req":{"method":"POST","url":"/friend-requests/0","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
-{"level":30,"time":1746712960229,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-13","res":{"statusCode":500},"responseTime":1.3481388092041016,"msg":"request completed"}
-{"level":30,"time":1746712960231,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-14","req":{"method":"POST","url":"/friend-requests/2","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
-{"level":30,"time":1746712960236,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-14","res":{"statusCode":200},"responseTime":5.426770210266113,"msg":"request completed"}
-{"level":30,"time":1746712960238,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-15","req":{"method":"POST","url":"/friend-requests/2","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
-{"level":30,"time":1746712960239,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-15","res":{"statusCode":409},"responseTime":0.7779607772827148,"msg":"request completed"}
-{"level":30,"time":1746712960242,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-16","req":{"method":"GET","url":"/friends/6/status","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
-{"level":30,"time":1746712960243,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-16","res":{"statusCode":404},"responseTime":0.9516439437866211,"msg":"request completed"}
-{"level":30,"time":1746712960245,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-17","req":{"method":"GET","url":"/friends/2/status","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
-{"level":30,"time":1746712960245,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-17","res":{"statusCode":400},"responseTime":0.5875158309936523,"msg":"request completed"}
-{"level":30,"time":1746712960247,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-18","req":{"method":"PATCH","url":"/friend-requests/2","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
-{"level":30,"time":1746712960248,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-18","res":{"statusCode":400},"responseTime":0.6858758926391602,"msg":"request completed"}
-{"level":30,"time":1746712960249,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-19","req":{"method":"POST","url":"/login","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1746715420310,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-10","req":{"method":"GET","url":"/friends","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1746715420311,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-10","res":{"statusCode":404},"responseTime":0.8360223770141602,"msg":"request completed"}
+{"level":30,"time":1746715420312,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-11","req":{"method":"PATCH","url":"/friend-requests/2","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1746715420313,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-11","res":{"statusCode":404},"responseTime":0.9275655746459961,"msg":"request completed"}
+{"level":30,"time":1746715420316,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-12","req":{"method":"POST","url":"/friend-requests/1","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1746715420317,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-12","res":{"statusCode":400},"responseTime":0.6064205169677734,"msg":"request completed"}
+{"level":30,"time":1746715420318,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-13","req":{"method":"POST","url":"/friend-requests/0","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1746715420320,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-13","res":{"statusCode":500},"responseTime":1.4091873168945312,"msg":"request completed"}
+{"level":30,"time":1746715420321,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-14","req":{"method":"POST","url":"/friend-requests/2","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1746715420326,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-14","res":{"statusCode":200},"responseTime":5.119865417480469,"msg":"request completed"}
+{"level":30,"time":1746715420328,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-15","req":{"method":"POST","url":"/friend-requests/2","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1746715420329,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-15","res":{"statusCode":409},"responseTime":0.8095998764038086,"msg":"request completed"}
+{"level":30,"time":1746715420333,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-16","req":{"method":"GET","url":"/friends/6/status","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1746715420334,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-16","res":{"statusCode":404},"responseTime":0.871739387512207,"msg":"request completed"}
+{"level":30,"time":1746715420335,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-17","req":{"method":"GET","url":"/friends/2/status","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1746715420336,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-17","res":{"statusCode":400},"responseTime":0.6364278793334961,"msg":"request completed"}
+{"level":30,"time":1746715420338,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-18","req":{"method":"PATCH","url":"/friend-requests/2","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1746715420338,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-18","res":{"statusCode":400},"responseTime":0.6808071136474609,"msg":"request completed"}
+{"level":30,"time":1746715420340,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-19","req":{"method":"POST","url":"/login","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
 SELECT * FROM users WHERE username = 'kim'
 SELECT two_fa_enabled FROM users WHERE id = 2.0
 UPDATE users
@@ -637,7 +637,7 @@ UPDATE users
             WHERE id = 2.0
             AND online_status = FALSE
         
-{"level":30,"time":1746712960370,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-19","res":{"statusCode":200},"responseTime":120.57511806488037,"msg":"request completed"}
+{"level":30,"time":1746715420453,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-19","res":{"statusCode":200},"responseTime":112.9661169052124,"msg":"request completed"}
 SELECT * FROM friends WHERE user_id = 2.0 AND friend_id = 1.0
 SELECT * FROM friends WHERE user_id = 1.0 AND friend_id = 2.0
 
@@ -659,17 +659,17 @@ SELECT * FROM friends WHERE user_id = 1.0 AND friend_id = 2.0
                 ok 1 - Status code 400
                 ok 2 - should be equal
                 1..2
-            ok 4 - PATCH `/friend-requests/2` returns 400 when already friends # time=1.743ms
+            ok 4 - PATCH `/friend-requests/2` returns 400 when already friends # time=1.724ms
             
             1..4
-        ok 6 - PATCH `/friends-requests/2` returns 200 accept friend request # time=129.751ms
+        ok 6 - PATCH `/friends-requests/2` returns 200 accept friend request # time=121.897ms
         
 SELECT * FROM friends WHERE user_id = 1.0 AND friend_id = 2.0
         # Subtest: PATCH `/friend-requests/2` returns 400 when already friends
             ok 1 - Status code 400
             ok 2 - should be equal
             1..2
-        ok 7 - PATCH `/friend-requests/2` returns 400 when already friends # time=1.477ms
+        ok 7 - PATCH `/friend-requests/2` returns 400 when already friends # time=1.473ms
         
 
             SELECT status 
@@ -681,7 +681,7 @@ SELECT * FROM friends WHERE user_id = 1.0 AND friend_id = 2.0
             ok 1 - Status code 400
             ok 2 - should be equal
             1..2
-        ok 8 - POST `/friend-requests/2` returns 400 when already friends # time=1.448ms
+        ok 8 - POST `/friend-requests/2` returns 400 when already friends # time=1.547ms
         
 
             SELECT status 
@@ -696,7 +696,7 @@ SELECT * FROM friends WHERE user_id = 1.0 AND friend_id = 2.0
             ok 1 - Status code 200
             ok 2 - should be equivalent
             1..2
-        ok 9 - GET `/friends/:id/status` returns 200 when already friends # time=1.897ms
+        ok 9 - GET `/friends/:id/status` returns 200 when already friends # time=2.002ms
         
 
             SELECT * 
@@ -707,7 +707,7 @@ SELECT * FROM friends WHERE user_id = 1.0 AND friend_id = 2.0
             ok 1 - Status code 200
             ok 2 - should be equivalent
             1..2
-        ok 10 - GET `/friends` returns 200 returning all friends # time=1.704ms
+        ok 10 - GET `/friends` returns 200 returning all friends # time=1.741ms
         
 
             DELETE FROM friends 
@@ -717,7 +717,7 @@ SELECT * FROM friends WHERE user_id = 1.0 AND friend_id = 2.0
             ok 1 - Status code 404
             ok 2 - should be equal
             1..2
-        ok 11 - DELETE `/friends/:id` returns 404 when unauthorized action # time=1.786ms
+        ok 11 - DELETE `/friends/:id` returns 404 when unauthorized action # time=1.733ms
         
 
             DELETE FROM friends 
@@ -727,28 +727,28 @@ SELECT * FROM friends WHERE user_id = 1.0 AND friend_id = 2.0
             ok 1 - Status code 200
             ok 2 - should be equal
             1..2
-        ok 12 - DELETE `/friends/:id` returns 200 when friend removed # time=8.516ms
+        ok 12 - DELETE `/friends/:id` returns 200 when friend removed # time=7.269ms
         
         1..12
-    ok 3 - POST `/login` # time=296.647ms
+    ok 3 - POST `/login` # time=279.901ms
     
-{"level":30,"time":1746712960370,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-1a","req":{"method":"PATCH","url":"/friend-requests/1","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
-{"level":30,"time":1746712960376,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-1a","res":{"statusCode":200},"responseTime":5.276869773864746,"msg":"request completed"}
-{"level":30,"time":1746712960377,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-1b","req":{"method":"PATCH","url":"/friend-requests/1","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
-{"level":30,"time":1746712960378,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-1b","res":{"statusCode":400},"responseTime":0.760498046875,"msg":"request completed"}
-{"level":30,"time":1746712960379,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-1c","req":{"method":"PATCH","url":"/friend-requests/2","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
-{"level":30,"time":1746712960380,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-1c","res":{"statusCode":400},"responseTime":0.5366716384887695,"msg":"request completed"}
-{"level":30,"time":1746712960381,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-1d","req":{"method":"POST","url":"/friend-requests/2","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
-{"level":30,"time":1746712960382,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-1d","res":{"statusCode":400},"responseTime":0.5712509155273438,"msg":"request completed"}
-{"level":30,"time":1746712960383,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-1e","req":{"method":"GET","url":"/friends/2/status","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
-{"level":30,"time":1746712960384,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-1e","res":{"statusCode":200},"responseTime":0.7985057830810547,"msg":"request completed"}
-{"level":30,"time":1746712960385,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-1f","req":{"method":"GET","url":"/friends","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
-{"level":30,"time":1746712960386,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-1f","res":{"statusCode":200},"responseTime":0.7159318923950195,"msg":"request completed"}
-{"level":30,"time":1746712960387,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-1g","req":{"method":"DELETE","url":"/friends/4","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
-{"level":30,"time":1746712960388,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-1g","res":{"statusCode":404},"responseTime":0.8517484664916992,"msg":"request completed"}
-{"level":30,"time":1746712960389,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-1h","req":{"method":"DELETE","url":"/friends/2","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
-{"level":30,"time":1746712960397,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-1h","res":{"statusCode":200},"responseTime":7.478280067443848,"msg":"request completed"}
-{"level":30,"time":1746712960399,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-1i","req":{"method":"POST","url":"/login","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1746715420453,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-1a","req":{"method":"PATCH","url":"/friend-requests/1","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1746715420458,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-1a","res":{"statusCode":200},"responseTime":4.962878227233887,"msg":"request completed"}
+{"level":30,"time":1746715420459,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-1b","req":{"method":"PATCH","url":"/friend-requests/1","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1746715420460,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-1b","res":{"statusCode":400},"responseTime":0.7216777801513672,"msg":"request completed"}
+{"level":30,"time":1746715420462,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-1c","req":{"method":"PATCH","url":"/friend-requests/2","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1746715420462,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-1c","res":{"statusCode":400},"responseTime":0.5268316268920898,"msg":"request completed"}
+{"level":30,"time":1746715420463,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-1d","req":{"method":"POST","url":"/friend-requests/2","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1746715420464,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-1d","res":{"statusCode":400},"responseTime":0.5835800170898438,"msg":"request completed"}
+{"level":30,"time":1746715420465,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-1e","req":{"method":"GET","url":"/friends/2/status","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1746715420466,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-1e","res":{"statusCode":200},"responseTime":0.8650674819946289,"msg":"request completed"}
+{"level":30,"time":1746715420468,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-1f","req":{"method":"GET","url":"/friends","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1746715420468,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-1f","res":{"statusCode":200},"responseTime":0.7596721649169922,"msg":"request completed"}
+{"level":30,"time":1746715420470,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-1g","req":{"method":"DELETE","url":"/friends/4","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1746715420471,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-1g","res":{"statusCode":404},"responseTime":0.7965936660766602,"msg":"request completed"}
+{"level":30,"time":1746715420472,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-1h","req":{"method":"DELETE","url":"/friends/2","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1746715420478,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-1h","res":{"statusCode":200},"responseTime":6.270341873168945,"msg":"request completed"}
+{"level":30,"time":1746715420480,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-1i","req":{"method":"POST","url":"/login","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
 SELECT * FROM users WHERE username = 'kim'
 SELECT two_fa_enabled FROM users WHERE id = 2.0
 UPDATE users
@@ -756,8 +756,8 @@ UPDATE users
             WHERE id = 2.0
             AND online_status = FALSE
         
-{"level":30,"time":1746712960514,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-1i","res":{"statusCode":200},"responseTime":115.33273315429688,"msg":"request completed"}
-{"level":30,"time":1746712960514,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-1j","req":{"method":"POST","url":"/login","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1746715420588,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-1i","res":{"statusCode":200},"responseTime":107.59435558319092,"msg":"request completed"}
+{"level":30,"time":1746715420588,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-1j","req":{"method":"POST","url":"/login","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
 SELECT * FROM users WHERE username = 'lumi'
 SELECT two_fa_enabled FROM users WHERE id = 1.0
 UPDATE users
@@ -765,18 +765,18 @@ UPDATE users
             WHERE id = 1.0
             AND online_status = FALSE
         
-{"level":30,"time":1746712960629,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-1j","res":{"statusCode":200},"responseTime":114.59583282470703,"msg":"request completed"}
+{"level":30,"time":1746715420694,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-1j","res":{"statusCode":200},"responseTime":105.77884101867676,"msg":"request completed"}
 SELECT * FROM players WHERE user_id = 2.0
     # Subtest: POST `/login`
         # Subtest: GET `/players` returns 404 when no players found for user
             ok 1 - should be equal
             ok 2 - should be equal
             1..2
-        ok 1 - GET `/players` returns 404 when no players found for user # time=4.486ms
+        ok 1 - GET `/players` returns 404 when no players found for user # time=4.497ms
         
-{"level":30,"time":1746712960632,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-1k","req":{"method":"GET","url":"/players","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
-{"level":30,"time":1746712960633,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-1k","res":{"statusCode":404},"responseTime":0.7641229629516602,"msg":"request completed"}
-{"level":30,"time":1746712960635,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-1l","req":{"method":"POST","url":"/players","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1746715420697,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-1k","req":{"method":"GET","url":"/players","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1746715420698,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-1k","res":{"statusCode":404},"responseTime":0.7898702621459961,"msg":"request completed"}
+{"level":30,"time":1746715420699,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-1l","req":{"method":"POST","url":"/players","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
 SELECT COUNT(*) AS count FROM players WHERE user_id = 2.0
 INSERT INTO players (user_id, display_name, avatar_url) VALUES (2.0, 'Player1', NULL)
 SELECT id, display_name, avatar_url, wins, losses, created_at FROM players WHERE id = 1.0
@@ -785,103 +785,103 @@ SELECT id, display_name, avatar_url, wins, losses, created_at FROM players WHERE
             ok 2 - should be equal
             ok 3 - should be equivalent
             1..3
-        ok 2 - POST `/players` returns 201 on successful creation # time=7.533ms
+        ok 2 - POST `/players` returns 201 on successful creation # time=7.716ms
         
-{"level":30,"time":1746712960641,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-1l","res":{"statusCode":201},"responseTime":6.22159481048584,"msg":"request completed"}
-{"level":30,"time":1746712960642,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-1m","req":{"method":"POST","url":"/players","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1746715420706,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-1l","res":{"statusCode":201},"responseTime":6.313094139099121,"msg":"request completed"}
+{"level":30,"time":1746715420707,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-1m","req":{"method":"POST","url":"/players","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
 SELECT COUNT(*) AS count FROM players WHERE user_id = 2.0
 INSERT INTO players (user_id, display_name, avatar_url) VALUES (2.0, 'Player1', NULL)
         # Subtest: POST `/players` returns 409 for duplicate display_name
             ok 1 - should be equal
             ok 2 - should be equal
             1..2
-        ok 3 - POST `/players` returns 409 for duplicate display_name # time=1.873ms
+        ok 3 - POST `/players` returns 409 for duplicate display_name # time=1.938ms
         
-{"level":30,"time":1746712960643,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-1m","res":{"statusCode":409},"responseTime":0.8872928619384766,"msg":"request completed"}
-{"level":30,"time":1746712960645,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-1n","req":{"method":"POST","url":"/players","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1746715420708,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-1m","res":{"statusCode":409},"responseTime":0.9663877487182617,"msg":"request completed"}
+{"level":30,"time":1746715420710,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-1n","req":{"method":"POST","url":"/players","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
 SELECT COUNT(*) AS count FROM players WHERE user_id = 2.0
 INSERT INTO players (user_id, display_name, avatar_url) VALUES (2.0, 'Player2', NULL)
 SELECT id, display_name, avatar_url, wins, losses, created_at FROM players WHERE id = 2.0
-{"level":30,"time":1746712960650,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-1n","res":{"statusCode":201},"responseTime":5.4485063552856445,"msg":"request completed"}
-{"level":30,"time":1746712960650,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-1o","req":{"method":"POST","url":"/players","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1746715420715,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-1n","res":{"statusCode":201},"responseTime":5.438057899475098,"msg":"request completed"}
+{"level":30,"time":1746715420715,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-1o","req":{"method":"POST","url":"/players","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
 SELECT COUNT(*) AS count FROM players WHERE user_id = 2.0
 INSERT INTO players (user_id, display_name, avatar_url) VALUES (2.0, 'Player3', NULL)
 SELECT id, display_name, avatar_url, wins, losses, created_at FROM players WHERE id = 3.0
-{"level":30,"time":1746712960656,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-1o","res":{"statusCode":201},"responseTime":5.734966278076172,"msg":"request completed"}
-{"level":30,"time":1746712960656,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-1p","req":{"method":"POST","url":"/players","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1746715420721,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-1o","res":{"statusCode":201},"responseTime":5.539087295532227,"msg":"request completed"}
+{"level":30,"time":1746715420721,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-1p","req":{"method":"POST","url":"/players","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
 SELECT COUNT(*) AS count FROM players WHERE user_id = 2.0
 INSERT INTO players (user_id, display_name, avatar_url) VALUES (2.0, 'Player4', NULL)
 SELECT id, display_name, avatar_url, wins, losses, created_at FROM players WHERE id = 4.0
-{"level":30,"time":1746712960662,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-1p","res":{"statusCode":201},"responseTime":5.306824684143066,"msg":"request completed"}
-{"level":30,"time":1746712960662,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-1q","req":{"method":"POST","url":"/players","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1746715420727,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-1p","res":{"statusCode":201},"responseTime":5.737990379333496,"msg":"request completed"}
+{"level":30,"time":1746715420727,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-1q","req":{"method":"POST","url":"/players","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
 SELECT COUNT(*) AS count FROM players WHERE user_id = 2.0
 INSERT INTO players (user_id, display_name, avatar_url) VALUES (2.0, 'Player5', NULL)
 SELECT id, display_name, avatar_url, wins, losses, created_at FROM players WHERE id = 5.0
-{"level":30,"time":1746712960667,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-1q","res":{"statusCode":201},"responseTime":4.964598655700684,"msg":"request completed"}
-{"level":30,"time":1746712960667,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-1r","req":{"method":"POST","url":"/players","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1746715420733,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-1q","res":{"statusCode":201},"responseTime":5.391966819763184,"msg":"request completed"}
+{"level":30,"time":1746715420733,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-1r","req":{"method":"POST","url":"/players","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
 SELECT COUNT(*) AS count FROM players WHERE user_id = 2.0
 INSERT INTO players (user_id, display_name, avatar_url) VALUES (2.0, 'Player6', NULL)
 SELECT id, display_name, avatar_url, wins, losses, created_at FROM players WHERE id = 6.0
-{"level":30,"time":1746712960673,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-1r","res":{"statusCode":201},"responseTime":5.651439666748047,"msg":"request completed"}
-{"level":30,"time":1746712960673,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-1s","req":{"method":"POST","url":"/players","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1746715420738,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-1r","res":{"statusCode":201},"responseTime":5.099047660827637,"msg":"request completed"}
+{"level":30,"time":1746715420738,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-1s","req":{"method":"POST","url":"/players","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
 SELECT COUNT(*) AS count FROM players WHERE user_id = 2.0
 INSERT INTO players (user_id, display_name, avatar_url) VALUES (2.0, 'Player7', NULL)
 SELECT id, display_name, avatar_url, wins, losses, created_at FROM players WHERE id = 7.0
-{"level":30,"time":1746712960679,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-1s","res":{"statusCode":201},"responseTime":5.851595878601074,"msg":"request completed"}
-{"level":30,"time":1746712960679,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-1t","req":{"method":"POST","url":"/players","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1746715420743,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-1s","res":{"statusCode":201},"responseTime":4.7556047439575195,"msg":"request completed"}
+{"level":30,"time":1746715420743,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-1t","req":{"method":"POST","url":"/players","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
 SELECT COUNT(*) AS count FROM players WHERE user_id = 2.0
 INSERT INTO players (user_id, display_name, avatar_url) VALUES (2.0, 'Player8', NULL)
 SELECT id, display_name, avatar_url, wins, losses, created_at FROM players WHERE id = 8.0
-{"level":30,"time":1746712960685,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-1t","res":{"statusCode":201},"responseTime":5.620762825012207,"msg":"request completed"}
-{"level":30,"time":1746712960685,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-1u","req":{"method":"POST","url":"/players","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1746715420748,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-1t","res":{"statusCode":201},"responseTime":4.893056869506836,"msg":"request completed"}
+{"level":30,"time":1746715420748,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-1u","req":{"method":"POST","url":"/players","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
 SELECT COUNT(*) AS count FROM players WHERE user_id = 2.0
         # Subtest: POST `/players` returns 400 when max players limit is reached
             ok 1 - should be equal
             ok 2 - should be equal
             1..2
-        ok 4 - POST `/players` returns 400 when max players limit is reached # time=42.245ms
+        ok 4 - POST `/players` returns 400 when max players limit is reached # time=40.546ms
         
 SELECT * FROM players WHERE id = 8.0 AND user_id = 1.0
         # Subtest: GET `/players/:id` returns 404 when unauthorized
             ok 1 - should be equal
             ok 2 - should be equal
             1..2
-        ok 5 - GET `/players/:id` returns 404 when unauthorized # time=1.707ms
+        ok 5 - GET `/players/:id` returns 404 when unauthorized # time=1.727ms
         
 SELECT * FROM players WHERE id = 100.0 AND user_id = 2.0
         # Subtest: GET `/players/:id` returns 404 when player does not exist
             ok 1 - should be equal
             ok 2 - should be equal
             1..2
-        ok 6 - GET `/players/:id` returns 404 when player does not exist # time=1.418ms
+        ok 6 - GET `/players/:id` returns 404 when player does not exist # time=1.372ms
         
 SELECT * FROM players WHERE id = 8.0 AND user_id = 2.0
         # Subtest: GET `/players/:id` returns 200 with valid data
             ok 1 - should be equal
             ok 2 - should be equivalent
             1..2
-        ok 7 - GET `/players/:id` returns 200 with valid data # time=1.575ms
+        ok 7 - GET `/players/:id` returns 200 with valid data # time=1.834ms
         
 DELETE FROM players WHERE id = 3.0 AND user_id = 1.0
         # Subtest: DELETE `/players/:id` returns 404 when unauthorized
             ok 1 - should be equal
             ok 2 - should be equal
             1..2
-        ok 8 - DELETE `/players/:id` returns 404 when unauthorized # time=1.566ms
+        ok 8 - DELETE `/players/:id` returns 404 when unauthorized # time=1.714ms
         
 DELETE FROM players WHERE id = 100.0 AND user_id = 2.0
         # Subtest: DELETE `/players/:id` returns 404 when player does not exist
             ok 1 - should be equal
             ok 2 - should be equal
             1..2
-        ok 9 - DELETE `/players/:id` returns 404 when player does not exist # time=1.433ms
+        ok 9 - DELETE `/players/:id` returns 404 when player does not exist # time=1.277ms
         
 DELETE FROM players WHERE id = 3.0 AND user_id = 2.0
         # Subtest: DELETE `/players/:id` returns 200 on success
             ok 1 - should be equal
             ok 2 - should be equal
             1..2
-        ok 10 - DELETE `/players/:id` returns 200 on success # time=5.509ms
+        ok 10 - DELETE `/players/:id` returns 200 on success # time=5.447ms
         
 SELECT * FROM players WHERE user_id = 2.0
         # Subtest: GET `/players` returns remaining players
@@ -890,52 +890,52 @@ SELECT * FROM players WHERE user_id = 2.0
             ok 3 - should be equivalent
             ok 4 - should be equivalent
             1..4
-        ok 11 - GET `/players` returns remaining players # time=2.75ms
+        ok 11 - GET `/players` returns remaining players # time=2.34ms
         
-{"level":30,"time":1746712960686,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-1u","res":{"statusCode":400},"responseTime":0.7975559234619141,"msg":"request completed"}
-{"level":30,"time":1746712960687,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-1v","req":{"method":"GET","url":"/players/8","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
-{"level":30,"time":1746712960688,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-1v","res":{"statusCode":404},"responseTime":0.7733068466186523,"msg":"request completed"}
-{"level":30,"time":1746712960689,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-1w","req":{"method":"GET","url":"/players/100","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
-{"level":30,"time":1746712960690,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-1w","res":{"statusCode":404},"responseTime":0.5450887680053711,"msg":"request completed"}
-{"level":30,"time":1746712960691,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-1x","req":{"method":"GET","url":"/players/8","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
-{"level":30,"time":1746712960692,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-1x","res":{"statusCode":200},"responseTime":0.6662149429321289,"msg":"request completed"}
-{"level":30,"time":1746712960693,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-1y","req":{"method":"DELETE","url":"/players/3","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
-{"level":30,"time":1746712960694,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-1y","res":{"statusCode":404},"responseTime":0.7668085098266602,"msg":"request completed"}
-{"level":30,"time":1746712960695,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-1z","req":{"method":"DELETE","url":"/players/100","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
-{"level":30,"time":1746712960695,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-1z","res":{"statusCode":404},"responseTime":0.54833984375,"msg":"request completed"}
-{"level":30,"time":1746712960696,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-20","req":{"method":"DELETE","url":"/players/3","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
-{"level":30,"time":1746712960701,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-20","res":{"statusCode":200},"responseTime":4.5945844650268555,"msg":"request completed"}
-{"level":30,"time":1746712960702,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-21","req":{"method":"GET","url":"/players","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
-{"level":30,"time":1746712960704,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-21","res":{"statusCode":200},"responseTime":1.2179908752441406,"msg":"request completed"}
-{"level":30,"time":1746712960705,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-22","req":{"method":"PUT","url":"/players/1","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1746715420749,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-1u","res":{"statusCode":400},"responseTime":0.7242898941040039,"msg":"request completed"}
+{"level":30,"time":1746715420751,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-1v","req":{"method":"GET","url":"/players/8","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1746715420751,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-1v","res":{"statusCode":404},"responseTime":0.7404088973999023,"msg":"request completed"}
+{"level":30,"time":1746715420752,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-1w","req":{"method":"GET","url":"/players/100","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1746715420753,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-1w","res":{"statusCode":404},"responseTime":0.5142850875854492,"msg":"request completed"}
+{"level":30,"time":1746715420754,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-1x","req":{"method":"GET","url":"/players/8","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1746715420755,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-1x","res":{"statusCode":200},"responseTime":0.7826328277587891,"msg":"request completed"}
+{"level":30,"time":1746715420756,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-1y","req":{"method":"DELETE","url":"/players/3","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1746715420757,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-1y","res":{"statusCode":404},"responseTime":0.8154449462890625,"msg":"request completed"}
+{"level":30,"time":1746715420758,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-1z","req":{"method":"DELETE","url":"/players/100","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1746715420759,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-1z","res":{"statusCode":404},"responseTime":0.4841156005859375,"msg":"request completed"}
+{"level":30,"time":1746715420760,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-20","req":{"method":"DELETE","url":"/players/3","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1746715420764,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-20","res":{"statusCode":200},"responseTime":4.44143009185791,"msg":"request completed"}
+{"level":30,"time":1746715420766,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-21","req":{"method":"GET","url":"/players","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1746715420767,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-21","res":{"statusCode":200},"responseTime":0.8919267654418945,"msg":"request completed"}
+{"level":30,"time":1746715420768,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-22","req":{"method":"PUT","url":"/players/1","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
 SELECT * FROM players WHERE id = 1.0 AND user_id = 1.0
         # Subtest: PUT `/players/:id` returns 404 when unauthorized
             ok 1 - should be equal
             ok 2 - should be equal
             1..2
-        ok 12 - PUT `/players/:id` returns 404 when unauthorized # time=2.233ms
+        ok 12 - PUT `/players/:id` returns 404 when unauthorized # time=2.159ms
         
-{"level":30,"time":1746712960707,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-22","res":{"statusCode":404},"responseTime":1.2844219207763672,"msg":"request completed"}
-{"level":30,"time":1746712960708,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-23","req":{"method":"PUT","url":"/players/100","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1746715420770,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-22","res":{"statusCode":404},"responseTime":1.241520881652832,"msg":"request completed"}
+{"level":30,"time":1746715420771,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-23","req":{"method":"PUT","url":"/players/100","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
 SELECT * FROM players WHERE id = 100.0 AND user_id = 2.0
         # Subtest: PUT `/players/:id` returns 404 for invalid id
             ok 1 - should be equal
             ok 2 - should be equal
             1..2
-        ok 13 - PUT `/players/:id` returns 404 for invalid id # time=1.666ms
+        ok 13 - PUT `/players/:id` returns 404 for invalid id # time=1.835ms
         
-{"level":30,"time":1746712960709,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-23","res":{"statusCode":404},"responseTime":0.8257837295532227,"msg":"request completed"}
-{"level":30,"time":1746712960711,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-24","req":{"method":"PUT","url":"/players/1","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1746715420772,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-23","res":{"statusCode":404},"responseTime":0.8644084930419922,"msg":"request completed"}
+{"level":30,"time":1746715420773,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-24","req":{"method":"PUT","url":"/players/1","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
 SELECT * FROM players WHERE id = 1.0 AND user_id = 2.0
 SELECT * FROM players WHERE display_name = 'Player7'
         # Subtest: PUT `/players/:id` returns 400 for duplicate display_name
             ok 1 - should be equal
             ok 2 - should be equal
             1..2
-        ok 14 - PUT `/players/:id` returns 400 for duplicate display_name # time=1.883ms
+        ok 14 - PUT `/players/:id` returns 400 for duplicate display_name # time=1.897ms
         
-{"level":30,"time":1746712960712,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-24","res":{"statusCode":400},"responseTime":1.012465476989746,"msg":"request completed"}
-{"level":30,"time":1746712960713,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-25","req":{"method":"PUT","url":"/players/1","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1746715420774,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-24","res":{"statusCode":400},"responseTime":1.0265216827392578,"msg":"request completed"}
+{"level":30,"time":1746715420775,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-25","req":{"method":"PUT","url":"/players/1","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
 SELECT * FROM players WHERE id = 1.0 AND user_id = 2.0
 SELECT * FROM players WHERE display_name = 'updatedPlayer'
 UPDATE players SET display_name = 'updatedPlayer', avatar_url = 'notnull.com' WHERE id = 1.0
@@ -944,13 +944,13 @@ UPDATE players SET display_name = 'updatedPlayer', avatar_url = 'notnull.com' WH
             ok 2 - should be equal
             ok 3 - should be equivalent
             1..3
-        ok 15 - PUT `/players/:id` returns 200 when update is successful # time=6.728ms
+        ok 15 - PUT `/players/:id` returns 200 when update is successful # time=6.79ms
         
         1..15
-    ok 4 - POST `/login` # time=321.893ms
+    ok 4 - POST `/login` # time=302.529ms
     
-{"level":30,"time":1746712960719,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-25","res":{"statusCode":200},"responseTime":5.50821590423584,"msg":"request completed"}
-{"level":30,"time":1746712960721,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-26","req":{"method":"POST","url":"/login","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1746715420781,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-25","res":{"statusCode":200},"responseTime":5.549104690551758,"msg":"request completed"}
+{"level":30,"time":1746715420783,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-26","req":{"method":"POST","url":"/login","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
 SELECT * FROM users WHERE username = 'kim'
 SELECT two_fa_enabled FROM users WHERE id = 2.0
 UPDATE users
@@ -958,16 +958,16 @@ UPDATE users
             WHERE id = 2.0
             AND online_status = FALSE
         
+{"level":30,"time":1746715420891,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-26","res":{"statusCode":200},"responseTime":108.35943794250488,"msg":"request completed"}
+{"level":30,"time":1746715420891,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-27","req":{"method":"POST","url":"/login","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
 SELECT * FROM users WHERE username = 'lumi'
-{"level":30,"time":1746712960837,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-26","res":{"statusCode":200},"responseTime":116.10912036895752,"msg":"request completed"}
-{"level":30,"time":1746712960837,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-27","req":{"method":"POST","url":"/login","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
 SELECT two_fa_enabled FROM users WHERE id = 1.0
 UPDATE users
             SET online_status = TRUE
             WHERE id = 1.0
             AND online_status = FALSE
         
-{"level":30,"time":1746712960953,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-27","res":{"statusCode":200},"responseTime":115.14623355865479,"msg":"request completed"}
+{"level":30,"time":1746715420998,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-27","res":{"statusCode":200},"responseTime":106.96931076049805,"msg":"request completed"}
 
             SELECT
                 mh.id,
@@ -1002,19 +1002,19 @@ UPDATE users
             ok 1 - Status code should be 200
             ok 2 - should be equivalent
             1..2
-        ok 1 - GET `/match-histories` returns 200 with empty array when no matches found for user # time=4.354ms
+        ok 1 - GET `/match-histories` returns 200 with empty array when no matches found for user # time=4.391ms
         
-{"level":30,"time":1746712960956,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-28","req":{"method":"GET","url":"/match-histories","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
-{"level":30,"time":1746712960957,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-28","res":{"statusCode":200},"responseTime":0.7795476913452148,"msg":"request completed"}
-{"level":30,"time":1746712960958,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-29","req":{"method":"POST","url":"/match-histories","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1746715421002,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-28","req":{"method":"GET","url":"/match-histories","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1746715421003,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-28","res":{"statusCode":200},"responseTime":0.8252906799316406,"msg":"request completed"}
+{"level":30,"time":1746715421004,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-29","req":{"method":"POST","url":"/match-histories","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
         # Subtest: POST `/match-histories` returns 400 when missing one player
             ok 1 - Status code should be 400
             ok 2 - should be equal
             1..2
-        ok 2 - POST `/match-histories` returns 400 when missing one player # time=2.007ms
+        ok 2 - POST `/match-histories` returns 400 when missing one player # time=2.09ms
         
-{"level":30,"time":1746712960959,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-29","res":{"statusCode":400},"responseTime":1.1237106323242188,"msg":"request completed"}
-{"level":30,"time":1746712960960,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-2a","req":{"method":"POST","url":"/match-histories","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1746715421005,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-29","res":{"statusCode":400},"responseTime":1.1891546249389648,"msg":"request completed"}
+{"level":30,"time":1746715421006,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-2a","req":{"method":"POST","url":"/match-histories","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
 BEGIN
 INSERT INTO match_history (type, tournament_id, round, user_id) VALUES ('1v1', NULL, NULL, 2.0)
 
@@ -1027,10 +1027,10 @@ ROLLBACK
             ok 1 - Status code should be 500
             ok 2 - should be equal
             1..2
-        ok 3 - POST `/match-histories` returns 500 when player does not exist # time=2.952ms
+        ok 3 - POST `/match-histories` returns 500 when player does not exist # time=3.025ms
         
-{"level":30,"time":1746712960962,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-2a","res":{"statusCode":500},"responseTime":2.1005516052246094,"msg":"request completed"}
-{"level":30,"time":1746712960964,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-2b","req":{"method":"POST","url":"/match-histories","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1746715421009,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-2a","res":{"statusCode":500},"responseTime":2.178661346435547,"msg":"request completed"}
+{"level":30,"time":1746715421010,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-2b","req":{"method":"POST","url":"/match-histories","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
 BEGIN
 INSERT INTO match_history (type, tournament_id, round, user_id) VALUES ('1v1', NULL, NULL, 2.0)
 
@@ -1048,7 +1048,7 @@ COMMIT
             ok 1 - Status code should be 201
             ok 2 - should be equal
             1..2
-        ok 4 - POST `/match-histories` returns 201 when match is successfully created # time=7.033ms
+        ok 4 - POST `/match-histories` returns 201 when match is successfully created # time=6.666ms
         
 
             SELECT
@@ -1084,7 +1084,7 @@ COMMIT
             ok 1 - Status code should be 404
             ok 2 - should be equal
             1..2
-        ok 5 - GET `/match-histories/200` returns 404 when match is not found # time=1.791ms
+        ok 5 - GET `/match-histories/200` returns 404 when match is not found # time=1.823ms
         
 
             SELECT
@@ -1120,44 +1120,41 @@ COMMIT
             ok 1 - Status code should be 200
             ok 2 - should be equivalent
             1..2
-        ok 6 - GET `/match-histories/1` returns 200 for an existing match # time=2.131ms
+        ok 6 - GET `/match-histories/1` returns 200 for an existing match # time=2.217ms
         
-{"level":30,"time":1746712960970,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-2b","res":{"statusCode":201},"responseTime":5.989143371582031,"msg":"request completed"}
-{"level":30,"time":1746712960971,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-2c","req":{"method":"GET","url":"/match-histories/200","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
-{"level":30,"time":1746712960972,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-2c","res":{"statusCode":404},"responseTime":0.8552751541137695,"msg":"request completed"}
-{"level":30,"time":1746712960973,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-2d","req":{"method":"GET","url":"/match-histories/1","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
-{"level":30,"time":1746712960974,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-2d","res":{"statusCode":200},"responseTime":0.8530035018920898,"msg":"request completed"}
-{"level":30,"time":1746712960976,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-2e","req":{"method":"PUT","url":"/match-histories/1","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1746715421016,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-2b","res":{"statusCode":201},"responseTime":5.7231340408325195,"msg":"request completed"}
+{"level":30,"time":1746715421017,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-2c","req":{"method":"GET","url":"/match-histories/200","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1746715421018,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-2c","res":{"statusCode":404},"responseTime":0.8631401062011719,"msg":"request completed"}
+{"level":30,"time":1746715421019,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-2d","req":{"method":"GET","url":"/match-histories/1","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1746715421020,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-2d","res":{"statusCode":200},"responseTime":0.8478412628173828,"msg":"request completed"}
+{"level":30,"time":1746715421022,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-2e","req":{"method":"PUT","url":"/match-histories/1","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
 SELECT * FROM match_history WHERE id = 1.0 AND user_id = 1.0
         # Subtest: PUT /match-histories/:id returns 403 when unauthorized to update
             ok 1 - Status code should be 403
             ok 2 - should be equal
             1..2
-        ok 7 - PUT /match-histories/:id returns 403 when unauthorized to update # time=2.805ms
+        ok 7 - PUT /match-histories/:id returns 403 when unauthorized to update # time=2.793ms
         
+{"level":30,"time":1746715421023,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-2e","res":{"statusCode":403},"responseTime":1.7661752700805664,"msg":"request completed"}
+{"level":30,"time":1746715421025,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-2f","req":{"method":"PUT","url":"/match-histories/100","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
 SELECT * FROM match_history WHERE id = 100.0 AND user_id = 2.0
         # Subtest: PUT /match-histories/:id returns 403 when match not found
             ok 1 - Status code should be 403
             ok 2 - should be equal
             1..2
-        ok 8 - PUT /match-histories/:id returns 403 when match not found # time=1.932ms
+        ok 8 - PUT /match-histories/:id returns 403 when match not found # time=1.821ms
         
-{"level":30,"time":1746712960977,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-2e","res":{"statusCode":403},"responseTime":1.7373647689819336,"msg":"request completed"}
-{"level":30,"time":1746712960979,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-2f","req":{"method":"PUT","url":"/match-histories/100","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
-{"level":30,"time":1746712960980,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-2f","res":{"statusCode":403},"responseTime":0.9339666366577148,"msg":"request completed"}
-{"level":30,"time":1746712960981,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-2g","req":{"method":"PUT","url":"/match-histories/1","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
         # Subtest: PUT /match-histories/:id returns 400 when score is missing
             ok 1 - Status code should be 400
             ok 2 - should be equal
             1..2
-        ok 9 - PUT /match-histories/:id returns 400 when score is missing # time=1.654ms
+        ok 9 - PUT /match-histories/:id returns 400 when score is missing # time=1.725ms
         
-{"level":30,"time":1746712960981,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-2g","res":{"statusCode":400},"err":{"type":"Error","message":"body/players/1 must have required property 'score'","stack":"Error: body/players/1 must have required property 'score'\n    at defaultSchemaErrorFormatter (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/context.js:92:10)\n    at wrapValidationError (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/validation.js:249:17)\n    at validate (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/validation.js:167:16)\n    at preValidationCallback (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/handleRequest.js:89:25)\n    at handler (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/handleRequest.js:73:7)\n    at /home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/contentTypeParser.js:214:9\n    at AsyncResource.runInAsyncScope (node:async_hooks:211:14)\n    at done (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/contentTypeParser.js:207:14)\n    at Parser.defaultJsonParser [as fn] (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/contentTypeParser.js:312:7)\n    at Request.onEnd (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/contentTypeParser.js:296:27)","statusCode":400,"code":"FST_ERR_VALIDATION","validation":[{"instancePath":"/players/1","schemaPath":"#/properties/players/items/required","keyword":"required","params":{"missingProperty":"score"},"message":"must have required property 'score'"}],"validationContext":"body"},"msg":"body/players/1 must have required property 'score'"}
-{"level":30,"time":1746712960982,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-2g","res":{"statusCode":400},"responseTime":0.7516927719116211,"msg":"request completed"}
-{"level":30,"time":1746712960983,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-2h","req":{"method":"PUT","url":"/match-histories/1","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
 SELECT * FROM match_history WHERE id = 1.0 AND user_id = 2.0
 BEGIN
 SELECT * FROM match_player_history WHERE match_id = 1.0 AND player_id = 1.0
+{"level":30,"time":1746715421026,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-2f","res":{"statusCode":403},"responseTime":0.9319438934326172,"msg":"request completed"}
+{"level":30,"time":1746715421027,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-2g","req":{"method":"PUT","url":"/match-histories/1","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
 
         UPDATE match_player_history SET score = 2.0 WHERE match_id = 1.0 AND player_id = 1.0
     
@@ -1167,19 +1164,22 @@ COMMIT
             ok 1 - Status code should be 404
             ok 2 - should be equal
             1..2
-        ok 10 - PUT /match-histories/:id returns 404 when player not in match # time=7.091ms
+        ok 10 - PUT /match-histories/:id returns 404 when player not in match # time=7.981ms
         
-{"level":30,"time":1746712960984,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-2h","res":{"statusCode":404},"responseTime":1.537461280822754,"msg":"request completed"}
-{"level":40,"time":1746712960989,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-2h","err":{"type":"FastifyError","message":"Reply was already sent, did you forget to \"return reply\" in \"/match-histories/1\" (PUT)?","stack":"FastifyError: Reply was already sent, did you forget to \"return reply\" in \"/match-histories/1\" (PUT)?\n    at Reply.send (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/reply.js:134:26)\n    at Object.updateMatchHistory (file:///home/vvaalant/Documents/ring7/new2/backend/controllers/matchHistoryController.js:184:32)\n    at preHandlerCallbackInner (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/handleRequest.js:161:24)\n    at preHandlerCallback (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/handleRequest.js:129:5)\n    at validationCompleted (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/handleRequest.js:119:5)\n    at preValidationCallback (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/handleRequest.js:96:5)\n    at handler (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/handleRequest.js:73:7)\n    at /home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/contentTypeParser.js:214:9\n    at AsyncResource.runInAsyncScope (node:async_hooks:211:14)\n    at done (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/contentTypeParser.js:207:14)","code":"FST_ERR_REP_ALREADY_SENT","name":"FastifyError","statusCode":500},"msg":"Reply was already sent, did you forget to \"return reply\" in \"/match-histories/1\" (PUT)?"}
-{"level":30,"time":1746712960990,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-2i","req":{"method":"PUT","url":"/match-histories/1","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1746715421027,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-2g","res":{"statusCode":400},"err":{"type":"Error","message":"body/players/1 must have required property 'score'","stack":"Error: body/players/1 must have required property 'score'\n    at defaultSchemaErrorFormatter (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/context.js:92:10)\n    at wrapValidationError (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/validation.js:249:17)\n    at validate (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/validation.js:167:16)\n    at preValidationCallback (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/handleRequest.js:89:25)\n    at handler (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/handleRequest.js:73:7)\n    at /home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/contentTypeParser.js:214:9\n    at AsyncResource.runInAsyncScope (node:async_hooks:211:14)\n    at done (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/contentTypeParser.js:207:14)\n    at Parser.defaultJsonParser [as fn] (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/contentTypeParser.js:312:7)\n    at Request.onEnd (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/contentTypeParser.js:296:27)","statusCode":400,"code":"FST_ERR_VALIDATION","validation":[{"instancePath":"/players/1","schemaPath":"#/properties/players/items/required","keyword":"required","params":{"missingProperty":"score"},"message":"must have required property 'score'"}],"validationContext":"body"},"msg":"body/players/1 must have required property 'score'"}
+{"level":30,"time":1746715421028,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-2g","res":{"statusCode":400},"responseTime":0.810267448425293,"msg":"request completed"}
+{"level":30,"time":1746715421029,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-2h","req":{"method":"PUT","url":"/match-histories/1","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1746715421031,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-2h","res":{"statusCode":404},"responseTime":1.952000617980957,"msg":"request completed"}
+{"level":40,"time":1746715421036,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-2h","err":{"type":"FastifyError","message":"Reply was already sent, did you forget to \"return reply\" in \"/match-histories/1\" (PUT)?","stack":"FastifyError: Reply was already sent, did you forget to \"return reply\" in \"/match-histories/1\" (PUT)?\n    at Reply.send (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/reply.js:134:26)\n    at Object.updateMatchHistory (file:///home/vvaalant/Documents/ring7/new2/backend/controllers/matchHistoryController.js:184:32)\n    at preHandlerCallbackInner (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/handleRequest.js:161:24)\n    at preHandlerCallback (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/handleRequest.js:129:5)\n    at validationCompleted (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/handleRequest.js:119:5)\n    at preValidationCallback (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/handleRequest.js:96:5)\n    at handler (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/handleRequest.js:73:7)\n    at /home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/contentTypeParser.js:214:9\n    at AsyncResource.runInAsyncScope (node:async_hooks:211:14)\n    at done (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/contentTypeParser.js:207:14)","code":"FST_ERR_REP_ALREADY_SENT","name":"FastifyError","statusCode":500},"msg":"Reply was already sent, did you forget to \"return reply\" in \"/match-histories/1\" (PUT)?"}
+{"level":30,"time":1746715421037,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-2i","req":{"method":"PUT","url":"/match-histories/1","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
         # Subtest: PUT /match-histories/:id returns 400 when winner is not part of the players
             ok 1 - Status code should be 400
             ok 2 - should be equal
             1..2
-        ok 11 - PUT /match-histories/:id returns 400 when winner is not part of the players # time=1.419ms
+        ok 11 - PUT /match-histories/:id returns 400 when winner is not part of the players # time=1.408ms
         
-{"level":30,"time":1746712960991,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-2i","res":{"statusCode":400},"responseTime":0.5914697647094727,"msg":"request completed"}
-{"level":30,"time":1746712960992,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-2j","req":{"method":"PUT","url":"/match-histories/1","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1746715421038,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-2i","res":{"statusCode":400},"responseTime":0.5811853408813477,"msg":"request completed"}
+{"level":30,"time":1746715421039,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-2j","req":{"method":"PUT","url":"/match-histories/1","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
 SELECT * FROM match_history WHERE id = 1.0 AND user_id = 2.0
 BEGIN
 SELECT * FROM match_player_history WHERE match_id = 1.0 AND player_id = 1.0
@@ -1230,749 +1230,112 @@ COMMIT
         
             ok 3 - should be equivalent
             1..3
-        ok 12 - PUT /match-histories/:id returns 200 on success # time=8.392ms
+        ok 12 - PUT /match-histories/:id returns 200 on success # time=10.714ms
         
 DELETE FROM match_history WHERE id = 1.0 AND user_id = 1.0
         # Subtest: DELETE /match-histories/:id returns 404 when unauthorized
             ok 1 - Status code should be 404
             ok 2 - should be equal
             1..2
-        ok 13 - DELETE /match-histories/:id returns 404 when unauthorized # time=1.6ms
+        ok 13 - DELETE /match-histories/:id returns 404 when unauthorized # time=1.56ms
         
 DELETE FROM match_history WHERE id = 100.0 AND user_id = 2.0
         # Subtest: DELETE /match-histories/:id returns 404 when match does not exist
             ok 1 - Status code should be 404
             ok 2 - should be equal
             1..2
-        ok 14 - DELETE /match-histories/:id returns 404 when match does not exist # time=1.279ms
+        ok 14 - DELETE /match-histories/:id returns 404 when match does not exist # time=1.245ms
         
 DELETE FROM match_history WHERE id = 1.0 AND user_id = 2.0
         # Subtest: DELETE /match-histories/:id returns 200 on success
             ok 1 - Status code should be 200
             ok 2 - should be equal
             1..2
-        ok 15 - DELETE /match-histories/:id returns 200 on success # time=5.397ms
+        ok 15 - DELETE /match-histories/:id returns 200 on success # time=7.476ms
         
         1..15
-    ok 5 - POST `/login` - Login as kim # time=289.155ms
+    ok 5 - POST `/login` - Login as kim # time=278.437ms
     
-
-            SELECT
-                t.id AS tournament_id,
-                t.name,
-                t.status,
-                t.current_round,
-                t.winner_id,
-                mh.id as match_id,
-                mh.type,
-                mh.date,
-                mh.round,
-                COALESCE(
-                    (
-                        SELECT json_group_array(
-                            json_object(
-                                'player_id', mph.player_id,
-                                'score', mph.score
-                            )
-                        )
-                        FROM match_player_history mph
-                        WHERE mph.match_id = mh.id
-                    ), '[]'
-                ) AS players
-            FROM match_history mh
-            JOIN tournaments t ON t.id = mh.tournament_id
-        
-    # Subtest: GET `/tournaments` returns 404 when no tournament exist
-        ok 1 - Status code 404
-        ok 2 - should be equivalent
-        1..2
-    ok 6 - GET `/tournaments` returns 404 when no tournament exist # time=1.697ms
-    
-{"level":30,"time":1746712960998,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-2j","res":{"statusCode":200},"responseTime":6.17132568359375,"msg":"request completed"}
-{"level":30,"time":1746712960999,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-2k","req":{"method":"GET","url":"/match-histories/1","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
-{"level":30,"time":1746712960999,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-2k","res":{"statusCode":200},"responseTime":0.5730924606323242,"msg":"request completed"}
-{"level":30,"time":1746712961001,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-2l","req":{"method":"DELETE","url":"/match-histories/1","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
-{"level":30,"time":1746712961001,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-2l","res":{"statusCode":404},"responseTime":0.7285366058349609,"msg":"request completed"}
-{"level":30,"time":1746712961002,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-2m","req":{"method":"DELETE","url":"/match-histories/100","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
-{"level":30,"time":1746712961003,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-2m","res":{"statusCode":404},"responseTime":0.5023880004882812,"msg":"request completed"}
-{"level":30,"time":1746712961004,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-2n","req":{"method":"DELETE","url":"/match-histories/1","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
-{"level":30,"time":1746712961008,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-2n","res":{"statusCode":200},"responseTime":4.543791770935059,"msg":"request completed"}
-{"level":30,"time":1746712961010,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-2o","req":{"method":"GET","url":"/tournaments","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
-{"level":30,"time":1746712961011,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-2o","res":{"statusCode":404},"responseTime":0.6907367706298828,"msg":"request completed"}
-{"level":30,"time":1746712961012,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-2p","req":{"method":"POST","url":"/login","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
-SELECT * FROM users WHERE username = 'kim'
-SELECT two_fa_enabled FROM users WHERE id = 2.0
+{"level":30,"time":1746715421047,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-2j","res":{"statusCode":200},"responseTime":8.520147323608398,"msg":"request completed"}
+{"level":30,"time":1746715421048,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-2k","req":{"method":"GET","url":"/match-histories/1","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1746715421049,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-2k","res":{"statusCode":200},"responseTime":0.6382846832275391,"msg":"request completed"}
+{"level":30,"time":1746715421050,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-2l","req":{"method":"DELETE","url":"/match-histories/1","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1746715421051,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-2l","res":{"statusCode":404},"responseTime":0.7250185012817383,"msg":"request completed"}
+{"level":30,"time":1746715421052,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-2m","req":{"method":"DELETE","url":"/match-histories/100","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1746715421052,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-2m","res":{"statusCode":404},"responseTime":0.4788322448730469,"msg":"request completed"}
+{"level":30,"time":1746715421053,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-2n","req":{"method":"DELETE","url":"/match-histories/1","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1746715421060,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-2n","res":{"statusCode":200},"responseTime":6.580995559692383,"msg":"request completed"}
+{"level":30,"time":1746715421062,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-2o","req":{"method":"POST","url":"/register","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+INSERT INTO users (username, email, password_hash) VALUES ('alice2fa', 'alice2fa@example.com', '$2b$10$rdiA.FrETNOnaWQXykMQ5ObCI'/*+28 bytes*/)
+SELECT id, username, email, online_status, two_fa_enabled, created_at FROM users WHERE id = 3.0
+{"level":30,"time":1746715421172,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-2o","res":{"statusCode":201},"responseTime":110.628005027771,"msg":"request completed"}
+    # Subtest: Two-Factor Authentication Suite
+        ok 1 - POST /register → 201
+{"level":30,"time":1746715421173,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-2p","req":{"method":"POST","url":"/login","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+SELECT * FROM users WHERE username = 'alice2fa'
+SELECT two_fa_enabled FROM users WHERE id = 3.0
 UPDATE users
             SET online_status = TRUE
-            WHERE id = 2.0
+            WHERE id = 3.0
             AND online_status = FALSE
         
-{"level":30,"time":1746712961128,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-2p","res":{"statusCode":200},"responseTime":116.22988986968994,"msg":"request completed"}
-{"level":30,"time":1746712961129,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-2q","req":{"method":"POST","url":"/login","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
-SELECT * FROM users WHERE username = 'lumi'
-SELECT two_fa_enabled FROM users WHERE id = 1.0
+{"level":30,"time":1746715421284,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-2p","res":{"statusCode":200},"responseTime":111.34089088439941,"msg":"request completed"}
+        ok 2 - POST /login without 2FA → 200
+UPDATE users SET two_fa_secret = 'HMXGSYJELYRTG5LFOQ5CCVTQLURXESBF'/*+20 bytes*/ WHERE id = 3.0
+{"level":30,"time":1746715421285,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-2q","req":{"method":"GET","url":"/api/2fa/setup","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1746715421367,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-2q","res":{"statusCode":200},"responseTime":82.09899044036865,"msg":"request completed"}
+        ok 3 - GET /api/2fa/setup → 200
+        ok 4 - returns QR data-URL
+SELECT two_fa_secret FROM users WHERE id = 3.0
+        ok 5 - Secret stored in DB
+SELECT two_fa_secret FROM users WHERE id = 3.0
+UPDATE users SET two_fa_enabled = 1 WHERE id = 3.0
+        ok 6 - POST /api/2fa/verify → 200
+        ok 7 - should be equal
+SELECT * FROM users WHERE id = 3.0
+        ok 8 - two_fa_enabled is true
+{"level":30,"time":1746715421369,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-2r","req":{"method":"POST","url":"/api/2fa/verify","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1746715421374,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-2r","res":{"statusCode":200},"responseTime":5.324012756347656,"msg":"request completed"}
+{"level":30,"time":1746715421375,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-2s","req":{"method":"GET","url":"/users/3","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1746715421375,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-2s","res":{"statusCode":200},"responseTime":0.5907869338989258,"msg":"request completed"}
+{"level":30,"time":1746715421376,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-2t","req":{"method":"POST","url":"/login","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+SELECT * FROM users WHERE username = 'alice2fa'
+SELECT two_fa_enabled FROM users WHERE id = 3.0
+{"level":30,"time":1746715421486,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-2t","res":{"statusCode":206},"responseTime":110.35740089416504,"msg":"request completed"}
+        ok 9 - POST /login with 2FA → 206
+        ok 10 - should be equal
+{"level":30,"time":1746715421487,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-2u","req":{"method":"POST","url":"/login/2fa","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+SELECT two_fa_secret FROM users WHERE id = 3.0
+        ok 11 - POST /login/2fa with wrong code → 400
+        ok 12 - should be equal
+{"level":30,"time":1746715421488,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-2u","res":{"statusCode":400},"responseTime":1.1726694107055664,"msg":"request completed"}
+{"level":30,"time":1746715421489,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-2v","req":{"method":"POST","url":"/login/2fa","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+SELECT two_fa_secret FROM users WHERE id = 3.0
+        ok 13 - POST /login/2fa → 200
+        ok 14 - JWT returned
+SELECT two_fa_secret FROM users WHERE id = 3.0
+UPDATE users SET two_fa_secret = NULL, two_fa_enabled = 0 WHERE id = 3.0
+        ok 15 - DELETE /api/2fa → 200
+        ok 16 - should be equal
+{"level":30,"time":1746715421490,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-2v","res":{"statusCode":200},"responseTime":0.8728485107421875,"msg":"request completed"}
+{"level":30,"time":1746715421490,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-2w","req":{"method":"DELETE","url":"/api/2fa","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1746715421495,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-2w","res":{"statusCode":200},"responseTime":4.621116638183594,"msg":"request completed"}
+{"level":30,"time":1746715421495,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-2x","req":{"method":"POST","url":"/login","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+SELECT * FROM users WHERE username = 'alice2fa'
+SELECT two_fa_enabled FROM users WHERE id = 3.0
 UPDATE users
             SET online_status = TRUE
-            WHERE id = 1.0
+            WHERE id = 3.0
             AND online_status = FALSE
         
-{"level":30,"time":1746712961244,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-2q","res":{"statusCode":200},"responseTime":115.86840629577637,"msg":"request completed"}
-DELETE FROM 'players'
-DELETE FROM sqlite_sequence WHERE name='players'
-DELETE FROM 'match_history'
-DELETE FROM sqlite_sequence WHERE name='match_history'
-{"level":30,"time":1746712961258,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-2r","req":{"method":"POST","url":"/players","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
-SELECT COUNT(*) AS count FROM players WHERE user_id = 2.0
-INSERT INTO players (user_id, display_name, avatar_url) VALUES (2.0, 'Player1', NULL)
-SELECT id, display_name, avatar_url, wins, losses, created_at FROM players WHERE id = 1.0
-{"level":30,"time":1746712961264,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-2r","res":{"statusCode":201},"responseTime":5.540220260620117,"msg":"request completed"}
-{"level":30,"time":1746712961264,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-2s","req":{"method":"POST","url":"/players","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
-SELECT COUNT(*) AS count FROM players WHERE user_id = 2.0
-INSERT INTO players (user_id, display_name, avatar_url) VALUES (2.0, 'Player2', NULL)
-SELECT id, display_name, avatar_url, wins, losses, created_at FROM players WHERE id = 2.0
-{"level":30,"time":1746712961269,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-2s","res":{"statusCode":201},"responseTime":5.348082542419434,"msg":"request completed"}
-{"level":30,"time":1746712961270,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-2t","req":{"method":"POST","url":"/players","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
-SELECT COUNT(*) AS count FROM players WHERE user_id = 2.0
-INSERT INTO players (user_id, display_name, avatar_url) VALUES (2.0, 'Player3', NULL)
-SELECT id, display_name, avatar_url, wins, losses, created_at FROM players WHERE id = 3.0
-{"level":30,"time":1746712961276,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-2t","res":{"statusCode":201},"responseTime":5.769410133361816,"msg":"request completed"}
-{"level":30,"time":1746712961276,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-2u","req":{"method":"POST","url":"/players","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
-SELECT COUNT(*) AS count FROM players WHERE user_id = 2.0
-INSERT INTO players (user_id, display_name, avatar_url) VALUES (2.0, 'Player4', NULL)
-SELECT id, display_name, avatar_url, wins, losses, created_at FROM players WHERE id = 4.0
-{"level":30,"time":1746712961281,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-2u","res":{"statusCode":201},"responseTime":5.242702484130859,"msg":"request completed"}
-{"level":30,"time":1746712961281,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-2v","req":{"method":"POST","url":"/players","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
-SELECT COUNT(*) AS count FROM players WHERE user_id = 2.0
-INSERT INTO players (user_id, display_name, avatar_url) VALUES (2.0, 'Player5', NULL)
-SELECT id, display_name, avatar_url, wins, losses, created_at FROM players WHERE id = 5.0
-{"level":30,"time":1746712961286,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-2v","res":{"statusCode":201},"responseTime":4.852321624755859,"msg":"request completed"}
-{"level":30,"time":1746712961286,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-2w","req":{"method":"POST","url":"/players","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
-SELECT COUNT(*) AS count FROM players WHERE user_id = 2.0
-INSERT INTO players (user_id, display_name, avatar_url) VALUES (2.0, 'Player6', NULL)
-SELECT id, display_name, avatar_url, wins, losses, created_at FROM players WHERE id = 6.0
-{"level":30,"time":1746712961291,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-2w","res":{"statusCode":201},"responseTime":4.7838544845581055,"msg":"request completed"}
-{"level":30,"time":1746712961291,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-2x","req":{"method":"POST","url":"/players","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
-SELECT COUNT(*) AS count FROM players WHERE user_id = 2.0
-INSERT INTO players (user_id, display_name, avatar_url) VALUES (2.0, 'Player7', NULL)
-SELECT id, display_name, avatar_url, wins, losses, created_at FROM players WHERE id = 7.0
-{"level":30,"time":1746712961296,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-2x","res":{"statusCode":201},"responseTime":4.976533889770508,"msg":"request completed"}
-{"level":30,"time":1746712961297,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-2y","req":{"method":"POST","url":"/players","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
-SELECT COUNT(*) AS count FROM players WHERE user_id = 2.0
-INSERT INTO players (user_id, display_name, avatar_url) VALUES (2.0, 'Player8', NULL)
-SELECT id, display_name, avatar_url, wins, losses, created_at FROM players WHERE id = 8.0
-    # Subtest: POST `/login` - Login as kim
-        ok 1 - should be equal
-{"level":30,"time":1746712961302,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-2y","res":{"statusCode":201},"responseTime":4.870221138000488,"msg":"request completed"}
-{"level":30,"time":1746712961305,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-2z","req":{"method":"POST","url":"/tournaments","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
-        # Subtest: POST `/tournaments` returns 400 when creating tournament with 1 player
-            ok 1 - Status code 400
-            ok 2 - should be equal
-            1..2
-        ok 2 - POST `/tournaments` returns 400 when creating tournament with 1 player # time=7.066ms
-        
-{"level":30,"time":1746712961308,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-2z","res":{"statusCode":400},"err":{"type":"Error","message":"body/player_ids must NOT have fewer than 3 items","stack":"Error: body/player_ids must NOT have fewer than 3 items\n    at defaultSchemaErrorFormatter (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/context.js:92:10)\n    at wrapValidationError (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/validation.js:249:17)\n    at validate (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/validation.js:167:16)\n    at preValidationCallback (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/handleRequest.js:89:25)\n    at handler (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/handleRequest.js:73:7)\n    at /home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/contentTypeParser.js:214:9\n    at AsyncResource.runInAsyncScope (node:async_hooks:211:14)\n    at done (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/contentTypeParser.js:207:14)\n    at Parser.defaultJsonParser [as fn] (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/contentTypeParser.js:312:7)\n    at Request.onEnd (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/contentTypeParser.js:296:27)","statusCode":400,"code":"FST_ERR_VALIDATION","validation":[{"instancePath":"/player_ids","schemaPath":"#/properties/player_ids/minItems","keyword":"minItems","params":{"limit":3},"message":"must NOT have fewer than 3 items"}],"validationContext":"body"},"msg":"body/player_ids must NOT have fewer than 3 items"}
-{"level":30,"time":1746712961309,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-2z","res":{"statusCode":400},"responseTime":4.199712753295898,"msg":"request completed"}
-{"level":30,"time":1746712961310,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-30","req":{"method":"POST","url":"/tournaments","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
-        # Subtest: POST `/tournaments` returns 400 when creating tournament with 2 players
-            ok 1 - Status code 400
-            ok 2 - should be equal
-            1..2
-        ok 3 - POST `/tournaments` returns 400 when creating tournament with 2 players # time=1.492ms
-        
-{"level":30,"time":1746712961310,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-30","res":{"statusCode":400},"err":{"type":"Error","message":"body/player_ids must NOT have fewer than 3 items","stack":"Error: body/player_ids must NOT have fewer than 3 items\n    at defaultSchemaErrorFormatter (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/context.js:92:10)\n    at wrapValidationError (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/validation.js:249:17)\n    at validate (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/validation.js:167:16)\n    at preValidationCallback (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/handleRequest.js:89:25)\n    at handler (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/handleRequest.js:73:7)\n    at /home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/contentTypeParser.js:214:9\n    at AsyncResource.runInAsyncScope (node:async_hooks:211:14)\n    at done (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/contentTypeParser.js:207:14)\n    at Parser.defaultJsonParser [as fn] (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/contentTypeParser.js:312:7)\n    at Request.onEnd (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/contentTypeParser.js:296:27)","statusCode":400,"code":"FST_ERR_VALIDATION","validation":[{"instancePath":"/player_ids","schemaPath":"#/properties/player_ids/minItems","keyword":"minItems","params":{"limit":3},"message":"must NOT have fewer than 3 items"}],"validationContext":"body"},"msg":"body/player_ids must NOT have fewer than 3 items"}
-{"level":30,"time":1746712961311,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-30","res":{"statusCode":400},"responseTime":0.6413364410400391,"msg":"request completed"}
-{"level":30,"time":1746712961312,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-31","req":{"method":"POST","url":"/tournaments","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
-BEGIN
-SELECT * FROM tournaments WHERE name = 'T1'
-SELECT * FROM players WHERE id = 1.0
-SELECT * FROM players WHERE id = 2.0
-SELECT * FROM players WHERE id = 100.0
-COMMIT
-TypeError: Cannot destructure property 'tournament_id' of 'rows[0]' as it is undefined.
-    at Object.createTournament [90m(file:///home/vvaalant/Documents/ring7/new2/backend/[39mcontrollers/tournamentController.js:220:17[90m)[39m
-    at preHandlerCallbackInner [90m(/home/vvaalant/Documents/ring7/new2/backend/[39mnode_modules/[4mfastify[24m/lib/handleRequest.js:161:24[90m)[39m
-    at preHandlerCallback [90m(/home/vvaalant/Documents/ring7/new2/backend/[39mnode_modules/[4mfastify[24m/lib/handleRequest.js:129:5[90m)[39m
-    at validationCompleted [90m(/home/vvaalant/Documents/ring7/new2/backend/[39mnode_modules/[4mfastify[24m/lib/handleRequest.js:119:5[90m)[39m
-    at preValidationCallback [90m(/home/vvaalant/Documents/ring7/new2/backend/[39mnode_modules/[4mfastify[24m/lib/handleRequest.js:96:5[90m)[39m
-    at handler [90m(/home/vvaalant/Documents/ring7/new2/backend/[39mnode_modules/[4mfastify[24m/lib/handleRequest.js:73:7[90m)[39m
-    at [90m/home/vvaalant/Documents/ring7/new2/backend/[39mnode_modules/[4mfastify[24m/lib/contentTypeParser.js:214:9
-[90m    at AsyncResource.runInAsyncScope (node:async_hooks:211:14)[39m
-    at done [90m(/home/vvaalant/Documents/ring7/new2/backend/[39mnode_modules/[4mfastify[24m/lib/contentTypeParser.js:207:14[90m)[39m
-    at Parser.defaultJsonParser [as fn] [90m(/home/vvaalant/Documents/ring7/new2/backend/[39mnode_modules/[4mfastify[24m/lib/contentTypeParser.js:312:7[90m)[39m
-        # Subtest: POST `/tournaments` returns 400 when creating tournament with invalid player
-            ok 1 - Status code 400
-            ok 2 - should be equal
-            1..2
-        ok 4 - POST `/tournaments` returns 400 when creating tournament with invalid player # time=3.269ms
-        
-{"level":30,"time":1746712961313,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-31","res":{"statusCode":400},"responseTime":1.6080265045166016,"msg":"request completed"}
-{"level":40,"time":1746712961314,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-31","err":{"type":"FastifyError","message":"Reply was already sent, did you forget to \"return reply\" in \"/tournaments\" (POST)?","stack":"FastifyError: Reply was already sent, did you forget to \"return reply\" in \"/tournaments\" (POST)?\n    at Reply.send (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/reply.js:134:26)\n    at Object.createTournament (file:///home/vvaalant/Documents/ring7/new2/backend/controllers/tournamentController.js:243:32)\n    at preHandlerCallbackInner (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/handleRequest.js:161:24)\n    at preHandlerCallback (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/handleRequest.js:129:5)\n    at validationCompleted (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/handleRequest.js:119:5)\n    at preValidationCallback (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/handleRequest.js:96:5)\n    at handler (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/handleRequest.js:73:7)\n    at /home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/contentTypeParser.js:214:9\n    at AsyncResource.runInAsyncScope (node:async_hooks:211:14)\n    at done (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/contentTypeParser.js:207:14)","code":"FST_ERR_REP_ALREADY_SENT","name":"FastifyError","statusCode":500},"msg":"Reply was already sent, did you forget to \"return reply\" in \"/tournaments\" (POST)?"}
-{"level":30,"time":1746712961315,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-32","req":{"method":"POST","url":"/tournaments","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
-        # Subtest: POST `/tournaments` returns 400 when missing player_ids
-            ok 1 - Status code 400
-            ok 2 - should be equal
-            1..2
-        ok 5 - POST `/tournaments` returns 400 when missing player_ids # time=1.404ms
-        
-{"level":30,"time":1746712961316,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-32","res":{"statusCode":400},"err":{"type":"Error","message":"body/player_ids must NOT have fewer than 3 items","stack":"Error: body/player_ids must NOT have fewer than 3 items\n    at defaultSchemaErrorFormatter (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/context.js:92:10)\n    at wrapValidationError (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/validation.js:249:17)\n    at validate (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/validation.js:167:16)\n    at preValidationCallback (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/handleRequest.js:89:25)\n    at handler (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/handleRequest.js:73:7)\n    at /home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/contentTypeParser.js:214:9\n    at AsyncResource.runInAsyncScope (node:async_hooks:211:14)\n    at done (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/contentTypeParser.js:207:14)\n    at Parser.defaultJsonParser [as fn] (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/contentTypeParser.js:312:7)\n    at Request.onEnd (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/contentTypeParser.js:296:27)","statusCode":400,"code":"FST_ERR_VALIDATION","validation":[{"instancePath":"/player_ids","schemaPath":"#/properties/player_ids/minItems","keyword":"minItems","params":{"limit":3},"message":"must NOT have fewer than 3 items"}],"validationContext":"body"},"msg":"body/player_ids must NOT have fewer than 3 items"}
-{"level":30,"time":1746712961316,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-32","res":{"statusCode":400},"responseTime":0.6172075271606445,"msg":"request completed"}
-{"level":30,"time":1746712961317,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-33","req":{"method":"POST","url":"/tournaments","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
-        # Subtest: POST `/tournaments` returns 400 when missing name
-            ok 1 - Status code 400
-            ok 2 - should be equal
-            1..2
-        ok 6 - POST `/tournaments` returns 400 when missing name # time=1.305ms
-        
-{"level":30,"time":1746712961317,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-33","res":{"statusCode":400},"err":{"type":"Error","message":"body must have required property 'name'","stack":"Error: body must have required property 'name'\n    at defaultSchemaErrorFormatter (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/context.js:92:10)\n    at wrapValidationError (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/validation.js:249:17)\n    at validate (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/validation.js:167:16)\n    at preValidationCallback (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/handleRequest.js:89:25)\n    at handler (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/handleRequest.js:73:7)\n    at /home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/contentTypeParser.js:214:9\n    at AsyncResource.runInAsyncScope (node:async_hooks:211:14)\n    at done (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/contentTypeParser.js:207:14)\n    at Parser.defaultJsonParser [as fn] (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/contentTypeParser.js:312:7)\n    at Request.onEnd (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/contentTypeParser.js:296:27)","statusCode":400,"code":"FST_ERR_VALIDATION","validation":[{"instancePath":"","schemaPath":"#/required","keyword":"required","params":{"missingProperty":"name"},"message":"must have required property 'name'"}],"validationContext":"body"},"msg":"body must have required property 'name'"}
-{"level":30,"time":1746712961318,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-33","res":{"statusCode":400},"responseTime":0.553980827331543,"msg":"request completed"}
-{"level":30,"time":1746712961319,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-34","req":{"method":"POST","url":"/tournaments","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
-BEGIN
-SELECT * FROM tournaments WHERE name = 'T1'
-SELECT * FROM players WHERE id = 1.0
-SELECT * FROM players WHERE id = 2.0
-SELECT * FROM players WHERE id = 3.0
-INSERT INTO tournaments (name, user_id) VALUES ('T1', 2.0)
-INSERT INTO match_history (type, tournament_id, round, user_id) VALUES ('tournament', 1.0, 0.0, 2.0)
-INSERT INTO match_player_history (match_id, player_id) VALUES (1.0, 3.0)
-INSERT INTO match_player_history (match_id, player_id) VALUES (1.0, 2.0)
-INSERT INTO match_history (type, tournament_id, round, user_id) VALUES ('tournament', 1.0, 0.0, 2.0)
-INSERT INTO match_player_history (match_id, player_id) VALUES (2.0, 1.0)
-INSERT INTO match_winner_history (match_id, winner_id) VALUES (2.0, 1.0)
-
-    SELECT
-        t.id AS tournament_id,
-        t.name,
-        t.status,
-        t.current_round,
-        t.winner_id,
-        mh.id as match_id,
-        mh.type,
-        mh.round,
-        mh.date,
-        COALESCE(
-            (
-                SELECT json_group_array(
-                    json_object(
-                        'player_id', mph.player_id,
-                        'score', mph.score
-                    )
-                )
-                FROM match_player_history mph
-                WHERE mph.match_id = mh.id
-            ), '[]'
-        ) AS players
-    FROM match_history mh
-    JOIN tournaments t ON t.id = mh.tournament_id
-    WHERE t.id = 1.0
-
-COMMIT
-        # Subtest: POST `/tournaments` returns 200 when creating tournament with 3 players
-            ok 1 - Status code 200
-            ok 2 - should be equal
-            ok 3 - should be equivalent
-BEGIN
-SELECT * FROM tournaments WHERE id = 1.0 AND user_id = 2.0
-SELECT * FROM match_history WHERE tournament_id = 1.0 AND round = 0.0
-SELECT * FROM match_winner_history WHERE match_id = 1.0
-ROLLBACK
-            # Subtest: PUT `/tournaments/:id` returns 404 when match not played
-                ok 1 - Status code 404
-                ok 2 - should be equal
-                1..2
-            ok 4 - PUT `/tournaments/:id` returns 404 when match not played # time=2.944ms
-            
-{"level":30,"time":1746712961326,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-34","res":{"statusCode":200},"responseTime":7.473657608032227,"msg":"request completed"}
-{"level":30,"time":1746712961328,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-35","req":{"method":"PUT","url":"/tournaments/1","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
-{"level":30,"time":1746712961330,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-35","res":{"statusCode":404},"responseTime":1.7370929718017578,"msg":"request completed"}
-{"level":30,"time":1746712961331,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-36","req":{"method":"PUT","url":"/match-histories/1","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
-SELECT * FROM match_history WHERE id = 1.0 AND user_id = 2.0
-BEGIN
-SELECT * FROM match_player_history WHERE match_id = 1.0 AND player_id = 2.0
-
-        UPDATE match_player_history SET score = 2.0 WHERE match_id = 1.0 AND player_id = 2.0
+{"level":30,"time":1746715421602,"pid":1769302,"hostname":"c1r4p6.hive.fi","reqId":"req-2x","res":{"statusCode":200},"responseTime":106.90544414520264,"msg":"request completed"}
+        ok 17 - POST /login after disabling → 200
+        ok 18 - returns token & username
+        1..18
+    ok 6 - Two-Factor Authentication Suite # time=541.738ms
     
-UPDATE players SET losses = losses + 1 WHERE id = 2.0
-SELECT * FROM match_player_history WHERE match_id = 1.0 AND player_id = 3.0
-
-        UPDATE match_player_history SET score = 5.0 WHERE match_id = 1.0 AND player_id = 3.0
-    
-SELECT * FROM match_winner_history WHERE match_id = 1.0 AND winner_id = 3.0
-INSERT INTO match_winner_history (match_id, winner_id) VALUES (1.0, 3.0)
-UPDATE players SET wins = wins + 1 WHERE id = 3.0
-COMMIT
-            # Subtest: PUT `/tournaments/:id` returns 200 on success
-                ok 1 - Status code 200
-BEGIN
-SELECT * FROM tournaments WHERE id = 1.0 AND user_id = 2.0
-SELECT * FROM match_history WHERE tournament_id = 1.0 AND round = 0.0
-SELECT * FROM match_winner_history WHERE match_id = 1.0
-SELECT * FROM match_winner_history WHERE match_id = 2.0
-INSERT INTO match_history (type, tournament_id, round, user_id) VALUES ('tournament', 1.0, 1.0, 2.0)
-INSERT INTO match_player_history (match_id, player_id) VALUES (3.0, 3.0)
-INSERT INTO match_player_history (match_id, player_id) VALUES (3.0, 1.0)
-UPDATE tournaments SET current_round = current_round + 1 WHERE id = 1.0
-
-    SELECT
-        t.id AS tournament_id,
-        t.name,
-        t.status,
-        t.current_round,
-        t.winner_id,
-        mh.id as match_id,
-        mh.type,
-        mh.round,
-        mh.date,
-        COALESCE(
-            (
-                SELECT json_group_array(
-                    json_object(
-                        'player_id', mph.player_id,
-                        'score', mph.score
-                    )
-                )
-                FROM match_player_history mph
-                WHERE mph.match_id = mh.id
-            ), '[]'
-        ) AS players
-    FROM match_history mh
-    JOIN tournaments t ON t.id = mh.tournament_id
-    WHERE t.id = 1.0
-
-COMMIT
-                ok 2 - Status code 200
-                ok 3 - should be equal
-                ok 4 - should be equivalent
-BEGIN
-SELECT * FROM tournaments WHERE id = 1.0 AND user_id = 1.0
-ROLLBACK
-                # Subtest: PUT `/tournaments/:id` returns 404 unauthorized
-                    ok 1 - Status code 404
-                    ok 2 - should be equal
-                    1..2
-                ok 5 - PUT `/tournaments/:id` returns 404 unauthorized # time=2.352ms
-                
-{"level":30,"time":1746712961338,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-36","res":{"statusCode":200},"responseTime":6.507866859436035,"msg":"request completed"}
-{"level":30,"time":1746712961338,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-37","req":{"method":"PUT","url":"/tournaments/1","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
-{"level":30,"time":1746712961345,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-37","res":{"statusCode":200},"responseTime":6.793882369995117,"msg":"request completed"}
-{"level":30,"time":1746712961347,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-38","req":{"method":"PUT","url":"/tournaments/1","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
-{"level":30,"time":1746712961348,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-38","res":{"statusCode":404},"responseTime":0.9181995391845703,"msg":"request completed"}
-{"level":30,"time":1746712961350,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-39","req":{"method":"PUT","url":"/match-histories/3","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
-SELECT * FROM match_history WHERE id = 3.0 AND user_id = 2.0
-BEGIN
-SELECT * FROM match_player_history WHERE match_id = 3.0 AND player_id = 1.0
-
-        UPDATE match_player_history SET score = 2.0 WHERE match_id = 3.0 AND player_id = 1.0
-    
-SELECT * FROM match_player_history WHERE match_id = 3.0 AND player_id = 3.0
-
-        UPDATE match_player_history SET score = 1.0 WHERE match_id = 3.0 AND player_id = 3.0
-    
-UPDATE players SET losses = losses + 1 WHERE id = 3.0
-SELECT * FROM match_winner_history WHERE match_id = 3.0 AND winner_id = 1.0
-INSERT INTO match_winner_history (match_id, winner_id) VALUES (3.0, 1.0)
-UPDATE players SET wins = wins + 1 WHERE id = 1.0
-COMMIT
-                # Subtest: PUT `/tournaments/:id` returns 200 on tournament finish
-                    ok 1 - Status code 200
-BEGIN
-SELECT * FROM tournaments WHERE id = 1.0 AND user_id = 2.0
-SELECT * FROM match_history WHERE tournament_id = 1.0 AND round = 1.0
-SELECT * FROM match_winner_history WHERE match_id = 3.0
-UPDATE tournaments SET status = 'finished', winner_id = 1.0, current_round = 2.0 WHERE id = 1.0
-
-    SELECT
-        t.id AS tournament_id,
-        t.name,
-        t.status,
-        t.current_round,
-        t.winner_id,
-        mh.id as match_id,
-        mh.type,
-        mh.round,
-        mh.date,
-        COALESCE(
-            (
-                SELECT json_group_array(
-                    json_object(
-                        'player_id', mph.player_id,
-                        'score', mph.score
-                    )
-                )
-                FROM match_player_history mph
-                WHERE mph.match_id = mh.id
-            ), '[]'
-        ) AS players
-    FROM match_history mh
-    JOIN tournaments t ON t.id = mh.tournament_id
-    WHERE t.id = 1.0
-
-COMMIT
-SELECT display_name FROM players WHERE id = 1.0
-
-        SELECT DISTINCT p.display_name
-        FROM players p
-          JOIN match_player_history mph ON mph.player_id = p.id
-          JOIN match_history mh ON mh.id = mph.match_id
-        WHERE mh.tournament_id = 1.0
-{"level":30,"time":1746712961356,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-39","res":{"statusCode":200},"responseTime":5.891911506652832,"msg":"request completed"}
-{"level":30,"time":1746712961356,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-3a","req":{"method":"PUT","url":"/tournaments/1","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
-Scores from blockchain: [
-  {
-    tournamentId: [33m1[39m,
-    players: [ [32m'Alice'[39m, [32m'Bob'[39m ],
-    winner: [32m'Alice'[39m,
-    timestamp: [33m1744637226[39m
-  },
-  {
-    tournamentId: [33m1[39m,
-    players: [ [32m'Valle'[39m, [32m'Miyuki'[39m ],
-    winner: [32m'Valle'[39m,
-    timestamp: [33m1744637293[39m
-  },
-  {
-    tournamentId: [33m1[39m,
-    players: [ [32m'Valle'[39m, [32m'Miyuki'[39m ],
-    winner: [32m'Valle'[39m,
-    timestamp: [33m1744639472[39m
-  },
-  {
-    tournamentId: [33m1[39m,
-    players: [ [32m'Valle'[39m, [32m'Miyuki'[39m ],
-    winner: [32m'Valle'[39m,
-    timestamp: [33m1744639586[39m
-  },
-  {
-    tournamentId: [33m1[39m,
-    players: [ [32m'Valle'[39m, [32m'Kim'[39m, [32m'Oliver'[39m, [32m'Miyuki'[39m, [32m'Lumi'[39m ],
-    winner: [32m'Valle'[39m,
-    timestamp: [33m1745851055[39m
-  },
-  {
-    tournamentId: [33m1[39m,
-    players: [ [32m'Player2'[39m, [32m'Player3'[39m ],
-    winner: [32m'Player1'[39m,
-    timestamp: [33m1746551255[39m
-  },
-  {
-    tournamentId: [33m1[39m,
-    players: [ [32m'Player1'[39m, [32m'Player2'[39m, [32m'Player3'[39m ],
-    winner: [32m'Player2'[39m,
-    timestamp: [33m1746553767[39m
-  },
-  {
-    tournamentId: [33m1[39m,
-    players: [ [32m'Player2'[39m, [32m'Player3'[39m, [32m'Player1'[39m ],
-    winner: [32m'Player1'[39m,
-    timestamp: [33m1746553791[39m
-  },
-  {
-    tournamentId: [33m1[39m,
-    players: [ [32m'Player1'[39m, [32m'Player2'[39m, [32m'Player3'[39m ],
-    winner: [32m'Player2'[39m,
-    timestamp: [33m1746553986[39m
-  },
-  {
-    tournamentId: [33m1[39m,
-    players: [ [32m'Player2'[39m, [32m'Player3'[39m, [32m'Player1'[39m ],
-    winner: [32m'Player1'[39m,
-    timestamp: [33m1746554230[39m
-  },
-  {
-    tournamentId: [33m1[39m,
-    players: [ [32m'Player1'[39m, [32m'Player2'[39m, [32m'Player3'[39m ],
-    winner: [32m'Player2'[39m,
-    timestamp: [33m1746554324[39m
-  },
-  {
-    tournamentId: [33m1[39m,
-    players: [ [32m'Player1'[39m, [32m'Player3'[39m, [32m'Player2'[39m ],
-    winner: [32m'Player2'[39m,
-    timestamp: [33m1746554558[39m
-  },
-  {
-    tournamentId: [33m1[39m,
-    players: [ [32m'Playeri2'[39m, [32m'Playeri3'[39m, [32m'Playeri1'[39m ],
-    winner: [32m'Playeri1'[39m,
-    timestamp: [33m1746554703[39m
-  },
-  {
-    tournamentId: [33m1[39m,
-    players: [ [32m'Player1'[39m, [32m'Player2'[39m, [32m'Player3'[39m ],
-    winner: [32m'Player2'[39m,
-    timestamp: [33m1746631141[39m
-  },
-  {
-    tournamentId: [33m1[39m,
-    players: [ [32m'Player1'[39m, [32m'Player2'[39m, [32m'Player3'[39m ],
-    winner: [32m'Player2'[39m,
-    timestamp: [33m1746643238[39m
-  },
-  {
-    tournamentId: [33m1[39m,
-    players: [ [32m'Player1'[39m, [32m'Player2'[39m, [32m'Player3'[39m ],
-    winner: [32m'Player2'[39m,
-    timestamp: [33m1746705075[39m
-  },
-  {
-    tournamentId: [33m1[39m,
-    players: [ [32m'Player2'[39m, [32m'Player3'[39m, [32m'Player1'[39m ],
-    winner: [32m'Player1'[39m,
-    timestamp: [33m1746705380[39m
-  },
-  {
-    tournamentId: [33m1[39m,
-    players: [ [32m'Player2'[39m, [32m'Player3'[39m, [32m'Player1'[39m ],
-    winner: [32m'Player1'[39m,
-    timestamp: [33m1746705814[39m
-  },
-  {
-    tournamentId: [33m1[39m,
-    players: [ [32m'Player1'[39m, [32m'Player2'[39m, [32m'Player3'[39m ],
-    winner: [32m'Player2'[39m,
-    timestamp: [33m1746706024[39m
-  },
-  {
-    tournamentId: [33m1[39m,
-    players: [ [32m'Player1'[39m, [32m'Player3'[39m, [32m'Player2'[39m ],
-    winner: [32m'Player2'[39m,
-    timestamp: [33m1746706403[39m
-  },
-  {
-    tournamentId: [33m1[39m,
-    players: [ [32m'Player2'[39m, [32m'Player3'[39m, [32m'Player1'[39m ],
-    winner: [32m'Player1'[39m,
-    timestamp: [33m1746706430[39m
-  },
-  {
-    tournamentId: [33m1[39m,
-    players: [ [32m'Player2'[39m, [32m'Player3'[39m, [32m'Player1'[39m ],
-    winner: [32m'Player1'[39m,
-    timestamp: [33m1746707851[39m
-  },
-  {
-    tournamentId: [33m1[39m,
-    players: [ [32m'Player1'[39m, [32m'Player2'[39m, [32m'Player3'[39m ],
-    winner: [32m'Player2'[39m,
-    timestamp: [33m1746708934[39m
-  },
-  {
-    tournamentId: [33m1[39m,
-    players: [ [32m'Player2'[39m, [32m'Player3'[39m, [32m'Player1'[39m ],
-    winner: [32m'Player1'[39m,
-    timestamp: [33m1746709093[39m
-  },
-  {
-    tournamentId: [33m1[39m,
-    players: [ [32m'Player1'[39m, [32m'Player3'[39m, [32m'Player2'[39m ],
-    winner: [32m'Player2'[39m,
-    timestamp: [33m1746709189[39m
-  },
-  {
-    tournamentId: [33m1[39m,
-    players: [ [32m'Player1'[39m, [32m'Player2'[39m, [32m'Player3'[39m ],
-    winner: [32m'Player2'[39m,
-    timestamp: [33m1746709998[39m
-  },
-  {
-    tournamentId: [33m1[39m,
-    players: [ [32m'Player2'[39m, [32m'Player3'[39m, [32m'Player1'[39m ],
-    winner: [32m'Player1'[39m,
-    timestamp: [33m1746710453[39m
-  },
-  {
-    tournamentId: [33m1[39m,
-    players: [ [32m'Player1'[39m, [32m'Player2'[39m, [32m'Player3'[39m ],
-    winner: [32m'Player2'[39m,
-    timestamp: [33m1746711359[39m
-  },
-  {
-    tournamentId: [33m1[39m,
-    players: [ [32m'Player1'[39m, [32m'Player2'[39m, [32m'Player3'[39m ],
-    winner: [32m'Player2'[39m,
-    timestamp: [33m1746711554[39m
-  },
-  {
-    tournamentId: [33m1[39m,
-    players: [ [32m'Player1'[39m, [32m'Player2'[39m, [32m'Player3'[39m ],
-    winner: [32m'Player2'[39m,
-    timestamp: [33m1746712033[39m
-  },
-  {
-    tournamentId: [33m1[39m,
-    players: [ [32m'Player1'[39m, [32m'Player2'[39m, [32m'Player3'[39m ],
-    winner: [32m'Player2'[39m,
-    timestamp: [33m1746712409[39m
-  },
-  {
-    tournamentId: [33m1[39m,
-    players: [ [32m'Player2'[39m, [32m'Player3'[39m, [32m'Player1'[39m ],
-    winner: [32m'Player1'[39m,
-    timestamp: [33m1746712627[39m
-  },
-  {
-    tournamentId: [33m1[39m,
-    players: [ [32m'Player2'[39m, [32m'Player3'[39m, [32m'Player1'[39m ],
-    winner: [32m'Player1'[39m,
-    timestamp: [33m1746712870[39m
-  },
-  {
-    tournamentId: [33m1[39m,
-    players: [ [32m'Player2'[39m, [32m'Player3'[39m, [32m'Player1'[39m ],
-    winner: [32m'Player1'[39m,
-    timestamp: [33m1746712908[39m
-  },
-  {
-    tournamentId: [33m1[39m,
-    players: [ [32m'Player2'[39m, [32m'Player3'[39m, [32m'Player1'[39m ],
-    winner: [32m'Player1'[39m,
-    timestamp: [33m1746712933[39m
-  },
-  {
-    tournamentId: [33m1[39m,
-    players: [ [32m'Player2'[39m, [32m'Player3'[39m, [32m'Player1'[39m ],
-    winner: [32m'Player1'[39m,
-    timestamp: [33m1746712964[39m
-  }
-]
-Transaction hash: 0x40585acbdfd4132cd5e437e3950fe6504759534e7697b75cfd7bf235ddd6b749
-{"level":30,"time":1746712968137,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-3a","res":{"statusCode":200},"responseTime":6781.109745979309,"msg":"request completed"}
-                    ok 2 - Status code 200
-                    ok 3 - should be equal
-                    1..3
-                ok 6 - PUT `/tournaments/:id` returns 200 on tournament finish # time=6788.74ms
-                
-BEGIN
-SELECT * FROM tournaments WHERE id = 1.0 AND user_id = 2.0
-ROLLBACK
-                # Subtest: PUT `/tournaments/:id` returns 400 when already finished
-                    ok 1 - Status code 400
-                    ok 2 - should be equal
-                    1..2
-                ok 7 - PUT `/tournaments/:id` returns 400 when already finished # time=2.047ms
-                
-                1..7
-            ok 5 - PUT `/tournaments/:id` returns 200 on success # time=6810.216ms
-            
-            1..5
-        ok 7 - POST `/tournaments` returns 200 when creating tournament with 3 players # time=6823.218ms
-        
-BEGIN
-SELECT * FROM tournaments WHERE name = 'T1'
-COMMIT
-TypeError: Cannot destructure property 'tournament_id' of 'rows[0]' as it is undefined.
-    at Object.createTournament [90m(file:///home/vvaalant/Documents/ring7/new2/backend/[39mcontrollers/tournamentController.js:220:17[90m)[39m
-    at preHandlerCallbackInner [90m(/home/vvaalant/Documents/ring7/new2/backend/[39mnode_modules/[4mfastify[24m/lib/handleRequest.js:161:24[90m)[39m
-    at preHandlerCallback [90m(/home/vvaalant/Documents/ring7/new2/backend/[39mnode_modules/[4mfastify[24m/lib/handleRequest.js:129:5[90m)[39m
-    at validationCompleted [90m(/home/vvaalant/Documents/ring7/new2/backend/[39mnode_modules/[4mfastify[24m/lib/handleRequest.js:119:5[90m)[39m
-    at preValidationCallback [90m(/home/vvaalant/Documents/ring7/new2/backend/[39mnode_modules/[4mfastify[24m/lib/handleRequest.js:96:5[90m)[39m
-    at handler [90m(/home/vvaalant/Documents/ring7/new2/backend/[39mnode_modules/[4mfastify[24m/lib/handleRequest.js:73:7[90m)[39m
-    at [90m/home/vvaalant/Documents/ring7/new2/backend/[39mnode_modules/[4mfastify[24m/lib/contentTypeParser.js:214:9
-[90m    at AsyncResource.runInAsyncScope (node:async_hooks:211:14)[39m
-    at done [90m(/home/vvaalant/Documents/ring7/new2/backend/[39mnode_modules/[4mfastify[24m/lib/contentTypeParser.js:207:14[90m)[39m
-    at Parser.defaultJsonParser [as fn] [90m(/home/vvaalant/Documents/ring7/new2/backend/[39mnode_modules/[4mfastify[24m/lib/contentTypeParser.js:312:7[90m)[39m
-        # Subtest: POST `/tournaments` returns 400 on duplicate name
-            ok 1 - Status code 400
-            ok 2 - should be equal
-            1..2
-        ok 8 - POST `/tournaments` returns 400 on duplicate name # time=2.991ms
-        
-
-    SELECT
-        t.id AS tournament_id,
-        t.name,
-        t.status,
-        t.current_round,
-        t.winner_id,
-        mh.id as match_id,
-        mh.type,
-        mh.round,
-        mh.date,
-        COALESCE(
-            (
-                SELECT json_group_array(
-                    json_object(
-                        'player_id', mph.player_id,
-                        'score', mph.score
-                    )
-                )
-                FROM match_player_history mph
-                WHERE mph.match_id = mh.id
-            ), '[]'
-        ) AS players
-    FROM match_history mh
-    JOIN tournaments t ON t.id = mh.tournament_id
-    WHERE t.id = 10.0
-
-        # Subtest: GET `/tournaments/:id` returns 404 if tournament not found
-            ok 1 - Status code 404
-            ok 2 - should be equal
-            1..2
-        ok 9 - GET `/tournaments/:id` returns 404 if tournament not found # time=1.594ms
-        
-
-    SELECT
-        t.id AS tournament_id,
-        t.name,
-        t.status,
-        t.current_round,
-        t.winner_id,
-        mh.id as match_id,
-        mh.type,
-        mh.round,
-        mh.date,
-        COALESCE(
-            (
-                SELECT json_group_array(
-                    json_object(
-                        'player_id', mph.player_id,
-                        'score', mph.score
-                    )
-                )
-                FROM match_player_history mph
-                WHERE mph.match_id = mh.id
-            ), '[]'
-        ) AS players
-    FROM match_history mh
-    JOIN tournaments t ON t.id = mh.tournament_id
-    WHERE t.id = 1.0
-
-        # Subtest: GET `/tournaments/:id` returns 200 on success
-            ok 1 - Status code 200
-            1..1
-        ok 10 - GET `/tournaments/:id` returns 200 on success # time=1.283ms
-        
-DELETE FROM tournaments WHERE id = 1.0 and user_id = 1.0
-        # Subtest: DELETE `/tournaments/:id` returns 404 unauthorized
-            ok 1 - Status code 404
-            ok 2 - should be equal
-            1..2
-        ok 11 - DELETE `/tournaments/:id` returns 404 unauthorized # time=1.645ms
-        
-DELETE FROM tournaments WHERE id = 1.0 and user_id = 2.0
-        # Subtest: DELETE `/tournaments/:id` returns 200 on success
-            ok 1 - Status code 200
-            ok 2 - should be equal
-            1..2
-        ok 12 - DELETE `/tournaments/:id` returns 200 on success # time=6.396ms
-        
-        1..12
-    ok 7 - POST `/login` - Login as kim # time=7145.568ms
-    
-    1..7
+    1..6
 🧹 testPong.db wiped clean for next test
-ok 1 - All Test # time=9614.507ms
+ok 1 - All Test # time=2931.712ms
 
-{"level":30,"time":1746712968139,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-3b","req":{"method":"PUT","url":"/tournaments/1","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
-{"level":30,"time":1746712968140,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-3b","res":{"statusCode":400},"responseTime":0.9327573776245117,"msg":"request completed"}
-{"level":30,"time":1746712968142,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-3c","req":{"method":"POST","url":"/tournaments","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
-{"level":30,"time":1746712968143,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-3c","res":{"statusCode":400},"responseTime":0.9160003662109375,"msg":"request completed"}
-{"level":40,"time":1746712968144,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-3c","err":{"type":"FastifyError","message":"Reply was already sent, did you forget to \"return reply\" in \"/tournaments\" (POST)?","stack":"FastifyError: Reply was already sent, did you forget to \"return reply\" in \"/tournaments\" (POST)?\n    at Reply.send (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/reply.js:134:26)\n    at Object.createTournament (file:///home/vvaalant/Documents/ring7/new2/backend/controllers/tournamentController.js:243:32)\n    at preHandlerCallbackInner (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/handleRequest.js:161:24)\n    at preHandlerCallback (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/handleRequest.js:129:5)\n    at validationCompleted (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/handleRequest.js:119:5)\n    at preValidationCallback (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/handleRequest.js:96:5)\n    at handler (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/handleRequest.js:73:7)\n    at /home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/contentTypeParser.js:214:9\n    at AsyncResource.runInAsyncScope (node:async_hooks:211:14)\n    at done (/home/vvaalant/Documents/ring7/new2/backend/node_modules/fastify/lib/contentTypeParser.js:207:14)","code":"FST_ERR_REP_ALREADY_SENT","name":"FastifyError","statusCode":500},"msg":"Reply was already sent, did you forget to \"return reply\" in \"/tournaments\" (POST)?"}
-{"level":30,"time":1746712968145,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-3d","req":{"method":"GET","url":"/tournaments/10","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
-{"level":30,"time":1746712968146,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-3d","res":{"statusCode":404},"responseTime":0.6741142272949219,"msg":"request completed"}
-{"level":30,"time":1746712968147,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-3e","req":{"method":"GET","url":"/tournaments/1","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
-{"level":30,"time":1746712968148,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-3e","res":{"statusCode":200},"responseTime":0.6065826416015625,"msg":"request completed"}
-{"level":30,"time":1746712968149,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-3f","req":{"method":"DELETE","url":"/tournaments/1","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
-{"level":30,"time":1746712968150,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-3f","res":{"statusCode":404},"responseTime":0.8119821548461914,"msg":"request completed"}
-{"level":30,"time":1746712968151,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-3g","req":{"method":"DELETE","url":"/tournaments/1","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
-{"level":30,"time":1746712968156,"pid":1764919,"hostname":"c1r4p6.hive.fi","reqId":"req-3g","res":{"statusCode":200},"responseTime":5.477694511413574,"msg":"request completed"}
 1..1
