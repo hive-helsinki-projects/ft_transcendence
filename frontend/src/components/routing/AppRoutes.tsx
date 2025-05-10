@@ -4,6 +4,7 @@ import ProtectedRoute from '../auth/ProtectedRoute'
 import Dashboard from '../../pages/DashBoard'
 import Help from '../../pages/Help'
 import LandingPage from '../../pages/landing/LandingPage'
+import SearchResults from '../../pages/SearchResults'
 import Register from '../../pages/Register'
 import Settings from '../../pages/Settings'
 import Tournament from '../../pages/Tournament'
@@ -38,6 +39,11 @@ const AppRoutes: React.FC = () => {
       {<Route path="/tournament" element={
         <ProtectedRoute>
           <Tournament />
+        </ProtectedRoute>
+      } />}
+      {<Route path="/search" element={
+        <ProtectedRoute>
+          <SearchResults />
         </ProtectedRoute>
       } />}
       <Route path="/help" element={
