@@ -21,7 +21,7 @@ export class AuthService extends BaseService {
   }
 
   static async registerAndLogin(formData: AuthFormData): Promise<LoginResponse> {
-    await this.post('/api/auth/register', formData)
+    await this.post('/register', formData)
     return this.login(formData)
   }
 } 

@@ -4,7 +4,7 @@
 
 // API Endpoints
 export const API_ENDPOINTS = {
-  LOGIN: '/api/auth/login',
+  LOGIN: '/login',
   GOOGLE_AUTH: '/api/auth/google',
 } as const
 
