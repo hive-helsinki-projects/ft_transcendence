@@ -1,0 +1,33 @@
+{
+  "settings.title": "Settings",
+  "Account Settings": "Account Settings",
+  "Edit": "Edit",
+  "Save": "Save",
+  "Cancel": "Cancel",
+  "errors": {
+    "failedToUpdate": "Failed to update user data",
+    "general": "An error occurred"
+  },
+  "Two-Factor Authentication": "Two-Factor Authentication",
+  "Disable 2FA": "Disable 2FA",
+  "Enable 2FA": "Enable 2FA",
+  "Language Preferences": "Language Preferences",
+  "languages": {
+    "language": "Language",
+    "english": "English",
+    "finnish": "Finnish",
+    "swedish": "Swedish",
+    "japanese": "Japanese"
+  },
+  "Theme Settings": "Theme Settings",
+  "Theme": "Theme",
+  "Dark": "Dark",
+  "Light": "Light",
+  "System Default": "System Default",
+  "Account Management": "Account Management",
+  "actions": {
+    "deleteAccount": "Delete Account",
+    "logout": "Logout"
+  }
+}
+

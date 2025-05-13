@@ -15,6 +15,8 @@ import React, { useState } from 'react'
 import '../assets/styles/Settings.css'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../hooks/auth/useAuth'
+import useTranslate from '../hooks/useTranslate';
+import i18n from '../i18n/config'
 
 interface UserData {
   username: string
@@ -46,48 +48,52 @@ const EditableField: React.FC<EditableFieldProps> = ({
   onSave,
   onCancel,
   onChange,
-}) => (
-  <div className="form-group">
-    <div className="field-label">
-      {icon}
-      <label>{field.charAt(0).toUpperCase() + field.slice(1)}</label>
-    </div>
-    {isEditing ? (
-      <input
-        type={type}
-        name={field}
-        value={tempValue}
-        onChange={onChange}
-        placeholder={`Enter your ${field}`}
-        autoFocus
-        className="field-input"
-      />
-    ) : (
-      <div className="field-display">
-        {field === 'password' ? '********' : value}
+}) => {
+  const t = useTranslate();
+
+  return (
+    <div className="form-group">
+      <div className="field-label">
+        {icon}
+        <label>{field.charAt(0).toUpperCase() + field.slice(1)}</label>
       </div>
-    )}
-    <div className="field-actions">
-      {!isEditing ? (
-        <button className="edit-button" onClick={() => onEdit(field)}>
-          <Edit2 size={16} />
-          Edit
-        </button>
+      {isEditing ? (
+        <input
+          type={type}
+          name={field}
+          value={tempValue}
+          onChange={onChange}
+          placeholder={`Enter your ${field}`}
+          autoFocus
+          className="field-input"
+        />
       ) : (
-        <div className="edit-actions">
-          <button className="save-button" onClick={onSave}>
-            <Check size={16} />
-            Save
-          </button>
-          <button className="cancel-button" onClick={onCancel}>
-            <X size={16} />
-            Cancel
-          </button>
+        <div className="field-display">
+          {field === 'password' ? '********' : value}
         </div>
       )}
+      <div className="field-actions">
+        {!isEditing ? (
+          <button className="edit-button" onClick={() => onEdit(field)}>
+            <Edit2 size={16} />
+            {t('Edit')}
+          </button>
+        ) : (
+          <div className="edit-actions">
+            <button className="save-button" onClick={onSave}>
+              <Check size={16} />
+              {t('Save')}
+            </button>
+            <button className="cancel-button" onClick={onCancel}>
+              <X size={16} />
+              {t('Cancel')}
+            </button>
+          </div>
+        )}
+      </div>
     </div>
-  </div>
-)
+  )
+}
 
 interface SettingsSectionProps {
   title: string
@@ -112,6 +118,7 @@ const SettingsSection: React.FC<SettingsSectionProps> = ({
 const Settings: React.FC = () => {
   const { token, username, logout } = useAuth()
   const navigate = useNavigate()
+  const t = useTranslate()
 
   const [userData, setUserData] = useState<UserData>({
     username: username || '',
@@ -124,7 +131,7 @@ const Settings: React.FC = () => {
     password: '',
   })
   const [editingField, setEditingField] = useState<keyof UserData | null>(null)
-  const [language, setLanguage] = useState('English')
+  const [language, setLanguage] = useState(i18n.language)
   const [theme, setTheme] = useState('Dark')
   const [error, setError] = useState<string | null>(null)
   const [success, setSuccess] = useState<string | null>(null)
@@ -175,7 +182,8 @@ const Settings: React.FC = () => {
       })
 
       if (!response.ok) {
-        throw new Error('Failed to update user data')
+        const errorMessage = t('errors.failedToUpdate')
+        throw new Error(errorMessage)
       }
 
       setUserData((prev) => ({
@@ -187,7 +195,7 @@ const Settings: React.FC = () => {
       setSuccess(`${fieldToUpdate} updated successfully`)
       setTimeout(() => setSuccess(null), 3000)
     } catch (error) {
-      setError(error instanceof Error ? error.message : 'An error occurred')
+      setError(error instanceof Error ? error.message : t('errors.general'))
     }
   }
 
@@ -228,18 +236,23 @@ const Settings: React.FC = () => {
     }
   }
 
+  const changeLanguage = (lng: string) => {
+    i18n.changeLanguage(lng);
+    setLanguage(lng);
+  }
+
   return (
     <div className="settings-page">
       <div className="settings-container">
         <div className="settings-header">
           <SettingsIcon size={24} />
-          <h1>Settings</h1>
+          <h1>{t('settings.title')}</h1>
         </div>
 
         {error && <div className="error-message">{error}</div>}
         {success && <div className="success-message">{success}</div>}
 
-        <SettingsSection title="Account Settings" icon={<User size={18} />}>
+        <SettingsSection title={t('Account Settings')} icon={<User size={18} />}>
           <EditableField
             field="username"
             value={userData.username}
@@ -276,7 +289,7 @@ const Settings: React.FC = () => {
           />
         </SettingsSection>
 
-        <SettingsSection title="Two-Factor Authentication" icon={<Lock size={18} />}>
+        <SettingsSection title={t('Two-Factor Authentication')} icon={<Lock size={18} />}>
             { twoFaEnabled ? (
                 <>
                 <p>2FA is currently <strong>ON</strong>.</p>
@@ -290,7 +303,7 @@ const Settings: React.FC = () => {
                     setTwoFaEnabled(false)
                     }}
                 >
-                    Disable 2FA
+                    {t('Disable 2FA')}
                 </button>
                 </>
             ) : (
@@ -312,7 +325,7 @@ const Settings: React.FC = () => {
                     setQrDataUrl(qrDataUrl)
                     }}
                 >
-                    Enable 2FA
+                    {t('Enable 2FA')}
                 </button>
 
                 { qrDataUrl && (
@@ -356,46 +369,47 @@ const Settings: React.FC = () => {
             )}
         </SettingsSection>
 
-        <SettingsSection title="Language Preferences" icon={<Globe size={18} />}>
+        <SettingsSection title={t('Language Preferences')} icon={<Globe size={18} />}>
           <div className="form-group">
-            <label htmlFor="language">Language</label>
+            <label htmlFor="language">{t('languages.language')}</label>
             <select
               id="language"
               value={language}
-              onChange={(e) => setLanguage(e.target.value)}
+              onChange={(e) => changeLanguage(e.target.value)}
               className="form-group input"
             >
-              <option value="English">English</option>
-              <option value="Finnish">Finnish</option>
-              <option value="Swedish">Swedish</option>
+              <option value="en">{t('languages.english')}</option>
+              <option value="fi">{t('languages.finnish')}</option>
+              <option value="sv">{t('languages.swedish')}</option>
+              <option value="ja">{t('languages.japanese')}</option>
             </select>
           </div>
         </SettingsSection>
 
-        <SettingsSection title="Theme Settings" icon={<Moon size={18} />}>
+        <SettingsSection title={t('Theme Settings')} icon={<Moon size={18} />}>
           <div className="form-group">
-            <label htmlFor="theme">Theme</label>
+            <label htmlFor="theme">{t('Theme')}</label>
             <select
               id="theme"
               value={theme}
               onChange={(e) => setTheme(e.target.value)}
               className="form-group input"
             >
-              <option value="Dark">Dark</option>
-              <option value="Light">Light</option>
-              <option value="System">System Default</option>
+              <option value="Dark">{t('Dark')}</option>
+              <option value="Light">{t('Light')}</option>
+              <option value="System">{t('System Default')}</option>
             </select>
           </div>
         </SettingsSection>
 
-        <SettingsSection title="Account Management" icon={<User size={18} />}>
+        <SettingsSection title={t('Account Management')} icon={<User size={18} />}>
           <button className="settings-button" onClick={handleLogout}>
             <LogOut size={16} />
-            Logout
+            {t('actions.logout')}
           </button>
           <button className="settings-button delete" onClick={handleDeleteAccount}>
             <Trash2 size={16} />
-            Delete Account
+            {t('actions.deleteAccount')}
           </button>
         </SettingsSection>
       </div>
