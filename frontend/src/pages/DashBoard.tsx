@@ -15,12 +15,14 @@ import {
   AvatarMenu,
 } from '../components/features/dashboard'
 import '../assets/styles/index.css'
+import useTranslate from '../hooks/useTranslate'
 
 const Dashboard: React.FC = () => {
   const { username, logout } = useAuth()
   const { avatar, handleAvatarChange } = useAvatar(username || '')
   const { userPlayers, createPlayer, updatePlayer, deletePlayer } = useUserPlayers()
   const { matches } = useMatchHistories()
+  const t = useTranslate()
 
   if (!username) {
     return <div>Please log in to view the dashboard</div>
@@ -31,7 +33,7 @@ const Dashboard: React.FC = () => {
       <LoadingContainer>
         <div className="dashboard">
           <div className="welcome-header">
-            <h1>Welcome, {username}!</h1>
+            <h1>{t('dashboard.welcome')}, {username}!</h1>
           </div>
           <PlayerManagement
             userPlayers={userPlayers}

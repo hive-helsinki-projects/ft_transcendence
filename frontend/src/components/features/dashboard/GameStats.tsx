@@ -1,4 +1,5 @@
 import React, { useState, useMemo } from 'react'
+import useTranslate from '../../../hooks/useTranslate'
 
 interface Player {
   id: number
@@ -15,6 +16,7 @@ interface GameStatsProps {
 
 const GameStats: React.FC<GameStatsProps> = ({ userPlayers }) => {
   const [selectedPlayerId, setSelectedPlayerId] = useState<number | null>(null)
+  const t = useTranslate()
 
   const selectedPlayer = useMemo(
     () => userPlayers.find((p) => p.id === selectedPlayerId),
@@ -28,15 +30,15 @@ const GameStats: React.FC<GameStatsProps> = ({ userPlayers }) => {
 
   return (
     <div className="stats-section">
-      <h2>Player Stats</h2>
+      <h2>{t('Player Stats')}</h2>
       {/* Player Selection */}
-      <label htmlFor="player-select">Select Player:</label>
+      <label htmlFor="player-select">{t('Select Player')}:</label>
       <select
         id="player-select"
         value={selectedPlayerId ?? ''}
         onChange={(e) => setSelectedPlayerId(Number(e.target.value))}
       >
-        <option value="" disabled>Select a player</option>
+        <option value="" disabled>{t('Select a player')}</option>
         {userPlayers.map((player) => (
           <option key={player.id} value={player.id}>
             {player.display_name}
@@ -48,19 +50,19 @@ const GameStats: React.FC<GameStatsProps> = ({ userPlayers }) => {
         <div className="stats-grid">
           <div className="stat-item">
             <span className="stat-value">{selectedPlayer.wins}</span>
-            <span className="stat-label">Wins</span>
+            <span className="stat-label">{t('stats.wins')}</span>
           </div>
           <div className="stat-item">
             <span className="stat-value">{selectedPlayer.losses}</span>
-            <span className="stat-label">Losses</span>
+            <span className="stat-label">{t('stats.losses')}</span>
           </div>
           <div className="stat-item">
             <span className="stat-value">{winRate}%</span>
-            <span className="stat-label">Win Rate</span>
+            <span className="stat-label">{t('stats.winRate')}</span>
           </div>
           <div className="stat-item">
             <span className="stat-value">{totalGames}</span>
-            <span className="stat-label">Total Games</span>
+            <span className="stat-label">{t('stats.totalGames')}</span>
           </div>
         </div>
       )}
