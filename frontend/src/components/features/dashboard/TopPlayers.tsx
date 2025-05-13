@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react'
 import { TopPlayer } from '../../../types/dashboard'
+import useTranslate from '../../../hooks/useTranslate'
 
 interface TopPlayersProps {
   players: TopPlayer[]
@@ -22,9 +23,11 @@ const TopPlayers: React.FC<TopPlayersProps> = ({ players }) => {
     )
   }, [players])
 
+  const t = useTranslate()
+
   return (
     <div className="top-players-section">
-      <h2>TOP PLAYERS</h2>
+      <h2>{t('TOP PLAYERS')}</h2>
       <div className="players-grid">
         {topPlayers.map((player) => {
           const percentage = ((player.wins * 100) / (player.wins + player.losses)).toFixed(1)

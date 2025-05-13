@@ -1,9 +1,35 @@
 {
   "hero": {
-        "hero.title": "ピン・ポン・プレイ！",
-        "hero.subtitle": "Level Up Your Ping Pong Skills",
-        "hero.description": "Smash, spin, and dominate the table. Prove you are the ultimate paddle master."
-      },
+    "hero.title": "ピン・ポン・プレイ！",
+    "hero.subtitle": "Level Up Your Ping Pong Skills",
+    "hero.description": "Smash, spin, and dominate the table. Prove you are the ultimate paddle master."
+  },
+  "dashboard": {
+    "welcome": "こんにちは"
+  },
+  "Your Players": "あなたのプレイヤー",
+  "Create Player": "プレイヤーを作成",
+
+  "Game Modes": "ゲームモード",
+  "1v1 Match": "1v1 対戦",
+  "Tournament Mode": "トーナメント",
+  "Select Players For 1v1 Match": "1v1の対戦相手を選択",
+  "Select Player": "プレイヤーを選ぶ",
+  "4-8 players": "4-8 プレイヤー",
+
+  "Player Stats": "プレイヤー統計",
+  "Select a player": "プレイヤーを選択",
+  "stats": {
+    "wins": "勝ち",
+    "losses": "負け",
+    "winRate": "勝率",
+    "rotalGames": "全試合数"
+  },
+
+  "Recent Matches": "最近の試合",
+
+  "TOP PLAYERS": "トッププレイヤー",
+
   "settings.title": "設定",
   "Account Settings": "アカウント設定",
   "Edit": "編集",
