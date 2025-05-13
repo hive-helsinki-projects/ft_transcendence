@@ -1,4 +1,9 @@
 {
+  "hero": {
+    "title": "Ping. Pong. Play!",
+    "subtitle": "Level Up Your Ping Pong Skills",
+    "description": "Smash, spin, and dominate the table. Prove you are the ultimate paddle master."
+  },
   "settings.title": "Settings",
   "Account Settings": "Account Settings",
   "Edit": "Edit",
