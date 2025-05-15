@@ -74,6 +74,7 @@ const QuickPlay: React.FC<QuickPlayProps> = ({ userPlayers }) => {
           matchType: '1v1',
           player1: { name: player1.display_name, avatar: player1.avatar, id: player1.id },
           player2: { name: player2.display_name, avatar: player2.avatar, id: player2.id },
+          returnTo: "/dashboard",
         },
       })
     } catch (error) {

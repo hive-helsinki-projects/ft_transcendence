@@ -2,6 +2,8 @@ import React, { useEffect, useRef, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import LoadingContainer from '../../LoadingContainer'
 import '../../../assets/styles/Pong.css'
+import { BaseService } from '../../../services/BaseService'
+
 
 // Constants
 const CANVAS_WIDTH = 800
@@ -10,7 +12,7 @@ const PADDLE_WIDTH = 10
 const PADDLE_HEIGHT = 100
 const BALL_RADIUS = 8
 const PADDLE_SPEED = 7
-const MAX_SCORE = 11
+const MAX_SCORE = 4
 
 interface GameState {
   matchType: 'semifinal' | 'final' | '1v1'
@@ -161,15 +163,12 @@ export default function Game() {
           console.log("gameState.player1.id = ", gameState.player1.id)
           console.log("gameState.player2.id = ", gameState.player2.id)
 
-
+          console.log("winner_id", winner.id)
           await sendMatchResult(gameState.matchId, winner.id, currentScores.player1, currentScores.player2)
 
           async function sendMatchResult(matchId: number, winnerId: number, score1: number, score2: number) {
             try {
-              await fetch(`/match-histories/${matchId}`, {
-                method: 'PUT',
-                headers: { 'Content-Type': 'application/json'},
-                body: JSON.stringify({
+              await BaseService.put(`/match-histories/${matchId}`, {
                   winner_id: winnerId,
                   players: [
                     {
@@ -181,8 +180,7 @@ export default function Game() {
                       score: score2,
                     }
                   ]
-                })
-              })
+            })
             } catch (error) {
               console.log('Failed to update match result', error)
             }
