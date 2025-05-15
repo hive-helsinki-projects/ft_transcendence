@@ -127,7 +127,7 @@ const createMatchHistory = async (req, reply) => {
 
     try {
         transaction(type, tournament_id, round, players, user_id);
-        
+        console.log(matchId);
         return reply.code(201).send({ 
             message: 'Match history created successfully',
             match_id: matchId

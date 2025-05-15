@@ -74,7 +74,7 @@ export const postMatchHistoryOpts = {
                         type: 'object',
                         properties: {
                             player_id: { type: 'integer' },
-                            score: { type: 'integer', nullable: true }
+                            score: { type: 'integer', nullable: true },
                         },
                         required: ['player_id'],
                     },
@@ -86,7 +86,7 @@ export const postMatchHistoryOpts = {
                 type: 'object',
                 properties: {
                     message: { type: 'string' },
-                    item: MatchHistory,
+                    match_id: { type: 'integer' },
                 },
             },
         },
@@ -135,7 +135,7 @@ export const putMatchHistoryOpts = {
                 type: 'object',
                 properties: {
                     message: { type: 'string' },
-                    match_id: { type: 'integer' },
+                    item: MatchHistory,
                 },
             },
         },
