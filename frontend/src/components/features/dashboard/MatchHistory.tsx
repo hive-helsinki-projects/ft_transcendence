@@ -16,10 +16,9 @@ interface Match {
 
 interface MatchHistoryProps {
   matches: Match[]
-  currentUserId: number
 }
 
-const MatchHistory: React.FC<MatchHistoryProps> = ({ matches, currentUserId }) => {
+const MatchHistory: React.FC<MatchHistoryProps> = ({ matches }) => {
   const { userPlayers } = useUserPlayers()
 
   const recentMatches = useMemo(() => {
@@ -35,11 +34,6 @@ const MatchHistory: React.FC<MatchHistoryProps> = ({ matches, currentUserId }) =
 
         if (!player1 || !player2) return null
 
-        const isCurrentUserWinner = match.winner_id === currentUserId
-        const result = match.winner_id === p1.player_id
-          ? (p1.player_id === currentUserId ? 'win' : 'loss')
-          : (p2.player_id === currentUserId ? 'win' : 'loss')
-
         return {
           id: match.id.toString(),
           player: {
@@ -50,21 +44,20 @@ const MatchHistory: React.FC<MatchHistoryProps> = ({ matches, currentUserId }) =
             name: player2.display_name,
             avatar: player2.avatar_url
           },
-          result,
           score: `${p1.score} - ${p2.score}`,
           date: new Date(match.date).toLocaleDateString(),
           mode: match.type
         }
       })
       .filter(Boolean)
-  }, [matches, userPlayers, currentUserId])
+  }, [matches, userPlayers])
 
   return (
     <div className="recent-matches-section">
       <h2>Recent Matches</h2>
       <div className="matches-list">
         {recentMatches.map((match) => (
-          <div key={match.id} className={`match-item ${match.result}`}>
+          <div key={match.id} className={`match-item`}>
             <div className="match-info">
               <span className="match-mode">
                 {match.mode === '1v1' ? '🏓' : '🏆'}
