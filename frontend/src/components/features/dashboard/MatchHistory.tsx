@@ -12,7 +12,7 @@ interface MatchHistory {
   }
   result: 'win' | 'loss'
   score: string
-  date: string // assumed to be ISO 8601 or comparable format
+  date: string
   mode: '1v1' | 'tournament'
 }
 
@@ -35,7 +35,7 @@ const MatchHistory: React.FC<MatchHistoryProps> = ({ matches }) => {
   return (
     <div className="recent-matches-section">
       <h2>Recent Matches</h2>
-      <div className="matches-list">
+      {/* <div className="matches-list">
         {recentMatches.map((match) => (
           <div key={match.id} className={`match-item ${match.result}`}>
             <div className="match-info">
@@ -91,7 +91,7 @@ const MatchHistory: React.FC<MatchHistoryProps> = ({ matches }) => {
             </div>
           </div>
         ))}
-      </div>
+      </div> */}
     </div>
   )
 }
