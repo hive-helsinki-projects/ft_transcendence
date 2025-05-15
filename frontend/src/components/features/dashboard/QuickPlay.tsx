@@ -63,22 +63,22 @@ const QuickPlay: React.FC<QuickPlayProps> = ({ userPlayers }) => {
         ],
       })
       console.log(JSON.stringify(matchData, null, 2));
-      // const matchId = matchData.item.id
+      const matchId = matchData.match_id
   
-      // const player1 = userPlayers.find(p => p.id === player1Id)!
-      // const player2 = userPlayers.find(p => p.id === player2Id)!
-  
-      // navigate('/game', {
-      //   state: {
-      //     matchId,
-      //     matchType: '1v1',
-      //     player1: { name: player1.display_name, avatar: player1.avatar, id: player1.id },
-      //     player2: { name: player2.display_name, avatar: player2.avatar, id: player2.id },
-      //   },
-      // })
+      const player1 = userPlayers.find(p => p.id === Number(player1Id))!
+      const player2 = userPlayers.find(p => p.id === Number(player2Id))!
+      console.log("matchid: ", matchId)
+      navigate('/game', {
+        state: {
+          matchId,
+          matchType: '1v1',
+          player1: { name: player1.display_name, avatar: player1.avatar, id: player1.id },
+          player2: { name: player2.display_name, avatar: player2.avatar, id: player2.id },
+        },
+      })
     } catch (error) {
       alert('Failed to start match')
-      console.error("error from post match histories", error)
+      console.error(error)
     }
   }
 

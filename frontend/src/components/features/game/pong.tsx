@@ -158,7 +158,11 @@ export default function Game() {
             : gameState.player2;
           setMatchResult(`Winner: ${winner.name}`);
 
-          await sendMatchResult(gameState.matchId, winner.id, scores.player1, scores.player2)
+          console.log("gameState.player1.id = ", gameState.player1.id)
+          console.log("gameState.player2.id = ", gameState.player2.id)
+
+
+          await sendMatchResult(gameState.matchId, winner.id, currentScores.player1, currentScores.player2)
 
           async function sendMatchResult(matchId: number, winnerId: number, score1: number, score2: number) {
             try {
@@ -166,18 +170,15 @@ export default function Game() {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json'},
                 body: JSON.stringify({
-                  type: '1v1',
                   winner_id: winnerId,
                   players: [
                     {
                       player_id: gameState.player1.id,
                       score: score1,
-                      round: 0
                     },
                     {
                       player_id: gameState.player2.id,
                       score: score2,
-                      round: 0
                     }
                   ]
                 })
