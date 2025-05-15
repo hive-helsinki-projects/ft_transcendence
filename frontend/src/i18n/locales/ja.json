@@ -16,6 +16,7 @@
   "Select Players For 1v1 Match": "1v1の対戦相手を選択",
   "Select Player": "プレイヤーを選ぶ",
   "4-8 players": "4-8 プレイヤー",
+  "Start Match": "試合を開始",
 
   "Player Stats": "プレイヤー統計",
   "Select a player": "プレイヤーを選択",
@@ -29,6 +30,11 @@
   "Recent Matches": "最近の試合",
 
   "TOP PLAYERS": "トッププレイヤー",
+
+  "Tournament Lobby": "トーナメントロビー",
+  "Reset Tournament": "トーナメントをリセット",
+  "SEMIFINAL": "準決勝",
+  "FINAL MATCH": "決勝",
 
   "settings.title": "設定",
   "Account Settings": "アカウント設定",

@@ -19,6 +19,7 @@
   "Select Players For 1v1 Match": "Select Players For 1v1 Match",
   "Select Player": "Select Player",
   "4-8 players": "4-8 players",
+  "Start Match": "Start Match",
 
   "Player Stats": "Player Stats",
   "Select a player": "Select a player",
@@ -32,6 +33,11 @@
   "Recent Matches": "Recent Matches",
 
   "TOP PLAYERS": "TOP PLAYERS",
+
+  "Tournament Lobby": "Tournament Lobby",
+  "Reset Tournament": "Reset Tournament",
+  "SEMIFINAL": "SEMIFINAL",
+  "FINAL MATCH": "FINAL MATCH",
 
   "settings.title": "Settings",
   "Account Settings": "Account Settings",

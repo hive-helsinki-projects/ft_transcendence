@@ -4,6 +4,7 @@ import ErrorBoundary from '../components/ErrorBoundary'
 import LoadingContainer from '../components/LoadingContainer'
 import { MatchCard, ChampionCard, useTournamentState, TournamentRound, Match, Player } from '../components/features/tournament'
 import '../assets/styles/Tournament.css'
+import useTranslate from '../hooks/useTranslate'
 
 // UI Components
 const TournamentBracket: React.FC<{
@@ -12,14 +13,17 @@ const TournamentBracket: React.FC<{
   champion: Player | null
   isLoading: boolean
   onStartMatch: (round: TournamentRound, matchIndex: number) => void
-}> = ({ semifinals, finalMatch, champion, isLoading, onStartMatch }) => (
-  <div className="tournament-bracket">
+}> = ({ semifinals, finalMatch, champion, isLoading, onStartMatch }) => {
+  const t = useTranslate()
+
+  return (
+    <div className="tournament-bracket">
     <div className="semifinals">
       {semifinals.map((match, index) => (
         <div key={index} className="match-container">
           <MatchCard
             match={match}
-            title={`SEMIFINAL ${index + 1}`}
+            title={`${t('SEMIFINAL')} ${index + 1}`}
             onStartMatch={() => onStartMatch('semifinal', index)}
             isLoading={isLoading}
           />
@@ -31,7 +35,7 @@ const TournamentBracket: React.FC<{
       <div className="match-container">
         <MatchCard
           match={finalMatch}
-          title="FINAL MATCH"
+          title={t('FINAL MATCH')}
           onStartMatch={() => onStartMatch('final', 0)}
           isLoading={isLoading}
         />
@@ -44,24 +48,29 @@ const TournamentBracket: React.FC<{
       </div>
     )}
   </div>
-)
+  )
+}
 
 const TournamentHeader: React.FC<{
   onReset: () => void
   isLoading: boolean
-}> = ({ onReset, isLoading }) => (
-  <div className="tournament-header">
-    <h1>Tournament Lobby</h1>
+}> = ({ onReset, isLoading }) => {
+  const t = useTranslate()
+
+  return (
+    <div className="tournament-header">
+    <h1>{t('Tournament Lobby')}</h1>
     <button
       onClick={onReset}
       className="reset-tournament-button"
       disabled={isLoading}
       aria-label="Reset tournament"
     >
-      Reset Tournament
+      {t('Reset Tournament')}
     </button>
   </div>
-)
+  )
+}
 
 // Helper functions
 const getWinnerPlayer = (match: Match, winnerName: string): Player => 

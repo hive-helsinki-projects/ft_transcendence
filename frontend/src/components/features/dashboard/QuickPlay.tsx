@@ -110,7 +110,7 @@ const QuickPlay: React.FC<QuickPlayProps> = ({ userPlayers }) => {
             <br />
               <div className="modal-actions">
                 <button onClick={handleStartMatch} className="create-button">
-                  Start Match
+                  {t('Start Match')}
                 </button>
                 <button onClick={() => setShowModal(false)} className="cancel-button">Cancel</button>
               </div>
