@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { BaseService } from '../../../services/BaseService'
+
 
 interface UserPlayer {
   id: string
@@ -42,18 +44,42 @@ const QuickPlay: React.FC<QuickPlayProps> = ({ userPlayers }) => {
     setShowModal(true);
   }
 
-  const handleStartMatch = () => {
-    if (!player1Id || !player2Id) {
-      alert('Please select two players')
+  const handleStartMatch = async () => {
+    if (!player1Id || !player2Id || player1Id === player2Id) {
+      alert('Please select two different players')
       return
     }
-    if (player1Id == player2Id) {
-      alert('Players must be different')
-      return
+
+    try {
+      const matchData = await BaseService.post('/match-histories', {
+        type: '1v1',
+        players: [
+          {
+            player_id: Number(player1Id),
+          },
+          {
+            player_id: Number(player2Id),
+          },
+        ],
+      })
+      console.log(JSON.stringify(matchData, null, 2));
+      // const matchId = matchData.item.id
+  
+      // const player1 = userPlayers.find(p => p.id === player1Id)!
+      // const player2 = userPlayers.find(p => p.id === player2Id)!
+  
+      // navigate('/game', {
+      //   state: {
+      //     matchId,
+      //     matchType: '1v1',
+      //     player1: { name: player1.display_name, avatar: player1.avatar, id: player1.id },
+      //     player2: { name: player2.display_name, avatar: player2.avatar, id: player2.id },
+      //   },
+      // })
+    } catch (error) {
+      alert('Failed to start match')
+      console.error("error from post match histories", error)
     }
-    navigate('/game', {
-      state: { player1Id, player2Id },
-    })
   }
 
   return (

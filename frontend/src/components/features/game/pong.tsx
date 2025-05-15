@@ -13,10 +13,10 @@ const PADDLE_SPEED = 7
 const MAX_SCORE = 11
 
 interface GameState {
-  matchType?: 'semifinal' | 'final' | '1v1'
-  matchIndex?: number
-  player1?: { name: string; avatar: string }
-  player2?: { name: string; avatar: string }
+  matchType: 'semifinal' | 'final' | '1v1'
+  matchId: number
+  player1: { name: string; avatar: string; id: number}
+  player2: { name: string; avatar: string; id: number }
   returnTo?: string
 }
 
@@ -148,22 +148,51 @@ export default function Game() {
       }
     }
 
-    function checkWinCondition(currentScores: { player1: number; player2: number }) {
+    async function checkWinCondition(currentScores: { player1: number; player2: number }) {
       if (currentScores.player1 >= MAX_SCORE || currentScores.player2 >= MAX_SCORE) {
         if ((currentScores.player1 > 20 || currentScores.player2 > 20) || Math.abs(currentScores.player1 - currentScores.player2) >= 2) {
           setGameOver(true);
           setMatchStatus('completed');
           const winner = currentScores.player1 > currentScores.player2
-            ? gameState?.player1?.name
-            : gameState?.player2?.name;
-          setMatchResult(`Winner: ${winner}`);
+            ? gameState.player1
+            : gameState.player2;
+          setMatchResult(`Winner: ${winner.name}`);
+
+          await sendMatchResult(gameState.matchId, winner.id, scores.player1, scores.player2)
+
+          async function sendMatchResult(matchId: number, winnerId: number, score1: number, score2: number) {
+            try {
+              await fetch(`/match-histories/${matchId}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                  type: '1v1',
+                  winner_id: winnerId,
+                  players: [
+                    {
+                      player_id: gameState.player1.id,
+                      score: score1,
+                      round: 0
+                    },
+                    {
+                      player_id: gameState.player2.id,
+                      score: score2,
+                      round: 0
+                    }
+                  ]
+                })
+              })
+            } catch (error) {
+              console.log('Failed to update match result', error)
+            }
+          }
 
           setTimeout(() => {
             if (gameState?.returnTo) {
               navigate(gameState.returnTo, {
                 state: {
                   matchType: gameState.matchType,
-                  matchIndex: gameState.matchIndex,
+                  matchIndex: gameState.matchId,
                   winner,
                 },
               })
