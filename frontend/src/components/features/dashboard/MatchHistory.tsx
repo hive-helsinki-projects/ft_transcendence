@@ -1,41 +1,68 @@
 import React, { useMemo } from 'react'
+import { useUserPlayers } from '../../../hooks/useUserPlayers'
 
-interface MatchHistory {
-  id: string
-  player: {
-    name: string
-    avatar: string
-  }
-  opponent: {
-    name: string
-    avatar: string
-  }
-  result: 'win' | 'loss'
-  score: string
+interface Match {
+  id: number
+  type: '1v1' | 'tournament'
+  tournament_id: number | null
   date: string
-  mode: '1v1' | 'tournament'
+  round: number | null
+  winner_id: number
+  players: {
+    player_id: number
+    score: number
+  }[]
 }
 
 interface MatchHistoryProps {
-  matches: MatchHistory[]
+  matches: Match[]
+  currentUserId: number
 }
 
-const MatchHistory: React.FC<MatchHistoryProps> = ({ matches }) => {
-  // Only take the last 3 matches (sorted by most recent)
-  const recentMatches = useMemo(() => {
-    if (!Array.isArray(matches)) return []
+const MatchHistory: React.FC<MatchHistoryProps> = ({ matches, currentUserId }) => {
+  const { userPlayers } = useUserPlayers()
 
-    return (
-      [...matches]
+  const recentMatches = useMemo(() => {
+    if (!Array.isArray(matches) || userPlayers.length === 0) return []
+
+    return [...matches]
       .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
       .slice(0, 3)
-    )
-  }, [matches])
+      .map((match) => {
+        const [p1, p2] = match.players
+        const player1 = userPlayers.find((u) => u.id === p1.player_id)
+        const player2 = userPlayers.find((u) => u.id === p2.player_id)
+
+        if (!player1 || !player2) return null
+
+        const isCurrentUserWinner = match.winner_id === currentUserId
+        const result = match.winner_id === p1.player_id
+          ? (p1.player_id === currentUserId ? 'win' : 'loss')
+          : (p2.player_id === currentUserId ? 'win' : 'loss')
+
+        return {
+          id: match.id.toString(),
+          player: {
+            name: player1.display_name,
+            avatar: player1.avatar_url
+          },
+          opponent: {
+            name: player2.display_name,
+            avatar: player2.avatar_url
+          },
+          result,
+          score: `${p1.score} - ${p2.score}`,
+          date: new Date(match.date).toLocaleDateString(),
+          mode: match.type
+        }
+      })
+      .filter(Boolean)
+  }, [matches, userPlayers, currentUserId])
 
   return (
     <div className="recent-matches-section">
       <h2>Recent Matches</h2>
-      {/* <div className="matches-list">
+      <div className="matches-list">
         {recentMatches.map((match) => (
           <div key={match.id} className={`match-item ${match.result}`}>
             <div className="match-info">
@@ -43,55 +70,24 @@ const MatchHistory: React.FC<MatchHistoryProps> = ({ matches }) => {
                 {match.mode === '1v1' ? '🏓' : '🏆'}
               </span>
               <div className="match-players">
-                {match.mode === '1v1' ? (
-                  <>
-                    <div className="player">
-                      <img
-                        src={match.player.avatar}
-                        alt={match.player.name}
-                        className="player-avatar"
-                      />
-                      <span className="player-name">{match.player.name}</span>
-                    </div>
-                    <span className="vs">vs</span>
-                    <div className="player">
-                      <img
-                        src={match.opponent.avatar}
-                        alt={match.opponent.name}
-                        className="player-avatar"
-                      />
-                      <span className="player-name">{match.opponent.name}</span>
-                    </div>
-                  </>
-                ) : (
-                  <div className="player">
-                    <img
-                      src={
-                        match.result === 'win'
-                          ? match.player.avatar
-                          : match.opponent.avatar
-                      }
-                      alt="Winner"
-                      className="player-avatar"
-                    />
-                    <span className="player-name tournament-winner">
-                      {match.result === 'win'
-                        ? match.player.name
-                        : match.opponent.name}
-                    </span>
-                  </div>
-                )}
+                <div className="player">
+                  <img src={match.player.avatar} alt={match.player.name} className="player-avatar" />
+                  <span className="player-name">{match.player.name}</span>
+                </div>
+                <span className="vs">vs</span>
+                <div className="player">
+                  <img src={match.opponent.avatar} alt={match.opponent.name} className="player-avatar" />
+                  <span className="player-name">{match.opponent.name}</span>
+                </div>
               </div>
             </div>
             <div className="match-details">
-              {match.mode === '1v1' && (
-                <span className="match-score">{match.score}</span>
-              )}
+              <span className="match-score">{match.score}</span>
               <span className="match-date">{match.date}</span>
             </div>
           </div>
         ))}
-      </div> */}
+      </div>
     </div>
   )
 }
