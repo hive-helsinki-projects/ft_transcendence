@@ -2,10 +2,9 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { BaseService } from '../../../services/BaseService'
 
-
 interface UserPlayer {
-  id: string
-  name: string
+  id: number
+  display_name: string
   avatar: string
   isActive: boolean
   points: number
@@ -18,63 +17,92 @@ interface QuickPlayProps {
 const QuickPlay: React.FC<QuickPlayProps> = ({ userPlayers }) => {
   const navigate = useNavigate()
   const hasActivePlayers = userPlayers.length > 0
-  const hasEnoughPlayers = userPlayers.length >= 2
-  const [showModal, setShowModal] = useState(false)
-  const [player1Id, setPlayer1Id] = useState('')
-  const [player2Id, setPlayer2Id] = useState('')
+  const hasEnoughPlayers1v1 = userPlayers.length >= 2
+  const hasEnoughPlayersTourn = userPlayers.length >= 4
 
+  const [showModal1v1, setShowModal1v1] = useState(false)
+  const [showModalTourn, setShowModalTourn] = useState(false)
 
-  const handleTournamentClick = () => {
-    if (!hasActivePlayers) {
-      alert('Please create a player before joining a tournament')
-      return
-    }
-    navigate('/tournament')
-  }
+  const [selected1v1Players, setSelected1v1Players] = useState<number[]>([])
+  const [selectedTournamentPlayers, setSelectedTournamentPlayers] = useState<number[]>([])
 
   const handleOneVsOneClick = () => {
     if (!hasActivePlayers) {
       alert('Please create a player before starting a 1v1 match')
       return
     }
-    if (!hasEnoughPlayers) {
+    if (!hasEnoughPlayers1v1) {
       alert('You need at least 2 players to start a 1v1 match')
       return
     }
-    setShowModal(true);
+    setSelected1v1Players([])
+    setShowModal1v1(true)
+  }
+
+  const handleTournamentClick = () => {
+    if (!hasActivePlayers) {
+      alert('Please create a player before joining a tournament')
+      return
+    }
+    if (!hasEnoughPlayersTourn) {
+      alert('You need at least 4 players for a tournament')
+      return
+    }
+    setSelectedTournamentPlayers([])
+    setShowModalTourn(true)
+  }
+
+  const handleToggle1v1Player = (id: number) => {
+    setSelected1v1Players((prev) => {
+      if (prev.includes(id)) {
+        return prev.filter((pid) => pid !== id)
+      } else if (prev.length < 2) {
+        return [...prev, id]
+      } else {
+        return prev
+      }
+    })
+  }
+
+  const handleToggleTournamentPlayer = (id: number) => {
+    setSelectedTournamentPlayers((prev) =>
+      prev.includes(id)
+        ? prev.filter((pid) => pid !== id)
+        : prev.length < 8
+        ? [...prev, id]
+        : prev
+    )
   }
 
   const handleStartMatch = async () => {
-    if (!player1Id || !player2Id || player1Id === player2Id) {
-      alert('Please select two different players')
+    if (selected1v1Players.length !== 2) {
+      alert('Please select exactly two players')
       return
     }
+
+    const [player1Id, player2Id] = selected1v1Players
 
     try {
       const matchData = await BaseService.post('/match-histories', {
         type: '1v1',
         players: [
-          {
-            player_id: Number(player1Id),
-          },
-          {
-            player_id: Number(player2Id),
-          },
+          { player_id: player1Id },
+          { player_id: player2Id },
         ],
       })
-      console.log(JSON.stringify(matchData, null, 2));
+
       const matchId = matchData.match_id
-  
-      const player1 = userPlayers.find(p => p.id === Number(player1Id))!
-      const player2 = userPlayers.find(p => p.id === Number(player2Id))!
-      console.log("matchid: ", matchId)
+
+      const player1 = userPlayers.find(p => p.id === player1Id)!
+      const player2 = userPlayers.find(p => p.id === player2Id)!
+
       navigate('/game', {
         state: {
           matchId,
           matchType: '1v1',
           player1: { name: player1.display_name, avatar: player1.avatar, id: player1.id },
           player2: { name: player2.display_name, avatar: player2.avatar, id: player2.id },
-          returnTo: "/dashboard",
+          returnTo: '/dashboard',
         },
       })
     } catch (error) {
@@ -83,14 +111,27 @@ const QuickPlay: React.FC<QuickPlayProps> = ({ userPlayers }) => {
     }
   }
 
+  const handleStartTournament = () => {
+    if (selectedTournamentPlayers.length < 4 || selectedTournamentPlayers.length > 8) {
+      alert('You must select between 4 and 8 players for the tournament')
+      return
+    }
+
+    const selected = userPlayers.filter((p) => selectedTournamentPlayers.includes(p.id))
+
+    navigate('/tournament', {
+      state: {
+        players: selected,
+        returnTo: '/dashboard',
+      },
+    })
+  }
+
   return (
     <div className="quick-play-section">
       <h2>Game Modes</h2>
       <div className="play-options">
-        <button
-          className="play-button one-vs-one"
-          onClick={handleOneVsOneClick}
-        >
+        <button className="play-button one-vs-one" onClick={handleOneVsOneClick}>
           <span className="button-icon">🏓</span>
           1v1 Match
         </button>
@@ -105,40 +146,70 @@ const QuickPlay: React.FC<QuickPlayProps> = ({ userPlayers }) => {
         </button>
       </div>
 
-      {showModal &&  (
+      {/* 1v1 Modal */}
+      {showModal1v1 && (
         <div className="modal-overlay">
           <div className="modal-content">
-            <h3>Select Players For 1v1 Match</h3>
-            <label>
-              Player 1:
-                <select  value={player1Id} onChange={(e) => setPlayer1Id(e.target.value) }>
-                  <option value="">Select Player</option>
-                  {userPlayers.map((player) => (
-                    <option key={player.id} value={player.id}>
-                      {player.display_name}
-                    </option>
-                  ))}
-                </select>
-            </label>
-            <br />
-            <label>
-              Player 2:
-              <select value={player2Id} onChange={(e) => setPlayer2Id(e.target.value) }>
-                <option value="">Select Player</option>
-                {userPlayers.map((player) => (
-                  <option key={player.id} value={player.id}>
-                    {player.display_name}
-                  </option>
-                ))}
-              </select>
-            </label>
-            <br />
-              <div className="modal-actions">
-                <button onClick={handleStartMatch} className="create-button">
-                  Start Match
-                </button>
-                <button onClick={() => setShowModal(false)} className="cancel-button">Cancel</button>
-              </div>
+            <h3>Select 2 Players For 1v1 Match</h3>
+            <div className="player-checkboxes">
+              {userPlayers.map((player) => (
+                <label key={player.id} style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'left',
+                  padding: '0.5rem 0',
+                  borderBottom: '1px solid #ccc',
+                }}>
+                  <input
+                    type="checkbox"
+                    checked={selected1v1Players.includes(player.id)}
+                    onChange={() => handleToggle1v1Player(player.id)}
+                    disabled={
+                      !selected1v1Players.includes(player.id) &&
+                      selected1v1Players.length >= 2
+                    }
+                    style={{ width: '16px', height: '16px' }}
+                    />
+                    <span>{player.display_name}</span>
+                </label>
+              ))}
+            </div>
+            <div className="modal-actions">
+              <button onClick={handleStartMatch} className="create-button">Start Match</button>
+              <button onClick={() => setShowModal1v1(false)} className="cancel-button">Cancel</button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Tournament Modal */}
+      {showModalTourn && (
+        <div className="modal-overlay">
+          <div className="modal-content">
+            <h3>Select 4-8 Players for Tournament</h3>
+            <div className="player-checkboxes">
+              {userPlayers.map((player) => (
+                <label key={player.id} style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'left',
+                  padding: '0.5rem 0',
+                  borderBottom: '1px solid #ccc',
+                }}>
+                  <input
+                    type="checkbox"
+                    checked={selectedTournamentPlayers.includes(player.id)}
+                    onChange={() => handleToggleTournamentPlayer(player.id)}
+                    style={{ width: '16px', height: '16px' }}
+                    />
+                    <span>{player.display_name}</span>
+                </label>
+              ))}
+            </div>
+            <div className="modal-actions">
+              <button onClick={handleStartTournament} className="create-button">Start Tournament</button>
+              <button onClick={() => setShowModalTourn(false)} className="cancel-button">Cancel</button>
+            </div>
           </div>
         </div>
       )}
@@ -146,4 +217,4 @@ const QuickPlay: React.FC<QuickPlayProps> = ({ userPlayers }) => {
   )
 }
 
-export default QuickPlay 
+export default QuickPlay
