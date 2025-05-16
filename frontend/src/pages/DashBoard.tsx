@@ -22,10 +22,10 @@ const Dashboard: React.FC = () => {
   const { userPlayers, createPlayer, updatePlayer, deletePlayer } = useUserPlayers()
   const { matches } = useMatchHistories()
 
+  
   if (!username) {
     return <div>Please log in to view the dashboard</div>
   }
-  
   return (
     <ErrorBoundary>
       <LoadingContainer>
