@@ -46,7 +46,7 @@ const CreatePlayerModal: React.FC<{
                 setPlayerName(e.target.value)
                 setError('')
               }}
-              placeholder="Enter player name"
+              placeholder={t('Enter player name')}
               maxLength={20}
               required
             />
