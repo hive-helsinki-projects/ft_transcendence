@@ -30,6 +30,11 @@
     "rotalGames": "Total Games"
   },
 
+  "loading": {
+    "starting": "Starting...",
+    "matchInProgress": "Match in Progress..."
+  },
+
   "Recent Matches": "Recent Matches",
 
   "TOP PLAYERS": "TOP PLAYERS",
