@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import LoadingContainer from '../../LoadingContainer'
 import '../../../assets/styles/Pong.css'
+import useTranslate from '../../../hooks/useTranslate'
 
 // Constants
 const CANVAS_WIDTH = 800
@@ -52,6 +53,7 @@ export default function Game() {
   const [matchResult, setMatchResult] = useState<string | null>(null)
   const [matchStarted, setMatchStarted] = useState(false)
 
+  const t = useTranslate()
 
   useEffect(() => {
     const canvas = canvasRef.current!
@@ -293,7 +295,7 @@ export default function Game() {
       if (matchStatus === 'in_progress') {
         ctx.font = '20px Arial'
         ctx.fillStyle = 'rgba(255, 255, 255, 0.7)'
-        ctx.fillText(`${matchStarted ? 'Match in Progress...' : 'Press spacebar to start game...'}`, CANVAS_WIDTH / 2, 30)
+        ctx.fillText(`${matchStarted ? t('Match in Progress...') : t('Press spacebar to start game...')}`, CANVAS_WIDTH / 2, 30)
       }
 
       if (matchResult) {
@@ -303,7 +305,7 @@ export default function Game() {
         ctx.font = '16px Arial'
         ctx.fillStyle = 'rgba(255, 255, 255, 0.7)'
         ctx.fillText(
-          'Returning to lobby...',
+          t('Returning to lobby...'),
           CANVAS_WIDTH / 2,
           CANVAS_HEIGHT / 2 + 30,
         )
@@ -341,17 +343,17 @@ export default function Game() {
               />
               <span className="player-name">{gameState.player1.name}</span>
               <span className="player-score">{scores.player1}</span>
-              <span className="player-controls">W/S keys</span>
+              <span className="player-controls">{t('W/S keys')}</span>
             </div>
             <div className="match-info">
               <div className="match-type">
                 {gameState.matchType === 'final'
-                  ? 'FINAL MATCH'
+                  ? t('matchType.final')
                   : gameState.matchType === '1v1'
-                    ? '1v1 MATCH'
-                    : `SEMIFINAL ${gameState.matchIndex! + 1}`}
+                    ? ('matchType.1v1')
+                    : t('matchType.semifinal', { index: gameState.matchIndex! + 1 })}
               </div>
-              <div className="win-condition">First to 11 points (win by 2)</div>
+              <div className="win-condition">{t('First to 11 points (win by 2)')}</div>
             </div>
             <div className="player-info">
               <img
@@ -361,7 +363,7 @@ export default function Game() {
               />
               <span className="player-name">{gameState.player2.name}</span>
               <span className="player-score">{scores.player2}</span>
-              <span className="player-controls">↑/↓ keys</span>
+              <span className="player-controls">{t('↑/↓ keys')}</span>
             </div>
           </div>
         )}

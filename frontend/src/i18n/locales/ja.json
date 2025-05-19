@@ -8,7 +8,10 @@
     "welcome": "こんにちは"
   },
   "Your Players": "あなたのプレイヤー",
+  "Create New Player": "新しいプレイヤーを作成",
+  "Enter player name": "プレイヤー名を入力",
   "Create Player": "プレイヤーを作成",
+  "Returning to lobby...": "ロビーへ戻る",
 
   "Game Modes": "ゲームモード",
   "1v1 Match": "1v1 対戦",
@@ -17,6 +20,12 @@
   "Select Player": "プレイヤーを選ぶ",
   "4-8 players": "4-8 プレイヤー",
   "Start Match": "試合を開始",
+
+  "Match in Progress...": "試合中...",
+  "Press spacebar to start game...": "スペースキーを押して試合開始...",
+  "W/S keys": "W/Sキー",
+  "First to 11 points (win by 2)": "11点先取 (2点差で勝利)",
+  "↑/↓ keys": "↑/↓キー",
 
   "Player Stats": "プレイヤー統計",
   "Select a player": "プレイヤーを選択",
@@ -35,6 +44,12 @@
   "Reset Tournament": "トーナメントをリセット",
   "SEMIFINAL": "準決勝",
   "FINAL MATCH": "決勝",
+
+  "matchType": {
+    "final": "決勝",
+    "1v1": "1v1 対戦",
+    "semifinal": "準決勝 {{index}}"
+  },
 
   "settings.title": "設定",
   "Account Settings": "アカウント設定",
@@ -65,5 +80,8 @@
   "actions": {
     "deleteAccount": "アカウント削除",
     "logout": "ログアウト"
-  }
+  },
+
+  "Profile Settings": "プロフィール設定",
+  "Sign Out": "サインアウト"
 }

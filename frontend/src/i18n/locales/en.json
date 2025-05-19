@@ -11,7 +11,9 @@
 
   "Your Players": "Your Players",
   "Create New Player": "Create New Player",
+  "Enter player name": "Enter player name",
   "Create Player": "Create Player",
+  "Returning to lobby...": "Returning to lobby...",
 
   "Game Modes": "Game Modes",
   "1v1 Match": "1v1 Match",
@@ -20,6 +22,12 @@
   "Select Player": "Select Player",
   "4-8 players": "4-8 players",
   "Start Match": "Start Match",
+
+  "Match in Progress...": "Match in Progress...",
+  "Press spacebar to start game...": "Press spacebar to start game...",
+  "W/S keys": "W/S keys",
+  "First to 11 points (win by 2)": "First to 11 points (win by 2)",
+  "↑/↓ keys": "↑/↓ keys",
 
   "Player Stats": "Player Stats",
   "Select a player": "Select a player",
@@ -43,6 +51,12 @@
   "Reset Tournament": "Reset Tournament",
   "SEMIFINAL": "SEMIFINAL",
   "FINAL MATCH": "FINAL MATCH",
+
+  "matchType": {
+    "final": "FINAL MATCH",
+    "1v1": "1v1 MATCH",
+    "semifinal": "SEMIFINAL {{index}}"
+  },
 
   "settings.title": "Settings",
   "Account Settings": "Account Settings",
@@ -73,6 +87,9 @@
   "actions": {
     "deleteAccount": "Delete Account",
     "logout": "Logout"
-  }
+  },
+
+  "Profile Settings": "Profile Settings",
+  "Sign Out": "Sign Out"
 }
 
