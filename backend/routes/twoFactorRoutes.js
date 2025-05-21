@@ -1,10 +1,23 @@
 import speakeasy from 'speakeasy';
 import qrcode from 'qrcode';
 import db from '../models/database.js';
-import { setup2faOpts, verify2faOpts, delete2faOpts } from "../models/2faSchemas.js";
+import { setup2faOpts, verify2faOpts, delete2faOpts, check2faOpts } from "../models/2faSchemas.js";
 
 export default function twoFaRoutes(fastify, opts, done) {
     fastify.addHook("onRequest", fastify.jwtAuth);
+
+    fastify.get("/2fa/status", check2faOpts, async (request, reply) => {
+      const userId = request.user.id;
+      const row = db
+        .prepare("SELECT two_fa_enabled FROM users WHERE id = ?")
+        .get(userId);
+
+      if (!row) {
+        return reply.code(404).send({ error: "User not found" });
+      }
+
+      return reply.send({ twoFaEnabled: !!row.two_fa_enabled });
+    });
 
     fastify.get("/2fa/setup", setup2faOpts, async (request, reply) => {
       const userId = request.user.id;
