@@ -8,6 +8,10 @@ const SearchResults: React.FC = () => {
   const location = useLocation()
   const navigate = useNavigate()
 
+  // Extract the query string
+  const queryParams = new URLSearchParams(location.search)
+  const query = queryParams.get('query') || 'No query provided'
+
   useEffect(() => {
     const fetchUsers = async () => {
       try {
@@ -20,9 +24,6 @@ const SearchResults: React.FC = () => {
     fetchUsers()
   }, [])
 
-  // Extract the query string
-  const queryParams = new URLSearchParams(location.search)
-  const query = queryParams.get('query') || 'No query provided'
 
   // Filter users based on the query
   const filteredUsers = users.filter((user) =>
@@ -35,10 +36,11 @@ const SearchResults: React.FC = () => {
   }
 
   // If there is only one user, show the ProfilePage directly
-  if (filteredUsers.length === 1) {
-    navigate(`/profile/${filteredUsers[0].id}`)
-    return null;
-  }
+  useEffect(() => {
+    if (filteredUsers.length === 1) {
+      navigate(`/profile/${filteredUsers[0].id}`)
+    }
+  }, [filteredUsers, navigate])
 
   // Render the search results
   return (

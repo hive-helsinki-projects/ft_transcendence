@@ -1,5 +1,5 @@
 import friendController from '../controllers/friendController.js';
-import { getFriendsOpts, getFriendStatusOpts, deleteFriendOpts, postFriendOpts, patchFriendOpts } from '../models/friendSchemas.js'; 
+import { getFriendsOpts, getFriendOnlineStatusOpts, getFriendStatusOpts, deleteFriendOpts, postFriendOpts, patchFriendOpts } from '../models/friendSchemas.js'; 
 
 function friendRoutes(fastify, options) {
     // Get all friends of a user
@@ -9,7 +9,14 @@ function friendRoutes(fastify, options) {
         handler: friendController.getFriends
     });
 
-    // Get a friends status
+    // Get a friends online status
+    fastify.get('/friends/:id/online-status', {
+        ...getFriendOnlineStatusOpts,
+        onRequest: [fastify.jwtAuth],
+        handler: friendController.getFriendOnlineStatus
+    });
+
+        // Get a friend request status
     fastify.get('/friends/:id/status', {
         ...getFriendStatusOpts,
         onRequest: [fastify.jwtAuth],

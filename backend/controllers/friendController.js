@@ -150,8 +150,8 @@ const acceptFriendRequest = async (req, reply) => {
     }
 }
 
-// Get the current status of the friend relationship (e.g., pending, accepted)
-const getFriendStatus = async (req, reply) => {
+// Get the current online status of friend (e.g., online, offline)
+const getFriendOnlineStatus = async (req, reply) => {
     const user_id = req.user.id;
     const friend_id = parseInt(req.params.id);
 
@@ -185,10 +185,38 @@ const getFriendStatus = async (req, reply) => {
     }
 }
 
+// Get the current status of the friend relationship (e.g., pending, accepted)
+const getFriendStatus = async (req, reply) => {
+    const user_id = req.user.id;
+    const friend_id = parseInt(req.params.id);
+
+    try {
+        // Fetch the status of the relationship from the database
+        const friends = db.prepare(`
+            SELECT * 
+            FROM friends 
+            WHERE (user_id = ? AND friend_id = ?) OR (user_id = ? AND friend_id = ?)
+        `).get(user_id, friend_id, friend_id, user_id);
+
+        console.log("Console logging friends:", friends);
+
+        // If no relationship found, return an error
+        if (!friends) {
+            return reply.code(400).send({ error: 'Friendship not found' });
+        }
+        
+        return reply.code(200).send({ item: friends });
+    } catch (error) {
+        console.log(error);
+        return reply.code(500).send({ error: 'Failed to fetch friend status' });
+    }
+}
+
 export default {
     getFriends,
     sendFriendRequest,
     deleteFriend,
     acceptFriendRequest,
+    getFriendOnlineStatus,
     getFriendStatus
 };
