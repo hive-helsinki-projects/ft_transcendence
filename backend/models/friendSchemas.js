@@ -107,6 +107,34 @@ export const patchFriendOpts = {
     }
 }
 
+export const getFriendOnlineStatusOpts = {
+    schema: {
+        security: [
+            {
+                bearerAuth: []
+            }
+        ],
+        summary: 'Get a friends online status',
+		tags: ['friend'],
+        params: {
+            type: 'object',
+            required: ['id'],
+            properties: {
+                id: { type: 'integer' },
+            },
+        },
+        response: {
+            200: {
+                type: 'object',
+                properties: {
+                    username: { type: 'string' },
+                    online_status: { type: 'string', enum: ['online', 'offline'] },
+                },
+            },
+        },
+    },
+};
+
 export const getFriendStatusOpts = {
     schema: {
         security: [
@@ -127,8 +155,7 @@ export const getFriendStatusOpts = {
             200: {
                 type: 'object',
                 properties: {
-                    username: { type: 'string' },
-                    online_status: { type: 'string', enum: ['online', 'offline'] },
+                    item: Friend,
                 },
             },
         },
