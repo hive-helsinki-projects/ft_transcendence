@@ -66,3 +66,19 @@ export const setup2faOpts = {
       },
     },
   };
+
+  export const check2faOpts = {
+    schema: {
+      summary: "Check if 2FA is enabled for the logged-in user",
+      tags: ["2fa"],
+      security: [{ bearerAuth: [] }],
+      response: {
+        200: {
+          type: "object",
+          properties: {
+            twoFaEnabled: { type: "boolean" },
+          },
+        },
+      },
+    },
+  };

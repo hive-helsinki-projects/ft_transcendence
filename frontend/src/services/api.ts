@@ -25,6 +25,11 @@ export const api = {
       },
       body: JSON.stringify(data),
     })
+
+    if (response.status === 206) {
+      return await response.json()
+    }
+    
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`)
     }
@@ -62,5 +67,34 @@ export const api = {
     }
     const data = await response.json()
     return data
+  },
+
+  async delete(url: string) {
+    const token = localStorage.getItem('token')
+    const response = await fetch(`${API_URL}${url}`, {
+      method: 'DELETE',
+      headers: {
+        Authorization: `Bearer ${token}`
+      },
+    })
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`)
+    }
+    return response.json()
+  },
+
+  // getting 2fa status from /2fa/status
+  async get2faStatus(url: string) {
+    const token = localStorage.getItem('token')
+    const response = await fetch(`${API_URL}${url}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+    })
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`)
+    }
+    return response.json()
   },
 }

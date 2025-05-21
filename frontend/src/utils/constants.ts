@@ -5,7 +5,9 @@
 // API Endpoints
 export const API_ENDPOINTS = {
   LOGIN: '/login',
+  LOGIN_2FA: '/login/2fa',
   GOOGLE_AUTH: '/api/auth/google',
+  REGISTER: '/register',
 } as const
 
 // Messages
