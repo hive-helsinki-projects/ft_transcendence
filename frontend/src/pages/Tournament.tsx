@@ -1,212 +1,225 @@
-import React, { useEffect, useCallback } from 'react'
-import { useLocation, useNavigate } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { BaseService } from '../services/BaseService'
+import '../assets/styles/Tournament.css'
+import { useUserPlayers } from '../hooks/useUserPlayers'
 import ErrorBoundary from '../components/ErrorBoundary'
 import LoadingContainer from '../components/LoadingContainer'
-import { MatchCard, ChampionCard, useTournamentState, TournamentRound, Match, Player } from '../components/features/tournament'
-import '../assets/styles/Tournament.css'
-import useTranslate from '../hooks/useTranslate'
 
-// UI Components
-const TournamentBracket: React.FC<{
-  semifinals: Match[]
-  finalMatch: Match
-  champion: Player | null
-  isLoading: boolean
-  onStartMatch: (round: TournamentRound, matchIndex: number) => void
-}> = ({ semifinals, finalMatch, champion, isLoading, onStartMatch }) => {
-  const t = useTranslate()
-
-  return (
-    <div className="tournament-bracket">
-    <div className="semifinals">
-      {semifinals.map((match, index) => (
-        <div key={index} className="match-container">
-          <MatchCard
-            match={match}
-            title={`${t('SEMIFINAL')} ${index + 1}`}
-            onStartMatch={() => onStartMatch('semifinal', index)}
-            isLoading={isLoading}
-          />
-        </div>
-      ))}
-    </div>
-
-    {finalMatch.player1.name && finalMatch.player2.name && (
-      <div className="match-container">
-        <MatchCard
-          match={finalMatch}
-          title={t('FINAL MATCH')}
-          onStartMatch={() => onStartMatch('final', 0)}
-          isLoading={isLoading}
-        />
-      </div>
-    )}
-
-    {champion && (
-      <div className="match-container">
-        <ChampionCard champion={champion} />
-      </div>
-    )}
-  </div>
-  )
+interface PlayerInfo {
+  player_id: number
+  score: number
 }
 
-const TournamentHeader: React.FC<{
-  onReset: () => void
-  isLoading: boolean
-}> = ({ onReset, isLoading }) => {
-  const t = useTranslate()
-
-  return (
-    <div className="tournament-header">
-    <h1>{t('Tournament Lobby')}</h1>
-    <button
-      onClick={onReset}
-      className="reset-tournament-button"
-      disabled={isLoading}
-      aria-label="Reset tournament"
-    >
-      {t('Reset Tournament')}
-    </button>
-  </div>
-  )
+interface Match {
+  match_id: number
+  players: PlayerInfo[]
+  date: string
+  round: number
 }
 
-// Helper functions
-const getWinnerPlayer = (match: Match, winnerName: string): Player => 
-  winnerName === match.player1.name ? match.player1 : match.player2
+interface Tournament {
+  id: number
+  name: string
+  status: 'pending' | 'completed'
+  current_round: number
+  winner_id: number | null
+  matches: Match[]
+}
 
-const updateMatchWithWinner = (match: Match, winner: string): Match => ({
-  ...match,
-  winner,
-  status: 'completed' as const
-})
-
-const Tournament: React.FC = () => {
+const TournamentPage: React.FC = () => {
+  const [tournament, setTournament] = useState<Tournament | null>(null)
   const navigate = useNavigate()
-  const location = useLocation()
-  const { state, updateState, resetTournament } = useTournamentState()
+  const { userPlayers } = useUserPlayers()
 
-  const startMatch = async (round: TournamentRound, matchIndex: number) => {
-    try {
-      updateState({ isLoading: true, error: null })
-      const match = round === 'semifinal' ? state.semifinals[matchIndex] : state.finalMatch
-      const updatedMatch = { ...match, status: 'in_progress' as const }
+  const getPlayerName = (id: number): string => {
+    const player = userPlayers.find(p => p.id === id)
+    return player ? player.display_name : `Player ${id}`
+  }
 
-      if (round === 'semifinal') {
-        const updatedSemifinals = [...state.semifinals]
-        updatedSemifinals[matchIndex] = updatedMatch
-        updateState({ semifinals: updatedSemifinals })
-      } else {
-        updateState({ finalMatch: updatedMatch })
+  useEffect(() => {
+    const fetchTournaments = async () => {
+      try {
+        const res = await BaseService.get('/tournaments')
+        const tournaments: Tournament[] = res.items || res
+
+        const activeTournament = tournaments.find(t => t.status === 'pending')
+        if (activeTournament) {
+          setTournament(activeTournament)
+        } else {
+          alert('No ongoing tournament found.')
+          navigate('/dashboard')
+        }
+      } catch (err) {
+        console.error('Failed to fetch tournaments:', err)
+        alert('Something went wrong loading the tournament.')
+        navigate('/dashboard')
       }
+    }
 
-      navigate('/game', {
-        state: {
-          matchType: round,
-          matchIndex,
-          player1: match.player1,
-          player2: match.player2,
-          returnTo: '/tournament',
-        },
-      })
+    fetchTournaments()
+  }, [navigate])
+
+  useEffect(() => {
+    const updateTournamentIfComplete = async () => {
+      if (!tournament || tournament.status !== 'pending') return
+
+      const allPlayed = tournament.matches.every(
+        (match) => match.players[0].score !== 0 || match.players[1].score !== 0
+      )
+
+      if (allPlayed) {
+        try {
+          const updated = await BaseService.put(`/tournaments/${tournament.id}`, {})
+          setTournament(updated.item || updated)
+          console.log('Tournament advanced to next round.')
+        } catch (err) {
+          console.error('Failed to advance tournament:', err)
+        }
+      }
+    }
+
+    updateTournamentIfComplete()
+  }, [tournament])
+
+  const handleReset = async () => {
+    if (!tournament) return
+  
+    const confirmReset = window.confirm(
+      `Are you sure you want to delete the tournament "${tournament.name}"?`
+    )
+    if (!confirmReset) return
+  
+    try {
+      const res = await BaseService.delete(`/tournaments/${tournament.id}`)
+      alert(res.message || 'Tournament deleted successfully.')
+      navigate('/dashboard')
     } catch (error) {
-      console.error('Error starting match:', error)
-      updateState({ error: 'Failed to start match' })
-    } finally {
-      updateState({ isLoading: false })
+      console.error('Failed to delete tournament:', error)
+      alert('Failed to reset tournament. Please try again.')
     }
   }
 
-  const handleSemifinalComplete = useCallback((matchIndex: number, winner: string) => {
-    const updatedSemifinals = [...state.semifinals]
-    const match = updatedSemifinals[matchIndex]
-    match.winner = winner
-    match.status = 'completed'
-    updateState({ semifinals: updatedSemifinals })
-
-    const otherMatchIndex = matchIndex === 0 ? 1 : 0
-    if (updatedSemifinals[otherMatchIndex].winner) {
-      const finalist1 = getWinnerPlayer(updatedSemifinals[0], updatedSemifinals[0].winner!)
-      const finalist2 = getWinnerPlayer(updatedSemifinals[1], updatedSemifinals[1].winner!)
-
-      updateState({
-        finalMatch: {
-          player1: finalist1,
-          player2: finalist2,
-          winner: null,
-          status: 'pending',
-        },
-      })
-    }
-  }, [state.semifinals, updateState])
-
-  const handleFinalComplete = useCallback((winner: string) => {
-    const updatedFinalMatch = updateMatchWithWinner(state.finalMatch, winner)
-    const winnerPlayer = getWinnerPlayer(state.finalMatch, winner)
-
-    updateState({
-      finalMatch: updatedFinalMatch,
-      champion: winnerPlayer,
-    })
-  }, [state.finalMatch, updateState])
-
-  const handleMatchComplete = useCallback((
-    round: TournamentRound,
-    matchIndex: number,
-    winner: string,
+  const handleStartMatch = (
+    match: Match,
+    player1: { id: number; display_name: string; avatar: string },
+    player2: { id: number; display_name: string; avatar: string }
   ) => {
-    try {
-      updateState({ isLoading: true, error: null })
-      
-      if (round === 'semifinal') {
-        handleSemifinalComplete(matchIndex, winner)
-      } else {
-        handleFinalComplete(winner)
-      }
-    } catch (error) {
-      console.error('Error completing match:', error)
-      updateState({ error: 'Failed to complete match' })
-    } finally {
-      updateState({ isLoading: false })
+    if (!player1 || !player2) {
+      alert('Player information is missing.')
+      return
     }
-  }, [handleSemifinalComplete, handleFinalComplete, updateState])
 
-  useEffect(() => {
-    const state = location.state as {
-      matchType?: TournamentRound
-      matchIndex?: number
-      winner?: string
-    }
-    if (state?.matchType && state?.winner) {
-      handleMatchComplete(state.matchType, state.matchIndex || 0, state.winner)
-      navigate('/tournament', { replace: true })
-    }
-  }, [location.state, handleMatchComplete, navigate])
+    navigate('/game', {
+      state: {
+        matchId: match.match_id,
+        matchType: 'tournament',
+        player1: {
+          name: player1.display_name,
+          avatar: player1.avatar,
+          id: player1.id,
+        },
+        player2: {
+          name: player2.display_name,
+          avatar: player2.avatar,
+          id: player2.id,
+        },
+        returnTo: '/tournament',
+      },
+    })
+  }
 
   return (
     <ErrorBoundary>
       <LoadingContainer>
-        <div className="tournament-lobby" role="main">
-          <TournamentHeader onReset={resetTournament} isLoading={state.isLoading} />
-
-          {state.error && (
-            <div className="error-message" role="alert">
-              {state.error}
+        {!tournament ? null : tournament.status === 'completed' && tournament.winner_id ? (
+          <div className="tournament-lobby">
+            <div className="tournament-header">
+              <h1>{tournament.name}</h1>
             </div>
-          )}
+            <div className="tournament-round-info">
+              <h2>🏆 Tournament Completed</h2>
+              <p>
+                Winner: Player {tournament.winner_id}
+              </p>
+              <p>
+                There is no active tournament. You can create a new one from the dashboard.
+              </p>
+              <button
+                onClick={() => navigate('/dashboard')}
+                className="start-match-button"
+              >
+                Go to Dashboard
+              </button>
+            </div>
+          </div>
+          ) :  (
+          <div className="tournament-lobby">
+            {/* Header */}
+            <div className="tournament-header">
+              <h1>{tournament.name}</h1>
+              <button
+                className="reset-tournament-button"
+                onClick={handleReset}
+                aria-label="Reset tournament"
+              >
+                Reset Tournament
+              </button>
+            </div>
 
-          <TournamentBracket
-            semifinals={state.semifinals}
-            finalMatch={state.finalMatch}
-            champion={state.champion}
-            isLoading={state.isLoading}
-            onStartMatch={startMatch}
-          />
-        </div>
+            {/* Round Info */}
+            <div className="tournament-round-info">
+              <h2>Current Round: {tournament.current_round + 1}</h2>
+              {tournament.status === 'completed' && tournament.winner_id && (
+                <div className="match-container">
+                  <h3>🏆 Winner: Player {tournament.winner_id}</h3>
+                </div>
+              )}
+            </div>
+
+            {/* Matches */}
+            <div className="tournament-bracket">
+              {tournament.matches.map((match) => {
+                const [player1Info, player2Info] = match.players
+
+                const player1 = userPlayers.find(p => p.id === player1Info.player_id)
+                const player2 = userPlayers.find(p => p.id === player2Info.player_id)
+
+                const isMatchUnplayed = player1Info?.score === 0 && player2Info?.score === 0
+
+
+                return (
+                  <div key={match.match_id} className="match-container">
+                    <h4>
+                      Match {match.match_id} — Round {match.round + 1}
+                    </h4>
+                    <p>
+                      {match.players
+                        .map(
+                          (p) => `${getPlayerName(p.player_id)} (Score: ${p.score})`
+                        )
+                        .join(' vs ')}
+                    </p>
+                    {isMatchUnplayed && player1 && player2 &&(
+                    <button
+                      onClick={() =>
+                        player1 && player2 && handleStartMatch(match, player1, player2)
+                      }
+                      className="start-match-button"
+                      aria-label={`Start Match ${match.match_id}`}
+                    >
+                      Start Match
+                    </button>
+                    )}
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+        )}
       </LoadingContainer>
     </ErrorBoundary>
   )
 }
 
-export default Tournament
+export default TournamentPage

@@ -34,10 +34,10 @@ const Dashboard: React.FC = () => {
     }
   }
 
+  
   if (!username) {
     return <div>Please log in to view the dashboard</div>
   }
-  
   return (
     <ErrorBoundary>
       <LoadingContainer>
