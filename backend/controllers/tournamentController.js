@@ -62,8 +62,9 @@ const getTournaments = async (req, reply) => {
             JOIN tournaments t ON t.id = mh.tournament_id
         `).all();
 
+        // RETURN EMPTY ARRAY IF NO TOURNAMENTS
         if (rows.length === 0) {
-            return reply.code(404).send({ error: 'No tournaments found' });
+            return reply.code(200).send(rows);
         }
 
         // Organize data by tournament ID
