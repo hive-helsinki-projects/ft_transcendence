@@ -75,6 +75,8 @@ const TournamentPage: React.FC = () => {
           console.log('Tournament advanced to next round.')
         } catch (err) {
           console.error('Failed to advance tournament:', err)
+          setTournament(null);
+          navigate('/dashboard')
         }
       }
     }

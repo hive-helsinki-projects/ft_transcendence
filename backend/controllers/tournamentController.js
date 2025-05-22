@@ -261,7 +261,7 @@ const advanceTournament = async (req, reply) => {
         throw { statusCode: 404, message: 'Tournament not found or unauthorized' };
       }
       if (tour.status === 'finished') {
-        throw { statusCode: 400, message: 'Tournament already finished' };
+        throw { statusCode: 200, message: 'Tournament already finished' };
       }
 
       // load all matches in the current round

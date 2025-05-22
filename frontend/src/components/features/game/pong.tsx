@@ -13,7 +13,7 @@ const PADDLE_WIDTH = 10
 const PADDLE_HEIGHT = 100
 const BALL_RADIUS = 8
 const PADDLE_SPEED = 7
-const MAX_SCORE = 11
+const MAX_SCORE = 2
 
 let trailLength = 20
 let rightPaddleHit = 0
