@@ -47,7 +47,7 @@ const CreatePlayerModal: React.FC<{
                 setError('')
               }}
               placeholder={t('Enter player name')}
-              maxLength={20}
+              maxLength={16}
               required
             />
             {error && <StatusMessage type="error" message={error} />}
