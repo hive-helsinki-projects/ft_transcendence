@@ -9,8 +9,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "build:css": "postcss src/css/tailwind.css -o public/build/tailwind.css",
-    "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\"",
-    "i18next-scan": "i18next-scanner --config ./i18next-scanner.config.cjs"
+    "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\""
   },
   "dependencies": {
     "@fontsource/turret-road": "^5.2.5",
@@ -40,7 +39,6 @@
     "eslint-plugin-react-hooks": "^5.1.0",
     "eslint-plugin-react-refresh": "^0.4.19",
     "globals": "^15.15.0",
-    "i18next-scanner": "^4.6.0",
     "path": "^0.12.7",
     "postcss": "^8.5.3",
     "postcss-cli": "^11.0.1",
