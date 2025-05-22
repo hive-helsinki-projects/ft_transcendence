@@ -7,9 +7,9 @@ const getPlayers = async (req, reply) => {
     try {
         const players = db.prepare(`SELECT * FROM players WHERE user_id = ?`).all(user_id);
 
-        if (players.length === 0) {
-            return reply.code(404).send({ error: 'No players found for this user' });
-        }
+        // if (players.length === 0) {
+        //     return reply.code(404).send({ error: 'No players found for this user' });
+        // }
 
         return reply.code(200).send(players);
     } catch (error) {

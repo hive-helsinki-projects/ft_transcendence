@@ -72,4 +72,4 @@ function buildApp() {
     return fastify;
 }
 
-export default buildApp;;
+export default buildApp;
