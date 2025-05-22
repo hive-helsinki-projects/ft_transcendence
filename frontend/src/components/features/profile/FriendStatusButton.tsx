@@ -19,7 +19,7 @@ const FriendStatusButton = ({ user }) => {
           },
         });
         console.log('Friend status:', response.data);
-        setFriendStatus(response.data); // Expected: 'friends', 'pending', or 'none'
+        setFriendStatus(response.data.item.status);
       } catch (error) {
         console.error('Error fetching friend status:', error);
       }
@@ -34,7 +34,7 @@ const FriendStatusButton = ({ user }) => {
 
     try {
       const response = await axios.post(
-        `http://localhost:3001/friend-requests/${user.id}`,
+        `https://localhost:3001/friend-requests/${user.id}`,
         {},
         {
           headers: {
@@ -42,7 +42,6 @@ const FriendStatusButton = ({ user }) => {
           },
         }
       );
-      console.log('Friend request sent:', response.data);
       setFriendStatus('pending');
     } catch (error) {
       console.error('Error sending friend request:', error);
@@ -54,12 +53,11 @@ const FriendStatusButton = ({ user }) => {
     if (!token) return;
 
     try {
-      await axios.delete(`http://localhost:3001/friends/${user.id}`, {
+      await axios.delete(`https://localhost:3001/friends/${user.id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
-      console.log('Friend removed');
       setFriendStatus('none');
     } catch (error) {
       console.error('Error removing friend:', error);
@@ -72,7 +70,7 @@ const FriendStatusButton = ({ user }) => {
         <button onClick={handleRemoveFriend}>Remove Friend</button>
       )}
       {friendStatus === 'pending' && (
-        <button disabled>Request Pending</button>
+           <button onClick={handleRemoveFriend}>Remove Friend</button>
       )}
       {friendStatus === 'none' && (
         <button onClick={handleAddFriend}>Add Friend</button>
