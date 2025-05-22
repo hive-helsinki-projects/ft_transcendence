@@ -6,7 +6,7 @@ export const Player = {
         display_name: { 
             type: 'string', 
             minLength: 3, 
-            maxLength: 20, 
+            maxLength: 16, 
             pattern: '^[a-zA-Z0-9]+$' 
         },
         wins: { type: 'integer' },
