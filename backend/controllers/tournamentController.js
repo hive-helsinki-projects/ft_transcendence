@@ -179,12 +179,6 @@ const createTournament = async (req, reply) => {
     const insertMatchWinner = db.prepare(`INSERT INTO match_winner_history (match_id, winner_id) VALUES (?, ?)`);
 
     const transaction = db.transaction((name, player_ids, user_id) => {
-        // Check if a tournament with the same name already exists
-        const existingTournament = db.prepare('SELECT * FROM tournaments WHERE name = ?').get(name);
-        if (existingTournament) {
-            return reply.code(400).send({ error: 'Tournament name is already taken' });
-        }
-
         // Validate players' existence
         for (const player_id of player_ids) {
             const player = db.prepare('SELECT * FROM players WHERE id = ?').get(player_id);
