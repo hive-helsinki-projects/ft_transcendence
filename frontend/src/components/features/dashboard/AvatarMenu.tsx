@@ -1,6 +1,7 @@
 import React from 'react'
 import { LogOut, Pencil, Settings } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
+import useTranslate from '../../../hooks/useTranslate'
 
 interface AvatarMenuProps {
   avatar: string
@@ -14,6 +15,7 @@ const AvatarMenu: React.FC<AvatarMenuProps> = ({
   onLogout,
 }) => {
   const navigate = useNavigate()
+  const t = useTranslate()
 
   return (
     <div className="avatar-container">
@@ -42,11 +44,11 @@ const AvatarMenu: React.FC<AvatarMenuProps> = ({
         </div>
         <button className="avatar-menu-button" onClick={() => navigate('/settings')}>
           <Settings size={16} />
-          <span>Profile Settings</span>
+          <span>{t('Profile Settings')}</span>
         </button>
         <button className="avatar-menu-button logout" onClick={onLogout}>
           <LogOut size={16} />
-          <span>Sign Out</span>
+          <span>{t('Sign Out')}</span>
         </button>
       </div>
     </div>

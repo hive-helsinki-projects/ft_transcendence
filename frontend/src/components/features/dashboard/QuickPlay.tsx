@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import useTranslate from '../../../hooks/useTranslate'
 
 interface UserPlayer {
   id: string
@@ -21,6 +22,7 @@ const QuickPlay: React.FC<QuickPlayProps> = ({ userPlayers }) => {
   const [player1Id, setPlayer1Id] = useState('')
   const [player2Id, setPlayer2Id] = useState('')
 
+  const t = useTranslate()
 
   const handleTournamentClick = () => {
     if (!hasActivePlayers) {
@@ -58,14 +60,14 @@ const QuickPlay: React.FC<QuickPlayProps> = ({ userPlayers }) => {
 
   return (
     <div className="quick-play-section">
-      <h2>Game Modes</h2>
+      <h2>{t('Game Modes')}</h2>
       <div className="play-options">
         <button
           className="play-button one-vs-one"
           onClick={handleOneVsOneClick}
         >
           <span className="button-icon">🏓</span>
-          1v1 Match
+          {t('1v1 Match')}
         </button>
         <button
           className="play-button matchmaking"
@@ -73,19 +75,19 @@ const QuickPlay: React.FC<QuickPlayProps> = ({ userPlayers }) => {
           title="Tournament Mode (4-8 players)"
         >
           <span className="button-icon">🏆</span>
-          Tournament Mode
-          <span className="tournament-info">4-8 players</span>
+          {t('Tournament Mode')}
+          <span className="tournament-info">{t('4-8 players')}</span>
         </button>
       </div>
 
       {showModal &&  (
         <div className="modal-overlay">
           <div className="modal-content">
-            <h3>Select Players For 1v1 Match</h3>
+            <h3>{t('Select Players For 1v1 Match')}</h3>
             <label>
               Player 1:
                 <select  value={player1Id} onChange={(e) => setPlayer1Id(e.target.value) }>
-                  <option value="">Select Player</option>
+                  <option value="">{t('Select Player')}</option>
                   {userPlayers.map((player) => (
                     <option key={player.id} value={player.id}>
                       {player.display_name}
@@ -97,7 +99,7 @@ const QuickPlay: React.FC<QuickPlayProps> = ({ userPlayers }) => {
             <label>
               Player 2:
               <select value={player2Id} onChange={(e) => setPlayer2Id(e.target.value) }>
-                <option value="">Select Player</option>
+                <option value="">{t('Select Player')}</option>
                 {userPlayers.map((player) => (
                   <option key={player.id} value={player.id}>
                     {player.display_name}
@@ -108,9 +110,9 @@ const QuickPlay: React.FC<QuickPlayProps> = ({ userPlayers }) => {
             <br />
               <div className="modal-actions">
                 <button onClick={handleStartMatch} className="create-button">
-                  Start Match
+                  {t('Start Match')}
                 </button>
-                <button onClick={() => setShowModal(false)} className="cancel-button">Cancel</button>
+                <button onClick={() => setShowModal(false)} className="cancel-button">{t('Cancel')}</button>
               </div>
           </div>
         </div>

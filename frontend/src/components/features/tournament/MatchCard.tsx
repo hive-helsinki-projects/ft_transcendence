@@ -1,6 +1,7 @@
 import React from 'react'
 import { Match } from './TournamentState'
 import LoadingState from '../../LoadingState'
+import useTranslate from '../../../hooks/useTranslate'
 
 interface MatchCardProps {
   match: Match
@@ -9,8 +10,11 @@ interface MatchCardProps {
   isLoading?: boolean
 }
 
-export const MatchCard: React.FC<MatchCardProps> = ({ match, title, onStartMatch, isLoading = false }) => (
-  <div className="match-card" role="article" aria-label={`${title} match`}>
+export const MatchCard: React.FC<MatchCardProps> = ({ match, title, onStartMatch, isLoading = false }) => {
+  const t = useTranslate()
+
+  return (
+    <div className="match-card" role="article" aria-label={`${title} match`}>
     <h3>{title}</h3>
     <div className="match-players" role="list">
       <div className="player" role="listitem">
@@ -39,17 +43,18 @@ export const MatchCard: React.FC<MatchCardProps> = ({ match, title, onStartMatch
           disabled={isLoading}
           aria-label={`Start ${title}`}
         >
-          {isLoading ? <LoadingState message="Starting..." /> : 'Start Match'}
+          {isLoading ? <LoadingState message={t('loading.starting')} /> : t('Start Match')}
         </button>
       </div>
     )}
     {match.status === 'in_progress' && (
       <div className="match-status" role="status">
-        <LoadingState message="Match in Progress..." />
+        <LoadingState message={t('loading.matchInProgress')} />
       </div>
     )}
     {match.status === 'completed' && match.winner && (
       <div className="match-result" role="status">Winner: {match.winner}</div>
     )}
   </div>
-) 
+  )
+}

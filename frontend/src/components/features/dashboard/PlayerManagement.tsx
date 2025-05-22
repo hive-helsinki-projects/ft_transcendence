@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { UserPlus, Edit2, Trash2 } from 'lucide-react'
 import { StatusMessage } from '../auth/StatusMessage'
 import { UserPlayer } from '../../../types/dashboard'
+import useTranslate from '../../../hooks/useTranslate'
 
 interface PlayerManagementProps {
   userPlayers: UserPlayer[]
@@ -16,6 +17,7 @@ const CreatePlayerModal: React.FC<{
 }> = ({ onClose, onCreatePlayer }) => {
   const [playerName, setPlayerName] = useState('')
   const [error, setError] = useState('')
+  const t = useTranslate()
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -34,7 +36,7 @@ const CreatePlayerModal: React.FC<{
   return (
     <div className="modal-overlay">
       <div className="modal-content">
-        <h3>Create New Player</h3>
+        <h3>{t('Create New Player')}</h3>
         <form onSubmit={handleSubmit}>
           <div className="form-group">
             <input
@@ -44,7 +46,7 @@ const CreatePlayerModal: React.FC<{
                 setPlayerName(e.target.value)
                 setError('')
               }}
-              placeholder="Enter player name"
+              placeholder={t('Enter player name')}
               maxLength={20}
               required
             />
@@ -52,10 +54,10 @@ const CreatePlayerModal: React.FC<{
           </div>
           <div className="modal-actions">
             <button type="button" onClick={onClose} className="cancel-button">
-              Cancel
+            {t('Cancel')}
             </button>
             <button type="submit" className="create-button">
-              Create Player
+            {t('Create Player')}
             </button>
           </div>
         </form>
@@ -71,6 +73,7 @@ const PlayerManagement: React.FC<PlayerManagementProps> = ({
   onDeletePlayer,
 }) => {
   const [showCreateModal, setShowCreateModal] = useState(false)
+  const t = useTranslate()
 
   const handleToggleActive = (player: UserPlayer) => {
     onUpdatePlayer(player.id, { isActive: !player.isActive })
@@ -79,13 +82,13 @@ const PlayerManagement: React.FC<PlayerManagementProps> = ({
   return (
     <div className="players-management">
       <div className="players-header">
-        <h2>Your Players</h2>
+        <h2>{t('Your Players')}</h2>
         <button
           className="create-player-button"
           onClick={() => setShowCreateModal(true)}
         >
           <UserPlus size={16} />
-          <span>Create Player</span>
+          <span>{t('Create Player')}</span>
         </button>
       </div>
       <div className="players-list">

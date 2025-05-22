@@ -1,10 +1,8 @@
 import React from 'react'
-import { useState } from 'react'
 import { useAuth } from '../hooks/auth/useAuth'
 import { useAvatar } from '../hooks/useAvatar'
 import { useUserPlayers } from '../hooks/useUserPlayers'
 import { useMatchHistories } from '../hooks/useMatchHistories'
-import { mockGameStats, mockTopPlayers, mockRecentMatches } from '../data/mockData'
 import ErrorBoundary from '../components/ErrorBoundary'
 import LoadingContainer from '../components/LoadingContainer'
 import {
@@ -18,12 +16,14 @@ import {
 import '../assets/styles/index.css'
 import SearchBar from '../components/SearchBar'
 import { useNavigate } from 'react-router-dom'
+import useTranslate from '../hooks/useTranslate'
 
 const Dashboard: React.FC = () => {
   const { username, logout } = useAuth()
   const { avatar, handleAvatarChange } = useAvatar(username || '')
   const { userPlayers, createPlayer, updatePlayer, deletePlayer } = useUserPlayers()
   const { matches } = useMatchHistories()
+  const t = useTranslate()
 
   const navigate = useNavigate();
 
@@ -45,6 +45,7 @@ const Dashboard: React.FC = () => {
           <div className="welcome-header">
             <h1>Welcome, {username}!</h1>
             <SearchBar onSearch={handleSearch} />
+            <h1>{t('dashboard.welcome')}, {username}!</h1>
           </div>
           <PlayerManagement
             userPlayers={userPlayers}
