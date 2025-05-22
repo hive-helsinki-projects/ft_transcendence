@@ -39,17 +39,32 @@ const QuickPlay: React.FC<QuickPlayProps> = ({ userPlayers }) => {
     setShowModal1v1(true)
   }
 
-  const handleTournamentClick = () => {
+  const handleTournamentClick = async () => {
     if (!hasActivePlayers) {
       alert('Please create a player before joining a tournament')
       return
     }
+  
     if (!hasEnoughPlayersTourn) {
       alert('You need at least 4 players for a tournament')
       return
     }
-    setSelectedTournamentPlayers([])
-    setShowModalTourn(true)
+  
+    try {
+      const res = await BaseService.get('/tournaments') // adjust based on your API shape
+      const tournaments = res.items || res
+      const activeTournament = tournaments.find((t: any) => t.status === 'pending')
+  
+      if (activeTournament) {
+        navigate('/tournament')
+      } else {
+        setSelectedTournamentPlayers([])
+        setShowModalTourn(true)
+      }
+    } catch (err) {
+      console.error('Error checking for active tournament:', err)
+      alert('Failed to check existing tournaments')
+    }
   }
 
   const handleToggle1v1Player = (id: number) => {
@@ -111,20 +126,25 @@ const QuickPlay: React.FC<QuickPlayProps> = ({ userPlayers }) => {
     }
   }
 
-  const handleStartTournament = () => {
+  const handleStartTournament = async () => {
     if (selectedTournamentPlayers.length < 4 || selectedTournamentPlayers.length > 8) {
       alert('You must select between 4 and 8 players for the tournament')
       return
     }
-
+  
     const selected = userPlayers.filter((p) => selectedTournamentPlayers.includes(p.id))
-
-    navigate('/tournament', {
-      state: {
-        players: selected,
-        returnTo: '/dashboard',
-      },
-    })
+  
+    try {
+        await BaseService.post('/tournaments', {
+          name: 'The Great Paddle-Off',
+          player_ids: selected.map((p) => p.id),
+        })
+        
+      navigate('/tournament')
+    } catch (error) {
+      console.error('Error starting tournament:', error)
+      alert('There was an error creating the tournament. Please try again.')
+    }
   }
 
   return (

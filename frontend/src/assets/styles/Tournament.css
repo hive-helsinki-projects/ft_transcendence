@@ -19,7 +19,10 @@
 
 .reset-tournament-button {
   padding: 0.75rem 1.5rem;
-  background-color: var(--accent-color);
+  margin-left: 1rem;
+  /* background-color: var(--accent-color); */
+  background: linear-gradient(45deg, #2C3E50, #1A2634);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   color: white;
   border: none;
   border-radius: 0.5rem;

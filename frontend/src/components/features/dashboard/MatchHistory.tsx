@@ -25,6 +25,10 @@ const MatchHistory: React.FC<MatchHistoryProps> = ({ matches }) => {
     if (!Array.isArray(matches) || userPlayers.length === 0) return []
 
     return [...matches]
+      .filter((match) => {
+        const [p1, p2] = match.players
+        return !(p1.score === 0 && p2.score === 0)
+      })
       .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
       .slice(0, 3)
       .map((match) => {
