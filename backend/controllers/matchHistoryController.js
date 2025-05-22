@@ -115,16 +115,23 @@ const createMatchHistory = async (req, reply) => {
         VALUES (?, ?)
     `);
 
+    let matchId;
+
     const transaction = db.transaction((type, tournament_id, round, players, user_id) => {
         const result = insertMatch.run(type, tournament_id, round, user_id);
+        matchId = result.lastInsertRowid;
         for (const player of players) {
-            insertMatchPlayer.run(result.lastInsertRowid, player.player_id);
+            insertMatchPlayer.run(matchId, player.player_id);
         }
     });
 
     try {
         transaction(type, tournament_id, round, players, user_id);
-        return reply.code(201).send({ message: 'Match history created successfully' });
+        console.log(matchId);
+        return reply.code(201).send({ 
+            message: 'Match history created successfully',
+            match_id: matchId
+        });
     } catch (error) {
         console.error(error);
         return reply.code(500).send({ error: 'Failed to create match history' });

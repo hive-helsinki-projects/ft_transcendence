@@ -2,6 +2,8 @@ import React, { useEffect, useRef, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import LoadingContainer from '../../LoadingContainer'
 import '../../../assets/styles/Pong.css'
+import { BaseService } from '../../../services/BaseService'
+
 import useTranslate from '../../../hooks/useTranslate'
 
 // Constants
@@ -29,10 +31,10 @@ let trailRad = 0;
 
 
 interface GameState {
-  matchType?: 'semifinal' | 'final' | '1v1'
-  matchIndex?: number
-  player1?: { name: string; avatar: string }
-  player2?: { name: string; avatar: string }
+  matchType: 'semifinal' | 'final' | '1v1'
+  matchId: number
+  player1: { name: string; avatar: string; id: number}
+  player2: { name: string; avatar: string; id: number }
   returnTo?: string
 }
 
@@ -177,22 +179,48 @@ export default function Game() {
       }
     }
 
-    function checkWinCondition(currentScores: { player1: number; player2: number }) {
+    async function checkWinCondition(currentScores: { player1: number; player2: number }) {
       if (currentScores.player1 >= MAX_SCORE || currentScores.player2 >= MAX_SCORE) {
         if ((currentScores.player1 > 20 || currentScores.player2 > 20) || Math.abs(currentScores.player1 - currentScores.player2) >= 2) {
           setGameOver(true);
           setMatchStatus('completed');
           const winner = currentScores.player1 > currentScores.player2
-            ? gameState?.player1?.name
-            : gameState?.player2?.name;
-          setMatchResult(`Winner: ${winner}`);
+            ? gameState.player1
+            : gameState.player2;
+          setMatchResult(`Winner: ${winner.name}`);
+
+          console.log("gameState.player1.id = ", gameState.player1.id)
+          console.log("gameState.player2.id = ", gameState.player2.id)
+
+          console.log("winner_id", winner.id)
+          await sendMatchResult(gameState.matchId, winner.id, currentScores.player1, currentScores.player2)
+
+          async function sendMatchResult(matchId: number, winnerId: number, score1: number, score2: number) {
+            try {
+              await BaseService.put(`/match-histories/${matchId}`, {
+                  winner_id: winnerId,
+                  players: [
+                    {
+                      player_id: gameState.player1.id,
+                      score: score1,
+                    },
+                    {
+                      player_id: gameState.player2.id,
+                      score: score2,
+                    }
+                  ]
+            })
+            } catch (error) {
+              console.log('Failed to update match result', error)
+            }
+          }
 
           setTimeout(() => {
             if (gameState?.returnTo) {
               navigate(gameState.returnTo, {
                 state: {
                   matchType: gameState.matchType,
-                  matchIndex: gameState.matchIndex,
+                  matchIndex: gameState.matchId,
                   winner,
                 },
               })
