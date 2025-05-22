@@ -21,6 +21,7 @@ interface MatchHistoryProps {
 
 const MatchHistory: React.FC<MatchHistoryProps> = ({ matches }) => {
   const { userPlayers } = useUserPlayers()
+  const t = useTranslate()
 
   const recentMatches = useMemo(() => {
     if (!Array.isArray(matches) || userPlayers.length === 0) return []

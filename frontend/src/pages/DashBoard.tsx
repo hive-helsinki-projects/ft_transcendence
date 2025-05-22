@@ -43,9 +43,8 @@ const Dashboard: React.FC = () => {
       <LoadingContainer>
         <div className="dashboard">
           <div className="welcome-header">
-            <h1>Welcome, {username}!</h1>
-            <SearchBar onSearch={handleSearch} />
             <h1>{t('dashboard.welcome')}, {username}!</h1>
+            <SearchBar onSearch={handleSearch} />
           </div>
           <PlayerManagement
             userPlayers={userPlayers}

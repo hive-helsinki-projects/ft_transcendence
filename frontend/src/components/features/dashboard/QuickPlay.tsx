@@ -27,6 +27,8 @@ const QuickPlay: React.FC<QuickPlayProps> = ({ userPlayers }) => {
   const [selected1v1Players, setSelected1v1Players] = useState<number[]>([])
   const [selectedTournamentPlayers, setSelectedTournamentPlayers] = useState<number[]>([])
 
+  const t = useTranslate()
+
   const handleOneVsOneClick = () => {
     if (!hasActivePlayers) {
       alert('Please create a player before starting a 1v1 match')
