@@ -3,7 +3,6 @@ import { useAuth } from '../hooks/auth/useAuth'
 import { useAvatar } from '../hooks/useAvatar'
 import { useUserPlayers } from '../hooks/useUserPlayers'
 import { useMatchHistories } from '../hooks/useMatchHistories'
-import { mockGameStats, mockTopPlayers, mockRecentMatches } from '../data/mockData'
 import ErrorBoundary from '../components/ErrorBoundary'
 import LoadingContainer from '../components/LoadingContainer'
 import {
