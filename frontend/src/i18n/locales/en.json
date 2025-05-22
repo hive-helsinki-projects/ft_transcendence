@@ -1,0 +1,95 @@
+{
+  "hero": {
+    "title": "Ping. Pong. Play!",
+    "subtitle": "Level Up Your Ping Pong Skills",
+    "description": "Smash, spin, and dominate the table. Prove you are the ultimate paddle master."
+  },
+
+  "dashboard": {
+    "welcome": "Welcome"
+  },
+
+  "Your Players": "Your Players",
+  "Create New Player": "Create New Player",
+  "Enter player name": "Enter player name",
+  "Create Player": "Create Player",
+  "Returning to lobby...": "Returning to lobby...",
+
+  "Game Modes": "Game Modes",
+  "1v1 Match": "1v1 Match",
+  "Tournament Mode": "Tournament Mode",
+  "Select Players For 1v1 Match": "Select Players For 1v1 Match",
+  "Select Player": "Select Player",
+  "4-8 players": "4-8 players",
+  "Start Match": "Start Match",
+
+  "Match in Progress...": "Match in Progress...",
+  "Press spacebar to start game...": "Press spacebar to start game...",
+  "W/S keys": "W/S keys",
+  "First to 11 points (win by 2)": "First to 11 points (win by 2)",
+  "↑/↓ keys": "↑/↓ keys",
+
+  "Player Stats": "Player Stats",
+  "Select a player": "Select a player",
+  "stats": {
+    "wins": "Wins",
+    "losses": "Losses",
+    "winRate": "Win Rate",
+    "rotalGames": "Total Games"
+  },
+
+  "loading": {
+    "starting": "Starting...",
+    "matchInProgress": "Match in Progress..."
+  },
+
+  "Recent Matches": "Recent Matches",
+
+  "TOP PLAYERS": "TOP PLAYERS",
+
+  "Tournament Lobby": "Tournament Lobby",
+  "Reset Tournament": "Reset Tournament",
+  "SEMIFINAL": "SEMIFINAL",
+  "FINAL MATCH": "FINAL MATCH",
+
+  "matchType": {
+    "final": "FINAL MATCH",
+    "1v1": "1v1 MATCH",
+    "semifinal": "SEMIFINAL {{index}}"
+  },
+
+  "settings.title": "Settings",
+  "Account Settings": "Account Settings",
+  "Edit": "Edit",
+  "Save": "Save",
+  "Cancel": "Cancel",
+  "errors": {
+    "failedToUpdate": "Failed to update user data",
+    "general": "An error occurred"
+  },
+  "Two-Factor Authentication": "Two-Factor Authentication",
+  "Disable 2FA": "Disable 2FA",
+  "Enable 2FA": "Enable 2FA",
+  "Language Preferences": "Language Preferences",
+  "languages": {
+    "language": "Language",
+    "english": "English",
+    "finnish": "Finnish",
+    "swedish": "Swedish",
+    "japanese": "Japanese"
+  },
+  "Theme Settings": "Theme Settings",
+  "Theme": "Theme",
+  "Dark": "Dark",
+  "Light": "Light",
+  "System Default": "System Default",
+  "Account Management": "Account Management",
+  "actions": {
+    "deleteAccount": "Delete Account",
+    "logout": "Logout"
+  },
+
+  "Profile Settings": "Profile Settings",
+  "Sign Out": "Sign Out"
+}
+

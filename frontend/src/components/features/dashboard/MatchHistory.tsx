@@ -1,4 +1,5 @@
 import React, { useMemo } from 'react'
+import useTranslate from '../../../hooks/useTranslate'
 
 interface MatchHistory {
   id: string
@@ -32,9 +33,11 @@ const MatchHistory: React.FC<MatchHistoryProps> = ({ matches }) => {
     )
   }, [matches])
 
+  const t = useTranslate()
+
   return (
     <div className="recent-matches-section">
-      <h2>Recent Matches</h2>
+      <h2>{t('Recent Matches')}</h2>
       <div className="matches-list">
         {recentMatches.map((match) => (
           <div key={match.id} className={`match-item ${match.result}`}>

@@ -1,15 +1,17 @@
 import React from 'react'
 import '../../assets/styles/index.css'
+import useTranslate from '../../hooks/useTranslate'
 
-const HeroSection: React.FC = () => (
-  <section className="hero-section">
-    <h1>Ping. Pong. Play!</h1>
-    <h2>Level Up Your Ping Pong Skills</h2>
-    <p>
-      Smash, spin, and dominate the table. Prove you're the ultimate paddle
-      master.
-    </p>
-  </section>
-)
+const HeroSection: React.FC = () => {
+  const t = useTranslate()
+
+  return (
+    <section className="hero-section">
+      <h1>{t('hero.title')}</h1>
+      <h2>{t('hero.subtitle')}</h2>
+      <p>{t('hero.description')}</p>
+    </section>
+  )
+}
 
 export default HeroSection 

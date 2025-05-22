@@ -19,10 +19,12 @@
     "dotenv": "^16.4.7",
     "ethers": "^6.13.5",
     "google-auth-library": "^9.15.1",
+    "i18next": "^25.1.2",
     "lucide-react": "^0.485.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.55.0",
+    "react-i18next": "^15.5.1",
     "react-router-dom": "^7.4.0"
   },
   "devDependencies": {

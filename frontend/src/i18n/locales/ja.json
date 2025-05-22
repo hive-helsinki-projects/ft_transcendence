@@ -1,0 +1,87 @@
+{
+  "hero": {
+    "hero.title": "ピン・ポン・プレイ！",
+    "hero.subtitle": "Level Up Your Ping Pong Skills",
+    "hero.description": "Smash, spin, and dominate the table. Prove you are the ultimate paddle master."
+  },
+  "dashboard": {
+    "welcome": "こんにちは"
+  },
+  "Your Players": "あなたのプレイヤー",
+  "Create New Player": "新しいプレイヤーを作成",
+  "Enter player name": "プレイヤー名を入力",
+  "Create Player": "プレイヤーを作成",
+  "Returning to lobby...": "ロビーへ戻る",
+
+  "Game Modes": "ゲームモード",
+  "1v1 Match": "1v1 対戦",
+  "Tournament Mode": "トーナメント",
+  "Select Players For 1v1 Match": "1v1の対戦相手を選択",
+  "Select Player": "プレイヤーを選ぶ",
+  "4-8 players": "4-8 プレイヤー",
+  "Start Match": "試合を開始",
+
+  "Match in Progress...": "試合中...",
+  "Press spacebar to start game...": "スペースキーを押して試合開始...",
+  "W/S keys": "W/Sキー",
+  "First to 11 points (win by 2)": "11点先取 (2点差で勝利)",
+  "↑/↓ keys": "↑/↓キー",
+
+  "Player Stats": "プレイヤー統計",
+  "Select a player": "プレイヤーを選択",
+  "stats": {
+    "wins": "勝ち",
+    "losses": "負け",
+    "winRate": "勝率",
+    "rotalGames": "全試合数"
+  },
+
+  "Recent Matches": "最近の試合",
+
+  "TOP PLAYERS": "トッププレイヤー",
+
+  "Tournament Lobby": "トーナメントロビー",
+  "Reset Tournament": "トーナメントをリセット",
+  "SEMIFINAL": "準決勝",
+  "FINAL MATCH": "決勝",
+
+  "matchType": {
+    "final": "決勝",
+    "1v1": "1v1 対戦",
+    "semifinal": "準決勝 {{index}}"
+  },
+
+  "settings.title": "設定",
+  "Account Settings": "アカウント設定",
+  "Edit": "編集",
+  "Save": "保存",
+  "Cancel": "キャンセル",
+  "errors": {
+    "failedToUpdate": "ユーザー情報の更新に失敗しました",
+    "general": "エラーが発生しました"
+  },
+  "Two-Factor Authentication": "2段階認証",
+  "Disable 2FA": "2段階認証を無効にする",
+  "Enable 2FA": "2段階認証を有効にする",
+  "Language Preferences": "言語設定",
+  "languages": {
+    "language": "言語",
+    "english": "英語",
+    "finnish": "フィンランド語",
+    "swedish": "スウェーデン語",
+    "japanese": "日本語"
+  },
+  "Theme Settings": "テーマ設定",
+  "Theme": "テーマ",
+  "Dark": "ダーク",
+  "Light": "ライト",
+  "System Default": "デフォルト設定",
+  "Account Management": "アカウント管理",
+  "actions": {
+    "deleteAccount": "アカウント削除",
+    "logout": "ログアウト"
+  },
+
+  "Profile Settings": "プロフィール設定",
+  "Sign Out": "サインアウト"
+}
