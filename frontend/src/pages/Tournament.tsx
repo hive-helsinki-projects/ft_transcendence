@@ -60,6 +60,28 @@ const TournamentPage: React.FC = () => {
     fetchTournaments()
   }, [navigate])
 
+  useEffect(() => {
+    const updateTournamentIfComplete = async () => {
+      if (!tournament || tournament.status !== 'pending') return
+
+      const allPlayed = tournament.matches.every(
+        (match) => match.players[0].score !== 0 || match.players[1].score !== 0
+      )
+
+      if (allPlayed) {
+        try {
+          const updated = await BaseService.put(`/tournaments/${tournament.id}`, {})
+          setTournament(updated.item || updated)
+          console.log('Tournament advanced to next round.')
+        } catch (err) {
+          console.error('Failed to advance tournament:', err)
+        }
+      }
+    }
+
+    updateTournamentIfComplete()
+  }, [tournament])
+
   const handleReset = async () => {
     if (!tournament) return
   
@@ -110,7 +132,28 @@ const TournamentPage: React.FC = () => {
   return (
     <ErrorBoundary>
       <LoadingContainer>
-        {!tournament ? null : (
+        {!tournament ? null : tournament.status === 'completed' && tournament.winner_id ? (
+          <div className="tournament-lobby">
+            <div className="tournament-header">
+              <h1>{tournament.name}</h1>
+            </div>
+            <div className="tournament-round-info">
+              <h2>🏆 Tournament Completed</h2>
+              <p>
+                Winner: Player {tournament.winner_id}
+              </p>
+              <p>
+                There is no active tournament. You can create a new one from the dashboard.
+              </p>
+              <button
+                onClick={() => navigate('/dashboard')}
+                className="start-match-button"
+              >
+                Go to Dashboard
+              </button>
+            </div>
+          </div>
+          ) :  (
           <div className="tournament-lobby">
             {/* Header */}
             <div className="tournament-header">
