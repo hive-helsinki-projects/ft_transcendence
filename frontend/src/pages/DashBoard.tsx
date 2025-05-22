@@ -1,4 +1,5 @@
 import React from 'react'
+import { useState } from 'react'
 import { useAuth } from '../hooks/auth/useAuth'
 import { useAvatar } from '../hooks/useAvatar'
 import { useUserPlayers } from '../hooks/useUserPlayers'
@@ -15,12 +16,23 @@ import {
   AvatarMenu,
 } from '../components/features/dashboard'
 import '../assets/styles/index.css'
+import SearchBar from '../components/SearchBar'
+import { useNavigate } from 'react-router-dom'
 
 const Dashboard: React.FC = () => {
   const { username, logout } = useAuth()
   const { avatar, handleAvatarChange } = useAvatar(username || '')
   const { userPlayers, createPlayer, updatePlayer, deletePlayer } = useUserPlayers()
   const { matches } = useMatchHistories()
+
+  const navigate = useNavigate();
+
+  const handleSearch = (query: string) => {
+    if (query.trim()) {
+      navigate(`/search?query=${query}`);
+      console.log('Searching for:', query)
+    }
+  }
 
   if (!username) {
     return <div>Please log in to view the dashboard</div>
@@ -32,6 +44,7 @@ const Dashboard: React.FC = () => {
         <div className="dashboard">
           <div className="welcome-header">
             <h1>Welcome, {username}!</h1>
+            <SearchBar onSearch={handleSearch} />
           </div>
           <PlayerManagement
             userPlayers={userPlayers}
