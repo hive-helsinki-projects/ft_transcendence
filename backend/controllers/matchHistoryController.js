@@ -9,6 +9,7 @@ const getMatchHistories = async (req, reply) => {
                 mh.type,
                 mh.tournament_id,
                 mh.date,
+                mh.status,
                 mh.round, 
                 COALESCE(
                     (
@@ -57,6 +58,7 @@ const getMatchHistory = async (req, reply) => {
                 mh.type,
                 mh.tournament_id,
                 mh.date,
+                mh.status,
                 mh.round, 
                 COALESCE(
                     (
@@ -158,6 +160,7 @@ const updateMatchHistory = async (req, reply) => {
         UPDATE match_player_history SET score = ? WHERE match_id = ? AND player_id = ?
     `);
     const updatePlayerLoss = db.prepare(`UPDATE players SET losses = losses + 1 WHERE id = ?`);
+    const updateMatchHistory = db.prepare(`UPDATE match_history SET status = 'finished' WHERE id = ?`);
 
     const transaction = db.transaction((id, winner_id, players) => {
         for (const player of players) {
@@ -179,6 +182,8 @@ const updateMatchHistory = async (req, reply) => {
             insertMatchWinner.run(id, winner_id);
             updatePlayerWin.run(winner_id);
         }
+
+        updateMatchHistory.run(id);
     });
 
     try {
@@ -212,10 +217,26 @@ const deleteMatchHistory = async (req, reply) => {
     }
 }
 
+// Delete all unfinished 1v1 match history
+const deleteAllMatchHistory = async (req, reply) => {
+    const user_id = req.user.id;
+
+    try {
+        const unfinishedMatchHistory = db.prepare(`DELETE FROM match_history WHERE type = '1v1' AND status = 'pending' AND user_id = ?`).run(user_id);
+        console.log(unfinishedMatchHistory);
+
+        return reply.code(200).send({ message: 'Unfinished 1v1 match histories deleted successfully' });
+    } catch (error) {
+        console.error(error);
+        return reply.code(500).send({ error: 'Failed to delete all unfinished 1v1 match history' });
+    }
+}
+
 export default {
     getMatchHistories,
     getMatchHistory,
     createMatchHistory,
     updateMatchHistory,
-    deleteMatchHistory
+    deleteMatchHistory,
+    deleteAllMatchHistory
 };

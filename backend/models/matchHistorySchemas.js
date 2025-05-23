@@ -7,6 +7,7 @@ export const MatchHistory = {
         tournament_id: { type: 'integer', nullable: true },
         date: { type: 'string', format: 'date-time' },
         round: { type: 'integer', nullable: true },
+        status: { type: 'string', enum: ['pending', 'finished'] },
         winner_id: { type: 'integer', nullable: true },
         players: {
             type: 'array',
@@ -115,6 +116,7 @@ export const putMatchHistoryOpts = {
             properties: {
                 type: { type: 'string' },
                 tournament_id: { type: 'integer', nullable: true },
+                status: { type: 'string', enum: ['pending', 'finished'] },
                 winner_id: { type: 'integer' },
                 players: {
                     type: 'array',
@@ -158,6 +160,26 @@ export const deleteMatchHistoryOpts = {
                 id: { type: 'integer' },
             },
         },
+        response: {
+            200: {
+                type: 'object',
+                properties: {
+                    message: { type: 'string' },
+                },
+            },
+        },
+    },
+};
+
+export const deleteAllMatchHistoryOpts = {
+    schema: {
+        security: [
+            {
+                bearerAuth: []
+            }
+        ],
+        summary: 'Delete all 1v1 match history',
+        tags: ['match-history'],
         response: {
             200: {
                 type: 'object',

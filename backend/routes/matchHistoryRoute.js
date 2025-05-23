@@ -1,5 +1,5 @@
 import matchHistoryController from '../controllers/matchHistoryController.js';
-import { getMatchHistoriesOpts, getMatchHistoryOpts, postMatchHistoryOpts, putMatchHistoryOpts, deleteMatchHistoryOpts } from '../models/matchHistorySchemas.js';
+import { getMatchHistoriesOpts, getMatchHistoryOpts, postMatchHistoryOpts, putMatchHistoryOpts, deleteMatchHistoryOpts, deleteAllMatchHistoryOpts } from '../models/matchHistorySchemas.js';
 
 function matchHistoryRoutes(fastify, options) {
     // Get match history for current user
@@ -33,6 +33,13 @@ function matchHistoryRoutes(fastify, options) {
         ...deleteMatchHistoryOpts,
         onRequest: [fastify.jwtAuth],
         handler: matchHistoryController.deleteMatchHistory
+    });
+
+    // Delete all unfinished 1v1 match history
+    fastify.delete('/match-histories', {
+        ...deleteAllMatchHistoryOpts,
+        onRequest: [fastify.jwtAuth],
+        handler: matchHistoryController.deleteAllMatchHistory
     });
 }
 
