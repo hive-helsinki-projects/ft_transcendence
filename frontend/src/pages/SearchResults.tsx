@@ -15,7 +15,7 @@ const SearchResults: React.FC = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await axios.get('https://localhost:3001/users') // Use HTTP for localhost
+        const response = await axios.get('https://localhost:3001/users')
         setUsers(response.data)
       } catch (error) {
         console.error('Error fetching users:', error)
