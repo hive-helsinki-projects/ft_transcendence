@@ -76,7 +76,7 @@ const loginUser = async (req, reply) => {
             AND online_status = FALSE
         `).run(user.id);
 
-        return reply.send({ token, username: user.username });
+        return reply.send({ token, username: user.username, id: user.id });
     } catch (error) {
         return reply.code(500).send({ error: 'Internal Server Error' });
     }

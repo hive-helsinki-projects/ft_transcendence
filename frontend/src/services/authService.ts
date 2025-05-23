@@ -5,6 +5,7 @@ import { API_ENDPOINTS } from '../utils/constants'
 export interface LoginResponse {
   token: string
   username: string
+  id: string
 }
 
 const API_URL = 'https://localhost:3001'

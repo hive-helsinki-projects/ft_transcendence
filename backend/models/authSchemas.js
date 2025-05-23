@@ -18,6 +18,7 @@ export const postLoginOpts = {
 				properties: {
 					token: { type: 'string' },
 					username: { type: 'string' },
+					id: { type: 'integer' },
 				},
 			},
             206: {
