@@ -83,6 +83,7 @@ db.prepare(`
 		id INTEGER PRIMARY KEY AUTOINCREMENT,
 		user_id INTEGER,
 		type TEXT NOT NULL,
+		status TEXT DEFAULT 'pending',
 		tournament_id INTEGER DEFAULT NULL,
 		round INTEGER,
 		date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
