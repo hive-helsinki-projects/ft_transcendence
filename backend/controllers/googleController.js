@@ -61,7 +61,7 @@ const loginGoogleSignin = async (req, reply) => {
         // Respond with the token and username
         return reply.send({
             message: 'Verified',
-            user: { token: jwtToken, username: user.username },
+            user: { token: jwtToken, username: user.username, id: user.id },
         });
 
     } catch (error) {

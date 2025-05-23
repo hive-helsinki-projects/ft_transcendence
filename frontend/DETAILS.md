@@ -223,6 +223,7 @@ BEGIN
         // Initialize auth state
         [user, setUser] = useState(null)
         [token, setToken] = useState(null)
+        [id, setId] = useState(null)
         
         // Handle user login
         FUNCTION login(credentials)
@@ -232,6 +233,7 @@ BEGIN
                 // Update state
                 SET token = response.token
                 SET user = response.user
+                SET id = response.id
                 // Persist token
                 STORE token in localStorage
             CATCH error
@@ -244,6 +246,7 @@ BEGIN
             // Clear auth state
             CLEAR token
             CLEAR user
+            CLEAR id
             // Remove persisted token
             REMOVE token from localStorage
         END FUNCTION

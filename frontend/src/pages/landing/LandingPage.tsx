@@ -54,7 +54,7 @@ const LandingPage: React.FC = () => {
     
       handleAuthSuccess()
       await new Promise((resolve) => setTimeout(resolve, REDIRECT_DELAY))
-      login(loginResponse.token, loginResponse.username)
+      login(loginResponse.token, loginResponse.username, loginResponse.id)
       navigate('/dashboard')
     } catch (error) {
       handleAuthError(error)
@@ -66,9 +66,10 @@ const LandingPage: React.FC = () => {
   const handleGoogleAuth = async () => {
     try {
       const response = await AuthService.googleAuth()
+      console.log(response);
       handleAuthSuccess()
       await new Promise((resolve) => setTimeout(resolve, REDIRECT_DELAY))
-      login(response.token, response.username)
+      login(response.token, response.username, response.id)
       navigate('/dashboard')
     } catch (error) {
       handleAuthError(error)

@@ -47,7 +47,8 @@ const GoogleSignIn: React.FC<GoogleSignInProps> = ({ isLoading }) => {
       });
       const data = await response.json();
       if (response.ok) {
-        login(data.user.token, data.user.username);
+        login(data.user.token, data.user.username, data.user.id);
+        console.log('Authentication successful:', data.user);
         navigate('/dashboard');
       } else {
         console.log('Authentication failed:', data);

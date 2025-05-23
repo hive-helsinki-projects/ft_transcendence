@@ -20,8 +20,9 @@ export const postGoogleLoginOpts = {
 				properties: {
 					token: { type: 'string' },
 					username: { type: 'string' },
+					id: { type: 'number' },
 				},
-				required: ['token', 'username'],
+				required: ['token', 'username', 'id'],
 				},
 			},
 			required: ['message', 'user'],
