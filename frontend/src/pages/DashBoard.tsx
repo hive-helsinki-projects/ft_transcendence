@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useAuth } from '../hooks/auth/useAuth'
 import { useAvatar } from '../hooks/useAvatar'
 import { useUserPlayers } from '../hooks/useUserPlayers'
 import { useMatchHistories } from '../hooks/useMatchHistories'
+import axios from 'axios'
 import ErrorBoundary from '../components/ErrorBoundary'
 import LoadingContainer from '../components/LoadingContainer'
 import {
@@ -26,6 +27,23 @@ const Dashboard: React.FC = () => {
   const t = useTranslate()
 
   const navigate = useNavigate();
+
+  useEffect(() => { 
+    const token = localStorage.getItem('token');
+    const deleteUnfinishedMatches = async () => {
+      try {
+        const response = await axios.delete('https://localhost:3001/match-histories', {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+    });
+      } catch (error) {
+        console.error('Error deleting unfinished matches:', error)
+      }
+    }
+    deleteUnfinishedMatches();
+  },[])
+    
 
   const handleSearch = (query: string) => {
     if (query.trim()) {
