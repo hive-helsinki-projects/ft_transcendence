@@ -1,6 +1,5 @@
 import React from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom'
-import ProtectedRoute from '../auth/ProtectedRoute'
 import Dashboard from '../../pages/DashBoard'
 import Help from '../../pages/Help'
 import LandingPage from '../../pages/landing/LandingPage'
@@ -11,6 +10,7 @@ import Tournament from '../../pages/Tournament'
 import Pong from '../features/game/pong'
 import { useAuth } from '../../hooks/auth/useAuth'
 import ProfilePage from '../ProfilePage'
+import ProtectedRoute from './ProtectedRoute'
 
 /**
  * AppRoutes Component
