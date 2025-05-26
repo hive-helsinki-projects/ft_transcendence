@@ -138,10 +138,9 @@ const QuickPlay: React.FC<QuickPlayProps> = ({ userPlayers }) => {
   
     const selected = userPlayers.filter((p) => selectedTournamentPlayers.includes(p.id))
     
-    const tournamentUniqueId = `Tournament-${Date.now()}`; 
     try {
         await BaseService.post('/tournaments', {
-          name: `The Great Paddle-Off ${tournamentUniqueId}`,
+          name: `The Great Paddle-Off`,
           player_ids: selected.map((p) => p.id),
         })
       navigate('/tournament')
