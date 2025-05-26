@@ -21,7 +21,7 @@ interface Match {
 interface Tournament {
   id: number
   name: string
-  status: 'pending' | 'completed'
+  status: 'pending' | 'finished'
   current_round: number
   winner_id: number | null
   matches: Match[]
@@ -75,12 +75,10 @@ const TournamentPage: React.FC = () => {
           console.log('Tournament advanced to next round.')
         } catch (err) {
           console.error('Failed to advance tournament:', err)
-          setTournament(null);
-          navigate('/dashboard')
+          // navigate('/dashboard')
         }
       }
     }
-
     updateTournamentIfComplete()
   }, [tournament])
 
@@ -184,7 +182,7 @@ const TournamentPage: React.FC = () => {
 
             {/* Matches */}
             <div className="tournament-bracket">
-              {tournament.matches.map((match) => {
+              {tournament?.matches?.map((match) => {
                 const [player1Info, player2Info] = match.players
 
                 const player1 = userPlayers.find(p => p.id === player1Info.player_id)
