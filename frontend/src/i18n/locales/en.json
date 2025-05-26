@@ -35,7 +35,7 @@
     "wins": "Wins",
     "losses": "Losses",
     "winRate": "Win Rate",
-    "rotalGames": "Total Games"
+    "totalGames": "Total Games"
   },
 
   "loading": {
