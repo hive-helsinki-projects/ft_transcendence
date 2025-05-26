@@ -43,13 +43,13 @@ const TournamentPage: React.FC = () => {
         const res = await BaseService.get('/tournaments')
         const tournaments: Tournament[] = res.items || res
 
-        const activeTournament = tournaments.find(t => t.status === 'pending')
-        if (activeTournament) {
-          setTournament(activeTournament)
-        } else {
-          alert('No ongoing tournament found.')
+        if (tournaments.length === 0) {
+          alert('No tournaments have been played yet')
           navigate('/dashboard')
+          return
         }
+        const latestTournament = tournaments.sort((a, b) => b.id - a.id)[0]
+        setTournament(latestTournament)
       } catch (err) {
         console.error('Failed to fetch tournaments:', err)
         alert('Something went wrong loading the tournament.')
@@ -134,7 +134,7 @@ const TournamentPage: React.FC = () => {
   return (
     <ErrorBoundary>
       <LoadingContainer>
-        {!tournament ? null : tournament.status === 'completed' && tournament.winner_id ? (
+        {!tournament ? null : tournament.status === 'finished' && tournament.winner_id ? (
           <div className="tournament-lobby">
             <div className="tournament-header">
               <h1>{tournament.name}</h1>
@@ -142,7 +142,10 @@ const TournamentPage: React.FC = () => {
             <div className="tournament-round-info">
               <h2>🏆 Tournament Completed</h2>
               <p>
-                Winner: Player {tournament.winner_id}
+                Winner: {
+                  userPlayers.find((u) => u.id === tournament.winner_id)?.display_name || 
+                  `Player ${tournament.winner_id ?? 'N/A'}`
+                }
               </p>
               <p>
                 There is no active tournament. You can create a new one from the dashboard.
