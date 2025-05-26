@@ -184,6 +184,13 @@ export default function Game() {
         if ((currentScores.player1 > 20 || currentScores.player2 > 20) || Math.abs(currentScores.player1 - currentScores.player2) >= 2) {
           setGameOver(true);
           setMatchStatus('completed');
+          if (!gameState) {
+            setMatchResult(`Winner: ${currentScores.player1 > currentScores.player2 ? 'player 1' : 'player2'}`);
+            setTimeout(() => {
+              navigate('/dashboard')
+            }, 3000)
+            return
+          }
           const winner = currentScores.player1 > currentScores.player2
             ? gameState.player1
             : gameState.player2;
@@ -379,7 +386,7 @@ export default function Game() {
                   ? t('matchType.final')
                   : gameState.matchType === '1v1'
                     ? ('matchType.1v1')
-                    : t('matchType.semifinal', { index: gameState.matchIndex! + 1 })}
+                    : t('matchType.semifinal')}
               </div>
               <div className="win-condition">{t('First to 11 points (win by 2)')}</div>
             </div>
