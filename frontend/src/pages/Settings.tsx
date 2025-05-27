@@ -118,7 +118,7 @@ const SettingsSection: React.FC<SettingsSectionProps> = ({
 )
 
 const Settings: React.FC = () => {
-  const { token, username, logout } = useAuth()
+  const { id: userId, username, logout } = useAuth()
   const navigate = useNavigate()
   const t = useTranslate()
 
@@ -142,6 +142,23 @@ const Settings: React.FC = () => {
   const [qrDataUrl,    setQrDataUrl]    = useState<string | null>(null)
   const [twoFaToken,   setTwoFaToken]   = useState<string>('')
   const [twoFaMessage, setTwoFaMessage] = useState<string | null>(null)
+
+  useEffect(() => {
+    // on mount, load current user’s data
+    const loadProfile = async () => {
+      try {
+        const user = await api.get(`/users/${userId}`)
+        setUserData({
+          username: user.username,
+          email: user.email,
+          password: ''
+        })
+      } catch (err) {
+        console.error('Failed to load profile', err)
+      }
+    }
+    if (userId) loadProfile()
+  }, [userId])
 
   useEffect(() => {
     const fetch2faStatus = async () => {
@@ -218,20 +235,9 @@ const Settings: React.FC = () => {
         return
       }
 
-      const response = await fetch(`/api/users/${token}`, {
-        method: 'PATCH',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          [fieldToUpdate]: newValue,
-        }),
+      await api.put(`/users/${userId}`, {
+        [fieldToUpdate]: newValue
       })
-
-      if (!response.ok) {
-        const errorMessage = t('errors.failedToUpdate')
-        throw new Error(errorMessage)
-      }
 
       setUserData((prev) => ({
         ...prev,
@@ -254,7 +260,7 @@ const Settings: React.FC = () => {
   const handleLogout = async () => {
     try {
       await logout()
-      navigate('/login')
+      navigate('/')
     } catch {
       setError('Failed to logout')
     }
@@ -267,16 +273,10 @@ const Settings: React.FC = () => {
       )
     ) {
       try {
-        const response = await fetch(`/api/users/${token}`, {
-          method: 'DELETE',
-        })
-
-        if (!response.ok) {
-          throw new Error('Failed to delete account')
-        }
+        await api.delete(`/users/${userId}`)
 
         await logout()
-        navigate('/login')
+        navigate('/')
       } catch {
         setError('Failed to delete account')
       }

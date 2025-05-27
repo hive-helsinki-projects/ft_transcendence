@@ -83,6 +83,22 @@ export const api = {
     return response.json()
   },
 
+  async put(url: string, data:any) {
+    const token = localStorage.getItem('token')
+    const response = await fetch(`${API_URL}${url}`, {
+      method: 'PUT',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`)
+    }
+    return (response.json())
+  },
+
   // getting 2fa status from /2fa/status
   async get2faStatus(url: string) {
     const token = localStorage.getItem('token')
