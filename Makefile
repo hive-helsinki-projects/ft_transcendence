@@ -13,15 +13,17 @@ build:
 
 up:
 	@echo "$(GREEN)[+] Starting containers in background...$(RESET)"
-	@docker-compose up -d
+	@docker-compose up
 
 run:
 	@echo "$(GREEN)[+] Building & starting containers in background...$(RESET)"
-	@docker-compose up -d --build
+	@docker-compose up --build
 
 re:
 	@echo "$(YELLOW)[!] Rebuilding with no cache & starting...$(RESET)"
-	@docker-compose up -d --build --no-cache
+	@docker-compose down
+	@docker-compose build --no-cache
+	@docker-compose up
 
 down:
 	@echo "$(RED)[x] Stopping containers...$(RESET)"

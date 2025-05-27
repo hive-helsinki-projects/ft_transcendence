@@ -14,17 +14,53 @@ const API_URL = 'https://localhost:3001'
  * Authentication Service
  * Handles all authentication-related API calls
  */
+type TwoFaChallenge = { message: string; userId: number }
+type SuccessLogin   = { token: string; username: string; id: number }
+
 export class AuthService extends BaseService {
-  static async login(formData: AuthFormData): Promise<LoginResponse | { message: string, userId: number }> {
-    return this.post<LoginResponse>(API_ENDPOINTS.LOGIN, formData)
+  static async login(
+    formData: AuthFormData
+  ): Promise<LoginResponse | TwoFaChallenge> {
+    const raw = await this.post<TwoFaChallenge | SuccessLogin>(
+      API_ENDPOINTS.LOGIN,
+      formData
+    )
+
+    if ('message' in raw) {
+      // 206 case
+      return { message: raw.message, userId: raw.userId }
+    }
+
+    // 200 case
+    return {
+      token:    raw.token,
+      username: raw.username,
+      id:       String(raw.id),
+    }
   }
 
-  static async login2fa(userId: number, code: string): Promise<LoginResponse> {
-    return this.post<LoginResponse>(API_ENDPOINTS.LOGIN_2FA, { userId, code })
+  static async login2fa(
+    userId: number,
+    code: string
+  ): Promise<LoginResponse> {
+    const raw = await this.post<SuccessLogin>(
+      API_ENDPOINTS.LOGIN_2FA,
+      { userId, code }
+    )
+    return {
+      token:    raw.token,
+      username: raw.username,
+      id:       String(raw.id),
+    }
   }
 
   static async googleAuth(): Promise<LoginResponse> {
-    return this.post<LoginResponse>(API_ENDPOINTS.GOOGLE_AUTH)
+    const raw = await this.post<SuccessLogin>(API_ENDPOINTS.GOOGLE_AUTH)
+    return {
+      token:    raw.token,
+      username: raw.username,
+      id:       String(raw.id),
+    }
   }
 
   static async registerAndLogin(formData: AuthFormData): Promise<LoginResponse> {

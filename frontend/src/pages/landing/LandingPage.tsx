@@ -83,7 +83,7 @@ const LandingPage: React.FC = () => {
       const { token } = await AuthService.login2fa(userId, twoFaCode)
       handleAuthSuccess()
       await new Promise((resolve) => setTimeout(resolve, REDIRECT_DELAY))
-      login(token, cachedUsername)
+      login(token, cachedUsername, String(userId))
       navigate('/dashboard')
     } catch (err) {
       setTwoFaError('Invalid 2FA code')
