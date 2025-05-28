@@ -1,7 +1,7 @@
 import React from 'react'
 import { AuthSectionProps } from '../../../types/auth'
 import '../../../assets/styles/index.css'
-import GoogleSignInNew from "../../../components/GoogleSignInNew";
+import GoogleSignIn from "../../GoogleSignIn";
 import { useAuthForm } from '../../../hooks/auth/useAuthForm'
 
 const AuthSection: React.FC<AuthSectionProps> = ({
@@ -13,14 +13,14 @@ const AuthSection: React.FC<AuthSectionProps> = ({
     // const {
     //   isLoading
     // } = useAuthForm()
-  
+
   <section className="auth-section">
     <h2>Let's Play!</h2>
     {children}
     <div className="auth-options">
       <div className="google-auth">
         <span>Or</span>
-          <GoogleSignInNew />
+          <GoogleSignIn />
       </div>
 
       <div className="register-link">
@@ -40,4 +40,4 @@ const AuthSection: React.FC<AuthSectionProps> = ({
   </section>
 )
 
-export default AuthSection 
+export default AuthSection

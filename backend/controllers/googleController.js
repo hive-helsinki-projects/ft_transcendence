@@ -1,5 +1,5 @@
 import db from '../models/database.js';
-//import { OAuth2Client } from 'google-auth-library';
+import { OAuth2Client } from 'google-auth-library';
 import axios from 'axios'
 
 async function verifyGoogleToken(idToken) {
@@ -17,17 +17,19 @@ async function verifyGoogleToken(idToken) {
 const loginGoogleSignin = async (req, reply) => {
     const { code } = req.body;
 
+    const params = new URLSearchParams();
+    params.append('code', code);
+    params.append('client_id', process.env.GOOGLE_CLIENT_ID);
+    params.append('client_secret', process.env.GOOGLE_CLIENT_SECRET);
+    params.append('redirect_uri', process.env.GOOGLE_REDIRECT_URI);
+    params.append('grant_type', 'authorization_code');
+
     try {
         // Verify the Google token and get user info
+        console.log('Received code:', code);
         const tokenRes = await axios.post(
             'https://oauth2.googleapis.com/token',
-            new URLSearchParams({
-                code,
-                client_id: process.env.GOOGLE_CLIENT_ID,
-                // client_secret: process.env.GOOGLE_CLIENT_SECRET,
-                redirect_uri: 'https://localhost:5173/oauth2callback',
-                grant_type: 'authorization_code',
-            }),
+            params.toString(),                        // <-- form-urlencoded
             { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }
         );
 
@@ -35,9 +37,7 @@ const loginGoogleSignin = async (req, reply) => {
         if (!id_token) {
             return reply.code(400).send({ error: 'IDトークンの取得に失敗しました' });
         }
-
         const googleUser = await verifyGoogleToken(id_token);
-
         let user = db.prepare(`SELECT * FROM users WHERE email = ?`).get(googleUser.email);
 
         // If user doesn't exist, try to register them

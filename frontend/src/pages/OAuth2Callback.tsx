@@ -11,7 +11,6 @@ const OAuth2Callback = () => {
     const code = params.get('code');
 
     if (!code) {
-      console.error("it doesn't find the code");
       return;
     }
 
@@ -27,17 +26,17 @@ const OAuth2Callback = () => {
           navigate('/dashboard');
         } else {
           console.error("Failed to login:", data);
-          navigate('/login');
+          navigate('/');
         }
       })
       .catch(err => {
         console.error("Error:", err);
-        navigate('/login');
+        navigate('/');
       });
   }, [navigate, login]);
 
   return (
-    <p>Loging in...</p>
+    <p>Logging in...</p>
   )
 };
 

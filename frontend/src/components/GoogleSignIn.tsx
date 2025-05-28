@@ -1,82 +1,33 @@
-import React, { useEffect } from 'react';
-import { useNavigate } from "react-router-dom";
-import { useAuth } from '../hooks/auth/useAuth';
+import React from 'react';
 
-// import "../css/LandingPage.css";
 const clientId = '847383291975-9ten21d8j1vf3m2m1kod2i2js9c28o6e.apps.googleusercontent.com';
 
-interface GoogleSignInProps {
-  isLoading: boolean;
-}
+const GoogleSignIn: React.FC = () => {
+  const redirectToGoogleOAuth = () => {
+    const redirectUri = 'https://localhost:5173/oauth2callback'; // The uri we registered in Google Cloud Console
+    const scope = 'openid email profile';
+    const responseType = 'code';
+    const baseUrl = 'https://accounts.google.com/o/oauth2/v2/auth';
 
-declare global {
-  interface Window {
-      google: any;
-  }
-}
+    const params = new URLSearchParams({
+      client_id: clientId,
+      redirect_uri: redirectUri,
+      response_type: responseType,
+      scope: scope,
+      access_type: 'offline',
+      prompt: 'consent',
+    });
 
-const GoogleSignIn: React.FC<GoogleSignInProps> = ({ isLoading }) => {
-
-  const navigate = useNavigate();
-  const { login } = useAuth();
-  
-  useEffect(() => {
-    if (window.google) {
-      window.google.accounts.id.initialize({
-        client_id: clientId,
-        callback: handleCredentialResponse,
-        auto_select: false,
-      });
-      window.google.accounts.id.renderButton(
-        document.getElementById("google-signin-btn"),
-        { theme: "outline", size: "large" }
-      );
-    } else {
-      console.error("Google Identity SDK is not loaded.");
-    }
-  }, []);
-
-  const sendTokenToServer = async (idToken: string) => {
-    try {
-      const response = await fetch('https://localhost:3001/api/auth/google', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ token: idToken })
-      });
-      const data = await response.json();
-      if (response.ok) {
-        login(data.user.token, data.user.username, data.user.id);
-        console.log('Authentication successful:', data.user);
-        navigate('/dashboard');
-      } else {
-        console.log('Authentication failed:', data);
-      }
-    } catch (error) {
-      console.error("Error sending token to server: ", error);
-    }
-  };
-
-  const handleCredentialResponse = (response: any) => {    
-      if (isLoading) {
-          return ;
-      }
-    const idToken = response.credential; // obtain the ID
-
-    // send the token to the sever
-    sendTokenToServer(idToken).then(() => {
-      navigate('/dashboard');
-    }).catch((error) => {
-      console.error("Error sending token to server: ", error);
-    })
+    window.location.href = `${baseUrl}?${params.toString()}`;
   };
 
   return (
-    <div>
-      <div id="google-signin-btn"></div>
-    </div>
+      <div>
+        <button onClick={redirectToGoogleOAuth}>
+          Login with Google(test redirect method)
+        </button>
+      </div>
   );
 };
 
-export default GoogleSignIn
+export default GoogleSignIn;
