@@ -29,6 +29,7 @@ interface Tournament {
 
 const TournamentPage: React.FC = () => {
   const [tournament, setTournament] = useState<Tournament | null>(null)
+  const [played, setPlayed] = useState(false)
   const navigate = useNavigate()
   const { userPlayers } = useUserPlayers()
 
@@ -67,7 +68,7 @@ const TournamentPage: React.FC = () => {
       const allPlayed = tournament.matches.every(
         (match) => match.players[0].score !== 0 || match.players[1].score !== 0
       )
-
+      console.log(tournament)
       if (allPlayed) {
         try {
           const updated = await BaseService.put(`/tournaments/${tournament.id}`, {})
@@ -182,41 +183,45 @@ const TournamentPage: React.FC = () => {
 
             {/* Matches */}
             <div className="tournament-bracket">
-              {tournament?.matches?.map((match) => {
-                const [player1Info, player2Info] = match.players
-
-                const player1 = userPlayers.find(p => p.id === player1Info.player_id)
-                const player2 = userPlayers.find(p => p.id === player2Info.player_id)
-
-                const isMatchUnplayed = player1Info?.score === 0 && player2Info?.score === 0
-
-
+            {tournament?.matches?.map((match) => {
+              if (!Array.isArray(match.players) || match.players.length === 0) {
                 return (
                   <div key={match.match_id} className="match-container">
-                    <h4>
-                      Match {match.match_id} — Round {match.round + 1}
-                    </h4>
-                    <p>
-                      {match.players
-                        .map(
-                          (p) => `${getPlayerName(p.player_id)} (Score: ${p.score})`
-                        )
-                        .join(' vs ')}
-                    </p>
-                    {isMatchUnplayed && player1 && player2 &&(
+                    <h4>Match {match.match_id} — Round {match.round + 1}</h4>
+                    <p>Player data unavailable.</p>
+                  </div>
+                )
+              }
+
+              const player1Info = match.players[0]
+              const player2Info = match.players[1] // might be undefined
+
+              const player1 = userPlayers.find(p => p.id === player1Info?.player_id)
+              const player2 = userPlayers.find(p => p.id === player2Info?.player_id)
+
+              const isMatchUnplayed = player1Info?.score === 0 && player2Info?.score === 0
+
+              return (
+                <div key={match.match_id} className="match-container">
+                  <h4>Match {match.match_id} — Round {match.round + 1}</h4>
+                  <p>
+                    {[player1Info, player2Info]
+                      .filter(Boolean)
+                      .map(p => `${getPlayerName(p!.player_id)} (Score: ${p!.score})`)
+                      .join(' vs ')}
+                  </p>
+                  {isMatchUnplayed && player1 && player2 && (
                     <button
-                      onClick={() =>
-                        player1 && player2 && handleStartMatch(match, player1, player2)
-                      }
+                      onClick={() => handleStartMatch(match, player1, player2)}
                       className="start-match-button"
                       aria-label={`Start Match ${match.match_id}`}
                     >
                       Start Match
                     </button>
-                    )}
-                  </div>
-                )
-              })}
+                  )}
+                </div>
+              )
+            })}
             </div>
           </div>
         )}
