@@ -11,6 +11,7 @@ import Tournament from '../../pages/Tournament'
 import Pong from '../features/game/pong'
 import { useAuth } from '../../hooks/auth/useAuth'
 import ProfilePage from '../ProfilePage'
+import OAuth2Callback from '../../pages/OAuth2Callback';
 
 /**
  * AppRoutes Component
@@ -65,6 +66,9 @@ const AppRoutes: React.FC = () => {
 
       {/* 404 Route - Shows when no matching route is found */}
       <Route path="*" element={<div>404 Not Found</div>} />
+
+      <Route path="/oauth2callback" element={<OAuth2Callback />} />
+      
     </Routes>
   )
 }

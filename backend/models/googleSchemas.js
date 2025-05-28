@@ -5,9 +5,9 @@ export const postGoogleLoginOpts = {
 		tags: ['google'],
 		body: {
 			type: 'object',
-			required: ['token'],
+			required: ['code'],
 			properties: {
-				token: { type: 'string' }
+				code: { type: 'string' }
 			},
 		},
 		response: {
