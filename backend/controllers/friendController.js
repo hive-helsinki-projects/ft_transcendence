@@ -198,11 +198,9 @@ const getFriendStatus = async (req, reply) => {
             WHERE (user_id = ? AND friend_id = ?) OR (user_id = ? AND friend_id = ?)
         `).get(user_id, friend_id, friend_id, user_id);
 
-        console.log("Console logging friends:", friends);
-
         // If no relationship found, return an error
         if (!friends) {
-            return reply.code(400).send({ error: 'Friendship not found' });
+            return reply.code(404).send({ error: 'Friendship not found' });
         }
         
         return reply.code(200).send({ item: friends });

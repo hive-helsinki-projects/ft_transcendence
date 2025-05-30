@@ -6,31 +6,35 @@ const FriendStatusButton = ({ user }) => {
   const [sendFriendRequest, setSendFriendRequest] = useState(false);
 
   useEffect(() => {
-    const fetchFriendStatus = async () => {
-      const token = localStorage.getItem('token');
-      if (!token) {
-        console.error('No token found');
-        return;
-      }
+  const fetchFriendStatus = async () => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      console.error('No token found');
+      return;
+    }
 
-      try {
-        const response = await axios.get(`https://localhost:3001/friends/${user.id}/status`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        console.log('Friend status:', response.data);
-        setFriendStatus(response.data.item.status);
-        if (response.data.item.status === 'pending' && response.data.item.friend_id === user.id) {
-          setSendFriendRequest(true);
-        }
-      } catch (error) {
+    try {
+      const response = await axios.get(`https://localhost:3001/friends/${user.id}/status`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setFriendStatus(response.data.item.status);
+      if (response.data.item.status === 'pending' && response.data.item.friend_id === user.id) {
+        setSendFriendRequest(true);
+      }
+    } catch (error: any) {
+      if (error.response && error.response.status === 404) {
+        // No friendship exists
+        setFriendStatus('none');
+        setSendFriendRequest(false);
+      } else {
         console.error('Error fetching friend status:', error);
       }
-    };
-
-    fetchFriendStatus();
-  }, [user.id]);
+    }
+  };
+  fetchFriendStatus();
+}, [user.id]);
 
   const handleAddFriend = async () => {
     const token = localStorage.getItem('token');
@@ -90,6 +94,11 @@ const FriendStatusButton = ({ user }) => {
 
   return (
     <div>
+      <div>
+        {friendStatus === 'accepted' && (
+        <p>online_status: {user.online_status === true ? 'online' : 'offline'}</p>
+      )}
+      </div>
       {friendStatus === 'accepted' && (
         <button onClick={handleRemoveFriend}>Remove Friend</button>
       )}
