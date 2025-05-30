@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import FriendStatusButton from './features/profile/FriendStatusButton';
 import GetUserPlayers from './features/profile/GetUserPlayers';
+import MatchHistory from './features/profile/MatchHistory';
 
 const ProfilePage = () => {
     const [user, setUser] = useState<any>(null);

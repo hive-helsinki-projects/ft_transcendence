@@ -7,7 +7,8 @@ const MatchHistory = ({ userId }: { userId: string }) => {
     React.useEffect(() => {
         const fetchMatchHistory = async () => {
             try {
-                const response = await axios.get(`https://localhost:3001/match-history/${userId}`);
+                const response = await axios.get(`https://localhost:3001/match-histories/user/${userId}`);
+                console.log('Fetched match history:', response.data);
                 setMatches(response.data);
             } catch (error) {
                 console.error('Error fetching match history:', error);
@@ -18,12 +19,12 @@ const MatchHistory = ({ userId }: { userId: string }) => {
 
     return (
         <div className="match-history">
-            <h2>Match History</h2>
+            <h2>Match History 1v1</h2>
             {matches.length > 0 ? (
                 <ul>
                     {matches.map((match) => (
                         <li key={match.id}>
-                            {match.date} - {match.result} - {match.opponent}
+                            <p>match_date: {match.date} </p>
                         </li>
                     ))}
                 </ul>
