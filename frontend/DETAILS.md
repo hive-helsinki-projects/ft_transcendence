@@ -253,7 +253,7 @@ BEGIN
         
         // Provide auth context
         RETURN (
-            <AuthContext.Provider value={{ user, token, login, logout }}>
+            <AuthContext.Provider value={{ user, token, id, login, logout }}>
                 {children}
             </AuthContext.Provider>
         )
