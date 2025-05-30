@@ -47,6 +47,56 @@ const getMatchHistories = async (req, reply) => {
     }
 };
 
+// Fetch all match histories for a specific user
+const getUserMatchHistories = async (req, reply) => {
+    const { userId } = req.params;
+
+    try {
+        const rows = db.prepare(`
+            SELECT
+                mh.id,
+                mh.type,
+                mh.tournament_id,
+                mh.date,
+                mh.status,
+                mh.round, 
+                COALESCE(
+                    (
+                        SELECT mwh.winner_id
+                        FROM match_winner_history mwh
+                        WHERE mwh.match_id = mh.id
+                        LIMIT 1
+                    ), NULL
+                ) AS winner_id,
+                COALESCE(
+                    (
+                        SELECT json_group_array(
+                            json_object(
+                                'player_id', mph.player_id, 
+                                'score', mph.score
+                            )
+                        )
+                        FROM match_player_history mph
+                        WHERE mph.match_id = mh.id
+                    ), '[]'
+                ) AS players
+            FROM match_history mh
+            WHERE mh.user_id = ?
+        `).all(userId);
+
+        // Parse the players data from JSON format
+        const matches = rows.map(({ players, ...rest }) => ({
+            ...rest,
+            players: JSON.parse(players)
+        }));
+
+        return reply.code(200).send(matches);
+    } catch (error) {
+        console.error(error);
+        return reply.code(500).send({ error: 'Failed to fetch match histories' });
+    }
+};
+
 // Fetch a specific match history by ID
 const getMatchHistory = async (req, reply) => {
     const { id } = req.params;
@@ -234,6 +284,7 @@ const deleteAllMatchHistory = async (req, reply) => {
 
 export default {
     getMatchHistories,
+    getUserMatchHistories,
     getMatchHistory,
     createMatchHistory,
     updateMatchHistory,

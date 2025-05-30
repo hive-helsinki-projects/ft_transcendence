@@ -3,6 +3,7 @@ import '../assets/styles/ProfilePage.css';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import FriendStatusButton from './features/profile/FriendStatusButton';
+import GetUserPlayers from './features/profile/GetUserPlayers';
 
 const ProfilePage = () => {
     const [user, setUser] = useState<any>(null);
@@ -18,7 +19,7 @@ const ProfilePage = () => {
                 if (username === response.data.username) {
                     setIsOwnProfile(true);
                 }
-                console.log('User profile:', response.data);
+                console.log('setUser User profile:', response.data);
             } catch (error) {
                 console.error('Error fetching user profile:', error);
             }
@@ -35,6 +36,12 @@ const ProfilePage = () => {
                 {!isOwnProfile && (
                     <FriendStatusButton user={user} />
                 )}
+                </div>
+                <div>
+                    <GetUserPlayers userId={user.id} />
+                </div>
+                <div>
+                    <MatchHistory userId={user.id} />
                 </div>
             </div>
         )

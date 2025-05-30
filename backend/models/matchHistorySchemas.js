@@ -25,7 +25,20 @@ export const MatchHistory = {
 // Schemas for match-history operations
 export const getMatchHistoriesOpts = {
     schema: {
-        summary: 'Get match history for current user',
+        summary: 'Get all match histories',
+        tags: ['match-history'],
+        response: {
+            200: {
+                type: 'array',
+                items: MatchHistory,
+            },
+        },
+    },
+};
+
+export const getUserMatchHistoriesOpts = {
+    schema: {
+        summary: 'Get match histories for specific user',
         tags: ['match-history'],
         response: {
             200: {

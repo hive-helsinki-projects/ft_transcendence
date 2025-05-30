@@ -9,28 +9,15 @@ interface Match {
   score: string;
 }
 
-const PlayerCard = ({ playerId, userId }) => {
-    const [matchHistories, setMatchHistories] = useState<Match[]>([]);
+const PlayerCard = ({ player }) => {
 
-    useEffect(() => {
-        const fetchMatchHistory = async () => {
-            try {
-                const response = await axios.get(`https://localhost:3001/match-histories`, {
-                    headers: { Authorization: `Bearer ${token}` }
-                });
-                console.log('Match history response:', response.data);
-                setMatchHistories(response.data || []);
-            } catch (error) {
-                console.error('Error fetching match history:', error);
-            }
-        };
-        if (id) fetchMatchHistory();
-    }, [id]);
-    console.log(player);
-    console.log(matchHistories);
     return (
         <div>
-            PlayerCard
+            <h1>PlayerCard</h1>
+            <p>Avatar_url: {player.avatar_url} </p>
+            <p>Display name: {player.display_name} </p>
+            <p>Wins: {player.wins} </p>
+            <p>Losses: {player.losses}</p>
         </div>
     );
 }

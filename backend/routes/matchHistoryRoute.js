@@ -1,11 +1,17 @@
 import matchHistoryController from '../controllers/matchHistoryController.js';
-import { getMatchHistoriesOpts, getMatchHistoryOpts, postMatchHistoryOpts, putMatchHistoryOpts, deleteMatchHistoryOpts, deleteAllMatchHistoryOpts } from '../models/matchHistorySchemas.js';
+import { getMatchHistoriesOpts, getUserMatchHistoriesOpts, getMatchHistoryOpts, postMatchHistoryOpts, putMatchHistoryOpts, deleteMatchHistoryOpts, deleteAllMatchHistoryOpts } from '../models/matchHistorySchemas.js';
 
 function matchHistoryRoutes(fastify, options) {
     // Get match history for current user
     fastify.get('/match-histories', {
         ...getMatchHistoriesOpts,
         handler: matchHistoryController.getMatchHistories
+    });
+
+    // Get match history for specific user
+    fastify.get('/match-histories/user/:userId', {
+        ...getUserMatchHistoriesOpts,
+        handler: matchHistoryController.getUserMatchHistories
     });
     
     // Get match details
