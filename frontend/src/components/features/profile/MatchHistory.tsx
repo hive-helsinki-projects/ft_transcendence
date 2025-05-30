@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import PlayerName from './PlayerName';
 
 const MatchHistory = ({ userId }: { userId: string }) => {
     const [matches, setMatches] = React.useState<any[]>([]);
@@ -8,8 +9,8 @@ const MatchHistory = ({ userId }: { userId: string }) => {
         const fetchMatchHistory = async () => {
             try {
                 const response = await axios.get(`https://localhost:3001/match-histories/user/${userId}`);
-                console.log('Fetched match history:', response.data);
                 setMatches(response.data);
+                console.log('Match history fetched:', response.data);
             } catch (error) {
                 console.error('Error fetching match history:', error);
             }
@@ -24,7 +25,11 @@ const MatchHistory = ({ userId }: { userId: string }) => {
                 <ul>
                     {matches.map((match) => (
                         <li key={match.id}>
-                            <p>match_date: {match.date} </p>
+                            <p>Match Date: {match.date}</p>
+                            <p>Winner: <PlayerName id={match.winner_id} />  </p>
+                            <p>Player: <PlayerName id={match.players[0].player_id} /> Score: {match.players[0].score}</p>
+                            <p>VS</p>
+                            <p>Player: <PlayerName id={match.players[1].player_id} /> Score: {match.players[1].score} </p>
                         </li>
                     ))}
                 </ul>

@@ -1,0 +1,33 @@
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+
+const PlayerName = ({ id }: { id: string }) => {
+    const [playerName, setPlayerName] = useState<string>('');
+
+    useEffect(() => {
+        const fetchPlayerName = async () => {
+            const token = localStorage.getItem('token');
+            console.log('Token:', token);
+            if (!token) {
+            console.error('No token found');
+            return;
+            }
+
+            try {
+                   const response = await axios.get(`https://localhost:3001/players/${id}`, {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                    });
+                setPlayerName(response.data.display_name);
+            } catch (error) {
+                console.error('Error fetching player name:', error);
+            }
+        };
+        fetchPlayerName();
+    }, [id]);
+
+    return <span>{playerName}</span>;
+};
+
+export default PlayerName;

@@ -30,11 +30,10 @@ const getUserPlayers = async (req, reply) => {
 
 // Fetch a specific player by ID for the authenticated user
 const getPlayer = async (req, reply) => {
-    const user_id = req.user.id;
     const { id } = req.params;
 
     try {
-        const player = db.prepare(`SELECT * FROM players WHERE id = ? AND user_id = ?`).get(id, user_id);
+        const player = db.prepare(`SELECT * FROM players WHERE id = ?`).get(id);
 
         // If the player is not found or the user is not authorized
         if (!player) {
