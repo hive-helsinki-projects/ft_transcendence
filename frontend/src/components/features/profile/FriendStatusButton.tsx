@@ -3,6 +3,7 @@ import axios from 'axios';
 
 const FriendStatusButton = ({ user }) => {
   const [friendStatus, setFriendStatus] = useState('none');
+  const [sendFriendRequest, setSendFriendRequest] = useState(false);
 
   useEffect(() => {
     const fetchFriendStatus = async () => {
@@ -20,6 +21,9 @@ const FriendStatusButton = ({ user }) => {
         });
         console.log('Friend status:', response.data);
         setFriendStatus(response.data.item.status);
+        if (response.data.item.status === 'pending' && response.data.item.friend_id === user.id) {
+          setSendFriendRequest(true);
+        }
       } catch (error) {
         console.error('Error fetching friend status:', error);
       }
@@ -43,6 +47,7 @@ const FriendStatusButton = ({ user }) => {
         }
       );
       setFriendStatus('pending');
+      setSendFriendRequest(true);
     } catch (error) {
       console.error('Error sending friend request:', error);
     }
@@ -64,13 +69,38 @@ const FriendStatusButton = ({ user }) => {
     }
   };
 
+    const handleAcceptFriend = async () => {
+    const token = localStorage.getItem('token');
+    console.log(token)
+    if (!token) return;
+
+    try {
+      await axios.patch(`https://localhost:3001/friend-requests/${user.id}`, 
+        {},
+        {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setFriendStatus('accepted');
+    } catch (error) {
+      console.error('Error removing friend:', error);
+    }
+  };
+
   return (
     <div>
       {friendStatus === 'accepted' && (
         <button onClick={handleRemoveFriend}>Remove Friend</button>
       )}
-      {friendStatus === 'pending' && (
+      {friendStatus === 'pending' && sendFriendRequest === true && (
            <button onClick={handleRemoveFriend}>Remove Friend</button>
+      )}
+      {friendStatus === 'pending' && sendFriendRequest === false && (
+           <button onClick={handleAcceptFriend}>Accept Friend Request</button>
+      )}
+      {friendStatus === 'pending' && sendFriendRequest === false && (
+           <button onClick={handleRemoveFriend}>Deny Friend Request</button>
       )}
       {friendStatus === 'none' && (
         <button onClick={handleAddFriend}>Add Friend</button>
