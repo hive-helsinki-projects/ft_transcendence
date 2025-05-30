@@ -1,15 +1,17 @@
 import playerController from '../controllers/playerController.js'
-import { getPlayersOpts, getPlayerOpts, postPlayerOpts, putPlayerOpts, deletePlayerOpts } from '../models/playerSchemas.js';
+import { getPlayersOpts, getUserPlayersOpts, getPlayerOpts, postPlayerOpts, putPlayerOpts, deletePlayerOpts } from '../models/playerSchemas.js';
 
 function playerRoutes(fastify, options) {
 	// Get all players for the authenticated user
 	fastify.get('/players', { 
 			...getPlayersOpts,
+			onRequest: [fastify.jwtAuth],
 			handler: playerController.getPlayers 
 		})
+
 	// Get all players belonging to a user
 	fastify.get('/users/:userId/players', { 
-		...getPlayersOpts,
+		...getUserPlayersOpts,
 		handler: playerController.getUserPlayers 
 	})
 	

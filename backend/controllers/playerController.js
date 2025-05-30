@@ -1,6 +1,6 @@
 import db from '../models/database.js';
 
-// Fetch all players for a specific user
+// Fetch all players for current authenticated user
 const getPlayers = async (req, reply) => {
     const user_id = req.user.id;
 
