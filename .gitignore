@@ -142,3 +142,5 @@ dist
 .prettierignore
 build
 dist
+
+.tap

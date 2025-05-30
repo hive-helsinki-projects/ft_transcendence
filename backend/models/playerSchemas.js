@@ -19,11 +19,6 @@ export const Player = {
 // Schemas for player-related operations
 export const getPlayersOpts = {
     schema: {
-        security: [
-            {
-                bearerAuth: []
-            }
-        ],
         summary: 'Get all players belonging to a user',
 		tags: ['player'],
         response: {
