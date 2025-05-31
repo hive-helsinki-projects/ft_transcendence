@@ -29,6 +29,7 @@ interface Tournament {
 
 const TournamentPage: React.FC = () => {
   const [tournament, setTournament] = useState<Tournament | null>(null)
+  const [check, setCheck] = useState(false);
   const navigate = useNavigate()
   const { userPlayers } = useUserPlayers()
   const hasUpdated = useRef(false)
@@ -41,6 +42,7 @@ const TournamentPage: React.FC = () => {
   useEffect(() => {
     const fetchTournaments = async () => {
       try {
+        console.log('Fetching tournaments...');
         const res = await BaseService.get('/tournaments')
         const tournaments: Tournament[] = res.items || res
 
@@ -59,12 +61,13 @@ const TournamentPage: React.FC = () => {
     }
 
     fetchTournaments()
-  }, [])
+  }, [check])
 
   useEffect(() => {
     const updateTournamentIfComplete = async () => {
       if (!tournament || tournament.status !== 'pending') return
       if (hasUpdated.current) return;
+      setCheck(false);
 
       if (tournament.matches.length === 1) {
         console.log('reached final!')
@@ -79,9 +82,10 @@ const TournamentPage: React.FC = () => {
           hasUpdated.current = true
           const updated = await BaseService.put(`/tournaments/${tournament.id}`, {})
           setTournament(updated)
+          setCheck(true);
           console.log('updated tournament: ', updated)
           console.log('Tournament advanced to next round.')
-          navigate('/tournament')
+          // navigate('/tournament')
         } catch (err) {
           console.error('Failed to advance tournament:', err)
           navigate('/tournament')
