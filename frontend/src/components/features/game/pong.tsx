@@ -196,10 +196,6 @@ export default function Game() {
             : gameState.player2;
           setMatchResult(`Winner: ${winner.name}`);
 
-          console.log("gameState.player1.id = ", gameState.player1.id)
-          console.log("gameState.player2.id = ", gameState.player2.id)
-
-          console.log("winner_id", winner.id)
           await sendMatchResult(gameState.matchId, winner.id, currentScores.player1, currentScores.player2)
 
           async function sendMatchResult(matchId: number, winnerId: number, score1: number, score2: number) {
