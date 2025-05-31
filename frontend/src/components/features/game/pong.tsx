@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import LoadingContainer from '../../LoadingContainer'
 import '../../../assets/styles/Pong.css'
-import { BaseService } from '../../../services/baseService'
+import { BaseService } from '../../../services/BaseService'
 
 import useTranslate from '../../../hooks/useTranslate'
 
@@ -184,15 +184,18 @@ export default function Game() {
         if ((currentScores.player1 > 20 || currentScores.player2 > 20) || Math.abs(currentScores.player1 - currentScores.player2) >= 2) {
           setGameOver(true);
           setMatchStatus('completed');
+          if (!gameState) {
+            setMatchResult(`Winner: ${currentScores.player1 > currentScores.player2 ? 'player 1' : 'player2'}`);
+            setTimeout(() => {
+              navigate('/dashboard')
+            }, 3000)
+            return
+          }
           const winner = currentScores.player1 > currentScores.player2
             ? gameState.player1
             : gameState.player2;
           setMatchResult(`Winner: ${winner.name}`);
 
-          console.log("gameState.player1.id = ", gameState.player1.id)
-          console.log("gameState.player2.id = ", gameState.player2.id)
-
-          console.log("winner_id", winner.id)
           await sendMatchResult(gameState.matchId, winner.id, currentScores.player1, currentScores.player2)
 
           async function sendMatchResult(matchId: number, winnerId: number, score1: number, score2: number) {
@@ -379,7 +382,7 @@ export default function Game() {
                   ? t('matchType.final')
                   : gameState.matchType === '1v1'
                     ? ('matchType.1v1')
-                    : t('matchType.semifinal', { index: gameState.matchIndex! + 1 })}
+                    : t('matchType.semifinal')}
               </div>
               <div className="win-condition">{t('First to 11 points (win by 2)')}</div>
             </div>

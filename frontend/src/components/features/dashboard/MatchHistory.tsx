@@ -27,6 +27,7 @@ const MatchHistory: React.FC<MatchHistoryProps> = ({ matches }) => {
     if (!Array.isArray(matches) || userPlayers.length === 0) return []
 
     return [...matches]
+      .filter((match) => match.players.length > 1)
       .filter((match) => {
         const [p1, p2] = match.players
         return !(p1.score === 0 && p2.score === 0)
