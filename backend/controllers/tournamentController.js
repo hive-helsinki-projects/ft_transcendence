@@ -314,6 +314,9 @@ const advanceTournament = async (req, reply) => {
       console.error(err);
       return reply.code(500).send({ error: 'Failed to advance tournament' });
     }
+    
+    // now decide whether we just finished, or just advanced
+    const first = rows[0];
 
     const matches = rows
       .filter(r => r.round === first.current_round)
@@ -324,9 +327,7 @@ const advanceTournament = async (req, reply) => {
         date:     r.date,
         players:  JSON.parse(r.players)
       }));
-    
-    // now decide whether we just finished, or just advanced
-    const first = rows[0];
+
     if (first.status === 'finished' && typeof first.winner_id === 'number') {
       const winnerName = db.prepare(`SELECT display_name FROM players WHERE id = ?`).get(first.winner_id).display_name;
 
