@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 import { BaseService } from '../services/BaseService'
 import '../assets/styles/Tournament.css'
 import { useUserPlayers } from '../hooks/useUserPlayers'
@@ -29,7 +29,6 @@ interface Tournament {
 
 const TournamentPage: React.FC = () => {
   const [tournament, setTournament] = useState<Tournament | null>(null)
-  const [played, setPlayed] = useState(false)
   const navigate = useNavigate()
   const { userPlayers } = useUserPlayers()
 
@@ -59,24 +58,30 @@ const TournamentPage: React.FC = () => {
     }
 
     fetchTournaments()
-  }, [navigate])
+  }, [])
 
   useEffect(() => {
     const updateTournamentIfComplete = async () => {
       if (!tournament || tournament.status !== 'pending') return
 
+      if (tournament.matches.length === 1) {
+        console.log('reached final!')
+        return
+      }
       const allPlayed = tournament.matches.every(
-        (match) => match.players[0].score !== 0 || match.players[1].score !== 0
+        (match) => match.players.length === 1 || match.players[0].score !== 0 || match.players[1].score !== 0
       )
-      console.log(tournament)
       if (allPlayed) {
         try {
+          console.log('sending tournament put request!')
           const updated = await BaseService.put(`/tournaments/${tournament.id}`, {})
-          setTournament(updated.item || updated)
+          setTournament(updated)
+          console.log('updated tournament: ', tournament)
           console.log('Tournament advanced to next round.')
+          navigate('/tournament')
         } catch (err) {
           console.error('Failed to advance tournament:', err)
-          // navigate('/dashboard')
+          navigate('/tournament')
         }
       }
     }

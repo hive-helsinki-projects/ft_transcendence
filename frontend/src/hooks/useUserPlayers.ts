@@ -10,7 +10,6 @@ export const useUserPlayers = () => {
     const fetchPlayers = async () => {
       try {
         const players = await BaseService.get<UserPlayer[]>('/players')
-        console.log("players logged: ", players)
         setUserPlayers(players)
       } catch (error) {
         console.error(error)
