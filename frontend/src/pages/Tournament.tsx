@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import { useNavigate, useLocation } from 'react-router-dom'
+import React, { useEffect, useState, useRef } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { BaseService } from '../services/BaseService'
 import '../assets/styles/Tournament.css'
 import { useUserPlayers } from '../hooks/useUserPlayers'
@@ -31,6 +31,7 @@ const TournamentPage: React.FC = () => {
   const [tournament, setTournament] = useState<Tournament | null>(null)
   const navigate = useNavigate()
   const { userPlayers } = useUserPlayers()
+  const hasUpdated = useRef(false)
 
   const getPlayerName = (id: number): string => {
     const player = userPlayers.find(p => p.id === id)
@@ -63,6 +64,7 @@ const TournamentPage: React.FC = () => {
   useEffect(() => {
     const updateTournamentIfComplete = async () => {
       if (!tournament || tournament.status !== 'pending') return
+      if (hasUpdated.current) return;
 
       if (tournament.matches.length === 1) {
         console.log('reached final!')
@@ -74,9 +76,10 @@ const TournamentPage: React.FC = () => {
       if (allPlayed) {
         try {
           console.log('sending tournament put request!')
+          hasUpdated.current = true
           const updated = await BaseService.put(`/tournaments/${tournament.id}`, {})
           setTournament(updated)
-          console.log('updated tournament: ', tournament)
+          console.log('updated tournament: ', updated)
           console.log('Tournament advanced to next round.')
           navigate('/tournament')
         } catch (err) {
