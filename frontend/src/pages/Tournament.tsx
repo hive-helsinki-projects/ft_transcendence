@@ -85,7 +85,7 @@ const TournamentPage: React.FC = () => {
           setCheck(true);
           console.log('updated tournament: ', updated)
           console.log('Tournament advanced to next round.')
-          // navigate('/tournament')
+          navigate('/tournament')
         } catch (err) {
           console.error('Failed to advance tournament:', err)
           navigate('/tournament')
