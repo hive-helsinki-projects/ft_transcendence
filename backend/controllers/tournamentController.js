@@ -315,6 +315,16 @@ const advanceTournament = async (req, reply) => {
       return reply.code(500).send({ error: 'Failed to advance tournament' });
     }
 
+    const matches = rows
+      .filter(r => r.round === first.current_round)
+      .map(r => ({
+        match_id: r.match_id,
+        type:     r.type,
+        round:    r.round,
+        date:     r.date,
+        players:  JSON.parse(r.players)
+      }));
+    
     // now decide whether we just finished, or just advanced
     const first = rows[0];
     if (first.status === 'finished' && typeof first.winner_id === 'number') {
@@ -334,20 +344,10 @@ const advanceTournament = async (req, reply) => {
       const scores = await getScores();
       console.log('Scores from blockchain:', scores);
       console.log('Transaction hash:', txHash);
-      return reply.code(200).send({message: 'Successfully finished tournament'});
+      return reply.code(200).send({message: 'Successfully finished tournament', item: { matches }});
     }
 
     // otherwise we “advanced”
-    const matches = rows
-      .filter(r => r.round === first.current_round)
-      .map(r => ({
-        match_id: r.match_id,
-        type:     r.type,
-        round:    r.round,
-        date:     r.date,
-        players:  JSON.parse(r.players)
-      }));
-
     return reply.code(200).send({
       message: 'Successfully advanced tournament',
       item: { matches }
