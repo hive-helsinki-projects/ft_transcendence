@@ -1,5 +1,5 @@
 import userController from '../controllers/userController.js'
-import { getUsersOpts, getUserOpts, putUserOpts } from '../models/userSchemas.js'
+import { getUsersOpts, deleteUserOpts, getUserOpts, putUserOpts } from '../models/userSchemas.js'
 
 // Define user routes
 function userRoutes(fastify, options) {
@@ -20,6 +20,13 @@ function userRoutes(fastify, options) {
 		...putUserOpts,
 		onRequest: [fastify.jwtAuth], 
 		handler: userController.updateUser
+	})
+
+	// Delete a user
+	fastify.delete('/users', { 
+		...deleteUserOpts,
+		onRequest: [fastify.jwtAuth], 
+		handler: userController.deleteUser
 	})
 }
 

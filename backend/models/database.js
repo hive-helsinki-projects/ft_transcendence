@@ -72,7 +72,7 @@ db.prepare(`
 		current_round INTEGER DEFAULT 0,
 		winner_id INTEGER,
 		created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-		FOREIGN KEY (user_id) REFERENCES users(id)
+		FOREIGN KEY (user_id) REFERENCES users(id)  ON DELETE CASCADE,
 		FOREIGN KEY (winner_id) REFERENCES players(id)
 	)
 `).run();

@@ -106,3 +106,23 @@ export const putUserOpts = {
         },
     },
 };
+
+export const deleteUserOpts = {
+    schema: {
+        security: [
+            {
+                bearerAuth: []
+            }
+        ],
+        summary: 'Delete a user',
+        tags: ['user'],
+        response: {
+            200: {
+                type: 'object',
+                properties: {
+                    message: { type: 'string' },
+                },
+            },
+        },
+    },
+}

@@ -108,8 +108,33 @@ const updateUser = async (req, reply) => {
     }
 };
 
+// Delete a friend from the user's friend list
+const deleteUser = async (req, reply) => {
+    const user_id = req.user.id;
+
+    try {
+        // Remove the user
+        const result = db.prepare(`
+            DELETE FROM users
+            WHERE id = ?
+        `).run(user_id);
+
+        console.log("deleting user");
+        if (result.changes === 0) {
+            return reply.code(404).send({ error: 'User not authorized to delete friend' });
+        }
+
+        // Successfully removed the user
+        return reply.code(200).send({ message: 'User removed successfully' });
+    } catch (error) {
+        console.log(error);
+        return reply.code(500).send({ error: 'Failed to delete user' });
+    }
+}
+
 export default {
     getUsers,
     getUser,
     updateUser,
+    deleteUser
 };
