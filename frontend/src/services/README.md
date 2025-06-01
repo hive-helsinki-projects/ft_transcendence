@@ -1,14 +1,39 @@
-# Services Documentation
+# Services Structure
+
+This directory contains all service-related code for handling API calls, authentication, and other external services.
 
 ## Directory Structure
 
 ```
 services/
-├── api.ts            # Main API client configuration
-├── authService.ts    # Authentication service
-├── localAuth.ts      # Local authentication utilities
-└── helpData.ts       # Help documentation data
+├── api/              # API related services
+│   ├── baseService.ts
+│   ├── api.ts
+│   └── axiosAgent.ts
+├── auth/             # Authentication services
+│   ├── authService.ts
+│   └── localAuth.ts
+└── data/             # Static data and helpers
+    └── helpData.ts
 ```
+
+## Service Guidelines
+
+1. **API Services**
+   - Keep base API configuration in baseService.ts
+   - Use axiosAgent.ts for HTTP client setup
+   - Implement specific API endpoints in api.ts
+
+2. **Authentication Services**
+   - Handle all auth-related logic
+   - Separate local and remote auth concerns
+   - Implement proper error handling
+
+3. **Best Practices**
+   - Use TypeScript for type safety
+   - Implement proper error handling
+   - Keep services focused and single-purpose
+   - Document API endpoints and methods
 
 ## Service Overview
 

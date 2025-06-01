@@ -1,14 +1,47 @@
-# Custom Hooks Documentation
+# Hooks Structure
+
+This directory contains all custom React hooks organized by feature and functionality.
 
 ## Directory Structure
 
 ```
 hooks/
-└── auth/              # Authentication-related hooks
-    ├── useAuth.ts            # Authentication state hook
-    ├── useAuthForm.ts        # Authentication form handling
-    └── useFormValidation.ts  # Form validation utilities
+├── auth/              # Authentication related hooks
+│   └── useAuth.ts
+├── game/              # Game related hooks
+│   ├── useUserPlayers.ts
+│   └── useMatchHistories.ts
+├── form/              # Form related hooks
+│   └── useRegisterForm.ts
+├── ui/                # UI related hooks
+│   └── useAvatar.ts
+└── i18n/              # Internationalization hooks
+    └── useTranslate.ts
 ```
+
+## Hook Guidelines
+
+1. **Organization**
+   - Group hooks by feature/functionality
+   - Keep hooks focused and single-purpose
+   - Use TypeScript for type safety
+
+2. **Naming**
+   - Use 'use' prefix for all hooks
+   - Name should clearly indicate hook's purpose
+   - Follow React hook naming conventions
+
+3. **Implementation**
+   - Keep hooks pure and predictable
+   - Handle errors appropriately
+   - Document dependencies and side effects
+   - Use proper cleanup in useEffect
+
+4. **Best Practices**
+   - Keep hooks small and focused
+   - Implement proper error handling
+   - Document hook parameters and return values
+   - Test hooks thoroughly
 
 ## Hook Overview
 

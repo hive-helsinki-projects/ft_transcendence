@@ -1,6 +1,6 @@
-import { BaseService } from './baseService'
-import { AuthFormData } from '../types/auth'
-import { API_ENDPOINTS } from '../utils/constants'
+import { BaseService } from "../api/baseService"
+import { AuthFormData } from '../../types/auth/auth'
+import { API_ENDPOINTS } from '../../utils/constants/constants'
 
 export interface LoginResponse {
   token: string

@@ -1,58 +1,60 @@
-import React, { useEffect } from 'react'
-import { useAuth } from '../hooks/auth/useAuth'
-import { useAvatar } from '../hooks/useAvatar'
-import { useUserPlayers } from '../hooks/useUserPlayers'
-import { useMatchHistories } from '../hooks/useMatchHistories'
 import axios from 'axios'
+import React, { useEffect } from 'react'
 import ErrorBoundary from '../components/ErrorBoundary'
-import LoadingContainer from '../components/LoadingContainer'
 import {
-  PlayerManagement,
+  AvatarMenu,
   GameStats,
   MatchHistory as MatchHistoryComponent,
+  PlayerManagement,
   QuickPlay,
-  TopPlayers, 
-  AvatarMenu,
+  TopPlayers,
 } from '../components/features/dashboard'
+import LoadingContainer from '../components/LoadingContainer'
+import { useAuth } from '../hooks/auth/useAuth'
+import { useAvatar } from '../hooks/useAvatar'
+import { useMatchHistories } from '../hooks/useMatchHistories'
+import { useUserPlayers } from '../hooks/useUserPlayers'
 import '../assets/styles/index.css'
-import SearchBar from '../components/SearchBar'
 import { useNavigate } from 'react-router-dom'
+import SearchBar from '../components/SearchBar'
 import useTranslate from '../hooks/useTranslate'
 
 const Dashboard: React.FC = () => {
   const { username, logout } = useAuth()
   const { avatar, handleAvatarChange } = useAvatar(username || '')
-  const { userPlayers, createPlayer, updatePlayer, deletePlayer } = useUserPlayers()
+  const { userPlayers, createPlayer, updatePlayer, deletePlayer } =
+    useUserPlayers()
   const { matches } = useMatchHistories()
   const t = useTranslate()
 
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
-  useEffect(() => { 
-    const token = localStorage.getItem('token');
+  useEffect(() => {
+    const token = localStorage.getItem('token')
     const deleteUnfinishedMatches = async () => {
       try {
-        const response = await axios.delete('https://localhost:3001/match-histories', {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-    });
+        const response = await axios.delete(
+          'https://localhost:3001/match-histories',
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          },
+        )
       } catch (error) {
         console.error('Error deleting unfinished matches:', error)
       }
     }
-    deleteUnfinishedMatches();
-  },[])
-    
+    deleteUnfinishedMatches()
+  }, [])
 
   const handleSearch = (query: string) => {
     if (query.trim()) {
-      navigate(`/search?query=${query}`);
+      navigate(`/search?query=${query}`)
       console.log('Searching for:', query)
     }
   }
 
-  
   if (!username) {
     return <div>Please log in to view the dashboard</div>
   }
@@ -61,7 +63,9 @@ const Dashboard: React.FC = () => {
       <LoadingContainer>
         <div className="dashboard">
           <div className="welcome-header">
-            <h1>{t('dashboard.welcome')}, {username}!</h1>
+            <h1>
+              {t('dashboard.welcome')}, {username}!
+            </h1>
             <SearchBar onSearch={handleSearch} />
           </div>
           <PlayerManagement
@@ -74,9 +78,7 @@ const Dashboard: React.FC = () => {
           <QuickPlay userPlayers={userPlayers} />
 
           <div className="dashboard-grid">
-            <GameStats
-              userPlayers={userPlayers}
-            />
+            <GameStats userPlayers={userPlayers} />
             <MatchHistoryComponent matches={matches} />
           </div>
 

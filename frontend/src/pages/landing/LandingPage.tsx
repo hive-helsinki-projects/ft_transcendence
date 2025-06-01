@@ -1,15 +1,19 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import { LoadingContainer, AuthForm, AuthSection, HeroSection } from '../../components/index'
+import {
+  AuthForm,
+  AuthSection,
+  HeroSection,
+  LoadingContainer,
+} from '../../components/index'
 import { useAuth } from '../../hooks/auth/useAuth'
 import { useAuthForm } from '../../hooks/auth/useAuthForm'
-import { AuthService } from '../../services/authService'
-import { AuthFormData, REDIRECT_DELAY } from '../../types/auth'
-import { LoginResponse } from '../../services/authService'
+import { AuthService, LoginResponse } from '../../services/auth/authService'
+import { AuthFormData, REDIRECT_DELAY } from '../../types/auth/auth'
 
 /**
  * LandingPage Component
- * 
+ *
  * Main entry point for unauthenticated users.
  * Displays a hero section and authentication form.
  * Handles user login functionality and
@@ -42,8 +46,11 @@ const LandingPage: React.FC = () => {
 
     try {
       const response = await AuthService.login(formData)
-    
-      if ('userId' in response && response.message === 'Two-factor authentication required') {
+
+      if (
+        'userId' in response &&
+        response.message === 'Two-factor authentication required'
+      ) {
         setNeeds2fa(true)
         setUserId(response.userId)
         setCachedUsername(formData.username)
@@ -51,7 +58,7 @@ const LandingPage: React.FC = () => {
       }
 
       const loginResponse = response as LoginResponse
-    
+
       handleAuthSuccess()
       await new Promise((resolve) => setTimeout(resolve, REDIRECT_DELAY))
       login(loginResponse.token, loginResponse.username, loginResponse.id)
@@ -66,7 +73,7 @@ const LandingPage: React.FC = () => {
   const handleGoogleAuth = async () => {
     try {
       const response = await AuthService.googleAuth()
-      console.log(response);
+      console.log(response)
       handleAuthSuccess()
       await new Promise((resolve) => setTimeout(resolve, REDIRECT_DELAY))
       login(response.token, response.username, response.id)
@@ -117,13 +124,17 @@ const LandingPage: React.FC = () => {
               maxLength={6}
               className="field-input"
             />
-            <button className="save-button" onClick={handleVerify2FA} disabled={isLoading}>
+            <button
+              className="save-button"
+              onClick={handleVerify2FA}
+              disabled={isLoading}
+            >
               Verify
             </button>
             {twoFaError && <p className="error-message">{twoFaError}</p>}
           </div>
         )}
-        </AuthSection>
+      </AuthSection>
     </LoadingContainer>
   )
 }

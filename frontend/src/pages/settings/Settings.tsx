@@ -13,12 +13,12 @@ import {
 } from 'lucide-react'
 import React, { useState } from 'react'
 import '../assets/styles/Settings.css'
+import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../hooks/auth/useAuth'
-import useTranslate from '../hooks/useTranslate';
+import useTranslate from '../hooks/useTranslate'
 import i18n from '../i18n/config'
 import { api } from '../services/api'
-import { useEffect } from 'react'
 
 interface UserData {
   username: string
@@ -51,7 +51,7 @@ const EditableField: React.FC<EditableFieldProps> = ({
   onCancel,
   onChange,
 }) => {
-  const t = useTranslate();
+  const t = useTranslate()
 
   return (
     <div className="form-group">
@@ -139,8 +139,8 @@ const Settings: React.FC = () => {
   const [success, setSuccess] = useState<string | null>(null)
 
   const [twoFaEnabled, setTwoFaEnabled] = useState<boolean>(false)
-  const [qrDataUrl,    setQrDataUrl]    = useState<string | null>(null)
-  const [twoFaToken,   setTwoFaToken]   = useState<string>('')
+  const [qrDataUrl, setQrDataUrl] = useState<string | null>(null)
+  const [twoFaToken, setTwoFaToken] = useState<string>('')
   const [twoFaMessage, setTwoFaMessage] = useState<string | null>(null)
 
   useEffect(() => {
@@ -152,7 +152,7 @@ const Settings: React.FC = () => {
         setTwoFaEnabled(false)
       }
     }
-  
+
     fetch2faStatus()
   }, [])
 
@@ -284,8 +284,8 @@ const Settings: React.FC = () => {
   }
 
   const changeLanguage = (lng: string) => {
-    i18n.changeLanguage(lng);
-    setLanguage(lng);
+    i18n.changeLanguage(lng)
+    setLanguage(lng)
   }
 
   return (
@@ -299,7 +299,10 @@ const Settings: React.FC = () => {
         {error && <div className="error-message">{error}</div>}
         {success && <div className="success-message">{success}</div>}
 
-        <SettingsSection title={t('Account Settings')} icon={<User size={18} />}>
+        <SettingsSection
+          title={t('Account Settings')}
+          icon={<User size={18} />}
+        >
           <EditableField
             field="username"
             value={userData.username}
@@ -336,34 +339,46 @@ const Settings: React.FC = () => {
           />
         </SettingsSection>
 
-        <SettingsSection title="Two-Factor Authentication" icon={<Lock size={18} />}>
-        {twoFaEnabled ? (
-          <button className="settings-button delete" onClick={disable2FA}>Disable 2FA</button>
-        ) : (
-          <>
-            <button className="settings-button" onClick={enable2fa}>Enable 2FA</button>
-            {qrDataUrl && (
-              <div className="qr-section">
-                <img src={qrDataUrl} alt="Scan to setup 2FA" />
-                <input
-                  type="text"
-                  value={twoFaToken}
-                  onChange={e => setTwoFaToken(e.target.value)}
-                  maxLength={6}
-                  placeholder="Enter 2FA code"
-                  className="field-input"
-                />
-                <button className="save-button" onClick={verify2FA}>
-                  Verify & Enable
-                </button>
-                {twoFaMessage && <p className="success-message">{twoFaMessage}</p>}
-              </div>
-            )}
-          </>
-        )}
+        <SettingsSection
+          title="Two-Factor Authentication"
+          icon={<Lock size={18} />}
+        >
+          {twoFaEnabled ? (
+            <button className="settings-button delete" onClick={disable2FA}>
+              Disable 2FA
+            </button>
+          ) : (
+            <>
+              <button className="settings-button" onClick={enable2fa}>
+                Enable 2FA
+              </button>
+              {qrDataUrl && (
+                <div className="qr-section">
+                  <img src={qrDataUrl} alt="Scan to setup 2FA" />
+                  <input
+                    type="text"
+                    value={twoFaToken}
+                    onChange={(e) => setTwoFaToken(e.target.value)}
+                    maxLength={6}
+                    placeholder="Enter 2FA code"
+                    className="field-input"
+                  />
+                  <button className="save-button" onClick={verify2FA}>
+                    Verify & Enable
+                  </button>
+                  {twoFaMessage && (
+                    <p className="success-message">{twoFaMessage}</p>
+                  )}
+                </div>
+              )}
+            </>
+          )}
         </SettingsSection>
 
-        <SettingsSection title={t('Language Preferences')} icon={<Globe size={18} />}>
+        <SettingsSection
+          title={t('Language Preferences')}
+          icon={<Globe size={18} />}
+        >
           <div className="form-group">
             <label htmlFor="language">{t('languages.language')}</label>
             <select
@@ -396,12 +411,18 @@ const Settings: React.FC = () => {
           </div>
         </SettingsSection>
 
-        <SettingsSection title={t('Account Management')} icon={<User size={18} />}>
+        <SettingsSection
+          title={t('Account Management')}
+          icon={<User size={18} />}
+        >
           <button className="settings-button" onClick={handleLogout}>
             <LogOut size={16} />
             {t('actions.logout')}
           </button>
-          <button className="settings-button delete" onClick={handleDeleteAccount}>
+          <button
+            className="settings-button delete"
+            onClick={handleDeleteAccount}
+          >
             <Trash2 size={16} />
             {t('actions.deleteAccount')}
           </button>

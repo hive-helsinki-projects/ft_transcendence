@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { BaseService } from '../services/BaseService'
 import '../assets/styles/Tournament.css'
-import { useUserPlayers } from '../hooks/useUserPlayers'
 import ErrorBoundary from '../components/ErrorBoundary'
 import LoadingContainer from '../components/LoadingContainer'
+import { useUserPlayers } from '../hooks/useUserPlayers'
 
 interface PlayerInfo {
   player_id: number
@@ -33,7 +33,7 @@ const TournamentPage: React.FC = () => {
   const { userPlayers } = useUserPlayers()
 
   const getPlayerName = (id: number): string => {
-    const player = userPlayers.find(p => p.id === id)
+    const player = userPlayers.find((p) => p.id === id)
     return player ? player.display_name : `Player ${id}`
   }
 
@@ -43,7 +43,7 @@ const TournamentPage: React.FC = () => {
         const res = await BaseService.get('/tournaments')
         const tournaments: Tournament[] = res.items || res
 
-        const activeTournament = tournaments.find(t => t.status === 'pending')
+        const activeTournament = tournaments.find((t) => t.status === 'pending')
         if (activeTournament) {
           setTournament(activeTournament)
         } else {
@@ -65,17 +65,20 @@ const TournamentPage: React.FC = () => {
       if (!tournament || tournament.status !== 'pending') return
 
       const allPlayed = tournament.matches.every(
-        (match) => match.players[0].score !== 0 || match.players[1].score !== 0
+        (match) => match.players[0].score !== 0 || match.players[1].score !== 0,
       )
 
       if (allPlayed) {
         try {
-          const updated = await BaseService.put(`/tournaments/${tournament.id}`, {})
+          const updated = await BaseService.put(
+            `/tournaments/${tournament.id}`,
+            {},
+          )
           setTournament(updated.item || updated)
           console.log('Tournament advanced to next round.')
         } catch (err) {
           console.error('Failed to advance tournament:', err)
-          setTournament(null);
+          setTournament(null)
           navigate('/dashboard')
         }
       }
@@ -86,12 +89,12 @@ const TournamentPage: React.FC = () => {
 
   const handleReset = async () => {
     if (!tournament) return
-  
+
     const confirmReset = window.confirm(
-      `Are you sure you want to delete the tournament "${tournament.name}"?`
+      `Are you sure you want to delete the tournament "${tournament.name}"?`,
     )
     if (!confirmReset) return
-  
+
     try {
       const res = await BaseService.delete(`/tournaments/${tournament.id}`)
       alert(res.message || 'Tournament deleted successfully.')
@@ -105,7 +108,7 @@ const TournamentPage: React.FC = () => {
   const handleStartMatch = (
     match: Match,
     player1: { id: number; display_name: string; avatar: string },
-    player2: { id: number; display_name: string; avatar: string }
+    player2: { id: number; display_name: string; avatar: string },
   ) => {
     if (!player1 || !player2) {
       alert('Player information is missing.')
@@ -134,18 +137,18 @@ const TournamentPage: React.FC = () => {
   return (
     <ErrorBoundary>
       <LoadingContainer>
-        {!tournament ? null : tournament.status === 'completed' && tournament.winner_id ? (
+        {!tournament ? null : tournament.status === 'completed' &&
+          tournament.winner_id ? (
           <div className="tournament-lobby">
             <div className="tournament-header">
               <h1>{tournament.name}</h1>
             </div>
             <div className="tournament-round-info">
               <h2>🏆 Tournament Completed</h2>
+              <p>Winner: Player {tournament.winner_id}</p>
               <p>
-                Winner: Player {tournament.winner_id}
-              </p>
-              <p>
-                There is no active tournament. You can create a new one from the dashboard.
+                There is no active tournament. You can create a new one from the
+                dashboard.
               </p>
               <button
                 onClick={() => navigate('/dashboard')}
@@ -155,7 +158,7 @@ const TournamentPage: React.FC = () => {
               </button>
             </div>
           </div>
-          ) :  (
+        ) : (
           <div className="tournament-lobby">
             {/* Header */}
             <div className="tournament-header">
@@ -184,11 +187,15 @@ const TournamentPage: React.FC = () => {
               {tournament.matches.map((match) => {
                 const [player1Info, player2Info] = match.players
 
-                const player1 = userPlayers.find(p => p.id === player1Info.player_id)
-                const player2 = userPlayers.find(p => p.id === player2Info.player_id)
+                const player1 = userPlayers.find(
+                  (p) => p.id === player1Info.player_id,
+                )
+                const player2 = userPlayers.find(
+                  (p) => p.id === player2Info.player_id,
+                )
 
-                const isMatchUnplayed = player1Info?.score === 0 && player2Info?.score === 0
-
+                const isMatchUnplayed =
+                  player1Info?.score === 0 && player2Info?.score === 0
 
                 return (
                   <div key={match.match_id} className="match-container">
@@ -198,20 +205,23 @@ const TournamentPage: React.FC = () => {
                     <p>
                       {match.players
                         .map(
-                          (p) => `${getPlayerName(p.player_id)} (Score: ${p.score})`
+                          (p) =>
+                            `${getPlayerName(p.player_id)} (Score: ${p.score})`,
                         )
                         .join(' vs ')}
                     </p>
-                    {isMatchUnplayed && player1 && player2 &&(
-                    <button
-                      onClick={() =>
-                        player1 && player2 && handleStartMatch(match, player1, player2)
-                      }
-                      className="start-match-button"
-                      aria-label={`Start Match ${match.match_id}`}
-                    >
-                      Start Match
-                    </button>
+                    {isMatchUnplayed && player1 && player2 && (
+                      <button
+                        onClick={() =>
+                          player1 &&
+                          player2 &&
+                          handleStartMatch(match, player1, player2)
+                        }
+                        className="start-match-button"
+                        aria-label={`Start Match ${match.match_id}`}
+                      >
+                        Start Match
+                      </button>
                     )}
                   </div>
                 )

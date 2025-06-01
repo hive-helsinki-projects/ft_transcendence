@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import { AuthContext } from '../../store/AuthContext'
+import { AuthContext } from '../../components/features/auth/context/AuthContext'
 
 /**
  * Custom hook for accessing the authentication context
