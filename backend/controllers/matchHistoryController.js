@@ -81,7 +81,7 @@ const getUserMatchHistories = async (req, reply) => {
                     ), '[]'
                 ) AS players
             FROM match_history mh
-            WHERE mh.user_id = ?
+            WHERE mh.user_id = ? AND mh.status = 'finished' AND mh.type = '1v1'
         `).all(userId);
 
         // Parse the players data from JSON format
