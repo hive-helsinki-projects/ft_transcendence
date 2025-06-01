@@ -1,5 +1,8 @@
-import React, { createContext, useEffect, useState, useContext } from 'react'
+import React, { createContext, useContext, useEffect, useState } from 'react'
 
+/**
+ * Authentication context type definition
+ */
 interface AuthContextType {
   token: string | null
   username: string | null
@@ -9,64 +12,105 @@ interface AuthContextType {
   logout: () => void
 }
 
-// AuthContext.tsx - This is like a wallet for your JWT token
+/**
+ * Storage keys for authentication data
+ */
+const STORAGE_KEYS = {
+  TOKEN: 'token',
+  USERNAME: 'username',
+  ID: 'id',
+} as const
+
+/**
+ * Authentication context
+ */
 const AuthContext = createContext<AuthContextType | null>(null)
 
-export { AuthContext }
-
+/**
+ * Authentication provider component
+ * Manages authentication state and provides authentication methods
+ */
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  // Store the token (like putting it in your wallet)
+  // State management
   const [token, setToken] = useState<string | null>(
-    localStorage.getItem('token'),
+    localStorage.getItem(STORAGE_KEYS.TOKEN),
   )
   const [username, setUsername] = useState<string | null>(
-    localStorage.getItem('username'),
+    localStorage.getItem(STORAGE_KEYS.USERNAME),
   )
   const [id, setId] = useState<string | null>(
-    localStorage.getItem('id'),
+    localStorage.getItem(STORAGE_KEYS.ID),
   )
-  // Check if you're logged in (do you have a valid token?)
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(!!token)
 
+  // Update authentication state when token changes
   useEffect(() => {
     setIsAuthenticated(!!token)
   }, [token])
 
-  // Function to log in (put token in wallet)
-  const login = (newToken: string, newUsername: string, newId: string) => {
-    localStorage.setItem('token', newToken)
-    localStorage.setItem('username', newUsername)
-    localStorage.setItem('id', newId)
+  /**
+   * Login function
+   * Stores authentication data in localStorage and state
+   */
+  const login = (
+    newToken: string,
+    newUsername: string,
+    newId: string,
+  ): void => {
+    // Store in localStorage
+    localStorage.setItem(STORAGE_KEYS.TOKEN, newToken)
+    localStorage.setItem(STORAGE_KEYS.USERNAME, newUsername)
+    localStorage.setItem(STORAGE_KEYS.ID, newId)
+
+    // Update state
     setToken(newToken)
     setUsername(newUsername)
     setId(newId)
   }
 
-  // Function to log out (remove token from wallet)
-  const logout = () => {
-    localStorage.removeItem('token')
-    localStorage.removeItem('username')
-    localStorage.removeItem('id')
+  /**
+   * Logout function
+   * Removes authentication data from localStorage and state
+   */
+  const logout = (): void => {
+    // Remove from localStorage
+    localStorage.removeItem(STORAGE_KEYS.TOKEN)
+    localStorage.removeItem(STORAGE_KEYS.USERNAME)
+    localStorage.removeItem(STORAGE_KEYS.ID)
+
+    // Clear state
     setToken(null)
     setUsername(null)
     setId(null)
   }
 
+  // Context value
+  const contextValue: AuthContextType = {
+    token,
+    username,
+    id,
+    isAuthenticated,
+    login,
+    logout,
+  }
+
   return (
-    <AuthContext.Provider
-      value={{ token, username, id, isAuthenticated, login, logout }}
-    >
-      {children}
-    </AuthContext.Provider>
+    <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>
   )
 }
 
-export const useAuth = () => {
+/**
+ * Custom hook to use the authentication context
+ * @throws {Error} If used outside of AuthProvider
+ */
+export const useAuth = (): AuthContextType => {
   const context = useContext(AuthContext)
   if (!context) {
     throw new Error('useAuth must be used within an AuthProvider')
   }
   return context
 }
+
+export { AuthContext }
