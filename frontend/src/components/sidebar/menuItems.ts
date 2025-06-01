@@ -9,7 +9,7 @@ import {
 
 import { type MenuItem } from './SidebarItem';
 
-const id = localStorage.getItem('id');;
+const id = localStorage.getItem('id');
 
 // Configuration
 export const menuItems: MenuItem[] = [
