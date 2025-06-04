@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import LoadingContainer from '../../LoadingContainer'
 import '../../../assets/styles/Pong.css'
-import { BaseService } from '../../../services/BaseService'
+import { BaseService } from '../../../services/baseService'
 
 import useTranslate from '../../../hooks/useTranslate'
 

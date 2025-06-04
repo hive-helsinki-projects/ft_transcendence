@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { BaseService } from '../../../services/BaseService'
+import { BaseService } from '../../../services/baseService'
 import useTranslate from '../../../hooks/useTranslate'
 
 interface UserPlayer {
@@ -26,7 +26,7 @@ const QuickPlay: React.FC<QuickPlayProps> = ({ userPlayers }) => {
 
   const [selected1v1Players, setSelected1v1Players] = useState<number[]>([])
   const [selectedTournamentPlayers, setSelectedTournamentPlayers] = useState<number[]>([])
-  
+
 
   const t = useTranslate()
 
@@ -48,17 +48,17 @@ const QuickPlay: React.FC<QuickPlayProps> = ({ userPlayers }) => {
       alert('Please create a player before joining a tournament')
       return
     }
-  
+
     if (!hasEnoughPlayersTourn) {
       alert('You need at least 4 players for a tournament')
       return
     }
-  
+
     try {
       const res = await BaseService.get('/tournaments') // adjust based on your API shape
       const tournaments = res.items || res
       const activeTournament = tournaments.find((t: any) => t.status === 'pending')
-  
+
       if (activeTournament) {
         navigate('/tournament')
       } else {
@@ -135,9 +135,9 @@ const QuickPlay: React.FC<QuickPlayProps> = ({ userPlayers }) => {
       alert('You must select between 4 and 8 players for the tournament')
       return
     }
-  
+
     const selected = userPlayers.filter((p) => selectedTournamentPlayers.includes(p.id))
-    
+
     try {
         await BaseService.post('/tournaments', {
           name: `The Great Paddle-Off`,

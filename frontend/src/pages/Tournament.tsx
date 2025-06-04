@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { BaseService } from '../services/BaseService'
+import { BaseService } from '../services/baseService'
 import '../assets/styles/Tournament.css'
 import { useUserPlayers } from '../hooks/useUserPlayers'
 import ErrorBoundary from '../components/ErrorBoundary'
@@ -97,12 +97,12 @@ const TournamentPage: React.FC = () => {
 
   const handleReset = async () => {
     if (!tournament) return
-  
+
     const confirmReset = window.confirm(
       `Are you sure you want to delete the tournament "${tournament.name}"?`
     )
     if (!confirmReset) return
-  
+
     try {
       const res = await BaseService.delete(`/tournaments/${tournament.id}`)
       alert(res.message || 'Tournament deleted successfully.')
@@ -154,7 +154,7 @@ const TournamentPage: React.FC = () => {
               <h2>🏆 Tournament Completed</h2>
               <p>
                 Winner: {
-                  userPlayers.find((u) => u.id === tournament.winner_id)?.display_name || 
+                  userPlayers.find((u) => u.id === tournament.winner_id)?.display_name ||
                   `Player ${tournament.winner_id ?? 'N/A'}`
                 }
               </p>
