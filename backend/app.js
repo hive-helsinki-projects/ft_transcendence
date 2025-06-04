@@ -3,6 +3,7 @@ import swagger from '@fastify/swagger';
 import swaggerUi from '@fastify/swagger-ui';
 import dotenv from 'dotenv';
 import fs from 'fs';
+import path from 'path'
 import jwtPlugin from './plugins/jwt-plugin.js';
 import authRoutes from './routes/authRoutes.js';
 import userRoutes from './routes/userRoutes.js';
@@ -13,6 +14,8 @@ import tournamentRoutes from './routes/tournamentRoute.js';
 import googleRoutes from './routes/googleRoutes.js';
 import fastifyCors from '@fastify/cors';
 import twoFaRoutes from './routes/twoFactorRoutes.js';
+import fastifyMultipart  from '@fastify/multipart'
+import fastifyStatic     from '@fastify/static'
 
 // Load environment variables
 dotenv.config();
@@ -25,6 +28,18 @@ function buildApp() {
             key: fs.readFileSync(process.env.SSL_KEY),
             cert: fs.readFileSync(process.env.SSL_CERT)
         }});
+
+        const uploadDir = path.join(process.cwd(), 'uploads')
+        if (!fs.existsSync(uploadDir)) {
+            fs.mkdirSync(uploadDir, { recursive: true })
+        }
+
+        fastify.register(fastifyStatic, {
+            root:   uploadDir,
+            prefix: '/uploads/',
+        })
+
+        fastify.register(fastifyMultipart)
 
         fastify.register(swagger, {
             openapi: {
@@ -60,7 +75,6 @@ function buildApp() {
     // Register routes
     fastify.register(jwtPlugin);
     fastify.register(authRoutes);
-    // fastify.register(twoFaRoutes);
     fastify.register(twoFaRoutes, { prefix: '/api' });
     fastify.register(userRoutes);
     fastify.register(playerRoutes);

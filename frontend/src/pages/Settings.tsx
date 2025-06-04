@@ -24,6 +24,7 @@ interface UserData {
   username: string
   email: string
   password?: string
+  avatar_url?: string
 }
 
 interface EditableFieldProps {
@@ -126,6 +127,7 @@ const Settings: React.FC = () => {
     username: username || '',
     email: '',
     password: '',
+    avatar_url: '',
   })
   const [tempData, setTempData] = useState<UserData>({
     username: '',
@@ -138,20 +140,23 @@ const Settings: React.FC = () => {
   const [error, setError] = useState<string | null>(null)
   const [success, setSuccess] = useState<string | null>(null)
 
+  const [avatarError, setAvatarError]     = useState<string | null>(null)
+  const [avatarSuccess, setAvatarSuccess] = useState<string | null>(null)
+
   const [twoFaEnabled, setTwoFaEnabled] = useState<boolean>(false)
   const [qrDataUrl,    setQrDataUrl]    = useState<string | null>(null)
   const [twoFaToken,   setTwoFaToken]   = useState<string>('')
   const [twoFaMessage, setTwoFaMessage] = useState<string | null>(null)
 
   useEffect(() => {
-    // on mount, load current user’s data
     const loadProfile = async () => {
       try {
         const user = await api.get(`/users/${userId}`)
         setUserData({
           username: user.username,
           email: user.email,
-          password: ''
+          password: '',
+          avatar_url: user.avatar_url || '',
         })
       } catch (err) {
         console.error('Failed to load profile', err)
@@ -169,7 +174,7 @@ const Settings: React.FC = () => {
         setTwoFaEnabled(false)
       }
     }
-  
+
     fetch2faStatus()
   }, [])
 
@@ -257,6 +262,41 @@ const Settings: React.FC = () => {
     setError(null)
   }
 
+  const handleAvatarChange = async (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setAvatarError(null)
+    setAvatarSuccess(null)
+    if (!userId) return
+
+    const file = e.target.files?.[0]
+    if (!file) return
+
+    if (!file.type.startsWith('image/')) {
+      setAvatarError('Please select an image file')
+      return
+    }
+
+    const formData = new FormData()
+    formData.append('file', file)
+
+    try {
+      const response = await api.uploadAvatar(
+        `/users/${userId}/avatar`,
+        formData
+      )
+      // response.item.avatar_url is the new URL
+      setUserData((prev) => ({
+        ...prev,
+        avatar_url: response.item.avatar_url,
+      }))
+      setAvatarSuccess('Profile picture updated!')
+      setTimeout(() => setAvatarSuccess(null), 3000)
+    } catch (err: any) {
+      setAvatarError(err.message || 'Upload failed')
+    }
+  }
+
   const handleLogout = async () => {
     try {
       await logout()
@@ -298,6 +338,35 @@ const Settings: React.FC = () => {
 
         {error && <div className="error-message">{error}</div>}
         {success && <div className="success-message">{success}</div>}
+
+        <SettingsSection
+          title={t('Profile Picture')}
+          icon={<User size={18} />}
+        >
+          <div className="avatar-upload-container">
+            <img
+              src={
+                userData.avatar_url
+                  ? userData.avatar_url
+                  : '/placeholder-avatar.png'
+              }
+              alt="Current avatar"
+              className="avatar-preview"
+            />
+            <input
+              type="file"
+              accept="image/*"
+              onChange={handleAvatarChange}
+              className="avatar-file-input"
+            />
+          </div>
+          {avatarError && (
+            <div className="error-message">{avatarError}</div>
+          )}
+          {avatarSuccess && (
+            <div className="success-message">{avatarSuccess}</div>
+          )}
+        </SettingsSection>
 
         <SettingsSection title={t('Account Settings')} icon={<User size={18} />}>
           <EditableField
