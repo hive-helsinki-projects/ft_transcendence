@@ -20,4 +20,5 @@ export const GoogleAuthButton: React.FC<GoogleAuthButtonProps> = ({ isLoading, o
     />
     Sign up with Google
   </button>
+  
 ) 

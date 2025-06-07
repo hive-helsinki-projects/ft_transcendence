@@ -1,4 +1,5 @@
 import React from 'react';
+import { googleButton } from '../assets/styles/GoogleSignIn.style';
 
 const clientId = '847383291975-9ten21d8j1vf3m2m1kod2i2js9c28o6e.apps.googleusercontent.com';
 
@@ -22,11 +23,23 @@ const GoogleSignIn: React.FC = () => {
   };
 
   return (
-      <div>
-        <button onClick={redirectToGoogleOAuth}>
-          Login with Google(test redirect method)
+    <>
+    <div>
+        <button
+          onClick={redirectToGoogleOAuth}
+          // disabled={isLoading}
+          type="button"
+          className={googleButton}
+        >
+          <img
+            src="https://www.google.com/favicon.ico"
+            alt="Google"
+            className="w-5 h-5 rounded-full"
+          />
+          Sign in with Google
         </button>
       </div>
+      </>
   );
 };
 
