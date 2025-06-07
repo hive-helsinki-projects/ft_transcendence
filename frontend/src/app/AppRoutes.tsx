@@ -1,36 +1,57 @@
 import {
-  DashboardPage,
-  HelpPage,
+  Dashboard,
+  Help,
   LandingPage,
-  OAuth2CallbackPage,
-  RegisterPage,
-  SearchResultsPage,
-  SettingsPage,
-  TournamentPage,
+  OAuth2Callback,
+  Register,
+  SearchResults,
+  Settings,
+  Tournament,
 } from '@/pages'
 import { ProtectedRoute } from '@/shared/components/routing'
 import React from 'react'
-import { Route, Routes } from 'react-router-dom'
+import { Navigate, Route, Routes } from 'react-router-dom'
+import Pong from '../components/features/game/pong'
+import ProfilePage from '../components/ProfilePage'
+import { useAuth } from '../hooks/auth/useAuth'
 
 /**
- * Centralized routing configuration
- * All application routes are defined here
+ * AppRoutes Component
+ * This component defines all the routes in the application
+ * It includes both public and protected routes
  */
 const AppRoutes: React.FC = () => {
+  const { isAuthenticated } = useAuth()
+
   return (
     <Routes>
-      {/* Public routes */}
-      <Route path="/" element={<LandingPage />} />
-      <Route path="/register" element={<RegisterPage />} />
-      <Route path="/auth/callback" element={<OAuth2CallbackPage />} />
-      <Route path="/help" element={<HelpPage />} />
+      {/* Public Routes - Accessible to everyone */}
+      <Route
+        path="/"
+        element={
+          isAuthenticated ? (
+            <Navigate to="/dashboard" replace />
+          ) : (
+            <LandingPage />
+          )
+        }
+      />
+      <Route path="/register" element={<Register />} />
 
-      {/* Protected routes */}
+      {/* Protected Routes - Only accessible to authenticated users */}
       <Route
         path="/dashboard"
         element={
           <ProtectedRoute>
-            <DashboardPage />
+            <Dashboard />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/game"
+        element={
+          <ProtectedRoute>
+            <Pong />
           </ProtectedRoute>
         }
       />
@@ -38,15 +59,15 @@ const AppRoutes: React.FC = () => {
         path="/tournament"
         element={
           <ProtectedRoute>
-            <TournamentPage />
+            <Tournament />
           </ProtectedRoute>
         }
       />
       <Route
-        path="/settings"
+        path="/profile/:id"
         element={
           <ProtectedRoute>
-            <SettingsPage />
+            <ProfilePage />
           </ProtectedRoute>
         }
       />
@@ -54,10 +75,24 @@ const AppRoutes: React.FC = () => {
         path="/search"
         element={
           <ProtectedRoute>
-            <SearchResultsPage />
+            <SearchResults />
           </ProtectedRoute>
         }
       />
+      <Route path="/help" element={<Help />} />
+      <Route
+        path="/settings"
+        element={
+          <ProtectedRoute>
+            <Settings />
+          </ProtectedRoute>
+        }
+      />
+
+      {/* 404 Route - Shows when no matching route is found */}
+      <Route path="*" element={<div>404 Not Found</div>} />
+
+      <Route path="/oauth2callback" element={<OAuth2Callback />} />
     </Routes>
   )
 }
