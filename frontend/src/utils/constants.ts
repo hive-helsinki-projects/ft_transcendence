@@ -2,8 +2,11 @@
  * Authentication related constants
  */
 
+// API Configuration
+const API_BASE_URL = 'https://localhost:3001'
+
 // API Endpoints
-export const API_ENDPOINTS = {
+const API_ENDPOINTS = {
   LOGIN: '/login',
   LOGIN_2FA: '/login/2fa',
   GOOGLE_AUTH: '/api/auth/google',
@@ -11,7 +14,7 @@ export const API_ENDPOINTS = {
 } as const
 
 // Messages
-export const AUTH_MESSAGES = {
+const AUTH_MESSAGES = {
   SUCCESS: 'Login successful! Redirecting to dashboard...',
   ERROR: {
     DEFAULT: 'Login failed. Please try again.',
@@ -21,10 +24,10 @@ export const AUTH_MESSAGES = {
 } as const
 
 // Timing
-export const REDIRECT_DELAY = 2000 // milliseconds
+const REDIRECT_DELAY = 2000 // milliseconds
 
 // Validation
-export const VALIDATION_RULES = {
+const VALIDATION_RULES = {
   username: {
     minLength: 3,
     maxLength: 20,
@@ -33,4 +36,6 @@ export const VALIDATION_RULES = {
   password: {
     minLength: 6,
   },
-} as const 
+} as const
+
+export { API_BASE_URL, API_ENDPOINTS, AUTH_MESSAGES, REDIRECT_DELAY, VALIDATION_RULES }

@@ -1,10 +1,9 @@
-import { AuthFormData } from '../types/auth'
-import { VALIDATION_RULES } from './constants'
+import { VALIDATION_RULES } from '@/utils/constants'
 
 /**
  * Validates a single form field
  */
-export const validateField = (name: keyof AuthFormData, value: string): string => {
+export const validateField = (name: keyof typeof VALIDATION_RULES, value: string): string => {
   const rules = VALIDATION_RULES[name]
   
   if (!value) return 'This field is required'
