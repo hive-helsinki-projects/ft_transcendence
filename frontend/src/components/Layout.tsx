@@ -1,5 +1,5 @@
 import React from 'react'
-import { SideBar } from '..'
+import { SideBar } from '.'
 
 /**
  * Layout Component

@@ -1,5 +1,5 @@
 // Layout Components
-export { default as Layout } from './layout/Layout'
+export { default as Layout } from './Layout'
 
 // Navigation Components
 export { default as SidebarItem } from './sidebar/SidebarItem'
@@ -8,8 +8,7 @@ export { menuItems } from './sidebar/menuItems'
 export { type MenuItem } from './sidebar/SidebarItem'
 
 // Routing Components
-export { default as ProtectedRoute } from './routing/ProtectedRoute'
-export { default as AppRoutes } from './routing/AppRoutes'
+export { default as ProtectedRoute } from './ProtectedRoute'
 
 // Authentication Components
 export { default as AuthForm } from './features/auth/AuthForm'
