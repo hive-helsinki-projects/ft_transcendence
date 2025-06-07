@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { useFormValidation } from '../../../hooks/auth/useFormValidation'
-import { AuthFormData, AuthFormProps } from '../../../types/auth'
+import { useFormValidation } from '@/hooks'
+import { AuthFormData, AuthFormProps } from '@/types'
 import { FormInput } from './FormInput'
 import { StatusMessage } from './StatusMessage'
 import LoadingState from '../../LoadingState'
