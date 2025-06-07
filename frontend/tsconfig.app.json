@@ -28,10 +28,16 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"],
+      "@/components/*": ["src/components/*"],
       "@/app/*": ["src/app/*"],
       "@/pages/*": ["src/pages/*"],
-      "@/features/*": ["src/features/*"],
-      "@/shared/*": ["src/shared/*"]
+      "@/hooks/*": ["src/hooks/*"],
+      "@/utils/*": ["src/utils/*"],
+      "@/assets/*": ["src/assets/*"],
+      "@/styles/*": ["src/styles/*"],
+      "@/types/*": ["src/types/*"],
+      "@/services/*": ["src/services/*"],
+      "@/contexts/*": ["src/contexts/*"]
     }
   },
   "include": ["src"],
