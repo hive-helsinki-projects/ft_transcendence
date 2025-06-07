@@ -8,19 +8,18 @@ const AuthSection: React.FC<AuthSectionProps> = ({
   onGoogleAuth,
   onNavigateToRegister,
   children,
-}) => (
+}) => {
 
-    // const {
-    //   isLoading
-    // } = useAuthForm()
+  const { isLoading } = useAuthForm();
 
-  <section className="auth-section">
+  return (
+    <section className="auth-section">
     <h2>Let's Play!</h2>
     {children}
     <div className="auth-options">
       <div className="google-auth">
         <span>Or</span>
-          <GoogleSignIn />
+          <GoogleSignIn isLoading={isLoading}/>
       </div>
 
       <div className="register-link">
@@ -38,6 +37,7 @@ const AuthSection: React.FC<AuthSectionProps> = ({
       </div>
     </div>
   </section>
-)
+  );
+}
 
 export default AuthSection

@@ -3,7 +3,11 @@ import { googleButton } from '../assets/styles/GoogleSignIn.style';
 
 const clientId = '847383291975-9ten21d8j1vf3m2m1kod2i2js9c28o6e.apps.googleusercontent.com';
 
-const GoogleSignIn: React.FC = () => {
+interface GoogleAuthButtonProps {
+  isLoading: boolean
+}
+
+const GoogleSignIn:  React.FC<GoogleAuthButtonProps> = ({ isLoading }) => {
   const redirectToGoogleOAuth = () => {
     const redirectUri = 'https://localhost:5173/oauth2callback'; // The uri we registered in Google Cloud Console
     const scope = 'openid email profile';
@@ -23,11 +27,10 @@ const GoogleSignIn: React.FC = () => {
   };
 
   return (
-    <>
     <div>
         <button
           onClick={redirectToGoogleOAuth}
-          // disabled={isLoading}
+          disabled={isLoading}
           type="button"
           className={googleButton}
         >
@@ -38,8 +41,7 @@ const GoogleSignIn: React.FC = () => {
           />
           Sign in with Google
         </button>
-      </div>
-      </>
+    </div>
   );
 };
 
