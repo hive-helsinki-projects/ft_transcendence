@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react'
-import { BaseService } from '../services/baseService'
+import { BaseService } from '@/services'
 
 export interface MatchPlayer {
   player_id: number
@@ -24,7 +24,7 @@ interface MatchRequest {
   players: MatchPlayer[]
 }
 
-export const useMatchHistories = () => {
+const useMatchHistories = () => {
   const [matches, setMatches] = useState<MatchHistory[]>([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<unknown>(null)
@@ -107,4 +107,6 @@ export const useMatchHistories = () => {
     updateMatch,
     deleteMatch,
   }
-}
+};
+
+export default useMatchHistories

@@ -1,8 +1,8 @@
 import { useState, useCallback, useEffect } from 'react'
-import { UserPlayer } from '../types/dashboard'
-import { BaseService } from '../services/baseService'
+import { UserPlayer } from '@/types'
+import { BaseService } from '@/services'
 
-export const useUserPlayers = () => {
+const useUserPlayers = () => {
   const [userPlayers, setUserPlayers] = useState<UserPlayer[]>([])
 
   // Fetch all players when component mounts
@@ -64,4 +64,6 @@ export const useUserPlayers = () => {
     updatePlayer,
     deletePlayer,
   }
-}
+};
+
+export default useUserPlayers

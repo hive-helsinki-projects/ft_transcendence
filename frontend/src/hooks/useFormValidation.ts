@@ -1,5 +1,5 @@
 import { useState, useCallback } from 'react'
-import { AuthFormData, FormValidation } from '../../types/auth'
+import { AuthFormData, FormValidation } from '@/types'
 
 /**
  * Validation rules for the authentication form
@@ -35,7 +35,7 @@ const VALIDATION_RULES = {
  * It includes a validateField function for validating individual fields
  * and a validateForm function for validating the entire form
  */
-export const useFormValidation = () => {
+const useFormValidation = () => {
   const [validation, setValidation] = useState<FormValidation>({
     isValid: false,
     errors: {},
@@ -72,4 +72,6 @@ export const useFormValidation = () => {
     updateValidation,
     validateForm,
   }
-} 
+};
+
+export default useFormValidation

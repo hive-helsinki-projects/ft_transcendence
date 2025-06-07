@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { AUTH_MESSAGES, UseAuthFormReturn } from '../../types/auth'
+import { AUTH_MESSAGES, UseAuthFormReturn } from '@/types'
 
 /**
  * Custom hook for managing authentication form state and actions
@@ -16,7 +16,7 @@ import { AUTH_MESSAGES, UseAuthFormReturn } from '../../types/auth'
  * const { isLoading, error, handleAuthError } = useAuthForm();
  * // Use these values and functions in your authentication form component
  */
-export const useAuthForm = (): UseAuthFormReturn => {
+const useAuthForm = (): UseAuthFormReturn => {
   // Initialize state variables
   const [isLoading, setIsLoading] = useState(false)        // Tracks if authentication is in progress
   const [error, setError] = useState('')                   // Stores any error messages
@@ -70,4 +70,6 @@ export const useAuthForm = (): UseAuthFormReturn => {
     handleAuthError,
     handleAuthSuccess,
   }
-} 
+};
+
+export default useAuthForm

@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { AuthFormData } from '../types/auth'
-import { useAuth } from './auth/useAuth'
-import { AuthService } from '../services/authService'
-import { validateRegistrationForm } from '../utils/validation'
+import { AuthFormData } from '@/types'
+import { useAuth } from '@/hooks'
+import { AuthService } from '@/services'
+import { validateRegistrationForm } from '@/utils'
 
 interface UseRegisterFormReturn {
   formData: AuthFormData
@@ -14,7 +14,7 @@ interface UseRegisterFormReturn {
   handleSubmit: (formData: AuthFormData) => Promise<void>
 }
 
-export const useRegisterForm = (): UseRegisterFormReturn => {
+const useRegisterForm = (): UseRegisterFormReturn => {
   const [formData, setFormData] = useState<AuthFormData>({
     username: '',
     email: '',
@@ -69,4 +69,6 @@ export const useRegisterForm = (): UseRegisterFormReturn => {
     handleInputChange,
     handleSubmit,
   }
-} 
+};
+
+export default useRegisterForm

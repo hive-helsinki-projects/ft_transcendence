@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 
-export const useAvatar = (username: string) => {
+const useAvatar = (username: string) => {
   const [avatar, setAvatar] = useState('')
 
   useEffect(() => {
@@ -28,4 +28,6 @@ export const useAvatar = (username: string) => {
   }
 
   return { avatar, handleAvatarChange }
-} 
+};
+
+export default useAvatar
