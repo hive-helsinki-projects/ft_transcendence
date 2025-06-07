@@ -1,7 +1,7 @@
 import React from 'react'
 import { LoadingContainer } from '../components'
 import { HelpSection, FAQSection, RulesSection, ContactSection, TroubleshootingSection, FeedbackSection } from '../components/features/help'
-import { faqs, gameRules, troubleshootingSteps } from '../data/helpData'
+import { faqs, gameRules, troubleshootingSteps } from '../utils/helpData'
 import '../assets/styles/index.css'
 
 const Help: React.FC = () => {

@@ -1,7 +1,7 @@
 import React from 'react'
 import { BrowserRouter as Router } from 'react-router-dom'
-import { AuthProvider } from './store/AuthContext'
-import { Layout, AppRoutes } from './components'
+import { AppRoutes, Layout } from './components'
+import { AuthProvider } from './services/AuthContext'
 
 /**
  * Main App Component

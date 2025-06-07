@@ -54,9 +54,9 @@ const AppRoutes: React.FC = () => {
         </ProtectedRoute>
       } />}
       <Route path="/help" element={
-        <ProtectedRoute>
+        //<ProtectedRoute>
           <Help />
-        </ProtectedRoute>
+        //</ProtectedRoute>
       } />
       {<Route path="/settings" element={
         <ProtectedRoute>
