@@ -1,5 +1,5 @@
-import { ErrorBoundary } from '@/shared/components/common'
-import { AuthProvider } from '@/shared/providers/AuthProvider'
+import { ErrorBoundary } from '@/components/common'
+import { AuthProvider } from '@/app'
 import { I18nProvider } from '@/shared/providers/I18nProvider'
 import React from 'react'
 import { BrowserRouter as Router } from 'react-router-dom'

@@ -8,7 +8,7 @@ import {
   Settings,
   Tournament,
 } from '@/pages'
-import { ProtectedRoute } from '@/shared/components/routing'
+import { ProtectedRoute } from '@/components'
 import React from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
 import Pong from '../components/features/game/pong'

@@ -1,4 +1,4 @@
-import { Layout } from '@/shared/components/layout'
+import { Layout } from '@/components'
 import React from 'react'
 import AppProviders from './AppProviders'
 import AppRoutes from './AppRoutes'
