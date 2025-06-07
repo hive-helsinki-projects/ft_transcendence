@@ -1,6 +1,6 @@
 const API_URL = 'https://localhost:3001'
 
-export const api = {
+const api = {
   async get(url: string) {
     const token = localStorage.getItem('token')
     const response = await fetch(`${API_URL}${url}`, {
@@ -114,3 +114,5 @@ export const api = {
     return response.json()
   },
 }
+
+export default api

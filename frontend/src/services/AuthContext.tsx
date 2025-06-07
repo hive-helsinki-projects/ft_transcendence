@@ -1,4 +1,5 @@
-import React, { createContext, useEffect, useState, useContext } from 'react'
+import React, { createContext, useContext, useEffect, useState } from 'react'
+import { TokenService } from './tokenService'
 
 interface AuthContextType {
   token: string | null
@@ -14,19 +15,15 @@ const AuthContext = createContext<AuthContextType | null>(null)
 
 export { AuthContext }
 
-export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
+const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   // Store the token (like putting it in your wallet)
-  const [token, setToken] = useState<string | null>(
-    localStorage.getItem('token'),
-  )
+  const [token, setToken] = useState<string | null>(TokenService.getToken())
   const [username, setUsername] = useState<string | null>(
-    localStorage.getItem('username'),
+    TokenService.getUsername(),
   )
-  const [id, setId] = useState<string | null>(
-    localStorage.getItem('id'),
-  )
+  const [id, setId] = useState<string | null>(TokenService.getId())
   // Check if you're logged in (do you have a valid token?)
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(!!token)
 
@@ -36,9 +33,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 
   // Function to log in (put token in wallet)
   const login = (newToken: string, newUsername: string, newId: string) => {
-    localStorage.setItem('token', newToken)
-    localStorage.setItem('username', newUsername)
-    localStorage.setItem('id', newId)
+    TokenService.setTokenData(newToken, newUsername, newId)
     setToken(newToken)
     setUsername(newUsername)
     setId(newId)
@@ -46,9 +41,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 
   // Function to log out (remove token from wallet)
   const logout = () => {
-    localStorage.removeItem('token')
-    localStorage.removeItem('username')
-    localStorage.removeItem('id')
+    TokenService.clearTokenData()
     setToken(null)
     setUsername(null)
     setId(null)
@@ -63,10 +56,4 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   )
 }
 
-export const useAuth = () => {
-  const context = useContext(AuthContext)
-  if (!context) {
-    throw new Error('useAuth must be used within an AuthProvider')
-  }
-  return context
-}
+export { AuthProvider }

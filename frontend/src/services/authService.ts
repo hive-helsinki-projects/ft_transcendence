@@ -8,8 +8,6 @@ export interface LoginResponse {
   id: string
 }
 
-const API_URL = 'https://localhost:3001'
-
 /**
  * Authentication Service
  * Handles all authentication-related API calls
@@ -17,7 +15,7 @@ const API_URL = 'https://localhost:3001'
 type TwoFaChallenge = { message: string; userId: number }
 type SuccessLogin   = { token: string; username: string; id: number }
 
-export class AuthService extends BaseService {
+class AuthService extends BaseService {
   static async login(
     formData: AuthFormData
   ): Promise<LoginResponse | TwoFaChallenge> {
@@ -64,21 +62,16 @@ export class AuthService extends BaseService {
   }
 
   static async registerAndLogin(formData: AuthFormData): Promise<LoginResponse> {
-    const registerResponse = await fetch(API_URL+`${API_ENDPOINTS.REGISTER}`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(formData),
-    })
-  
-    if (registerResponse.status === 409) {
-      const data = await registerResponse.json()
-      throw new Error(data.error || 'Username or email already exists')
-    }
-  
-    if (!registerResponse.ok) {
+    // Use BaseService for consistency
+    try {
+      await this.post(API_ENDPOINTS.REGISTER, formData)
+    } catch (error) {
+      if (error instanceof Error && error.message.includes('409')) {
+        throw new Error('Username or email already exists')
+      }
       throw new Error('Server error. Please try again later')
     }
-  
+
     // Registration was successful, now try login
     const result = await this.login(formData)
   
@@ -86,4 +79,6 @@ export class AuthService extends BaseService {
   
     throw new Error('2FA after register not supported')
   }
-} 
+}
+
+export default AuthService 

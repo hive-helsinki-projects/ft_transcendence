@@ -1,4 +1,6 @@
 import axios, { AxiosError, InternalAxiosRequestConfig } from 'axios';
+import { API_BASE_URL } from '../utils/constants';
+import { TokenService } from './tokenService';
 
 interface ErrorResponse {
   message?: string;
@@ -6,7 +8,7 @@ interface ErrorResponse {
 }
 
 const api = axios.create({
-  baseURL: 'https://localhost:3001',
+  baseURL: API_BASE_URL,
   headers: {
     'Content-Type': 'application/json',
   },
@@ -17,10 +19,10 @@ const api = axios.create({
 // Request interceptor for adding auth token
 api.interceptors.request.use(
   (config: InternalAxiosRequestConfig) => {
-    const token = localStorage.getItem('token');
-    console.log("token = ", token)
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
+    const authHeader = TokenService.getAuthHeader();
+    console.log("token = ", TokenService.getToken())
+    if (authHeader) {
+      config.headers.Authorization = authHeader;
     }
     return config;
   },
@@ -33,7 +35,7 @@ api.interceptors.response.use(
   (error: AxiosError<ErrorResponse>) => {
     if (error.response?.status === 401) {
       // Handle unauthorized access
-      localStorage.removeItem('token');
+      TokenService.clearTokenData();
       window.location.href = '/';
     }
     
