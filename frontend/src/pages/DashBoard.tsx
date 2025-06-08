@@ -1,11 +1,13 @@
 import React, { useEffect } from 'react'
-import { useAuth } from '../hooks/auth/useAuth'
-import { useAvatar } from '../hooks/useAvatar'
-import { useUserPlayers } from '../hooks/useUserPlayers'
-import { useMatchHistories } from '../hooks/useMatchHistories'
+import { 
+  useAuth,
+  useAvatar,
+  useUserPlayers,
+  useMatchHistories,
+ } from '@/hooks'
 import axios from 'axios'
-import ErrorBoundary from '../components/ErrorBoundary'
-import LoadingContainer from '../components/LoadingContainer'
+import ErrorBoundary from '@/components/ErrorBoundary'
+import LoadingContainer from '@/components/LoadingContainer'
 import {
   PlayerManagement,
   GameStats,
@@ -13,11 +15,11 @@ import {
   QuickPlay,
   TopPlayers, 
   AvatarMenu,
-} from '../components/features/dashboard'
+} from '@/components/features/dashboard'
 import '../assets/styles/index.css'
-import SearchBar from '../components/SearchBar'
+import SearchBar from '@/components/SearchBar'
 import { useNavigate } from 'react-router-dom'
-import useTranslate from '../hooks/useTranslate'
+import useTranslate from '@/hooks/useTranslate'
 
 const Dashboard: React.FC = () => {
   const { username, logout } = useAuth()

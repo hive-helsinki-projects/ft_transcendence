@@ -1,7 +1,14 @@
+import {
+  ContactSection,
+  FAQSection,
+  FeedbackSection,
+  HelpSection,
+  LoadingContainer,
+  RulesSection,
+  TroubleshootingSection,
+} from '@/components'
+import { faqs, gameRules, troubleshootingSteps } from '@/utils'
 import React from 'react'
-import { LoadingContainer } from '../components'
-import { HelpSection, FAQSection, RulesSection, ContactSection, TroubleshootingSection, FeedbackSection } from '../components/features/help'
-import { faqs, gameRules, troubleshootingSteps } from '../utils/helpData'
 import '../assets/styles/index.css'
 
 const Help: React.FC = () => {
@@ -12,18 +19,18 @@ const Help: React.FC = () => {
           title="Help Center"
           description="Find answers to common questions or contact support for further assistance."
         />
-        
+
         <RulesSection rules={gameRules} />
         <FAQSection faqs={faqs} />
-        
+
         <ContactSection
           email="support@example.com"
           title="Contact Support"
           description="If you need further assistance, please contact us at"
         />
-        
+
         <TroubleshootingSection steps={troubleshootingSteps} />
-        
+
         <FeedbackSection
           title="Feedback"
           description="We value your feedback! Please let us know how we can improve by submitting your feedback"

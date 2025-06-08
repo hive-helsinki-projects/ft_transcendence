@@ -1,3 +1,7 @@
+import { ProtectedRoute } from '@/components'
+import Pong from '@/components/features/game/pong'
+import ProfilePage from '@/components/ProfilePage'
+import { useAuth } from '@/hooks'
 import {
   Dashboard,
   Help,
@@ -8,12 +12,8 @@ import {
   Settings,
   Tournament,
 } from '@/pages'
-import { ProtectedRoute } from '@/components'
 import React from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
-import Pong from '../components/features/game/pong'
-import ProfilePage from '../components/ProfilePage'
-import { useAuth } from '../hooks/auth/useAuth'
 
 /**
  * AppRoutes Component

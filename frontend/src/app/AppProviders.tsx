@@ -1,6 +1,6 @@
-import { ErrorBoundary } from '@/components/common'
+import { ErrorBoundary } from '@/components'
 import { AuthProvider } from '@/app'
-import { I18nProvider } from '@/shared/providers/I18nProvider'
+//import { I18nProvider } from '@/shared/providers/I18nProvider'
 import React from 'react'
 import { BrowserRouter as Router } from 'react-router-dom'
 
@@ -15,11 +15,11 @@ interface AppProvidersProps {
 const AppProviders: React.FC<AppProvidersProps> = ({ children }) => {
   return (
     <ErrorBoundary>
-      <I18nProvider>
+      {/* <I18nProvider> */}
         <AuthProvider>
           <Router>{children}</Router>
         </AuthProvider>
-      </I18nProvider>
+      {/* </I18nProvider> */}
     </ErrorBoundary>
   )
 }

@@ -1,10 +1,10 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { LoadingContainer, AuthForm, AuthSection, HeroSection } from '../../components/index'
-import { useAuth } from '../../hooks/auth/useAuth'
-import { useAuthForm } from '../../hooks/auth/useAuthForm'
-import { AuthService } from '../../services/authService'
-import { AuthFormData, REDIRECT_DELAY } from '../../types/auth'
+import { useAuth } from '@/hooks'
+import { useAuthForm } from '@/hooks'
+import { AuthService } from '@/services'
+import { AuthFormData, REDIRECT_DELAY } from '@/types/auth'
 import { LoginResponse } from '../../services/authService'
 
 /**

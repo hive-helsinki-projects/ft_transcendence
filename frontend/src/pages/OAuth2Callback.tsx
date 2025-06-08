@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../hooks/auth/useAuth';
+import { useAuth } from '@/hooks';
 
 const OAuth2Callback = () => {
   const navigate = useNavigate();
