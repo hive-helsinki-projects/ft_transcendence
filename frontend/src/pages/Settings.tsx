@@ -307,6 +307,10 @@ const Settings: React.FC = () => {
   }
 
   const handleDeleteAccount = async () => {
+    if (!userId) {
+      setError('Could not delete account: User ID is missing')
+      return
+    }
     if (
       window.confirm(
         'Are you sure you want to delete your account? This action cannot be undone.',
@@ -347,7 +351,7 @@ const Settings: React.FC = () => {
             <img
               src={
                 userData.avatar_url
-                  ? userData.avatar_url
+                  ? `https://localhost:3001${userData.avatar_url}`
                   : '/placeholder-avatar.png'
               }
               alt="Current avatar"
