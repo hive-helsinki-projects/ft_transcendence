@@ -8,6 +8,26 @@
   align-items: center;
 }
 
+.avatar-upload-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.avatar-preview {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid #ccc;
+}
+
+.avatar-file-input {
+  /* you can style as desired—below is minimal */
+  font-size: 0.9rem;
+}
+
 .settings-container {
   width: 100%;
   max-width: 800px;
@@ -388,4 +408,4 @@
   border-radius: 8px;
   margin-bottom: 1rem;
   font-size: 0.9rem;
-} 
+}

@@ -20,8 +20,8 @@ import { useNavigate } from 'react-router-dom'
 import useTranslate from '../hooks/useTranslate'
 
 const Dashboard: React.FC = () => {
-  const { username, logout } = useAuth()
-  const { avatar, handleAvatarChange } = useAvatar(username || '')
+  const { id: userId, username, logout } = useAuth()
+  const { avatar, handleAvatarChange } = useAvatar(userId || '')
   const { userPlayers, createPlayer, updatePlayer, deletePlayer } = useUserPlayers()
   const { matches } = useMatchHistories()
   const t = useTranslate()

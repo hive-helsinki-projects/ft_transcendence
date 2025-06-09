@@ -108,21 +108,69 @@ export const putUserOpts = {
 };
 
 export const deleteUserOpts = {
-    schema: {
-        security: [
-            {
-                bearerAuth: []
-            }
-        ],
-        summary: 'Delete a user',
-        tags: ['user'],
-        response: {
-            200: {
-                type: 'object',
-                properties: {
-                    message: { type: 'string' },
-                },
-            },
-        },
+  schema: {
+    security: [ { bearerAuth: [] } ],
+    summary:  'Delete a user',
+    tags:     ['user'],
+    params: {
+      type: 'object',
+      required: ['id'],
+      properties: {
+        id: { type: 'integer' }
+      }
     },
+    response: {
+      200: {
+        type: 'object',
+        properties: {
+          message: { type: 'string' },
+        },
+      },
+    },
+  },
+};
+
+export const postAvatarOpts = {
+  schema: {
+    security: [{ bearerAuth: [] }],
+    summary:  'Upload new avatar image',
+    tags:     ['user'],
+    consumes: ['multipart/form-data'],
+    params: {
+      type:     'object',
+      required: ['id'],
+      properties: {
+        id: { type: 'integer' },
+      },
+    },
+    response: {
+      200: {
+        type: 'object',
+        properties: {
+          message: { type: 'string' },
+          item: {
+            type: 'object',
+            properties: {
+              id:            { type: 'integer' },
+              username:      { type: 'string' },
+              email:         { type: 'string', format: 'email' },
+              online_status: { type: 'boolean' },
+              avatar_url:    { type: 'string' },
+              created_at:    { type: 'string', format: 'date-time' },
+              two_fa_enabled:{ type: 'boolean' },
+            },
+            required: [
+              'id',
+              'username',
+              'email',
+              'online_status',
+              'avatar_url',
+              'created_at',
+              'two_fa_enabled'
+            ],
+          },
+        },
+      },
+    },
+  },
 }

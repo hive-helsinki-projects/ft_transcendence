@@ -49,7 +49,7 @@ export const useRegisterForm = (): UseRegisterFormReturn => {
       const loginResponse = await AuthService.registerAndLogin(formData)
       
       // Update auth context
-      login(loginResponse.token, loginResponse.username)
+      login(loginResponse.token, loginResponse.username, loginResponse.id)
       
       // Show success message and redirect
       setSuccessMessage('Registration successful! Redirecting to dashboard...')

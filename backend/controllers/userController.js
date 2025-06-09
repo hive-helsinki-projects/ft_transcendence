@@ -1,5 +1,7 @@
 import db from '../models/database.js';
 import bcrypt from 'bcryptjs';
+import fs   from 'fs'
+import path from 'path'
 
 // Fetch all users
 const getUsers = async (req, reply) => {
@@ -30,111 +32,212 @@ const getUser = async (req, reply) => {
 
 // Update user information
 const updateUser = async (req, reply) => {
-    const { id } = req.params;
-    const { username, password, email, avatar_url } = req.body;
+  const { id } = req.params
+  const userId = parseInt(id, 10)
 
-    // Check if the authenticated user matches the user being updated
-    if (req.user.id !== parseInt(id)) {
-        return reply.code(403).send({ error: 'Unauthorized to update this user\'s information' });
+  // Only the logged-in user may update their own profile
+  if (req.user.id !== userId) {
+    return reply.code(403).send({ error: "Unauthorized to update this user’s information" })
+  }
+
+  try {
+    const user = db.prepare('SELECT * FROM users WHERE id = ?').get(userId)
+    if (!user) {
+      return reply.code(404).send({ error: 'User not found' })
     }
 
-    try {
-        const user = db.prepare('SELECT * FROM users WHERE id = ?').get(parseInt(id));
-        if (!user) {
-            return reply.code(404).send({ error: 'User not found' });
-        }
+    const {
+      username,
+      password,
+      email,
+      avatar_url,      // allow updating avatar_url via JSON if needed
+      two_fa_enabled,
+      two_fa_secret,
+    } = req.body
 
-        // Check if the new username already exists
-        if (username && username !== user.username) {
-            const existingUser = db.prepare('SELECT * FROM users WHERE username = ?').get(username);
-            if (existingUser) {
-                return reply.code(400).send({ error: 'Username already taken' });
-            }
-        }
-
-        // Check if the new email already exists
-        if (email && email !== user.email) {
-            const existingEmail = db.prepare('SELECT * FROM users WHERE email = ?').get(email);
-            if (existingEmail) {
-                return reply.code(400).send({ error: 'Email already in use' });
-            }
-        }
-
-        // Prepare the user data for update
-        const updateUser = {
-            username: username ?? user.username,
-            password_hash: user.password_hash,
-            email: email ?? user.email,
-            avatar_url: avatar_url ?? user.avatar_url,
-        };
-
-        // Hash new password if provided
-        if (password) {
-            const saltRounds = parseInt(process.env.SALT_ROUNDS, 10) || 10;
-            updateUser.password_hash = await bcrypt.hash(password, saltRounds);
-        }
-
-        // Update the user record in the database
-        db.prepare(`
-            UPDATE users
-            SET username = ?, password_hash = ?, email = ?, avatar_url = ?
-            WHERE id = ?
-        `).run(updateUser.username, updateUser.password_hash, updateUser.email, updateUser.avatar_url, parseInt(id));
-
-        const fullUser = db.prepare(`
-            SELECT
-                id,
-                username,
-                email,
-                avatar_url,
-                online_status,
-                created_at,
-                two_fa_enabled
-            FROM users
-            WHERE id = ?
-        `).get(parseInt(id));
-
-        fullUser.avatar_url = fullUser.avatar_url ?? '';
-        fullUser.online_status = Boolean(fullUser.online_status);
-        fullUser.two_fa_enabled = Boolean(fullUser.two_fa_enabled);
-
-        return reply.send({
-            message: 'User updated successfully',
-            item: fullUser,
-        });
-    } catch (error) {
-        console.error(error);
-        return reply.code(500).send({ error: 'Internal server error' });
+    // Check for username/email conflicts
+    if (username && username !== user.username) {
+      const existing = db.prepare('SELECT * FROM users WHERE username = ?').get(username)
+      if (existing) {
+        return reply.code(400).send({ error: 'Username already taken' })
+      }
     }
+    if (email && email !== user.email) {
+      const existingEmail = db.prepare('SELECT * FROM users WHERE email = ?').get(email)
+      if (existingEmail) {
+        return reply.code(400).send({ error: 'Email already in use' })
+      }
+    }
+
+    // Build updated record
+    const updateData = {
+      username:     username ?? user.username,
+      password_hash: user.password_hash,
+      email:        email ?? user.email,
+      avatar_url:   avatar_url ?? user.avatar_url,
+      two_fa_enabled: two_fa_enabled ?? user.two_fa_enabled,
+      two_fa_secret:  two_fa_secret ?? user.two_fa_secret,
+    }
+
+    // If password provided, hash it
+    if (password) {
+      const saltRounds = parseInt(process.env.SALT_ROUNDS, 10) || 10
+      updateData.password_hash = await bcrypt.hash(password, saltRounds)
+    }
+
+    // Run the UPDATE
+    db.prepare(
+      `UPDATE users
+         SET username     = ?,
+             password_hash= ?,
+             email        = ?,
+             avatar_url   = ?,
+             two_fa_enabled = ?,
+             two_fa_secret  = ?
+       WHERE id = ?`
+    ).run(
+      updateData.username,
+      updateData.password_hash,
+      updateData.email,
+      updateData.avatar_url,
+      updateData.two_fa_enabled ? 1 : 0,
+      updateData.two_fa_secret,
+      userId
+    )
+
+    // Return the fresh user row (excluding password_hash)
+    const updated = db
+      .prepare(`
+        SELECT id,
+               username,
+               email,
+               avatar_url,
+               online_status,
+               created_at,
+               two_fa_enabled
+        FROM users
+        WHERE id = ?
+      `)
+      .get(userId)
+
+    updated.avatar_url    = updated.avatar_url || ''
+    updated.online_status = Boolean(updated.online_status)
+    updated.two_fa_enabled = Boolean(updated.two_fa_enabled)
+
+    return reply.send({ message: 'User updated successfully', item: updated })
+  } catch (error) {
+    console.error(error)
+    return reply.code(500).send({ error: 'Internal server error' })
+  }
 };
 
 // Delete a friend from the user's friend list
 const deleteUser = async (req, reply) => {
-    const user_id = req.user.id;
+  const { id } = req.params
+  const userId = parseInt(id, 10)
 
-    try {
-        // Remove the user
-        const result = db.prepare(`
-            DELETE FROM users
-            WHERE id = ?
-        `).run(user_id);
+  if (req.user.id !== userId) {
+    return reply.code(403).send({ error: "Unauthorized to delete this user" })
+  }
 
-        console.log("deleting user");
-        if (result.changes === 0) {
-            return reply.code(404).send({ error: 'User not authorized to delete friend' });
-        }
-
-        // Successfully removed the user
-        return reply.code(200).send({ message: 'User removed successfully' });
-    } catch (error) {
-        console.log(error);
-        return reply.code(500).send({ error: 'Failed to delete user' });
+  try {
+    const userExist = db.prepare('SELECT COUNT(*) AS count FROM users WHERE id = ?').get(userId)
+    if (!userExist.count) {
+      return reply.code(404).send({ error: 'User not found' })
     }
+
+    db.prepare('DELETE FROM users WHERE id = ?').run(userId)
+    return reply.send({ message: 'User deleted successfully' })
+  } catch (error) {
+    console.error(error)
+    return reply.code(500).send({ error: 'Internal server error' })
+  }
+};
+
+const uploadAvatar = async (req, reply) => {
+  const { id } = req.params
+  const userId = parseInt(id, 10)
+
+  if (req.user.id !== userId) {
+    return reply.code(403).send({ error: 'Unauthorized to upload avatar for this user' })
+  }
+
+  let file
+  try {
+    file = await req.file()   // fastify-multipart puts the stream here
+  } catch {
+    return reply.code(400).send({ error: 'No file provided' })
+  }
+
+  const { file: fileStream, filename, mimetype } = file
+
+  if (!/^image\/(png|jpe?g|gif)$/.test(mimetype)) {
+    return reply.code(400).send({ error: 'Only PNG/JPG/GIF files are allowed' })
+  }
+
+  // Build a unique filename: "user_<id>_<timestamp>.<ext>"
+  const ext = path.extname(filename) || ''
+  const newFilename = `user_${userId}_${Date.now()}${ext}`
+
+  // Ensure the uploads folder exists
+  const uploadDir = path.join(process.cwd(), 'uploads')
+  if (!fs.existsSync(uploadDir)) {
+    fs.mkdirSync(uploadDir, { recursive: true })
+  }
+
+  const destPath = path.join(uploadDir, newFilename)
+
+  // Save the file on disk
+  try {
+    await new Promise((resolve, reject) => {
+      const writeStream = fs.createWriteStream(destPath)
+      fileStream.pipe(writeStream).on('finish', resolve).on('error', reject)
+    })
+  } catch (err) {
+    console.error('File write error:', err)
+    return reply.code(500).send({ error: 'Failed to save file' })
+  }
+
+  const publicUrl = `/uploads/${newFilename}`
+
+  // Update the user’s avatar_url in the database
+  try {
+    db.prepare('UPDATE users SET avatar_url = ? WHERE id = ?').run(publicUrl, userId)
+
+    const updated = db
+      .prepare(`
+        SELECT id,
+               username,
+               email,
+               avatar_url,
+               online_status,
+               created_at,
+               two_fa_enabled
+        FROM users
+        WHERE id = ?
+      `)
+      .get(userId)
+
+    updated.avatar_url     = updated.avatar_url || ''
+    updated.online_status  = Boolean(updated.online_status)
+    updated.two_fa_enabled = Boolean(updated.two_fa_enabled)
+
+    return reply.send({
+      message: 'Avatar uploaded successfully',
+      item:    updated,
+    })
+  } catch (dbErr) {
+    // Roll back on DB failure: delete the file we just wrote
+    fs.unlinkSync(destPath)
+    console.error('DB update error:', dbErr)
+    return reply.code(500).send({ error: 'Failed to update avatar in database' })
+  }
 }
 
 export default {
     getUsers,
     getUser,
     updateUser,
-    deleteUser
+    deleteUser,
+    uploadAvatar
 };

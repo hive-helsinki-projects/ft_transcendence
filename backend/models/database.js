@@ -17,7 +17,7 @@ db.prepare(`
 		username TEXT NOT NULL UNIQUE,
 		email TEXT NOT NULL UNIQUE,
 		password_hash TEXT,
-		avatar_url TEXT DEFAULT NULL,
+		avatar_url TEXT NOT NULL DEFAULT '/uploads/placeholder-avatar.png',
 		online_status BOOLEAN DEFAULT FALSE,
 		created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 	)

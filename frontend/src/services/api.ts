@@ -29,7 +29,7 @@ export const api = {
     if (response.status === 206) {
       return await response.json()
     }
-    
+
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`)
     }
@@ -97,6 +97,22 @@ export const api = {
       throw new Error(`HTTP error! status: ${response.status}`)
     }
     return (response.json())
+  },
+
+  async uploadAvatar(url: string, formData: FormData) {
+    const token = localStorage.getItem('token')
+    const response = await fetch(`${API_URL}${url}`, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        // NOTE: Do NOT set Content-Type; let the browser set the multipart boundary
+      },
+      body: formData,
+    })
+    if (!response.ok) {
+      throw new Error(`Avatar upload failed: ${response.status}`)
+    }
+    return response.json()
   },
 
   // getting 2fa status from /2fa/status

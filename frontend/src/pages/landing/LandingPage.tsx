@@ -9,7 +9,7 @@ import { LoginResponse } from '../../services/authService'
 
 /**
  * LandingPage Component
- * 
+ *
  * Main entry point for unauthenticated users.
  * Displays a hero section and authentication form.
  * Handles user login functionality and
@@ -42,7 +42,7 @@ const LandingPage: React.FC = () => {
 
     try {
       const response = await AuthService.login(formData)
-    
+
       if ('userId' in response && response.message === 'Two-factor authentication required') {
         setNeeds2fa(true)
         setUserId(response.userId)
@@ -51,7 +51,7 @@ const LandingPage: React.FC = () => {
       }
 
       const loginResponse = response as LoginResponse
-    
+
       handleAuthSuccess()
       await new Promise((resolve) => setTimeout(resolve, REDIRECT_DELAY))
       login(loginResponse.token, loginResponse.username, loginResponse.id)
@@ -80,10 +80,10 @@ const LandingPage: React.FC = () => {
     if (!userId) return
     setLoading(true)
     try {
-      const { token } = await AuthService.login2fa(userId, twoFaCode)
+      const loginResponse = await AuthService.login2fa(userId, twoFaCode)
       handleAuthSuccess()
       await new Promise((resolve) => setTimeout(resolve, REDIRECT_DELAY))
-      login(token, cachedUsername, String(userId))
+      login(loginResponse.token, loginResponse.username, loginResponse.id)
       navigate('/dashboard')
     } catch (err) {
       setTwoFaError('Invalid 2FA code')
