@@ -35,7 +35,7 @@ const TopPlayers: React.FC<TopPlayersProps> = ({ players }) => {
           return (
             <div key={player.id} className="player-card">
               <img
-                src={player.avatar_url}
+                src={player.avatar}
                 alt={`${player.display_name}'s avatar`}
                 className="player-avatar"
               />

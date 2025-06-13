@@ -314,7 +314,7 @@ const advanceTournament = async (req, reply) => {
       console.error(err);
       return reply.code(500).send({ error: 'Failed to advance tournament' });
     }
-    
+
     // now decide whether we just finished, or just advanced
     const first = rows[0];
 
@@ -341,10 +341,10 @@ const advanceTournament = async (req, reply) => {
         const allPlayerNames = allPlayerRows.map(r => r.display_name);
 
       const tx = await recordTournament(first.tournament_id, allPlayerNames, winnerName).catch(console.error);
-      const txHash = tx.hash;
-      const scores = await getScores();
-      console.log('Scores from blockchain:', scores);
-      console.log('Transaction hash:', txHash);
+    //   const txHash = tx.hash;
+    //   const scores = await getScores();
+    //   console.log('Scores from blockchain:', scores);
+    //   console.log('Transaction hash:', txHash);
       return reply.code(200).send({message: 'Successfully finished tournament', item: { matches }});
     }
 

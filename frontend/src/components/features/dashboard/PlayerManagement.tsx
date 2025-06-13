@@ -98,21 +98,14 @@ const PlayerManagement: React.FC<PlayerManagementProps> = ({
             className={'player-item active'}
           >
             <img
-              src={player.avatar_url}
-              alt={`${player.display_name}'s avatar`}
-              className="player-item-avatar"
+              src={player.avatar}
+              alt="Current avatar"
+              className="avatar-preview"
             />
             <div className="player-item-info">
               <span className="player-item-name">{player.display_name}</span>
             </div>
             <div className="player-item-actions">
-              <button
-                className="action-button"
-                onClick={() => handleToggleActive(player)}
-                title="Toggle active status"
-              >
-                <Edit2 size={16} />
-              </button>
               <button
                 className="action-button delete"
                 onClick={() => onDeletePlayer(player.id)}
@@ -135,4 +128,4 @@ const PlayerManagement: React.FC<PlayerManagementProps> = ({
   )
 }
 
-export default PlayerManagement 
+export default PlayerManagement

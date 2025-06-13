@@ -48,7 +48,7 @@
   "matchType": {
     "final": "決勝",
     "1v1": "1v1 対戦",
-    "semifinal": "準決勝 {{index}}"
+    "semifinal": "準決勝"
   },
 
   "settings.title": "設定",

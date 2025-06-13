@@ -14,6 +14,7 @@ const PADDLE_HEIGHT = 100
 const BALL_RADIUS = 8
 const PADDLE_SPEED = 7
 const MAX_SCORE = 2
+const PADDLE_ROUNDING = 4
 
 let trailLength = 20
 let rightPaddleHit = 0
@@ -37,6 +38,11 @@ interface GameState {
   player2: { name: string; avatar: string; id: number }
   returnTo?: string
 }
+
+interface Particle { x: number; y: number; vx: number; vy: number; life: number; }
+let particles: Particle[] = [];
+let isPaused = false;
+
 
 export default function Game() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
@@ -103,8 +109,35 @@ export default function Game() {
         (Math.random() > 0.5 ? 1 : -1) * (Math.random() * 4 + 2)
     }
 
+    function onGoal(x: number, y: number) {
+        // generate ~30 particles bursting out
+        let angle = 0;
+        for (let i = 0; i < 40; i++) {
+
+            if (ballX > CANVAS_WIDTH / 2) {
+                angle = Math.random() * Math.PI + Math.PI / 2;
+            }
+            else {
+                angle = Math.random() * Math.PI - Math.PI / 2;
+            }
+            const speed = Math.random() * 4 + 2;
+            particles.push({
+            x, y,
+            vx: Math.cos(angle) * speed,
+            vy: Math.sin(angle) * speed,
+            life: 60,  // frames until they vanish
+            });
+        }
+        isPaused = true;
+        setTimeout(() => {
+            particles = [];
+            isPaused = false;
+            resetBall();
+        }, 1000);  // 1s delay
+    }
+
     function update() {
-      if (gameOver || !matchStarted) return
+      if (gameOver || !matchStarted || isPaused) return
 
       // Move paddles
       if (paddle1Up && paddle1Y > 0) paddle1Y -= PADDLE_SPEED
@@ -166,7 +199,7 @@ export default function Game() {
           checkWinCondition(newScores)
           return newScores
         })
-        resetBall()
+        onGoal(ballX, ballY);
       }
 
       if (ballX + BALL_RADIUS > CANVAS_WIDTH) {
@@ -175,7 +208,7 @@ export default function Game() {
           checkWinCondition(newScores)
           return newScores
         })
-        resetBall()
+        onGoal(ballX, ballY);
       }
     }
 
@@ -234,45 +267,71 @@ export default function Game() {
     }
 
     function draw() {
-      ctx.fillStyle = 'black'
-      ctx.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT)
+        const bg = ctx.createLinearGradient(0, 0, CANVAS_WIDTH, 0)
+        bg.addColorStop(0,   ' #3c86ff')
+        bg.addColorStop(0.5, 'black')
+        bg.addColorStop(1,   ' #ff5c5c')
 
-      ctx.strokeStyle = 'white'
-      ctx.setLineDash([5, 5])
-      ctx.beginPath()
-      ctx.moveTo(CANVAS_WIDTH / 2, 0)
-      ctx.lineTo(CANVAS_WIDTH / 2, CANVAS_HEIGHT)
-      ctx.stroke()
+        // paint the background
+        ctx.fillStyle = bg
+        ctx.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT)
 
-      ctx.fillStyle = 'white'
-      ctx.fillRect(0, paddle1Y, PADDLE_WIDTH, PADDLE_HEIGHT)
-      ctx.fillRect(
-        CANVAS_WIDTH - PADDLE_WIDTH,
-        paddle2Y,
-        PADDLE_WIDTH,
-        PADDLE_HEIGHT,
-      )
+        ctx.strokeStyle = 'white'
+        ctx.setLineDash([5, 5])
+        ctx.beginPath()
+        ctx.moveTo(CANVAS_WIDTH / 2, 0)
+        ctx.lineTo(CANVAS_WIDTH / 2, CANVAS_HEIGHT)
+        ctx.stroke()
+
+        ctx.fillStyle = ' #ff5c5c'
+        ctx.beginPath()
+        ctx.roundRect(0, paddle1Y, PADDLE_WIDTH, PADDLE_HEIGHT, PADDLE_ROUNDING)
+        ctx.fill()
+
+        ctx.fillStyle = ' #3c86ff'
+        ctx.beginPath()
+        ctx.roundRect(CANVAS_WIDTH - PADDLE_WIDTH, paddle2Y, PADDLE_WIDTH, PADDLE_HEIGHT, PADDLE_ROUNDING)
+        ctx.fill()
+
+        particles.forEach(p => {
+          p.life--;
+          p.x += p.vx;
+          p.y += p.vy;
+          ctx.globalAlpha = p.life / 60;
+          ctx.fillStyle = 'gold'
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, 3, 0, Math.PI * 2);
+          ctx.fill();
+        });
+        ctx.globalAlpha = 1;
+        particles = particles.filter(p => p.life > 0);
+        if (isPaused) return;
 
       // baddle bounce effect
       if (rightPaddleHit > 0) {
-        ctx.fillStyle = 'white'
-        ctx.fillRect(
+        ctx.fillStyle = ' #3c86ff'
+        ctx.beginPath()
+        ctx.roundRect(
           CANVAS_WIDTH - PADDLE_WIDTH - rightPaddleHit,
           paddle2Y,
-          PADDLE_WIDTH + 5,
+          PADDLE_WIDTH + rightPaddleHit,
           PADDLE_HEIGHT,
+          PADDLE_ROUNDING
         )
+        ctx.fill()
         rightPaddleHit++
-        if (rightPaddleHit > 5) {
+        if (rightPaddleHit > 8) {
             rightPaddleHit = 0
         }
       }
 
       if (leftPaddleHit > 0) {
-          ctx.fillStyle = 'white'
-          ctx.fillRect(0, paddle1Y, PADDLE_WIDTH + leftPaddleHit, PADDLE_HEIGHT)
+          ctx.fillStyle = ' #ff5c5c'
+          ctx.beginPath()
+          ctx.roundRect(0, paddle1Y, PADDLE_WIDTH + leftPaddleHit, PADDLE_HEIGHT, PADDLE_ROUNDING)
+          ctx.fill()
           leftPaddleHit++
-          if (leftPaddleHit > 5) {
+          if (leftPaddleHit > 8) {
               leftPaddleHit = 0
           }
       }
@@ -304,7 +363,22 @@ export default function Game() {
       ctx.arc(ballX, ballY, BALL_RADIUS, 0, Math.PI * 2);
       ctx.fill();
 
-      ctx.fillStyle = 'white'
+      const tX = ballX / CANVAS_WIDTH;
+      let r, g, b;
+      if (tX < 0.5) {
+        const t = tX / 0.5;
+        r = 0xff * (1 - t) + 0xff * t;
+        g = 0x5c * (1 - t) + 0xff * t;
+        b = 0x5c * (1 - t) + 0x00 * t;
+      }
+      else {
+        const t = (tX - 0.5) / 0.5;
+        r = 0xff * (1 - t) + 0x3c * t;
+        g = 0xff * (1 - t) + 0x86 * t;
+        b = 0xff * (1 - t) + 0xff * t;
+      }
+
+      ctx.fillStyle = `rgb(${Math.round(r)}, ${Math.round(g)}, ${Math.round(b)})`
       ctx.beginPath()
       ctx.arc(ballX, ballY, BALL_RADIUS, 0, Math.PI * 2)
       ctx.fill()

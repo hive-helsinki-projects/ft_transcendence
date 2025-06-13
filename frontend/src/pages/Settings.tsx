@@ -352,7 +352,7 @@ const Settings: React.FC = () => {
               src={
                 userData.avatar_url
                   ? `https://localhost:3001${userData.avatar_url}`
-                  : '/placeholder-avatar.png'
+                  : '/placeholder-avatar1.png'
               }
               alt="Current avatar"
               className="avatar-preview"

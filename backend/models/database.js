@@ -17,7 +17,7 @@ db.prepare(`
 		username TEXT NOT NULL UNIQUE,
 		email TEXT NOT NULL UNIQUE,
 		password_hash TEXT,
-		avatar_url TEXT NOT NULL DEFAULT '/uploads/placeholder-avatar.png',
+		avatar_url TEXT NOT NULL DEFAULT '/uploads/placeholder-avatar1.png',
 		online_status BOOLEAN DEFAULT FALSE,
 		created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 	)
@@ -44,7 +44,7 @@ db.prepare(`
 		display_name TEXT NOT NULL UNIQUE,
 		wins INTEGER DEFAULT 0,
 		losses INTEGER DEFAULT 0,
-		avatar_url TEXT DEFAULT NULL,
+		avatar_url TEXT NOT NULL DEFAULT '/uploads/placeholder-avatar1.png',
 		created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 		FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 	)
@@ -73,7 +73,7 @@ db.prepare(`
 		winner_id INTEGER,
 		created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 		FOREIGN KEY (user_id) REFERENCES users(id)  ON DELETE CASCADE,
-		FOREIGN KEY (winner_id) REFERENCES players(id)
+		FOREIGN KEY (winner_id) REFERENCES players(id) ON DELETE SET NULL
 	)
 `).run();
 
@@ -100,7 +100,7 @@ db.prepare(`
 		player_id INTEGER NOT NULL,
 		score INTEGER DEFAULT 0 NOT NULL,
 		FOREIGN KEY (match_id) REFERENCES match_history(id) ON DELETE CASCADE,
-		FOREIGN KEY (player_id) REFERENCES players(id),
+		FOREIGN KEY (player_id) REFERENCES players(id) ON DELETE CASCADE,
 		UNIQUE (match_id, player_id)
 	)
 `).run();
@@ -112,7 +112,7 @@ db.prepare(`
 		match_id INTEGER NOT NULL,
 		winner_id INTEGER NOT NULL,
 		FOREIGN KEY (match_id) REFERENCES match_history(id) ON DELETE CASCADE,
-		FOREIGN KEY (winner_id) REFERENCES players(id)
+		FOREIGN KEY (winner_id) REFERENCES players(id) ON DELETE CASCADE
 	)
 `).run();
 

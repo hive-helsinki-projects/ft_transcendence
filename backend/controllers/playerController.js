@@ -52,10 +52,19 @@ const createPlayer = async (req, reply) => {
     const user_id = req.user.id;
     const { display_name, avatar_url } = req.body;
 
+    const { count } = db
+        .prepare(`SELECT COUNT(*) AS count FROM players WHERE user_id = ?`)
+        .get(user_id);
+
+    const placeholderIndex = (count % 4) + 1;
+    const defaultAvatar = `/uploads/placeholder-avatar${placeholderIndex}.png`;
+
+    const finalAvatarUrl = avatar_url || defaultAvatar;
+
     const newPlayer = {
         user_id: parseInt(user_id),
         display_name,
-        avatar_url: avatar_url ?? null
+        avatar_url: finalAvatarUrl
     };
 
     try {

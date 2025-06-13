@@ -4,6 +4,8 @@ export interface UserPlayer {
   avatar: string
   isActive: boolean
   points: number
+  wins: number
+  losses: number
 }
 
 export interface TopPlayer {
@@ -11,6 +13,8 @@ export interface TopPlayer {
   name: string
   points: number
   avatar: string
+  wins: number
+  losses: number
 }
 
 export interface MatchHistory {
@@ -34,4 +38,4 @@ export interface GameStats {
   losses: number
   winRate: number
   totalGames: number
-} 
+}

@@ -45,11 +45,11 @@ const MatchHistory: React.FC<MatchHistoryProps> = ({ matches }) => {
           id: match.id.toString(),
           player: {
             name: player1.display_name,
-            avatar: player1.avatar_url
+            avatar: player1.avatar
           },
           opponent: {
             name: player2.display_name,
-            avatar: player2.avatar_url
+            avatar: player2.avatar
           },
           score: `${p1.score} - ${p2.score}`,
           date: new Date(match.date).toLocaleDateString(),

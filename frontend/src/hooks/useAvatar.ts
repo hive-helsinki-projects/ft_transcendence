@@ -12,7 +12,7 @@ export const useAvatar = (userId: number | null) => {
     ;(async () => {
       try {
         const user = await api.get(`/users/${userId}`) as { avatar_url: string }
-        let url = user.avatar_url || '/placeholder-avatar.png'
+        let url = user.avatar_url || '/placeholder-avatar1.png'
         // if it’s a relative uploads path, prefix the backend
         if (url.startsWith('/uploads/')) {
           url = `${API_URL}${url}`
@@ -20,7 +20,7 @@ export const useAvatar = (userId: number | null) => {
         setAvatar(url)
       } catch (err) {
         console.error(err)
-        setAvatar('/placeholder-avatar.png')
+        setAvatar('/placeholder-avatar1.png')
       }
     })()
   }, [userId])

@@ -123,10 +123,16 @@ const TournamentPage: React.FC = () => {
       return
     }
 
+    const currentMatches = tournament!.matches.filter(
+        (m) => m.round === tournament!.current_round
+    )
+
+    const matchType = currentMatches.length > 1 ? 'semifinal' : 'final'
+
     navigate('/game', {
       state: {
         matchId: match.match_id,
-        matchType: 'tournament',
+        matchType,
         player1: {
           name: player1.display_name,
           avatar: player1.avatar,
