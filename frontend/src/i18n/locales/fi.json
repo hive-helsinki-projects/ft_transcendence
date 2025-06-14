@@ -1,0 +1,94 @@
+{
+  "hero": {
+    "title": "Ping. Pong. Pelaa!",
+    "subtitle": "Level Up Your Ping Pong Skills",
+    "description": "Smash, spin, and dominate the table. Prove you are the ultimate paddle master."
+  },
+
+  "dashboard": {
+    "welcome": "Tervetuloa"
+  },
+
+  "Your Players": "Pelaajasi",
+  "Create New Player": "Luo uusi pelaaja",
+  "Enter player name": "Syötä pelaajan nimi",
+  "Create Player": "Luo pelaaja",
+  "Returning to lobby...": "Palataan aulaan...",
+
+  "Game Modes": "Pelimuodot",
+  "1v1 Match": "1v1-ottelu",
+  "Tournament Mode": "Turnaustila",
+  "Select Players For 1v1 Match": "Valitse pelaajat 1v1-otteluun",
+  "Select Player": "Valitse pelaaja",
+  "4-8 players": "4–8 pelaajaa",
+  "Start Match": "Aloita ottelu",
+
+  "Match in Progress...": "Ottelu käynnissä...",
+  "Press spacebar to start game...": "Paina välilyöntiä aloittaaksesi pelin...",
+  "W/S keys": "W/S-näppäimet",
+  "First to 11 points (win by 2)": "Ensimmäinen 11 pisteeseen (voitto kahdella pisteellä)",
+  "↑/↓ keys": "↑/↓-näppäimet",
+
+  "Player Stats": "Pelaajan tilastot",
+  "Select a player": "Valitse pelaaja",
+  "stats": {
+    "wins": "Voitot",
+    "losses": "Tappiot",
+    "winRate": "Voittoprosentti",
+    "totalGames": "Yhteensä pelejä"
+  },
+
+  "loading": {
+    "starting": "Käynnistetään...",
+    "matchInProgress": "Ottelu käynnissä..."
+  },
+
+  "Recent Matches": "Viimeisimmät ottelut",
+
+  "TOP PLAYERS": "PARHAAT PELAAJAT",
+
+  "Tournament Lobby": "Turnausaula",
+  "Reset Tournament": "Nollaa turnaus",
+  "SEMIFINAL": "PUOLIVÄLIERÄ",
+  "FINAL MATCH": "FINAALIOTTELU",
+
+  "matchType": {
+    "final": "FINAALIOTTELU",
+    "1v1": "1V1-OTTELU",
+    "semifinal": "PUOLIVÄLIERÄ"
+  },
+
+  "settings.title": "Asetukset",
+  "Account Settings": "Tiliasetukset",
+  "Edit": "Muokkaa",
+  "Save": "Tallenna",
+  "Cancel": "Peruuta",
+  "errors": {
+    "failedToUpdate": "Käyttäjätietojen päivitys epäonnistui",
+    "general": "Tapahtui virhe"
+  },
+  "Two-Factor Authentication": "Kaksivaiheinen todennus",
+  "Disable 2FA": "Poista 2FA käytöstä",
+  "Enable 2FA": "Ota 2FA käyttöön",
+  "Language Preferences": "Kieliasetukset",
+  "languages": {
+    "language": "Kieli",
+    "english": "Englanti",
+    "finnish": "Suomi",
+    "swedish": "Ruotsi",
+    "japanese": "Japani"
+  },
+  "Theme Settings": "Teema-asetukset",
+  "Theme": "Teema",
+  "Dark": "Tumma",
+  "Light": "Vaalea",
+  "System Default": "Järjestelmän oletus",
+  "Account Management": "Tilinhallinta",
+  "actions": {
+    "deleteAccount": "Poista tili",
+    "logout": "Kirjaudu ulos"
+  },
+
+  "Profile Settings": "Profiiliasetukset",
+  "Sign Out": "Kirjaudu ulos"
+}
