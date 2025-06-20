@@ -160,7 +160,22 @@ const createMatchHistory = async (req, reply) => {
         return reply.code(400).send({ error: 'Must have 2 players' });
     }
 
-    const insertMatch = db.prepare(`INSERT INTO match_history (type, tournament_id, round, user_id) VALUES (?, ?, ?, ?)`);
+    // Cleanup unfinished 1v1 matches for this user
+    try {
+        db.prepare(`
+            DELETE FROM match_history 
+            WHERE type = '1v1' AND status = 'pending' AND user_id = ?
+        `).run(user_id);
+    } catch (err) {
+        console.error('Failed to delete unfinished matches:', err);
+        return reply.code(500).send({ error: 'Failed to clean up old matches' });
+    }
+
+    const insertMatch = db.prepare(`
+        INSERT INTO match_history (type, tournament_id, round, user_id) 
+        VALUES (?, ?, ?, ?)
+    `);
+
     const insertMatchPlayer = db.prepare(`
         INSERT INTO match_player_history
         (match_id, player_id)
@@ -172,6 +187,7 @@ const createMatchHistory = async (req, reply) => {
     const transaction = db.transaction((type, tournament_id, round, players, user_id) => {
         const result = insertMatch.run(type, tournament_id, round, user_id);
         matchId = result.lastInsertRowid;
+
         for (const player of players) {
             insertMatchPlayer.run(matchId, player.player_id);
         }
@@ -179,8 +195,8 @@ const createMatchHistory = async (req, reply) => {
 
     try {
         transaction(type, tournament_id, round, players, user_id);
-        console.log(matchId);
-        return reply.code(201).send({ 
+
+        return reply.code(201).send({
             message: 'Match history created successfully',
             match_id: matchId
         });
@@ -189,6 +205,7 @@ const createMatchHistory = async (req, reply) => {
         return reply.code(500).send({ error: 'Failed to create match history' });
     }
 };
+
 
 // Update an existing match history
 const updateMatchHistory = async (req, reply) => {
@@ -211,6 +228,7 @@ const updateMatchHistory = async (req, reply) => {
     `);
     const updatePlayerLoss = db.prepare(`UPDATE players SET losses = losses + 1 WHERE id = ?`);
     const updateMatchHistory = db.prepare(`UPDATE match_history SET status = 'finished' WHERE id = ?`);
+    
 
     const transaction = db.transaction((id, winner_id, players) => {
         for (const player of players) {

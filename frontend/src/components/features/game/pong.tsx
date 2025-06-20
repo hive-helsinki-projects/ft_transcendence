@@ -62,6 +62,7 @@ export default function Game() {
   const [matchStarted, setMatchStarted] = useState(false)
 
   const t = useTranslate()
+  console.log('gamestate = ', gameState)
 
   useEffect(() => {
     const canvas = canvasRef.current!
@@ -84,7 +85,7 @@ export default function Game() {
     let ballDirectionY = 0
 
     function keyDownHandler(e: KeyboardEvent) {
-      if (['ArrowUp', 'ArrowDown'].includes(e.key)) e.preventDefault()
+      if (['ArrowUp', 'ArrowDown', ' ','Spacebar'].includes(e.key)) e.preventDefault()
       if (e.key === 'w' || e.key === 'W') paddle1Up = true
       if (e.key === 's' || e.key === 'S') paddle1Down = true
       if (e.key === 'ArrowUp') paddle2Up = true

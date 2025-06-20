@@ -55,7 +55,7 @@
   "matchType": {
     "final": "FINAL MATCH",
     "1v1": "1v1 MATCH",
-    "semifinal": "SEMIFINAL"
+    "semifinal": "SEMIFINAL {{index}}"
   },
 
   "settings.title": "Settings",
