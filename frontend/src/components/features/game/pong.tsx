@@ -62,7 +62,6 @@ export default function Game() {
   const [matchStarted, setMatchStarted] = useState(false)
 
   const t = useTranslate()
-  console.log('gamestate = ', gameState)
 
   useEffect(() => {
     const canvas = canvasRef.current!
