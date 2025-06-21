@@ -1,31 +1,12 @@
 import React, { useEffect, useState, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { BaseService } from '../services/baseService'
+import { Tournament, TournamentMatch } from '../types/dashboard'
+
 import '../assets/styles/Tournament.css'
 import { useUserPlayers } from '../hooks/useUserPlayers'
 import ErrorBoundary from '../components/ErrorBoundary'
 import LoadingContainer from '../components/LoadingContainer'
-
-interface PlayerInfo {
-  player_id: number
-  score: number
-}
-
-interface Match {
-  match_id: number
-  players: PlayerInfo[]
-  date: string
-  round: number
-}
-
-interface Tournament {
-  id: number
-  name: string
-  status: 'pending' | 'finished'
-  current_round: number
-  winner_id: number | null
-  matches: Match[]
-}
 
 const TournamentPage: React.FC = () => {
   const [tournament, setTournament] = useState<Tournament | null>(null)
@@ -113,7 +94,7 @@ const TournamentPage: React.FC = () => {
   }
 
   const handleStartMatch = (
-    match: Match,
+    match: TournamentMatch,
     player1: { id: number; display_name: string; avatar: string },
     player2: { id: number; display_name: string; avatar: string }
   ) => {

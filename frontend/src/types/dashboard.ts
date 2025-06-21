@@ -45,7 +45,7 @@ interface TournamentPlayer {
   score: number
 }
 
-interface TournamentMatch {
+export interface TournamentMatch {
   match_id: number
   date: string
   round: number
