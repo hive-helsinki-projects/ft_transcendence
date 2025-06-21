@@ -48,8 +48,8 @@ const QuickPlay: React.FC<QuickPlayProps> = ({ userPlayers }) => {
     }
 
     try {
-      const res = await BaseService.get('/tournaments')
-      const tournaments: Tournament[] = res.items || res
+      const res = await BaseService.get<Tournament[] | { items: Tournament[] }>('/tournaments')
+      const tournaments: Tournament[] = 'items' in res ? res.items : res
       const activeTournament = tournaments.find((t) => t.status === 'pending')
 
       if (activeTournament) {
@@ -95,7 +95,7 @@ const QuickPlay: React.FC<QuickPlayProps> = ({ userPlayers }) => {
     const [player1Id, player2Id] = selected1v1Players
 
     try {
-      const matchData = await BaseService.post('/match-histories', {
+      const matchData = await BaseService.post<{ match_id: number }>('/match-histories', {
         type: '1v1',
         players: [
           { player_id: player1Id },
