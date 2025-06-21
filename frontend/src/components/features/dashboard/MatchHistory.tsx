@@ -4,11 +4,12 @@ import useTranslate from '../../../hooks/useTranslate'
 
 interface Match {
   id: number
-  type: '1v1' | 'tournament'
+  type: string
   tournament_id: number | null
   date: string
   round: number | null
-  winner_id: number
+  winner_id: number | null
+  status?: string
   players: {
     player_id: number
     score: number

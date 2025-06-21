@@ -1,15 +1,8 @@
-import React, { useState, useRef } from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { UserPlayer } from '../../../types/dashboard'
 import { BaseService } from '../../../services/baseService'
 import useTranslate from '../../../hooks/useTranslate'
-
-interface UserPlayer {
-  id: number
-  display_name: string
-  avatar: string
-  isActive: boolean
-  points: number
-}
 
 interface QuickPlayProps {
   userPlayers: UserPlayer[]
@@ -55,7 +48,7 @@ const QuickPlay: React.FC<QuickPlayProps> = ({ userPlayers }) => {
     }
 
     try {
-      const res = await BaseService.get('/tournaments') // adjust based on your API shape
+      const res = await BaseService.get('/tournaments')
       const tournaments = res.items || res
       const activeTournament = tournaments.find((t: any) => t.status === 'pending')
 

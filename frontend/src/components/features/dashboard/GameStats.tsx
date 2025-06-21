@@ -1,17 +1,10 @@
 import React, { useState, useMemo } from 'react'
 import useTranslate from '../../../hooks/useTranslate'
+import { UserPlayer } from '../../../types/dashboard'
 
-interface Player {
-  id: number
-  display_name: string
-  wins: number
-  losses: number
-  avatar_url: string
-  created_at: string
-}
 
 interface GameStatsProps {
-  userPlayers: Player[]
+  userPlayers: UserPlayer[]
 }
 
 const GameStats: React.FC<GameStatsProps> = ({ userPlayers }) => {
