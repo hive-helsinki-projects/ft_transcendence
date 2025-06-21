@@ -191,11 +191,6 @@ const TournamentPage: React.FC = () => {
             {/* Round Info */}
             <div className="tournament-round-info">
               <h2>Current Round: {tournament.current_round + 1}</h2>
-              {tournament.status === 'completed' && tournament.winner_id && (
-                <div className="match-container">
-                  <h3>🏆 Winner: Player {tournament.winner_id}</h3>
-                </div>
-              )}
             </div>
 
             {/* Matches */}
