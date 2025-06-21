@@ -1,5 +1,5 @@
 export interface UserPlayer {
-  id: string
+  id: number
   display_name: string
   avatar: string
   isActive: boolean
@@ -38,4 +38,29 @@ export interface GameStats {
   losses: number
   winRate: number
   totalGames: number
+}
+
+interface TournamentPlayer {
+  player_id: number
+  score: number
+}
+
+interface TournamentMatch {
+  match_id: number
+  date: string
+  round: number
+  players: TournamentPlayer[]
+  winner: {
+    player_id: number
+  }
+}
+
+export interface Tournament {
+  id: number
+  name: string
+  status: string
+  current_round: number
+  winner_id: number
+  created_at: string
+  matches: TournamentMatch[]
 }

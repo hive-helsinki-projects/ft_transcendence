@@ -59,7 +59,6 @@ const TournamentPage: React.FC = () => {
         navigate('/dashboard')
       }
     }
-
     fetchTournaments()
   }, [check])
 

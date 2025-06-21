@@ -57,7 +57,7 @@ const MatchHistory: React.FC<MatchHistoryProps> = ({ matches }) => {
           mode: match.type
         }
       })
-      .filter(Boolean)
+      .filter((match): match is NonNullable<typeof match> => match !== null)
   }, [matches, userPlayers])
 
   return (

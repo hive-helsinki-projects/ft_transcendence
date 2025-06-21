@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { UserPlayer } from '../../../types/dashboard'
+import { UserPlayer, Tournament } from '../../../types/dashboard'
 import { BaseService } from '../../../services/baseService'
 import useTranslate from '../../../hooks/useTranslate'
 
@@ -49,8 +49,8 @@ const QuickPlay: React.FC<QuickPlayProps> = ({ userPlayers }) => {
 
     try {
       const res = await BaseService.get('/tournaments')
-      const tournaments = res.items || res
-      const activeTournament = tournaments.find((t: any) => t.status === 'pending')
+      const tournaments: Tournament[] = res.items || res
+      const activeTournament = tournaments.find((t) => t.status === 'pending')
 
       if (activeTournament) {
         navigate('/tournament')

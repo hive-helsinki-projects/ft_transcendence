@@ -21,8 +21,9 @@ import useTranslate from '../hooks/useTranslate'
 
 const Dashboard: React.FC = () => {
   const { id: userId, username, logout } = useAuth()
-  const { avatar, handleAvatarChange } = useAvatar(userId || '')
-  const { userPlayers, createPlayer, updatePlayer, deletePlayer } = useUserPlayers()
+  const parsedId = userId ? parseInt(userId, 10) : null
+  const { avatar, handleAvatarChange } = useAvatar(parsedId)
+  const { userPlayers, createPlayer, deletePlayer } = useUserPlayers()
   const { matches } = useMatchHistories()
   const t = useTranslate()
 
@@ -67,7 +68,6 @@ const Dashboard: React.FC = () => {
           <PlayerManagement
             userPlayers={userPlayers}
             onCreatePlayer={createPlayer}
-            onUpdatePlayer={updatePlayer}
             onDeletePlayer={deletePlayer}
           />
 

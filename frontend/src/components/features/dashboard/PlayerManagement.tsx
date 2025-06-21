@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { UserPlus, Edit2, Trash2 } from 'lucide-react'
+import { UserPlus, Trash2 } from 'lucide-react'
 import { StatusMessage } from '../auth/StatusMessage'
 import { UserPlayer } from '../../../types/dashboard'
 import useTranslate from '../../../hooks/useTranslate'
@@ -7,7 +7,6 @@ import useTranslate from '../../../hooks/useTranslate'
 interface PlayerManagementProps {
   userPlayers: UserPlayer[]
   onCreatePlayer: (playerName: string) => void
-  onUpdatePlayer: (playerId: string, updates: Partial<UserPlayer>) => void
   onDeletePlayer: (playerId: string) => void
 }
 
@@ -69,15 +68,10 @@ const CreatePlayerModal: React.FC<{
 const PlayerManagement: React.FC<PlayerManagementProps> = ({
   userPlayers,
   onCreatePlayer,
-  onUpdatePlayer,
   onDeletePlayer,
 }) => {
   const [showCreateModal, setShowCreateModal] = useState(false)
   const t = useTranslate()
-
-  const handleToggleActive = (player: UserPlayer) => {
-    onUpdatePlayer(player.id, { isActive: !player.isActive })
-  }
 
   return (
     <div className="players-management">
@@ -108,7 +102,7 @@ const PlayerManagement: React.FC<PlayerManagementProps> = ({
             <div className="player-item-actions">
               <button
                 className="action-button delete"
-                onClick={() => onDeletePlayer(player.id)}
+                onClick={() => onDeletePlayer(String(player.id))}
                 title="Delete player"
               >
                 <Trash2 size={16} />

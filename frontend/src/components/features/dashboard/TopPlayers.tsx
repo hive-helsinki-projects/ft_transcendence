@@ -1,9 +1,9 @@
 import React, { useMemo } from 'react'
-import { TopPlayer } from '../../../types/dashboard'
+import { UserPlayer } from '../../../types/dashboard'
 import useTranslate from '../../../hooks/useTranslate'
 
 interface TopPlayersProps {
-  players: TopPlayer[]
+  players: UserPlayer[]
 }
 
 const TopPlayers: React.FC<TopPlayersProps> = ({ players }) => {
