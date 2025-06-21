@@ -60,7 +60,7 @@ const TournamentPage: React.FC = () => {
         try {
           console.log('sending tournament put request!')
           hasUpdated.current = true
-          const updated = await BaseService.put(`/tournaments/${tournament.id}`, {})
+          const updated = await BaseService.put(`/tournaments/${tournament.id}`, {}) as Tournament
           setTournament(updated)
           setCheck(true);
           console.log('updated tournament: ', updated)
