@@ -24,8 +24,8 @@ const TournamentPage: React.FC = () => {
     const fetchTournaments = async () => {
       try {
         console.log('Fetching tournaments...');
-        const res = await BaseService.get('/tournaments')
-        const tournaments: Tournament[] = res.items || res
+        const res = await BaseService.get<Tournament[] | { items: Tournament[] }>('/tournaments')
+        const tournaments: Tournament[] = 'items' in res ? res.items : res
 
         if (tournaments.length === 0) {
           alert('No tournaments have been played yet')
@@ -84,8 +84,8 @@ const TournamentPage: React.FC = () => {
     if (!confirmReset) return
 
     try {
-      const res = await BaseService.delete(`/tournaments/${tournament.id}`)
-      alert(res.message || 'Tournament deleted successfully.')
+      await BaseService.delete(`/tournaments/${tournament.id}`)
+      alert('Tournament deleted successfully.')
       navigate('/dashboard')
     } catch (error) {
       console.error('Failed to delete tournament:', error)
