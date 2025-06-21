@@ -32,7 +32,7 @@ const Dashboard: React.FC = () => {
     const token = localStorage.getItem('token');
     const deleteUnfinishedMatches = async () => {
       try {
-        const response = await axios.delete('https://localhost:3001/match-histories', {
+        await axios.delete('https://localhost:3001/match-histories', {
         headers: {
           Authorization: `Bearer ${token}`
         }

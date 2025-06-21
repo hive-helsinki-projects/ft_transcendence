@@ -307,7 +307,7 @@ export default function Game() {
         particles = particles.filter(p => p.life > 0);
         if (isPaused) return;
 
-      // baddle bounce effect
+      // paddle bounce effect
       if (rightPaddleHit > 0) {
         ctx.fillStyle = ' #3c86ff'
         ctx.beginPath()
