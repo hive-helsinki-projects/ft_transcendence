@@ -6,7 +6,7 @@ interface LogoutButtonProps {
   onLogout: () => void
 }
 
-const LogoutButton: React.FC<LogoutButtonProps> = ({ onLogout }) => {
+export const LogoutButton: React.FC<LogoutButtonProps> = ({ onLogout }) => {
   const [showConfirm, setShowConfirm] = useState(false)
 
   const handleLogoutClick = () => {
@@ -32,5 +32,3 @@ const LogoutButton: React.FC<LogoutButtonProps> = ({ onLogout }) => {
     </div>
   )
 }
-
-export default LogoutButton

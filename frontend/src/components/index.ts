@@ -1,5 +1,5 @@
 // Layout Components
-export { default as Layout } from './layout/Layout'
+export { Layout } from './layout/Layout'
 
 // Navigation Components
 export { default as SidebarItem } from './sidebar/SidebarItem'
@@ -12,12 +12,20 @@ export { default as ProtectedRoute } from './routing/ProtectedRoute'
 export { default as AppRoutes } from './routing/AppRoutes'
 
 // Authentication Components
-export { default as AuthForm } from './features/auth/AuthForm'
-export { default as AuthSection } from './features/auth/AuthSection'
+export { AuthForm } from './features/auth/AuthForm'
+export { AuthSection } from './features/auth/AuthSection'
 
 // Landing Page Components
 export { default as HeroSection } from '../pages/landing/HeroSection'
 
 // UI Components
-export { default as LoadingContainer } from './LoadingContainer'
-export { default as LoadingState } from './LoadingState'
+export { LoadingContainer } from './LoadingContainer'
+export { LoadingState } from './LoadingState'
+export { RulesSection } from './RulesSection'
+export { default as ErrorBoundary } from './ErrorBoundary'
+export { default as SearchBar } from './SearchBar'
+export { default as PongBackground } from './PongBackground'
+export { default as GoogleSignIn } from './GoogleSignIn'
+export { FormField } from './FormField'
+export { GoogleAuthButton } from './GoogleAuthButton'
+export { LogoutButton } from './LogoutButton'

@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react'
-import { api } from '@services/api'
 import { useAuth } from '@hooks/auth/useAuth'
+import { api } from '@services/api'
 import { API_URL } from '@utils/constants'
+import { useEffect, useState } from 'react'
 
 export const useAvatar = (userId: number | null) => {
   const [avatar, setAvatar] = useState<string>('')
@@ -11,7 +11,9 @@ export const useAvatar = (userId: number | null) => {
     if (!userId) return
     ;(async () => {
       try {
-        const user = await api.get(`/users/${userId}`) as { avatar_url: string }
+        const user = (await api.get(`/users/${userId}`)) as {
+          avatar_url: string
+        }
         let url = user.avatar_url || '/placeholder-avatar1.png'
         // if it’s a relative uploads path, prefix the backend
         if (url.startsWith('/uploads/')) {
@@ -25,9 +27,7 @@ export const useAvatar = (userId: number | null) => {
     })()
   }, [userId])
 
-  const handleAvatarChange = async (
-    e: React.ChangeEvent<HTMLInputElement>
-  ) => {
+  const handleAvatarChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!userId) return
     const file = e.target.files?.[0]
     if (!file?.type.startsWith('image/')) return

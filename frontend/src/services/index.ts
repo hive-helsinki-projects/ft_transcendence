@@ -1,5 +1,4 @@
-export * from './authService';
-export * from './api';
-export * from './baseService';
-export * from './axiosAgent';
-export * from './localAuth';
+export { AuthService } from './authService'
+export { BaseService } from './baseService'
+export { api } from './axiosAgent'
+export { localAuth } from './localAuth'

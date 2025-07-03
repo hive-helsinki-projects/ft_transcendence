@@ -1,7 +1,7 @@
-import React from 'react'
-import { LogOut, Pencil, Settings } from 'lucide-react'
-import { useNavigate } from 'react-router-dom'
 import { useTranslate } from '@hooks/index'
+import { LogOut, Pencil, Settings } from 'lucide-react'
+import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
 interface AvatarMenuProps {
   avatar: string
@@ -9,7 +9,7 @@ interface AvatarMenuProps {
   onLogout: () => void
 }
 
-const AvatarMenu: React.FC<AvatarMenuProps> = ({
+export const AvatarMenu: React.FC<AvatarMenuProps> = ({
   avatar,
   onAvatarChange,
   onLogout,
@@ -42,7 +42,10 @@ const AvatarMenu: React.FC<AvatarMenuProps> = ({
             style={{ display: 'none' }}
           />
         </div>
-        <button className="avatar-menu-button" onClick={() => navigate('/settings')}>
+        <button
+          className="avatar-menu-button"
+          onClick={() => navigate('/settings')}
+        >
           <Settings size={16} />
           <span>{t('Profile Settings')}</span>
         </button>
@@ -54,5 +57,3 @@ const AvatarMenu: React.FC<AvatarMenuProps> = ({
     </div>
   )
 }
-
-export default AvatarMenu 

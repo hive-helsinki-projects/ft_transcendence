@@ -1,5 +1,5 @@
 import React from 'react'
-import '../../assets/styles/index.css'
+import '@assets/styles/index.css'
 import { useTranslate } from '@hooks/index'
 
 const HeroSection: React.FC = () => {
@@ -14,4 +14,4 @@ const HeroSection: React.FC = () => {
   )
 }
 
-export default HeroSection 
+export default HeroSection

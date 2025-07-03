@@ -26,9 +26,11 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
         onChange={handleChange}
         placeholder="Search..."
       />
-      <button className="search-bar-button" type="submit">Search</button>
+      <button className="search-bar-button" type="submit">
+        Search
+      </button>
     </form>
   )
 }
 
-export default SearchBar;
+export default SearchBar

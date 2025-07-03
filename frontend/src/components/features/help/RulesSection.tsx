@@ -9,7 +9,7 @@ interface RulesSectionProps {
   rules: GameRule[]
 }
 
-const RulesSection: React.FC<RulesSectionProps> = ({ rules }) => {
+export const RulesSection: React.FC<RulesSectionProps> = ({ rules }) => {
   return (
     <section className="help-section">
       <h2>Game Rules</h2>
@@ -24,5 +24,3 @@ const RulesSection: React.FC<RulesSectionProps> = ({ rules }) => {
     </section>
   )
 }
-
-export default RulesSection 

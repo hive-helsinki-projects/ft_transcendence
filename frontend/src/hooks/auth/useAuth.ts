@@ -1,9 +1,9 @@
-import { useContext } from 'react'
 import { AuthContext } from '@store/AuthContext'
+import { useContext } from 'react'
 
 /**
  * Custom hook for accessing the authentication context
- * 
+ *
  * This hook provides access to the authentication context, which contains
  * user authentication state and methods.
  */

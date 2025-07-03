@@ -1,7 +1,7 @@
-import { useState, useCallback, useEffect } from 'react'
 import { UserPlayer } from '@/types/dashboard'
-import { BaseService } from '@services/baseService'
 import { API_URL } from '@/utils/constants'
+import { BaseService } from '@services/baseService'
+import { useCallback, useEffect, useState } from 'react'
 
 interface RawPlayer {
   id: number
@@ -12,7 +12,6 @@ interface RawPlayer {
   isActive?: boolean
   points?: number
 }
-
 
 export const useUserPlayers = () => {
   const [userPlayers, setUserPlayers] = useState<UserPlayer[]>([])
@@ -81,8 +80,8 @@ export const useUserPlayers = () => {
         points: r.points ?? 0,
         wins: r.wins ?? 0,
         losses: r.losses ?? 0,
-    }))
-    setUserPlayers(mapped)
+      }))
+      setUserPlayers(mapped)
     } catch (error) {
       console.error(error)
       alert(`Failed to delete player: ${playerId}`)

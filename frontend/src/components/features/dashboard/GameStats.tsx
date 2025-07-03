@@ -1,25 +1,23 @@
-import React, { useState, useMemo } from 'react'
-import { useTranslate } from '@hooks/index'
 import { UserPlayer } from '@/types/dashboard'
-
+import { useTranslate } from '@hooks/index'
+import React, { useMemo, useState } from 'react'
 
 interface GameStatsProps {
   userPlayers: UserPlayer[]
 }
 
-const GameStats: React.FC<GameStatsProps> = ({ userPlayers }) => {
+export const GameStats: React.FC<GameStatsProps> = ({ userPlayers }) => {
   const [selectedPlayerId, setSelectedPlayerId] = useState<number | null>(null)
   const t = useTranslate()
 
   const selectedPlayer = useMemo(
     () => userPlayers.find((p) => p.id === selectedPlayerId),
-    [selectedPlayerId, userPlayers]
+    [selectedPlayerId, userPlayers],
   )
 
   const totalGames = (selectedPlayer?.wins ?? 0) + (selectedPlayer?.losses ?? 0)
-  const winRate = totalGames > 0
-    ? Math.round((selectedPlayer!.wins / totalGames) * 100)
-    : 0
+  const winRate =
+    totalGames > 0 ? Math.round((selectedPlayer!.wins / totalGames) * 100) : 0
 
   return (
     <div className="stats-section">
@@ -31,7 +29,9 @@ const GameStats: React.FC<GameStatsProps> = ({ userPlayers }) => {
         value={selectedPlayerId ?? ''}
         onChange={(e) => setSelectedPlayerId(Number(e.target.value))}
       >
-        <option value="" disabled>{t('Select a player')}</option>
+        <option value="" disabled>
+          {t('Select a player')}
+        </option>
         {userPlayers.map((player) => (
           <option key={player.id} value={player.id}>
             {player.display_name}
@@ -62,5 +62,3 @@ const GameStats: React.FC<GameStatsProps> = ({ userPlayers }) => {
     </div>
   )
 }
-
-export default GameStats

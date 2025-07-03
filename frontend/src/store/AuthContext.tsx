@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useState, useContext } from 'react'
+import React, { createContext, useContext, useEffect, useState } from 'react'
 
 interface AuthContextType {
   token: string | null
@@ -24,9 +24,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   const [username, setUsername] = useState<string | null>(
     localStorage.getItem('username'),
   )
-  const [id, setId] = useState<string | null>(
-    localStorage.getItem('id'),
-  )
+  const [id, setId] = useState<string | null>(localStorage.getItem('id'))
   // Check if you're logged in (do you have a valid token?)
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(!!token)
 

@@ -1,14 +1,14 @@
+import { Tournament, UserPlayer } from '@/types/dashboard'
+import { useTranslate } from '@hooks/index'
+import { BaseService } from '@services/baseService'
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { UserPlayer, Tournament } from '@/types/dashboard'
-import { BaseService } from '@services/baseService'
-import { useTranslate } from '@hooks/index'
 
 interface QuickPlayProps {
   userPlayers: UserPlayer[]
 }
 
-const QuickPlay: React.FC<QuickPlayProps> = ({ userPlayers }) => {
+export const QuickPlay: React.FC<QuickPlayProps> = ({ userPlayers }) => {
   const navigate = useNavigate()
   const hasActivePlayers = userPlayers.length > 0
   const hasEnoughPlayers1v1 = userPlayers.length >= 2
@@ -18,8 +18,9 @@ const QuickPlay: React.FC<QuickPlayProps> = ({ userPlayers }) => {
   const [showModalTourn, setShowModalTourn] = useState(false)
 
   const [selected1v1Players, setSelected1v1Players] = useState<number[]>([])
-  const [selectedTournamentPlayers, setSelectedTournamentPlayers] = useState<number[]>([])
-
+  const [selectedTournamentPlayers, setSelectedTournamentPlayers] = useState<
+    number[]
+  >([])
 
   const t = useTranslate()
 
@@ -48,7 +49,9 @@ const QuickPlay: React.FC<QuickPlayProps> = ({ userPlayers }) => {
     }
 
     try {
-      const res = await BaseService.get<Tournament[] | { items: Tournament[] }>('/tournaments')
+      const res = await BaseService.get<Tournament[] | { items: Tournament[] }>(
+        '/tournaments',
+      )
       const tournaments: Tournament[] = 'items' in res ? res.items : res
       const activeTournament = tournaments.find((t) => t.status === 'pending')
 
@@ -81,8 +84,8 @@ const QuickPlay: React.FC<QuickPlayProps> = ({ userPlayers }) => {
       prev.includes(id)
         ? prev.filter((pid) => pid !== id)
         : prev.length < 8
-        ? [...prev, id]
-        : prev
+          ? [...prev, id]
+          : prev,
     )
   }
 
@@ -95,18 +98,18 @@ const QuickPlay: React.FC<QuickPlayProps> = ({ userPlayers }) => {
     const [player1Id, player2Id] = selected1v1Players
 
     try {
-      const matchData = await BaseService.post<{ match_id: number }>('/match-histories', {
-        type: '1v1',
-        players: [
-          { player_id: player1Id },
-          { player_id: player2Id },
-        ],
-      })
+      const matchData = await BaseService.post<{ match_id: number }>(
+        '/match-histories',
+        {
+          type: '1v1',
+          players: [{ player_id: player1Id }, { player_id: player2Id }],
+        },
+      )
 
       const matchId = matchData.match_id
 
-      const player1 = userPlayers.find(p => p.id === player1Id)!
-      const player2 = userPlayers.find(p => p.id === player2Id)!
+      const player1 = userPlayers.find((p) => p.id === player1Id)!
+      const player2 = userPlayers.find((p) => p.id === player2Id)!
 
       navigate('/game', {
         state: {
@@ -115,13 +118,13 @@ const QuickPlay: React.FC<QuickPlayProps> = ({ userPlayers }) => {
           player1: {
             name: player1.display_name,
             avatar: player1.avatar,
-            id: player1.id
-        },
+            id: player1.id,
+          },
           player2: {
             name: player2.display_name,
             avatar: player2.avatar,
-            id: player2.id
-        },
+            id: player2.id,
+          },
           returnTo: '/dashboard',
         },
       })
@@ -132,18 +135,23 @@ const QuickPlay: React.FC<QuickPlayProps> = ({ userPlayers }) => {
   }
 
   const handleStartTournament = async () => {
-    if (selectedTournamentPlayers.length < 4 || selectedTournamentPlayers.length > 8) {
+    if (
+      selectedTournamentPlayers.length < 4 ||
+      selectedTournamentPlayers.length > 8
+    ) {
       alert('You must select between 4 and 8 players for the tournament')
       return
     }
 
-    const selected = userPlayers.filter((p) => selectedTournamentPlayers.includes(p.id))
+    const selected = userPlayers.filter((p) =>
+      selectedTournamentPlayers.includes(p.id),
+    )
 
     try {
-        await BaseService.post('/tournaments', {
-          name: `The Great Paddle-Off`,
-          player_ids: selected.map((p) => p.id),
-        })
+      await BaseService.post('/tournaments', {
+        name: `The Great Paddle-Off`,
+        player_ids: selected.map((p) => p.id),
+      })
       navigate('/tournament')
     } catch (error) {
       console.error('Error starting tournament:', error)
@@ -155,7 +163,10 @@ const QuickPlay: React.FC<QuickPlayProps> = ({ userPlayers }) => {
     <div className="quick-play-section">
       <h2>{t('Game Modes')}</h2>
       <div className="play-options">
-        <button className="play-button one-vs-one" onClick={handleOneVsOneClick}>
+        <button
+          className="play-button one-vs-one"
+          onClick={handleOneVsOneClick}
+        >
           <span className="button-icon">🏓</span>
           {t('1v1 Match')}
         </button>
@@ -177,13 +188,16 @@ const QuickPlay: React.FC<QuickPlayProps> = ({ userPlayers }) => {
             <h3>Select 2 Players For 1v1 Match</h3>
             <div className="player-checkboxes">
               {userPlayers.map((player) => (
-                <label key={player.id} style={{
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'left',
-                  padding: '0.5rem 0',
-                  borderBottom: '1px solid #ccc',
-                }}>
+                <label
+                  key={player.id}
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'left',
+                    padding: '0.5rem 0',
+                    borderBottom: '1px solid #ccc',
+                  }}
+                >
                   <input
                     type="checkbox"
                     checked={selected1v1Players.includes(player.id)}
@@ -193,14 +207,21 @@ const QuickPlay: React.FC<QuickPlayProps> = ({ userPlayers }) => {
                       selected1v1Players.length >= 2
                     }
                     style={{ width: '16px', height: '16px' }}
-                    />
-                    <span>{player.display_name}</span>
+                  />
+                  <span>{player.display_name}</span>
                 </label>
               ))}
             </div>
             <div className="modal-actions">
-              <button onClick={handleStartMatch} className="create-button">Start Match</button>
-              <button onClick={() => setShowModal1v1(false)} className="cancel-button">Cancel</button>
+              <button onClick={handleStartMatch} className="create-button">
+                Start Match
+              </button>
+              <button
+                onClick={() => setShowModal1v1(false)}
+                className="cancel-button"
+              >
+                Cancel
+              </button>
             </div>
           </div>
         </div>
@@ -213,26 +234,36 @@ const QuickPlay: React.FC<QuickPlayProps> = ({ userPlayers }) => {
             <h3>Select 4-8 Players for Tournament</h3>
             <div className="player-checkboxes">
               {userPlayers.map((player) => (
-                <label key={player.id} style={{
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'left',
-                  padding: '0.5rem 0',
-                  borderBottom: '1px solid #ccc',
-                }}>
+                <label
+                  key={player.id}
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'left',
+                    padding: '0.5rem 0',
+                    borderBottom: '1px solid #ccc',
+                  }}
+                >
                   <input
                     type="checkbox"
                     checked={selectedTournamentPlayers.includes(player.id)}
                     onChange={() => handleToggleTournamentPlayer(player.id)}
                     style={{ width: '16px', height: '16px' }}
-                    />
-                    <span>{player.display_name}</span>
+                  />
+                  <span>{player.display_name}</span>
                 </label>
               ))}
             </div>
             <div className="modal-actions">
-              <button onClick={handleStartTournament} className="create-button">Start Tournament</button>
-              <button onClick={() => setShowModalTourn(false)} className="cancel-button">Cancel</button>
+              <button onClick={handleStartTournament} className="create-button">
+                Start Tournament
+              </button>
+              <button
+                onClick={() => setShowModalTourn(false)}
+                className="cancel-button"
+              >
+                Cancel
+              </button>
             </div>
           </div>
         </div>
@@ -240,5 +271,3 @@ const QuickPlay: React.FC<QuickPlayProps> = ({ userPlayers }) => {
     </div>
   )
 }
-
-export default QuickPlay

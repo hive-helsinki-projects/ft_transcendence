@@ -1,5 +1,5 @@
-import React from 'react'
 import PongBackground from '@components/PongBackground'
+import React from 'react'
 import '../assets/styles/index.css'
 
 interface LoadingContainerProps {
@@ -7,7 +7,7 @@ interface LoadingContainerProps {
   showPongBackground?: boolean
 }
 
-const LoadingContainer: React.FC<LoadingContainerProps> = ({
+export const LoadingContainer: React.FC<LoadingContainerProps> = ({
   children,
   showPongBackground = false,
 }) => {
@@ -18,5 +18,3 @@ const LoadingContainer: React.FC<LoadingContainerProps> = ({
     </div>
   )
 }
-
-export default LoadingContainer

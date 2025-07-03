@@ -1,7 +1,7 @@
+import { AppRoutes, Layout } from '@components/index'
+import { AuthProvider } from '@store/AuthContext'
 import React from 'react'
 import { BrowserRouter as Router } from 'react-router-dom'
-import { AuthProvider } from './store/AuthContext'
-import { Layout, AppRoutes } from './components'
 
 /**
  * Main App Component
@@ -9,7 +9,7 @@ import { Layout, AppRoutes } from './components'
  * It wraps everything with the AuthProvider for authentication
  * and Router for navigation
  */
-const App: React.FC = () => {
+export const App: React.FC = () => {
   return (
     <AuthProvider>
       <Router>
@@ -20,5 +20,3 @@ const App: React.FC = () => {
     </AuthProvider>
   )
 }
-
-export default App

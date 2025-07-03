@@ -1,5 +1,5 @@
-import React from 'react'
 import { FAQ } from '@utils/constants'
+import React from 'react'
 
 interface FAQSectionProps {
   faqs: typeof FAQ

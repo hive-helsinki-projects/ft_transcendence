@@ -1,10 +1,16 @@
-import React from 'react'
-import { LoadingContainer } from '../components'
-import { HelpSection, FAQSection, RulesSection, ContactSection, TroubleshootingSection, FeedbackSection } from '../components/features/help'
 import { FAQ, gameRules, troubleshootingSteps } from '@utils/constants'
-import '../assets/styles/index.css'
+import React from 'react'
+import { LoadingContainer } from '@components/index'
+import {
+  ContactSection,
+  FAQSection,
+  FeedbackSection,
+  HelpSection,
+  RulesSection,
+  TroubleshootingSection,
+} from '@components/features/help'
 
-const Help: React.FC = () => {
+export const Help: React.FC = () => {
   return (
     <LoadingContainer>
       <div className="help-container">
@@ -12,18 +18,18 @@ const Help: React.FC = () => {
           title="Help Center"
           description="Find answers to common questions or contact support for further assistance."
         />
-        
+
         <RulesSection rules={gameRules} />
         <FAQSection faqs={FAQ} />
-        
+
         <ContactSection
           email="support@example.com"
           title="Contact Support"
           description="If you need further assistance, please contact us at"
         />
-        
+
         <TroubleshootingSection steps={troubleshootingSteps} />
-        
+
         <FeedbackSection
           title="Feedback"
           description="We value your feedback! Please let us know how we can improve by submitting your feedback"
@@ -34,5 +40,3 @@ const Help: React.FC = () => {
     </LoadingContainer>
   )
 }
-
-export default Help

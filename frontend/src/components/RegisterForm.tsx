@@ -17,7 +17,7 @@ interface RegisterFormInputs {
   password: string
 }
 
-const RegisterForm: React.FC<RegisterFormProps> = ({
+export const RegisterForm: React.FC<RegisterFormProps> = ({
   onSubmit,
   isLoading,
   successMessage,
@@ -120,5 +120,3 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
     </div>
   )
 }
-
-export default RegisterForm

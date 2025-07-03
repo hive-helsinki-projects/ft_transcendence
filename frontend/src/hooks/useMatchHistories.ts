@@ -1,5 +1,5 @@
-import { useState, useEffect, useCallback } from 'react'
 import { BaseService } from '@services/baseService'
+import { useCallback, useEffect, useState } from 'react'
 
 export interface MatchPlayer {
   player_id: number
@@ -45,7 +45,9 @@ export const useMatchHistories = () => {
 
   const getMatchById = useCallback(async (id: number) => {
     try {
-      const match = await BaseService.get<MatchHistory>(`/match-histories/${id}`)
+      const match = await BaseService.get<MatchHistory>(
+        `/match-histories/${id}`,
+      )
       return match
     } catch (err) {
       console.error(err)
@@ -55,10 +57,10 @@ export const useMatchHistories = () => {
 
   const createMatch = useCallback(async (matchData: MatchRequest) => {
     try {
-      const response = await BaseService.post<{ message: string; item: MatchHistory }>(
-        '/match-histories',
-        matchData
-      )
+      const response = await BaseService.post<{
+        message: string
+        item: MatchHistory
+      }>('/match-histories', matchData)
       setMatches((prev) => [...prev, response.item])
       return response.item
     } catch (err) {
@@ -69,12 +71,12 @@ export const useMatchHistories = () => {
 
   const updateMatch = useCallback(async (id: number, updates: MatchRequest) => {
     try {
-      const response = await BaseService.put<{ message: string; item: MatchHistory }>(
-        `/match-histories/${id}`,
-        updates
-      )
+      const response = await BaseService.put<{
+        message: string
+        item: MatchHistory
+      }>(`/match-histories/${id}`, updates)
       setMatches((prev) =>
-        prev.map((match) => (match.id === id ? response.item : match))
+        prev.map((match) => (match.id === id ? response.item : match)),
       )
       return response.item
     } catch (err) {

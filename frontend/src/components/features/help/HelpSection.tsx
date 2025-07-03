@@ -5,7 +5,7 @@ interface HelpSectionProps {
   description: string
 }
 
-const HelpSection: React.FC<HelpSectionProps> = ({ title, description }) => {
+export const HelpSection: React.FC<HelpSectionProps> = ({ title, description }) => {
   return (
     <section className="help-section">
       <h1>{title}</h1>
@@ -13,5 +13,3 @@ const HelpSection: React.FC<HelpSectionProps> = ({ title, description }) => {
     </section>
   )
 }
-
-export default HelpSection 

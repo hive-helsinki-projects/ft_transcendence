@@ -31,7 +31,9 @@ class ErrorBoundary extends Component<Props, State> {
           <div className="error-boundary">
             <h2>Something went wrong</h2>
             <p>{this.state.error?.message}</p>
-            <button onClick={() => this.setState({ hasError: false, error: null })}>
+            <button
+              onClick={() => this.setState({ hasError: false, error: null })}
+            >
               Try again
             </button>
           </div>
@@ -43,4 +45,4 @@ class ErrorBoundary extends Component<Props, State> {
   }
 }
 
-export default ErrorBoundary 
+export default ErrorBoundary

@@ -9,7 +9,7 @@ interface FAQSectionProps {
   faqs: FAQ[]
 }
 
-const FAQSection: React.FC<FAQSectionProps> = ({ faqs }) => {
+export const FAQSection: React.FC<FAQSectionProps> = ({ faqs }) => {
   return (
     <section className="help-section">
       <h2>Frequently Asked Questions</h2>
@@ -24,5 +24,3 @@ const FAQSection: React.FC<FAQSectionProps> = ({ faqs }) => {
     </section>
   )
 }
-
-export default FAQSection 

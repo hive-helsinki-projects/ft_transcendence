@@ -5,7 +5,10 @@ interface GoogleAuthButtonProps {
   onClick: () => void
 }
 
-export const GoogleAuthButton: React.FC<GoogleAuthButtonProps> = ({ isLoading, onClick }) => (
+export const GoogleAuthButton: React.FC<GoogleAuthButtonProps> = ({
+  isLoading,
+  onClick,
+}) => (
   <button
     type="button"
     className="google-button"
@@ -20,4 +23,4 @@ export const GoogleAuthButton: React.FC<GoogleAuthButtonProps> = ({ isLoading, o
     />
     Sign up with Google
   </button>
-) 
+)

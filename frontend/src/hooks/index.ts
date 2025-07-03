@@ -1,9 +1,8 @@
-export * from './auth/useAuthForm';
-export * from './auth/useAuth';
-export * from './useAvatar';
-export * from './auth/useFormValidation';
-export * from './useMatchHistories';
-export * from './useRegisterForm';
-export * from './useTranslate';
-export * from './useUserPlayers';
-
+export * from './auth/useAuthForm'
+export * from './auth/useAuth'
+export * from './useAvatar'
+export * from './auth/useFormValidation'
+export * from './useMatchHistories'
+export * from './useRegisterForm'
+export * from './useTranslate'
+export * from './useUserPlayers'

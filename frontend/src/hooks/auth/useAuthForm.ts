@@ -1,26 +1,26 @@
-import { useState } from 'react'
 import { UseAuthFormReturn } from '@/types/auth'
 import { AUTH_MESSAGES } from '@utils/constants'
+import { useState } from 'react'
 
 /**
  * Custom hook for managing authentication form state and actions
- * 
+ *
  * This hook provides a complete solution for handling authentication form state,
  * including loading states, error messages, and success messages.
- * 
+ *
  * @returns {UseAuthFormReturn} An object containing:
  *   - State values (isLoading, error, successMessage)
  *   - State setters (setLoading, setError, setSuccess)
  *   - Action handlers (resetMessages, handleAuthError, handleAuthSuccess)
- * 
+ *
  * @example
  * const { isLoading, error, handleAuthError } = useAuthForm();
  * // Use these values and functions in your authentication form component
  */
 export const useAuthForm = (): UseAuthFormReturn => {
   // Initialize state variables
-  const [isLoading, setIsLoading] = useState(false)        // Tracks if authentication is in progress
-  const [error, setError] = useState('')                   // Stores any error messages
+  const [isLoading, setIsLoading] = useState(false) // Tracks if authentication is in progress
+  const [error, setError] = useState('') // Stores any error messages
   const [successMessage, setSuccessMessage] = useState('') // Stores success messages
 
   /**
@@ -40,9 +40,7 @@ export const useAuthForm = (): UseAuthFormReturn => {
    */
   const handleAuthError = (error: unknown) => {
     setError(
-      error instanceof Error
-        ? error.message
-        : AUTH_MESSAGES.ERROR.DEFAULT
+      error instanceof Error ? error.message : AUTH_MESSAGES.ERROR.DEFAULT,
     )
   }
 
@@ -60,15 +58,15 @@ export const useAuthForm = (): UseAuthFormReturn => {
     isLoading,
     error,
     successMessage,
-    
+
     // State setters
     setLoading: setIsLoading,
     setError,
     setSuccess: setSuccessMessage,
-    
+
     // Action handlers
     resetMessages,
     handleAuthError,
     handleAuthSuccess,
   }
-} 
+}

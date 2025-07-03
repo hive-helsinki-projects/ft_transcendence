@@ -5,12 +5,22 @@ export const validateEmail = (email: string): boolean => {
   return emailRegex.test(email)
 }
 
-export const validatePassword = (password: string, confirmPassword: string): boolean => {
+export const validatePassword = (
+  password: string,
+  confirmPassword: string,
+): boolean => {
   return password === confirmPassword
 }
 
-export const validateRegistrationForm = (data: AuthFormData): { isValid: boolean; error: string | null } => {
-  if (!data.username || !data.email || !data.password || !data.confirmPassword) {
+export const validateRegistrationForm = (
+  data: AuthFormData,
+): { isValid: boolean; error: string | null } => {
+  if (
+    !data.username ||
+    !data.email ||
+    !data.password ||
+    !data.confirmPassword
+  ) {
     return { isValid: false, error: 'Please fill in all fields' }
   }
 
@@ -23,4 +33,4 @@ export const validateRegistrationForm = (data: AuthFormData): { isValid: boolean
   }
 
   return { isValid: true, error: null }
-} 
+}

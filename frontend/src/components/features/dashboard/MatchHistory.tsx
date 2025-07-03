@@ -1,5 +1,5 @@
+import { useTranslate, useUserPlayers } from '@hooks/index'
 import React, { useMemo } from 'react'
-import { useUserPlayers, useTranslate } from '@hooks/index'
 
 interface Match {
   id: number
@@ -19,7 +19,7 @@ interface MatchHistoryProps {
   matches: Match[]
 }
 
-const MatchHistory: React.FC<MatchHistoryProps> = ({ matches }) => {
+export const MatchHistory: React.FC<MatchHistoryProps> = ({ matches }) => {
   const { userPlayers } = useUserPlayers()
   const t = useTranslate()
 
@@ -45,15 +45,15 @@ const MatchHistory: React.FC<MatchHistoryProps> = ({ matches }) => {
           id: match.id.toString(),
           player: {
             name: player1.display_name,
-            avatar: player1.avatar
+            avatar: player1.avatar,
           },
           opponent: {
             name: player2.display_name,
-            avatar: player2.avatar
+            avatar: player2.avatar,
           },
           score: `${p1.score} - ${p2.score}`,
           date: new Date(match.date).toLocaleDateString(),
-          mode: match.type
+          mode: match.type,
         }
       })
       .filter((match): match is NonNullable<typeof match> => match !== null)
@@ -71,12 +71,20 @@ const MatchHistory: React.FC<MatchHistoryProps> = ({ matches }) => {
               </span>
               <div className="match-players">
                 <div className="player">
-                  <img src={match.player.avatar} alt={match.player.name} className="player-avatar" />
+                  <img
+                    src={match.player.avatar}
+                    alt={match.player.name}
+                    className="player-avatar"
+                  />
                   <span className="player-name">{match.player.name}</span>
                 </div>
                 <span className="vs">vs</span>
                 <div className="player">
-                  <img src={match.opponent.avatar} alt={match.opponent.name} className="player-avatar" />
+                  <img
+                    src={match.opponent.avatar}
+                    alt={match.opponent.name}
+                    className="player-avatar"
+                  />
                   <span className="player-name">{match.opponent.name}</span>
                 </div>
               </div>
@@ -91,5 +99,3 @@ const MatchHistory: React.FC<MatchHistoryProps> = ({ matches }) => {
     </div>
   )
 }
-
-export default MatchHistory

@@ -1,18 +1,17 @@
-import React, { useMemo } from 'react'
 import { UserPlayer } from '@/types/dashboard'
 import { useTranslate } from '@hooks/index'
+import React, { useMemo } from 'react'
 
 interface TopPlayersProps {
   players: UserPlayer[]
 }
 
-const TopPlayers: React.FC<TopPlayersProps> = ({ players }) => {
+export const TopPlayers: React.FC<TopPlayersProps> = ({ players }) => {
   // Sort and slice top 4 players based on win percentage
   const topPlayers = useMemo(() => {
     if (!Array.isArray(players)) return []
 
-    return (
-      [...players]
+    return [...players]
       .filter((p) => p.wins + p.losses > 0) // Avoid division by zero
       .sort((a, b) => {
         const aGames = a.wins + a.losses
@@ -28,7 +27,6 @@ const TopPlayers: React.FC<TopPlayersProps> = ({ players }) => {
         return bScore - aScore
       })
       .slice(0, 4)
-    )
   }, [players])
 
   const t = useTranslate()
@@ -40,7 +38,9 @@ const TopPlayers: React.FC<TopPlayersProps> = ({ players }) => {
         {topPlayers.map((player) => {
           const totalGames = player.wins + player.losses
           const winRate = (player.wins * 100) / totalGames
-          const weightedScore = (winRate * Math.log10(totalGames + 1)).toFixed(1)
+          const weightedScore = (winRate * Math.log10(totalGames + 1)).toFixed(
+            1,
+          )
           return (
             <div key={player.id} className="player-card">
               <img
@@ -50,7 +50,9 @@ const TopPlayers: React.FC<TopPlayersProps> = ({ players }) => {
               />
               <div className="player-info">
                 <span className="player-name">{player.display_name}</span>
-                <span className="player-points">Weighted score: {weightedScore}</span>
+                <span className="player-points">
+                  Weighted score: {weightedScore}
+                </span>
               </div>
             </div>
           )
@@ -59,5 +61,3 @@ const TopPlayers: React.FC<TopPlayersProps> = ({ players }) => {
     </div>
   )
 }
-
-export default TopPlayers

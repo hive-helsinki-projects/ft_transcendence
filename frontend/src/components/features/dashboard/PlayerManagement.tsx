@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
-import { UserPlus, Trash2 } from 'lucide-react'
-import { StatusMessage } from '@components/features/auth/StatusMessage'
 import { UserPlayer } from '@/types/dashboard'
+import { StatusMessage } from '@components/features/auth/StatusMessage'
 import { useTranslate } from '@hooks/index'
+import { Trash2, UserPlus } from 'lucide-react'
+import React, { useState } from 'react'
 
 interface PlayerManagementProps {
   userPlayers: UserPlayer[]
@@ -53,10 +53,10 @@ const CreatePlayerModal: React.FC<{
           </div>
           <div className="modal-actions">
             <button type="button" onClick={onClose} className="cancel-button">
-            {t('Cancel')}
+              {t('Cancel')}
             </button>
             <button type="submit" className="create-button">
-            {t('Create Player')}
+              {t('Create Player')}
             </button>
           </div>
         </form>
@@ -65,7 +65,7 @@ const CreatePlayerModal: React.FC<{
   )
 }
 
-const PlayerManagement: React.FC<PlayerManagementProps> = ({
+export const PlayerManagement: React.FC<PlayerManagementProps> = ({
   userPlayers,
   onCreatePlayer,
   onDeletePlayer,
@@ -87,10 +87,7 @@ const PlayerManagement: React.FC<PlayerManagementProps> = ({
       </div>
       <div className="players-list">
         {userPlayers.map((player) => (
-          <div
-            key={player.id}
-            className={'player-item active'}
-          >
+          <div key={player.id} className={'player-item active'}>
             <img
               src={player.avatar}
               alt="Current avatar"
@@ -121,5 +118,3 @@ const PlayerManagement: React.FC<PlayerManagementProps> = ({
     </div>
   )
 }
-
-export default PlayerManagement
