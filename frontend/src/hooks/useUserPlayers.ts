@@ -1,6 +1,7 @@
 import { useState, useCallback, useEffect } from 'react'
-import { UserPlayer } from '../types/dashboard'
-import { BaseService } from '../services/baseService'
+import { UserPlayer } from '@/types/dashboard'
+import { BaseService } from '@services/baseService'
+import { API_URL } from '@/utils/constants'
 
 interface RawPlayer {
   id: number
@@ -26,8 +27,8 @@ export const useUserPlayers = () => {
           display_name: r.display_name,
           // prepend backend host, fallback to placeholder-avatar based on id index
           avatar: r.avatar
-            ? `https://localhost:3001${r.avatar}`
-            : `https://localhost:3001/uploads/placeholder-avatar${(r.id % 4) + 1}.png`,
+            ? `${API_URL}${r.avatar}`
+            : `${API_URL}/uploads/placeholder-avatar${(r.id % 4) + 1}.png`,
           isActive: r.isActive ?? false,
           points: r.points ?? 0,
           wins: r.wins ?? 0,
@@ -53,8 +54,8 @@ export const useUserPlayers = () => {
         id: r.id,
         display_name: r.display_name,
         avatar: r.avatar
-          ? `https://localhost:3001${r.avatar}`
-          : `https://localhost:3001/uploads/placeholder-avatar${(r.id % 4) + 1}.png`,
+          ? `${API_URL}${r.avatar}`
+          : `${API_URL}/uploads/placeholder-avatar${(r.id % 4) + 1}.png`,
         isActive: r.isActive ?? false,
         points: r.points ?? 0,
       }))
@@ -74,8 +75,8 @@ export const useUserPlayers = () => {
         id: r.id,
         display_name: r.display_name,
         avatar: r.avatar
-          ? `https://localhost:3001${r.avatar}`
-          : `https://localhost:3001/uploads/placeholder-avatar${(r.id % 4) + 1}.png`,
+          ? `${API_URL}${r.avatar}`
+          : `${API_URL}/uploads/placeholder-avatar${(r.id % 4) + 1}.png`,
         isActive: r.isActive ?? false,
         points: r.points ?? 0,
         wins: r.wins ?? 0,

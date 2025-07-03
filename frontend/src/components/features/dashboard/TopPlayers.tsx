@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react'
-import { UserPlayer } from '../../../types/dashboard'
-import useTranslate from '../../../hooks/useTranslate'
+import { UserPlayer } from '@/types/dashboard'
+import { useTranslate } from '@hooks/index'
 
 interface TopPlayersProps {
   players: UserPlayer[]

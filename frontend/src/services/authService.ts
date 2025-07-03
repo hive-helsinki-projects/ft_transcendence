@@ -1,14 +1,12 @@
-import { BaseService } from './baseService'
-import { AuthFormData } from '../types/auth'
-import { API_ENDPOINTS } from '../utils/constants'
+import { BaseService } from '@services/baseService'
+import { AuthFormData } from '@/types/auth'
+import { API_ENDPOINTS, API_URL } from '@utils/constants'
 
 export interface LoginResponse {
   token: string
   username: string
   id: string
 }
-
-const API_URL = 'https://localhost:3001'
 
 /**
  * Authentication Service

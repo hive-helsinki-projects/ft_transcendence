@@ -1,6 +1,6 @@
 import React from 'react'
 import '../../assets/styles/index.css'
-import useTranslate from '../../hooks/useTranslate'
+import { useTranslate } from '@hooks/index'
 
 const HeroSection: React.FC = () => {
   const t = useTranslate()

@@ -1,7 +1,7 @@
 import React from 'react'
 import { LogOut, Pencil, Settings } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
-import useTranslate from '../../../hooks/useTranslate'
+import { useTranslate } from '@hooks/index'
 
 interface AvatarMenuProps {
   avatar: string

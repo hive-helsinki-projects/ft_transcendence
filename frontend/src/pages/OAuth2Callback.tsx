@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../hooks/auth/useAuth';
+import { useAuth } from '@hooks/auth/useAuth';
+import { API_URL } from '@utils/constants';
 
 const OAuth2Callback = () => {
   const navigate = useNavigate();
@@ -14,7 +15,7 @@ const OAuth2Callback = () => {
       return;
     }
 
-    fetch('https://localhost:3001/api/auth/google', {
+    fetch(`${API_URL}/api/auth/google`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ code }),

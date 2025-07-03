@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { UserPlus, Trash2 } from 'lucide-react'
-import { StatusMessage } from '../auth/StatusMessage'
-import { UserPlayer } from '../../../types/dashboard'
-import useTranslate from '../../../hooks/useTranslate'
+import { StatusMessage } from '@components/features/auth/StatusMessage'
+import { UserPlayer } from '@/types/dashboard'
+import { useTranslate } from '@hooks/index'
 
 interface PlayerManagementProps {
   userPlayers: UserPlayer[]

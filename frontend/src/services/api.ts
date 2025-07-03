@@ -1,4 +1,4 @@
-const API_URL = 'https://localhost:3001'
+import { API_URL } from '@utils/constants'
 
 export const api = {
   async get(url: string) {
@@ -37,7 +37,7 @@ export const api = {
   },
 
   async login(username: string, password: string) {
-    const response = await fetch(`${API_URL}/api/login`, {
+    const response = await fetch(`${API_URL}/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -52,7 +52,7 @@ export const api = {
   },
 
   async register(username: string, email: string, password: string) {
-    const response = await fetch(`${API_URL}/api/users`, {
+    const response = await fetch(`${API_URL}/register`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

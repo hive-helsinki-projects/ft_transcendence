@@ -14,10 +14,9 @@ import {
 import React, { useState } from 'react'
 import '../assets/styles/Settings.css'
 import { useNavigate } from 'react-router-dom'
-import { useAuth } from '../hooks/auth/useAuth'
-import useTranslate from '../hooks/useTranslate';
-import i18n from '../i18n/config'
-import { api } from '../services/api'
+import { useAuth, useTranslate } from '@hooks/index'
+import i18n from '@i18n/config'
+import { api } from '@services/api'
 import { useEffect } from 'react'
 
 interface UserData {

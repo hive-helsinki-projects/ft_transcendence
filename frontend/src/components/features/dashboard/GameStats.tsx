@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react'
-import useTranslate from '../../../hooks/useTranslate'
-import { UserPlayer } from '../../../types/dashboard'
+import { useTranslate } from '@hooks/index'
+import { UserPlayer } from '@/types/dashboard'
 
 
 interface GameStatsProps {

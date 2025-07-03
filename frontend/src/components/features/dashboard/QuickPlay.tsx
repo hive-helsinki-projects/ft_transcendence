@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { UserPlayer, Tournament } from '../../../types/dashboard'
-import { BaseService } from '../../../services/baseService'
-import useTranslate from '../../../hooks/useTranslate'
+import { UserPlayer, Tournament } from '@/types/dashboard'
+import { BaseService } from '@services/baseService'
+import { useTranslate } from '@hooks/index'
 
 interface QuickPlayProps {
   userPlayers: UserPlayer[]

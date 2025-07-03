@@ -1,7 +1,7 @@
 import React from 'react'
 import { LoadingContainer } from '../components'
 import { HelpSection, FAQSection, RulesSection, ContactSection, TroubleshootingSection, FeedbackSection } from '../components/features/help'
-import { faqs, gameRules, troubleshootingSteps } from '../data/helpData'
+import { FAQ, gameRules, troubleshootingSteps } from '@utils/constants'
 import '../assets/styles/index.css'
 
 const Help: React.FC = () => {
@@ -14,7 +14,7 @@ const Help: React.FC = () => {
         />
         
         <RulesSection rules={gameRules} />
-        <FAQSection faqs={faqs} />
+        <FAQSection faqs={FAQ} />
         
         <ContactSection
           email="support@example.com"

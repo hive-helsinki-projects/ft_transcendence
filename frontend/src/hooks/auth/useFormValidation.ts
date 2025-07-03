@@ -1,5 +1,5 @@
 import { useState, useCallback } from 'react'
-import { AuthFormData, FormValidation } from '../../types/auth'
+import { AuthFormData, FormValidation } from '@/types/auth'
 
 /**
  * Validation rules for the authentication form

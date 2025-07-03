@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { AuthFormData } from '../types/auth'
-import { useAuth } from './auth/useAuth'
-import { AuthService } from '../services/authService'
-import { validateRegistrationForm } from '../utils/validation'
+import { AuthFormData } from '@/types/auth'
+import { useAuth } from '@hooks/auth/useAuth'
+import { AuthService } from '@services/authService'
+import { validateRegistrationForm } from '@utils/validation'
 
 interface UseRegisterFormReturn {
   formData: AuthFormData

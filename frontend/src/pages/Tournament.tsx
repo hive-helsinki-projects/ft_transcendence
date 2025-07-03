@@ -1,10 +1,10 @@
 import React, { useEffect, useState, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { BaseService } from '../services/baseService'
-import { Tournament, TournamentMatch } from '../types/dashboard'
+import { BaseService } from '@services/baseService'
+import { Tournament, TournamentMatch } from '@/types/dashboard'
 
 import '../assets/styles/Tournament.css'
-import { useUserPlayers } from '../hooks/useUserPlayers'
+import { useUserPlayers } from '@hooks/index'
 import ErrorBoundary from '../components/ErrorBoundary'
 import LoadingContainer from '../components/LoadingContainer'
 

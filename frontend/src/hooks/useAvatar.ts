@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
-import { api } from '../services/api'
-import { useAuth } from './auth/useAuth'
-const API_URL = 'https://localhost:3001'
+import { api } from '@services/api'
+import { useAuth } from '@hooks/auth/useAuth'
+import { API_URL } from '@utils/constants'
 
 export const useAvatar = (userId: number | null) => {
   const [avatar, setAvatar] = useState<string>('')

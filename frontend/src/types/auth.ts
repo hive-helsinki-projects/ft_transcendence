@@ -62,14 +62,3 @@ export interface UseAuthFormReturn extends AuthState {
   handleAuthError: (error: unknown) => void // Function to handle authentication errors
   handleAuthSuccess: () => void             // Function to handle successful authentication
 }
-
-// Constants
-// These are the messages and timing values used throughout authentication
-export const AUTH_MESSAGES = {
-  SUCCESS: 'Login successful! Redirecting to dashboard...',
-  ERROR: {
-    DEFAULT: 'Login failed. Please try again.',
-  },
-} as const
-
-export const REDIRECT_DELAY = 2000 // milliseconds - time to wait before redirecting after successful login 

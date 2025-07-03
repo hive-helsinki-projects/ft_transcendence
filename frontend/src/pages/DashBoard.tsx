@@ -1,8 +1,6 @@
 import React, { useEffect } from 'react'
-import { useAuth } from '../hooks/auth/useAuth'
-import { useAvatar } from '../hooks/useAvatar'
-import { useUserPlayers } from '../hooks/useUserPlayers'
-import { useMatchHistories } from '../hooks/useMatchHistories'
+import { useAuth } from '@hooks/auth/useAuth'
+import { useAvatar, useUserPlayers, useMatchHistories, useTranslate } from '@hooks/index'
 import axios from 'axios'
 import ErrorBoundary from '../components/ErrorBoundary'
 import LoadingContainer from '../components/LoadingContainer'
@@ -17,7 +15,7 @@ import {
 import '../assets/styles/index.css'
 import SearchBar from '../components/SearchBar'
 import { useNavigate } from 'react-router-dom'
-import useTranslate from '../hooks/useTranslate'
+import { API_URL } from '@utils/constants'
 
 const Dashboard: React.FC = () => {
   const { id: userId, username, logout } = useAuth()
@@ -33,7 +31,7 @@ const Dashboard: React.FC = () => {
     const token = localStorage.getItem('token');
     const deleteUnfinishedMatches = async () => {
       try {
-        await axios.delete('https://localhost:3001/match-histories', {
+        await axios.delete(`${API_URL}/match-histories`, {
         headers: {
           Authorization: `Bearer ${token}`
         }

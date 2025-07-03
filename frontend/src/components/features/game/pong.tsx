@@ -1,10 +1,10 @@
-import React, { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
-import LoadingContainer from '../../LoadingContainer'
-import '../../../assets/styles/Pong.css'
-import { BaseService } from '../../../services/baseService'
+import LoadingContainer from '@components/LoadingContainer'
+import '@assets/styles/Pong.css'
+import { BaseService } from '@services/baseService'
 
-import useTranslate from '../../../hooks/useTranslate'
+import { useTranslate } from '@hooks/index'
 
 // Constants
 const CANVAS_WIDTH = 1000

@@ -1,5 +1,6 @@
 import { useState } from 'react'
-import { AUTH_MESSAGES, UseAuthFormReturn } from '../../types/auth'
+import { UseAuthFormReturn } from '@/types/auth'
+import { AUTH_MESSAGES } from '@utils/constants'
 
 /**
  * Custom hook for managing authentication form state and actions

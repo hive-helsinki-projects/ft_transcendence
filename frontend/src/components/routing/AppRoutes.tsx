@@ -9,7 +9,7 @@ import Register from '../../pages/Register'
 import Settings from '../../pages/Settings'
 import Tournament from '../../pages/Tournament'
 import Pong from '../features/game/pong'
-import { useAuth } from '../../hooks/auth/useAuth'
+import { useAuth } from '@hooks/auth/useAuth'
 import ProfilePage from '../ProfilePage'
 import OAuth2Callback from '../../pages/OAuth2Callback';
 

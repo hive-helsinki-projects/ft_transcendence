@@ -1,5 +1,5 @@
 import React from 'react'
-import PongBackground from './PongBackground'
+import PongBackground from '@components/PongBackground'
 import '../assets/styles/index.css'
 
 interface LoadingContainerProps {

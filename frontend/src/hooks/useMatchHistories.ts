@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react'
-import { BaseService } from '../services/baseService'
+import { BaseService } from '@services/baseService'
 
 export interface MatchPlayer {
   player_id: number

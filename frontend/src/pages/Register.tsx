@@ -1,9 +1,9 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { LoadingContainer, AuthSection } from '../components/index'
-import { useRegisterForm } from '../hooks/useRegisterForm'
+import { useRegisterForm } from '@hooks/index'
 import AuthForm from '../components/features/auth/AuthForm'
-import { FormFieldConfig } from '../types/auth'
+import { FormFieldConfig } from '@/types/auth'
 import '../assets/styles/index.css'
 
 const registerFields: FormFieldConfig[] = [

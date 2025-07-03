@@ -1,6 +1,5 @@
 import React, { useMemo } from 'react'
-import { useUserPlayers } from '../../../hooks/useUserPlayers'
-import useTranslate from '../../../hooks/useTranslate'
+import { useUserPlayers, useTranslate } from '@hooks/index'
 
 interface Match {
   id: number
