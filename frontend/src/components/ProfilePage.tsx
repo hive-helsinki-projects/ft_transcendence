@@ -6,8 +6,18 @@ import FriendStatusButton from './features/profile/FriendStatusButton';
 import GetUserPlayers from './features/profile/GetUserPlayers';
 import MatchHistory from './features/profile/MatchHistory';
 
+interface User {
+    id: number;
+    username: string;
+    email: string;
+    online_status: boolean;
+    avatar_url: string;
+    created_at: string;
+    two_fa_enabled: boolean;
+  }
+
 const ProfilePage = () => {
-    const [user, setUser] = useState<any>(null);
+    const [user, setUser] = useState<User | null>(null);
     const [isOwnProfile, setIsOwnProfile] = useState(false);
     const { id } = useParams<{ id: string }>();
 
@@ -42,7 +52,7 @@ const ProfilePage = () => {
                     <GetUserPlayers userId={user.id} />
                 </div>
                 <div>
-                    <MatchHistory userId={user.id} />
+                    <MatchHistory userId={String(user.id)} />
                 </div>
             </div>
         )
