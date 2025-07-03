@@ -33,7 +33,6 @@ const LandingPage: React.FC = () => {
   const [userId, setUserId] = React.useState<number | null>(null)
   const [twoFaCode, setTwoFaCode] = React.useState('')
   const [twoFaError, setTwoFaError] = React.useState('')
-  const [cachedUsername, setCachedUsername] = React.useState('')
 
   // Handlers
   const handleAuthSubmit = async (formData: AuthFormData) => {
@@ -46,7 +45,6 @@ const LandingPage: React.FC = () => {
       if ('userId' in response && response.message === 'Two-factor authentication required') {
         setNeeds2fa(true)
         setUserId(response.userId)
-        setCachedUsername(formData.username)
         return
       }
 
@@ -85,7 +83,7 @@ const LandingPage: React.FC = () => {
       await new Promise((resolve) => setTimeout(resolve, REDIRECT_DELAY))
       login(loginResponse.token, loginResponse.username, loginResponse.id)
       navigate('/dashboard')
-    } catch (err) {
+    } catch {
       setTwoFaError('Invalid 2FA code')
     } finally {
       setLoading(false)
