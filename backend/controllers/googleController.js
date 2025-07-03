@@ -3,7 +3,6 @@ import { OAuth2Client } from 'google-auth-library';
 import axios from 'axios'
 
 async function verifyGoogleToken(idToken) {
-    // const client = await new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
     const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
     const ticket = await client.verifyIdToken({
         idToken,
@@ -35,9 +34,10 @@ const loginGoogleSignin = async (req, reply) => {
 
         const { id_token } = tokenRes.data;
         if (!id_token) {
-            return reply.code(400).send({ error: 'IDトークンの取得に失敗しました' }); // MIYUKI FIX NOW!!!
+            return reply.code(400).send({ error: 'Failed to retrieve ID token' });
         }
         const googleUser = await verifyGoogleToken(id_token);
+        
         let user = db.prepare(`SELECT * FROM users WHERE email = ?`).get(googleUser.email);
 
         // If user doesn't exist, try to register them
