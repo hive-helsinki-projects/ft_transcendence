@@ -1,3 +1,24 @@
+
+.rotate-overlay {
+  position: fixed;
+  inset: 0;                   /* top/right/bottom/left: 0 */
+  background: rgba(0, 0, 0, 0.85);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 1rem;
+  font-size: 1.25rem;
+  z-index: 1000;
+}
+
+@media screen and (orientation: landscape) {
+  .rotate-overlay {
+    display: none;
+  }
+}
+
 .game-container {
   display: flex;
   flex-direction: column;
@@ -97,10 +118,12 @@
 }
 
 .game-canvas {
-  width: 1000px;
-  height: 500px;
+  width: 100%;
+  max-width: 1000px;
+  aspect-ratio: 5 / 3;
+  height: auto;
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 20px;
   background: rgba(44, 41, 86, 0.8);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-} 
+}

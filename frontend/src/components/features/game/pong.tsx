@@ -7,7 +7,7 @@ import { BaseService } from '../../../services/baseService'
 import useTranslate from '../../../hooks/useTranslate'
 
 // Constants
-const CANVAS_WIDTH = 800
+const CANVAS_WIDTH = 1000
 const CANVAS_HEIGHT = 600
 const PADDLE_WIDTH = 10
 const PADDLE_HEIGHT = 100
@@ -45,6 +45,9 @@ let isPaused = false;
 
 
 export default function Game() {
+  // track if we’re in portrait
+  const [isPortrait, setIsPortrait] = useState(false)
+
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const ballSpeedX = useRef(4)
   const ballSpeedY = useRef(4)
@@ -64,6 +67,17 @@ export default function Game() {
   const t = useTranslate()
 
   useEffect(() => {
+    const so = screen.orientation as any
+     if (so && typeof so.lock === 'function') {
+       so.lock('landscape').catch(() => {
+       })
+     }
+
+    const check = () => setIsPortrait(window.innerHeight > window.innerWidth)
+    window.addEventListener('resize', check)
+    window.addEventListener('orientationchange', check)
+    check()
+
     const canvas = canvasRef.current!
     const ctx = canvas.getContext('2d')!
     canvas.width = CANVAS_WIDTH
@@ -429,6 +443,9 @@ export default function Game() {
     loop()
 
     return () => {
+      window.removeEventListener('resize', check)
+      window.removeEventListener('orientationchange', check)
+
       document.removeEventListener('keydown', keyDownHandler)
       document.removeEventListener('keyup', keyUpHandler)
       cancelAnimationFrame(animationFrameId)
@@ -436,6 +453,12 @@ export default function Game() {
   }, [scores, gameOver, matchStatus, matchResult, navigate, gameState, matchStarted])
 
   return (
+    <>
+    {isPortrait && (
+      <div className="rotate-overlay">
+        {t('Please rotate your device to landscape')}
+      </div>
+    )}
     <LoadingContainer>
       <div className="game-container">
         {gameState?.player1 && gameState?.player2 && (
@@ -474,11 +497,10 @@ export default function Game() {
         )}
         <canvas
           ref={canvasRef}
-          width="800"
-          height="600"
           className="game-canvas"
         />
       </div>
     </LoadingContainer>
+    </>
   )
 }
