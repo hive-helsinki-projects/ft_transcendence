@@ -15,7 +15,7 @@ export const api = {
     return response.json()
   },
 
-  async post(url: string, data: any) {
+  async post<TResponse = unknown, TBody = unknown>(url: string, data: TBody): Promise<TResponse> {
     const token = localStorage.getItem('token')
     const response = await fetch(`${API_URL}${url}`, {
       method: 'POST',
@@ -83,7 +83,7 @@ export const api = {
     return response.json()
   },
 
-  async put(url: string, data:any) {
+  async put<TResponse = unknown, TBody = unknown>(url: string, data: TBody): Promise<TResponse> {
     const token = localStorage.getItem('token')
     const response = await fetch(`${API_URL}${url}`, {
       method: 'PUT',
