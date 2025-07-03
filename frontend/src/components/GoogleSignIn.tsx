@@ -29,7 +29,7 @@ const GoogleSignIn:  React.FC<GoogleAuthButtonProps> = ({ isLoading }) => {
           onClick={redirectToGoogleOAuth}
           disabled={isLoading}
           type="button"
-          className="submit-button"
+          className="google-button"
         >
           <img
             src="https://www.google.com/favicon.ico"
