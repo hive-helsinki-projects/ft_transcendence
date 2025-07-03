@@ -4,8 +4,8 @@ export interface UserPlayer {
   avatar: string
   isActive: boolean
   points: number
-  wins: number
-  losses: number
+  wins?: number
+  losses?: number
 }
 
 export interface TopPlayer {

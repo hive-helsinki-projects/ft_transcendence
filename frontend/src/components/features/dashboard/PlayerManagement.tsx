@@ -102,7 +102,7 @@ const PlayerManagement: React.FC<PlayerManagementProps> = ({
             <div className="player-item-actions">
               <button
                 className="action-button delete"
-                onClick={() => onDeletePlayer(String(player.id))}
+                onClick={() => onDeletePlayer(player.id)}
                 title="Delete player"
               >
                 <Trash2 size={16} />

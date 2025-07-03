@@ -65,30 +65,6 @@ export const useUserPlayers = () => {
     }
   }, [])
 
-  const updatePlayer = useCallback(
-    async (playerId: string, updates: Partial<UserPlayer>) => {
-      try {
-        const updatedRaw = await BaseService.put<RawPlayer>(`/players/${playerId}`, updates)
-        const updated: UserPlayer = {
-          id: updatedRaw.id,
-          display_name: updatedRaw.display_name,
-          avatar: updatedRaw.avatar
-            ? `https://localhost:3001${updatedRaw.avatar}`
-            : `https://localhost:3001/uploads/placeholder-avatar${(updatedRaw.id % 4) + 1}.png`,
-          isActive: updatedRaw.isActive ?? false,
-          points: updatedRaw.points ?? 0,
-        }
-        setUserPlayers((prev) =>
-          prev.map((p) => (p.id.toString() === playerId ? updated : p)),
-        )
-      } catch (error) {
-        console.error(error)
-        alert(`Failed to update player: ${playerId}`)
-      }
-    },
-    [],
-  )
-
   const deletePlayer = useCallback(async (playerId: number) => {
     try {
       await BaseService.delete<string>(`/players/${playerId}`)
@@ -115,7 +91,6 @@ export const useUserPlayers = () => {
   return {
     userPlayers,
     createPlayer,
-    updatePlayer,
     deletePlayer,
   }
 }
