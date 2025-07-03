@@ -35,13 +35,6 @@ const SearchResults: React.FC = () => {
     navigate(`/profile/${id}`)
   }
 
-  // If there is only one user, show the ProfilePage directly
-  useEffect(() => {
-    if (filteredUsers.length === 1) {
-      navigate(`/profile/${filteredUsers[0].id}`)
-    }
-  }, [filteredUsers, navigate])
-
   // Render the search results
   return (
     <div className="search-results">
@@ -50,7 +43,7 @@ const SearchResults: React.FC = () => {
         <ul>
           {filteredUsers.map((user) => (
             <li key={user.id}>
-              <img src={user.avatar} alt="picture" className="avatar" />
+              <img src={user.avatar_url} alt="picture" className="avatar" />
               <span>{user.username}</span>
               <button onClick={() => handleClick(user.id)}>Show Profile</button>
             </li>

@@ -7,7 +7,7 @@ import useTranslate from '../../../hooks/useTranslate'
 interface PlayerManagementProps {
   userPlayers: UserPlayer[]
   onCreatePlayer: (playerName: string) => void
-  onDeletePlayer: (playerId: string) => void
+  onDeletePlayer: (playerId: number) => void
 }
 
 const CreatePlayerModal: React.FC<{
