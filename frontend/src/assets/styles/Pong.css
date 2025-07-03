@@ -127,3 +127,33 @@
   background: rgba(44, 41, 86, 0.8);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
 }
+
+@media (max-width: 1000px) {
+  /* let the header container actually shrink below 1,000px */
+  .game-header {
+    max-width: none;
+    justify-content: flex-start;
+  }
+
+  /* stack the three blocks vertically and stretch to fit */
+  .game-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  /* allow the player panels to shrink below 200px */
+  .player-info {
+    min-width: 0;
+    flex: 1;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 0.5rem;
+  }
+
+  .match-info {
+    width: 100%;
+    margin: 0.5rem 0;
+  }
+}
