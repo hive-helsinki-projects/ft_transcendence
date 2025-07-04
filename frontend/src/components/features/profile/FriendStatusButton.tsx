@@ -1,5 +1,5 @@
-import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import React, { useState, useEffect } from 'react';
+import axios, { AxiosError } from 'axios';
 
 export const FriendStatusButton = ({ user }) => {
   const [friendStatus, setFriendStatus] = useState('none')
@@ -29,13 +29,14 @@ export const FriendStatusButton = ({ user }) => {
         ) {
           setSendFriendRequest(true)
         }
-      } catch (error: any) {
-        if (error.response && error.response.status === 404) {
-          // No friendship exists
-          setFriendStatus('none')
-          setSendFriendRequest(false)
+      } catch (error) {
+        const axiosError = error as AxiosError;
+  
+        if (axiosError.response && axiosError.response.status === 404) {
+          setFriendStatus('none');
+          setSendFriendRequest(false);
         } else {
-          console.error('Error fetching friend status:', error)
+          console.error('Error fetching friend status:', axiosError);
         }
       }
     }
@@ -47,7 +48,7 @@ export const FriendStatusButton = ({ user }) => {
     if (!token) return
 
     try {
-      const response = await axios.post(
+        await axios.post(
         `https://localhost:3001/friend-requests/${user.id}`,
         {},
         {

@@ -15,7 +15,7 @@ export const api = {
     return response.json()
   },
 
-  async post(url: string, data: any) {
+  async post<TResponse = unknown, TBody = unknown>(url: string, data: TBody): Promise<TResponse> {
     const token = localStorage.getItem('token')
     const response = await fetch(`${API_URL}${url}`, {
       method: 'POST',
@@ -37,7 +37,7 @@ export const api = {
   },
 
   async login(username: string, password: string) {
-    const response = await fetch(`${API_URL}/login`, {
+    const response = await fetch(`${API_URL}/api/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -52,7 +52,7 @@ export const api = {
   },
 
   async register(username: string, email: string, password: string) {
-    const response = await fetch(`${API_URL}/register`, {
+    const response = await fetch(`${API_URL}/api/users`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -74,7 +74,7 @@ export const api = {
     const response = await fetch(`${API_URL}${url}`, {
       method: 'DELETE',
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${token}`
       },
     })
     if (!response.ok) {
@@ -83,7 +83,7 @@ export const api = {
     return response.json()
   },
 
-  async put(url: string, data: any) {
+  async put<TResponse = unknown, TBody = unknown>(url: string, data: TBody): Promise<TResponse> {
     const token = localStorage.getItem('token')
     const response = await fetch(`${API_URL}${url}`, {
       method: 'PUT',
@@ -96,7 +96,7 @@ export const api = {
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`)
     }
-    return response.json()
+    return (response.json())
   },
 
   async uploadAvatar(url: string, formData: FormData) {
