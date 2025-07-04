@@ -47,6 +47,16 @@ interface Particle {
 let particles: Particle[] = []
 let isPaused = false
 
+type OrientationLockType =
+  | 'any'
+  | 'natural'
+  | 'landscape'
+  | 'portrait'
+  | 'portrait-primary'
+  | 'portrait-secondary'
+  | 'landscape-primary'
+  | 'landscape-secondary';
+
 export const Game: React.FC = () => {
   // track if we’re in portrait
   const [isPortrait, setIsPortrait] = useState(false)
@@ -70,9 +80,11 @@ export const Game: React.FC = () => {
   const t = useTranslate()
 
   useEffect(() => {
-    const so = screen.orientation as any
+    const so = screen.orientation as ScreenOrientation & {
+      lock?: (orientation: OrientationLockType) => Promise<void>;
+    };
     if (so && typeof so.lock === 'function') {
-      so.lock('landscape').catch(() => {})
+      so.lock('landscape').catch(() => {});
     }
 
     const check = () => setIsPortrait(window.innerHeight > window.innerWidth)
