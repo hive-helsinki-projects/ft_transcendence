@@ -5,6 +5,8 @@ interface GoogleAuthButtonProps {
 }
 
 const GoogleSignIn:  React.FC<GoogleAuthButtonProps> = ({ isLoading }) => {
+  console.log(`GoogleSignIn: isLoding is ${isLoading}`);
+  
   const redirectToGoogleOAuth = () => {
     const redirectUri = 'https://localhost:5173/oauth2callback'; // The uri we registered in Google Cloud Console
     const scope = 'openid email profile';
