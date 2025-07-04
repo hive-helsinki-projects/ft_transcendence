@@ -1,9 +1,9 @@
-import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import React, { useState, useEffect } from 'react';
+import axios, { AxiosError } from 'axios';
 
-export const FriendStatusButton = ({ user }) => {
-  const [friendStatus, setFriendStatus] = useState('none')
-  const [sendFriendRequest, setSendFriendRequest] = useState(false)
+const FriendStatusButton = ({ user }) => {
+  const [friendStatus, setFriendStatus] = useState('none');
+  const [sendFriendRequest, setSendFriendRequest] = useState<boolean>(false);
 
   useEffect(() => {
     const fetchFriendStatus = async () => {
@@ -13,30 +13,24 @@ export const FriendStatusButton = ({ user }) => {
         return
       }
 
-      try {
-        const response = await axios.get(
-          `https://localhost:3001/friends/${user.id}/status`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          },
-        )
-        setFriendStatus(response.data.item.status)
-        if (
-          response.data.item.status === 'pending' &&
-          response.data.item.friend_id === user.id
-        ) {
-          setSendFriendRequest(true)
-        }
-      } catch (error: any) {
-        if (error.response && error.response.status === 404) {
-          // No friendship exists
-          setFriendStatus('none')
-          setSendFriendRequest(false)
-        } else {
-          console.error('Error fetching friend status:', error)
-        }
+    try {
+      const response = await axios.get(`https://localhost:3001/friends/${user.id}/status`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setFriendStatus(response.data.item.status);
+      if (response.data.item.status === 'pending' && response.data.item.friend_id === user.id) {
+        setSendFriendRequest(true);
+      }
+    } catch (error) {
+      const axiosError = error as AxiosError;
+
+      if (axiosError.response && axiosError.response.status === 404) {
+        setFriendStatus('none');
+        setSendFriendRequest(false);
+      } else {
+        console.error('Error fetching friend status:', axiosError);
       }
     }
     fetchFriendStatus()
@@ -47,7 +41,7 @@ export const FriendStatusButton = ({ user }) => {
     if (!token) return
 
     try {
-      const response = await axios.post(
+        await axios.post(
         `https://localhost:3001/friend-requests/${user.id}`,
         {},
         {

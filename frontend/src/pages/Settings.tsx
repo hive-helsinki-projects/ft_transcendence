@@ -181,7 +181,7 @@ export const Settings: React.FC = () => {
       const res = await api.get('/api/2fa/setup')
       setQrDataUrl(res.qrDataUrl)
       setTwoFaMessage(null)
-    } catch (err) {
+    } catch {
       setTwoFaMessage('Failed to generate QR code')
     }
   }
@@ -193,8 +193,12 @@ export const Settings: React.FC = () => {
       setQrDataUrl(null)
       setTwoFaToken('')
       setTwoFaMessage('2FA enabled!')
-    } catch (err: any) {
-      setTwoFaMessage(err.message || 'Invalid 2FA code')
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        setTwoFaMessage(err.message || 'Invalid 2FA code');
+      } else {
+        setTwoFaMessage('Invalid 2FA code');
+      }
     }
   }
 
@@ -203,7 +207,7 @@ export const Settings: React.FC = () => {
       await api.delete('/api/2fa')
       setTwoFaEnabled(false)
       setTwoFaMessage('2FA disabled.')
-    } catch (err) {
+    } catch {
       setTwoFaMessage('Failed to disable 2FA')
     }
   }
@@ -288,8 +292,12 @@ export const Settings: React.FC = () => {
       }))
       setAvatarSuccess('Profile picture updated!')
       setTimeout(() => setAvatarSuccess(null), 3000)
-    } catch (err: any) {
-      setAvatarError(err.message || 'Upload failed')
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        setAvatarError(err.message);
+      } else {
+        setAvatarError('Upload failed');
+      }
     }
   }
 
