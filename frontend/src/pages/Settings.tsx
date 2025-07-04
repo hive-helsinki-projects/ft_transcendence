@@ -290,7 +290,7 @@ const Settings: React.FC = () => {
         ...prev,
         avatar_url: response.item.avatar_url,
       }))
-      setAvatarSuccess('Profile picture updated!')
+      setAvatarSuccess(t('Profile picture updated!'))
       setTimeout(() => setAvatarSuccess(null), 3000)
     } catch (err: any) {
       setAvatarError(err.message || 'Upload failed')
@@ -409,12 +409,12 @@ const Settings: React.FC = () => {
           />
         </SettingsSection>
 
-        <SettingsSection title="Two-Factor Authentication" icon={<Lock size={18} />}>
+        <SettingsSection title={t('Two-Factor Authentication')} icon={<Lock size={18} />}>
         {twoFaEnabled ? (
-          <button className="settings-button delete" onClick={disable2FA}>Disable 2FA</button>
+          <button className="settings-button delete" onClick={disable2FA}>{t('Disable 2FA')}</button>
         ) : (
           <>
-            <button className="settings-button" onClick={enable2fa}>Enable 2FA</button>
+            <button className="settings-button" onClick={enable2fa}>{t('Enable 2FA')}</button>
             {qrDataUrl && (
               <div className="qr-section">
                 <img src={qrDataUrl} alt="Scan to setup 2FA" />
@@ -423,11 +423,11 @@ const Settings: React.FC = () => {
                   value={twoFaToken}
                   onChange={e => setTwoFaToken(e.target.value)}
                   maxLength={6}
-                  placeholder="Enter 2FA code"
+                  placeholder={t('Enter 2FA code')}
                   className="field-input"
                 />
                 <button className="save-button" onClick={verify2FA}>
-                  Verify & Enable
+                  {t('Verify & Enable')}
                 </button>
                 {twoFaMessage && <p className="success-message">{twoFaMessage}</p>}
               </div>

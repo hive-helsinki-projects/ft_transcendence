@@ -60,6 +60,9 @@
 
   "settings.title": "Asetukset",
   "Account Settings": "Tiliasetukset",
+  "Profile Picture": "Profile Picture",
+  "Profile picture updated!": "Profile picture updated!",
+
   "Edit": "Muokkaa",
   "Save": "Tallenna",
   "Cancel": "Peruuta",
@@ -67,9 +70,13 @@
     "failedToUpdate": "Käyttäjätietojen päivitys epäonnistui",
     "general": "Tapahtui virhe"
   },
+
   "Two-Factor Authentication": "Kaksivaiheinen todennus",
   "Disable 2FA": "Poista 2FA käytöstä",
   "Enable 2FA": "Ota 2FA käyttöön",
+  "Enter 2FA code": "Enter 2FA code",
+  "Verify & Enable": "Verify & Enable",
+
   "Language Preferences": "Kieliasetukset",
   "languages": {
     "language": "Kieli",
