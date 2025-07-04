@@ -38,6 +38,7 @@ export const LandingPage: React.FC = () => {
   const [userId, setUserId] = React.useState<number | null>(null)
   const [twoFaCode, setTwoFaCode] = React.useState('')
   const [twoFaError, setTwoFaError] = React.useState('')
+  const [, setCachedUsername] = React.useState('')
 
   // Handlers
   const handleAuthSubmit = async (formData: AuthFormData) => {
@@ -53,6 +54,7 @@ export const LandingPage: React.FC = () => {
       ) {
         setNeeds2fa(true)
         setUserId(response.userId)
+        setCachedUsername(formData.username)
         return
       }
 
