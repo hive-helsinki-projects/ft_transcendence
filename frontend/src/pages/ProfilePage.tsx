@@ -24,10 +24,10 @@ export const ProfilePage = () => {
           try {
               let url = '';
               if (id == null) {
-                  url = `https://localhost:3001/users/${id}`;
-              } else {
-                  const id2 = localStorage.getItem('id');
+                const id2 = localStorage.getItem('id');
                   url = `https://localhost:3001/users/${id2}`;
+              } else {
+                  url = `https://localhost:3001/users/${id}`;
               }
               const response = await axios.get<User>(url);
               setUser(response.data);
