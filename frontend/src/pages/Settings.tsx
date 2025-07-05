@@ -461,7 +461,6 @@ export const Settings: React.FC = () => {
             >
               <option value="en">{t('languages.english')}</option>
               <option value="fi">{t('languages.finnish')}</option>
-              <option value="sv">{t('languages.swedish')}</option>
               <option value="ja">{t('languages.japanese')}</option>
             </select>
           </div>
