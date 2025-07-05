@@ -134,7 +134,6 @@ export const Settings: React.FC = () => {
   })
   const [editingField, setEditingField] = useState<keyof UserData | null>(null)
   const [language, setLanguage] = useState(i18n.language)
-  const [theme, setTheme] = useState('Dark')
   const [error, setError] = useState<string | null>(null)
   const [success, setSuccess] = useState<string | null>(null)
 

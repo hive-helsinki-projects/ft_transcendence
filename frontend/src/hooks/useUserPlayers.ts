@@ -60,8 +60,12 @@ export const useUserPlayers = () => {
       }))
       setUserPlayers(mapped)
     } catch (error) {
+      if (error == 'Error: An error occurred') {
+        alert(`Player with name "${playerName}" already exists.`)
+        return;
+      }
       console.error(error)
-      alert(`Failed to create player: ${playerName}`)
+      alert(`Failed to create player: ${playerName}, ${error}`)
     }
   }, [])
 
