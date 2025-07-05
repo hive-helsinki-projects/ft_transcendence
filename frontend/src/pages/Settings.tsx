@@ -466,22 +466,6 @@ export const Settings: React.FC = () => {
           </div>
         </SettingsSection>
 
-        <SettingsSection title={t('Theme Settings')} icon={<Moon size={18} />}>
-          <div className="form-group">
-            <label htmlFor="theme">{t('Theme')}</label>
-            <select
-              id="theme"
-              value={theme}
-              onChange={(e) => setTheme(e.target.value)}
-              className="form-group input"
-            >
-              <option value="Dark">{t('Dark')}</option>
-              <option value="Light">{t('Light')}</option>
-              <option value="System">{t('System Default')}</option>
-            </select>
-          </div>
-        </SettingsSection>
-
         <SettingsSection
           title={t('Account Management')}
           icon={<User size={18} />}
