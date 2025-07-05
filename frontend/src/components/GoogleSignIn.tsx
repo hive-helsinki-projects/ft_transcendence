@@ -25,7 +25,7 @@ const GoogleSignIn: React.FC = () => {
   return (
     <div>
       <button onClick={redirectToGoogleOAuth}>
-        Login with Google(test redirect method)
+        Login with Google
       </button>
     </div>
   )
