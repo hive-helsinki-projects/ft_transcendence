@@ -24,8 +24,9 @@
 - [x] Profile page navigation bug. Some weird bug with navigating to profile page of some users. it does not update profile id without refreshing page after changing to different user. (Maybe done)
 - [x] When (1 hour?) timer is up and app logs you out, it is still possible to open pages but not possible to do actions. (maybe just make sure to check everytime page loads that you are logged in, otherwise redirect to dashboard).
 
-
-
+## Profile Page
+- Own Profile: Shows "My Profile" → Settings button → Friend list → Players → Match History
+- Other Profiles: Shows username → Friend status button → Players → Match History
 
 
 

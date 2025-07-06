@@ -2,7 +2,9 @@ import React, { useEffect, useState } from 'react'
 import '@assets/styles/ProfilePage.css'
 import axios from 'axios'
 import { useParams } from 'react-router-dom'
-import { FriendStatusButton, GetUserPlayers, MatchHistory } from '@components/features/profile'
+import { FriendStatusButton, GetUserPlayers, MatchHistory, FriendList } from '@components/features/profile'
+import { LoadingContainer } from '@components/index'
+import { ErrorBoundary } from '@components/ErrorBoundary'
 
 interface User {
   id: number;
@@ -43,30 +45,44 @@ export const ProfilePage = () => {
       fetchUserProfile();
   }, [id])
 
-
   if (user) {
       return (
-          <div className="profile-page">
-              <h1> Profilepage of {user.username}</h1>
-              <div>
-              {!isOwnProfile && (
-                  <FriendStatusButton user={user} />
-              )}
-              </div>
-              <div>
-                  <GetUserPlayers userId={user.id} />
-              </div>
-              <div>
-                  <MatchHistory userId={String(user.id)} />
-              </div>
-          </div>
+        <ErrorBoundary>
+            <LoadingContainer>
+                <div className="profile-page">
+                    <div className="profile-header">
+                        <h1>{isOwnProfile ? 'My Profile' : user.username}</h1>
+                        
+                        <div className="profile-actions">
+                            {isOwnProfile ? (
+                                <button 
+                                    className="edit-profile-btn"
+                                    onClick={() => window.location.href = '/settings'}
+                                >
+                                    Settings
+                                </button>
+                            ) : (
+                                <FriendStatusButton user={user} />
+                            )}
+                        </div>
+                    </div>
+                    
+                    <div className="profile-content">
+                        {isOwnProfile && <FriendList />}
+                        
+                        <div className="players-section">
+                            <GetUserPlayers userId={user.id} />
+                        </div>
+                        
+                        <div className="match-history-section">
+                            <MatchHistory userId={String(user.id)} />
+                        </div>
+                    </div>
+            </div>
+            </LoadingContainer>
+        </ErrorBoundary>
+          
       )
   }
-
-  return (
-      <div className="profile-page">
-          <h1>We did not find any user...</h1>
-      </div>
-  );
 }
 

@@ -1,0 +1,134 @@
+.friend-status-container {
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  margin-bottom: 1rem;
+}
+
+.friend-status-loading {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.friend-info {
+  margin-bottom: 1rem;
+}
+
+.friend-info p {
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0.5rem 0;
+}
+
+.friend-badge {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+.friend-badge.pending {
+  background: rgba(255, 193, 7, 0.2);
+  color: #ffc107;
+}
+
+.friend-badge.incoming {
+  background: rgba(0, 123, 255, 0.2);
+  color: #007bff;
+}
+
+.friend-badge.none {
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.friend-badge:not(.pending):not(.incoming):not(.none) {
+  background: rgba(40, 167, 69, 0.2);
+  color: #28a745;
+}
+
+.online-status {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.status-dot.online {
+  background: #28a745;
+}
+
+.status-dot.offline {
+  background: #dc3545;
+}
+
+.friend-btn {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+  margin-right: 0.5rem;
+  font-weight: 500;
+}
+
+.friend-btn.add {
+  background: #007bff;
+  color: white;
+}
+
+.friend-btn.add:hover {
+  background: #0056b3;
+}
+
+.friend-btn.accept {
+  background: #28a745;
+  color: white;
+}
+
+.friend-btn.accept:hover {
+  background: #1e7e34;
+}
+
+.friend-btn.deny, 
+.friend-btn.remove, 
+.friend-btn.cancel {
+  background: #dc3545;
+  color: white;
+}
+
+.friend-btn.deny:hover, 
+.friend-btn.remove:hover, 
+.friend-btn.cancel:hover {
+  background: #c82333;
+}
+
+.friend-btn-group {
+  display: flex;
+  gap: 0.5rem;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .friend-status-container {
+    padding: 1rem;
+  }
+  
+  .friend-btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+  }
+  
+  .friend-btn-group {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+} 

@@ -1,5 +1,117 @@
 .profile-page {
     min-height: 100vh;
     width: 100%;
-    padding: 5rem;
+    padding: 2rem;
+    background: #1a1b26;
+}
+
+.profile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+}
+
+.profile-header h1 {
+    margin: 0;
+    font-size: 2rem;
+    color: white;
+    font-weight: 600;
+}
+
+.profile-actions {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.edit-profile-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1.25rem;
+    background: linear-gradient(45deg, #2C3E50, #1A2634);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    color: white;
+    font-weight: 500;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 10px rgba(44, 62, 80, 0.2);
+}
+
+.edit-profile-btn:hover {
+    transform: translateY(-2px);
+    background: linear-gradient(45deg, #34495E, #2C3E50);
+    box-shadow: 0 4px 15px rgba(44, 62, 80, 0.3);
+}
+
+.profile-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.players-section,
+.match-history-section {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    padding: 1.5rem;
+    transition: all 0.2s ease;
+}
+
+.players-section:hover,
+.match-history-section:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.players-section h2,
+.match-history-section h2 {
+    margin: 0 0 1rem 0;
+    font-size: 1.5rem;
+    color: white;
+    font-weight: 600;
+}
+
+/* Friend List Section */
+.friend-list-section {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.friend-list-section h2 {
+    margin: 0 0 1rem 0;
+    font-size: 1.5rem;
+    color: white;
+    font-weight: 600;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .profile-page {
+        padding: 1rem;
+    }
+    
+    .profile-header {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+    
+    .profile-header h1 {
+        font-size: 1.5rem;
+    }
+    
+    .profile-actions {
+        width: 100%;
+        justify-content: center;
+    }
 }

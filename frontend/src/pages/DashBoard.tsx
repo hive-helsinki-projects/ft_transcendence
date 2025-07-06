@@ -7,7 +7,7 @@ import {
 } from '@hooks/index'
 import axios from 'axios'
 import React, { useEffect } from 'react'
-import ErrorBoundary from '@components/ErrorBoundary'
+import { ErrorBoundary } from '@components/ErrorBoundary'
 import {
   AvatarMenu,
   GameStats,
@@ -64,7 +64,12 @@ export const Dashboard: React.FC = () => {
             <h1>
               {t('dashboard.welcome')}, {username}!
             </h1>
-            <SearchBar onSearch={handleSearch} />
+            <div className="dashboard-actions">
+              <SearchBar onSearch={handleSearch} />
+              <div className="discovery-hint">
+                <p>💡 <strong>Tip:</strong> Use the search bar to find other players and view their profiles!</p>
+              </div>
+            </div>
           </div>
           <PlayerManagement
             userPlayers={userPlayers}
