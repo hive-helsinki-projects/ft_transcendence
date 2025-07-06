@@ -7,7 +7,7 @@ interface AuthContextType {
   id: string | null
   isAuthenticated: boolean
   login: (token: string, username: string, id: string) => void
-  logout: () => void
+  logout: () => Promise<void>
   isValidating: boolean
 }
 
@@ -46,7 +46,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     } catch {
       // Token is invalid, log out user
       // The axiosAgent interceptor will handle the redirect
-      logout()
+      await logout()
     } finally {
       setIsValidating(false)
     }
@@ -78,7 +78,18 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   }
 
   // Function to log out (remove token from wallet)
-  const logout = () => {
+  const logout = async () => {
+    // First, call the backend logout endpoint to update online status
+    if (token) {
+      try {
+        await BaseService.post('/logout')
+      } catch (error) {
+        // Log error but continue with client-side logout
+        console.error('Backend logout failed:', error)
+      }
+    }
+    
+    // Then clear local storage and state
     localStorage.removeItem('token')
     localStorage.removeItem('username')
     localStorage.removeItem('id')
