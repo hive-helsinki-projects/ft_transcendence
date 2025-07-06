@@ -1,6 +1,6 @@
-import ProtectedRoute from './ProtectedRoute'
 import { Game } from '@components/features/game/pong'
 import { useAuth } from '@hooks/auth/useAuth'
+import { ProtectedRoute } from './ProtectedRoute'
 import {
   Dashboard,
   Help,
@@ -20,8 +20,22 @@ import { Navigate, Route, Routes } from 'react-router-dom'
  * This component defines all the routes in the application
  * It includes both public and protected routes
  */
-const AppRoutes: React.FC = () => {
-  const { isAuthenticated } = useAuth()
+export const AppRoutes: React.FC = () => {
+  const { isAuthenticated, isValidating } = useAuth()
+
+  // Show loading state while validating token
+  if (isValidating) {
+    return (
+      <div style={{ 
+        display: 'flex', 
+        justifyContent: 'center', 
+        alignItems: 'center', 
+        height: '100vh' 
+      }}>
+        <div>Validating session...</div>
+      </div>
+    )
+  }
 
   return (
     <Routes>
@@ -111,5 +125,3 @@ const AppRoutes: React.FC = () => {
     </Routes>
   )
 }
-
-export default AppRoutes

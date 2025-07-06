@@ -8,8 +8,8 @@ export { menuItems } from './sidebar/menuItems'
 export { type MenuItem } from './sidebar/SidebarItem'
 
 // Routing Components
-export { default as ProtectedRoute } from './routing/ProtectedRoute'
-export { default as AppRoutes } from './routing/AppRoutes'
+export { ProtectedRoute } from './routing/ProtectedRoute'
+export { AppRoutes } from './routing/AppRoutes'
 
 // Authentication Components
 export { AuthForm } from './features/auth/AuthForm'

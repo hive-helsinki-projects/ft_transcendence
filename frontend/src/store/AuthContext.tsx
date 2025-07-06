@@ -1,4 +1,5 @@
-import React, { createContext, useContext, useEffect, useState } from 'react'
+import React, { createContext, useEffect, useState } from 'react'
+import { BaseService } from '@services/baseService'
 
 interface AuthContextType {
   token: string | null
@@ -7,6 +8,7 @@ interface AuthContextType {
   isAuthenticated: boolean
   login: (token: string, username: string, id: string) => void
   logout: () => void
+  isValidating: boolean
 }
 
 // AuthContext.tsx - This is like a wallet for your JWT token
@@ -26,10 +28,41 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   )
   const [id, setId] = useState<string | null>(localStorage.getItem('id'))
   // Check if you're logged in (do you have a valid token?)
-  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(!!token)
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false)
+  const [isValidating, setIsValidating] = useState<boolean>(!!token)
 
+  // Validate token by making a simple API call
+  const validateToken = async () => {
+    if (!token) {
+      setIsValidating(false)
+      return
+    }
+
+    try {
+      // Make a simple API call to validate token
+      // Using /players endpoint as it requires authentication
+      await BaseService.get('/players')
+      setIsAuthenticated(true)
+    } catch {
+      // Token is invalid, log out user
+      // The axiosAgent interceptor will handle the redirect
+      logout()
+    } finally {
+      setIsValidating(false)
+    }
+  }
+
+  // Validate token on app load
   useEffect(() => {
-    setIsAuthenticated(!!token)
+    validateToken()
+  }, []) // Only run once on mount
+
+  // Update authentication state when token changes
+  useEffect(() => {
+    if (!token) {
+      setIsAuthenticated(false)
+      setIsValidating(false)
+    }
   }, [token])
 
   // Function to log in (put token in wallet)
@@ -40,6 +73,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     setToken(newToken)
     setUsername(newUsername)
     setId(newId)
+    setIsAuthenticated(true)
+    setIsValidating(false)
   }
 
   // Function to log out (remove token from wallet)
@@ -50,21 +85,15 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     setToken(null)
     setUsername(null)
     setId(null)
+    setIsAuthenticated(false)
+    setIsValidating(false)
   }
 
   return (
     <AuthContext.Provider
-      value={{ token, username, id, isAuthenticated, login, logout }}
+      value={{ token, username, id, isAuthenticated, login, logout, isValidating }}
     >
       {children}
     </AuthContext.Provider>
   )
-}
-
-export const useAuth = () => {
-  const context = useContext(AuthContext)
-  if (!context) {
-    throw new Error('useAuth must be used within an AuthProvider')
-  }
-  return context
 }
