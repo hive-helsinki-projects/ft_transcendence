@@ -5,6 +5,7 @@ import { GoogleSignIn } from '@components/GoogleSignIn'
 
 export const AuthSection: React.FC<AuthSectionProps> = ({
   onNavigateToRegister,
+  onNavigateToSignIn,
   children,
 }) => (
   <section className="auth-section">
@@ -16,19 +17,37 @@ export const AuthSection: React.FC<AuthSectionProps> = ({
         <GoogleSignIn />
       </div>
 
-      <div className="register-link">
-        <p>
-          Don't have an account?{' '}
-          <button
-            type="button"
-            className="link-button"
-            onClick={onNavigateToRegister}
-            aria-label="Register new account"
-          >
-            Register here
-          </button>
-        </p>
-      </div>
+      {onNavigateToRegister && (
+        <div className="register-link">
+          <p>
+            Don't have an account?{' '}
+            <button
+              type="button"
+              className="link-button"
+              onClick={onNavigateToRegister}
+              aria-label="Register new account"
+            >
+              Register here
+            </button>
+          </p>
+        </div>
+      )}
+
+      {onNavigateToSignIn && (
+        <div className="register-link">
+          <p>
+            Already have an account?{' '}
+            <button
+              type="button"
+              className="link-button"
+              onClick={onNavigateToSignIn}
+              aria-label="Sign in to account"
+            >
+              Sign in here
+            </button>
+          </p>
+        </div>
+      )}
     </div>
   </section>
 )

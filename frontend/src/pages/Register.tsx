@@ -23,7 +23,7 @@ export const Register: React.FC = () => {
   return (
     <LoadingContainer>
       <div className="register-content">
-        <AuthSection onNavigateToRegister={() => navigate('/')}>
+        <AuthSection onNavigateToSignIn={() => navigate('/')}>
           <AuthForm
             onSubmit={handleSubmit}
             isLoading={isLoading}
