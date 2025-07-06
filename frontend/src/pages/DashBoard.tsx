@@ -7,7 +7,7 @@ import {
 } from '@hooks/index'
 import axios from 'axios'
 import React, { useEffect } from 'react'
-import ErrorBoundary from '@components/ErrorBoundary'
+import { ErrorBoundary } from '@components/ErrorBoundary'
 import {
   AvatarMenu,
   GameStats,
