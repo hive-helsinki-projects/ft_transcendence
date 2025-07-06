@@ -2,8 +2,8 @@
 export { Layout } from './layout/Layout'
 
 // Navigation Components
-export { default as SidebarItem } from './sidebar/SidebarItem'
-export { default as SideBar } from './sidebar/SideBar'
+export { SidebarItem } from './sidebar/SidebarItem'
+export { Sidebar } from './sidebar/Sidebar'
 export { menuItems } from './sidebar/menuItems'
 export { type MenuItem } from './sidebar/SidebarItem'
 

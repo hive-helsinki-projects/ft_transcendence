@@ -1,5 +1,5 @@
 import React from 'react'
-import { SideBar } from '..'
+import { Sidebar } from '@/components'
 
 /**
  * Layout Component
@@ -9,7 +9,7 @@ import { SideBar } from '..'
 export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
     <div className="app-layout">
-      <SideBar />
+      <Sidebar />
       <div className="main-content">{children}</div>
     </div>
   )

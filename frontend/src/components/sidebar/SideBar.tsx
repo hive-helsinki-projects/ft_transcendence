@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { MenuItem, menuItems, SidebarItem } from '..'
-import '../../assets/styles/index.css'
+import { MenuItem, menuItems, SidebarItem } from '@/components'
+import '@/assets/styles/index.css'
 
 /**
  * Sidebar Component
@@ -8,7 +8,7 @@ import '../../assets/styles/index.css'
  * A vertical navigation bar that displays menu items as icons
  * Allows users to navigate between different sections of the application
  */
-const Sidebar = () => {
+export const Sidebar = () => {
   // Initialize state to track which menu item is currently selected
   // 'home' is set as the default selected item
   const [selected, setSelected] = useState('home')
@@ -30,5 +30,3 @@ const Sidebar = () => {
     </nav>
   )
 }
-
-export default Sidebar

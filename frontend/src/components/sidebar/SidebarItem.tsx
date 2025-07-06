@@ -20,7 +20,7 @@ type SidebarItemProps = MenuItem & {
  * Represents a single navigation item in the sidebar
  * Handles the rendering and interaction of individual menu items
  */
-const SidebarItem = ({
+export const SidebarItem = ({
   id,
   icon: Icon,
   path,
@@ -39,5 +39,3 @@ const SidebarItem = ({
     </Link>
   )
 }
-
-export default SidebarItem
