@@ -1,7 +1,7 @@
 import React from 'react'
-import { AuthSectionProps } from '../../../types/auth'
-import '../../../assets/styles/index.css'
-import GoogleSignIn from '../../GoogleSignIn'
+import { AuthSectionProps } from '@/types/auth'
+import '@assets/styles/index.css'
+import { GoogleSignIn } from '@components/GoogleSignIn'
 
 export const AuthSection: React.FC<AuthSectionProps> = ({
   onNavigateToRegister,

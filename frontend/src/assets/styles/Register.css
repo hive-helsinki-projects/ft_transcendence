@@ -257,16 +257,6 @@
   z-index: 1;
 }
 
-.google-auth::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: rgba(255, 255, 255, 0.1);
-}
-
 .google-button {
   width: 100%;
   display: flex;

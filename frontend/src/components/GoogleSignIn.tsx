@@ -3,7 +3,7 @@ import React from 'react'
 const clientId =
   '847383291975-9ten21d8j1vf3m2m1kod2i2js9c28o6e.apps.googleusercontent.com'
 
-const GoogleSignIn: React.FC = () => {
+export const GoogleSignIn: React.FC = () => {
   const redirectToGoogleOAuth = () => {
     const redirectUri = 'https://localhost:5173/oauth2callback' // The uri we registered in Google Cloud Console
     const scope = 'openid email profile'
@@ -24,11 +24,15 @@ const GoogleSignIn: React.FC = () => {
 
   return (
     <div>
-      <button onClick={redirectToGoogleOAuth}>
+      <button onClick={redirectToGoogleOAuth} className="google-button">
+        <img
+          src="https://www.google.com/favicon.ico"
+          alt="Google"
+          width="20"
+          height="20"
+        />
         Login with Google
       </button>
     </div>
   )
 }
-
-export default GoogleSignIn
