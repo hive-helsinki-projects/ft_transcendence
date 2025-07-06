@@ -4,8 +4,10 @@
 
 - [ ] Touch screen support for paddles
 - [ ] Finish translation (Miyuki, Valle for Finnish)
+- [ ] Simple CSS for profile page (Valle)
 - [ ] Username validation in settings: Show clear message when username is taken instead of error code (NOTE: Its because we use the api.ts file which only returns the code. we need to specialize the messages. not have it show error code only. it doesnt give the user enought information. can i change away the baseService and use axios instead?)
 - [ ] Convert remaining frontend files to TypeScript (Oliver)
+- [ ] Avatar_url: /uploads/placeholder-avatar2.png does not load in Profile Page (Kim)
 
 ### Completed ✅
 - [x] Adjust game screen based on screen size (Valle)
@@ -13,7 +15,6 @@
 - [x] Remove Swedish translation option from settings page
 - [x] Google signin button (test version fixed) (Kim)
 - [x] Player creation error messages. Now shows clear message instead of "Failed to create player: asd"
-- [x] Simple CSS for profile page (Lumi)
 
 ## 🐛 Bug Fixes
 - [ ] friend's online status seems to always state online when friend is offline.
