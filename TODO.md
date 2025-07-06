@@ -6,6 +6,7 @@
 - [ ] Finish translation (Miyuki, Valle for Finnish)
 - [ ] Username validation in settings: Show clear message when username is taken instead of error code (NOTE: Its because we use the api.ts file which only returns the code. we need to specialize the messages. not have it show error code only. it doesnt give the user enought information. can i change away the baseService and use axios instead?)
 - [ ] Convert remaining frontend files to TypeScript (Oliver)
+- [ ] Avatar_url: /uploads/placeholder-avatar2.png does not load in Profile Page (Kim)
 
 ### Completed ✅
 - [x] Adjust game screen based on screen size (Valle)
