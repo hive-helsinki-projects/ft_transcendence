@@ -7,7 +7,6 @@ import {
 } from '@hooks/index'
 import axios from 'axios'
 import React, { useEffect } from 'react'
-import { ErrorBoundary } from '@components/ErrorBoundary'
 import {
   AvatarMenu,
   GameStats,
@@ -16,7 +15,7 @@ import {
   QuickPlay,
   TopPlayers,
 } from '@components/features/dashboard'
-import { LoadingContainer, SearchBar} from '@components/index'
+import { SearchBar} from '@components/index'
 import { API_URL } from '@utils/constants'
 import { useNavigate } from 'react-router-dom'
 
@@ -57,37 +56,33 @@ export const Dashboard: React.FC = () => {
     return <div>Please log in to view the dashboard</div>
   }
   return (
-    <ErrorBoundary>
-      <LoadingContainer>
-        <div className="dashboard">
-          <div className="welcome-header">
-            <h1>
-              {t('dashboard.welcome')}, {username}!
-            </h1>
-            <SearchBar onSearch={handleSearch} />
-          </div>
-          <PlayerManagement
-            userPlayers={userPlayers}
-            onCreatePlayer={createPlayer}
-            onDeletePlayer={deletePlayer}
-          />
+    <div className="dashboard">
+      <div className="welcome-header">
+        <h1>
+          {t('dashboard.welcome')}, {username}!
+        </h1>
+        <SearchBar onSearch={handleSearch} />
+      </div>
+      <PlayerManagement
+        userPlayers={userPlayers}
+        onCreatePlayer={createPlayer}
+        onDeletePlayer={deletePlayer}
+      />
 
-          <QuickPlay userPlayers={userPlayers} />
+      <QuickPlay userPlayers={userPlayers} />
 
-          <div className="dashboard-grid">
-            <GameStats userPlayers={userPlayers} />
-            <MatchHistoryComponent matches={matches} />
-          </div>
+      <div className="dashboard-grid">
+        <GameStats userPlayers={userPlayers} />
+        <MatchHistoryComponent matches={matches} />
+      </div>
 
-          <TopPlayers players={userPlayers} />
+      <TopPlayers players={userPlayers} />
 
-          <AvatarMenu
-            avatar={avatar}
-            onAvatarChange={handleAvatarChange}
-            onLogout={logout}
-          />
-        </div>
-      </LoadingContainer>
-    </ErrorBoundary>
+      <AvatarMenu
+        avatar={avatar}
+        onAvatarChange={handleAvatarChange}
+        onLogout={logout}
+      />
+    </div>
   )
 }

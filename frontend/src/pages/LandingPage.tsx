@@ -8,7 +8,6 @@ import {
   AuthForm,
   AuthSection,
   HeroSection,
-  LoadingContainer,
 } from '@components/index'
 import '@assets/styles/index.css'
 
@@ -102,7 +101,7 @@ export const LandingPage: React.FC = () => {
 
   // Render
   return (
-    <LoadingContainer showPongBackground>
+    <> 
       <HeroSection />
       <AuthSection
         onGoogleAuth={handleGoogleAuth}
@@ -136,6 +135,6 @@ export const LandingPage: React.FC = () => {
           </div>
         )}
       </AuthSection>
-    </LoadingContainer>
+    </>
   )
 }

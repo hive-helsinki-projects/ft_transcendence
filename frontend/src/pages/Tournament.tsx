@@ -3,8 +3,6 @@ import { BaseService } from '@services/baseService'
 import React, { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useUserPlayers } from '@hooks/index'
-import { LoadingContainer } from '@components/index'
-import { ErrorBoundary } from '@components/ErrorBoundary'
 
 export const TournamentPage: React.FC = () => {
   const [tournament, setTournament] = useState<Tournament | null>(null)
@@ -135,8 +133,7 @@ export const TournamentPage: React.FC = () => {
   }
 
   return (
-    <ErrorBoundary>
-      <LoadingContainer>
+    <>
         {!tournament ? null : tournament.status === 'finished' &&
           tournament.winner_id ? (
           <div className="tournament-lobby">
@@ -242,7 +239,6 @@ export const TournamentPage: React.FC = () => {
             </div>
           </div>
         )}
-      </LoadingContainer>
-    </ErrorBoundary>
+    </>
   )
 }

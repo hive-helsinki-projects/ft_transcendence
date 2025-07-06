@@ -2,7 +2,7 @@ import React from 'react'
 import '@assets/styles/index.css'
 import { useTranslate } from '@hooks/index'
 
-const HeroSection: React.FC = () => {
+export const HeroSection: React.FC = () => {
   const t = useTranslate()
 
   return (
@@ -13,5 +13,3 @@ const HeroSection: React.FC = () => {
     </section>
   )
 }
-
-export default HeroSection

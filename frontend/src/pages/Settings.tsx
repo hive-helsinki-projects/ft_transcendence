@@ -5,7 +5,6 @@ import {
   Lock,
   LogOut,
   Mail,
-  Moon,
   Settings as SettingsIcon,
   Trash2,
   User,

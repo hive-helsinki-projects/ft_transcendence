@@ -31,7 +31,7 @@ export interface AuthFormProps {
 }
 
 export interface AuthSectionProps {
-  onGoogleAuth: () => void // Function to handle Google authentication
+  onGoogleAuth?: () => void // Function to handle Google authentication
   onNavigateToRegister?: () => void // Function to navigate to registration page
   onNavigateToSignIn?: () => void // Function to navigate to sign in page
   children?: React.ReactNode // Child components to render
