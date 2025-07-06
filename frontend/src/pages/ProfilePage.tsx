@@ -3,6 +3,8 @@ import '@assets/styles/ProfilePage.css'
 import axios from 'axios'
 import { useParams } from 'react-router-dom'
 import { FriendStatusButton, GetUserPlayers, MatchHistory } from '@components/features/profile'
+import { LoadingContainer } from '@/components/LoadingContainer'
+import { ErrorBoundary } from '@components/ErrorBoundary'
 
 interface User {
   id: number;
@@ -46,7 +48,9 @@ export const ProfilePage = () => {
 
   if (user) {
       return (
-          <div className="profile-page">
+        <ErrorBoundary>
+            <LoadingContainer>
+            <div className="profile-page">
               <h1> Profilepage of {user.username}</h1>
               <div>
               {!isOwnProfile && (
@@ -60,13 +64,19 @@ export const ProfilePage = () => {
                   <MatchHistory userId={String(user.id)} />
               </div>
           </div>
+            </LoadingContainer>
+        </ErrorBoundary>
       )
   }
 
   return (
-      <div className="profile-page">
-          <h1>We did not find any user...</h1>
-      </div>
+    <ErrorBoundary>
+        <LoadingContainer>
+            <div className="profile-page">
+                <h1>We did not find any user...</h1>
+            </div>
+        </LoadingContainer>
+    </ErrorBoundary>
   );
 }
 
