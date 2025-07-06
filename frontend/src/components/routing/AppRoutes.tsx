@@ -5,7 +5,6 @@ import {
   Dashboard,
   Help,
   LandingPage,
-  OAuth2Callback,
   ProfilePage,
   Register,
   SearchResults,
@@ -14,6 +13,7 @@ import {
 } from '@pages/index'
 import React from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
+import { OAuth2Callback } from '@components/features/auth/OAuth2Callback'
 
 /**
  * AppRoutes Component
