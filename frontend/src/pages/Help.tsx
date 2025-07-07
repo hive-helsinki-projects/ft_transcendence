@@ -8,32 +8,34 @@ import {
   RulesSection,
   TroubleshootingSection,
 } from '@components/features/help'
+import { useTranslate } from '@hooks/index'
 
 export const Help: React.FC = () => {
+  const t = useTranslate()
   return (
     <div className="help-container">
       <HelpSection
-        title="Help Center"
-        description="Find answers to common questions or contact support for further assistance."
+        title={t('Help Center')}
+        description={t('help.description')}
       />
 
       <RulesSection rules={gameRules} />
       <FAQSection faqs={FAQ} />
 
-      <ContactSection
+      {/* <ContactSection
         email="support@example.com"
         title="Contact Support"
         description="If you need further assistance, please contact us at"
-      />
+      /> */}
 
       <TroubleshootingSection steps={troubleshootingSteps} />
 
-      <FeedbackSection
+      {/* <FeedbackSection
         title="Feedback"
         description="We value your feedback! Please let us know how we can improve by submitting your feedback"
         linkText="here"
         linkPath="/feedback"
-      />
+      /> */}
     </div>
   )
 }

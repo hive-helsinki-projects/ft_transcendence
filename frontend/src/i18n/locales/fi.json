@@ -85,5 +85,41 @@
   },
 
   "Profile Settings": "Profiiliasetukset",
-  "Sign Out": "Kirjaudu ulos"
+  "Sign Out": "Kirjaudu ulos",
+
+  "Help Center": "Help Center",
+  "help.description": "Find answers to common questions.",
+  "Game Rules": "Game Rules",
+
+  "rules": {
+    "basic": {
+      "title": "Basic Rules",
+      "description": "Players control paddles to hit the ball back and forth. The goal is to make the ball pass your opponent's paddle."
+    },
+    "scoring": {
+      "title": "Scoring",
+      "description": "A point is scored when the ball passes the opponent's paddle. The first player to reach 11 points wins the game."
+    }
+  },
+
+  "Frequently Asked Questions": "Frequently Asked Questions",
+  "faq": {
+  "start": {
+    "question": "How do I start playing?",
+    "answer": "To start playing, create an account and log in. Then you can join a game or create your own tournament."
+   },
+  "tournaments": {
+    "question": "How do tournaments work?",
+    "answer": "Tournaments are organized in brackets. Players compete in matches, and winners advance to the next round until a champion is crowned."
+   }
+  },
+
+  "Troubleshooting": "Troubleshooting",
+  "troubleshooting": {
+    "step1": "Check your internet connection",
+    "step2": "Clear your browser cache",
+    "step3": "Try using a different browser",
+    "step4": "Make sure your browser is up to date",
+    "step5": "Disable any ad blockers or extensions that might interfere"
+  }
 }

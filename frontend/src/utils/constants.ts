@@ -35,46 +35,32 @@ export const REDIRECT_DELAY = 2000 // milliseconds - time to wait before redirec
 
 export const FAQ = [
   {
-    question: 'How do I start playing?',
-    answer:
-      'To start playing, create an account and log in. Then you can join a game or create your own tournament.',
+    question: 'faq.start.question',
+    answer: 'faq.start.answer',
   },
   {
-    question: 'Can I play with friends?',
-    answer:
-      'Yes! You can invite friends to play by sharing your game room code or tournament link.',
-  },
-  {
-    question: 'How do tournaments work?',
-    answer:
-      'Tournaments are organized in brackets. Players compete in matches, and winners advance to the next round until a champion is crowned.',
+    question: 'faq.tournaments.question',
+    answer: 'faq.tournaments.answer',
   },
 ]
 
 export const gameRules = [
   {
-    title: 'Basic Rules',
-    description:
-      "Players control paddles to hit the ball back and forth. The goal is to make the ball pass your opponent's paddle.",
+    title: 'rules.basic.title',
+    description: 'rules.basic.description',
   },
   {
-    title: 'Scoring',
-    description:
-      "A point is scored when the ball passes the opponent's paddle. The first player to reach 11 points wins the game.",
-  },
-  {
-    title: 'Power-ups',
-    description:
-      'Special power-ups appear during gameplay. Collect them to gain temporary advantages like speed boosts or paddle size changes.',
+    title: 'rules.scoring.title',
+    description: 'rules.scoring.description',
   },
 ]
 
 export const troubleshootingSteps = [
-  'Check your internet connection',
-  'Clear your browser cache',
-  'Try using a different browser',
-  'Make sure your browser is up to date',
-  'Disable any ad blockers or extensions that might interfere',
+  'troubleshooting.step1',
+  'troubleshooting.step2',
+  'troubleshooting.step3',
+  'troubleshooting.step4',
+  'troubleshooting.step5',
 ]
 
 export const registerFormFields: FormFieldConfig[] = [
