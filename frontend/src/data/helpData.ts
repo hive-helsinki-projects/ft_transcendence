@@ -13,6 +13,22 @@ export const faqs = [
   },
 ]
 
+// export const faqs = [
+//   {
+//     question: 'faq.q1.question',
+//     answer: 'faq.q1.answer',
+//   },
+//   {
+//     question: 'faq.q2.question',
+//     answer: 'faq.q2.answer',
+//   },
+//   {
+//     question: 'faq.q3.question',
+//     answer: 'faq.q3.answer',
+//   },
+// ];
+
+
 export const gameRules = [
   {
     title: 'Basic Rules',

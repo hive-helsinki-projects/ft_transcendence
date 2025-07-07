@@ -1,4 +1,5 @@
 import React from 'react'
+import useTranslate from '../../../hooks/useTranslate'
 
 interface GameRule {
   title: string
@@ -10,9 +11,10 @@ interface RulesSectionProps {
 }
 
 const RulesSection: React.FC<RulesSectionProps> = ({ rules }) => {
+  const t = useTranslate()
   return (
     <section className="help-section">
-      <h2>Game Rules</h2>
+      <h2>{t('Game Rules')}</h2>
       <div className="rules-list">
         {rules.map((rule, index) => (
           <div key={index} className="rule-item">

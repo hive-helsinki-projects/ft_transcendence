@@ -89,5 +89,10 @@
   },
 
   "Profile Settings": "プロフィール設定",
-  "Sign Out": "サインアウト"
+  "Sign Out": "サインアウト",
+
+  "Help Center": "ヘルプセンター",
+  "help.description": "よくある質問への回答を探すか、さらにサポートが必要な場合はお問い合わせください。",
+  "Game Rules": "ゲームルール"
+
 }

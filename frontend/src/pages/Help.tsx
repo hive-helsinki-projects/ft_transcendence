@@ -3,14 +3,17 @@ import { LoadingContainer } from '../components'
 import { HelpSection, FAQSection, RulesSection, ContactSection, TroubleshootingSection, FeedbackSection } from '../components/features/help'
 import { faqs, gameRules, troubleshootingSteps } from '../data/helpData'
 import '../assets/styles/index.css'
+import useTranslate from '../hooks/useTranslate'
 
 const Help: React.FC = () => {
+  const t = useTranslate()
+
   return (
     <LoadingContainer>
       <div className="help-container">
         <HelpSection
-          title="Help Center"
-          description="Find answers to common questions or contact support for further assistance."
+          title={t('Help Center')}
+          description={t('help.description')}
         />
         
         <RulesSection rules={gameRules} />

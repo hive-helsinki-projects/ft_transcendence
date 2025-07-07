@@ -96,6 +96,10 @@
   },
 
   "Profile Settings": "Profile Settings",
-  "Sign Out": "Sign Out"
+  "Sign Out": "Sign Out",
+
+  "Help Center": "Help Center",
+  "help.description": "Find answers to common questions or contact support for further assistance.",
+  "Game Rules": "Game Rules"
 }
 

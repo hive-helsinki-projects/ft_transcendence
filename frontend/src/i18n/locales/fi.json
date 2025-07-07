@@ -97,5 +97,10 @@
   },
 
   "Profile Settings": "Profiiliasetukset",
-  "Sign Out": "Kirjaudu ulos"
+  "Sign Out": "Kirjaudu ulos",
+
+  "Help Center": "Help Center",
+  "help.description": "Find answers to common questions or contact support for further assistance.",
+  "Game Rules": "Game Rules"
+
 }
