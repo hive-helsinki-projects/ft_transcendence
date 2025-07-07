@@ -1,49 +1,22 @@
 .search-bar-container {
-  display: flex;
-  margin: 1.5rem 0;
+  @apply flex mx-0 my-6;
 }
-
 .search-bar-form {
-  display: flex;
+  @apply flex shadow-[0_2px_8px_rgba(0,0,0,0.08)] transition-shadow duration-[0.2s] px-4 py-1 rounded-[2rem] focus-within:shadow-[0_4px_16px_rgba(0,0,0,0.15)];
   background: #23272f;
-  border-radius: 2rem;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-  padding: 0.25rem 1rem;
-  transition: box-shadow 0.2s;
 }
-
-.search-bar-form:focus-within {
-  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
-}
-
 .search-bar-input {
+  @apply text-[#f3f3f3] text-base w-[220px] transition-[width] duration-[0.2s] px-2 py-3 border-[none];
   background: transparent;
-  border: none;
   outline: none;
-  color: #f3f3f3;
-  font-size: 1rem;
-  padding: 0.75rem 0.5rem;
-  width: 220px;
-  transition: width 0.2s;
 }
-
 .search-bar-input::placeholder {
-  color: #aaa;
-  opacity: 1;
+  @apply text-[#aaa] opacity-100;
 }
-
 .search-bar-button {
+  @apply text-white text-base cursor-pointer transition-[background] duration-[0.2s] ml-2 px-[1.2rem] py-2 rounded-3xl border-[none];
   background: #4f8cff;
-  color: #fff;
-  border: none;
-  border-radius: 1.5rem;
-  padding: 0.5rem 1.2rem;
-  margin-left: 0.5rem;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background 0.2s;
 }
-
 .search-bar-button:hover,
 .search-bar-button:focus {
   background: #2563eb;

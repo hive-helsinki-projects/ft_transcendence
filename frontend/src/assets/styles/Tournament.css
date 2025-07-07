@@ -1,284 +1,136 @@
 .tournament-lobby {
-  padding: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
+  @apply max-w-[1200px] mx-auto my-0 p-8;
 }
-
 .tournament-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 2rem;
+  @apply flex justify-between items-center mb-8;
 }
-
 .tournament-header h1 {
-  font-size: 2rem;
-  color: var(--text-primary);
-  margin: 0;
+  @apply text-[2rem] text-[color:var(--text-primary)] m-0;
 }
-
 .reset-tournament-button {
-  padding: 0.75rem 1.5rem;
-  margin-left: 1rem;
+  @apply border text-[white] cursor-pointer font-semibold transition-[background-color] duration-[0.2s] ml-4 px-6 py-3 rounded-lg border-solid border-[rgba(255,255,255,0.1)] border-[none] hover:bg-[color:var(--accent-hover)] disabled:bg-[color:var(--disabled-color)] disabled:cursor-not-allowed;
+
   /* background-color: var(--accent-color); */
-  background: linear-gradient(45deg, #2C3E50, #1A2634);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: white;
-  border: none;
-  border-radius: 0.5rem;
-  cursor: pointer;
-  font-weight: 600;
-  transition: background-color 0.2s;
+  background: linear-gradient(45deg, #2c3e50, #1a2634);
 }
-
-.reset-tournament-button:hover {
-  background-color: var(--accent-hover);
-}
-
-.reset-tournament-button:disabled {
-  background-color: var(--disabled-color);
-  cursor: not-allowed;
-}
-
 .error-message {
-  background-color: var(--error-bg);
-  color: var(--error-text);
-  padding: 1rem;
-  border-radius: 0.5rem;
-  margin-bottom: 2rem;
+  @apply bg-[color:var(--error-bg)] text-[color:var(--error-text)] mb-8 p-4 rounded-lg;
 }
-
 .tournament-bracket {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
+  @apply flex flex-col gap-8;
 }
-
 .semifinals {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
+  @apply grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-8;
 }
-
 .match-container {
-  background-color: var(--card-bg);
-  border: 1px solid var(--border-color);
-  border-radius: 0.75rem;
-  padding: 1.5rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s, box-shadow 0.2s;
+  @apply bg-[color:var(--card-bg)] border border-[color:var(--border-color)] shadow-[0_2px_4px_rgba(0,0,0,0.1)] transition-transform duration-[0.2s,box-shadow] delay-[0.2s] p-6 rounded-xl border-solid hover:-translate-y-0.5 hover:shadow-[0_4px_8px_rgba(0,0,0,0.15)];
 }
-
-.match-container:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-}
-
 .match-card {
+  @apply border flex flex-col shadow-[0_2px_8px_rgba(0,0,0,0.1)] backdrop-blur-[10px] p-6 rounded-lg border-solid border-[rgba(255,255,255,0.05)];
   background: rgba(42, 43, 74, 0.5);
-  border-radius: 8px;
-  padding: 1.5rem;
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  display: flex;
-  flex-direction: column;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(10px);
 }
-
 .match-card h3 {
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 0.9rem;
-  margin-bottom: 1.5rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  text-align: center;
-  font-weight: 500;
+  @apply text-[rgba(255,255,255,0.7)] text-[0.9rem] uppercase tracking-widest text-center font-medium mb-6;
 }
-
 .match-players {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1.5rem;
-  margin-bottom: 1.5rem;
-  flex: 1;
+  @apply flex items-center justify-between gap-6 flex-1 mb-6 p-4 rounded-lg;
   background: rgba(255, 255, 255, 0.02);
-  border-radius: 8px;
-  padding: 1rem;
 }
-
 .player {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.75rem;
-  width: 40%;
+  @apply flex flex-col items-center gap-3 w-2/5;
 }
-
 .player-avatar {
-  width: 100%;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  border: 2px solid rgba(255, 255, 255, 0.1);
-  object-fit: cover;
+  @apply w-full aspect-[1] object-cover rounded-[50%] border-2 border-solid border-[rgba(255,255,255,0.1)];
 }
-
 .player-name {
-  color: white;
-  font-size: 0.9rem;
-  font-weight: 400;
-  text-align: center;
+  @apply text-[white] text-[0.9rem] font-normal text-center;
   word-break: break-word;
 }
-
 .vs {
-  color: rgba(255, 255, 255, 0.3);
-  font-size: 1rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  padding: 0.5rem 0.75rem;
-  border-radius: 4px;
+  @apply text-[rgba(255,255,255,0.3)] text-base font-medium uppercase rounded px-3 py-2;
   background: rgba(255, 255, 255, 0.02);
 }
 
 /* Final Match Styles */
 .match-card.final {
-  max-width: 700px;
-  margin: 0 auto;
-  padding: 2rem;
+  @apply max-w-[700px] mx-auto my-0 p-8;
   background: rgba(42, 43, 74, 0.6);
 }
-
 .match-card.final .player {
-  width: 45%;
+  @apply w-[45%];
 }
-
 .match-card.final .player-avatar {
-  border-width: 2px;
+  @apply border-2;
 }
-
 .match-card.final .player-name {
-  font-size: 1rem;
+  @apply text-base;
 }
 
 /* Champion Styles */
 .match-card.champion {
-  max-width: 500px;
-  margin: 0 auto;
-  text-align: center;
-  padding: 2rem;
+  @apply max-w-[500px] text-center border mx-auto my-0 p-8 border-solid border-[rgba(74,226,175,0.1)];
   background: rgba(42, 43, 74, 0.7);
-  border: 1px solid rgba(74, 226, 175, 0.1);
 }
-
 .champion-display {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1.5rem;
-  width: 100%;
+  @apply flex flex-col items-center gap-6 w-full;
 }
-
 .champion-avatar {
-  width: 80%;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  border: 2px solid rgba(255, 255, 255, 0.1);
-  object-fit: cover;
+  @apply w-4/5 aspect-[1] object-cover rounded-[50%] border-2 border-solid border-[rgba(255,255,255,0.1)];
 }
-
 .champion-name {
-  color: white;
-  font-size: 1.5rem;
-  font-weight: 500;
+  @apply text-[white] text-2xl font-medium;
 }
 
 /* Match Actions and Status */
 .match-actions {
-  display: flex;
-  gap: 0.75rem;
-  margin-top: 1.5rem;
+  @apply flex gap-3 mt-6;
 }
-
 .start-match-button {
-  width: 100%;
-  padding: 0.75rem;
+  @apply w-full border rounded text-[white] text-[0.9rem] font-normal cursor-pointer transition-all duration-[0.2s] ease-[ease] p-3 border-solid border-[rgba(255,255,255,0.1)];
   background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 4px;
-  color: white;
-  font-size: 0.9rem;
-  font-weight: 400;
-  cursor: pointer;
-  transition: all 0.2s ease;
 }
-
 .start-match-button:hover {
   background: rgba(255, 255, 255, 0.15);
 }
-
-.match-status, .match-result {
-  text-align: center;
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 0.9rem;
-  font-weight: 400;
-  padding: 0.75rem;
+.match-status,
+.match-result {
+  @apply text-center text-[rgba(255,255,255,0.7)] text-[0.9rem] font-normal border rounded mt-6 p-3 border-solid border-[rgba(255,255,255,0.05)];
   background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  border-radius: 4px;
-  margin-top: 1.5rem;
 }
-
 @media (min-width: 1600px) {
   .tournament-bracket {
-    max-width: 1400px;
-    gap: 3rem;
+    @apply max-w-[1400px] gap-12;
   }
-
   .semifinals {
-    gap: 2rem;
-    padding: 0 2rem;
+    @apply gap-8 px-8 py-0;
   }
-
   .match-card {
-    padding: 2rem;
+    @apply p-8;
   }
-
   .player-name {
-    font-size: 1rem;
+    @apply text-base;
   }
-
   .match-card.final {
-    max-width: 800px;
-    padding: 2.5rem;
+    @apply max-w-[800px] p-10;
   }
-
   .match-card.final .player-name {
-    font-size: 1.1rem;
+    @apply text-[1.1rem];
   }
-
   .match-card.champion {
-    max-width: 600px;
-    padding: 3rem;
+    @apply max-w-[600px] p-12;
   }
-
   .champion-name {
-    font-size: 1.8rem;
+    @apply text-[1.8rem];
   }
 }
-
 @media (max-width: 768px) {
   .tournament-lobby {
-    padding: 1rem;
+    @apply p-4;
   }
-
   .tournament-header {
-    flex-direction: column;
-    gap: 1rem;
-    text-align: center;
+    @apply flex-col gap-4 text-center;
   }
-
   .semifinals {
-    grid-template-columns: 1fr;
+    @apply grid-cols-[1fr];
   }
-} 
+}
