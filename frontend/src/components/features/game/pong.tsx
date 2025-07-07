@@ -61,6 +61,13 @@ export const Game: React.FC = () => {
   // track if we’re in portrait
   const [isPortrait, setIsPortrait] = useState(false)
 
+  const wrapperRef = useRef<HTMLDivElement>(null)
+
+  const p1Up = useRef(false)
+  const p1Down = useRef(false)
+  const p2Up = useRef(false)
+  const p2Down = useRef(false)
+
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const ballSpeedX = useRef(4)
   const ballSpeedY = useRef(4)
@@ -104,30 +111,26 @@ export const Game: React.FC = () => {
     let paddle2Y = CANVAS_HEIGHT / 2 - PADDLE_HEIGHT / 2
     let ballX = CANVAS_WIDTH / 2
     let ballY = CANVAS_HEIGHT / 2
-    let paddle1Up = false
-    let paddle1Down = false
-    let paddle2Up = false
-    let paddle2Down = false
     let ballDirectionX = 0
     let ballDirectionY = 0
 
     function keyDownHandler(e: KeyboardEvent) {
       if (['ArrowUp', 'ArrowDown', ' ', 'Spacebar'].includes(e.key))
         e.preventDefault()
-      if (e.key === 'w' || e.key === 'W') paddle1Up = true
-      if (e.key === 's' || e.key === 'S') paddle1Down = true
-      if (e.key === 'ArrowUp') paddle2Up = true
-      if (e.key === 'ArrowDown') paddle2Down = true
+      if (e.key === 'w' || e.key === 'W') p1Up.current = true
+      if (e.key === 's' || e.key === 'S') p1Down.current = true
+      if (e.key === 'ArrowUp')            p2Up.current = true
+      if (e.key === 'ArrowDown')          p2Down.current = true
 
       if (e.key === 'Spacebar' || e.key === ' ') setMatchStarted(true)
     }
 
     function keyUpHandler(e: KeyboardEvent) {
       if (['ArrowUp', 'ArrowDown'].includes(e.key)) e.preventDefault()
-      if (e.key === 'w' || e.key === 'W') paddle1Up = false
-      if (e.key === 's' || e.key === 'S') paddle1Down = false
-      if (e.key === 'ArrowUp') paddle2Up = false
-      if (e.key === 'ArrowDown') paddle2Down = false
+      if (e.key === 'w' || e.key === 'W') p1Up.current = false
+      if (e.key === 's' || e.key === 'S') p1Down.current = false
+      if (e.key === 'ArrowUp') p2Up.current = false
+      if (e.key === 'ArrowDown') p2Down.current = false
     }
 
     function resetBall() {
@@ -139,7 +142,7 @@ export const Game: React.FC = () => {
     }
 
     function onGoal(x: number, y: number) {
-      // generate ~30 particles bursting out
+      // sparks
       let angle = 0
       for (let i = 0; i < 40; i++) {
         if (ballX > CANVAS_WIDTH / 2) {
@@ -168,12 +171,10 @@ export const Game: React.FC = () => {
       if (gameOver || !matchStarted || isPaused) return
 
       // Move paddles
-      if (paddle1Up && paddle1Y > 0) paddle1Y -= PADDLE_SPEED
-      if (paddle1Down && paddle1Y < CANVAS_HEIGHT - PADDLE_HEIGHT)
-        paddle1Y += PADDLE_SPEED
-      if (paddle2Up && paddle2Y > 0) paddle2Y -= PADDLE_SPEED
-      if (paddle2Down && paddle2Y < CANVAS_HEIGHT - PADDLE_HEIGHT)
-        paddle2Y += PADDLE_SPEED
+      if (p1Up.current && paddle1Y > 0) paddle1Y -= PADDLE_SPEED
+      if (p1Down.current && paddle1Y < CANVAS_HEIGHT - PADDLE_HEIGHT) paddle1Y += PADDLE_SPEED
+      if (p2Up.current && paddle2Y > 0) paddle2Y -= PADDLE_SPEED
+      if (p2Down.current && paddle2Y < CANVAS_HEIGHT - PADDLE_HEIGHT) paddle2Y += PADDLE_SPEED
 
       // update ball direction from previous frame for trail effect
       ballDirectionX = ballSpeedX.current
@@ -514,54 +515,72 @@ export const Game: React.FC = () => {
     matchStarted,
   ])
 
+  useEffect(() => {
+    if (matchStarted && wrapperRef.current) {
+      wrapperRef.current.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center',
+        inline: 'center'
+      })
+    }
+  }, [matchStarted])
+
   return (
-    <>
-      {isPortrait && (
-        <div className="rotate-overlay">
-          {t('Please rotate your device to landscape')}
-        </div>
-      )}
-      <LoadingContainer>
-        <div className="game-container">
-          {gameState?.player1 && gameState?.player2 && (
-            <div className="game-header">
-              <div className="player-info">
-                <img
-                  src={gameState.player1.avatar}
-                  alt={gameState.player1.name}
-                  className="player-avatar"
-                />
-                <span className="player-name">{gameState.player1.name}</span>
-                <span className="player-score">{scores.player1}</span>
-                <span className="player-controls">{t('W/S keys')}</span>
+  <>
+    {isPortrait && (
+      <div className="rotate-overlay">
+        {t('Please rotate your device to landscape')}
+      </div>
+    )}
+    <LoadingContainer>
+      <div className="game-container">
+        {gameState?.player1 && gameState?.player2 && (
+          <div className="game-header">
+            <div className="player-info">
+              <img
+                src={gameState.player1.avatar}
+                alt={gameState.player1.name}
+                className="player-avatar"
+              />
+              <span className="player-name">{gameState.player1.name}</span>
+              <span className="player-score">{scores.player1}</span>
+              <span className="player-controls">{t('W/S keys')}</span>
+            </div>
+            <div className="match-info">
+              <div className="match-type">
+                {gameState.matchType === 'final'
+                  ? t('matchType.final')
+                  : gameState.matchType === '1v1'
+                  ? t('matchType.1v1')
+                  : t('matchType.semifinal')}
               </div>
-              <div className="match-info">
-                <div className="match-type">
-                  {gameState.matchType === 'final'
-                    ? t('matchType.final')
-                    : gameState.matchType === '1v1'
-                      ? 'matchType.1v1'
-                      : t('matchType.semifinal')}
-                </div>
-                <div className="win-condition">
-                  {t('First to 11 points (win by 2)')}
-                </div>
-              </div>
-              <div className="player-info">
-                <img
-                  src={gameState.player2.avatar}
-                  alt={gameState.player2.name}
-                  className="player-avatar"
-                />
-                <span className="player-name">{gameState.player2.name}</span>
-                <span className="player-score">{scores.player2}</span>
-                <span className="player-controls">{t('↑/↓ keys')}</span>
+              <div className="win-condition">
+                {t('First to 11 points (win by 2)')}
               </div>
             </div>
-          )}
-          <canvas ref={canvasRef} className="game-canvas" />
-        </div>
-      </LoadingContainer>
-    </>
-  )
+            <div className="player-info">
+              <img
+                src={gameState.player2.avatar}
+                alt={gameState.player2.name}
+                className="player-avatar"
+              />
+              <span className="player-name">{gameState.player2.name}</span>
+              <span className="player-score">{scores.player2}</span>
+              <span className="player-controls">{t('↑/↓ keys')}</span>
+            </div>
+          </div>
+        )}
+
+        <div ref={wrapperRef} className={`canvas-wrapper`} onTouchStart={() => !matchStarted && setMatchStarted(true)}>
+            {/* touch zones */}
+            <div className="touch-zone left up"    onTouchStart={()=>p1Up.current=true}   onTouchEnd={()=>p1Up.current=false}  />
+            <div className="touch-zone left down"  onTouchStart={()=>p1Down.current=true} onTouchEnd={()=>p1Down.current=false}/>
+            <div className="touch-zone right up"   onTouchStart={()=>p2Up.current=true}   onTouchEnd={()=>p2Up.current=false}  />
+            <div className="touch-zone right down" onTouchStart={()=>p2Down.current=true} onTouchEnd={()=>p2Down.current=false}/>
+            <canvas ref={canvasRef} className="game-canvas" />
+          </div>
+      </div>
+    </LoadingContainer>
+  </>
+)
 }

@@ -128,6 +128,52 @@
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
 }
 
+.canvas-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 1000px;
+  aspect-ratio: 5 / 3;
+  margin: 0 auto;
+}
+
+.touch-zone {
+  position: absolute;
+  background: transparent;
+  /* ensure they’re on top of the canvas */
+  z-index: 10;
+}
+
+/* left half, top quarter of screen */
+.touch-zone.left.up {
+  left: 0;
+  top: 0;
+  width: 50%;
+  height: 50%;
+}
+
+/* left half, bottom quarter */
+.touch-zone.left.down {
+  left: 0;
+  bottom: 0;
+  width: 50%;
+  height: 50%;
+}
+
+/* right half, top quarter */
+.touch-zone.right.up {
+  right: 0;
+  top: 0;
+  width: 50%;
+  height: 50%;
+}
+/* right half, bottom quarter */
+.touch-zone.right.down {
+  right: 0;
+  bottom: 0;
+  width: 50%;
+  height: 50%;
+}
+
 @media (max-width: 1000px) {
   /* let the header container actually shrink below 1,000px */
   .game-header {
