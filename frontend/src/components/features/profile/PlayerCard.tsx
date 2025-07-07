@@ -1,15 +1,19 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React from 'react'
 
-interface Match {
-  id: number;
-  opponent: string;
-  result: 'Win' | 'Loss';
-  date: string;
-  score: string;
-}
+interface Player {
+    id: number;
+    display_name: string;
+    wins: number;
+    losses: number;
+    avatar_url: string;
+    created_at: string;
+  }
 
-const PlayerCard = ({ player }) => {
+  interface PlayerCardProps {
+    player: Player;
+  }
+
+export const PlayerCard: React.FC<PlayerCardProps> = ({ player }) => {
 
     return (
         <div>
@@ -21,5 +25,3 @@ const PlayerCard = ({ player }) => {
         </div>
     );
 }
-
-export default PlayerCard;

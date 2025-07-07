@@ -1,6 +1,7 @@
-import { useState, useCallback, useEffect } from 'react'
-import { UserPlayer } from '../types/dashboard'
-import { BaseService } from '../services/baseService'
+import { UserPlayer } from '@/types/dashboard'
+import { API_URL } from '@/utils/constants'
+import { BaseService } from '@services/baseService'
+import { useCallback, useEffect, useState } from 'react'
 
 interface RawPlayer {
   id: number
@@ -11,7 +12,6 @@ interface RawPlayer {
   isActive?: boolean
   points?: number
 }
-
 
 export const useUserPlayers = () => {
   const [userPlayers, setUserPlayers] = useState<UserPlayer[]>([])
@@ -26,8 +26,8 @@ export const useUserPlayers = () => {
           display_name: r.display_name,
           // prepend backend host, fallback to placeholder-avatar based on id index
           avatar: r.avatar
-            ? `https://localhost:3001${r.avatar}`
-            : `https://localhost:3001/uploads/placeholder-avatar${(r.id % 4) + 1}.png`,
+            ? `${API_URL}${r.avatar}`
+            : `${API_URL}/uploads/placeholder-avatar${(r.id % 4) + 1}.png`,
           isActive: r.isActive ?? false,
           points: r.points ?? 0,
           wins: r.wins ?? 0,
@@ -53,15 +53,19 @@ export const useUserPlayers = () => {
         id: r.id,
         display_name: r.display_name,
         avatar: r.avatar
-          ? `https://localhost:3001${r.avatar}`
-          : `https://localhost:3001/uploads/placeholder-avatar${(r.id % 4) + 1}.png`,
+          ? `${API_URL}${r.avatar}`
+          : `${API_URL}/uploads/placeholder-avatar${(r.id % 4) + 1}.png`,
         isActive: r.isActive ?? false,
         points: r.points ?? 0,
       }))
       setUserPlayers(mapped)
     } catch (error) {
+      if (error == 'Error: An error occurred') {
+        alert(`Player with name "${playerName}" already exists.`)
+        return;
+      }
       console.error(error)
-      alert(`Failed to create player: ${playerName}`)
+      alert(`Failed to create player: ${playerName}, ${error}`)
     }
   }, [])
 
@@ -74,14 +78,14 @@ export const useUserPlayers = () => {
         id: r.id,
         display_name: r.display_name,
         avatar: r.avatar
-          ? `https://localhost:3001${r.avatar}`
-          : `https://localhost:3001/uploads/placeholder-avatar${(r.id % 4) + 1}.png`,
+          ? `${API_URL}${r.avatar}`
+          : `${API_URL}/uploads/placeholder-avatar${(r.id % 4) + 1}.png`,
         isActive: r.isActive ?? false,
         points: r.points ?? 0,
         wins: r.wins ?? 0,
         losses: r.losses ?? 0,
-    }))
-    setUserPlayers(mapped)
+      }))
+      setUserPlayers(mapped)
     } catch (error) {
       console.error(error)
       alert(`Failed to delete player: ${playerId}`)

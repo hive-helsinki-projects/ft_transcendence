@@ -1,12 +1,11 @@
 import React from 'react'
-import { AuthSectionProps } from '../../../types/auth'
-import '../../../assets/styles/index.css'
-import GoogleSignIn from "../../GoogleSignIn";
-import { useAuthForm } from '../../../hooks/auth/useAuthForm'
+import { AuthSectionProps } from '@/types/auth'
+import '@assets/styles/index.css'
+import { GoogleSignIn } from '@components/GoogleSignIn'
 
-const AuthSection: React.FC<AuthSectionProps> = ({
-  onGoogleAuth,
+export const AuthSection: React.FC<AuthSectionProps> = ({
   onNavigateToRegister,
+  onNavigateToSignIn,
   children,
 }) => {
 
@@ -23,22 +22,40 @@ const AuthSection: React.FC<AuthSectionProps> = ({
           <GoogleSignIn isLoading={isLoading}/>
       </div>
 
-      <div className="register-link">
-        <p>
-          Don't have an account?{' '}
-          <button
-            type="button"
-            className="link-button"
-            onClick={onNavigateToRegister}
-            aria-label="Register new account"
-          >
-            Register here
-          </button>
-        </p>
-      </div>
+      {onNavigateToRegister && (
+        <div className="register-link">
+          <p>
+            Don't have an account?{' '}
+            <button
+              type="button"
+              className="link-button"
+              onClick={onNavigateToRegister}
+              aria-label="Register new account"
+            >
+              Register here
+            </button>
+          </p>
+        </div>
+      )}
+
+      {onNavigateToSignIn && (
+        <div className="register-link">
+          <p>
+            Already have an account?{' '}
+            <button
+              type="button"
+              className="link-button"
+              onClick={onNavigateToSignIn}
+              aria-label="Sign in to account"
+            >
+              Sign in here
+            </button>
+          </p>
+        </div>
+      )}
     </div>
   </section>
   )
 }
 
-export default AuthSection
+

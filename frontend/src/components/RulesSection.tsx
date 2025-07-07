@@ -4,7 +4,7 @@ interface RulesSectionProps {
   rules: string[]
 }
 
-const RulesSection: React.FC<RulesSectionProps> = ({ rules }) => (
+export const RulesSection: React.FC<RulesSectionProps> = ({ rules }) => (
   <section className="help-section">
     <h2>Game Rules</h2>
     <ul className="help-list">
@@ -16,5 +16,3 @@ const RulesSection: React.FC<RulesSectionProps> = ({ rules }) => (
     </ul>
   </section>
 )
-
-export default RulesSection

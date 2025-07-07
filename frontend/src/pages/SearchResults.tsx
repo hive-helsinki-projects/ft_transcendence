@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
-import '../assets/styles/SearchResults.css'
+import '@assets/styles/SearchResults.css'
+import { API_URL } from '@utils/constants'
 import axios from 'axios'
 
-const SearchResults: React.FC = () => {
+export const SearchResults: React.FC = () => {
   const [users, setUsers] = useState([])
   const location = useLocation()
   const navigate = useNavigate()
@@ -15,7 +16,7 @@ const SearchResults: React.FC = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await axios.get('https://localhost:3001/users')
+        const response = await axios.get(`${API_URL}/users`)
         setUsers(response.data)
       } catch (error) {
         console.error('Error fetching users:', error)
@@ -24,10 +25,9 @@ const SearchResults: React.FC = () => {
     fetchUsers()
   }, [])
 
-
   // Filter users based on the query
   const filteredUsers = users.filter((user) =>
-    user.username.toLowerCase().includes(query.toLowerCase())
+    user.username.toLowerCase().includes(query.toLowerCase()),
   )
 
   // Navigate to the profile page of a user
@@ -55,5 +55,3 @@ const SearchResults: React.FC = () => {
     </div>
   )
 }
-
-export default SearchResults

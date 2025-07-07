@@ -82,13 +82,8 @@
     "language": "Kieli",
     "english": "Englanti",
     "finnish": "Suomi",
-    "swedish": "Ruotsi",
     "japanese": "Japani"
   },
-  "Theme Settings": "Teema-asetukset",
-  "Theme": "Teema",
-  "Dark": "Tumma",
-  "Light": "Vaalea",
   "System Default": "Järjestelmän oletus",
   "Account Management": "Tilinhallinta",
   "actions": {

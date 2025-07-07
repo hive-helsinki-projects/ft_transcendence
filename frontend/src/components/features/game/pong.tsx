@@ -1,13 +1,12 @@
-import React, { useEffect, useRef, useState } from 'react'
+import { LoadingContainer } from '@components/index'
+import { useEffect, useRef, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
-import LoadingContainer from '../../LoadingContainer'
-import '../../../assets/styles/Pong.css'
-import { BaseService } from '../../../services/baseService'
-
-import useTranslate from '../../../hooks/useTranslate'
+import '@assets/styles/Pong.css'
+import { useTranslate } from '@hooks/index'
+import { BaseService } from '@services/baseService'
 
 // Constants
-const CANVAS_WIDTH = 800
+const CANVAS_WIDTH = 1000
 const CANVAS_HEIGHT = 600
 const PADDLE_WIDTH = 10
 const PADDLE_HEIGHT = 100
@@ -20,31 +19,48 @@ let trailLength = 20
 let rightPaddleHit = 0
 let leftPaddleHit = 0
 
-let trailT = 0;
-let trailInv = 0;
-let trailR = 0;
-let trailG = 0;
-let trailB = 0;
-let trailAlpha = 0;
-let trailX = 0;
-let trailY = 0;
-let trailRad = 0;
-
+let trailT = 0
+let trailInv = 0
+let trailR = 0
+let trailG = 0
+let trailB = 0
+let trailAlpha = 0
+let trailX = 0
+let trailY = 0
+let trailRad = 0
 
 interface GameState {
   matchType: 'semifinal' | 'final' | '1v1'
   matchId: number
-  player1: { name: string; avatar: string; id: number}
+  player1: { name: string; avatar: string; id: number }
   player2: { name: string; avatar: string; id: number }
   returnTo?: string
 }
 
-interface Particle { x: number; y: number; vx: number; vy: number; life: number; }
-let particles: Particle[] = [];
-let isPaused = false;
+interface Particle {
+  x: number
+  y: number
+  vx: number
+  vy: number
+  life: number
+}
+let particles: Particle[] = []
+let isPaused = false
 
+type OrientationLockType =
+  | 'any'
+  | 'natural'
+  | 'landscape'
+  | 'portrait'
+  | 'portrait-primary'
+  | 'portrait-secondary'
+  | 'landscape-primary'
+  | 'landscape-secondary';
 
-export default function Game() {
+export const Game: React.FC = () => {
+  // track if we’re in portrait
+  const [isPortrait, setIsPortrait] = useState(false)
+
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const ballSpeedX = useRef(4)
   const ballSpeedY = useRef(4)
@@ -64,6 +80,18 @@ export default function Game() {
   const t = useTranslate()
 
   useEffect(() => {
+    const so = screen.orientation as ScreenOrientation & {
+      lock?: (orientation: OrientationLockType) => Promise<void>;
+    };
+    if (so && typeof so.lock === 'function') {
+      so.lock('landscape').catch(() => {});
+    }
+
+    const check = () => setIsPortrait(window.innerHeight > window.innerWidth)
+    window.addEventListener('resize', check)
+    window.addEventListener('orientationchange', check)
+    check()
+
     const canvas = canvasRef.current!
     const ctx = canvas.getContext('2d')!
     canvas.width = CANVAS_WIDTH
@@ -84,7 +112,8 @@ export default function Game() {
     let ballDirectionY = 0
 
     function keyDownHandler(e: KeyboardEvent) {
-      if (['ArrowUp', 'ArrowDown', ' ','Spacebar'].includes(e.key)) e.preventDefault()
+      if (['ArrowUp', 'ArrowDown', ' ', 'Spacebar'].includes(e.key))
+        e.preventDefault()
       if (e.key === 'w' || e.key === 'W') paddle1Up = true
       if (e.key === 's' || e.key === 'S') paddle1Down = true
       if (e.key === 'ArrowUp') paddle2Up = true
@@ -110,30 +139,29 @@ export default function Game() {
     }
 
     function onGoal(x: number, y: number) {
-        // generate ~30 particles bursting out
-        let angle = 0;
-        for (let i = 0; i < 40; i++) {
-
-            if (ballX > CANVAS_WIDTH / 2) {
-                angle = Math.random() * Math.PI + Math.PI / 2;
-            }
-            else {
-                angle = Math.random() * Math.PI - Math.PI / 2;
-            }
-            const speed = Math.random() * 4 + 2;
-            particles.push({
-            x, y,
-            vx: Math.cos(angle) * speed,
-            vy: Math.sin(angle) * speed,
-            life: 60,  // frames until they vanish
-            });
+      // generate ~30 particles bursting out
+      let angle = 0
+      for (let i = 0; i < 40; i++) {
+        if (ballX > CANVAS_WIDTH / 2) {
+          angle = Math.random() * Math.PI + Math.PI / 2
+        } else {
+          angle = Math.random() * Math.PI - Math.PI / 2
         }
-        isPaused = true;
-        setTimeout(() => {
-            particles = [];
-            isPaused = false;
-            resetBall();
-        }, 1000);  // 1s delay
+        const speed = Math.random() * 4 + 2
+        particles.push({
+          x,
+          y,
+          vx: Math.cos(angle) * speed,
+          vy: Math.sin(angle) * speed,
+          life: 60, // frames until they vanish
+        })
+      }
+      isPaused = true
+      setTimeout(() => {
+        particles = []
+        isPaused = false
+        resetBall()
+      }, 1000) // 1s delay
     }
 
     function update() {
@@ -150,7 +178,6 @@ export default function Game() {
       // update ball direction from previous frame for trail effect
       ballDirectionX = ballSpeedX.current
       ballDirectionY = ballSpeedY.current
-
 
       // Move ball
       ballX += ballSpeedX.current
@@ -189,7 +216,9 @@ export default function Game() {
       ballSpeedX.current = Math.max(Math.min(ballSpeedX.current, 10), -10)
       ballSpeedY.current = Math.max(Math.min(ballSpeedY.current, 10), -10)
 
-      trailLength = Math.max(Math.abs(ballSpeedX.current), Math.abs(ballSpeedY.current)) * 1.4
+      trailLength =
+        Math.max(Math.abs(ballSpeedX.current), Math.abs(ballSpeedY.current)) *
+        1.4
       if (trailLength < 10) trailLength = 10
 
       // Score points
@@ -199,7 +228,7 @@ export default function Game() {
           checkWinCondition(newScores)
           return newScores
         })
-        onGoal(ballX, ballY);
+        onGoal(ballX, ballY)
       }
 
       if (ballX + BALL_RADIUS > CANVAS_WIDTH) {
@@ -208,44 +237,67 @@ export default function Game() {
           checkWinCondition(newScores)
           return newScores
         })
-        onGoal(ballX, ballY);
+        onGoal(ballX, ballY)
       }
     }
 
-    async function checkWinCondition(currentScores: { player1: number; player2: number }) {
-      if (currentScores.player1 >= MAX_SCORE || currentScores.player2 >= MAX_SCORE) {
-        if ((currentScores.player1 > 20 || currentScores.player2 > 20) || Math.abs(currentScores.player1 - currentScores.player2) >= 2) {
-          setGameOver(true);
-          setMatchStatus('completed');
+    async function checkWinCondition(currentScores: {
+      player1: number
+      player2: number
+    }) {
+      if (
+        currentScores.player1 >= MAX_SCORE ||
+        currentScores.player2 >= MAX_SCORE
+      ) {
+        if (
+          currentScores.player1 > 20 ||
+          currentScores.player2 > 20 ||
+          Math.abs(currentScores.player1 - currentScores.player2) >= 2
+        ) {
+          setGameOver(true)
+          setMatchStatus('completed')
           if (!gameState) {
-            setMatchResult(`Winner: ${currentScores.player1 > currentScores.player2 ? 'player 1' : 'player2'}`);
+            setMatchResult(
+              `Winner: ${currentScores.player1 > currentScores.player2 ? 'player 1' : 'player2'}`,
+            )
             setTimeout(() => {
               navigate('/dashboard')
             }, 3000)
             return
           }
-          const winner = currentScores.player1 > currentScores.player2
-            ? gameState.player1
-            : gameState.player2;
-          setMatchResult(`Winner: ${winner.name}`);
+          const winner =
+            currentScores.player1 > currentScores.player2
+              ? gameState.player1
+              : gameState.player2
+          setMatchResult(`Winner: ${winner.name}`)
 
-          await sendMatchResult(gameState.matchId, winner.id, currentScores.player1, currentScores.player2)
+          await sendMatchResult(
+            gameState.matchId,
+            winner.id,
+            currentScores.player1,
+            currentScores.player2,
+          )
 
-          async function sendMatchResult(matchId: number, winnerId: number, score1: number, score2: number) {
+          async function sendMatchResult(
+            matchId: number,
+            winnerId: number,
+            score1: number,
+            score2: number,
+          ) {
             try {
               await BaseService.put(`/match-histories/${matchId}`, {
-                  winner_id: winnerId,
-                  players: [
-                    {
-                      player_id: gameState.player1.id,
-                      score: score1,
-                    },
-                    {
-                      player_id: gameState.player2.id,
-                      score: score2,
-                    }
-                  ]
-            })
+                winner_id: winnerId,
+                players: [
+                  {
+                    player_id: gameState.player1.id,
+                    score: score1,
+                  },
+                  {
+                    player_id: gameState.player2.id,
+                    score: score2,
+                  },
+                ],
+              })
             } catch (error) {
               console.log('Failed to update match result', error)
             }
@@ -267,45 +319,51 @@ export default function Game() {
     }
 
     function draw() {
-        const bg = ctx.createLinearGradient(0, 0, CANVAS_WIDTH, 0)
-        bg.addColorStop(0,   ' #3c86ff')
-        bg.addColorStop(0.5, 'black')
-        bg.addColorStop(1,   ' #ff5c5c')
+      const bg = ctx.createLinearGradient(0, 0, CANVAS_WIDTH, 0)
+      bg.addColorStop(0, ' #3c86ff')
+      bg.addColorStop(0.5, 'black')
+      bg.addColorStop(1, ' #ff5c5c')
 
-        // paint the background
-        ctx.fillStyle = bg
-        ctx.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT)
+      // paint the background
+      ctx.fillStyle = bg
+      ctx.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT)
 
-        ctx.strokeStyle = 'white'
-        ctx.setLineDash([5, 5])
+      ctx.strokeStyle = 'white'
+      ctx.setLineDash([5, 5])
+      ctx.beginPath()
+      ctx.moveTo(CANVAS_WIDTH / 2, 0)
+      ctx.lineTo(CANVAS_WIDTH / 2, CANVAS_HEIGHT)
+      ctx.stroke()
+
+      ctx.fillStyle = ' #ff5c5c'
+      ctx.beginPath()
+      ctx.roundRect(0, paddle1Y, PADDLE_WIDTH, PADDLE_HEIGHT, PADDLE_ROUNDING)
+      ctx.fill()
+
+      ctx.fillStyle = ' #3c86ff'
+      ctx.beginPath()
+      ctx.roundRect(
+        CANVAS_WIDTH - PADDLE_WIDTH,
+        paddle2Y,
+        PADDLE_WIDTH,
+        PADDLE_HEIGHT,
+        PADDLE_ROUNDING,
+      )
+      ctx.fill()
+
+      particles.forEach((p) => {
+        p.life--
+        p.x += p.vx
+        p.y += p.vy
+        ctx.globalAlpha = p.life / 60
+        ctx.fillStyle = 'gold'
         ctx.beginPath()
-        ctx.moveTo(CANVAS_WIDTH / 2, 0)
-        ctx.lineTo(CANVAS_WIDTH / 2, CANVAS_HEIGHT)
-        ctx.stroke()
-
-        ctx.fillStyle = ' #ff5c5c'
-        ctx.beginPath()
-        ctx.roundRect(0, paddle1Y, PADDLE_WIDTH, PADDLE_HEIGHT, PADDLE_ROUNDING)
+        ctx.arc(p.x, p.y, 3, 0, Math.PI * 2)
         ctx.fill()
-
-        ctx.fillStyle = ' #3c86ff'
-        ctx.beginPath()
-        ctx.roundRect(CANVAS_WIDTH - PADDLE_WIDTH, paddle2Y, PADDLE_WIDTH, PADDLE_HEIGHT, PADDLE_ROUNDING)
-        ctx.fill()
-
-        particles.forEach(p => {
-          p.life--;
-          p.x += p.vx;
-          p.y += p.vy;
-          ctx.globalAlpha = p.life / 60;
-          ctx.fillStyle = 'gold'
-          ctx.beginPath();
-          ctx.arc(p.x, p.y, 3, 0, Math.PI * 2);
-          ctx.fill();
-        });
-        ctx.globalAlpha = 1;
-        particles = particles.filter(p => p.life > 0);
-        if (isPaused) return;
+      })
+      ctx.globalAlpha = 1
+      particles = particles.filter((p) => p.life > 0)
+      if (isPaused) return
 
       // paddle bounce effect
       if (rightPaddleHit > 0) {
@@ -316,66 +374,72 @@ export default function Game() {
           paddle2Y,
           PADDLE_WIDTH + rightPaddleHit,
           PADDLE_HEIGHT,
-          PADDLE_ROUNDING
+          PADDLE_ROUNDING,
         )
         ctx.fill()
         rightPaddleHit++
         if (rightPaddleHit > 8) {
-            rightPaddleHit = 0
+          rightPaddleHit = 0
         }
       }
 
       if (leftPaddleHit > 0) {
-          ctx.fillStyle = ' #ff5c5c'
-          ctx.beginPath()
-          ctx.roundRect(0, paddle1Y, PADDLE_WIDTH + leftPaddleHit, PADDLE_HEIGHT, PADDLE_ROUNDING)
-          ctx.fill()
-          leftPaddleHit++
-          if (leftPaddleHit > 8) {
-              leftPaddleHit = 0
-          }
+        ctx.fillStyle = ' #ff5c5c'
+        ctx.beginPath()
+        ctx.roundRect(
+          0,
+          paddle1Y,
+          PADDLE_WIDTH + leftPaddleHit,
+          PADDLE_HEIGHT,
+          PADDLE_ROUNDING,
+        )
+        ctx.fill()
+        leftPaddleHit++
+        if (leftPaddleHit > 8) {
+          leftPaddleHit = 0
+        }
       }
 
       // ball trail effect
-      const endColor = ballDirectionX > 0 ? { r:   0, g:   0, b: 255 } : { r: 255, g:   0, b:   0 };
+      const endColor =
+        ballDirectionX > 0 ? { r: 0, g: 0, b: 255 } : { r: 255, g: 0, b: 0 }
       for (let i = 0; i < trailLength; i++) {
-        trailT = i / trailLength;
-        trailInv = 1 - trailT;
-        trailR = Math.round(255 * trailInv + endColor.r * trailT);
-        trailG = Math.round(255 * trailInv + endColor.g * trailT);
-        trailB = Math.round(255 * trailInv + endColor.b * trailT);
-        trailAlpha = trailInv;
+        trailT = i / trailLength
+        trailInv = 1 - trailT
+        trailR = Math.round(255 * trailInv + endColor.r * trailT)
+        trailG = Math.round(255 * trailInv + endColor.g * trailT)
+        trailB = Math.round(255 * trailInv + endColor.b * trailT)
+        trailAlpha = trailInv
 
-        ctx.fillStyle = `rgba(${trailR},${trailG},${trailB},${trailAlpha})`;
+        ctx.fillStyle = `rgba(${trailR},${trailG},${trailB},${trailAlpha})`
 
-        trailX = ballX - ballDirectionX * i;
-        trailY = ballY - ballDirectionY * i;
-        trailRad = BALL_RADIUS * trailInv;
+        trailX = ballX - ballDirectionX * i
+        trailY = ballY - ballDirectionY * i
+        trailRad = BALL_RADIUS * trailInv
 
-        ctx.beginPath();
-        ctx.arc(trailX, trailY, trailRad, 0, Math.PI * 2);
-        ctx.fill();
+        ctx.beginPath()
+        ctx.arc(trailX, trailY, trailRad, 0, Math.PI * 2)
+        ctx.fill()
       }
 
       // head:
-      ctx.fillStyle = 'white';
-      ctx.beginPath();
-      ctx.arc(ballX, ballY, BALL_RADIUS, 0, Math.PI * 2);
-      ctx.fill();
+      ctx.fillStyle = 'white'
+      ctx.beginPath()
+      ctx.arc(ballX, ballY, BALL_RADIUS, 0, Math.PI * 2)
+      ctx.fill()
 
-      const tX = ballX / CANVAS_WIDTH;
-      let r, g, b;
+      const tX = ballX / CANVAS_WIDTH
+      let r, g, b
       if (tX < 0.5) {
-        const t = tX / 0.5;
-        r = 0xff * (1 - t) + 0xff * t;
-        g = 0x5c * (1 - t) + 0xff * t;
-        b = 0x5c * (1 - t) + 0x00 * t;
-      }
-      else {
-        const t = (tX - 0.5) / 0.5;
-        r = 0xff * (1 - t) + 0x3c * t;
-        g = 0xff * (1 - t) + 0x86 * t;
-        b = 0xff * (1 - t) + 0xff * t;
+        const t = tX / 0.5
+        r = 0xff * (1 - t) + 0xff * t
+        g = 0x5c * (1 - t) + 0xff * t
+        b = 0x5c * (1 - t) + 0x00 * t
+      } else {
+        const t = (tX - 0.5) / 0.5
+        r = 0xff * (1 - t) + 0x3c * t
+        g = 0xff * (1 - t) + 0x86 * t
+        b = 0xff * (1 - t) + 0xff * t
       }
 
       ctx.fillStyle = `rgb(${Math.round(r)}, ${Math.round(g)}, ${Math.round(b)})`
@@ -400,7 +464,11 @@ export default function Game() {
       if (matchStatus === 'in_progress') {
         ctx.font = '20px Arial'
         ctx.fillStyle = 'rgba(255, 255, 255, 0.7)'
-        ctx.fillText(`${matchStarted ? t('Match in Progress...') : t('Press spacebar to start game...')}`, CANVAS_WIDTH / 2, 30)
+        ctx.fillText(
+          `${matchStarted ? t('Match in Progress...') : t('Press spacebar to start game...')}`,
+          CANVAS_WIDTH / 2,
+          30,
+        )
       }
 
       if (matchResult) {
@@ -429,56 +497,71 @@ export default function Game() {
     loop()
 
     return () => {
+      window.removeEventListener('resize', check)
+      window.removeEventListener('orientationchange', check)
+
       document.removeEventListener('keydown', keyDownHandler)
       document.removeEventListener('keyup', keyUpHandler)
       cancelAnimationFrame(animationFrameId)
     }
-  }, [scores, gameOver, matchStatus, matchResult, navigate, gameState, matchStarted])
+  }, [
+    scores,
+    gameOver,
+    matchStatus,
+    matchResult,
+    navigate,
+    gameState,
+    matchStarted,
+  ])
 
   return (
-    <LoadingContainer>
-      <div className="game-container">
-        {gameState?.player1 && gameState?.player2 && (
-          <div className="game-header">
-            <div className="player-info">
-              <img
-                src={gameState.player1.avatar}
-                alt={gameState.player1.name}
-                className="player-avatar"
-              />
-              <span className="player-name">{gameState.player1.name}</span>
-              <span className="player-score">{scores.player1}</span>
-              <span className="player-controls">{t('W/S keys')}</span>
-            </div>
-            <div className="match-info">
-              <div className="match-type">
-                {gameState.matchType === 'final'
-                  ? t('matchType.final')
-                  : gameState.matchType === '1v1'
-                    ? ('matchType.1v1')
-                    : t('matchType.semifinal')}
+    <>
+      {isPortrait && (
+        <div className="rotate-overlay">
+          {t('Please rotate your device to landscape')}
+        </div>
+      )}
+      <LoadingContainer>
+        <div className="game-container">
+          {gameState?.player1 && gameState?.player2 && (
+            <div className="game-header">
+              <div className="player-info">
+                <img
+                  src={gameState.player1.avatar}
+                  alt={gameState.player1.name}
+                  className="player-avatar"
+                />
+                <span className="player-name">{gameState.player1.name}</span>
+                <span className="player-score">{scores.player1}</span>
+                <span className="player-controls">{t('W/S keys')}</span>
               </div>
-              <div className="win-condition">{t('First to 11 points (win by 2)')}</div>
+              <div className="match-info">
+                <div className="match-type">
+                  {gameState.matchType === 'final'
+                    ? t('matchType.final')
+                    : gameState.matchType === '1v1'
+                      ? 'matchType.1v1'
+                      : t('matchType.semifinal')}
+                </div>
+                <div className="win-condition">
+                  {t('First to 11 points (win by 2)')}
+                </div>
+              </div>
+              <div className="player-info">
+                <img
+                  src={gameState.player2.avatar}
+                  alt={gameState.player2.name}
+                  className="player-avatar"
+                />
+                <span className="player-name">{gameState.player2.name}</span>
+                <span className="player-score">{scores.player2}</span>
+                <span className="player-controls">{t('↑/↓ keys')}</span>
+              </div>
             </div>
-            <div className="player-info">
-              <img
-                src={gameState.player2.avatar}
-                alt={gameState.player2.name}
-                className="player-avatar"
-              />
-              <span className="player-name">{gameState.player2.name}</span>
-              <span className="player-score">{scores.player2}</span>
-              <span className="player-controls">{t('↑/↓ keys')}</span>
-            </div>
-          </div>
-        )}
-        <canvas
-          ref={canvasRef}
-          width="800"
-          height="600"
-          className="game-canvas"
-        />
-      </div>
-    </LoadingContainer>
+          )}
+          <canvas ref={canvasRef} className="game-canvas" />
+        </div>
+      </LoadingContainer>
+    </>
   )
 }

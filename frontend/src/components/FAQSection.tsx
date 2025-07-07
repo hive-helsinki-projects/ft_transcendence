@@ -1,8 +1,8 @@
+import { FAQ } from '@utils/constants'
 import React from 'react'
-import { FAQ } from '../data/helpData'
 
 interface FAQSectionProps {
-  faqs: FAQ[]
+  faqs: typeof FAQ
 }
 
 const FAQSection: React.FC<FAQSectionProps> = ({ faqs }) => (

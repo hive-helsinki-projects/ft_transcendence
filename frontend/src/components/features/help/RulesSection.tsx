@@ -10,7 +10,7 @@ interface RulesSectionProps {
   rules: GameRule[]
 }
 
-const RulesSection: React.FC<RulesSectionProps> = ({ rules }) => {
+export const RulesSection: React.FC<RulesSectionProps> = ({ rules }) => {
   const t = useTranslate()
   return (
     <section className="help-section">
@@ -26,5 +26,3 @@ const RulesSection: React.FC<RulesSectionProps> = ({ rules }) => {
     </section>
   )
 }
-
-export default RulesSection 

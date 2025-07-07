@@ -1,9 +1,9 @@
+import { AuthFormData } from '@/types/auth'
+import { useAuth } from '@hooks/auth/useAuth'
+import { AuthService } from '@services/authService'
+import { validateRegistrationForm } from '@utils/validation'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { AuthFormData } from '../types/auth'
-import { useAuth } from './auth/useAuth'
-import { AuthService } from '../services/authService'
-import { validateRegistrationForm } from '../utils/validation'
 
 interface UseRegisterFormReturn {
   formData: AuthFormData
@@ -24,7 +24,7 @@ export const useRegisterForm = (): UseRegisterFormReturn => {
   const [error, setError] = useState('')
   const [successMessage, setSuccessMessage] = useState('')
   const [isLoading, setIsLoading] = useState(false)
-  
+
   const navigate = useNavigate()
   const { login } = useAuth()
 
@@ -40,17 +40,18 @@ export const useRegisterForm = (): UseRegisterFormReturn => {
 
     try {
       // Validate form data
-      const { isValid, error: validationError } = validateRegistrationForm(formData)
+      const { isValid, error: validationError } =
+        validateRegistrationForm(formData)
       if (!isValid && validationError) {
         throw new Error(validationError)
       }
 
       // Register and login user
       const loginResponse = await AuthService.registerAndLogin(formData)
-      
+
       // Update auth context
       login(loginResponse.token, loginResponse.username, loginResponse.id)
-      
+
       // Show success message and redirect
       setSuccessMessage('Registration successful! Redirecting to dashboard...')
       setTimeout(() => navigate('/dashboard'), 1000)
@@ -69,4 +70,4 @@ export const useRegisterForm = (): UseRegisterFormReturn => {
     handleInputChange,
     handleSubmit,
   }
-} 
+}

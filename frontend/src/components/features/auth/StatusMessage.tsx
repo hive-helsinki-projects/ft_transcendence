@@ -9,8 +9,11 @@ interface StatusMessageProps {
 /**
  * Reusable component for displaying status messages (errors or success)
  */
-export const StatusMessage: React.FC<StatusMessageProps> = ({ type, message }) => (
+export const StatusMessage: React.FC<StatusMessageProps> = ({
+  type,
+  message,
+}) => (
   <div className={`${type}-message`} role="alert">
     {message}
   </div>
-) 
+)

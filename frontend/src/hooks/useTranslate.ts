@@ -1,8 +1,6 @@
-import { useTranslation } from "react-i18next";
+import { useTranslation } from 'react-i18next'
 
-const useTranslate = () => {
-    const { t } = useTranslation();
-    return t;
-};
-
-export default useTranslate;
+export const useTranslate = () => {
+  const { t } = useTranslation()
+  return t
+}

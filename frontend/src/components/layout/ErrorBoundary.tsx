@@ -1,4 +1,4 @@
-import React, { Component, ErrorInfo, ReactNode } from 'react'
+import { Component, ErrorInfo, ReactNode } from 'react'
 
 interface Props {
   children: ReactNode
@@ -10,7 +10,7 @@ interface State {
   error: Error | null
 }
 
-class ErrorBoundary extends Component<Props, State> {
+export class ErrorBoundary extends Component<Props, State> {
   public state: State = {
     hasError: false,
     error: null,
@@ -31,7 +31,9 @@ class ErrorBoundary extends Component<Props, State> {
           <div className="error-boundary">
             <h2>Something went wrong</h2>
             <p>{this.state.error?.message}</p>
-            <button onClick={() => this.setState({ hasError: false, error: null })}>
+            <button
+              onClick={() => this.setState({ hasError: false, error: null })}
+            >
               Try again
             </button>
           </div>
@@ -42,5 +44,3 @@ class ErrorBoundary extends Component<Props, State> {
     return this.props.children
   }
 }
-
-export default ErrorBoundary 

@@ -10,23 +10,25 @@ export type MenuItem = {
 
 // Component Props
 type SidebarItemProps = MenuItem & {
-  isSelected: boolean;
-  onClick: (id: string) => void;
-};
+  isSelected: boolean
+  onClick: (id: string) => void
+}
 
 /**
  * SidebarItem Component
- * 
+ *
  * Represents a single navigation item in the sidebar
  * Handles the rendering and interaction of individual menu items
  */
-const SidebarItem = ({ id, icon: Icon, path, isSelected, onClick }: SidebarItemProps) => {
+export const SidebarItem = ({
+  id,
+  icon: Icon,
+  path,
+  isSelected,
+  onClick,
+}: SidebarItemProps) => {
   return (
-    <Link 
-      to={path} 
-      onClick={() => onClick(id)}
-      className="sidebar-link"
-    >
+    <Link to={path} onClick={() => onClick(id)} className="sidebar-link">
       <button
         type="button"
         aria-label={id}
@@ -37,5 +39,3 @@ const SidebarItem = ({ id, icon: Icon, path, isSelected, onClick }: SidebarItemP
     </Link>
   )
 }
-
-export default SidebarItem 

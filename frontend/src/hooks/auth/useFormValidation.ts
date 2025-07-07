@@ -1,9 +1,9 @@
-import { useState, useCallback } from 'react'
-import { AuthFormData, FormValidation } from '../../types/auth'
+import { AuthFormData, FormValidation } from '@/types/auth'
+import { useCallback, useState } from 'react'
 
 /**
  * Validation rules for the authentication form
- * 
+ *
  * This object defines the validation rules for the authentication form fields
  * It includes rules for the username and password fields
  */
@@ -30,7 +30,7 @@ const VALIDATION_RULES = {
 
 /**
  * Custom hook for handling form validation
- * 
+ *
  * This hook provides a validation state and methods for validating form fields
  * It includes a validateField function for validating individual fields
  * and a validateForm function for validating the entire form
@@ -41,35 +41,46 @@ export const useFormValidation = () => {
     errors: {},
   })
 
-  const validateField = useCallback((name: keyof AuthFormData, value: string): string => {
-    const rules = VALIDATION_RULES[name]
-    if (!value) return rules.messages.required
-    if (value.length < rules.minLength) return rules.messages.minLength
-    if ('maxLength' in rules && value.length > rules.maxLength) return rules.messages.maxLength
-    if ('pattern' in rules && !rules.pattern.test(value)) return rules.messages.pattern
-    return ''
-  }, [])
+  const validateField = useCallback(
+    (name: keyof AuthFormData, value: string): string => {
+      const rules = VALIDATION_RULES[name]
+      if (!value) return rules.messages.required
+      if (value.length < rules.minLength) return rules.messages.minLength
+      if ('maxLength' in rules && value.length > rules.maxLength)
+        return rules.messages.maxLength
+      if ('pattern' in rules && !rules.pattern.test(value))
+        return rules.messages.pattern
+      return ''
+    },
+    [],
+  )
 
-  const validateForm = useCallback((formData: AuthFormData): FormValidation => {
-    const errors = {
-      username: validateField('username', formData.username),
-      password: validateField('password', formData.password),
-    }
+  const validateForm = useCallback(
+    (formData: AuthFormData): FormValidation => {
+      const errors = {
+        username: validateField('username', formData.username),
+        password: validateField('password', formData.password),
+      }
 
-    const isValid = Object.values(errors).every((error) => !error)
+      const isValid = Object.values(errors).every((error) => !error)
 
-    return { isValid, errors }
-  }, [validateField])
+      return { isValid, errors }
+    },
+    [validateField],
+  )
 
-  const updateValidation = useCallback((formData: AuthFormData) => {
-    const newValidation = validateForm(formData)
-    setValidation(newValidation)
-    return newValidation
-  }, [validateForm])
+  const updateValidation = useCallback(
+    (formData: AuthFormData) => {
+      const newValidation = validateForm(formData)
+      setValidation(newValidation)
+      return newValidation
+    },
+    [validateForm],
+  )
 
   return {
     validation,
     updateValidation,
     validateForm,
   }
-} 
+}

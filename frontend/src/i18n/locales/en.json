@@ -81,13 +81,8 @@
     "language": "Language",
     "english": "English",
     "finnish": "Finnish",
-    "swedish": "Swedish",
     "japanese": "Japanese"
   },
-  "Theme Settings": "Theme Settings",
-  "Theme": "Theme",
-  "Dark": "Dark",
-  "Light": "Light",
   "System Default": "System Default",
   "Account Management": "Account Management",
   "actions": {

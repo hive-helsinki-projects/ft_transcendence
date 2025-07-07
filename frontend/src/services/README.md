@@ -7,7 +7,6 @@ services/
 ├── api.ts            # Main API client configuration
 ├── authService.ts    # Authentication service
 ├── localAuth.ts      # Local authentication utilities
-└── helpData.ts       # Help documentation data
 ```
 
 ## Service Overview
@@ -31,12 +30,6 @@ services/
 - Token persistence
 - Session state management
 - Authentication state helpers
-
-### 4. Help Data Service (`helpData.ts`)
-- Static help documentation
-- FAQ content
-- Game rules
-- User guide information
 
 ## Service Usage Guidelines
 

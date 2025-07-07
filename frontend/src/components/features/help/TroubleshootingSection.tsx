@@ -4,7 +4,7 @@ interface TroubleshootingSectionProps {
   steps: string[]
 }
 
-const TroubleshootingSection: React.FC<TroubleshootingSectionProps> = ({
+export const TroubleshootingSection: React.FC<TroubleshootingSectionProps> = ({
   steps,
 }) => {
   return (
@@ -20,5 +20,3 @@ const TroubleshootingSection: React.FC<TroubleshootingSectionProps> = ({
     </section>
   )
 }
-
-export default TroubleshootingSection 

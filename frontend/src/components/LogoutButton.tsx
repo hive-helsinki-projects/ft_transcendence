@@ -3,19 +3,19 @@ import React, { useState } from 'react'
 import '../assets/styles/index.css'
 
 interface LogoutButtonProps {
-  onLogout: () => void
+  onLogout: () => Promise<void>
 }
 
-const LogoutButton: React.FC<LogoutButtonProps> = ({ onLogout }) => {
+export const LogoutButton: React.FC<LogoutButtonProps> = ({ onLogout }) => {
   const [showConfirm, setShowConfirm] = useState(false)
 
-  const handleLogoutClick = () => {
+  const handleLogoutClick = async () => {
     if (!showConfirm) {
       setShowConfirm(true)
       // Auto-hide after 3 seconds
       setTimeout(() => setShowConfirm(false), 3000)
     } else {
-      onLogout()
+      await onLogout()
     }
   }
 
@@ -32,5 +32,3 @@ const LogoutButton: React.FC<LogoutButtonProps> = ({ onLogout }) => {
     </div>
   )
 }
-
-export default LogoutButton

@@ -1,18 +1,18 @@
 import React, { useState } from 'react'
-import { useFormValidation } from '../../../hooks/auth/useFormValidation'
-import { AuthFormData, AuthFormProps } from '../../../types/auth'
+import { useFormValidation } from '@hooks/index'
+import { AuthFormData, AuthFormProps } from '@/types/auth'
+import { LoadingState } from '@components/index'
 import { FormInput } from './FormInput'
 import { StatusMessage } from './StatusMessage'
-import LoadingState from '../../LoadingState'
-import '../../../assets/styles/index.css'
+import '@assets/styles/index.css'
 
 /**
  * Authentication Form Component
- * 
+ *
  * Handles user authentication through a form with username and password fields.
  * Includes validation, loading states, and error handling.
  */
-const AuthForm: React.FC<AuthFormProps> = ({
+export const AuthForm: React.FC<AuthFormProps> = ({
   onSubmit,
   isLoading = false,
   error = '',
@@ -48,7 +48,7 @@ const AuthForm: React.FC<AuthFormProps> = ({
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     const { isValid } = updateValidation(formData)
-    
+
     if (isValid) {
       try {
         await onSubmit(formData)
@@ -61,7 +61,9 @@ const AuthForm: React.FC<AuthFormProps> = ({
   return (
     <form onSubmit={handleSubmit} className="auth-form" noValidate>
       {error && <StatusMessage type="error" message={error} />}
-      {successMessage && <StatusMessage type="success" message={successMessage} />}
+      {successMessage && (
+        <StatusMessage type="success" message={successMessage} />
+      )}
 
       {fields.map((field) => (
         <FormInput
@@ -81,10 +83,14 @@ const AuthForm: React.FC<AuthFormProps> = ({
         className="submit-button"
         disabled={isLoading || !validation.isValid}
       >
-        {isLoading ? <LoadingState size="small" message="Signing in..." /> : 'Sign In'}
+        {isLoading ? (
+          <LoadingState message="Signing in..." />
+        ) : (
+          'Sign In'
+        )}
       </button>
     </form>
   )
 }
 
-export default AuthForm 
+

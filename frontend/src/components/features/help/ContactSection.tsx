@@ -6,7 +6,7 @@ interface ContactSectionProps {
   email: string
 }
 
-const ContactSection: React.FC<ContactSectionProps> = ({
+export const ContactSection: React.FC<ContactSectionProps> = ({
   title,
   description,
   email,
@@ -24,5 +24,3 @@ const ContactSection: React.FC<ContactSectionProps> = ({
     </section>
   )
 }
-
-export default ContactSection 

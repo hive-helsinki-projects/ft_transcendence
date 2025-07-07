@@ -8,7 +8,7 @@ interface FeedbackSectionProps {
   linkPath: string
 }
 
-const FeedbackSection: React.FC<FeedbackSectionProps> = ({
+export const FeedbackSection: React.FC<FeedbackSectionProps> = ({
   title,
   description,
   linkText,
@@ -27,5 +27,3 @@ const FeedbackSection: React.FC<FeedbackSectionProps> = ({
     </section>
   )
 }
-
-export default FeedbackSection 
