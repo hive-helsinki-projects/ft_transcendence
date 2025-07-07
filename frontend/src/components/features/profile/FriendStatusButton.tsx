@@ -1,9 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import axios, { AxiosError } from 'axios';
 
-export const FriendStatusButton = ({ user }) => {
-  const [friendStatus, setFriendStatus] = useState('none')
-  const [sendFriendRequest, setSendFriendRequest] = useState(false)
+type FriendStatus = 'none' | 'pending' | 'accepted';
+
+interface User {
+  id: number;
+  username: string;
+  email: string;
+  online_status: boolean;
+  avatar_url: string;
+  created_at: string;
+  two_fa_enabled: boolean;
+}
+
+interface FriendStatusButtonProps {
+  user: User;
+}
+
+export const FriendStatusButton: React.FC<FriendStatusButtonProps> = ({ user }) => {
+  const [friendStatus, setFriendStatus] = useState<FriendStatus>('none')
+  const [sendFriendRequest, setSendFriendRequest] = useState<boolean>(false)
 
   useEffect(() => {
     const fetchFriendStatus = async () => {
@@ -22,7 +38,7 @@ export const FriendStatusButton = ({ user }) => {
             },
           },
         )
-        setFriendStatus(response.data.item.status)
+        setFriendStatus(response.data.item.status as FriendStatus)
         if (
           response.data.item.status === 'pending' &&
           response.data.item.friend_id === user.id
