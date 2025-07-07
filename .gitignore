@@ -146,3 +146,4 @@ dist
 .tap
 backend/.env
 backend/.env
+frontend/.env

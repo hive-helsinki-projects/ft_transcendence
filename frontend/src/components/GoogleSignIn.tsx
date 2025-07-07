@@ -1,9 +1,10 @@
 import React from 'react'
 
-const clientId =
-  '847383291975-9ten21d8j1vf3m2m1kod2i2js9c28o6e.apps.googleusercontent.com'
+interface GoogleAuthButtonProps {
+  isLoading: boolean
+}
 
-export const GoogleSignIn: React.FC = () => {
+export const GoogleSignIn: React.FC<GoogleAuthButtonProps> = ({ isLoading }) => {
   const redirectToGoogleOAuth = () => {
     const redirectUri = 'https://localhost:5173/oauth2callback' // The uri we registered in Google Cloud Console
     const scope = 'openid email profile'
@@ -11,7 +12,7 @@ export const GoogleSignIn: React.FC = () => {
     const baseUrl = 'https://accounts.google.com/o/oauth2/v2/auth'
 
     const params = new URLSearchParams({
-      client_id: clientId,
+      client_id: import.meta.env.VITE_GOOGLE_CLIENT_ID,
       redirect_uri: redirectUri,
       response_type: responseType,
       scope: scope,
@@ -24,7 +25,7 @@ export const GoogleSignIn: React.FC = () => {
 
   return (
     <div>
-      <button onClick={redirectToGoogleOAuth} className="google-button">
+      <button onClick={redirectToGoogleOAuth} className="google-button" disabled={isLoading}>
         <img
           src="https://www.google.com/favicon.ico"
           alt="Google"

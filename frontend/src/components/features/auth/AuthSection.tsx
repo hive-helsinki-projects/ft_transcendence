@@ -2,19 +2,23 @@ import React from 'react'
 import { AuthSectionProps } from '@/types/auth'
 import '@assets/styles/index.css'
 import { GoogleSignIn } from '@components/GoogleSignIn'
+import { useAuthForm } from '@hooks/index'
 
 export const AuthSection: React.FC<AuthSectionProps> = ({
   onNavigateToRegister,
   onNavigateToSignIn,
   children,
-}) => (
-  <section className="auth-section">
+}) => {
+  const { isLoading } = useAuthForm()
+
+  return (
+    <section className="auth-section">
     <h2>Let's Play!</h2>
     {children}
     <div className="auth-options">
       <div className="google-auth">
         <span>Or</span>
-        <GoogleSignIn />
+        <GoogleSignIn isLoading={isLoading}/>
       </div>
 
       {onNavigateToRegister && (
@@ -50,6 +54,7 @@ export const AuthSection: React.FC<AuthSectionProps> = ({
       )}
     </div>
   </section>
-)
+  )
+}
 
 
