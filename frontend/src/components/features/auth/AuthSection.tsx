@@ -2,6 +2,7 @@ import React from 'react'
 import { AuthSectionProps } from '@/types/auth'
 import '@assets/styles/index.css'
 import { GoogleSignIn } from '@components/GoogleSignIn'
+import { useAuthForm } from '@hooks/index'
 
 export const AuthSection: React.FC<AuthSectionProps> = ({
   onNavigateToRegister,

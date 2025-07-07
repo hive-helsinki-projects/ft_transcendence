@@ -1,5 +1,5 @@
 import React from 'react'
-import useTranslate from '../../../hooks/useTranslate'
+import { useTranslate } from '@hooks/index'
 
 interface GameRule {
   title: string

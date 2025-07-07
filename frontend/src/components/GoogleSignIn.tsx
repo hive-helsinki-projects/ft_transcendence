@@ -4,7 +4,7 @@ interface GoogleAuthButtonProps {
   isLoading: boolean
 }
 
-const GoogleSignIn:  React.FC<GoogleAuthButtonProps> = ({ isLoading }) => {
+export const GoogleSignIn:  React.FC<GoogleAuthButtonProps> = ({ isLoading }) => {
   console.log(`GoogleSignIn: isLoding is ${isLoading}`);
   
   const redirectToGoogleOAuth = () => {
