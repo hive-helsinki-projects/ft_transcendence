@@ -3,7 +3,6 @@ import react from '@vitejs/plugin-react';
 import fs from 'fs';
 import path from 'path';
 import dotenv from 'dotenv';
-import tailwindcss from '@tailwindcss/vite';
 
 // Load environment variables from client.env
 dotenv.config();
@@ -35,5 +34,5 @@ export default defineConfig({
 			'Cross-Origin-Embedder-Policy': '',
 		},
 	},
-	plugins: [react(), tailwindcss()],
+	plugins: [react()],
 });

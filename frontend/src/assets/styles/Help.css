@@ -41,7 +41,6 @@
 */
 .help-container {
   @apply max-w-[800px] mx-auto my-0 p-5;
-  @apply;
 }
 .help-section {
   @apply mb-8;
