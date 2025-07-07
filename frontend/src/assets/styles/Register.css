@@ -1,4 +1,4 @@
-.register-container {
+/* .register-container {
   max-width: 400px;
   margin: 2rem auto;
   padding: 2rem;
@@ -289,4 +289,121 @@
   width: 20px;
   height: 20px;
   border-radius: 50%;
-} 
+}  */
+
+/*
+  Based on TailwindCSS recommendations,
+  consider using classes instead of the `@apply` directive
+  @see https://tailwindcss.com/docs/reusing-styles#avoiding-premature-abstraction
+*/
+.register-container {
+  @apply max-w-[400px] shadow-[0_2px_4px_rgba(0,0,0,0.1)] mx-auto my-8 p-8 rounded-lg;
+  background: #fff;
+}
+.form-group {
+  @apply mb-6 w-full;
+}
+.form-group label {
+  @apply block text-[#333] mb-2;
+}
+.form-group input {
+  @apply w-full border rounded text-base p-3 border-solid border-[#ddd] disabled:bg-neutral-100 disabled:cursor-not-allowed w-full border text-[white] text-base transition-all duration-[0.3s] ease-[ease] px-4 py-3 rounded-lg border-solid border-[rgba(255,255,255,0.2)] focus:border-[rgba(255,255,255,0.4)] disabled:opacity-70 disabled:cursor-not-allowed;
+}
+.error-message {
+  @apply text-[#dc3545] text-sm mt-2 border text-[#FFA5A5] border-solid border-[rgba(229,62,62,0.2)];
+}
+.success-message {
+  @apply text-[#28a745] bg-[#d4edda] rounded mb-4 p-3 border text-[#9AE6B4] border-solid border-[rgba(72,187,120,0.2)];
+}
+.submit-button {
+  @apply w-full bg-[#007bff] text-[white] rounded text-base cursor-pointer transition-[background-color] duration-[0.2s] p-3 border-[none] hover:bg-[#0056b3] disabled:bg-[#6c757d] disabled:cursor-not-allowed w-full text-[white] text-base font-semibold cursor-pointer transition-all duration-[0.3s] ease-[ease] mt-4 p-3 rounded-lg border-[none] disabled:opacity-70 disabled:cursor-not-allowed;
+}
+.action-links {
+  @apply text-center mt-6;
+}
+.link-button {
+  @apply text-[#007bff] cursor-pointer text-[inherit] p-0 border-[none] hover:underline text-[#4A90E2] cursor-pointer text-[inherit] underline transition-[color] duration-[0.3s] ease-[ease] p-0 border-[none] hover:text-[#357ABD];
+  background: none;
+}
+.registered-users {
+  @apply mt-8;
+}
+.show-users-button {
+  @apply w-full bg-[#6c757d] text-[white] rounded text-base cursor-pointer mb-4 p-3 border-[none];
+}
+.users-list {
+  @apply bg-[#f8f9fa] rounded p-4;
+}
+.users-list ul {
+  @apply p-0;
+  list-style: none;
+}
+.users-list li {
+  @apply px-0 py-2 border-b-[#dee2e6] border-b border-solid last:border-b-[none];
+}
+.register-content {
+  @apply w-full max-w-[500px] mx-auto my-0;
+}
+.register-section {
+  @apply p-8 rounded-2xl;
+  background: rgba(255, 255, 255, 0.05);
+}
+.register-section h2 {
+  @apply text-center text-white mb-8;
+}
+.register-form {
+  @apply flex flex-col gap-4;
+}
+.form-group input {
+  background: rgba(255, 255, 255, 0.1);
+}
+.form-group input:focus {
+  outline: none;
+  background: rgba(255, 255, 255, 0.15);
+}
+.form-group input::placeholder {
+  @apply text-[rgba(255,255,255,0.5)];
+}
+.submit-button {
+  background: linear-gradient(45deg, #4a90e2, #357abd);
+}
+.submit-button:hover:not(:disabled) {
+  @apply -translate-y-0.5 shadow-[0_4px_12px_rgba(74,144,226,0.3)];
+}
+.error-message,
+.success-message {
+  @apply text-center mb-4 p-4 rounded-lg;
+}
+.error-message {
+  background: rgba(229, 62, 62, 0.1);
+}
+.success-message {
+  background: rgba(72, 187, 120, 0.1);
+}
+.login-link {
+  @apply text-center text-[rgba(255,255,255,0.7)] mt-6;
+}
+.link-button {
+  background: none;
+}
+.auth-options {
+  @apply mt-6;
+}
+.google-auth {
+  @apply text-center relative mx-0 my-4;
+}
+.google-auth span {
+  @apply inline-block text-[rgba(255,255,255,0.5)] relative z-[1] px-4 py-0;
+  background: #1e1e2e;
+}
+.google-button {
+  @apply w-full flex items-center justify-center gap-3 border text-[white] text-base cursor-pointer transition-all duration-[0.3s] ease-[ease] mt-4 p-3 rounded-lg border-solid border-[rgba(255,255,255,0.2)] disabled:opacity-70 disabled:cursor-not-allowed;
+  background: rgba(255, 255, 255, 0.1);
+}
+.google-button:hover:not(:disabled) {
+  @apply -translate-y-0.5 border-[rgba(255,255,255,0.3)];
+  background: rgba(255, 255, 255, 0.15);
+}
+.google-button img {
+  @apply w-5 h-5 rounded-[50%];
+}
