@@ -1,38 +1,23 @@
 .loading-state {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
+  @apply flex flex-col items-center justify-center gap-4;
 }
-
 .loading-state.small {
-  font-size: 0.875rem;
+  @apply text-sm;
 }
-
 .loading-state.medium {
-  font-size: 1rem;
+  @apply text-base;
 }
-
 .loading-state.large {
-  font-size: 1.25rem;
+  @apply text-xl;
 }
-
 .loading-spinner {
-  width: 2em;
-  height: 2em;
-  border: 0.25em solid rgba(0, 0, 0, 0.1);
-  border-radius: 50%;
-  border-top-color: #007bff;
-  animation: spin 1s linear infinite;
+  @apply w-[2em] h-[2em] animate-spin rounded-[50%] border-t-[#007bff] border-[0.25em] border-solid border-[rgba(0,0,0,0.1)];
 }
-
 .loading-message {
-  color: #666;
+  @apply text-[#666];
 }
-
 @keyframes spin {
   to {
-    transform: rotate(360deg);
+    @apply rotate-[360deg];
   }
-} 
+}

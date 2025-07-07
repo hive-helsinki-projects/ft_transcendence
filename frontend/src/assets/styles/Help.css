@@ -1,7 +1,8 @@
-.help-container {
+/* .help-container {
   padding: 20px;
   max-width: 800px;
   margin: 0 auto;
+  @apply 
 }
 
 .help-section {
@@ -31,4 +32,28 @@
 
 .help-link:hover {
   text-decoration: underline;
-} 
+}  */
+
+/*
+  Based on TailwindCSS recommendations,
+  consider using classes instead of the `@apply` directive
+  @see https://tailwindcss.com/docs/reusing-styles#avoiding-premature-abstraction
+*/
+.help-container {
+  @apply max-w-[800px] mx-auto my-0 p-5;
+}
+.help-section {
+  @apply mb-8;
+}
+.help-intro {
+  @apply text-[#666] mb-8;
+}
+.help-list {
+  @apply list-disc pl-0;
+}
+.help-item {
+  @apply rounded mb-4 p-2;
+}
+.help-link {
+  @apply text-[#007bff] no-underline hover:underline;
+}

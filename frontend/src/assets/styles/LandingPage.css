@@ -1,4 +1,4 @@
-.landing-container {
+/* .landing-container {
   position: relative;
   min-height: 100vh;
   background: #1E1E2E;
@@ -7,12 +7,11 @@
   align-items: center;
   padding: 2rem;
   margin: 1rem;
-  margin-left: calc(48px + 1rem); /* Sidebar width + margin */
+  margin-left: calc(48px + 1rem); 
   color: white;
   border-radius: 24px;
   border: 1px solid rgba(255, 255, 255, 0.1);
-  overflow: hidden; /* Ensure the background animation stays within borders */
-}
+  overflow: hidden; 
 
 .content-wrapper {
   position: relative;
@@ -205,4 +204,87 @@
   border-radius: 8px;
   background-color: rgba(105, 219, 124, 0.1);
   text-align: center;
-} 
+}  */
+
+/*
+  Based on TailwindCSS recommendations,
+  consider using classes instead of the `@apply` directive
+  @see https://tailwindcss.com/docs/reusing-styles#avoiding-premature-abstraction
+*/
+.landing-container {
+  @apply relative min-h-screen flex justify-center items-center text-[white] border overflow-hidden ml-[calc(48px_+_1rem)] m-4 p-8 rounded-3xl border-solid border-[rgba(255,255,255,0.1)];
+  background: #1e1e2e;
+  /* Sidebar width + margin */
+  /* Ensure the background animation stays within borders */
+}
+.content-wrapper {
+  @apply relative z-[1] flex flex-col items-center justify-center w-full p-8;
+}
+.hero-section {
+  @apply max-w-[800px] text-center mb-12;
+}
+.hero-section h1 {
+  @apply text-5xl font-medium mb-6;
+}
+.hero-section h2 {
+  @apply text-[2.5rem] font-normal mb-4;
+}
+.hero-section p {
+  @apply text-xl text-[rgba(255,255,255,0.8)];
+}
+.auth-section {
+  @apply bg-[rgba(45,45,63,0.5)] w-full max-w-[400px] p-8 rounded-xl;
+}
+.auth-section h2 {
+  @apply text-[white] text-center mb-6;
+}
+.auth-form {
+  @apply flex flex-col gap-4 w-full;
+}
+.form-group {
+  @apply w-full;
+}
+.form-group input {
+  @apply w-full border bg-[rgba(255,255,255,0.1)] text-[white] text-base box-border p-[0.8rem] rounded-lg border-solid border-[rgba(255,255,255,0.2)] focus:border-[rgba(255,255,255,0.5)];
+}
+.form-group input::placeholder {
+  @apply text-[rgba(255,255,255,0.5)];
+}
+.form-group input:focus {
+  outline: none;
+}
+.submit-button {
+  @apply w-full bg-[#2D2D3F] text-[white] text-base cursor-pointer transition-[background-color] duration-[0.2s] p-4 rounded-lg border-[none] disabled:bg-[rgba(45,45,63,0.5)] disabled:cursor-not-allowed;
+}
+.submit-button:hover:not(:disabled) {
+  @apply bg-[#3D3D4F];
+}
+.auth-options {
+  @apply text-center mt-6;
+}
+.google-auth {
+  @apply text-center mx-0 my-6;
+}
+.google-auth span {
+  @apply inline-block text-[rgba(255,255,255,0.6)] text-[0.9rem] relative mb-4 before:right-[calc(50%_+_1rem)] after:left-[calc(50%_+_1rem)];
+}
+.google-auth span::before,
+.google-auth span::after {
+  @apply content-[""] absolute w-20 h-px bg-[rgba(255,255,255,0.1)] top-2/4;
+}
+.google-button {
+  @apply w-full border bg-[rgba(255,255,255,0.05)] text-[white] cursor-pointer transition-all duration-[0.2s] flex items-center justify-center gap-[0.8rem] text-[0.95rem] p-[0.8rem] rounded-lg border-solid border-[rgba(255,255,255,0.2)] hover:bg-[rgba(255,255,255,0.1)] hover:border-[rgba(255,255,255,0.3)];
+}
+.google-button img {
+  @apply w-5 h-5 rounded-[50%];
+}
+.link-button {
+  @apply text-[rgba(255,255,255,0.8)] cursor-pointer text-[0.9rem] underline p-0 border-[none] hover:text-[white];
+  background: none;
+}
+.error-message {
+  @apply text-[#ff6b6b] bg-[rgba(255,107,107,0.1)] text-center p-3 rounded-lg;
+}
+.success-message {
+  @apply text-[#69db7c] bg-[rgba(105,219,124,0.1)] text-center p-3 rounded-lg;
+}
