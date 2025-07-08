@@ -4,9 +4,13 @@
     "hero.subtitle": "Level Up Your Ping Pong Skills",
     "hero.description": "Smash, spin, and dominate the table. Prove you are the ultimate paddle master."
   },
+
   "dashboard": {
     "welcome": "こんにちは"
   },
+
+  "Search": "検索",
+
   "Your Players": "あなたのプレイヤー",
   "Create New Player": "新しいプレイヤーを作成",
   "Enter player name": "プレイヤー名を入力",
@@ -23,9 +27,14 @@
 
   "Match in Progress...": "試合中...",
   "Press spacebar to start game...": "スペースキーを押して試合開始...",
+  "Player 1": "プレイヤー1",
+  "Player 2": "プレイヤー2",
   "W/S keys": "W/Sキー",
   "First to 11 points (win by 2)": "11点先取 (2点差で勝利)",
   "↑/↓ keys": "↑/↓キー",
+  "Winner": "勝者",
+  "Please rotate your device to landscape": "デバイスを横向きにしてください",
+
 
   "Player Stats": "プレイヤー統計",
   "Select a player": "プレイヤーを選択",
@@ -39,6 +48,7 @@
   "Recent Matches": "最近の試合",
 
   "TOP PLAYERS": "トッププレイヤー",
+  "Weighted score": "加重スコア",
 
   "Tournament Lobby": "トーナメントロビー",
   "Reset Tournament": "トーナメントをリセット",

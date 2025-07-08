@@ -9,6 +9,8 @@
     "welcome": "Welcome"
   },
 
+  "Search": "Search",
+
   "Your Players": "Your Players",
   "Create New Player": "Create New Player",
   "Enter player name": "Enter player name",
@@ -25,9 +27,13 @@
 
   "Match in Progress...": "Match in Progress...",
   "Press spacebar to start game...": "Press spacebar to start game...",
+  "Player 1": "Player 1",
+  "Player 2": "Player 2",
   "W/S keys": "W/S keys",
   "First to 11 points (win by 2)": "First to 11 points (win by 2)",
   "↑/↓ keys": "↑/↓ keys",
+  "Winner": "Winner",
+  "Please rotate your device to landscape": "Please rotate your device to landscape",
 
   "Player Stats": "Player Stats",
   "Select a player": "Select a player",
@@ -46,6 +52,7 @@
   "Recent Matches": "Recent Matches",
 
   "TOP PLAYERS": "TOP PLAYERS",
+  "Weighted score": "Weighted score",
 
   "Tournament Lobby": "Tournament Lobby",
   "Reset Tournament": "Reset Tournament",

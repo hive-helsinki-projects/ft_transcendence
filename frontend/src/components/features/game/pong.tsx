@@ -259,7 +259,7 @@ export const Game: React.FC = () => {
           setMatchStatus('completed')
           if (!gameState) {
             setMatchResult(
-              `Winner: ${currentScores.player1 > currentScores.player2 ? 'player 1' : 'player2'}`,
+              `${t('Winner')}: ${currentScores.player1 > currentScores.player2 ? t('Player 1') : t('Player 2')}`,
             )
             setTimeout(() => {
               navigate('/dashboard')
@@ -270,7 +270,7 @@ export const Game: React.FC = () => {
             currentScores.player1 > currentScores.player2
               ? gameState.player1
               : gameState.player2
-          setMatchResult(`Winner: ${winner.name}`)
+          setMatchResult(`${t('Winner')}: ${winner.name}`)
 
           await sendMatchResult(
             gameState.matchId,
@@ -455,9 +455,9 @@ export const Game: React.FC = () => {
       ctx.fillText(scores.player2.toString(), (CANVAS_WIDTH / 4) * 3, 50)
 
       ctx.font = '16px Arial'
-      ctx.fillText(gameState?.player1?.name || 'Player 1', CANVAS_WIDTH / 4, 80)
+      ctx.fillText(gameState?.player1?.name || t('Player 1'), CANVAS_WIDTH / 4, 80)
       ctx.fillText(
-        gameState?.player2?.name || 'Player 2',
+        gameState?.player2?.name || t('Player 2'),
         (CANVAS_WIDTH / 4) * 3,
         80,
       )

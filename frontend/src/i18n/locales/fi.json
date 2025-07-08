@@ -9,6 +9,8 @@
     "welcome": "Tervetuloa"
   },
 
+  "Search": "Search",
+
   "Your Players": "Pelaajasi",
   "Create New Player": "Luo uusi pelaaja",
   "Enter player name": "Syötä pelaajan nimi",
@@ -25,9 +27,14 @@
 
   "Match in Progress...": "Ottelu käynnissä...",
   "Press spacebar to start game...": "Paina välilyöntiä aloittaaksesi pelin...",
+  "Player 1": "Player 1",
+  "Player 2": "Player 2",
   "W/S keys": "W/S-näppäimet",
   "First to 11 points (win by 2)": "Ensimmäinen 11 pisteeseen (voitto kahdella pisteellä)",
   "↑/↓ keys": "↑/↓-näppäimet",
+  "Winner": "Winner",
+  "Please rotate your device to landscape": "Please rotate your device to landscape",
+
 
   "Player Stats": "Pelaajan tilastot",
   "Select a player": "Valitse pelaaja",
@@ -46,6 +53,7 @@
   "Recent Matches": "Viimeisimmät ottelut",
 
   "TOP PLAYERS": "PARHAAT PELAAJAT",
+  "Weighted score": "Weighted score",
 
   "Tournament Lobby": "Turnausaula",
   "Reset Tournament": "Nollaa turnaus",
