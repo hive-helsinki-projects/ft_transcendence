@@ -56,6 +56,15 @@
   "Edit": "編集",
   "Save": "保存",
   "Cancel": "キャンセル",
+
+  "fields": {
+    "username": "ユーザーネーム",
+    "email": "メールアドレス",
+    "password": "パスワード"
+  },
+
+  "Profile Picture": "プロフィール写真",
+
   "errors": {
     "failedToUpdate": "ユーザー情報の更新に失敗しました",
     "general": "エラーが発生しました"
@@ -63,6 +72,9 @@
   "Two-Factor Authentication": "2段階認証",
   "Disable 2FA": "2段階認証を無効にする",
   "Enable 2FA": "2段階認証を有効にする",
+  "Enter 2FA code": "2段階認証コードを入力",
+  "Verify & Enable": "認証して有効化",
+
   "Language Preferences": "言語設定",
   "languages": {
     "language": "言語",

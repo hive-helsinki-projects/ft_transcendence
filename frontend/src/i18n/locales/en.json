@@ -60,6 +60,15 @@
 
   "settings.title": "Settings",
   "Account Settings": "Account Settings",
+
+  "Profile Picture": "Profile Picture",
+
+  "fields": {
+    "username": "Username",
+    "email": "Email",
+    "password": "Password"
+  },
+
   "Edit": "Edit",
   "Save": "Save",
   "Cancel": "Cancel",
@@ -70,6 +79,9 @@
   "Two-Factor Authentication": "Two-Factor Authentication",
   "Disable 2FA": "Disable 2FA",
   "Enable 2FA": "Enable 2FA",
+  "Enter 2FA code": "Enter 2FA code",
+  "Verify & Enable": "Verify & Enable",
+
   "Language Preferences": "Language Preferences",
   "languages": {
     "language": "Language",
