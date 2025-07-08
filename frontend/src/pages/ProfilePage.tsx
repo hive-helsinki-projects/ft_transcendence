@@ -22,7 +22,13 @@ export const ProfilePage = () => {
   useEffect(() => {
       const fetchUserProfile = async () => {
           try {
-              let url = `https://localhost:3001/users/${id}`;
+            let url = '';
+            if (id === 'null') {
+                const id = localStorage.getItem('id');
+                url = `https://localhost:3001/users/${id}`;
+            } else {
+                url = `https://localhost:3001/users/${id}`;
+            }
               const response = await axios.get<User>(url);
               setUser(response.data);
               const username = localStorage.getItem('username');
