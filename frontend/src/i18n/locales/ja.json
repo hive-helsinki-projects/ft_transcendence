@@ -65,7 +65,6 @@
   "Winner": "勝者",
   "Please rotate your device to landscape": "デバイスを横向きにしてください",
 
-
   "Player Stats": "プレイヤー統計",
   "Select a player": "プレイヤーを選択",
   "stats": {
@@ -96,13 +95,13 @@
   "Save": "保存",
   "Cancel": "キャンセル",
 
+  "Profile Picture": "プロフィール写真",
+  "errors.fieldEmpty": "{{field}}を入力してください",
   "fields": {
     "username": "ユーザーネーム",
     "email": "メールアドレス",
     "password": "パスワード"
   },
-
-  "Profile Picture": "プロフィール写真",
 
   "errors": {
     "failedToUpdate": "ユーザー情報の更新に失敗しました",
@@ -165,5 +164,18 @@
     "step3": "別のブラウザを試してください",
     "step4": "ブラウザが最新バージョンか確認してください",
     "step5": "広告ブロッカーや拡張機能を一時的に無効にしてください"
-  }
+  },
+
+  "Failed to generate QR code": "QRコードの生成に失敗しました",
+  "2FA enabled!": "2段階認証が有効になりました",
+  "Invalid 2FA code": "無効な2段階認証コードです",
+  "2FA disabled.": "2段階認証が無効になりました",
+  "Failed to disable 2FA": "2段階認証の無効化に失敗しました",
+  "Please select an image file": "イメージファイルを選択してください",
+  "Profile picture updated!": "プロフィール写真が変更されました",
+  "Upload failed": "アップロードに失敗しました",
+  "Failed to logout": "ログアウトに失敗しました",
+  "Could not delete account: User ID is missing": "アカウント削除できません: User IDがありません",
+  "delete.areyousure": "本当にアカウントを削除しますか？削除は取り消せません",
+  "Failed to delete account": "アカウントの削除に失敗しました"
 }

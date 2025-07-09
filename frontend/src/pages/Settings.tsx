@@ -181,7 +181,7 @@ export const Settings: React.FC = () => {
       setQrDataUrl(res.qrDataUrl)
       setTwoFaMessage(null)
     } catch {
-      setTwoFaMessage('Failed to generate QR code')
+      setTwoFaMessage(t('Failed to generate QR code'))
     }
   }
 
@@ -191,12 +191,12 @@ export const Settings: React.FC = () => {
       setTwoFaEnabled(true)
       setQrDataUrl(null)
       setTwoFaToken('')
-      setTwoFaMessage('2FA enabled!')
+      setTwoFaMessage(t('2FA enabled!'))
     } catch (err: unknown) {
       if (err instanceof Error) {
-        setTwoFaMessage(err.message || 'Invalid 2FA code');
+        setTwoFaMessage(err.message || t('Invalid 2FA code'));
       } else {
-        setTwoFaMessage('Invalid 2FA code');
+        setTwoFaMessage(t('Invalid 2FA code'))
       }
     }
   }
@@ -205,9 +205,9 @@ export const Settings: React.FC = () => {
     try {
       await api.delete('/api/2fa')
       setTwoFaEnabled(false)
-      setTwoFaMessage('2FA disabled.')
+      setTwoFaMessage(t('2FA disabled.'))
     } catch {
-      setTwoFaMessage('Failed to disable 2FA')
+      setTwoFaMessage(t('Failed to disable 2FA'))
     }
   }
 
@@ -237,7 +237,8 @@ export const Settings: React.FC = () => {
       const newValue = tempData[fieldToUpdate] || ''
 
       if (!newValue.trim()) {
-        setError(`${fieldToUpdate} cannot be empty`)
+        // setError(`${fieldToUpdate} cannot be empty`)
+        setError(t('errors.fieldEmpty', { field: t(`fields.${fieldToUpdate}`) }))
         return
       }
 
@@ -272,7 +273,7 @@ export const Settings: React.FC = () => {
     if (!file) return
 
     if (!file.type.startsWith('image/')) {
-      setAvatarError('Please select an image file')
+      setAvatarError(t('Please select an image file'))
       return
     }
 
@@ -289,13 +290,13 @@ export const Settings: React.FC = () => {
         ...prev,
         avatar_url: response.item.avatar_url,
       }))
-      setAvatarSuccess('Profile picture updated!')
+      setAvatarSuccess(t('Profile picture updated!'))
       setTimeout(() => setAvatarSuccess(null), 3000)
     } catch (err: unknown) {
       if (err instanceof Error) {
         setAvatarError(err.message);
       } else {
-        setAvatarError('Upload failed');
+        setAvatarError(t('Upload failed'))
       }
     }
   }
@@ -305,19 +306,17 @@ export const Settings: React.FC = () => {
       await logout()
       navigate('/')
     } catch {
-      setError('Failed to logout')
+      setError(t('Failed to logout'))
     }
   }
 
   const handleDeleteAccount = async () => {
     if (!userId) {
-      setError('Could not delete account: User ID is missing')
+      setError(t('Could not delete account: User ID is missing'))
       return
     }
     if (
-      window.confirm(
-        'Are you sure you want to delete your account? This action cannot be undone.',
-      )
+      window.confirm(t('delete.areyousure'))
     ) {
       try {
         await api.delete(`/users/${userId}`)
@@ -325,7 +324,7 @@ export const Settings: React.FC = () => {
         await logout()
         navigate('/')
       } catch {
-        setError('Failed to delete account')
+        setError(t('Failed to delete account'))
       }
     }
   }

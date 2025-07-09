@@ -98,7 +98,7 @@
   "Account Settings": "Tiliasetukset",
 
   "Profile Picture": "Profile Picture",
-
+  "errors.fieldEmpty": "{{field}} cannot be empty",
   "fields": {
     "username": "Username",
     "email": "Email",
@@ -170,5 +170,18 @@
     "step3": "Try using a different browser",
     "step4": "Make sure your browser is up to date",
     "step5": "Disable any ad blockers or extensions that might interfere"
-  }
+  },
+
+  "Failed to generate QR code": "Failed to generate QR code",
+  "2FA enabled!": "2FA enabled!",
+  "Invalid 2FA code": "Invalid 2FA code",
+  "2FA disabled.": "2FA disabled.",
+  "Failed to disable 2FA": "Failed to disable 2FA",
+  "Please select an image file": "Please select an image file",
+  "Profile picture updated!": "Profile picture updated!",
+  "Upload failed": "Upload failed",
+  "Failed to logout": "Failed to logout",
+  "Could not delete account: User ID is missing": "Could not delete account: User ID is missing",
+  "delete.areyousure": "Are you sure you want to delete your account? This action cannot be undone.",
+  "Failed to delete account": "Failed to delete account"
 }
