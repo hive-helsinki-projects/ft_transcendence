@@ -11,12 +11,12 @@ import { BrowserRouter as Router } from 'react-router-dom'
  */
 export const App: React.FC = () => {
   return (
-    <AuthProvider>
-      <Router>
+    <Router>
+        <AuthProvider>
         <Layout>
           <AppRoutes />
         </Layout>
-      </Router>
     </AuthProvider>
+      </Router>
   )
 }
