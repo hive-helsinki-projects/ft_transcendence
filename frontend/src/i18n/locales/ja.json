@@ -20,10 +20,23 @@
   "Game Modes": "ゲームモード",
   "1v1 Match": "1v1 対戦",
   "Tournament Mode": "トーナメント",
-  "Select Players For 1v1 Match": "1v1の対戦相手を選択",
+  "Select 2 Players For 1v1 Match": "1v1の対戦相手を2人選択",
   "Select Player": "プレイヤーを選ぶ",
   "4-8 players": "4-8 プレイヤー",
   "Start Match": "試合を開始",
+
+  "Profile Page of": "プロフィールページ: ",
+  "We did not find any user...": "ユーザーが見つかりませんでした",
+
+  "PlayerCard": "プレイヤーカード",
+  "Avatar": "アバター",
+  "Display Name": "表示名",
+  "Wins": "勝ち",
+  "Losses": "負け",
+
+  "Match History 1v1": "1v1の対戦記録",
+  "Match Date": "対戦日",
+  "No match history available.": "対戦記録はありません",
 
   "TournamentNames": {
     "The Great Paddle-Off": "伝説のパドル対決"

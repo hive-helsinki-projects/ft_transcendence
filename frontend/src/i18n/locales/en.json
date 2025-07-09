@@ -20,10 +20,22 @@
   "Game Modes": "Game Modes",
   "1v1 Match": "1v1 Match",
   "Tournament Mode": "Tournament Mode",
-  "Select Players For 1v1 Match": "Select Players For 1v1 Match",
+  "Select 2 Players For 1v1 Match": "Select 2 Players For 1v1 Match",
   "Select Player": "Select Player",
   "4-8 players": "4-8 players",
   "Start Match": "Start Match",
+
+  "Profile Page of": "Profile Page of",
+  "We did not find any user...": "We did not find any user...",
+  "PlayerCard": "PlayerCard",
+  "Avatar": "Avatar",
+  "Display Name": "Display Name",
+  "Wins": "Wins",
+  "Losses": "Losses",
+
+  "Match History 1v1": "Match History 1v1",
+  "Match Date": "Match Date",
+  "No match history available.": "No match history available.",
 
   "TournamentNames": {
     "The Great Paddle-Off": "The Great Paddle-Off"

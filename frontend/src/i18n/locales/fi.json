@@ -20,10 +20,22 @@
   "Game Modes": "Pelimuodot",
   "1v1 Match": "1v1-ottelu",
   "Tournament Mode": "Turnaustila",
-  "Select Players For 1v1 Match": "Valitse pelaajat 1v1-otteluun",
+  "Select 2 Players For 1v1 Match": "Valitse 2 pelaajaa 1v1-otteluun",
   "Select Player": "Valitse pelaaja",
   "4-8 players": "4–8 pelaajaa",
   "Start Match": "Aloita ottelu",
+
+  "Profile Page of": "Profile Page of",
+  "We did not find any user...": "We did not find any user...",
+  "PlayerCard": "PlayerCard",
+  "Avatar": "Avatar",
+  "Display Name": "Display Name",
+  "Wins": "Wins",
+  "Losses": "Losses",
+
+  "Match History 1v1": "Match History 1v1",
+  "Match Date": "Match Date",
+  "No match history available.": "No match history available.",
 
   "TournamentNames": {
     "The Great Paddle-Off": "The Great Paddle-Off"
@@ -41,7 +53,7 @@
   "Score": "Score",
   "Select 4-8 Players for Tournament": "Select 4-8 Players for Tournament",
   "Start Tournament": "Start Tournament",
-  
+
   "Match in Progress...": "Ottelu käynnissä...",
   "Press spacebar to start game...": "Paina välilyöntiä aloittaaksesi pelin...",
   "Player 1": "Player 1",

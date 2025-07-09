@@ -1,6 +1,8 @@
 import axios from 'axios'
 import React from 'react'
 import { PlayerName } from './PlayerName'
+import { useTranslate } from '@hooks/index'
+
 
 interface MatchPlayer {
     player_id: number;
@@ -35,23 +37,24 @@ export const MatchHistory = ({ userId }: { userId: string }) => {
         fetchMatchHistory();
     }, [userId]);
 
+    const t = useTranslate()
     return (
         <div className="match-history">
-            <h2>Match History 1v1</h2>
+            <h2>{t('Match History 1v1')}</h2>
             {matches.length > 0 ? (
                 <ul>
                     {matches.map((match) => (
                         <li key={match.id}>
-                            <p>Match Date: {match.date}</p>
-                            <p>Winner: <PlayerName id={String(match.winner_id)} />  </p>
-                            <p>Player: <PlayerName id={String(match.players[0].player_id)} /> Score: {match.players[0].score}</p>
+                            <p>{t('Match Date')}: {match.date}</p>
+                            <p>{t('Winner')}: <PlayerName id={String(match.winner_id)} />  </p>
+                            <p>{t('Player')}: <PlayerName id={String(match.players[0].player_id)} /> {t('Score')}: {match.players[0].score}</p>
                             <p>VS</p>
-                            <p>Player: <PlayerName id={String(match.players[1].player_id)} /> Score: {match.players[1].score} </p>
+                            <p>{t('Player')}: <PlayerName id={String(match.players[1].player_id)} /> {t('Score')}: {match.players[1].score} </p>
                         </li>
                     ))}
                 </ul>
             ) : (
-                <p>No match history available.</p>
+                <p>{t('No match history available.')}</p>
             )}
         </div>
     );

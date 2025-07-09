@@ -185,7 +185,7 @@ export const QuickPlay: React.FC<QuickPlayProps> = ({ userPlayers }) => {
       {showModal1v1 && (
         <div className="modal-overlay">
           <div className="modal-content">
-            <h3>Select 2 Players For 1v1 Match</h3>
+            <h3>{t('Select 2 Players For 1v1 Match')}</h3>
             <div className="player-checkboxes">
               {userPlayers.map((player) => (
                 <label
