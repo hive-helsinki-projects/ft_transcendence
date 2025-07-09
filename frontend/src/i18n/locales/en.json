@@ -25,6 +25,23 @@
   "4-8 players": "4-8 players",
   "Start Match": "Start Match",
 
+  "TournamentNames": {
+    "The Great Paddle-Off": "The Great Paddle-Off"
+  },
+  "Tournament Completed": "Tournament Completed",
+  "Go to Dashboard": "Go to Dashboard",
+  "Reset Tournament": "Reset Tournament",
+  "Current Round": "Current Round",
+  "tournament": {
+    "noActive": "There is no active tournament. You can create a new one from the dashboard.",
+    "matchInfo": "Match {{matchId}} — Round {{round}}",
+    "playerDataUnavailable": "Player data unavailable."
+  },
+  "Player": "Player",
+  "Score": "Score",
+  "Select 4-8 Players for Tournament": "Select 4-8 Players for Tournament",
+  "Start Tournament": "Start Tournament",
+
   "Match in Progress...": "Match in Progress...",
   "Press spacebar to start game...": "Press spacebar to start game...",
   "Player 1": "Player 1",
@@ -55,7 +72,6 @@
   "Weighted score": "Weighted score",
 
   "Tournament Lobby": "Tournament Lobby",
-  "Reset Tournament": "Reset Tournament",
   "SEMIFINAL": "SEMIFINAL",
   "FINAL MATCH": "FINAL MATCH",
 

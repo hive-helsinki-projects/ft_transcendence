@@ -3,6 +3,7 @@ import { BaseService } from '@services/baseService'
 import React, { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useUserPlayers } from '@hooks/index'
+import { useTranslate } from '@hooks/index'
 
 export const TournamentPage: React.FC = () => {
   const [tournament, setTournament] = useState<Tournament | null>(null)
@@ -132,30 +133,29 @@ export const TournamentPage: React.FC = () => {
     })
   }
 
+  const t = useTranslate()
+
   return (
     <>
         {!tournament ? null : tournament.status === 'finished' &&
           tournament.winner_id ? (
           <div className="tournament-lobby">
             <div className="tournament-header">
-              <h1>{tournament.name}</h1>
+              <h1>{t(`TournamentNames.${tournament.name}`)}</h1>
             </div>
             <div className="tournament-round-info">
-              <h2>🏆 Tournament Completed</h2>
+              <h2>🏆 {t('Tournament Completed')}</h2>
               <p>
-                Winner:{' '}
+                {t('Winner')}:{' '}
                 {userPlayers.find((u) => u.id === tournament.winner_id)
-                  ?.display_name || `Player ${tournament.winner_id ?? 'N/A'}`}
+                  ?.display_name || `${t('Player')} ${tournament.winner_id ?? 'N/A'}`}
               </p>
-              <p>
-                There is no active tournament. You can create a new one from the
-                dashboard.
-              </p>
+              <p>{t('tournament.noActive')}</p>
               <button
                 onClick={() => navigate('/dashboard')}
                 className="start-match-button"
               >
-                Go to Dashboard
+                {t('Go to Dashboard')}
               </button>
             </div>
           </div>
@@ -163,19 +163,21 @@ export const TournamentPage: React.FC = () => {
           <div className="tournament-lobby">
             {/* Header */}
             <div className="tournament-header">
-              <h1>{tournament.name}</h1>
+              {/* <h1>{tournament.name}</h1> */}
+              <h1>{t(`TournamentNames.${tournament.name}`)}</h1>
               <button
                 className="reset-tournament-button"
                 onClick={handleReset}
                 aria-label="Reset tournament"
               >
-                Reset Tournament
+                {t('Reset Tournament')}
               </button>
             </div>
 
             {/* Round Info */}
             <div className="tournament-round-info">
-              <h2>Current Round: {tournament.current_round + 1}</h2>
+              {/* <h2>Current Round: {tournament.current_round + 1}</h2> */}
+              <h2>{t('Current Round')}: {tournament.current_round + 1}</h2>
             </div>
 
             {/* Matches */}
@@ -188,9 +190,12 @@ export const TournamentPage: React.FC = () => {
                   return (
                     <div key={match.match_id} className="match-container">
                       <h4>
-                        Match {match.match_id} — Round {match.round + 1}
+                        {t('tournament.matchInfo', {
+                          matchId: match.match_id,
+                          round: match.round + 1
+                        })}
                       </h4>
-                      <p>Player data unavailable.</p>
+                      <p>{t('tournament.playerDataUnavailable')}</p>
                     </div>
                   )
                 }
@@ -211,14 +216,17 @@ export const TournamentPage: React.FC = () => {
                 return (
                   <div key={match.match_id} className="match-container">
                     <h4>
-                      Match {match.match_id} — Round {match.round + 1}
-                    </h4>
+                        {t('tournament.matchInfo', {
+                          matchId: match.match_id,
+                          round: match.round + 1
+                        })}
+                      </h4>
                     <p>
                       {[player1Info, player2Info]
                         .filter(Boolean)
                         .map(
                           (p) =>
-                            `${getPlayerName(p!.player_id)} (Score: ${p!.score})`,
+                            `${getPlayerName(p!.player_id)} (${t('Score')}: ${p!.score})`,
                         )
                         .join(' vs ')}
                     </p>
@@ -230,7 +238,7 @@ export const TournamentPage: React.FC = () => {
                         className="start-match-button"
                         aria-label={`Start Match ${match.match_id}`}
                       >
-                        Start Match
+                        {t('Start Match')}
                       </button>
                     )}
                   </div>

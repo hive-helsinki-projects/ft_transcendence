@@ -25,6 +25,23 @@
   "4-8 players": "4-8 プレイヤー",
   "Start Match": "試合を開始",
 
+  "TournamentNames": {
+    "The Great Paddle-Off": "伝説のパドル対決"
+  },
+  "Tournament Completed": "トーナメントが終了しました",
+  "Go to Dashboard": "ダッシュボードへ",
+  "Current Round": "現在のラウンド",
+  "Reset Tournament": "トーナメントをリセット",
+  "tournament": {
+    "noActive": "現在進行中のトーナメントはありません。ダッシュボードから新しいトーナメントを作成できます。",
+    "matchInfo": "試合 {{matchId}} — ラウンド {{round}}",
+    "playerDataUnavailable": "プレイヤーデータが利用できません。"
+  },
+  "Player": "プレイヤー",
+  "Score": "点数",
+  "Select 4-8 Players for Tournament": "トーナメントに参加する4-8人のプレイヤーを選択",
+  "Start Tournament": "トーナメントを開始",
+
   "Match in Progress...": "試合中...",
   "Press spacebar to start game...": "スペースキーを押して試合開始...",
   "Player 1": "プレイヤー1",
@@ -51,7 +68,6 @@
   "Weighted score": "加重スコア",
 
   "Tournament Lobby": "トーナメントロビー",
-  "Reset Tournament": "トーナメントをリセット",
   "SEMIFINAL": "準決勝",
   "FINAL MATCH": "決勝",
 

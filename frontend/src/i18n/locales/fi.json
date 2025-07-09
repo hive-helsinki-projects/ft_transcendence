@@ -25,6 +25,23 @@
   "4-8 players": "4–8 pelaajaa",
   "Start Match": "Aloita ottelu",
 
+  "TournamentNames": {
+    "The Great Paddle-Off": "The Great Paddle-Off"
+  },
+  "Tournament Completed": "Tournament Completed",
+  "Go to Dashboard": "Go to Dashboard",
+  "Reset Tournament": "Nollaa turnaus",
+  "Current Round": "Current Round",
+  "tournament": {
+    "noActive": "There is no active tournament. You can create a new one from the dashboard.",
+    "matchInfo": "Match {{matchId}} — Round {{round}}",
+    "playerDataUnavailable": "Player data unavailable."
+  },
+  "Player": "Player",
+  "Score": "Score",
+  "Select 4-8 Players for Tournament": "Select 4-8 Players for Tournament",
+  "Start Tournament": "Start Tournament",
+  
   "Match in Progress...": "Ottelu käynnissä...",
   "Press spacebar to start game...": "Paina välilyöntiä aloittaaksesi pelin...",
   "Player 1": "Player 1",
@@ -56,7 +73,6 @@
   "Weighted score": "Weighted score",
 
   "Tournament Lobby": "Turnausaula",
-  "Reset Tournament": "Nollaa turnaus",
   "SEMIFINAL": "PUOLIVÄLIERÄ",
   "FINAL MATCH": "FINAALIOTTELU",
 
