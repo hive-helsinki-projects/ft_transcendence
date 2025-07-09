@@ -3,7 +3,6 @@ import { OAuth2Client } from 'google-auth-library';
 import axios from 'axios'
 
 async function verifyGoogleToken(idToken) {
-    // const client = await new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
     const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
     const ticket = await client.verifyIdToken({
         idToken,
