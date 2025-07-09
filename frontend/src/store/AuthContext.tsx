@@ -1,5 +1,6 @@
 import React, { createContext, useEffect, useState } from 'react'
 import { BaseService } from '@services/baseService'
+import { useLocation } from 'react-router-dom'
 
 interface AuthContextType {
   token: string | null
@@ -30,7 +31,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   // Check if you're logged in (do you have a valid token?)
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false)
   const [isValidating, setIsValidating] = useState<boolean>(!!token)
-
+  
+  const location = useLocation()
   // Validate token by making a simple API call
   const validateToken = async () => {
     if (!token) {
@@ -55,7 +57,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   // Validate token on app load
   useEffect(() => {
     validateToken()
-  }, []) // Only run once on mount
+  }, [[location.pathname]]) // Only run once on mount
 
   // Update authentication state when token changes
   useEffect(() => {
