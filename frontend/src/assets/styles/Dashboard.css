@@ -16,6 +16,10 @@
 .players-header {
   @apply flex justify-between items-center mb-4;
 }
+
+.player-select {
+  @apply text-white bg-gray-700 ml-4;
+}
 .create-player-button {
   @apply flex items-center gap-3 border text-[white] font-medium text-[0.95rem] cursor-pointer transition-all duration-[0.2s] ease-[ease] shadow-[0_2px_10px_rgba(44,62,80,0.2)] px-5 py-3 rounded-xl border-solid border-[rgba(255,255,255,0.1)] hover:-translate-y-0.5 hover:shadow-[0_4px_15px_rgba(44,62,80,0.3)];
   background: linear-gradient(45deg, #2c3e50, #1a2634);

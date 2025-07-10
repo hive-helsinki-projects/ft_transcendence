@@ -28,6 +28,7 @@ export const GameStats: React.FC<GameStatsProps> = ({ userPlayers }) => {
         id="player-select"
         value={selectedPlayerId ?? ''}
         onChange={(e) => setSelectedPlayerId(Number(e.target.value))}
+        className="player-select"
       >
         <option value="" disabled>
           {t('Select a player')}
