@@ -9,7 +9,10 @@
     "welcome": "Tervetuloa"
   },
 
+  "Search": "Search",
+
   "Your Players": "Pelaajasi",
+  "Delete player": "Delete player",
   "Create New Player": "Luo uusi pelaaja",
   "Enter player name": "Syötä pelaajan nimi",
   "Create Player": "Luo pelaaja",
@@ -18,16 +21,56 @@
   "Game Modes": "Pelimuodot",
   "1v1 Match": "1v1-ottelu",
   "Tournament Mode": "Turnaustila",
-  "Select Players For 1v1 Match": "Valitse pelaajat 1v1-otteluun",
+  "Select 2 Players For 1v1 Match": "Valitse 2 pelaajaa 1v1-otteluun",
   "Select Player": "Valitse pelaaja",
-  "4-8 players": "4–8 pelaajaa",
+  "4-8 players": "4-8 pelaajaa",
   "Start Match": "Aloita ottelu",
+
+  "Profile Page of": "Profile Page of",
+  "We did not find any user...": "We did not find any user...",
+  "PlayerCard": "PlayerCard",
+  "Avatar": "Avatar",
+  "Display Name": "Display Name",
+  "Wins": "Wins",
+  "Losses": "Losses",
+
+  "Match History 1v1": "Match History 1v1",
+  "Match Date": "Match Date",
+  "No match history available.": "No match history available.",
+
+  "TournamentNames": {
+    "The Great Paddle-Off": "The Great Paddle-Off"
+  },
+  "Tournament Completed": "Tournament Completed",
+  "Go to Dashboard": "Go to Dashboard",
+  "Reset Tournament": "Nollaa turnaus",
+  "Current Round": "Current Round",
+  "tournament": {
+    "noActive": "There is no active tournament. You can create a new one from the dashboard.",
+    "matchInfo": "Match {{matchId}} — Round {{round}}",
+    "playerDataUnavailable": "Player data unavailable.",
+    "nonePlayed": "No tournaments have been played yet",
+    "loadingErr": "Something went wrong loading the tournament.",
+    "confirmReset": "Are you sure you want to delete the tournament \"{{name}}\"?",
+    "deletedSuccess": "Tournament deleted successfully.",
+    "deleteFailed": "Failed to reset tournament. Please try again.",
+    "missingPlayerInfo": "Player information is missing."
+  },
+
+  "Player": "Player",
+  "Score": "Score",
+  "Select 4-8 Players for Tournament": "Select 4-8 Players for Tournament",
+  "Start Tournament": "Start Tournament",
 
   "Match in Progress...": "Ottelu käynnissä...",
   "Press spacebar to start game...": "Paina välilyöntiä aloittaaksesi pelin...",
+  "Player 1": "Player 1",
+  "Player 2": "Player 2",
   "W/S keys": "W/S-näppäimet",
   "First to 11 points (win by 2)": "Ensimmäinen 11 pisteeseen (voitto kahdella pisteellä)",
   "↑/↓ keys": "↑/↓-näppäimet",
+  "Winner": "Winner",
+  "Please rotate your device to landscape": "Please rotate your device to landscape",
 
   "Player Stats": "Pelaajan tilastot",
   "Select a player": "Valitse pelaaja",
@@ -46,9 +89,9 @@
   "Recent Matches": "Viimeisimmät ottelut",
 
   "TOP PLAYERS": "PARHAAT PELAAJAT",
+  "Weighted score": "Weighted score",
 
   "Tournament Lobby": "Turnausaula",
-  "Reset Tournament": "Nollaa turnaus",
   "SEMIFINAL": "PUOLIVÄLIERÄ",
   "FINAL MATCH": "FINAALIOTTELU",
 
@@ -63,13 +106,27 @@
   "Edit": "Muokkaa",
   "Save": "Tallenna",
   "Cancel": "Peruuta",
+
+  "Profile Picture": "Profile Picture",
+  "errors.fieldEmpty": "{{field}} cannot be empty",
+  "messages.fieldUpdated": "{{field}} updated successfully",
+  "fields": {
+    "username": "Username",
+    "email": "Email",
+    "password": "Password"
+  },
+
   "errors": {
     "failedToUpdate": "Käyttäjätietojen päivitys epäonnistui",
     "general": "Tapahtui virhe"
   },
+
   "Two-Factor Authentication": "Kaksivaiheinen todennus",
   "Disable 2FA": "Poista 2FA käytöstä",
   "Enable 2FA": "Ota 2FA käyttöön",
+  "Enter 2FA code": "Enter 2FA code",
+  "Verify & Enable": "Verify & Enable",
+
   "Language Preferences": "Kieliasetukset",
   "languages": {
     "language": "Kieli",
@@ -89,8 +146,8 @@
 
   "Help Center": "Help Center",
   "help.description": "Find answers to common questions.",
+  
   "Game Rules": "Game Rules",
-
   "rules": {
     "basic": {
       "title": "Basic Rules",
@@ -121,5 +178,45 @@
     "step3": "Try using a different browser",
     "step4": "Make sure your browser is up to date",
     "step5": "Disable any ad blockers or extensions that might interfere"
+  },
+
+  "Failed to generate QR code": "Failed to generate QR code",
+  "2FA enabled!": "2FA enabled!",
+  "Invalid 2FA code": "Invalid 2FA code",
+  "2FA disabled.": "2FA disabled.",
+  "Failed to disable 2FA": "Failed to disable 2FA",
+  "Please select an image file": "Please select an image file",
+  "Profile picture updated!": "Profile picture updated!",
+  "Upload failed": "Upload failed",
+  "Failed to logout": "Failed to logout",
+  "Could not delete account: User ID is missing": "Could not delete account: User ID is missing",
+  "delete.areyousure": "Are you sure you want to delete your account? This action cannot be undone.",
+  "Failed to delete account": "Failed to delete account",
+  "Enter your {{field}}": "Enter your {{field}}",
+
+  "Player name cannot be empty": "Player name cannot be empty",
+  "Player name must be 20 characters or less": "Player name must be 20 characters or less",
+
+  "Registration.successful": "Registration successful! Redirecting to dashboard...",
+  "Registration failed": "Registration failed",
+
+  "quickplay": {
+    "alert": {
+      "noPlayers": "Please create a player before starting a 1v1 match",
+      "need2Players": "You need at least 2 players to start a 1v1 match",
+      "needPlayersToStart": "Please create a player before joining a tournament",
+      "need4PlayersForTournament": "You need at least 4 players for a tournament",
+      "failedCheck": "Failed to check existing tournaments",
+      "select2players": "Please select exactly two players",
+      "startFailed": "Failed to start match",
+      "select4to8players": "You must select between 4 and 8 players for the tournament",
+      "errorCreateTournament": "There was an error creating the tournament. Please try again."
+    }
+  },
+
+  "userPlayers": {
+    "nameExists": "A player named \"{{name}}\" already exists.",
+    "createFailed": "Failed to create player \"{{name}}\": {{error}}",
+    "deleteFailed": "Failed to delete player with ID {{id}}."
   }
 }

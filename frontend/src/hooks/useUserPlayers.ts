@@ -2,6 +2,7 @@ import { UserPlayer } from '@/types/dashboard'
 import { API_URL } from '@/utils/constants'
 import { BaseService } from '@services/baseService'
 import { useCallback, useEffect, useState } from 'react'
+import { useTranslate } from '@hooks/index'
 
 interface RawPlayer {
   id: number
@@ -14,6 +15,7 @@ interface RawPlayer {
 }
 
 export const useUserPlayers = () => {
+  const t = useTranslate()
   const [userPlayers, setUserPlayers] = useState<UserPlayer[]>([])
 
   // Fetch all players when component mounts
@@ -61,11 +63,13 @@ export const useUserPlayers = () => {
       setUserPlayers(mapped)
     } catch (error) {
       if (error == 'Error: An error occurred') {
-        alert(`Player with name "${playerName}" already exists.`)
+        // alert(`Player with name "${playerName}" already exists.`)
+        alert(t('userPlayers.nameExists', { name: playerName }))
         return;
       }
       console.error(error)
-      alert(`Failed to create player: ${playerName}, ${error}`)
+      // alert(`Failed to create player: ${playerName}, ${error}`)
+      alert(t('userPlayers.createFailed', { name: playerName, error: String(error) }))
     }
   }, [])
 
@@ -88,7 +92,8 @@ export const useUserPlayers = () => {
       setUserPlayers(mapped)
     } catch (error) {
       console.error(error)
-      alert(`Failed to delete player: ${playerId}`)
+      // alert(`Failed to delete player: ${playerId}`)
+      alert(t('userPlayers.deleteFailed', { id: playerId }))
     }
   }, [])
 

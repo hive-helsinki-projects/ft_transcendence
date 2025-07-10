@@ -4,6 +4,8 @@ import { AuthService } from '@services/authService'
 import { validateRegistrationForm } from '@utils/validation'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useTranslate } from '@hooks/index'
+
 
 interface UseRegisterFormReturn {
   formData: AuthFormData
@@ -27,6 +29,7 @@ export const useRegisterForm = (): UseRegisterFormReturn => {
 
   const navigate = useNavigate()
   const { login } = useAuth()
+  const t = useTranslate()
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const { name, value } = e.target
@@ -53,10 +56,10 @@ export const useRegisterForm = (): UseRegisterFormReturn => {
       login(loginResponse.token, loginResponse.username, loginResponse.id)
 
       // Show success message and redirect
-      setSuccessMessage('Registration successful! Redirecting to dashboard...')
+      setSuccessMessage(t('Registration.successful'))
       setTimeout(() => navigate('/dashboard'), 1000)
     } catch (error) {
-      setError(error instanceof Error ? error.message : 'Registration failed')
+      setError(error instanceof Error ? error.message : t('Registration failed'))
     } finally {
       setIsLoading(false)
     }

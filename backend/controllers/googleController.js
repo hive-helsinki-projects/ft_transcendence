@@ -35,7 +35,7 @@ const loginGoogleSignin = async (req, reply) => {
 
         const { id_token } = tokenRes.data;
         if (!id_token) {
-            return reply.code(400).send({ error: 'IDトークンの取得に失敗しました' }); // MIYUKI FIX NOW!!!
+            return reply.code(400).send({ error: 'Failed to retrieve ID token' });
         }
         const googleUser = await verifyGoogleToken(id_token);
         let user = db.prepare(`SELECT * FROM users WHERE email = ?`).get(googleUser.email);

@@ -51,7 +51,7 @@ export const TopPlayers: React.FC<TopPlayersProps> = ({ players }) => {
               <div className="player-info">
                 <span className="player-name">{player.display_name}</span>
                 <span className="player-points">
-                  Weighted score: {weightedScore}
+                  {t('Weighted score')}: {weightedScore}
                 </span>
               </div>
             </div>

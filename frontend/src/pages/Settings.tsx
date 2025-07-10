@@ -55,7 +55,8 @@ const EditableField: React.FC<EditableFieldProps> = ({
     <div className="form-group">
       <div className="field-label">
         {icon}
-        <label>{field.charAt(0).toUpperCase() + field.slice(1)}</label>
+        {/* <label>{field.charAt(0).toUpperCase() + field.slice(1)}</label> */}
+        <label>{t(`fields.${field}`)}</label>
       </div>
       {isEditing ? (
         <input
@@ -63,7 +64,8 @@ const EditableField: React.FC<EditableFieldProps> = ({
           name={field}
           value={tempValue}
           onChange={onChange}
-          placeholder={`Enter your ${field}`}
+          // placeholder={`Enter your ${field}`}
+          placeholder={t('Enter your {{field}}', { field: t(`fields.${field}`) })}
           autoFocus
           className="field-input"
         />
@@ -180,7 +182,7 @@ export const Settings: React.FC = () => {
       setQrDataUrl(res.qrDataUrl)
       setTwoFaMessage(null)
     } catch {
-      setTwoFaMessage('Failed to generate QR code')
+      setTwoFaMessage(t('Failed to generate QR code'))
     }
   }
 
@@ -190,12 +192,12 @@ export const Settings: React.FC = () => {
       setTwoFaEnabled(true)
       setQrDataUrl(null)
       setTwoFaToken('')
-      setTwoFaMessage('2FA enabled!')
+      setTwoFaMessage(t('2FA enabled!'))
     } catch (err: unknown) {
       if (err instanceof Error) {
-        setTwoFaMessage(err.message || 'Invalid 2FA code');
+        setTwoFaMessage(err.message || t('Invalid 2FA code'));
       } else {
-        setTwoFaMessage('Invalid 2FA code');
+        setTwoFaMessage(t('Invalid 2FA code'))
       }
     }
   }
@@ -204,9 +206,9 @@ export const Settings: React.FC = () => {
     try {
       await api.delete('/api/2fa')
       setTwoFaEnabled(false)
-      setTwoFaMessage('2FA disabled.')
+      setTwoFaMessage(t('2FA disabled.'))
     } catch {
-      setTwoFaMessage('Failed to disable 2FA')
+      setTwoFaMessage(t('Failed to disable 2FA'))
     }
   }
 
@@ -236,7 +238,7 @@ export const Settings: React.FC = () => {
       const newValue = tempData[fieldToUpdate] || ''
 
       if (!newValue.trim()) {
-        setError(`${fieldToUpdate} cannot be empty`)
+        setError(t('errors.fieldEmpty', { field: t(`fields.${fieldToUpdate}`) }))
         return
       }
 
@@ -250,7 +252,7 @@ export const Settings: React.FC = () => {
       }))
 
       setEditingField(null)
-      setSuccess(`${fieldToUpdate} updated successfully`)
+      setSuccess(t('messages.fieldUpdated', { field: t(`fields.${fieldToUpdate}`) }))
       setTimeout(() => setSuccess(null), 3000)
     } catch (error) {
       setError(error instanceof Error ? error.message : t('errors.general'))
@@ -271,7 +273,7 @@ export const Settings: React.FC = () => {
     if (!file) return
 
     if (!file.type.startsWith('image/')) {
-      setAvatarError('Please select an image file')
+      setAvatarError(t('Please select an image file'))
       return
     }
 
@@ -288,13 +290,13 @@ export const Settings: React.FC = () => {
         ...prev,
         avatar_url: response.item.avatar_url,
       }))
-      setAvatarSuccess('Profile picture updated!')
+      setAvatarSuccess(t('Profile picture updated!'))
       setTimeout(() => setAvatarSuccess(null), 3000)
     } catch (err: unknown) {
       if (err instanceof Error) {
         setAvatarError(err.message);
       } else {
-        setAvatarError('Upload failed');
+        setAvatarError(t('Upload failed'))
       }
     }
   }
@@ -304,19 +306,17 @@ export const Settings: React.FC = () => {
       await logout()
       navigate('/')
     } catch {
-      setError('Failed to logout')
+      setError(t('Failed to logout'))
     }
   }
 
   const handleDeleteAccount = async () => {
     if (!userId) {
-      setError('Could not delete account: User ID is missing')
+      setError(t('Could not delete account: User ID is missing'))
       return
     }
     if (
-      window.confirm(
-        'Are you sure you want to delete your account? This action cannot be undone.',
-      )
+      window.confirm(t('delete.areyousure'))
     ) {
       try {
         await api.delete(`/users/${userId}`)
@@ -324,7 +324,7 @@ export const Settings: React.FC = () => {
         await logout()
         navigate('/')
       } catch {
-        setError('Failed to delete account')
+        setError(t('Failed to delete account'))
       }
     }
   }
@@ -410,17 +410,17 @@ export const Settings: React.FC = () => {
         </SettingsSection>
 
         <SettingsSection
-          title="Two-Factor Authentication"
+          title={t('Two-Factor Authentication')}
           icon={<Lock size={18} />}
         >
           {twoFaEnabled ? (
             <button className="settings-button delete" onClick={disable2FA}>
-              Disable 2FA
+              {t('Disable 2FA')}
             </button>
           ) : (
             <>
               <button className="settings-button" onClick={enable2fa}>
-                Enable 2FA
+                {t('Enable 2FA')}
               </button>
               {qrDataUrl && (
                 <div className="qr-section">
@@ -430,11 +430,11 @@ export const Settings: React.FC = () => {
                     value={twoFaToken}
                     onChange={(e) => setTwoFaToken(e.target.value)}
                     maxLength={6}
-                    placeholder="Enter 2FA code"
+                    placeholder={t('Enter 2FA code')}
                     className="field-input"
                   />
                   <button className="save-button" onClick={verify2FA}>
-                    Verify & Enable
+                    {t('Verify & Enable')}
                   </button>
                   {twoFaMessage && (
                     <p className="success-message">{twoFaMessage}</p>

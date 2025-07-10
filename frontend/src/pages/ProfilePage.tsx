@@ -3,6 +3,7 @@ import '@assets/styles/ProfilePage.css'
 import axios from 'axios'
 import { useParams } from 'react-router-dom'
 import { FriendStatusButton, GetUserPlayers, MatchHistory } from '@components/features/profile'
+import { useTranslate } from '@hooks/index'
 
 interface User {
   id: number;
@@ -18,6 +19,8 @@ export const ProfilePage = () => {
   const [user, setUser] = useState<User | null>(null);
   const [isOwnProfile, setIsOwnProfile] = useState(false);
   const { id } = useParams<{ id: string }>();
+
+  const t = useTranslate()
 
   useEffect(() => {
       const fetchUserProfile = async () => {
@@ -41,7 +44,7 @@ export const ProfilePage = () => {
   if (user) {
       return (
         <div className="profile-page">
-            <h1> Profilepage of {user.username}</h1>
+            <h1>{t('Profile Page of')} {user.username}</h1>
             <div>
             {!isOwnProfile && (
                 <FriendStatusButton user={user} />
@@ -59,7 +62,7 @@ export const ProfilePage = () => {
 
   return (
         <div className="profile-page">
-            <h1>We did not find any user...</h1>
+            <h1>{t('We did not find any user...')}</h1>
         </div>
   );
 }

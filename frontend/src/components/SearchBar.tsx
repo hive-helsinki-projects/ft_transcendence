@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import '../assets/styles/SearchBar.css' // Import the CSS file
+import { useTranslate } from '@hooks/index'
 
 interface SearchBarProps {
   onSearch: (query: string) => void
@@ -17,6 +18,8 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
     onSearch(query)
   }
 
+  const t = useTranslate()
+
   return (
     <form className="search-bar-container" onSubmit={handleSubmit}>
       <input
@@ -24,10 +27,10 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
         type="text"
         value={query}
         onChange={handleChange}
-        placeholder="Search..."
+        placeholder={`${t('Search')}...`}
       />
       <button className="search-bar-button" type="submit">
-        Search
+        {t('Search')}
       </button>
     </form>
   )

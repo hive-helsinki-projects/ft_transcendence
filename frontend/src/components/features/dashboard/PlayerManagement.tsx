@@ -21,11 +21,11 @@ const CreatePlayerModal: React.FC<{
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     if (!playerName.trim()) {
-      setError('Player name cannot be empty')
+      setError(t('Player name cannot be empty'))
       return
     }
     if (playerName.length > 20) {
-      setError('Player name must be 20 characters or less')
+      setError(t('Player name must be 20 characters or less'))
       return
     }
     onCreatePlayer(playerName.trim())
@@ -100,7 +100,7 @@ export const PlayerManagement: React.FC<PlayerManagementProps> = ({
               <button
                 className="action-button delete"
                 onClick={() => onDeletePlayer(player.id)}
-                title="Delete player"
+                title={t('Delete player')}
               >
                 <Trash2 size={16} />
               </button>

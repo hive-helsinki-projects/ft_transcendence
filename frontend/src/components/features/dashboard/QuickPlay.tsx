@@ -26,11 +26,11 @@ export const QuickPlay: React.FC<QuickPlayProps> = ({ userPlayers }) => {
 
   const handleOneVsOneClick = () => {
     if (!hasActivePlayers) {
-      alert('Please create a player before starting a 1v1 match')
+      alert(t('quickplay.alert.noPlayers'))
       return
     }
     if (!hasEnoughPlayers1v1) {
-      alert('You need at least 2 players to start a 1v1 match')
+      alert(t('quickplay.alert.need2Players'))
       return
     }
     setSelected1v1Players([])
@@ -39,12 +39,12 @@ export const QuickPlay: React.FC<QuickPlayProps> = ({ userPlayers }) => {
 
   const handleTournamentClick = async () => {
     if (!hasActivePlayers) {
-      alert('Please create a player before joining a tournament')
+      alert(t('quickplay.alert.needPlayersToStart'))
       return
     }
 
     if (!hasEnoughPlayersTourn) {
-      alert('You need at least 4 players for a tournament')
+      alert(t('quickplay.alert.need4PlayersForTournament'))
       return
     }
 
@@ -63,7 +63,7 @@ export const QuickPlay: React.FC<QuickPlayProps> = ({ userPlayers }) => {
       }
     } catch (err) {
       console.error('Error checking for active tournament:', err)
-      alert('Failed to check existing tournaments')
+      alert(t('quickplay.alert.failedCheck'))
     }
   }
 
@@ -91,7 +91,7 @@ export const QuickPlay: React.FC<QuickPlayProps> = ({ userPlayers }) => {
 
   const handleStartMatch = async () => {
     if (selected1v1Players.length !== 2) {
-      alert('Please select exactly two players')
+      alert(t('quickplay.alert.select2players'))
       return
     }
 
@@ -129,7 +129,7 @@ export const QuickPlay: React.FC<QuickPlayProps> = ({ userPlayers }) => {
         },
       })
     } catch (error) {
-      alert('Failed to start match')
+      alert(t('quickplay.alert.startFailed'))
       console.error(error)
     }
   }
@@ -139,7 +139,7 @@ export const QuickPlay: React.FC<QuickPlayProps> = ({ userPlayers }) => {
       selectedTournamentPlayers.length < 4 ||
       selectedTournamentPlayers.length > 8
     ) {
-      alert('You must select between 4 and 8 players for the tournament')
+      alert(t('quickplay.alert.select4to8players'))
       return
     }
 
@@ -155,7 +155,7 @@ export const QuickPlay: React.FC<QuickPlayProps> = ({ userPlayers }) => {
       navigate('/tournament')
     } catch (error) {
       console.error('Error starting tournament:', error)
-      alert('There was an error creating the tournament. Please try again.')
+      alert(t('quickplay.alert.errorCreateTournament'))
     }
   }
 
@@ -185,7 +185,7 @@ export const QuickPlay: React.FC<QuickPlayProps> = ({ userPlayers }) => {
       {showModal1v1 && (
         <div className="modal-overlay">
           <div className="modal-content">
-            <h3>Select 2 Players For 1v1 Match</h3>
+            <h3>{t('Select 2 Players For 1v1 Match')}</h3>
             <div className="player-checkboxes">
               {userPlayers.map((player) => (
                 <label
@@ -214,13 +214,13 @@ export const QuickPlay: React.FC<QuickPlayProps> = ({ userPlayers }) => {
             </div>
             <div className="modal-actions">
               <button onClick={handleStartMatch} className="create-button">
-                Start Match
+                {t('Start Match')}
               </button>
               <button
                 onClick={() => setShowModal1v1(false)}
                 className="cancel-button"
               >
-                Cancel
+                {t('Cancel')}
               </button>
             </div>
           </div>
@@ -231,7 +231,7 @@ export const QuickPlay: React.FC<QuickPlayProps> = ({ userPlayers }) => {
       {showModalTourn && (
         <div className="modal-overlay">
           <div className="modal-content">
-            <h3>Select 4-8 Players for Tournament</h3>
+            <h3>{t('Select 4-8 Players for Tournament')}</h3>
             <div className="player-checkboxes">
               {userPlayers.map((player) => (
                 <label
@@ -256,13 +256,13 @@ export const QuickPlay: React.FC<QuickPlayProps> = ({ userPlayers }) => {
             </div>
             <div className="modal-actions">
               <button onClick={handleStartTournament} className="create-button">
-                Start Tournament
+                {t('Start Tournament')}
               </button>
               <button
                 onClick={() => setShowModalTourn(false)}
                 className="cancel-button"
               >
-                Cancel
+                {t('Cancel')}
               </button>
             </div>
           </div>

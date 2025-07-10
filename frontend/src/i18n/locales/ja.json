@@ -4,10 +4,15 @@
     "hero.subtitle": "Level Up Your Ping Pong Skills",
     "hero.description": "Smash, spin, and dominate the table. Prove you are the ultimate paddle master."
   },
+
   "dashboard": {
     "welcome": "こんにちは"
   },
+
+  "Search": "検索",
+
   "Your Players": "あなたのプレイヤー",
+  "Delete player": "プレイヤーを削除",
   "Create New Player": "新しいプレイヤーを作成",
   "Enter player name": "プレイヤー名を入力",
   "Create Player": "プレイヤーを作成",
@@ -16,16 +21,56 @@
   "Game Modes": "ゲームモード",
   "1v1 Match": "1v1 対戦",
   "Tournament Mode": "トーナメント",
-  "Select Players For 1v1 Match": "1v1の対戦相手を選択",
+  "Select 2 Players For 1v1 Match": "1v1の対戦相手を2人選択",
   "Select Player": "プレイヤーを選ぶ",
   "4-8 players": "4-8 プレイヤー",
   "Start Match": "試合を開始",
 
+  "Profile Page of": "プロフィールページ: ",
+  "We did not find any user...": "ユーザーが見つかりませんでした",
+  "PlayerCard": "プレイヤーカード",
+  "Avatar": "アバター",
+  "Display Name": "表示名",
+  "Wins": "勝ち",
+  "Losses": "負け",
+
+  "Match History 1v1": "1v1の対戦記録",
+  "Match Date": "対戦日",
+  "No match history available.": "対戦記録はありません",
+
+  "TournamentNames": {
+    "The Great Paddle-Off": "伝説のパドル対決"
+  },
+  "Tournament Completed": "トーナメントが終了しました",
+  "Go to Dashboard": "ダッシュボードへ",
+  "Current Round": "現在のラウンド",
+  "Reset Tournament": "トーナメントをリセット",
+  "tournament": {
+    "noActive": "現在進行中のトーナメントはありません。ダッシュボードから新しいトーナメントを作成できます。",
+    "matchInfo": "試合 {{matchId}} — ラウンド {{round}}",
+    "playerDataUnavailable": "プレイヤーデータが利用できません。",
+    "nonePlayed": "まだトーナメントが実施されていません",
+    "loadingErr": "トーナメントの読み込み中に問題が発生しました",
+    "confirmReset": "トーナメント「{{name}}」を削除してもよろしいですか？",
+    "deletedSuccess": "トーナメントを削除しました",
+    "deleteFailed": "トーナメントのリセットに失敗しました。もう一度お試しください",
+    "missingPlayerInfo": "プレイヤー情報が不足しています"
+  },
+
+  "Player": "プレイヤー",
+  "Score": "点数",
+  "Select 4-8 Players for Tournament": "トーナメントに参加する4-8人のプレイヤーを選択",
+  "Start Tournament": "トーナメントを開始",
+
   "Match in Progress...": "試合中...",
   "Press spacebar to start game...": "スペースキーを押して試合開始...",
+  "Player 1": "プレイヤー1",
+  "Player 2": "プレイヤー2",
   "W/S keys": "W/Sキー",
   "First to 11 points (win by 2)": "11点先取 (2点差で勝利)",
   "↑/↓ keys": "↑/↓キー",
+  "Winner": "勝者",
+  "Please rotate your device to landscape": "デバイスを横向きにしてください",
 
   "Player Stats": "プレイヤー統計",
   "Select a player": "プレイヤーを選択",
@@ -33,15 +78,20 @@
     "wins": "勝ち",
     "losses": "負け",
     "winRate": "勝率",
-    "rotalGames": "全試合数"
+    "totalGames": "全試合数"
+  },
+
+  "loading": {
+    "starting": "試合が始まります...",
+    "matchInProgress": "試合中..."
   },
 
   "Recent Matches": "最近の試合",
 
   "TOP PLAYERS": "トッププレイヤー",
+  "Weighted score": "加重スコア",
 
   "Tournament Lobby": "トーナメントロビー",
-  "Reset Tournament": "トーナメントをリセット",
   "SEMIFINAL": "準決勝",
   "FINAL MATCH": "決勝",
 
@@ -56,13 +106,27 @@
   "Edit": "編集",
   "Save": "保存",
   "Cancel": "キャンセル",
+
+  "Profile Picture": "プロフィール写真",
+  "errors.fieldEmpty": "{{field}}を入力してください",
+  "messages.fieldUpdated": "{{field}}を更新しました",
+  "fields": {
+    "username": "ユーザーネーム",
+    "email": "メールアドレス",
+    "password": "パスワード"
+  },
+
   "errors": {
     "failedToUpdate": "ユーザー情報の更新に失敗しました",
     "general": "エラーが発生しました"
   },
+
   "Two-Factor Authentication": "2段階認証",
   "Disable 2FA": "2段階認証を無効にする",
   "Enable 2FA": "2段階認証を有効にする",
+  "Enter 2FA code": "2段階認証コードを入力",
+  "Verify & Enable": "認証して有効化",
+
   "Language Preferences": "言語設定",
   "languages": {
     "language": "言語",
@@ -114,5 +178,45 @@
     "step3": "別のブラウザを試してください",
     "step4": "ブラウザが最新バージョンか確認してください",
     "step5": "広告ブロッカーや拡張機能を一時的に無効にしてください"
+  },
+
+  "Failed to generate QR code": "QRコードの生成に失敗しました",
+  "2FA enabled!": "2段階認証が有効になりました",
+  "Invalid 2FA code": "無効な2段階認証コードです",
+  "2FA disabled.": "2段階認証が無効になりました",
+  "Failed to disable 2FA": "2段階認証の無効化に失敗しました",
+  "Please select an image file": "イメージファイルを選択してください",
+  "Profile picture updated!": "プロフィール写真が変更されました",
+  "Upload failed": "アップロードに失敗しました",
+  "Failed to logout": "ログアウトに失敗しました",
+  "Could not delete account: User ID is missing": "アカウント削除できません: User IDがありません",
+  "delete.areyousure": "本当にアカウントを削除しますか？削除は取り消せません",
+  "Failed to delete account": "アカウントの削除に失敗しました",
+  "Enter your {{field}}": "{{field}}を入力してください",
+
+  "Player name cannot be empty": "プレイヤー名を入力してください",
+  "Player name must be 20 characters or less": "プレイヤー名は20文字以下のみ使用できます",
+
+  "Registration.successful": "登録完了！ダッシュボードへ移動中...",
+  "Registration failed": "登録に失敗しました",
+
+  "quickplay": {
+    "alert": {
+      "noPlayers": "1対1の試合を始める前にプレイヤーを作成してください",
+      "need2Players": "1対1の試合を始めるには、最低2人のプレイヤーが必要です",
+      "needPlayersToStart": "トーナメントに参加するには、まずプレイヤーを作成してください",
+      "need4PlayersForTournament": "トーナメントを開始するには、最低4人のプレイヤーが必要です",
+      "failedCheck": "既存のトーナメントの確認に失敗しました",
+      "select2players": "プレイヤーを2人選択してください",
+      "startFailed": "試合の開始に失敗しました",
+      "select4to8players": "トーナメントには4人から8人のプレイヤーを選択してください",
+      "errorCreateTournament": "トーナメントの作成中にエラーが発生しました。もう一度お試しください"
+    }
+  },
+
+  "userPlayers": {
+    "nameExists": "プレイヤー名「{{name}}」はすでに存在します。",
+    "createFailed": "プレイヤー「{{name}}」の作成に失敗しました：{{error}}",
+    "deleteFailed": "プレイヤー(ID: {{id}})の削除に失敗しました。"
   }
 }
