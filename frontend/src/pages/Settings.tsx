@@ -16,6 +16,7 @@ import i18n from '@i18n/config'
 import { api } from '@services/api'
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { BaseService } from '@services/baseService'
 
 interface UserData {
   username: string
@@ -149,13 +150,17 @@ export const Settings: React.FC = () => {
   useEffect(() => {
     const loadProfile = async () => {
       try {
-        const user = await api.get(`/users/${userId}`)
-        setUserData({
-          username: user.username,
-          email: user.email,
-          password: '',
-          avatar_url: user.avatar_url || '',
-        })
+        const user = await BaseService.get<{
+        username:   string
+        email:      string
+        avatar_url?: string
+      }>(`/users/${userId}`)
+
+      setUserData({
+        username: user.username,
+        email: user.email,
+        avatar_url: user.avatar_url || '',
+      })
       } catch (err) {
         console.error('Failed to load profile', err)
       }

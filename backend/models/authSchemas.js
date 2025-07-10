@@ -49,7 +49,9 @@ export const postLogin2faOpts = {
         200: {
           type: 'object',
           properties: {
-            token: { type: 'string' }
+            token: { type: 'string' },
+			username: { type: 'string' },
+            id: { type: 'integer' }
           }
         },
         400: {
