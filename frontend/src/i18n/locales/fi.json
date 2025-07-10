@@ -144,79 +144,79 @@
   "Profile Settings": "Profiiliasetukset",
   "Sign Out": "Kirjaudu ulos",
 
-  "Help Center": "Help Center",
-  "help.description": "Find answers to common questions.",
+  "Help Center": "Apu Keskus",
+  "help.description": "Vastaukset usein kysyttyihin kysymyksiin.",
   
-  "Game Rules": "Game Rules",
+  "Game Rules": "Pelin Säännöt",
   "rules": {
     "basic": {
-      "title": "Basic Rules",
-      "description": "Players control paddles to hit the ball back and forth. The goal is to make the ball pass your opponent's paddle."
+      "title": "Perus Säännöt",
+      "description": "Pelaajat ohjaavat mailoja lyödäkseen palloa edestakaisin. Tavoitteena on saada pallo vastustajan maaliin."
     },
     "scoring": {
-      "title": "Scoring",
-      "description": "A point is scored when the ball passes the opponent's paddle. The first player to reach 11 points wins the game."
+      "title": "Pisteytys",
+      "description": "Pisteen saa, kun pallo ohittaa vastustajan mailan. Ensimmäinen pelaaja, joka saavuttaa 11 pistettä, voittaa pelin."
     }
   },
 
-  "Frequently Asked Questions": "Frequently Asked Questions",
+  "Frequently Asked Questions": "Usein Kysytyt Kysymykset",
   "faq": {
   "start": {
-    "question": "How do I start playing?",
-    "answer": "To start playing, create an account and log in. Then you can join a game or create your own tournament."
+    "question": "Miten aloitan pelin?",
+    "answer": "Aloittaaksesi pelaamisen, luo tili ja kirjaudu sisään. Sitten voit liittyä peliin tai luoda oman turnauksesi."
    },
   "tournaments": {
-    "question": "How do tournaments work?",
-    "answer": "Tournaments are organized in brackets. Players compete in matches, and winners advance to the next round until a champion is crowned."
+    "question": "Miten turnaukset toimii?",
+    "answer": "Turnaukset järjestetään vaiheittain. Pelaajat kilpailevat otteluissa, ja voittajat etenevät seuraavalle kierrokselle, kunnes mestari kruunataan."
    }
   },
 
-  "Troubleshooting": "Troubleshooting",
+  "Troubleshooting": "Vianhaku",
   "troubleshooting": {
-    "step1": "Check your internet connection",
-    "step2": "Clear your browser cache",
-    "step3": "Try using a different browser",
-    "step4": "Make sure your browser is up to date",
-    "step5": "Disable any ad blockers or extensions that might interfere"
+    "step1": "Tarkista nettiyhteytesi",
+    "step2": "Tyhjennä selaimen välimuisti",
+    "step3": "Kokeile eri selainta",
+    "step4": "Varmista, että selaimesi on ajan tasalla",
+    "step5": "Poista käytöstä kaikki mainosten estäjät tai laajennukset, jotka saattavat häiritä"
   },
 
-  "Failed to generate QR code": "Failed to generate QR code",
-  "2FA enabled!": "2FA enabled!",
-  "Invalid 2FA code": "Invalid 2FA code",
-  "2FA disabled.": "2FA disabled.",
-  "Failed to disable 2FA": "Failed to disable 2FA",
-  "Please select an image file": "Please select an image file",
-  "Profile picture updated!": "Profile picture updated!",
-  "Upload failed": "Upload failed",
-  "Failed to logout": "Failed to logout",
-  "Could not delete account: User ID is missing": "Could not delete account: User ID is missing",
-  "delete.areyousure": "Are you sure you want to delete your account? This action cannot be undone.",
-  "Failed to delete account": "Failed to delete account",
-  "Enter your {{field}}": "Enter your {{field}}",
+  "Failed to generate QR code": "QR-koodin luominen epäonnistui",
+  "2FA enabled!": "2FA käytössä!",
+  "Invalid 2FA code": "Virheellinen 2FA-koodi",
+  "2FA disabled.": "2FA poistettu käytöstä.",
+  "Failed to disable 2FA": "2FA:n poistaminen käytöstä epäonnistu",
+  "Please select an image file": "Valitse kuvatiedosto",
+  "Profile picture updated!": "Profiilikuva päivitetty!",
+  "Upload failed": "Lataus epäonnistui",
+  "Failed to logout": "Uloskirjautuminen epäonnistui",
+  "Could not delete account: User ID is missing": "Tilin poistaminen epäonnistui: käyttäjätunnus puuttuu",
+  "delete.areyousure": "Haluatko varmasti poistaa tilisi? Tätä toimintoa ei voi perua.",
+  "Failed to delete account": "Tilin poistaminen epäonnistui",
+  "Enter your {{field}}": "Syötä {{field}}",
 
-  "Player name cannot be empty": "Player name cannot be empty",
-  "Player name must be 20 characters or less": "Player name must be 20 characters or less",
+  "Player name cannot be empty": "Pelaajan nimi ei voi olla tyhjä",
+  "Player name must be 20 characters or less": "Pelaajan nimen on oltava 20 merkkiä pitkä tai alle",
 
-  "Registration.successful": "Registration successful! Redirecting to dashboard...",
-  "Registration failed": "Registration failed",
+  "Registration.successful": "Rekisteröinti onnistui! Ohjataan takaisin hallintapaneeliin...",
+  "Registration failed": "Rekisteröinti epäonnistui",
 
   "quickplay": {
     "alert": {
-      "noPlayers": "Please create a player before starting a 1v1 match",
-      "need2Players": "You need at least 2 players to start a 1v1 match",
-      "needPlayersToStart": "Please create a player before joining a tournament",
-      "need4PlayersForTournament": "You need at least 4 players for a tournament",
-      "failedCheck": "Failed to check existing tournaments",
-      "select2players": "Please select exactly two players",
-      "startFailed": "Failed to start match",
-      "select4to8players": "You must select between 4 and 8 players for the tournament",
-      "errorCreateTournament": "There was an error creating the tournament. Please try again."
+      "noPlayers": "Luo pelaaja ennen 1v1-ottelun aloittamista.",
+      "need2Players": "Tarvitset vähintään kaksi pelaajaa aloittaaksesi 1v1-ottelun.",
+      "needPlayersToStart": "Luo pelaaja ennen turnaukseen liittymistä",
+      "need4PlayersForTournament": "Tarvitset turnaukseen vähintään 4 pelaajaa",
+      "failedCheck": "Nykyisten turnausten tarkistaminen epäonnistui",
+      "select2players": "Valitse tasan kaksi pelaajaa",
+      "startFailed": "Ottelun aloittaminen epäonnistui",
+      "select4to8players": "Sinun on valittava turnaukseen 4–8 pelaajaa",
+      "errorCreateTournament": "Turnauksen luomisessa tapahtui virhe. Yritä uudelleen."
     }
   },
 
   "userPlayers": {
-    "nameExists": "A player named \"{{name}}\" already exists.",
-    "createFailed": "Failed to create player \"{{name}}\": {{error}}",
-    "deleteFailed": "Failed to delete player with ID {{id}}."
+    "nameExists": "Pelaaja nimeltä \"{{name}}\" on jo olemassa.",
+    "createFailed": "Pelaajan \"{{name}}\" luominen epäonnistui: {{error}}",
+    "deleteFailed": "Pelaajan, jonka tunnus on {{id}}, poistaminen epäonnistui."
   }
 }
