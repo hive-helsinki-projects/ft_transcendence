@@ -24,9 +24,27 @@ const login2fa = async (req, reply) => {
             return reply.code(400).send({ error: 'Invalid 2FA code' });
         }
 
+        const user = db.prepare('SELECT * FROM users WHERE id = ?').get(userId);
+        if (!user) {
+            return reply.code(404).send({ error: 'User not found' });
+        }
+
+        db.prepare(`
+            UPDATE users
+                SET online_status = TRUE
+            WHERE id = ?
+                AND online_status = FALSE
+        `).run(userId);
+
+
+        console.log(user);
         // Generate a JWT token for the user
         const token = await reply.jwtSign({ id: userId });
-        return reply.send({ token });
+        return reply.send({
+            token,
+            username: user.username,
+            id:       user.id
+        });
     } catch (error) {
         return reply.code(500).send({ error: 'Internal Server Error' });
     }

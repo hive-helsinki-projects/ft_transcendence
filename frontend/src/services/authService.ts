@@ -8,6 +8,18 @@ export interface LoginResponse {
   id: string
 }
 
+export interface TwoFaSuccess {
+  token: string
+  user: {
+    id:             number
+    username:       string
+    email:          string
+    avatar_url:     string | null
+    two_fa_enabled: boolean
+    online_status:  boolean
+  }
+}
+
 /**
  * Authentication Service
  * Handles all authentication-related API calls
@@ -38,10 +50,18 @@ export class AuthService extends BaseService {
   }
 
   static async login2fa(userId: number, code: string): Promise<LoginResponse> {
-    const raw = await this.post<SuccessLogin>(API_ENDPOINTS.LOGIN_2FA, {
+    const raw = await this.post<TwoFaSuccess>(API_ENDPOINTS.LOGIN_2FA, {
       userId,
       code,
     })
+
+    if ('user' in raw) {
+      return {
+        token:    raw.token,
+        username: raw.user.username,
+        id:       String(raw.user.id),
+      };
+    }
     return {
       token: raw.token,
       username: raw.username,

@@ -37,7 +37,7 @@ export const LandingPage: React.FC = () => {
   const [userId, setUserId] = React.useState<number | null>(null)
   const [twoFaCode, setTwoFaCode] = React.useState('')
   const [twoFaError, setTwoFaError] = React.useState('')
-  const [, setCachedUsername] = React.useState('')
+  const [cachedUsername, setCachedUsername] = React.useState('')
 
   // Handlers
   const handleAuthSubmit = async (formData: AuthFormData) => {
@@ -85,12 +85,14 @@ export const LandingPage: React.FC = () => {
 
   const handleVerify2FA = async () => {
     if (!userId) return
+    setTwoFaError('')
     setLoading(true)
     try {
       const loginResponse = await AuthService.login2fa(userId, twoFaCode)
       handleAuthSuccess()
       await new Promise((resolve) => setTimeout(resolve, REDIRECT_DELAY))
-      login(loginResponse.token, loginResponse.username, loginResponse.id)
+      const finalUsername = loginResponse.username || cachedUsername
+      login(loginResponse.token, finalUsername, loginResponse.id)
       navigate('/dashboard')
     } catch {
       setTwoFaError('Invalid 2FA code')
