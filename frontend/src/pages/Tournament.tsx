@@ -27,7 +27,7 @@ export const TournamentPage: React.FC = () => {
         const tournaments: Tournament[] = 'items' in res ? res.items : res
 
         if (tournaments.length === 0) {
-          alert('No tournaments have been played yet')
+          alert(t('tournament.nonePlayed'))
           navigate('/dashboard')
           return
         }
@@ -35,7 +35,7 @@ export const TournamentPage: React.FC = () => {
         setTournament(latestTournament)
       } catch (err) {
         console.error('Failed to fetch tournaments:', err)
-        alert('Something went wrong loading the tournament.')
+        alert(t('tournament.loadingErr'))
         navigate('/dashboard')
       }
     }
@@ -84,17 +84,17 @@ export const TournamentPage: React.FC = () => {
     if (!tournament) return
 
     const confirmReset = window.confirm(
-      `Are you sure you want to delete the tournament "${tournament.name}"?`,
+      t('tournament.confirmReset', { name: tournament.name })
     )
     if (!confirmReset) return
 
     try {
       await BaseService.delete(`/tournaments/${tournament.id}`)
-      alert('Tournament deleted successfully.')
+      alert(t('tournament.deletedSuccess'))
       navigate('/dashboard')
     } catch (error) {
       console.error('Failed to delete tournament:', error)
-      alert('Failed to reset tournament. Please try again.')
+      alert(t('tournament.deleteFailed'))
     }
   }
 
@@ -104,7 +104,7 @@ export const TournamentPage: React.FC = () => {
     player2: { id: number; display_name: string; avatar: string },
   ) => {
     if (!player1 || !player2) {
-      alert('Player information is missing.')
+      alert(t('tournament.missingPlayerInfo'))
       return
     }
 
@@ -163,7 +163,6 @@ export const TournamentPage: React.FC = () => {
           <div className="tournament-lobby">
             {/* Header */}
             <div className="tournament-header">
-              {/* <h1>{tournament.name}</h1> */}
               <h1>{t(`TournamentNames.${tournament.name}`)}</h1>
               <button
                 className="reset-tournament-button"
@@ -176,7 +175,6 @@ export const TournamentPage: React.FC = () => {
 
             {/* Round Info */}
             <div className="tournament-round-info">
-              {/* <h2>Current Round: {tournament.current_round + 1}</h2> */}
               <h2>{t('Current Round')}: {tournament.current_round + 1}</h2>
             </div>
 

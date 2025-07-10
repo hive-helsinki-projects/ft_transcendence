@@ -12,6 +12,7 @@
   "Search": "Search",
 
   "Your Players": "Your Players",
+  "Delete player": "Delete player",
   "Create New Player": "Create New Player",
   "Enter player name": "Enter player name",
   "Create Player": "Create Player",
@@ -47,8 +48,15 @@
   "tournament": {
     "noActive": "There is no active tournament. You can create a new one from the dashboard.",
     "matchInfo": "Match {{matchId}} — Round {{round}}",
-    "playerDataUnavailable": "Player data unavailable."
+    "playerDataUnavailable": "Player data unavailable.",
+    "nonePlayed": "No tournaments have been played yet",
+    "loadingErr": "Something went wrong loading the tournament.",
+    "confirmReset": "Are you sure you want to delete the tournament \"{{name}}\"?",
+    "deletedSuccess": "Tournament deleted successfully.",
+    "deleteFailed": "Failed to reset tournament. Please try again.",
+    "missingPlayerInfo": "Player information is missing."
   },
+
   "Player": "Player",
   "Score": "Score",
   "Select 4-8 Players for Tournament": "Select 4-8 Players for Tournament",
@@ -95,22 +103,24 @@
 
   "settings.title": "Settings",
   "Account Settings": "Account Settings",
+  "Edit": "Edit",
+  "Save": "Save",
+  "Cancel": "Cancel",
 
   "Profile Picture": "Profile Picture",
   "errors.fieldEmpty": "{{field}} cannot be empty",
+  "messages.fieldUpdated": "{{field}} updated successfully",
   "fields": {
     "username": "Username",
     "email": "Email",
     "password": "Password"
   },
 
-  "Edit": "Edit",
-  "Save": "Save",
-  "Cancel": "Cancel",
   "errors": {
     "failedToUpdate": "Failed to update user data",
     "general": "An error occurred"
   },
+
   "Two-Factor Authentication": "Two-Factor Authentication",
   "Disable 2FA": "Disable 2FA",
   "Enable 2FA": "Enable 2FA",
@@ -136,8 +146,8 @@
 
   "Help Center": "Help Center",
   "help.description": "Find answers to common questions.",
+  
   "Game Rules": "Game Rules",
-
   "rules": {
     "basic": {
       "title": "Basic Rules",
@@ -181,6 +191,33 @@
   "Failed to logout": "Failed to logout",
   "Could not delete account: User ID is missing": "Could not delete account: User ID is missing",
   "delete.areyousure": "Are you sure you want to delete your account? This action cannot be undone.",
-  "Failed to delete account": "Failed to delete account"
+  "Failed to delete account": "Failed to delete account",
+  "Enter your {{field}}": "Enter your {{field}}",
+
+  "Player name cannot be empty": "Player name cannot be empty",
+  "Player name must be 20 characters or less": "Player name must be 20 characters or less",
+
+  "Registration.successful": "Registration successful! Redirecting to dashboard...",
+  "Registration failed": "Registration failed",
+
+  "quickplay": {
+    "alert": {
+      "noPlayers": "Please create a player before starting a 1v1 match",
+      "need2Players": "You need at least 2 players to start a 1v1 match",
+      "needPlayersToStart": "Please create a player before joining a tournament",
+      "need4PlayersForTournament": "You need at least 4 players for a tournament",
+      "failedCheck": "Failed to check existing tournaments",
+      "select2players": "Please select exactly two players",
+      "startFailed": "Failed to start match",
+      "select4to8players": "You must select between 4 and 8 players for the tournament",
+      "errorCreateTournament": "There was an error creating the tournament. Please try again."
+    }
+  },
+
+  "userPlayers": {
+    "nameExists": "A player named \"{{name}}\" already exists.",
+    "createFailed": "Failed to create player \"{{name}}\": {{error}}",
+    "deleteFailed": "Failed to delete player with ID {{id}}."
+  }
 }
 

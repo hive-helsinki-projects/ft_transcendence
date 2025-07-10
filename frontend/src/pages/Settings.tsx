@@ -64,7 +64,8 @@ const EditableField: React.FC<EditableFieldProps> = ({
           name={field}
           value={tempValue}
           onChange={onChange}
-          placeholder={`Enter your ${field}`}
+          // placeholder={`Enter your ${field}`}
+          placeholder={t('Enter your {{field}}', { field: t(`fields.${field}`) })}
           autoFocus
           className="field-input"
         />
@@ -237,7 +238,6 @@ export const Settings: React.FC = () => {
       const newValue = tempData[fieldToUpdate] || ''
 
       if (!newValue.trim()) {
-        // setError(`${fieldToUpdate} cannot be empty`)
         setError(t('errors.fieldEmpty', { field: t(`fields.${fieldToUpdate}`) }))
         return
       }
@@ -252,7 +252,7 @@ export const Settings: React.FC = () => {
       }))
 
       setEditingField(null)
-      setSuccess(`${fieldToUpdate} updated successfully`)
+      setSuccess(t('messages.fieldUpdated', { field: t(`fields.${fieldToUpdate}`) }))
       setTimeout(() => setSuccess(null), 3000)
     } catch (error) {
       setError(error instanceof Error ? error.message : t('errors.general'))
