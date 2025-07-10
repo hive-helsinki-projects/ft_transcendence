@@ -30,5 +30,8 @@ export const PlayerName = ({ id }: { id: string }) => {
     fetchPlayerName()
   }, [id])
 
+  if (!playerName) {
+    return <span>Unknown</span>
+  }
   return <span>{playerName}</span>
 }
