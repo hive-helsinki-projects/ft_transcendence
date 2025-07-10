@@ -97,10 +97,10 @@ db.prepare(`
 	CREATE TABLE IF NOT EXISTS match_player_history (
 		id INTEGER PRIMARY KEY AUTOINCREMENT,
 		match_id INTEGER NOT NULL,
-		player_id INTEGER NOT NULL,
+		player_id INTEGER,
 		score INTEGER DEFAULT 0 NOT NULL,
 		FOREIGN KEY (match_id) REFERENCES match_history(id) ON DELETE CASCADE,
-		FOREIGN KEY (player_id) REFERENCES players(id) ON DELETE CASCADE,
+		FOREIGN KEY (player_id) REFERENCES players(id) ON DELETE SET NULL,
 		UNIQUE (match_id, player_id)
 	)
 `).run();
@@ -110,9 +110,9 @@ db.prepare(`
 	CREATE TABLE IF NOT EXISTS match_winner_history (
 		id INTEGER PRIMARY KEY AUTOINCREMENT,
 		match_id INTEGER NOT NULL,
-		winner_id INTEGER NOT NULL,
+		winner_id INTEGER,
 		FOREIGN KEY (match_id) REFERENCES match_history(id) ON DELETE CASCADE,
-		FOREIGN KEY (winner_id) REFERENCES players(id) ON DELETE CASCADE
+		FOREIGN KEY (winner_id) REFERENCES players(id) ON DELETE SET NULL
 	)
 `).run();
 
