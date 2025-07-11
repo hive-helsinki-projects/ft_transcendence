@@ -21,13 +21,14 @@ export const GameStats: React.FC<GameStatsProps> = ({ userPlayers }) => {
 
   return (
     <div className="stats-section">
-      <h2>{t('Player Stats')}</h2>
+      <h2>{t('Game Stats')}</h2>
       {/* Player Selection */}
-      <label htmlFor="player-select">{t('Select Player')}:</label>
+      {/* <label htmlFor="player-select">{t('Select Player')}:</label> */}
       <select
         id="player-select"
         value={selectedPlayerId ?? ''}
         onChange={(e) => setSelectedPlayerId(Number(e.target.value))}
+        className="player-select"
       >
         <option value="" disabled>
           {t('Select a player')}
