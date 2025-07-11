@@ -4,8 +4,6 @@ import {
   Globe,
   Lock,
   LogOut,
-  Mail,
-  Settings as SettingsIcon,
   Trash2,
   User,
   X,
@@ -340,10 +338,9 @@ export const Settings: React.FC = () => {
   }
 
   return (
-    <div className="settings-page">
-      <div className="settings-container">
-        <div className="settings-header">
-          <SettingsIcon size={24} />
+    <div className="dashboard">
+      {/* <div className="settings-container"> */}
+        <div className="welcome-header">
           <h1>{t('settings.title')}</h1>
         </div>
 
@@ -381,7 +378,6 @@ export const Settings: React.FC = () => {
           <EditableField
             field="username"
             value={userData.username}
-            icon={<User size={16} />}
             isEditing={editingField === 'username'}
             tempValue={tempData.username}
             onEdit={handleEditClick}
@@ -392,7 +388,6 @@ export const Settings: React.FC = () => {
           <EditableField
             field="email"
             value={userData.email}
-            icon={<Mail size={16} />}
             isEditing={editingField === 'email'}
             tempValue={tempData.email}
             onEdit={handleEditClick}
@@ -403,7 +398,6 @@ export const Settings: React.FC = () => {
           <EditableField
             field="password"
             value={userData.password || ''}
-            icon={<Lock size={16} />}
             type="password"
             isEditing={editingField === 'password'}
             tempValue={tempData.password || ''}
@@ -485,7 +479,7 @@ export const Settings: React.FC = () => {
             {t('actions.deleteAccount')}
           </button>
         </SettingsSection>
-      </div>
+      {/* </div> */}
     </div>
   )
 }

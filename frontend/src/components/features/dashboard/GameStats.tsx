@@ -23,7 +23,7 @@ export const GameStats: React.FC<GameStatsProps> = ({ userPlayers }) => {
     <div className="stats-section">
       <h2>{t('Player Stats')}</h2>
       {/* Player Selection */}
-      <label htmlFor="player-select">{t('Select Player')}:</label>
+      {/* <label htmlFor="player-select">{t('Select Player')}:</label> */}
       <select
         id="player-select"
         value={selectedPlayerId ?? ''}

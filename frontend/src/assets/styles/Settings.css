@@ -3,12 +3,12 @@
   background: linear-gradient(135deg, #1a1b2e, #2a2b4a);
 }
 .avatar-upload-container {
-  @apply flex items-center gap-4 mb-4;
+  @apply flex items-center gap-2 mb-4;
 }
 .avatar-preview {
-  @apply w-20 h-20 object-cover border rounded-[50%] border-solid border-[#ccc] w-20 h-20 overflow-hidden mx-auto my-0 rounded-[50%] border-2 border-solid border-[rgba(255,255,255,0.1)];
+  @apply w-20 h-20 object-cover border rounded-[50%] border-solid border-[#ccc] overflow-hidden border-2 border-solid border-[rgba(255,255,255,0.1)];
 }
-.avatar-file-input {
+  .avatar-file-input {
   @apply text-[0.9rem];
   /* you can style as desired—below is minimal */
 }
