@@ -1,205 +1,92 @@
-
 .rotate-overlay {
-  position: fixed;
-  inset: 0;                   /* top/right/bottom/left: 0 */
+  @apply fixed text-white flex items-center justify-center text-center text-xl z-[1000] p-4 inset-0 landscape:hidden;
+
+  /* top/right/bottom/left: 0 */
   background: rgba(0, 0, 0, 0.85);
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 1rem;
-  font-size: 1.25rem;
-  z-index: 1000;
 }
-
-@media screen and (orientation: landscape) {
-  .rotate-overlay {
-    display: none;
-  }
-}
-
 .game-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: calc(100vh - 4rem);
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 4rem;
-  gap: 3rem;
+  @apply flex flex-col items-center justify-center min-h-[calc(100vh_-_4rem)] max-w-[1200px] gap-12 mx-auto my-0 p-16;
 }
-
 .game-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  max-width: 1000px;
+  @apply flex items-center justify-between w-full max-w-[1000px] border shadow-[0_8px_32px_rgba(0,0,0,0.2)] mb-4 px-12 py-8 rounded-[20px] border-solid border-[rgba(255,255,255,0.1)];
   background: rgba(44, 41, 86, 0.8);
-  border-radius: 20px;
-  padding: 2rem 3rem;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  margin-bottom: 1rem;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
 }
-
 .player-info {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-  padding: 0.5rem;
-  min-width: 200px;
+  @apply flex flex-col items-center gap-4 min-w-[200px] p-2;
 }
-
 .player-avatar {
-  width: 64px;
-  height: 64px;
-  border-radius: 50%;
-  border: 2px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  @apply w-16 h-16 shadow-[0_4px_12px_rgba(0,0,0,0.2)] rounded-[50%] border-2 border-solid border-[rgba(255,255,255,0.1)];
 }
-
 .player-name {
-  color: white;
-  font-size: 1.25rem;
-  font-weight: 600;
+  @apply text-[white] text-xl font-semibold;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
-
 .player-score {
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: white;
+  @apply text-[2.5rem] font-bold text-[white];
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-  font-family: 'Arial', sans-serif;
+  font-family: "Arial", sans-serif;
 }
-
 .player-controls {
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 0.9rem;
+  @apply text-[rgba(255,255,255,0.7)] text-[0.9rem] border shadow-[0_2px_8px_rgba(0,0,0,0.1)] px-4 py-2 rounded-lg border-solid border-[rgba(255,255,255,0.05)];
   background: rgba(255, 255, 255, 0.1);
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
-
 .match-info {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
+  @apply flex flex-col items-center gap-4;
 }
-
 .match-type {
-  color: white;
-  font-size: 1.5rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
+  @apply text-[white] text-2xl font-bold uppercase tracking-widest border px-8 py-4 rounded-xl border-solid border-[rgba(255,255,255,0.1)];
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   background: rgba(255, 255, 255, 0.05);
-  padding: 1rem 2rem;
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
 }
-
 .win-condition {
-  color: rgba(255, 255, 255, 0.8);
-  font-size: 0.9rem;
-  text-align: center;
+  @apply text-[rgba(255,255,255,0.8)] text-[0.9rem] text-center border px-6 py-3 rounded-lg border-solid border-[rgba(74,226,175,0.2)];
   background: rgba(74, 226, 175, 0.1);
-  padding: 0.75rem 1.5rem;
-  border-radius: 8px;
-  border: 1px solid rgba(74, 226, 175, 0.2);
 }
-
 .game-canvas {
-  width: 100%;
-  max-width: 1000px;
-  aspect-ratio: 5 / 3;
-  height: auto;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 20px;
+  @apply w-full max-w-[1000px] aspect-[5_/_3] h-auto border shadow-[0_8px_32px_rgba(0,0,0,0.2)] rounded-[20px] border-solid border-[rgba(255,255,255,0.1)];
   background: rgba(44, 41, 86, 0.8);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
 }
-
 .canvas-wrapper {
-  position: relative;
-  width: 100%;
-  max-width: 1000px;
-  aspect-ratio: 5 / 3;
-  margin: 0 auto;
+  @apply relative w-full max-w-[1000px] aspect-[5_/_3] mx-auto my-0;
 }
-
 .touch-zone {
-  position: absolute;
+  @apply absolute z-10;
   background: transparent;
+
   /* ensure they’re on top of the canvas */
-  z-index: 10;
 }
 
 /* left half, top quarter of screen */
 .touch-zone.left.up {
-  left: 0;
-  top: 0;
-  width: 50%;
-  height: 50%;
+  @apply w-6/12 h-3/6 left-0 top-0;
 }
 
 /* left half, bottom quarter */
 .touch-zone.left.down {
-  left: 0;
-  bottom: 0;
-  width: 50%;
-  height: 50%;
+  @apply w-6/12 h-3/6 left-0 bottom-0;
 }
 
 /* right half, top quarter */
 .touch-zone.right.up {
-  right: 0;
-  top: 0;
-  width: 50%;
-  height: 50%;
+  @apply w-6/12 h-3/6 right-0 top-0;
 }
 /* right half, bottom quarter */
 .touch-zone.right.down {
-  right: 0;
-  bottom: 0;
-  width: 50%;
-  height: 50%;
+  @apply w-6/12 h-3/6 right-0 bottom-0;
 }
-
 @media (max-width: 1000px) {
   /* let the header container actually shrink below 1,000px */
   .game-header {
-    max-width: none;
-    justify-content: flex-start;
+    @apply max-w-none justify-start flex-col items-stretch gap-4 p-4;
   }
 
   /* stack the three blocks vertically and stretch to fit */
-  .game-header {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 1rem;
-    padding: 1rem;
-  }
 
   /* allow the player panels to shrink below 200px */
   .player-info {
-    min-width: 0;
-    flex: 1;
-    flex-direction: row;
-    justify-content: space-between;
-    gap: 0.5rem;
+    @apply min-w-0 flex-1 flex-row justify-between gap-2;
   }
-
   .match-info {
-    width: 100%;
-    margin: 0.5rem 0;
+    @apply w-full mx-0 my-2;
   }
 }
