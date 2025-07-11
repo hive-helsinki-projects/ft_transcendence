@@ -261,6 +261,7 @@ export const Settings: React.FC = () => {
       setTimeout(() => setSuccess(null), 3000)
     } catch (error) {
       setError(error instanceof Error ? `The username or email is already in use. Please choose a different one.` : t('errors.general'))
+      setTimeout(() => setError(null), 3000)
     }
   }
 
