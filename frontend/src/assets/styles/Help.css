@@ -1,34 +1,18 @@
 .help-container {
-  padding: 20px;
-  max-width: 800px;
-  margin: 0 auto;
+  @apply max-w-[800px] mx-auto my-0 p-5;
 }
-
 .help-section {
-  margin-bottom: 2rem;
+  @apply mb-8;
 }
-
 .help-intro {
-  color: #666;
-  margin-bottom: 2rem;
+  @apply text-[#666] mb-8;
 }
-
 .help-list {
-  list-style-type: disc;
-  padding-left: 0;
+  @apply list-disc pl-0;
 }
-
 .help-item {
-  margin-bottom: 1rem;
-  padding: 0.5rem;
-  border-radius: 4px;
+  @apply rounded mb-4 p-2;
 }
-
 .help-link {
-  color: #007bff;
-  text-decoration: none;
+  @apply text-[#007bff] no-underline hover:underline;
 }
-
-.help-link:hover {
-  text-decoration: underline;
-} 

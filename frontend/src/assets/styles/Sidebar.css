@@ -1,36 +1,10 @@
 .sidebar {
-  position: fixed;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 48px;
-  background-color: #1E1E2E;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 1rem 0;
-  gap: 0.5rem;
-  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  @apply fixed w-12 bg-[#1E1E2E] flex flex-col items-center gap-2 px-0 py-4 border-r-[rgba(255,255,255,0.1)] border-r border-solid left-0 inset-y-0;
 }
-
 .sidebar-button {
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 8px;
-  border: none;
+  @apply w-10 h-10 flex items-center justify-center text-[white] cursor-pointer transition-all duration-[0.2s] rounded-lg border-[none] hover:bg-[rgba(255,255,255,0.1)];
   background: transparent;
-  color: white;
-  cursor: pointer;
-  transition: all 0.2s;
 }
-
-.sidebar-button:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-}
-
 .sidebar-button.selected {
-  background-color: rgba(255, 255, 255, 0.2);
-} 
+  @apply bg-[rgba(255,255,255,0.2)];
+}
