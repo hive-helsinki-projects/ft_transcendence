@@ -260,7 +260,7 @@ export const Settings: React.FC = () => {
       setSuccess(t('messages.fieldUpdated', { field: t(`fields.${fieldToUpdate}`) }))
       setTimeout(() => setSuccess(null), 3000)
     } catch (error) {
-      setError(error instanceof Error ? error.message : t('errors.general'))
+      setError(error instanceof Error ? `The username or email is already in use. Please choose a different one.` : t('errors.general'))
     }
   }
 
