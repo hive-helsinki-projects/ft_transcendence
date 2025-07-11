@@ -1,18 +1,18 @@
 {
   "hero": {
     "title": "Ping. Pong. Pelaa!",
-    "subtitle": "Level Up Your Ping Pong Skills",
-    "description": "Smash, spin, and dominate the table. Prove you are the ultimate paddle master."
+    "subtitle": "Nosta pingispelitaitojasi",
+    "description": "Murskaa, pyöräytä ja hallitse pöytää. Todista olevasi maila mestari."
   },
 
   "dashboard": {
     "welcome": "Tervetuloa"
   },
 
-  "Search": "Search",
+  "Search": "Etsi",
 
   "Your Players": "Pelaajasi",
-  "Delete player": "Delete player",
+  "Delete player": "Poista pelaaja",
   "Create New Player": "Luo uusi pelaaja",
   "Enter player name": "Syötä pelaajan nimi",
   "Create Player": "Luo pelaaja",
@@ -26,51 +26,51 @@
   "4-8 players": "4-8 pelaajaa",
   "Start Match": "Aloita ottelu",
 
-  "Profile Page of": "Profile Page of",
-  "We did not find any user...": "We did not find any user...",
-  "PlayerCard": "PlayerCard",
-  "Avatar": "Avatar",
-  "Display Name": "Display Name",
-  "Wins": "Wins",
-  "Losses": "Losses",
+  "Profile Page of": "Pelaajan profiili sivu",
+  "We did not find any user...": "Emme löytäneet yhtään käyttäjää...",
+  "PlayerCard": "Pelaajakortti",
+  "Avatar": "Pelaaja",
+  "Display Name": "Käyttäjä nimi",
+  "Wins": "Voitot",
+  "Losses": "Häviöt",
 
-  "Match History 1v1": "Match History 1v1",
-  "Match Date": "Match Date",
-  "No match history available.": "No match history available.",
+  "Match History 1v1": "Ottelu historia 1v1",
+  "Match Date": "Ottelu päivämäärä",
+  "No match history available.": "Ei ottelu historiaa saatavilla.",
 
   "TournamentNames": {
-    "The Great Paddle-Off": "The Great Paddle-Off"
+    "The Great Paddle-Off": "Suuri melontakilpailu"
   },
-  "Tournament Completed": "Tournament Completed",
-  "Go to Dashboard": "Go to Dashboard",
+  "Tournament Completed": "Turnaus suoritettu",
+  "Go to Dashboard": "Siirry Dashboardiin",
   "Reset Tournament": "Nollaa turnaus",
-  "Current Round": "Current Round",
+  "Current Round": "Nykyinen kierros",
   "tournament": {
-    "noActive": "There is no active tournament. You can create a new one from the dashboard.",
-    "matchInfo": "Match {{matchId}} — Round {{round}}",
-    "playerDataUnavailable": "Player data unavailable.",
-    "nonePlayed": "No tournaments have been played yet",
-    "loadingErr": "Something went wrong loading the tournament.",
-    "confirmReset": "Are you sure you want to delete the tournament \"{{name}}\"?",
-    "deletedSuccess": "Tournament deleted successfully.",
-    "deleteFailed": "Failed to reset tournament. Please try again.",
-    "missingPlayerInfo": "Player information is missing."
+    "noActive": "Aktiivisia turnauksia ei ole. Voit luoda uuden kojelaudasta.",
+    "matchInfo": "Ottelu {{matchId}} — Kierros {{round}}",
+    "playerDataUnavailable": "Pelaajan tiedot eivät ole käytettävissä.",
+    "nonePlayed": "Yhtään turnausta ei ole vielä pelattu",
+    "loadingErr": "Turnauksen lataamisessa meni jotain pieleen.",
+    "confirmReset": "Haluatko varmasti poistaa turnauksen \"{{name}}\"?",
+    "deletedSuccess": "Turnauksen poistaminen onnistui.",
+    "deleteFailed": "Turnauksen nollaaminen epäonnistui. Yritä uudelleen.",
+    "missingPlayerInfo": "Pelaajan tiedot puuttuvat."
   },
 
-  "Player": "Player",
-  "Score": "Score",
-  "Select 4-8 Players for Tournament": "Select 4-8 Players for Tournament",
-  "Start Tournament": "Start Tournament",
+  "Player": "Pelaaja",
+  "Score": "Pisteet",
+  "Select 4-8 Players for Tournament": "Valitse turnaukseen 4–8 pelaajaa",
+  "Start Tournament": "Aloita Turnaus",
 
   "Match in Progress...": "Ottelu käynnissä...",
   "Press spacebar to start game...": "Paina välilyöntiä aloittaaksesi pelin...",
-  "Player 1": "Player 1",
-  "Player 2": "Player 2",
+  "Player 1": "Pelaaja 1",
+  "Player 2": "Pelaaja 2",
   "W/S keys": "W/S-näppäimet",
   "First to 11 points (win by 2)": "Ensimmäinen 11 pisteeseen (voitto kahdella pisteellä)",
   "↑/↓ keys": "↑/↓-näppäimet",
-  "Winner": "Winner",
-  "Please rotate your device to landscape": "Please rotate your device to landscape",
+  "Winner": "Voittaja",
+  "Please rotate your device to landscape": "Käännä laite vaakasuoraan",
 
   "Player Stats": "Pelaajan tilastot",
   "Select a player": "Valitse pelaaja",
@@ -89,7 +89,7 @@
   "Recent Matches": "Viimeisimmät ottelut",
 
   "TOP PLAYERS": "PARHAAT PELAAJAT",
-  "Weighted score": "Weighted score",
+  "Weighted score": "Painotettu pistemäärä",
 
   "Tournament Lobby": "Turnausaula",
   "SEMIFINAL": "PUOLIVÄLIERÄ",
@@ -107,13 +107,13 @@
   "Save": "Tallenna",
   "Cancel": "Peruuta",
 
-  "Profile Picture": "Profile Picture",
-  "errors.fieldEmpty": "{{field}} cannot be empty",
-  "messages.fieldUpdated": "{{field}} updated successfully",
+  "Profile Picture": "Profiilikuva",
+  "errors.fieldEmpty": "{{field}} ei voi olla tyhjä",
+  "messages.fieldUpdated": "{{field}} päivitetty onnistuneesti",
   "fields": {
-    "username": "Username",
-    "email": "Email",
-    "password": "Password"
+    "username": "Käyttäjätunnus",
+    "email": "Sähköposti",
+    "password": "Salasana"
   },
 
   "errors": {
@@ -124,8 +124,8 @@
   "Two-Factor Authentication": "Kaksivaiheinen todennus",
   "Disable 2FA": "Poista 2FA käytöstä",
   "Enable 2FA": "Ota 2FA käyttöön",
-  "Enter 2FA code": "Enter 2FA code",
-  "Verify & Enable": "Verify & Enable",
+  "Enter 2FA code": "Syötä 2FA-koodi",
+  "Verify & Enable": "Vahvista ja ota käyttöön",
 
   "Language Preferences": "Kieliasetukset",
   "languages": {
