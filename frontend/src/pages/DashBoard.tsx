@@ -59,7 +59,7 @@ export const Dashboard: React.FC = () => {
     <div className="dashboard">
       <div className="welcome-header">
         <h1>
-          {t('dashboard.welcome')}, {username}!
+          {t('dashboard.welcome')}
         </h1>
         <SearchBar onSearch={handleSearch} />
       </div>

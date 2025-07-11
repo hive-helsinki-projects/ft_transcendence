@@ -1,6 +1,4 @@
 export { HelpSection } from './HelpSection'
 export { FAQSection } from './FAQSection'
 export { RulesSection } from './RulesSection'
-export { ContactSection } from './ContactSection'
 export { TroubleshootingSection } from './TroubleshootingSection'
-export { FeedbackSection } from './FeedbackSection'
