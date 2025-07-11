@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react'
 import '@assets/styles/ProfilePage.css'
 import axios from 'axios'
 import { useParams } from 'react-router-dom'
-import { FriendStatusButton, GetUserPlayers, MatchHistory } from '@components/features/profile'
-import { useTranslate } from '@hooks/index'
+import { FriendStatusButton, GetUserPlayers, MatchHistory, FriendList } from '@components/features/profile'
+import { LoadingContainer } from '@components/index'
 
 interface User {
   id: number;
@@ -20,18 +20,16 @@ export const ProfilePage = () => {
   const [isOwnProfile, setIsOwnProfile] = useState(false);
   const { id } = useParams<{ id: string }>();
 
-  const t = useTranslate()
-
   useEffect(() => {
       const fetchUserProfile = async () => {
           try {
-            let url = '';
-            if (id === 'null') {
-                const id = localStorage.getItem('id');
-                url = `https://localhost:3001/users/${id}`;
-            } else {
-                url = `https://localhost:3001/users/${id}`;
-            }
+              let url = '';
+              if (id == null) {
+                const id2 = localStorage.getItem('id');
+                  url = `https://localhost:3001/users/${id2}`;
+              } else {
+                  url = `https://localhost:3001/users/${id}`;
+              }
               const response = await axios.get<User>(url);
               setUser(response.data);
               const username = localStorage.getItem('username');
@@ -46,29 +44,38 @@ export const ProfilePage = () => {
       fetchUserProfile();
   }, [id])
 
-
   if (user) {
       return (
         <div className="profile-page">
-            <h1>{t('Profile Page of')} {user.username}</h1>
-            <div>
-            {!isOwnProfile && (
-                <FriendStatusButton user={user} />
-            )}
+            <div className="profile-header">
+                <h1>{isOwnProfile ? 'My Profile' : user.username}</h1>
+                
+                <div className="profile-actions">
+                    {isOwnProfile ? (
+                        <button 
+                            className="edit-profile-btn"
+                            onClick={() => window.location.href = '/settings'}
+                        >
+                            Settings
+                        </button>
+                    ) : (
+                        <FriendStatusButton user={user} />
+                    )}
+                </div>
             </div>
-            <div>
-                <GetUserPlayers userId={user.id} />
-            </div>
-            <div>
-                <MatchHistory userId={String(user.id)} />
+            
+            <div className="profile-content">
+                {isOwnProfile && <FriendList />}
+                
+                <div className="players-section">
+                    <GetUserPlayers userId={user.id} />
+                </div>
+                
+                <div className="match-history-section">
+                    <MatchHistory userId={String(user.id)} />
+                </div>
             </div>
         </div>
       )
-  }
-
-  return (
-        <div className="profile-page">
-            <h1>{t('We did not find any user...')}</h1>
-        </div>
-  );
+    }
 }

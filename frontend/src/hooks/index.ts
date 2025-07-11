@@ -13,3 +13,6 @@ export { useMatchHistories } from './useMatchHistories'
 
 // Translation hooks
 export { useTranslate } from './useTranslate'
+
+// Friend hooks
+export { useFriends } from './useFriends'
