@@ -25,7 +25,8 @@ export { Sidebar } from './sidebar/SideBar'
 
 // Navigation Components
 export { SidebarItem } from './sidebar/SidebarItem'
-export { menuItems } from './sidebar/menuItems'
+export { type MenuItem } from './sidebar/SidebarItem'
+export { menuItems, getMenuItems } from './sidebar/menuItems'
 
 // Authentication Components
 export { AuthForm } from './features/auth/AuthForm'

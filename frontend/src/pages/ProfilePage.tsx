@@ -1,81 +1,49 @@
-import React, { useEffect, useState } from 'react'
-import '@assets/styles/ProfilePage.css'
-import axios from 'axios'
 import { useParams } from 'react-router-dom'
-import { FriendStatusButton, GetUserPlayers, MatchHistory, FriendList } from '@components/features/profile'
-import { LoadingContainer } from '@components/index'
-
-interface User {
-  id: number;
-  username: string;
-  email: string;
-  online_status: boolean;
-  avatar_url: string;
-  created_at: string;
-  two_fa_enabled: boolean;
-}
+import { GetUserPlayers, FriendList, IncomingFriendRequests, UserMatchHistory, FriendStatusButton } from '@components/features/profile'
+import { useTranslate, useFriends, useUserProfile } from '@hooks/index'
 
 export const ProfilePage = () => {
-  const [user, setUser] = useState<User | null>(null);
-  const [isOwnProfile, setIsOwnProfile] = useState(false);
-  const { id } = useParams<{ id: string }>();
+  const { id } = useParams<{ id: string }>()
+  const t = useTranslate()
+  const { friends, loading: friendsLoading, error: friendsError, refetch: refetchFriends } = useFriends()
+  const { user, loading, error, isOwnProfile } = useUserProfile(id)
 
-  useEffect(() => {
-      const fetchUserProfile = async () => {
-          try {
-              let url = '';
-              if (id == null) {
-                const id2 = localStorage.getItem('id');
-                  url = `https://localhost:3001/users/${id2}`;
-              } else {
-                  url = `https://localhost:3001/users/${id}`;
-              }
-              const response = await axios.get<User>(url);
-              setUser(response.data);
-              const username = localStorage.getItem('username');
-              if (username === response.data.username) {
-                  setIsOwnProfile(true);
-              }
-              console.log('setUser User profile:', response.data);
-          } catch (error) {
-              console.error('Error fetching user profile:', error);
-          }
-      };
-      fetchUserProfile();
-  }, [id])
+  if (loading) return <div><h2>{t('profile.loadingProfile')}</h2></div>
+  if (error) return <div><h2>{t('profile.error')}</h2><p>{error}</p></div>
+  if (!user) return <div><h2>{t('profile.userNotFound')}</h2></div>
 
-  if (user) {
-      return (
-        <div className="profile-page">
-            <div className="profile-header">
-                <h1>{isOwnProfile ? 'My Profile' : user.username}</h1>
-                
-                <div className="profile-actions">
-                    {isOwnProfile ? (
-                        <button 
-                            className="edit-profile-btn"
-                            onClick={() => window.location.href = '/settings'}
-                        >
-                            Settings
-                        </button>
-                    ) : (
-                        <FriendStatusButton user={user} />
-                    )}
-                </div>
-            </div>
-            
-            <div className="profile-content">
-                {isOwnProfile && <FriendList />}
-                
-                <div className="players-section">
-                    <GetUserPlayers userId={user.id} />
-                </div>
-                
-                <div className="match-history-section">
-                    <MatchHistory userId={String(user.id)} />
-                </div>
-            </div>
-        </div>
-      )
-    }
+  return (
+    <>
+      <h1>{t('profile.title', { username: user.username })}</h1>
+      <div>
+        {isOwnProfile && (
+          <IncomingFriendRequests onFriendAccepted={refetchFriends} />
+        )}
+        
+        {!isOwnProfile && (
+          <FriendStatusButton 
+            user={{
+              id: user.id,
+              username: user.username,
+              online_status: user.online_status
+            }}
+          />
+        )}
+        
+        {isOwnProfile && (
+          <FriendList 
+            friends={friends} 
+            loading={friendsLoading} 
+            error={friendsError}
+            isOwnProfile={isOwnProfile}
+            targetUser={user}
+            onFriendRemoved={refetchFriends}
+          />
+        )}
+        
+        <GetUserPlayers userId={user.id} />
+        <UserMatchHistory userId={String(user.id)} />
+      </div>
+    </>
+  )
 }

@@ -21,6 +21,13 @@ export const VALIDATION_RULES = {
   password: {
     minLength: 6,
   },
+  email: {
+    minLength: 5,
+    pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+  },
+  confirmPassword: {
+    minLength: 6,
+  },
 } as const
 
 // These are the messages and timing values used throughout authentication

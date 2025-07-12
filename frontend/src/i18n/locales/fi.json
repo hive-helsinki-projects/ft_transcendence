@@ -37,6 +37,8 @@
   "Match History 1v1": "Ottelu historia 1v1",
   "Match Date": "Ottelu päivämäärä",
   "No match history available.": "Ei ottelu historiaa saatavilla.",
+  "Players": "Pelaajat",
+  "No players available.": "Ei pelaajia saatavilla.",
 
   "TournamentNames": {
     "The Great Paddle-Off": "Suuri pingpong ottelu!"
@@ -221,22 +223,17 @@
   },
 
   "friends": {
-    "sendRequest": "Lähetä kaveripyyntö yhdistääksesi",
-    "notFriends": "Ei kavereita",
     "addFriend": "Lisää kaveri",
     "loading": "Ladataan...",
-    "friends": "Kaverit",
+    "friends": "👤✓ Kaverit",
     "online": "Verkossa",
     "offline": "Poissa verkosta",
     "requestSent": "Kaveripyyntö lähetetty",
-    "waitingAccept": "Odotetaan että {{username}} hyväksyy pyyntösi",
     "requestReceived": "Kaveripyyntö vastaanotettu",
-    "wantsToBeFriend": "{{username}} haluaa olla kaverisi",
     "removeFriend": "Poista kaveri",
     "cancelRequest": "Peruuta pyyntö",
     "accept": "Hyväksy",
     "deny": "Kieltäydy",
-    "processing": "Käsitellään...",
     "incomingRequests": "Saapuvat kaveripyynnöt",
     "requestSentAlert": "Kaveripyyntö lähetetty käyttäjälle {{username}}!",
     "errors": {
@@ -244,18 +241,22 @@
       "userNotFound": "Käyttäjää ei löytynyt.",
       "alreadyFriends": "Olette jo kavereita tämän käyttäjän kanssa.",
       "requestExists": "Kaveripyyntö on jo olemassa.",
-      "cannotAddSelf": "Et voi lähettää kaveripyyntöä itsellesi."
-    }
-  },
-
-  "profile": {
-    "title": "Oma profiili, {{username}}!",
-    "settings": "Asetukset",
+      "cannotAddSelf": "Et voi lähettää kaveripyyntöä itsellesi.",
+      "removeFailed": "Kaverin poistaminen epäonnistui. Yritä uudelleen."
+    },
+    "confirmRemove": "Haluatko varmasti poistaa käyttäjän {{username}} kavereistasi?",
+    "confirmCancelRequest": "Haluatko varmasti peruuttaa kaveripyynnön käyttäjälle {{username}}?",
+    "confirmDenyRequest": "Haluatko varmasti hylätä kaveripyynnön käyttäjältä {{username}}?",
+  
+    "profile": {
+    "title": "{{username}} profiili!",
     "userNotFound": "Käyttäjää ei löytynyt.",
     "loadingProfile": "Ladataan profiilia...",
     "error": "Virhe.",
     "errorProfile": "Profiilin lataaminen epäonnistui",
     "myFriends": "Kaverini",
+    "friends": "Kaverit",
     "noFriendsYet": "Ei vielä kavereita. Käytä hakupalkkia löytääksesi ja lisätäksesi kavereita!"
   }
+}
 }

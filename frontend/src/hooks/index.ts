@@ -10,9 +10,15 @@ export { useRegisterForm } from './useRegisterForm'
 export { useUserPlayers } from './useUserPlayers'
 export { useAvatar } from './useAvatar'
 export { useMatchHistories } from './useMatchHistories'
+export { usePlayerName } from './usePlayerName'
+export { useUserMatchHistory } from './useUserMatchHistory'
 
 // Translation hooks
 export { useTranslate } from './useTranslate'
 
 // Friend hooks
 export { useFriends } from './useFriends'
+export { useUserProfile } from './useUserProfile'
+export { useIncomingFriendRequests } from './useIncomingFriendRequests'
+export { useFriendStatus } from './useFriendStatus'
+export { useFriendRemoval } from './useFriendRemoval'

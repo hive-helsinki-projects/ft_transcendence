@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { MenuItem, menuItems, SidebarItem } from '@/components'
+import { MenuItem, getMenuItems, SidebarItem } from '@/components'
 import '@/assets/styles/index.css'
 
 /**
@@ -16,8 +16,8 @@ export const Sidebar = () => {
   return (
     // Navigation container with sidebar styling
     <nav className="sidebar">
-      {/* Map through menuItems array to create SidebarItem components */}
-      {menuItems.map((item: MenuItem) => (
+              {/* Map through menuItems array to create SidebarItem components */}
+        {getMenuItems().map((item: MenuItem) => (
         <SidebarItem
           key={item.id} // Unique identifier for each item
           id={item.id} // Item identifier

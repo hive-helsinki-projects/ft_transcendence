@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
+import { api } from '@services/api'
 
 interface Friend {
   user_id: number
@@ -7,7 +8,7 @@ interface Friend {
   status: string
 }
 
-interface FriendWithDetails {
+export interface FriendWithDetails {
   id: number
   username: string
   avatar_url: string
@@ -33,11 +34,7 @@ export const useFriends = () => {
       }
 
       // Get friend relationships
-      const friendsResponse = await axios.get('https://localhost:3001/friends', {
-        headers: { Authorization: `Bearer ${token}` }
-      })
-
-      const friendRelationships: Friend[] = friendsResponse.data
+      const friendRelationships: Friend[] = await api.getFriends()
       
       // Filter for accepted friends only
       const acceptedFriends = friendRelationships.filter(f => f.status === 'accepted')
@@ -51,16 +48,14 @@ export const useFriends = () => {
             : friendship.user_id
           
           try {
-            // Get friend's user details
-            const userResponse = await axios.get(`https://localhost:3001/users/${friendId}`, {
-              headers: { Authorization: `Bearer ${token}` }
-            })
+            // Get friend's user details using api service
+            const userResponse = await api.get(`/users/${friendId}`)
             
             return {
               id: friendId,
-              username: userResponse.data.username,
-              avatar_url: userResponse.data.avatar_url,
-              online_status: userResponse.data.online_status,
+              username: userResponse.username,
+              avatar_url: userResponse.avatar_url,
+              online_status: userResponse.online_status,
               friendshipStatus: friendship.status
             }
           } catch (err) {

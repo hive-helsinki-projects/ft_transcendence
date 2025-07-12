@@ -1,21 +1,26 @@
-import { useEffect, useState } from 'react'
+import { useState, useEffect } from 'react'
 import axios from 'axios'
 
-export const PlayerName = ({ id }: { id: string }) => {
+export const usePlayerName = (playerId: string | number) => {
   const [playerName, setPlayerName] = useState<string>('')
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
     const fetchPlayerName = async () => {
       const token = localStorage.getItem('token')
-      console.log('Token:', token)
       if (!token) {
-        console.error('No token found')
+        setError('No token found')
+        setLoading(false)
         return
       }
 
       try {
+        setLoading(true)
+        setError(null)
+        
         const response = await axios.get(
-          `https://localhost:3001/players/${id}`,
+          `https://localhost:3001/players/${playerId}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -25,13 +30,19 @@ export const PlayerName = ({ id }: { id: string }) => {
         setPlayerName(response.data.display_name)
       } catch (error) {
         console.error('Error fetching player name:', error)
+        setError('Failed to fetch player name')
+        setPlayerName('Unknown')
+      } finally {
+        setLoading(false)
       }
     }
-    fetchPlayerName()
-  }, [id])
 
-  if (!playerName) {
-    return <span>Unknown</span>
+    fetchPlayerName()
+  }, [playerId])
+
+  return {
+    playerName,
+    loading,
+    error
   }
-  return <span>{playerName}</span>
-}
+} 

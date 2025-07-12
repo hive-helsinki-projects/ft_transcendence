@@ -37,6 +37,8 @@
   "Match History 1v1": "Match History 1v1",
   "Match Date": "Match Date",
   "No match history available.": "No match history available.",
+  "Players": "Players",
+  "No players available.": "No players available.",
 
   "TournamentNames": {
     "The Great Paddle-Off": "The Great Paddle-Off"
@@ -221,22 +223,17 @@
   },
 
   "friends": {
-    "sendRequest": "Send a friend request to connect",
-    "notFriends": "Not Friends",
     "addFriend": "Add Friend",
     "loading": "Loading...",
-    "friends": "Friends",
+    "friends": "👤✓ Friends",
     "online": "Online",
     "offline": "Offline",
     "requestSent": "Friend Request Sent",
-    "waitingAccept": "Waiting for {{username}} to accept your request",
     "requestReceived": "Friend Request Received",
-    "wantsToBeFriend": "{{username}} wants to be your friend",
     "removeFriend": "Remove Friend",
     "cancelRequest": "Cancel Request",
     "accept": "Accept",
     "deny": "Deny",
-    "processing": "Processing...",
     "incomingRequests": "Incoming Friend Requests",
     "requestSentAlert": "Friend request sent to {{username}}!",
     "errors": {
@@ -244,18 +241,23 @@
       "userNotFound": "User not found.",
       "alreadyFriends": "You are already friends with this user.",
       "requestExists": "Friend request already exists.",
-      "cannotAddSelf": "You cannot send a friend request to yourself."
+      "cannotAddSelf": "You cannot send a friend request to yourself.",
+      "removeFailed": "Failed to remove friend. Please try again."
     },
-    "profile": {
-      "title": "My Profile, {{username}}!",
-      "myFriends": "My Friends",
-      "settings": "Settings",
-      "userNotFound": "User not found.",
-      "loadingProfile": "Loading profile...",
-      "error": "Error.",
-      "errorProfile": "Failed to load user profile",
-      "noFriendsYet": "No friends yet. Use the search bar to find and add friends!"
-    }
+    "confirmRemove": "Are you sure you want to remove {{username}} from your friends?",
+    "confirmCancelRequest": "Are you sure you want to cancel the friend request to {{username}}?",
+    "confirmDenyRequest": "Are you sure you want to deny the friend request from {{username}}?"
+  },
+
+  "profile": {
+    "title": "Profile of {{username}}!",
+    "myFriends": "My Friends",
+    "friends": "👤✓ Friends",
+    "userNotFound": "User not found.",
+    "loadingProfile": "Loading profile...",
+    "error": "Error.",
+    "errorProfile": "Failed to load user profile",
+    "noFriendsYet": "No friends yet. Use the search bar to find and add friends!"
   }
 }
 

@@ -1,6 +1,7 @@
 export { FriendStatusButton } from './FriendStatusButton'
 export { GetUserPlayers } from './GetUserPlayers'
-export { MatchHistory } from './MatchHistory'
+export { UserMatchHistory } from './UserMatchHistory'
 export { PlayerCard } from './PlayerCard'
 export { PlayerName } from './PlayerName'
 export { FriendList } from './FriendList'
+export { IncomingFriendRequests } from './IncomingFriendRequests'

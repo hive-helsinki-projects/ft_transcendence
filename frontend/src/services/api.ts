@@ -129,4 +129,49 @@ export const api = {
     }
     return response.json()
   },
+
+  // Friend-related methods
+  async getFriends() {
+    const token = localStorage.getItem('token')
+    const response = await fetch(`${API_URL}/friends`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+    })
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`)
+    }
+    return response.json()
+  },
+
+  async acceptFriendRequest(senderId: number) {
+    const token = localStorage.getItem('token')
+    const response = await fetch(`${API_URL}/friend-requests/${senderId}`, {
+      method: 'PATCH',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({}),
+    })
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`)
+    }
+    return response.json()
+  },
+
+  async denyFriendRequest(senderId: number) {
+    const token = localStorage.getItem('token')
+    const response = await fetch(`${API_URL}/friends/${senderId}`, {
+      method: 'DELETE',
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`)
+    }
+    return response.json()
+  },
 }
