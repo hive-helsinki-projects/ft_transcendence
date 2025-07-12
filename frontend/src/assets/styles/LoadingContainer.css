@@ -1,8 +1,4 @@
 .loading-container {
-  @apply relative min-h-screen flex justify-center items-center text-[white] border overflow-hidden ml-[calc(48px_+_1rem)] m-4 p-8 rounded-3xl border-solid border-[rgba(255,255,255,0.1)];
+  @apply relative min-h-screen flex flex-col text-[white] border overflow-hidden ml-[calc(48px_+_1rem)] m-4 p-8 rounded-3xl border-solid border-[rgba(255,255,255,0.1)] max-w-[1200px];
   background: #1e1e2e;
-  /* Sidebar width + margin */
-}
-.content-wrapper {
-  @apply relative z-[1] flex flex-col items-center justify-center w-full p-8;
 }

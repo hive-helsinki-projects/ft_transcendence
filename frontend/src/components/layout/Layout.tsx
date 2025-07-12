@@ -43,13 +43,11 @@ export const Layout: React.FC<LayoutProps> = ({
         <main className="main-content">
           <div className={`loading-container ${className}`}>
             {shouldShowBackground && <PongBackground />}
-            <div className="content-wrapper">
               {isLoading ? (
                 <LoadingState message={loadingText} />
               ) : (
                 children
               )}
-            </div>
           </div>
         </main>
       </div>
