@@ -235,7 +235,15 @@
     "removeFriend": "Remove Friend",
     "cancelRequest": "Cancel Request",
     "accept": "Accept",
-    "deny": "Deny"
+    "deny": "Deny",
+    "requestSentAlert": "Friend request sent to {{username}}!",
+    "errors": {
+      "sendFailed": "Failed to send friend request. Please try again.",
+      "userNotFound": "User not found.",
+      "alreadyFriends": "You are already friends with this user.",
+      "requestExists": "Friend request already exists.",
+      "cannotAddSelf": "You cannot send a friend request to yourself."
+    }
   }
 }
 

@@ -235,6 +235,14 @@
     "removeFriend": "Poista kaveri",
     "cancelRequest": "Peruuta pyyntö",
     "accept": "Hyväksy",
-    "deny": "Kieltäydy"
+    "deny": "Kieltäydy",
+    "requestSentAlert": "Kaveripyyntö lähetetty käyttäjälle {{username}}!",
+    "errors": {
+      "sendFailed": "Kaveripyynnön lähettäminen epäonnistui. Yritä uudelleen.",
+      "userNotFound": "Käyttäjää ei löytynyt.",
+      "alreadyFriends": "Olette jo kavereita tämän käyttäjän kanssa.",
+      "requestExists": "Kaveripyyntö on jo olemassa.",
+      "cannotAddSelf": "Et voi lähettää kaveripyyntöä itsellesi."
+    }
   }
 }

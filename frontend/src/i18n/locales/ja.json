@@ -235,6 +235,14 @@
     "removeFriend": "友達を削除",
     "cancelRequest": "リクエストをキャンセル",
     "accept": "承認",
-    "deny": "拒否"
+    "deny": "拒否",
+    "requestSentAlert": "{{username}}さんに友達リクエストを送信しました！",
+    "errors": {
+      "sendFailed": "友達リクエストの送信に失敗しました。もう一度お試しください。",
+      "userNotFound": "ユーザーが見つかりません。",
+      "alreadyFriends": "このユーザーとはすでに友達です。",
+      "requestExists": "友達リクエストが既に存在します。",
+      "cannotAddSelf": "自分自身に友達リクエストを送信することはできません。"
+    }
   }
 }
