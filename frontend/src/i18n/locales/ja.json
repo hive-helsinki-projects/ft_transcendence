@@ -246,7 +246,8 @@
     },
     "confirmRemove": "本当に{{username}}さんを友達から削除しますか？",
     "confirmCancelRequest": "本当に{{username}}さんへの友達リクエストをキャンセルしますか？",
-    "confirmDenyRequest": "本当に{{username}}さんからの友達リクエストを拒否しますか？",
+    "confirmDenyRequest": "本当に{{username}}さんからの友達リクエストを拒否しますか？"
+  },
   
   "profile": {
     "title": "{{username}}のプロフィール",
@@ -257,6 +258,5 @@
     "myFriends": "マイフレンド",
     "friends": "友達",
     "noFriendsYet": "まだ友達がいません。検索バーを使って友達を見つけて追加してください！"
-  }
   }
 }

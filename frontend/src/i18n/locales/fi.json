@@ -246,17 +246,17 @@
     },
     "confirmRemove": "Haluatko varmasti poistaa käyttäjän {{username}} kavereistasi?",
     "confirmCancelRequest": "Haluatko varmasti peruuttaa kaveripyynnön käyttäjälle {{username}}?",
-    "confirmDenyRequest": "Haluatko varmasti hylätä kaveripyynnön käyttäjältä {{username}}?",
+    "confirmDenyRequest": "Haluatko varmasti hylätä kaveripyynnön käyttäjältä {{username}}?"
+  },
   
-    "profile": {
-    "title": "{{username}} profiili!",
-    "userNotFound": "Käyttäjää ei löytynyt.",
-    "loadingProfile": "Ladataan profiilia...",
-    "error": "Virhe.",
-    "errorProfile": "Profiilin lataaminen epäonnistui",
-    "myFriends": "Kaverini",
-    "friends": "Kaverit",
-    "noFriendsYet": "Ei vielä kavereita. Käytä hakupalkkia löytääksesi ja lisätäksesi kavereita!"
+  "profile": {
+  "title": "{{username}} profiili!",
+  "userNotFound": "Käyttäjää ei löytynyt.",
+  "loadingProfile": "Ladataan profiilia...",
+  "error": "Virhe.",
+  "errorProfile": "Profiilin lataaminen epäonnistui",
+  "myFriends": "Kaverini",
+  "friends": "Kaverit",
+  "noFriendsYet": "Ei vielä kavereita. Käytä hakupalkkia löytääksesi ja lisätäksesi kavereita!"
   }
-}
 }
