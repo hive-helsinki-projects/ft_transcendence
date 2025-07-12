@@ -103,7 +103,7 @@ export const LandingPage: React.FC = () => {
 
   // Render
   return (
-    <> 
+    <div className="landing-content">
       <HeroSection />
       <AuthSection
         onGoogleAuth={handleGoogleAuth}
@@ -137,6 +137,6 @@ export const LandingPage: React.FC = () => {
           </div>
         )}
       </AuthSection>
-    </>
+    </div>
   )
 }
