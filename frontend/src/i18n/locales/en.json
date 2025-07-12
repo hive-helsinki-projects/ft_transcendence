@@ -236,6 +236,8 @@
     "cancelRequest": "Cancel Request",
     "accept": "Accept",
     "deny": "Deny",
+    "processing": "Processing...",
+    "incomingRequests": "Incoming Friend Requests",
     "requestSentAlert": "Friend request sent to {{username}}!",
     "errors": {
       "sendFailed": "Failed to send friend request. Please try again.",
@@ -243,6 +245,16 @@
       "alreadyFriends": "You are already friends with this user.",
       "requestExists": "Friend request already exists.",
       "cannotAddSelf": "You cannot send a friend request to yourself."
+    },
+    "profile": {
+      "title": "My Profile, {{username}}!",
+      "myFriends": "My Friends",
+      "settings": "Settings",
+      "userNotFound": "User not found.",
+      "loadingProfile": "Loading profile...",
+      "error": "Error.",
+      "errorProfile": "Failed to load user profile",
+      "noFriendsYet": "No friends yet. Use the search bar to find and add friends!"
     }
   }
 }

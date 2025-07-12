@@ -236,6 +236,8 @@
     "cancelRequest": "Peruuta pyyntö",
     "accept": "Hyväksy",
     "deny": "Kieltäydy",
+    "processing": "Käsitellään...",
+    "incomingRequests": "Saapuvat kaveripyynnöt",
     "requestSentAlert": "Kaveripyyntö lähetetty käyttäjälle {{username}}!",
     "errors": {
       "sendFailed": "Kaveripyynnön lähettäminen epäonnistui. Yritä uudelleen.",
@@ -244,5 +246,16 @@
       "requestExists": "Kaveripyyntö on jo olemassa.",
       "cannotAddSelf": "Et voi lähettää kaveripyyntöä itsellesi."
     }
+  },
+
+  "profile": {
+    "title": "Oma profiili, {{username}}!",
+    "settings": "Asetukset",
+    "userNotFound": "Käyttäjää ei löytynyt.",
+    "loadingProfile": "Ladataan profiilia...",
+    "error": "Virhe.",
+    "errorProfile": "Profiilin lataaminen epäonnistui",
+    "myFriends": "Kaverini",
+    "noFriendsYet": "Ei vielä kavereita. Käytä hakupalkkia löytääksesi ja lisätäksesi kavereita!"
   }
 }

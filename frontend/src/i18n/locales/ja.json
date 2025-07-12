@@ -236,6 +236,8 @@
     "cancelRequest": "リクエストをキャンセル",
     "accept": "承認",
     "deny": "拒否",
+    "processing": "処理中...",
+    "incomingRequests": "受信した友達リクエスト",
     "requestSentAlert": "{{username}}さんに友達リクエストを送信しました！",
     "errors": {
       "sendFailed": "友達リクエストの送信に失敗しました。もう一度お試しください。",
@@ -244,5 +246,16 @@
       "requestExists": "友達リクエストが既に存在します。",
       "cannotAddSelf": "自分自身に友達リクエストを送信することはできません。"
     }
+  },
+
+  "profile": {
+    "title": "マイプロフィール, {{username}}!",
+    "settings": "設定",
+    "userNotFound": "ユーザーが見つかりません。",
+    "loadingProfile": "プロフィールを読み込んでいます...",
+    "error": "エラー。",
+    "errorProfile": "プロフィールの読み込みに失敗しました",
+    "myFriends": "マイフレンド",
+    "noFriendsYet": "まだ友達がいません。検索バーを使って友達を見つけて追加してください！"
   }
 }
