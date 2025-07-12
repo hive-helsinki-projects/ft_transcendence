@@ -11,6 +11,4 @@
 @import './Help.css';
 @import './LoadingContainer.css';
 @import './LogoutButton.css';
-@import './ProfilePage.css';
-@import './FriendList.css';
-@import './FriendStatusButton.css';
+@import './Profile.css';

@@ -1,64 +1,25 @@
-.profile-page {
-    @apply min-h-screen w-full p-8;
-    background: #1a1b26;
+.players-management {
+  @apply mb-8 p-6 rounded-2xl;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .profile-page {
+    @apply p-4;
   }
+  
   .profile-header {
-    @apply flex justify-between items-center mb-8 p-6 rounded-2xl;
-    background: rgba(255, 255, 255, 0.05);
+    @apply flex-col gap-4 text-center;
   }
+  
   .profile-header h1 {
-    @apply text-[2rem] text-[white] font-semibold m-0;
+    @apply text-xl;
   }
+  
   .profile-actions {
-    @apply flex gap-3;
+    @apply w-full justify-center;
   }
-  .edit-profile-btn {
-    @apply flex items-center gap-3 border text-[white] font-medium text-[0.95rem] cursor-pointer transition-all duration-[0.2s] ease-[ease] shadow-[0_2px_10px_rgba(44,62,80,0.2)] px-5 py-3 rounded-xl border-solid border-[rgba(255,255,255,0.1)] hover:-translate-y-0.5 hover:shadow-[0_4px_15px_rgba(44,62,80,0.3)];
-    background: linear-gradient(45deg, #2c3e50, #1a2634);
-  }
-  .edit-profile-btn:hover {
-    background: linear-gradient(45deg, #34495e, #2c3e50);
-  }
-  .profile-content {
-    @apply flex flex-col gap-8 max-w-[1200px] mx-auto my-0;
-  }
-  .players-section,
-  .match-history-section {
-    @apply transition-all duration-[0.2s] ease-[ease] p-6 rounded-2xl;
-    background: rgba(255, 255, 255, 0.05);
-  }
-  .players-section:hover,
-  .match-history-section:hover {
-    @apply -translate-y-0.5;
-    background: rgba(255, 255, 255, 0.06);
-  }
-  .players-section h2,
-  .match-history-section h2 {
-    @apply text-2xl text-[white] font-semibold mt-0 mb-4 mx-0;
-  }
-  
-  /* Friend List Section */
-  .friend-list-section {
-    @apply mb-8 p-6 rounded-2xl;
-    background: rgba(255, 255, 255, 0.05);
-  }
-  .friend-list-section h2 {
-    @apply text-2xl text-[white] font-semibold mt-0 mb-4 mx-0;
-  }
-  
-  /* Responsive design */
-  @media (max-width: 768px) {
-    .profile-page {
-      @apply p-4;
-    }
-    .profile-header {
-      @apply flex-col gap-4 text-center;
-    }
-    .profile-header h1 {
-      @apply text-2xl;
-    }
-    .profile-actions {
-      @apply w-full justify-center;
-    }
-  }
+}
   

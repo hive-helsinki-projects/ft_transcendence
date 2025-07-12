@@ -1,176 +1,183 @@
-.settings-page {
-  @apply min-h-screen text-[white] flex flex-col items-center p-8;
-  background: linear-gradient(135deg, #1a1b2e, #2a2b4a);
-}
-.avatar-upload-container {
-  @apply flex items-center gap-2 mb-4;
-}
-.avatar-preview {
-  @apply w-20 h-20 object-cover border rounded-[50%] border-solid border-[#ccc] overflow-hidden border-2 border-solid border-[rgba(255,255,255,0.1)];
-}
-  .avatar-file-input {
-  @apply text-[0.9rem];
-  /* you can style as desired—below is minimal */
-}
-.settings-container {
-  @apply w-full max-w-[800px] border backdrop-blur-[10px] p-8 rounded-2xl border-solid border-[rgba(255,255,255,0.1)];
-  background: rgba(255, 255, 255, 0.05);
-}
+
 .settings-header {
   @apply flex items-center gap-4 mb-8;
 }
+
 .settings-header h1 {
-  @apply text-[1.8rem] font-semibold text-[white];
+  @apply text-3xl font-semibold text-white;
 }
+
 .settings-section {
-  @apply border mb-8 p-6 rounded-xl border-solid border-[rgba(255,255,255,0.05)];
-  background: rgba(255, 255, 255, 0.03);
+  @apply mb-8 p-6 rounded-xl border border-solid border-white/5;
+  background: rgba(255, 255, 255, 0.05);
 }
+
 .settings-section h2 {
-  @apply text-[1.3rem] font-medium text-[white] flex items-center gap-2 mb-4;
+  @apply text-xl font-medium text-white flex items-center gap-2 mb-4;
 }
-.settings-section p {
-  @apply text-[rgba(255,255,255,0.7)] text-base mb-4;
-}
+
 .settings-form {
   @apply flex flex-col gap-4;
 }
+
+.settings-button {
+  @apply border text-white text-base font-medium cursor-pointer transition-all duration-200 flex items-center justify-center gap-2 px-6 py-3 rounded-lg border-solid border-white/10;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.settings-button:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.settings-button.delete {
+  @apply text-red-400 border-red-400/20;
+  background: rgba(239, 68, 68, 0.1);
+}
+
+.settings-button.delete:hover {
+  background: rgba(239, 68, 68, 0.15);
+}
+
+/* Avatar Upload Section */
+.avatar-upload-container {
+  @apply flex items-center gap-2 mb-4;
+}
+
+.avatar-preview {
+  @apply w-20 h-20 object-cover border rounded-full border-solid border-white/10 overflow-hidden border-2;
+}
+
+.avatar-file-input {
+  @apply text-sm;
+}
+
+/* Form Elements */
 .form-group {
   @apply flex flex-col gap-2 relative mb-6;
 }
+
 .form-group label {
-  @apply text-[rgba(255,255,255,0.8)] text-base;
+  @apply text-white/80 text-base;
 }
+
 .form-group input {
-  @apply border text-[white] text-base transition-all duration-[0.2s] ease-[ease] p-3 rounded-lg border-solid border-[rgba(255,255,255,0.1)] focus:border-[rgba(255,255,255,0.2)];
+  @apply border text-white text-base transition-all duration-200 p-3 rounded-lg border-solid border-white/10 focus:border-white/20;
   background: rgba(255, 255, 255, 0.05);
 }
+
 .form-group input:focus {
   outline: none;
   background: rgba(255, 255, 255, 0.08);
 }
-.settings-button {
-  @apply border text-[white] text-base font-medium cursor-pointer transition-all duration-[0.2s] ease-[ease] flex items-center justify-center gap-2 px-6 py-3 rounded-lg border-solid border-[rgba(255,255,255,0.1)] hover:-translate-y-px active:translate-y-0;
-  background: rgba(255, 255, 255, 0.1);
-}
-.settings-button:hover {
-  background: rgba(255, 255, 255, 0.15);
-}
-.settings-button.delete {
-  @apply text-[#E44A4A] border-[rgba(228,74,74,0.2)];
-  background: rgba(228, 74, 74, 0.1);
-}
-.settings-button.delete:hover {
-  background: rgba(228, 74, 74, 0.15);
-}
-.avatar-preview img {
-  @apply w-full h-full object-cover;
-}
-.avatar-upload {
-  @apply flex flex-col items-center gap-4;
-}
-.avatar-upload input[type="file"] {
-  @apply hidden;
-}
-.avatar-upload label {
-  @apply border text-[white] text-[0.9rem] cursor-pointer transition-all duration-[0.2s] ease-[ease] px-6 py-3 rounded-lg border-solid border-[rgba(255,255,255,0.1)];
-  background: rgba(255, 255, 255, 0.1);
-}
-.avatar-upload label:hover {
-  background: rgba(255, 255, 255, 0.15);
-}
+
 .form-group select {
-  @apply border text-[white] text-base transition-all duration-[0.2s] ease-[ease] w-full p-3 rounded-lg border-solid border-[rgba(255,255,255,0.1)] focus:border-[rgba(255,255,255,0.2)];
+  @apply border text-white text-base transition-all duration-200 w-full p-3 rounded-lg border-solid border-white/10 focus:border-white/20;
   background: rgba(255, 255, 255, 0.05);
 }
+
 .form-group select:focus {
   outline: none;
   background: rgba(255, 255, 255, 0.08);
 }
-@media (max-width: 768px) {
-  .settings-page {
-    @apply p-4;
-  }
-  .settings-container {
-    @apply p-6;
-  }
-  .settings-section {
-    @apply p-4;
-  }
-}
-.username-header {
-  @apply flex justify-between items-center mb-2;
-}
-.field-header {
-  @apply flex justify-between items-center mb-2 px-0 py-2;
-}
+
+/* Field Editing */
 .field-label {
   @apply flex items-center gap-3 mb-2;
 }
+
 .field-label svg {
-  @apply text-[rgba(255,255,255,0.5)] w-5 h-5;
+  @apply text-white/50 w-5 h-5;
 }
+
 .field-label label {
-  @apply text-base text-[rgba(255,255,255,0.8)] font-medium;
+  @apply text-base text-white/80 font-medium;
 }
+
 .field-display {
-  @apply border text-[white] text-base min-h-[2.5rem] flex items-center mb-2 p-3 rounded-lg border-solid border-[rgba(255,255,255,0.1)];
+  @apply border text-white text-base min-h-10 flex items-center mb-2 p-3 rounded-lg border-solid border-white/10;
   background: rgba(255, 255, 255, 0.05);
 }
+
 .field-display.password {
-  @apply text-[rgba(255,255,255,0.5)] tracking-[2px];
+  @apply text-white/50 tracking-wide;
 }
+
 .field-input {
-  @apply border text-[white] text-base w-full transition-all duration-[0.2s] ease-[ease] mb-2 p-3 rounded-lg border-solid border-[rgba(255,255,255,0.1)] focus:border-[rgba(255,255,255,0.2)];
+  @apply border text-white text-base w-full transition-all duration-200 mb-2 p-3 rounded-lg border-solid border-white/10 focus:border-white/20;
   background: rgba(255, 255, 255, 0.05);
 }
+
 .field-input:focus {
   outline: none;
   background: rgba(255, 255, 255, 0.08);
 }
+
 .field-actions {
-  @apply flex justify-end opacity-0 transition-opacity duration-[0.2s] ease-[ease] mt-2;
+  @apply flex justify-end opacity-0 transition-opacity duration-200 mt-2;
 }
+
 .form-group:hover .field-actions {
   @apply opacity-100;
 }
+
 .edit-button {
-  @apply border text-[rgba(255,255,255,0.7)] text-[0.9rem] cursor-pointer transition-all duration-[0.2s] ease-[ease] flex items-center gap-2 h-9 px-4 py-2 rounded-md border-solid border-[rgba(255,255,255,0.2)] hover:text-[white] hover:-translate-y-px hover:border-[rgba(255,255,255,0.3)] active:translate-y-0;
+  @apply border text-white/70 text-sm cursor-pointer transition-all duration-200 flex items-center gap-2 h-9 px-4 py-2 rounded-md border-solid border-white/20 hover:text-white hover:-translate-y-px hover:border-white/30 active:translate-y-0;
   background: transparent;
 }
+
 .edit-button:hover {
   background: rgba(255, 255, 255, 0.1);
 }
+
 .save-button {
-  @apply border text-[#4AE44A] text-[0.9rem] cursor-pointer transition-all duration-[0.2s] ease-[ease] flex items-center gap-2 h-9 px-4 py-2 rounded-md border-solid border-[rgba(74,228,74,0.2)] hover:-translate-y-px active:translate-y-0;
-  background: rgba(74, 228, 74, 0.1);
+  @apply border text-green-400 text-sm cursor-pointer transition-all duration-200 flex items-center gap-2 h-9 px-4 py-2 rounded-md border-solid border-green-400/20 hover:-translate-y-px active:translate-y-0;
+  background: rgba(34, 197, 94, 0.1);
 }
+
 .save-button:hover {
-  background: rgba(74, 228, 74, 0.15);
+  background: rgba(34, 197, 94, 0.15);
 }
+
 .cancel-button {
-  @apply border text-[#E44A4A] text-[0.9rem] cursor-pointer transition-all duration-[0.2s] ease-[ease] flex items-center gap-2 h-9 px-4 py-2 rounded-md border-solid border-[rgba(228,74,74,0.2)] hover:-translate-y-px active:translate-y-0;
-  background: rgba(228, 74, 74, 0.1);
+  @apply border text-red-400 text-sm cursor-pointer transition-all duration-200 flex items-center gap-2 h-9 px-4 py-2 rounded-md border-solid border-red-400/20 hover:-translate-y-px active:translate-y-0;
+  background: rgba(239, 68, 68, 0.1);
 }
+
 .cancel-button:hover {
-  background: rgba(228, 74, 74, 0.15);
+  background: rgba(239, 68, 68, 0.15);
 }
-.edit-actions {
-  @apply flex gap-2 animate-[fadeIn_0.2s_ease];
-}
-@keyframes fadeIn {
-  from {
-    @apply opacity-0 translate-y-[-5px];
-  }
-  to {
-    @apply opacity-100 translate-y-0;
-  }
-}
+
+/* Messages */
 .error-message {
-  @apply border text-[#E44A4A] text-[0.9rem] mb-4 p-3 rounded-lg border-solid border-[rgba(228,74,74,0.2)];
-  background: rgba(228, 74, 74, 0.1);
+  @apply border text-red-400 text-sm mb-4 p-3 rounded-lg border-solid border-red-400/20;
+  background: rgba(239, 68, 68, 0.1);
 }
+
 .success-message {
-  @apply border text-[#4AE44A] text-[0.9rem] mb-4 p-3 rounded-lg border-solid border-[rgba(74,228,74,0.2)];
-  background: rgba(74, 228, 74, 0.1);
+  @apply border text-green-400 text-sm mb-4 p-3 rounded-lg border-solid border-green-400/20;
+  background: rgba(34, 197, 94, 0.1);
+}
+
+/* 2FA QR Section */
+.qr-section {
+  @apply flex flex-col items-center gap-4 mt-4;
+}
+
+.qr-section img {
+  @apply w-48 h-48 border border-white/10 rounded-lg;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .settings-section {
+    @apply p-4;
+  }
+  
+  .avatar-upload-container {
+    @apply flex-col items-center gap-4;
+  }
+  
+  .form-group {
+    @apply mb-4;
+  }
 }

@@ -3,7 +3,7 @@
   background: #1a1b26;
 }
 .dashboard {
-  @apply w-full max-w-[1200px] relative mx-auto my-0;
+  @apply w-full relative mx-auto my-0;
 }
 .dashboard-error {
   @apply flex justify-center items-center min-h-screen text-[white] text-[1.2rem];

@@ -1,0 +1,302 @@
+/* =================================
+   PROFILE PAGE STYLES
+   ================================= */
+
+/* Profile Container */
+.profile-container {
+  @apply w-full max-w-none px-4 py-6;
+}
+
+/* =================================
+   FRIEND LIST STYLES
+   ================================= */
+
+/* Friend List Container */
+.friend-list-container {
+  @apply mt-4;
+}
+
+.friend-list-container h2,
+.friend-list-container h3 {
+  @apply text-white text-xl font-semibold mb-4;
+}
+
+/* Loading and Error States */
+.friend-list-loading {
+  @apply text-center text-white/70 p-6;
+}
+
+.friend-list-error {
+  @apply text-center text-red-400 p-6 border border-red-400/30 rounded-lg;
+  background: rgba(255, 107, 107, 0.1);
+}
+
+.no-friends {
+  @apply text-center p-6 rounded-lg;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.no-friends p {
+  @apply text-white/70 m-0;
+}
+
+/* Friend Grid */
+.friend-grid {
+  @apply grid grid-cols-[repeat(auto-fill,minmax(200px,1fr))] gap-4;
+}
+
+.friend-card {
+  @apply flex items-center p-4 rounded-lg border border-white/10 cursor-pointer transition-all duration-200 hover:-translate-y-0.5;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.friend-card:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.friend-avatar {
+  @apply w-10 h-10 object-cover mr-4 rounded-full;
+}
+
+.friend-info {
+  @apply flex-1;
+}
+
+.friend-name {
+  @apply font-medium text-white mb-1;
+}
+
+.friend-status {
+  @apply flex items-center gap-2 text-sm text-white/70;
+}
+
+/* Friend Actions */
+.friend-actions {
+  @apply flex gap-2 ml-auto;
+}
+
+/* Incoming Friend Requests */
+.incoming-requests {
+  @apply mb-4;
+}
+
+.incoming-requests h3 {
+  @apply text-white text-lg font-semibold mb-2;
+}
+
+.requests-list {
+  @apply space-y-2;
+}
+
+.request-item {
+  @apply flex items-center gap-3 p-3 rounded-lg border border-white/10 transition-all duration-200;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.request-item:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.request-avatar {
+  @apply w-8 h-8 object-cover rounded-full;
+}
+
+.request-info {
+  @apply flex items-center gap-2;
+}
+
+.request-name {
+  @apply font-medium text-white text-sm;
+}
+
+.request-actions {
+  @apply flex gap-1 ml-2;
+}
+
+/* =================================
+   FRIEND STATUS BUTTON STYLES
+   ================================= */
+
+/* Friend Status Layout */
+.friend-status-layout {
+  @apply flex items-center gap-2;
+}
+
+/* Status Labels */
+.friend-label {
+  @apply font-medium text-white/90;
+}
+
+.friend-label.pending {
+  @apply text-yellow-400;
+}
+
+.friend-label.incoming {
+  @apply text-blue-400;
+}
+
+/* Button Groups */
+.btn-group,
+.minimal-btn-group {
+  @apply flex gap-1 ml-auto;
+}
+
+/* =================================
+   PLAYER CARD STYLES
+   ================================= */
+
+.player-card {
+  @apply rounded-lg p-4 flex flex-col items-center transition-all duration-200 hover:-translate-y-0.5;
+}
+
+.player-card p {
+  @apply font-medium text-sm text-gray-300
+}
+
+.player-card:hover {
+  background: rgba(75, 85, 99, 0.8);
+}
+
+.player-avatar {
+  @apply w-16 h-16 object-cover rounded-full mx-auto mb-2;
+}
+
+.players-management {
+  @apply grid grid-cols-3 gap-4;
+}
+
+/* =================================
+   SHARED STYLES
+   ================================= */
+
+/* Status Indicators */
+.status-dot {
+  @apply w-2 h-2 rounded-full;
+}
+
+.status-dot.online {
+  background: #28a745;
+}
+
+.status-dot.offline {
+  background: #dc3545;
+}
+
+/* Button Styles */
+.friend-btn,
+.minimal-friend-btn {
+  @apply w-6 h-6 rounded-full border-none cursor-pointer font-bold text-white transition-all duration-200 flex items-center justify-center text-sm;
+  min-width: 24px;
+  min-height: 24px;
+}
+
+.friend-btn.add,
+.minimal-friend-btn.add {
+  background: rgba(0, 123, 255, 0.6);
+}
+
+.friend-btn.add:hover,
+.minimal-friend-btn.add:hover {
+  background: rgba(0, 123, 255, 0.8);
+}
+
+.friend-btn.accept,
+.minimal-friend-btn.accept {
+  background: rgba(40, 167, 69, 0.6);
+}
+
+.friend-btn.accept:hover,
+.minimal-friend-btn.accept:hover {
+  background: rgba(40, 167, 69, 0.8);
+}
+
+.friend-btn.deny,
+.friend-btn.remove,
+.friend-btn.cancel,
+.minimal-friend-btn.deny,
+.minimal-friend-btn.remove,
+.minimal-friend-btn.cancel {
+  background: rgba(220, 53, 69, 0.6);
+}
+
+.friend-btn.deny:hover,
+.friend-btn.remove:hover,
+.friend-btn.cancel:hover,
+.minimal-friend-btn.deny:hover,
+.minimal-friend-btn.remove:hover,
+.minimal-friend-btn.cancel:hover {
+  background: rgba(220, 53, 69, 0.8);
+}
+
+.friend-btn:disabled,
+.minimal-friend-btn:disabled {
+  @apply opacity-50 cursor-not-allowed;
+}
+
+/* Text Button Variant */
+.friend-btn.text-btn,
+.minimal-friend-btn.text-btn {
+  @apply px-3 py-1 rounded-md;
+  width: auto;
+  min-width: auto;
+  height: auto;
+  min-height: auto;
+}
+
+/* Legacy button styles for backward compatibility */
+.remove-friend-btn {
+  @apply bg-red-600 hover:bg-red-700 w-6 h-6 rounded-full border-none cursor-pointer font-bold text-white transition-all duration-200 flex items-center justify-center text-sm;
+  min-width: 24px;
+  min-height: 24px;
+}
+
+.remove-friend-btn:disabled {
+  @apply opacity-50 cursor-not-allowed;
+}
+
+/* =================================
+   RESPONSIVE DESIGN
+   ================================= */
+
+@media (max-width: 768px) {
+  .friend-grid {
+    @apply grid-cols-1;
+  }
+  
+  .friend-card {
+    @apply p-3;
+  }
+  
+  .request-avatar {
+    @apply w-6 h-6;
+  }
+  
+  .players-management {
+    @apply grid-cols-2;
+  }
+  
+  .friend-btn,
+  .minimal-friend-btn,
+  .accept-btn,
+  .deny-btn,
+  .remove-friend-btn {
+    @apply w-5 h-5 text-xs;
+    min-width: 20px;
+    min-height: 20px;
+  }
+  
+  .friend-btn.text-btn,
+  .minimal-friend-btn.text-btn {
+    @apply px-2 py-1 text-xs;
+    width: auto;
+    min-width: auto;
+    height: auto;
+    min-height: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .players-management {
+    @apply grid-cols-1;
+  }
+} 

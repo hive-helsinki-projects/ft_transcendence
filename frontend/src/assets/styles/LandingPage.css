@@ -4,14 +4,17 @@
   /* Sidebar width + margin */
   /* Ensure the background animation stays within borders */
 }
-.content-wrapper {
-  @apply relative z-[1] flex flex-col items-center justify-center w-full p-8;
+
+.landing-content {
+  @apply relative z-10 flex flex-col items-center;
+  padding: 2rem;
 }
+
 .hero-section {
-  @apply max-w-[800px] text-center mb-12;
+  @apply max-w-[800px] text-center mb-12 relative z-10;
 }
 .hero-section h1 {
-  @apply text-5xl font-medium mb-6;
+  @apply text-5xl font-medium mb-6 text-center;
 }
 .hero-section h2 {
   @apply text-[2.5rem] font-normal mb-4;
@@ -20,7 +23,7 @@
   @apply text-xl text-[rgba(255,255,255,0.8)];
 }
 .auth-section {
-  @apply bg-[rgba(45,45,63,0.5)] w-full max-w-[400px] p-8 rounded-xl;
+  @apply bg-[rgba(45,45,63,0.5)] w-full max-w-[400px] p-8 rounded-xl relative z-10;
 }
 .auth-section h2 {
   @apply text-[white] text-center mb-6;

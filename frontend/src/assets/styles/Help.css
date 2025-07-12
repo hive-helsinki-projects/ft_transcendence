@@ -1,5 +1,5 @@
 .help-page {
-  @apply text-[white] p-8 max-w-[800px];
+  @apply text-[white] p-8 w-full;
 }
 
 .help-page h1 {
