@@ -12,9 +12,9 @@ const getFriends = async (req, reply) => {
             WHERE user_id = ? OR friend_id = ?
         `).all(user_id, user_id);
 
-        // If no friends are found, return an error
+        // If no friends are found, return an empty array
         if (friends.length === 0) {
-            return reply.code(404).send({ error: 'No friends found for this user' });
+            return reply.code(200).send([]);
         }
 
         // Send the list of friends if found
