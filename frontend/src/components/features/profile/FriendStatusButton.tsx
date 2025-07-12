@@ -1,16 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import axios, { AxiosError } from 'axios';
-
-type FriendStatus = 'none' | 'pending' | 'accepted';
+import '@assets/styles/FriendStatusButton.css';
 
 interface User {
   id: number;
   username: string;
-  email: string;
   online_status: boolean;
-  avatar_url: string;
-  created_at: string;
-  two_fa_enabled: boolean;
 }
 
 interface FriendStatusButtonProps {
@@ -18,14 +13,16 @@ interface FriendStatusButtonProps {
 }
 
 export const FriendStatusButton: React.FC<FriendStatusButtonProps> = ({ user }) => {
-  const [friendStatus, setFriendStatus] = useState<FriendStatus>('none')
-  const [sendFriendRequest, setSendFriendRequest] = useState<boolean>(false)
+  const [friendStatus, setFriendStatus] = useState('none')
+  const [sendFriendRequest, setSendFriendRequest] = useState(false)
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     const fetchFriendStatus = async () => {
       const token = localStorage.getItem('token')
       if (!token) {
         console.error('No token found')
+        setLoading(false)
         return
       }
 
@@ -38,7 +35,7 @@ export const FriendStatusButton: React.FC<FriendStatusButtonProps> = ({ user }) 
             },
           },
         )
-        setFriendStatus(response.data.item.status as FriendStatus)
+        setFriendStatus(response.data.item.status)
         if (
           response.data.item.status === 'pending' &&
           response.data.item.friend_id === user.id
@@ -54,6 +51,8 @@ export const FriendStatusButton: React.FC<FriendStatusButtonProps> = ({ user }) 
         } else {
           console.error('Error fetching friend status:', axiosError);
         }
+      } finally {
+        setLoading(false)
       }
     }
     fetchFriendStatus()
@@ -91,6 +90,7 @@ export const FriendStatusButton: React.FC<FriendStatusButtonProps> = ({ user }) 
         },
       })
       setFriendStatus('none')
+      setSendFriendRequest(false)
     } catch (error) {
       console.error('Error removing friend:', error)
     }
@@ -98,7 +98,6 @@ export const FriendStatusButton: React.FC<FriendStatusButtonProps> = ({ user }) 
 
   const handleAcceptFriend = async () => {
     const token = localStorage.getItem('token')
-    console.log(token)
     if (!token) return
 
     try {
@@ -112,35 +111,85 @@ export const FriendStatusButton: React.FC<FriendStatusButtonProps> = ({ user }) 
         },
       )
       setFriendStatus('accepted')
+      setSendFriendRequest(false)
     } catch (error) {
-      console.error('Error removing friend:', error)
+      console.error('Error accepting friend request:', error)
     }
   }
 
+  if (loading) {
+    return (
+      <div className="friend-status-container">
+        <div className="friend-status-loading">Loading...</div>
+      </div>
+    )
+  }
+
   return (
-    <div>
-      <div>
+    <div className="friend-status-container">
+      <div className="friend-status-info">
         {friendStatus === 'accepted' && (
-          <p>
-            online_status: {user.online_status === true ? 'online' : 'offline'}
-          </p>
+          <div className="friend-info">
+            <div className="friend-badge">Friends</div>
+            <div className="online-status">
+              <span className={`status-dot ${user.online_status ? 'online' : 'offline'}`}></span>
+              {user.online_status ? 'Online' : 'Offline'}
+            </div>
+          </div>
+        )}
+        
+        {friendStatus === 'pending' && sendFriendRequest && (
+          <div className="friend-info">
+            <div className="friend-badge pending">Friend Request Sent</div>
+            <p>Waiting for {user.username} to accept your request</p>
+          </div>
+        )}
+        
+        {friendStatus === 'pending' && !sendFriendRequest && (
+          <div className="friend-info">
+            <div className="friend-badge incoming">Friend Request Received</div>
+            <p>{user.username} wants to be your friend</p>
+          </div>
+        )}
+        
+        {friendStatus === 'none' && (
+          <div className="friend-info">
+            <div className="friend-badge none">Not Friends</div>
+            <p>Send a friend request to connect</p>
+          </div>
         )}
       </div>
-      {friendStatus === 'accepted' && (
-        <button onClick={handleRemoveFriend}>Remove Friend</button>
-      )}
-      {friendStatus === 'pending' && sendFriendRequest === true && (
-        <button onClick={handleRemoveFriend}>Remove Friend</button>
-      )}
-      {friendStatus === 'pending' && sendFriendRequest === false && (
-        <button onClick={handleAcceptFriend}>Accept Friend Request</button>
-      )}
-      {friendStatus === 'pending' && sendFriendRequest === false && (
-        <button onClick={handleRemoveFriend}>Deny Friend Request</button>
-      )}
-      {friendStatus === 'none' && (
-        <button onClick={handleAddFriend}>Add Friend</button>
-      )}
+      
+      <div className="friend-actions">
+        {friendStatus === 'accepted' && (
+          <button className="friend-btn remove" onClick={handleRemoveFriend}>
+            Remove Friend
+          </button>
+        )}
+        
+        {friendStatus === 'pending' && sendFriendRequest && (
+          <button className="friend-btn cancel" onClick={handleRemoveFriend}>
+            Cancel Request
+          </button>
+        )}
+        
+        {friendStatus === 'pending' && !sendFriendRequest && (
+          <div className="friend-btn-group">
+            <button className="friend-btn accept" onClick={handleAcceptFriend}>
+              Accept
+            </button>
+            <button className="friend-btn deny" onClick={handleRemoveFriend}>
+              Deny
+            </button>
+          </div>
+        )}
+        
+        {friendStatus === 'none' && (
+          <button className="friend-btn add" onClick={handleAddFriend}>
+            Add Friend
+          </button>
+        )}
+      </div>
     </div>
   )
 }
