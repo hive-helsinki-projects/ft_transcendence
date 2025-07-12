@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios, { AxiosError } from 'axios';
 import '@assets/styles/FriendStatusButton.css';
+import { useTranslate } from '@hooks/index';
 
 interface User {
   id: number;
@@ -16,6 +17,7 @@ export const FriendStatusButton: React.FC<FriendStatusButtonProps> = ({ user }) 
   const [friendStatus, setFriendStatus] = useState('none')
   const [sendFriendRequest, setSendFriendRequest] = useState(false)
   const [loading, setLoading] = useState(true)
+  const t = useTranslate()
 
   useEffect(() => {
     const fetchFriendStatus = async () => {
@@ -120,7 +122,7 @@ export const FriendStatusButton: React.FC<FriendStatusButtonProps> = ({ user }) 
   if (loading) {
     return (
       <div className="friend-status-container">
-        <div className="friend-status-loading">Loading...</div>
+        <div className="friend-status-loading">{t('friends.loading')}</div>
       </div>
     )
   }
@@ -130,32 +132,32 @@ export const FriendStatusButton: React.FC<FriendStatusButtonProps> = ({ user }) 
       <div className="friend-status-info">
         {friendStatus === 'accepted' && (
           <div className="friend-info">
-            <div className="friend-badge">Friends</div>
+            <div className="friend-badge">{t('friends.friends')}</div>
             <div className="online-status">
               <span className={`status-dot ${user.online_status ? 'online' : 'offline'}`}></span>
-              {user.online_status ? 'Online' : 'Offline'}
+              {user.online_status ? t('friends.online') : t('friends.offline')}
             </div>
           </div>
         )}
         
         {friendStatus === 'pending' && sendFriendRequest && (
           <div className="friend-info">
-            <div className="friend-badge pending">Friend Request Sent</div>
-            <p>Waiting for {user.username} to accept your request</p>
+            <div className="friend-badge pending">{t('friends.requestSent')}</div>
+            <p>{t('friends.waitingAccept', { username: user.username })}</p>
           </div>
         )}
         
         {friendStatus === 'pending' && !sendFriendRequest && (
           <div className="friend-info">
-            <div className="friend-badge incoming">Friend Request Received</div>
-            <p>{user.username} wants to be your friend</p>
+            <div className="friend-badge incoming">{t('friends.requestReceived')}</div>
+            <p>{t('friends.wantsToBeFriend', { username: user.username })}</p>
           </div>
         )}
         
         {friendStatus === 'none' && (
           <div className="friend-info">
-            <div className="friend-badge none">Not Friends</div>
-            <p>Send a friend request to connect</p>
+            <div className="friend-badge none">{t('friends.notFriends')}</div>
+            <p>{t('friends.sendRequest')}</p>
           </div>
         )}
       </div>
@@ -163,30 +165,30 @@ export const FriendStatusButton: React.FC<FriendStatusButtonProps> = ({ user }) 
       <div className="friend-actions">
         {friendStatus === 'accepted' && (
           <button className="friend-btn remove" onClick={handleRemoveFriend}>
-            Remove Friend
+            {t('friends.removeFriend')}
           </button>
         )}
         
         {friendStatus === 'pending' && sendFriendRequest && (
           <button className="friend-btn cancel" onClick={handleRemoveFriend}>
-            Cancel Request
+            {t('friends.cancelRequest')}
           </button>
         )}
         
         {friendStatus === 'pending' && !sendFriendRequest && (
           <div className="friend-btn-group">
             <button className="friend-btn accept" onClick={handleAcceptFriend}>
-              Accept
+              {t('friends.accept')}
             </button>
             <button className="friend-btn deny" onClick={handleRemoveFriend}>
-              Deny
+              {t('friends.deny')}
             </button>
           </div>
         )}
         
         {friendStatus === 'none' && (
           <button className="friend-btn add" onClick={handleAddFriend}>
-            Add Friend
+            {t('friends.addFriend')}
           </button>
         )}
       </div>

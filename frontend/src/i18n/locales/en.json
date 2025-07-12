@@ -218,6 +218,24 @@
     "nameExists": "A player named \"{{name}}\" already exists.",
     "createFailed": "Failed to create player \"{{name}}\": {{error}}",
     "deleteFailed": "Failed to delete player with ID {{id}}."
+  },
+
+  "friends": {
+    "sendRequest": "Send a friend request to connect",
+    "notFriends": "Not Friends",
+    "addFriend": "Add Friend",
+    "loading": "Loading...",
+    "friends": "Friends",
+    "online": "Online",
+    "offline": "Offline",
+    "requestSent": "Friend Request Sent",
+    "waitingAccept": "Waiting for {{username}} to accept your request",
+    "requestReceived": "Friend Request Received",
+    "wantsToBeFriend": "{{username}} wants to be your friend",
+    "removeFriend": "Remove Friend",
+    "cancelRequest": "Cancel Request",
+    "accept": "Accept",
+    "deny": "Deny"
   }
 }
 

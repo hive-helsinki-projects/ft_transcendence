@@ -218,5 +218,23 @@
     "nameExists": "Pelaaja nimeltä \"{{name}}\" on jo olemassa.",
     "createFailed": "Pelaajan \"{{name}}\" luominen epäonnistui: {{error}}",
     "deleteFailed": "Pelaajan, jonka tunnus on {{id}}, poistaminen epäonnistui."
+  },
+
+  "friends": {
+    "sendRequest": "Lähetä kaveripyyntö yhdistääksesi",
+    "notFriends": "Ei kavereita",
+    "addFriend": "Lisää kaveri",
+    "loading": "Ladataan...",
+    "friends": "Kaverit",
+    "online": "Verkossa",
+    "offline": "Poissa verkosta",
+    "requestSent": "Kaveripyyntö lähetetty",
+    "waitingAccept": "Odotetaan että {{username}} hyväksyy pyyntösi",
+    "requestReceived": "Kaveripyyntö vastaanotettu",
+    "wantsToBeFriend": "{{username}} haluaa olla kaverisi",
+    "removeFriend": "Poista kaveri",
+    "cancelRequest": "Peruuta pyyntö",
+    "accept": "Hyväksy",
+    "deny": "Kieltäydy"
   }
 }

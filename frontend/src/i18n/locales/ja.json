@@ -218,5 +218,23 @@
     "nameExists": "プレイヤー名「{{name}}」はすでに存在します。",
     "createFailed": "プレイヤー「{{name}}」の作成に失敗しました：{{error}}",
     "deleteFailed": "プレイヤー(ID: {{id}})の削除に失敗しました。"
+  },
+
+  "friends": {
+    "sendRequest": "友達リクエストを送信して繋がる",
+    "notFriends": "友達ではありません",
+    "addFriend": "友達を追加",
+    "loading": "読み込み中...",
+    "friends": "友達",
+    "online": "オンライン",
+    "offline": "オフライン",
+    "requestSent": "友達リクエストを送信しました",
+    "waitingAccept": "{{username}}さんがあなたのリクエストを承認するのを待っています",
+    "requestReceived": "友達リクエストを受信しました",
+    "wantsToBeFriend": "{{username}}さんがあなたと友達になりたがっています",
+    "removeFriend": "友達を削除",
+    "cancelRequest": "リクエストをキャンセル",
+    "accept": "承認",
+    "deny": "拒否"
   }
 }
