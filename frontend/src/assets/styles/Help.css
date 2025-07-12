@@ -1,18 +1,27 @@
-.help-container {
-  @apply max-w-[800px] mx-auto my-0 p-5;
+.help-page {
+  @apply text-[white] p-8 max-w-[800px];
 }
-.help-section {
-  @apply mb-8;
+
+.help-page h1 {
+  @apply text-[2rem] font-bold mb-6;
 }
-.help-intro {
-  @apply text-[#666] mb-8;
+
+.help-page h2 {
+  @apply text-[1.5rem] font-semibold mb-4 mt-8;
 }
-.help-list {
-  @apply list-disc pl-0;
+
+.help-page h3 {
+  @apply text-[1.25rem] font-medium mb-3 mt-6;
 }
-.help-item {
-  @apply rounded mb-4 p-2;
+
+.help-page p {
+  @apply mb-4 leading-relaxed;
 }
-.help-link {
-  @apply text-[#007bff] no-underline hover:underline;
+
+.help-page ul {
+  @apply list-disc pl-6 mb-4;
+}
+
+.help-page li {
+  @apply mb-2;
 }
