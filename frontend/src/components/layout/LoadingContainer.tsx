@@ -21,9 +21,7 @@ export const LoadingContainer: React.FC<LoadingContainerProps> = ({
   return (
     <div className={`loading-container ${className}`}>
       {showBackground && <PongBackground />}
-      <div className="content-wrapper">
-        {children}
-      </div>
+      {children}
     </div>
   )
 }
