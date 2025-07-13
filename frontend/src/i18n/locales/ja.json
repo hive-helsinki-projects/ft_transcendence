@@ -5,6 +5,29 @@
     "hero.description": "Smash, spin, and dominate the table. Prove you are the ultimate paddle master."
   },
 
+  "auth": {
+    "title": "ピン・ポン・プレイ！",
+    "username": "ユーザーネーム",
+    "usernameRequired": "ユーザーネームは必須です",
+    "password": "パスワード",
+    "passwordRequired": "パスワードは必須です",
+    "signIn": "サインイン",
+    "signingIn": "サインイン中...",
+    "loginWithGoogle": "Googleでサインイン",
+    "dontHaveAccount": "アカウントを持っていませんか？",
+    "registerHere": "ここで登録",
+    "registering": "登録中...",
+    "chooseAUsername": "ユーザーネームを選択",
+    "enterEmail": "メールアドレスを入力",
+    "emailRequired": "メールアドレスは必須です",
+    "createAPassword": "パスワードを作成",
+    "confirmPassword": "パスワードを確認",
+    "alreadyHaveAccount": "アカウントを持っていますか？",
+    "signInHere": "ここでサインイン",
+    "logout": "ログアウト",
+    "clickAgainToConfirm": "もう一度クリックして確認"
+  },
+
   "dashboard": {
     "welcome": "こんにちは"
   },

@@ -1,8 +1,31 @@
 {
   "hero": {
-    "title": "Ping. Pong. Pelaa!",
+    "title": "Ping. Pong. Play!",
     "subtitle": "Nosta pingispelitaitojasi",
     "description": "Murskaa, pyöräytä ja hallitse pöytää. Todista olevasi maila mestari."
+  },
+
+  "auth": {
+    "title": "Pelaa!",
+    "username": "Käyttäjätunnus",
+    "usernameRequired": "Käyttäjätunnus on pakollinen",
+    "password": "Salasana",
+    "passwordRequired": "Salasana on pakollinen",
+    "signIn": "Kirjaudu",
+    "signingIn": "Kirjaudutaan...",
+    "loginWithGoogle": "Kirjaudu Googlella",
+    "dontHaveAccount": "Ei tiliä?",
+    "registerHere": "Rekisteröidy tästä",
+    "registering": "Rekisteröityy...",
+    "chooseAUsername": "Valitse käyttäjätunnus",
+    "enterEmail": "Syötä sähköpostisi",
+    "emailRequired": "Sähköposti on pakollinen",
+    "createAPassword": "Luo salasana",
+    "confirmPassword": "Vahvista salasana",
+    "alreadyHaveAccount": "Onko sinulla jo tili?",
+    "signInHere": "Kirjaudu tästä",
+    "logout": "Kirjaudu ulos",
+    "clickAgainToConfirm": "Klikkaa uudelleen vahvistamaan"
   },
 
   "dashboard": {

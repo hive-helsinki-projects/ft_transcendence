@@ -5,6 +5,29 @@
     "description": "Smash, spin, and dominate the table. Prove you are the ultimate paddle master."
   },
 
+  "auth": {
+    "title": "Let's Play!",
+    "username": "Username",
+    "usernameRequired": "Username is required",
+    "password": "Password",
+    "passwordRequired": "Password is required",
+    "signIn": "Sign In",
+    "signingIn": "Signing in...",
+    "loginWithGoogle": "Login with Google",
+    "dontHaveAccount": "Don't have an account?",
+    "registerHere": "Register here",
+    "registering": "Registering...",
+    "chooseAUsername": "Choose a username",
+    "enterEmail": "Enter your email",
+    "emailRequired": "Email is required",
+    "createAPassword": "Create a password",
+    "confirmPassword": "Confirm your password",
+    "alreadyHaveAccount": "Already have an account?",
+    "signInHere": "Sign in here",
+    "logout": "Logout",
+    "clickAgainToConfirm": "Click again to confirm"
+  },
+
   "dashboard": {
     "welcome": "Welcome"
   },
