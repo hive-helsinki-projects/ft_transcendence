@@ -291,5 +291,11 @@
   "myFriends": "Kaverini",
   "friends": "Kaverit",
   "noFriendsYet": "Ei vielä kavereita. Käytä hakupalkkia löytääksesi ja lisätäksesi kavereita!"
+  },
+
+  "footer": {
+    "developers": "Kehittäjät",
+    "madeWithLove": "Tehty ❤️ pingpong-harrastajille",
+    "allRightsReserved": "Kaikki oikeudet pidätetään"
   }
 }

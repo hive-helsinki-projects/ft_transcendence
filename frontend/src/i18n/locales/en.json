@@ -291,6 +291,12 @@
     "error": "Error.",
     "errorProfile": "Failed to load user profile",
     "noFriendsYet": "No friends yet. Use the search bar to find and add friends!"
+  },
+
+  "footer": {
+    "developers": "Developers",
+    "madeWithLove": "Made with ❤️ for ping pong enthusiasts",
+    "allRightsReserved": "All rights reserved"
   }
 }
 

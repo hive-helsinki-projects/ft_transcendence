@@ -291,5 +291,11 @@
     "myFriends": "マイフレンド",
     "friends": "友達",
     "noFriendsYet": "まだ友達がいません。検索バーを使って友達を見つけて追加してください！"
+  },
+
+  "footer": {
+    "developers": "開発者",
+    "madeWithLove": "❤️によって作成されたピンポン愛好家のためのもの",
+    "allRightsReserved": "すべての権利は保留されています"
   }
 }
