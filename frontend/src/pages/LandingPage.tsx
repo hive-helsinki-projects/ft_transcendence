@@ -10,6 +10,7 @@ import {
   HeroSection,
 } from '@components/index'
 import '@assets/styles/index.css'
+import { useTranslate } from '@/hooks/useTranslate'
 
 /**
  * LandingPage Component
@@ -32,7 +33,9 @@ export const LandingPage: React.FC = () => {
     handleAuthError,
     handleAuthSuccess,
   } = useAuthForm()
+  const t = useTranslate()
 
+  // State
   const [needs2fa, setNeeds2fa] = React.useState(false)
   const [userId, setUserId] = React.useState<number | null>(null)
   const [twoFaCode, setTwoFaCode] = React.useState('')
@@ -114,6 +117,8 @@ export const LandingPage: React.FC = () => {
           isLoading={isLoading}
           error={error}
           successMessage={successMessage}
+          buttonText={t('auth.signIn')}
+          loadingText={t('auth.signingIn')}
         />
         {needs2fa && (
           <div className="modal">

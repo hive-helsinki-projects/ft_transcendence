@@ -153,7 +153,7 @@ export const TournamentPage: React.FC = () => {
               <p>{t('tournament.noActive')}</p>
               <button
                 onClick={() => navigate('/dashboard')}
-                className="start-match-button"
+                className="btn-primary"
               >
                 {t('Go to Dashboard')}
               </button>
@@ -165,7 +165,7 @@ export const TournamentPage: React.FC = () => {
             <div className="tournament-header">
               <h1>{t(`TournamentNames.${tournament.name}`)}</h1>
               <button
-                className="reset-tournament-button"
+                className="btn-primary"
                 onClick={handleReset}
                 aria-label="Reset tournament"
               >
@@ -233,7 +233,7 @@ export const TournamentPage: React.FC = () => {
                         onClick={() =>
                           handleStartMatch(match, player1, player2)
                         }
-                        className="start-match-button"
+                        className="btn-primary"
                         aria-label={`Start Match ${match.match_id}`}
                       >
                         {t('Start Match')}

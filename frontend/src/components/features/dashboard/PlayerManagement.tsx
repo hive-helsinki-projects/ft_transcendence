@@ -52,11 +52,11 @@ const CreatePlayerModal: React.FC<{
             {error && <StatusMessage type="error" message={error} />}
           </div>
           <div className="modal-actions">
-            <button type="button" onClick={onClose} className="cancel-button">
-              {t('Cancel')}
+            <button type="submit" className="btn-primary">
+            {t('Create Player')}
             </button>
-            <button type="submit" className="create-button">
-              {t('Create Player')}
+            <button type="button" onClick={onClose} className="btn-secondary">
+              {t('Cancel')}
             </button>
           </div>
         </form>

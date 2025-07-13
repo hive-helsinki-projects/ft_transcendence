@@ -24,7 +24,7 @@ export const LogoutButton: React.FC<LogoutButtonProps> = ({ onLogout }) => {
   return (
     <div className="logout-container">
       <button
-        className={`logout-button ${showConfirm ? 'confirm' : ''}`}
+        className={`btn-primary ${showConfirm ? 'confirm' : ''}`}
         onClick={handleLogoutClick}
         onMouseLeave={() => setShowConfirm(false)}
       >

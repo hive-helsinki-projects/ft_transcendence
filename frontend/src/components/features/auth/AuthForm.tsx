@@ -19,6 +19,8 @@ export const AuthForm: React.FC<AuthFormProps> = ({
   error = '',
   successMessage = '',
   fields,
+  buttonText,
+  loadingText,
 }) => {
   // Form state
   const [formData, setFormData] = useState<AuthFormData>({
@@ -91,13 +93,13 @@ export const AuthForm: React.FC<AuthFormProps> = ({
 
       <button
         type="submit"
-        className="submit-button"
+        className="btn-primary"
         disabled={isLoading || !validation.isValid}
       >
         {isLoading ? (
-          <LoadingState message={t('auth.signingIn')} />
+          <LoadingState message={loadingText || t('auth.signingIn')} />
         ) : (
-          t('auth.signIn')
+          buttonText || t('auth.signIn')
         )}
       </button>
     </form>

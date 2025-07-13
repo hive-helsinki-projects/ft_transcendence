@@ -213,12 +213,12 @@ export const QuickPlay: React.FC<QuickPlayProps> = ({ userPlayers }) => {
               ))}
             </div>
             <div className="modal-actions">
-              <button onClick={handleStartMatch} className="create-button">
+              <button onClick={handleStartMatch} className="btn-primary">
                 {t('Start Match')}
               </button>
               <button
                 onClick={() => setShowModal1v1(false)}
-                className="cancel-button"
+                className="btn-secondary"
               >
                 {t('Cancel')}
               </button>

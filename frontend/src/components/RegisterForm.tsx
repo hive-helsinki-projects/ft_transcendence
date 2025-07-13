@@ -78,7 +78,7 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
           )}
         </div>
 
-        <button type="submit" disabled={isLoading} className="submit-button">
+        <button type="submit" disabled={isLoading} className="btn-primary">
           {isLoading ? t('auth.registering') : t('auth.register')}
         </button>
       </form>

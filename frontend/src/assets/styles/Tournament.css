@@ -7,12 +7,7 @@
 .tournament-header h1 {
   @apply text-[2rem] text-[color:var(--text-primary)] m-0;
 }
-.reset-tournament-button {
-  @apply border text-[white] cursor-pointer font-semibold transition-[background-color] duration-[0.2s] ml-4 px-6 py-3 rounded-lg border-solid border-[rgba(255,255,255,0.1)] border-[none] hover:bg-[color:var(--accent-hover)] disabled:bg-[color:var(--disabled-color)] disabled:cursor-not-allowed;
 
-  /* background-color: var(--accent-color); */
-  background: linear-gradient(45deg, #2c3e50, #1a2634);
-}
 .error-message {
   @apply bg-[color:var(--error-bg)] text-[color:var(--error-text)] mb-8 p-4 rounded-lg;
 }
@@ -85,13 +80,7 @@
 .match-actions {
   @apply flex gap-3 mt-6;
 }
-.start-match-button {
-  @apply w-full border rounded text-[white] text-[0.9rem] font-normal cursor-pointer transition-all duration-[0.2s] ease-[ease] p-3 border-solid border-[rgba(255,255,255,0.1)];
-  background: rgba(255, 255, 255, 0.1);
-}
-.start-match-button:hover {
-  background: rgba(255, 255, 255, 0.15);
-}
+
 .match-status,
 .match-result {
   @apply text-center text-[rgba(255,255,255,0.7)] text-[0.9rem] font-normal border rounded mt-6 p-3 border-solid border-[rgba(255,255,255,0.05)];

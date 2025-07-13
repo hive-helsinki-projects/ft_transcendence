@@ -12,7 +12,6 @@ export { LoadingState } from './LoadingState'
 export { default as PongBackground } from './PongBackground'
 export { LogoutButton } from './LogoutButton'
 export { RegisterForm } from './RegisterForm'
-export { FormField } from './FormField'
 export { GoogleSignIn } from './GoogleSignIn'
 export { default as SearchBar } from './SearchBar'
 

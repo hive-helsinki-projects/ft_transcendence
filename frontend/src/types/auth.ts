@@ -28,6 +28,8 @@ export interface AuthFormProps {
   error?: string // Any error message to display
   successMessage?: string // Any success message to display
   fields?: FormFieldConfig[] // Configuration for form fields
+  buttonText?: string // Custom button text (defaults to "Sign In")
+  loadingText?: string // Custom loading text (defaults to "Signing in...")
 }
 
 export interface AuthSectionProps {

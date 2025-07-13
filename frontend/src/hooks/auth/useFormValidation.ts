@@ -1,32 +1,45 @@
 import { AuthFormData, FormValidation } from '@/types/auth'
 import { useCallback, useState } from 'react'
+import { useTranslate } from '@/hooks/useTranslate'
 
 /**
- * Validation rules for the authentication form
- *
- * This object defines the validation rules for the authentication form fields
- * It includes rules for the username and password fields
+ * Creates validation rules with translations
  */
-const VALIDATION_RULES = {
+const createValidationRules = (t: (key: string) => string) => ({
   username: {
     minLength: 3,
     maxLength: 20,
     pattern: /^[a-zA-Z0-9]+$/,
     messages: {
-      required: 'Username is required',
-      minLength: 'Username must be at least 3 characters',
-      maxLength: 'Username must be less than 20 characters',
-      pattern: 'Username must contain only letters and numbers',
+      required: t('auth.usernameRequired') || 'Username is required',
+      minLength: t('auth.usernameMinLength') || 'Username must be at least 3 characters',
+      maxLength: t('auth.usernameMaxLength') || 'Username must be less than 20 characters',
+      pattern: t('auth.usernamePattern') || 'Username must contain only letters and numbers',
     },
   },
   password: {
     minLength: 6,
     messages: {
-      required: 'Password is required',
-      minLength: 'Password must be at least 6 characters',
+      required: t('auth.passwordRequired') || 'Password is required',
+      minLength: t('auth.passwordMinLength') || 'Password must be at least 6 characters',
     },
   },
-} as const
+  email: {
+    pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+    messages: {
+      required: t('auth.emailRequired') || 'Email is required',
+      pattern: t('auth.emailPattern') || 'Please enter a valid email address',
+    },
+  },
+  confirmPassword: {
+    minLength: 6,
+    messages: {
+      required: t('auth.confirmPasswordRequired') || 'Password confirmation is required',
+      minLength: t('auth.confirmPasswordMinLength') || 'Password confirmation must be at least 6 characters',
+      match: t('auth.confirmPasswordMatch') || 'Passwords do not match',
+    },
+  },
+})
 
 /**
  * Custom hook for handling form validation
@@ -36,37 +49,57 @@ const VALIDATION_RULES = {
  * and a validateForm function for validating the entire form
  */
 export const useFormValidation = () => {
+  const t = useTranslate()
+  const VALIDATION_RULES = createValidationRules(t)
+  
   const [validation, setValidation] = useState<FormValidation>({
     isValid: false,
     errors: {},
   })
 
   const validateField = useCallback(
-    (name: keyof AuthFormData, value: string): string => {
+    (name: keyof AuthFormData, value: string, formData?: AuthFormData): string => {
       const rules = VALIDATION_RULES[name]
+      if (!rules) return '' // Skip validation for fields without rules
       if (!value) return rules.messages.required
-      if (value.length < rules.minLength) return rules.messages.minLength
+      if ('minLength' in rules && value.length < rules.minLength) return rules.messages.minLength
       if ('maxLength' in rules && value.length > rules.maxLength)
         return rules.messages.maxLength
       if ('pattern' in rules && !rules.pattern.test(value))
         return rules.messages.pattern
+      
+      // Special validation for confirmPassword
+      if (name === 'confirmPassword' && formData) {
+        if (value !== formData.password) {
+          return t('auth.confirmPasswordMatch') || 'Passwords do not match'
+        }
+      }
+      
       return ''
     },
-    [],
+    [VALIDATION_RULES, t],
   )
 
   const validateForm = useCallback(
     (formData: AuthFormData): FormValidation => {
-      const errors = {
-        username: validateField('username', formData.username),
-        password: validateField('password', formData.password),
-      }
+      const errors: Record<string, string> = {}
+
+      // Validate all fields that are present in the form data
+      Object.keys(formData).forEach((key) => {
+        const fieldName = key as keyof AuthFormData
+        const value = formData[fieldName] || ''
+        
+        // Validate all fields that have validation rules
+        if (VALIDATION_RULES[fieldName]) {
+          errors[fieldName] = validateField(fieldName, value, formData)
+        }
+      })
 
       const isValid = Object.values(errors).every((error) => !error)
 
       return { isValid, errors }
     },
-    [validateField],
+    [validateField, VALIDATION_RULES],
   )
 
   const updateValidation = useCallback(

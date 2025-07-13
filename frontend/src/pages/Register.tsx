@@ -30,6 +30,8 @@ export const Register: React.FC = () => {
           error={error}
           successMessage={successMessage}
           fields={registerFields}
+          buttonText={t('auth.register')}
+          loadingText={t('auth.registering')}
         />
       </AuthSection>
     </div>

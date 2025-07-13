@@ -27,9 +27,9 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
         type="text"
         value={query}
         onChange={handleChange}
-        placeholder={`${t('Search')}...`}
+        placeholder={`${t('Search for a user')}...`}
       />
-      <button className="search-bar-button" type="submit">
+      <button className="btn-primary" type="submit">
         {t('Search')}
       </button>
     </form>
