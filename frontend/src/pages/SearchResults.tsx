@@ -2,12 +2,19 @@ import React, { useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import '@assets/styles/SearchResults.css'
 import { API_URL } from '@utils/constants'
+import { useTranslate } from '@hooks/index'
 import axios from 'axios'
 
+interface User {
+  id: number
+  username: string
+}
+
 export const SearchResults: React.FC = () => {
-  const [users, setUsers] = useState([])
+  const [users, setUsers] = useState<User[]>([])
   const location = useLocation()
   const navigate = useNavigate()
+  const t = useTranslate()
 
   // Extract the query string
   const queryParams = new URLSearchParams(location.search)
@@ -38,19 +45,29 @@ export const SearchResults: React.FC = () => {
   // Render the search results
   return (
     <div className="search-results">
-      <h1>Search Results</h1>
-      {filteredUsers.length > 0 ? (
-        <ul>
+      <h1 className="search-results-title">
+        {query ? `Search Results for "${query}"` : t('All Users')}
+      </h1>
+      <p className="search-results-gray-text">
+        {filteredUsers.length} {filteredUsers.length === 1 ? t('user') : t('users')} found
+      </p>
+
+    {filteredUsers.length > 0 ? (
+      <div>
           {filteredUsers.map((user) => (
-            <li key={user.id}>
-              <img src={user.avatar_url} alt="picture" className="avatar" />
-              <span>{user.username}</span>
-              <button onClick={() => handleClick(user.id)}>Show Profile</button>
-            </li>
+            <div key={user.id} className="search-result-item">
+             <div>
+               <span className="search-results h2">{user.username}</span>
+               <span className="search-results-gray-text">User ID: {user.id}</span>
+             </div>
+             <button className="btn-primary" onClick={() => handleClick(user.id)}>{t('Show Profile')}</button>
+            </div>
           ))}
-        </ul>
+      </div>
       ) : (
-        <p>No results found for "{query}"</p>
+         <div>
+           <p>{t('No results found for')} "{query}"</p>
+         </div>
       )}
     </div>
   )

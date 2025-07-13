@@ -1,3 +1,43 @@
+/* Global responsive base */
+.container {
+  @apply max-w-screen-xl mx-auto px-4;
+}
+
+@media (max-width: 640px) {
+  .container {
+    @apply px-2;
+  }
+}
+
 .search-results {
     @apply min-h-screen w-full p-20;
   }
+.search-results h1 {
+    @apply text-[2rem] font-bold mb-6;
+}
+
+.search-results h2 {
+  @apply font-bold mb-4;
+}
+
+.search-results-gray-text {
+  @apply text-sm text-gray-600 mb-4;
+}
+
+.search-result-item {
+  @apply mb-8 p-2 rounded-2xl flex items-center justify-between;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.search-result-item:hover {
+  @apply border-blue-300;
+}
+
+
+
+/* SearchResults.css - component specific */
+@media (max-width: 640px) {
+  .search-result-item {
+    @apply flex-col space-y-2; /* Stack vertically on mobile */
+  }
+}
