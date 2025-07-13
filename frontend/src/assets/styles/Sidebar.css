@@ -1,10 +1,32 @@
 .sidebar {
   @apply fixed w-12 bg-[#1E1E2E] flex flex-col items-center gap-2 px-0 py-4 border-r-[rgba(255,255,255,0.1)] border-r border-solid left-0 inset-y-0;
 }
+
 .sidebar-button {
   @apply w-10 h-10 flex items-center justify-center text-[white] cursor-pointer transition-all duration-[0.2s] rounded-lg border-[none] hover:bg-[rgba(255,255,255,0.1)];
   background: transparent;
 }
+
 .sidebar-button.selected {
+  @apply bg-[rgba(255,255,255,0.2)];
+}
+
+/* Language Selector Styles */
+.language-selector {
+  @apply relative;
+}
+
+.language-dropdown {
+  @apply absolute left-12 top-0 rounded-lg shadow-lg z-50 min-w-[80px] overflow-hidden;
+  background: #1E1E2E;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.language-option {
+  @apply w-full text-center text-white text-sm cursor-pointer transition-all duration-[0.2s] px-3 py-2 border-[none] hover:bg-[rgba(255,255,255,0.1)];
+  background: transparent;
+}
+
+.language-option.active {
   @apply bg-[rgba(255,255,255,0.2)];
 }

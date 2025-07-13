@@ -2,6 +2,7 @@ import React from 'react'
 import { useLocation } from 'react-router-dom'
 import { Sidebar } from '@/components'
 import { ErrorBoundary } from './ErrorBoundary'
+import { Footer } from './Footer'
 import { LoadingState } from '../LoadingState'
 import PongBackground from '../PongBackground'
 import '@assets/styles/index.css'
@@ -22,6 +23,7 @@ interface LayoutProps {
  * - Styled main container (with dark background, border radius, etc.)
  * - Optional loading states and error handling
  * - Automatic Pong background for landing page
+ * - Footer
  */
 export const Layout: React.FC<LayoutProps> = ({ 
   children, 
@@ -40,16 +42,19 @@ export const Layout: React.FC<LayoutProps> = ({
     <ErrorBoundary fallback={errorFallback}>
       <div className="app-layout">
         <Sidebar />
-        <main className="main-content">
-          <div className={`loading-container ${className}`}>
-            {shouldShowBackground && <PongBackground />}
-              {isLoading ? (
-                <LoadingState message={loadingText} />
-              ) : (
-                children
-              )}
-          </div>
-        </main>
+        <div className="layout-content">
+          <main className="main-content">
+            <div className={`loading-container ${className}`}>
+              {shouldShowBackground && <PongBackground />}
+                {isLoading ? (
+                  <LoadingState message={loadingText} />
+                ) : (
+                  children
+                )}
+            </div>
+          </main>
+          <Footer />
+        </div>
       </div>
     </ErrorBoundary>
   )

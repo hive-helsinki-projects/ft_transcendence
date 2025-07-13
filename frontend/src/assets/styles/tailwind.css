@@ -7,8 +7,50 @@
   @apply flex min-h-screen;
 }
 
+.layout-content {
+  @apply flex-1 flex flex-col;
+}
+
 .main-content {
   @apply flex-1;
+}
+
+/* Footer Styles */
+.app-footer {
+  @apply py-4 px-6 border-t border-solid;
+  background: #1e1e2e;
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.footer-content {
+  @apply text-center text-sm;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.footer-content p {
+  @apply mb-1;
+}
+
+.footer-content p:last-child {
+  @apply mb-0;
+}
+
+.footer-developers-row {
+  @apply flex items-center justify-center gap-2 mb-1;
+}
+
+.footer-developers-label {
+  @apply text-sm;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.footer-developers-link {
+  @apply inline-flex items-center justify-center p-1 rounded hover:bg-gray-700 transition-colors;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.footer-developers-link:hover {
+  color: rgba(255, 255, 255, 0.9);
 }
 
 h1 {

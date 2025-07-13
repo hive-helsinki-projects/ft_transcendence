@@ -19,6 +19,9 @@ export const getMenuItems = (): MenuItem[] => {
     { id: 'trophy', icon: Trophy, path: '/tournament' },
     { id: 'settings', icon: Settings, path: '/settings' },
     { id: 'help', icon: HelpCircle, path: '/help' },
+    { id: 'lang-en', icon: Home, path: '#' }, // Placeholder icon, will be overridden
+    { id: 'lang-fi', icon: Home, path: '#' }, // Placeholder icon, will be overridden
+    { id: 'lang-ja', icon: Home, path: '#' }, // Placeholder icon, will be overridden
   ]
 }
 
