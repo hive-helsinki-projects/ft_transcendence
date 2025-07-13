@@ -5,18 +5,21 @@ function matchHistoryRoutes(fastify, options) {
     // Get match history for current user
     fastify.get('/match-histories', {
         ...getMatchHistoriesOpts,
+        onRequest: [fastify.jwtAuth],
         handler: matchHistoryController.getMatchHistories
     });
 
     // Get match history for specific user
     fastify.get('/match-histories/user/:userId', {
         ...getUserMatchHistoriesOpts,
+        onRequest: [fastify.jwtAuth],
         handler: matchHistoryController.getUserMatchHistories
     });
     
     // Get match details
     fastify.get('/match-histories/:id', {
         ...getMatchHistoryOpts,
+        onRequest: [fastify.jwtAuth],
         handler: matchHistoryController.getMatchHistory
     });
     

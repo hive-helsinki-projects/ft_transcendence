@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test 401 Auto-Logout</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        button { padding: 10px 20px; margin: 10px; }
+        .test-result { margin: 10px 0; padding: 10px; border-radius: 5px; }
+        .success { background-color: #d4edda; color: #155724; }
+        .error { background-color: #f8d7da; color: #721c24; }
+    </style>
+</head>
+<body>
+    <h1>Test 401 Auto-Logout Functionality</h1>
+    
+    <h2>Setup:</h2>
+    <p>1. Login first to get a token</p>
+    <p>2. Then test the scenarios below</p>
+    
+    <div>
+        <h3>Test Scenarios:</h3>
+        
+        <button onclick="testExpiredToken()">Test Expired Token</button>
+        <button onclick="testInvalidToken()">Test Invalid Token</button>
+        <button onclick="testBackend401()">Test Backend 401 Endpoint</button>
+        <button onclick="checkCurrentToken()">Check Current Token</button>
+        <button onclick="clearToken()">Clear Token</button>
+    </div>
+
+    <div id="results"></div>
+
+    <script>
+        const API_BASE = 'https://localhost:3001';
+        
+        function log(message, type = 'info') {
+            const results = document.getElementById('results');
+            const div = document.createElement('div');
+            div.className = `test-result ${type}`;
+            div.innerHTML = `<strong>${new Date().toLocaleTimeString()}</strong>: ${message}`;
+            results.appendChild(div);
+            results.scrollTop = results.scrollHeight;
+        }
+
+        function checkCurrentToken() {
+            const token = localStorage.getItem('token');
+            if (token) {
+                log(`Current token: ${token.substring(0, 50)}...`, 'success');
+                
+                // Try to decode JWT payload (just for display)
+                try {
+                    const payload = JSON.parse(atob(token.split('.')[1]));
+                    const exp = new Date(payload.exp * 1000);
+                    log(`Token expires at: ${exp.toLocaleString()}`, 'info');
+                    log(`Token expired: ${Date.now() > payload.exp * 1000}`, 'info');
+                } catch (e) {
+                    log('Could not decode token', 'error');
+                }
+            } else {
+                log('No token found in localStorage', 'error');
+            }
+        }
+
+        function clearToken() {
+            localStorage.removeItem('token');
+            log('Token cleared from localStorage', 'success');
+        }
+
+        async function testExpiredToken() {
+            log('Testing with expired token...', 'info');
+            
+            // Create an expired token (manually crafted for testing)
+            const expiredToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3QiLCJpZCI6MSwiaWF0IjoxNjAwMDAwMDAwLCJleHAiOjE2MDAwMDAwMDB9.invalid';
+            
+            localStorage.setItem('token', expiredToken);
+            log('Set expired token in localStorage', 'info');
+            
+            try {
+                const response = await fetch(`${API_BASE}/users/1`, {
+                    headers: {
+                        'Authorization': `Bearer ${expiredToken}`
+                    }
+                });
+                
+                if (response.status === 401) {
+                    log('✅ 401 received - checking if auto-logout triggered', 'success');
+                    
+                    // Check if token was cleared
+                    setTimeout(() => {
+                        const token = localStorage.getItem('token');
+                        if (!token) {
+                            log('✅ Token cleared by interceptor', 'success');
+                        } else {
+                            log('❌ Token still exists in localStorage', 'error');
+                        }
+                    }, 100);
+                } else {
+                    log(`❌ Expected 401 but got ${response.status}`, 'error');
+                }
+            } catch (error) {
+                log(`Network error: ${error.message}`, 'error');
+            }
+        }
+
+        async function testInvalidToken() {
+            log('Testing with invalid token...', 'info');
+            
+            const invalidToken = 'invalid.token.here';
+            localStorage.setItem('token', invalidToken);
+            
+            try {
+                const response = await fetch(`${API_BASE}/users/1`, {
+                    headers: {
+                        'Authorization': `Bearer ${invalidToken}`
+                    }
+                });
+                
+                if (response.status === 401) {
+                    log('✅ 401 received for invalid token', 'success');
+                } else {
+                    log(`❌ Expected 401 but got ${response.status}`, 'error');
+                }
+            } catch (error) {
+                log(`Network error: ${error.message}`, 'error');
+            }
+        }
+
+        async function testBackend401() {
+            log('Testing backend 401 endpoint...', 'info');
+            
+            try {
+                const response = await fetch(`${API_BASE}/test-401`);
+                
+                if (response.status === 401) {
+                    log('✅ Backend 401 endpoint working', 'success');
+                } else {
+                    log(`❌ Expected 401 but got ${response.status}`, 'error');
+                }
+            } catch (error) {
+                log(`Network error: ${error.message}`, 'error');
+            }
+        }
+
+        // Initialize
+        log('401 Auto-Logout Test Page Ready', 'success');
+        log('Make sure your backend is running on https://localhost:3001', 'info');
+    </script>
+</body>
+</html> 

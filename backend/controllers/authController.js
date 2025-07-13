@@ -157,9 +157,15 @@ const createUser = async (req, reply) => {
     }
 };
 
+// Temporary test endpoint to simulate 401 - REMOVE IN PRODUCTION
+const test401 = async (req, reply) => {
+    return reply.code(401).send({ error: 'Unauthorized - test endpoint' });
+};
+
 export default {
     loginUser,
     login2fa,
     logoutUser,
-    createUser
+    createUser,
+    test401 // Add this temporarily
 };

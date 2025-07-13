@@ -18,7 +18,7 @@ function playerRoutes(fastify, options) {
 	// Get a player belonging to a user
 	fastify.get('/players/:id', {
 		...getPlayerOpts,
-		// onRequest: [fastify.jwtAuth],
+		onRequest: [fastify.jwtAuth],
 		handler: playerController.getPlayer
 	})
 	

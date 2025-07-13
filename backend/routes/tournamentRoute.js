@@ -5,12 +5,14 @@ function tournamentRoutes(fastify, options) {
     // Get all tournaments
     fastify.get('/tournaments', {
         ...getTournamentsOpts,
+        onRequest: [fastify.jwtAuth],
         handler: tournamentController.getTournaments
     });
 
     // Get tournament details
     fastify.get('/tournaments/:id', {
         ...getTournamentOpts,
+        onRequest: [fastify.jwtAuth],
         handler: tournamentController.getTournament
     });
 

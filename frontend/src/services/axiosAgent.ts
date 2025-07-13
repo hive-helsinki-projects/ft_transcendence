@@ -1,4 +1,5 @@
 import axios, { AxiosError, InternalAxiosRequestConfig } from 'axios'
+import { API_ENDPOINTS } from '@/utils/constants'
 
 interface ErrorResponse {
   message?: string
@@ -14,12 +15,13 @@ export const api = axios.create({
   withCredentials: true, // Enable sending cookies in cross-origin requests
 })
 
-// Request interceptor for adding auth token
+// Add JWT token to non-auth requests
 api.interceptors.request.use(
   (config: InternalAxiosRequestConfig) => {
     const token = localStorage.getItem('token')
-    console.log('token = ', token)
-    if (token) {
+    const isAuthEndpoint = Object.values(API_ENDPOINTS).some(endpoint => config.url?.includes(endpoint))
+    
+    if (token && !isAuthEndpoint) {
       config.headers.Authorization = `Bearer ${token}`
     }
     return config
@@ -27,26 +29,15 @@ api.interceptors.request.use(
   (error) => Promise.reject(error),
 )
 
-// Response interceptor for handling errors
+// Handle 401 unauthorized - auto logout
 api.interceptors.response.use(
   (response) => response,
   (error: AxiosError<ErrorResponse>) => {
     if (error.response?.status === 401) {
-      // Handle unauthorized access
       localStorage.removeItem('token')
       window.location.href = '/'
     }
-
-    // Handle network errors
-    if (!error.response) {
-      console.error('Network Error:', error.message)
-      return Promise.reject(
-        new Error('Network Error: Please check your internet connection'),
-      )
-    }
-
-    // Handle specific error status codes
-    const errorMessage = error.response.data?.message || 'An error occurred'
-    return Promise.reject(new Error(errorMessage))
+    
+    return Promise.reject(error)
   },
 )

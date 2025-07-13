@@ -6,12 +6,14 @@ function userRoutes(fastify, options) {
 	// Get all users
 	fastify.get('/users', {
 		...getUsersOpts,
+		onRequest: [fastify.jwtAuth],
 		handler: userController.getUsers
 	})
 
 	// Get a single user by id
 	fastify.get('/users/:id', {
 		...getUserOpts,
+		onRequest: [fastify.jwtAuth],
 		handler: userController.getUser
 	})
 

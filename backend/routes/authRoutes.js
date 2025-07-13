@@ -26,6 +26,11 @@ function authRoutes(fastify, options, done) {
 		handler: authController.createUser
 	})
 
+	// TEMPORARY: Test 401 response - REMOVE IN PRODUCTION
+	fastify.get('/test-401', {
+		handler: authController.test401
+	})
+
 	done()
 }
 
