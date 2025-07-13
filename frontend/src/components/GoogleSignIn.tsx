@@ -1,3 +1,4 @@
+import { useTranslate } from '@/hooks/useTranslate'
 import React from 'react'
 
 interface GoogleAuthButtonProps {
@@ -5,6 +6,7 @@ interface GoogleAuthButtonProps {
 }
 
 export const GoogleSignIn: React.FC<GoogleAuthButtonProps> = ({ isLoading }) => {
+  const t = useTranslate()
   const redirectToGoogleOAuth = () => {
     const redirectUri = 'https://localhost:5173/oauth2callback' // The uri we registered in Google Cloud Console
     const scope = 'openid email profile'
@@ -32,7 +34,7 @@ export const GoogleSignIn: React.FC<GoogleAuthButtonProps> = ({ isLoading }) => 
           width="20"
           height="20"
         />
-        Login with Google
+        {t('auth.loginWithGoogle')}
       </button>
     </div>
   )

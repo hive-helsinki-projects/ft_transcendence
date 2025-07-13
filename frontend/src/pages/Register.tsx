@@ -4,22 +4,23 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { AuthForm } from '@components/features/auth/AuthForm'
 import { AuthSection } from '@components/index'
-
-const registerFields: FormFieldConfig[] = [
-  { name: 'username', type: 'text', placeholder: 'Choose a username' },
-  { name: 'email', type: 'email', placeholder: 'Enter your email' },
-  { name: 'password', type: 'password', placeholder: 'Create a password' },
-  {
-    name: 'confirmPassword',
-    type: 'password',
-    placeholder: 'Confirm your password',
-  },
-]
+import { useTranslate } from '@/hooks/useTranslate'
 
 export const Register: React.FC = () => {
   const navigate = useNavigate()
   const { error, successMessage, isLoading, handleSubmit } = useRegisterForm()
+  const t = useTranslate()
 
+  const registerFields: FormFieldConfig[] = [
+    { name: 'username', type: 'text', placeholder: t('auth.chooseAUsername') || 'Choose a username' },
+    { name: 'email', type: 'email', placeholder: t('auth.enterEmail') || 'Enter your email' },
+    { name: 'password', type: 'password', placeholder: t('auth.createAPassword') || 'Create a password' },
+    {
+      name: 'confirmPassword',
+      type: 'password',
+      placeholder: t('auth.confirmPassword') || 'Confirm your password',
+    },
+  ]
   return (
     <div className="register-content">
       <AuthSection onNavigateToSignIn={() => navigate('/')}>

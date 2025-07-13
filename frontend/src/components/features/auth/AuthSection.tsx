@@ -3,6 +3,7 @@ import { AuthSectionProps } from '@/types/auth'
 import '@assets/styles/index.css'
 import { GoogleSignIn } from '@components/GoogleSignIn'
 import { useAuthForm } from '@hooks/index'
+import { useTranslate } from '@/hooks/useTranslate'
 
 export const AuthSection: React.FC<AuthSectionProps> = ({
   onNavigateToRegister,
@@ -10,10 +11,11 @@ export const AuthSection: React.FC<AuthSectionProps> = ({
   children,
 }) => {
   const { isLoading } = useAuthForm()
+  const t = useTranslate()
 
   return (
     <section className="auth-section">
-    <h2>Let's Play!</h2>
+    <h2>{t('auth.title')}</h2>
     {children}
     <div className="auth-options">
       <div className="google-auth">
@@ -24,14 +26,14 @@ export const AuthSection: React.FC<AuthSectionProps> = ({
       {onNavigateToRegister && (
         <div className="register-link">
           <p>
-            Don't have an account?{' '}
+            {t('auth.dontHaveAccount')}
             <button
               type="button"
               className="link-button"
               onClick={onNavigateToRegister}
               aria-label="Register new account"
             >
-              Register here
+              {t('auth.registerHere')}
             </button>
           </p>
         </div>
@@ -40,14 +42,14 @@ export const AuthSection: React.FC<AuthSectionProps> = ({
       {onNavigateToSignIn && (
         <div className="register-link">
           <p>
-            Already have an account?{' '}
+            {t('auth.alreadyHaveAccount')}
             <button
               type="button"
               className="link-button"
               onClick={onNavigateToSignIn}
               aria-label="Sign in to account"
             >
-              Sign in here
+              {t('auth.signInHere')}
             </button>
           </p>
         </div>

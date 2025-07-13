@@ -4,6 +4,7 @@ import { AuthFormData, AuthFormProps } from '@/types/auth'
 import { LoadingState } from '@components/index'
 import { FormInput } from './FormInput'
 import { StatusMessage } from './StatusMessage'
+import { useTranslate } from '@/hooks/useTranslate'
 import '@assets/styles/index.css'
 
 /**
@@ -17,16 +18,26 @@ export const AuthForm: React.FC<AuthFormProps> = ({
   isLoading = false,
   error = '',
   successMessage = '',
-  fields = [
-    { name: 'username', type: 'text', placeholder: 'Username' },
-    { name: 'password', type: 'password', placeholder: 'Password' },
-  ],
+  fields,
 }) => {
   // Form state
   const [formData, setFormData] = useState<AuthFormData>({
     username: '',
     password: '',
   })
+  const t = useTranslate()
+
+  // Default fields with translations
+  const defaultFields = [
+    { name: 'username', type: 'text', placeholder: t('auth.username') || 'Username' },
+    { name: 'password', type: 'password', placeholder: t('auth.password') || 'Password' },
+  ]
+  
+  // Ensure we always have a valid array
+  const formFields = fields || defaultFields || [
+    { name: 'username', type: 'text', placeholder: 'Username' },
+    { name: 'password', type: 'password', placeholder: 'Password' },
+  ]
 
   // Form validation
   const { validation, updateValidation } = useFormValidation()
@@ -65,7 +76,7 @@ export const AuthForm: React.FC<AuthFormProps> = ({
         <StatusMessage type="success" message={successMessage} />
       )}
 
-      {fields.map((field) => (
+      {formFields.map((field) => (
         <FormInput
           key={field.name}
           name={field.name}
@@ -84,9 +95,9 @@ export const AuthForm: React.FC<AuthFormProps> = ({
         disabled={isLoading || !validation.isValid}
       >
         {isLoading ? (
-          <LoadingState message="Signing in..." />
+          <LoadingState message={t('auth.signingIn')} />
         ) : (
-          'Sign In'
+          t('auth.signIn')
         )}
       </button>
     </form>

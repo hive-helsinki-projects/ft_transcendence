@@ -1,7 +1,8 @@
 import React from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
-import { User } from '../services/localAuth'
+import { User } from '@/services/localAuth'
+import { useTranslate } from '@/hooks/useTranslate'
 
 interface RegisterFormProps {
   onSubmit: SubmitHandler<RegisterFormInputs>
@@ -21,10 +22,9 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
   onSubmit,
   isLoading,
   successMessage,
-  onShowUsers,
-  registeredUsers,
 }) => {
   const navigate = useNavigate()
+  const t = useTranslate()
   const {
     register,
     handleSubmit,
@@ -33,18 +33,18 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
 
   return (
     <div className="register-container">
-      <h1>Register</h1>
+      <h1>{t('auth.register')}</h1>
       {successMessage && (
         <div className="success-message">{successMessage}</div>
       )}
 
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="form-group">
-          <label htmlFor="username">Username</label>
+          <label htmlFor="username">{t('auth.username')}</label>
           <input
             id="username"
             type="text"
-            {...register('username', { required: 'Username is required' })}
+            {...register('username', { required: t('auth.usernameRequired') })}
             disabled={isLoading}
           />
           {errors.username && (
@@ -53,11 +53,11 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
         </div>
 
         <div className="form-group">
-          <label htmlFor="email">Email</label>
+          <label htmlFor="email">{t('auth.email')}</label>
           <input
             id="email"
             type="email"
-            {...register('email', { required: 'Email is required' })}
+            {...register('email', { required: t('auth.emailRequired') })}
             disabled={isLoading}
           />
           {errors.email && (
@@ -66,11 +66,11 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
         </div>
 
         <div className="form-group">
-          <label htmlFor="password">Password</label>
+          <label htmlFor="password">{t('auth.password')}</label>
           <input
             id="password"
             type="password"
-            {...register('password', { required: 'Password is required' })}
+            {...register('password', { required: t('auth.passwordRequired') })}
             disabled={isLoading}
           />
           {errors.password && (
@@ -79,43 +79,21 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
         </div>
 
         <button type="submit" disabled={isLoading} className="submit-button">
-          {isLoading ? 'Registering...' : 'Register'}
+          {isLoading ? t('auth.registering') : t('auth.register')}
         </button>
       </form>
 
       <div className="action-links">
         <p>
-          Already have an account?{' '}
+          {t('auth.alreadyHaveAccount')}
           <button
             type="button"
             onClick={() => navigate('/')}
             className="link-button"
           >
-            Login here
+            {t('auth.signInHere')}
           </button>
         </p>
-      </div>
-
-      <div className="registered-users">
-        <button
-          type="button"
-          onClick={onShowUsers}
-          className="show-users-button"
-        >
-          Show Registered Users
-        </button>
-        {registeredUsers.length > 0 && (
-          <div className="users-list">
-            <h3>Registered Users:</h3>
-            <ul>
-              {registeredUsers.map((user, index) => (
-                <li key={index}>
-                  Username: {user.username}, Email: {user.email}
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
       </div>
     </div>
   )

@@ -1,6 +1,7 @@
 import { LogOut } from 'lucide-react'
 import React, { useState } from 'react'
 import '../assets/styles/index.css'
+import { useTranslate } from '@/hooks/useTranslate'
 
 interface LogoutButtonProps {
   onLogout: () => Promise<void>
@@ -8,7 +9,8 @@ interface LogoutButtonProps {
 
 export const LogoutButton: React.FC<LogoutButtonProps> = ({ onLogout }) => {
   const [showConfirm, setShowConfirm] = useState(false)
-
+  const t = useTranslate()
+  
   const handleLogoutClick = async () => {
     if (!showConfirm) {
       setShowConfirm(true)
@@ -27,7 +29,7 @@ export const LogoutButton: React.FC<LogoutButtonProps> = ({ onLogout }) => {
         onMouseLeave={() => setShowConfirm(false)}
       >
         <LogOut size={18} />
-        <span>{showConfirm ? 'Click again to confirm' : 'Logout'}</span>
+        <span>{showConfirm ? t('auth.clickAgainToConfirm') : t('auth.logout')}</span>
       </button>
     </div>
   )
