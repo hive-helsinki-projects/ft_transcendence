@@ -1,5 +1,6 @@
 import { Github } from 'lucide-react'
 import React from 'react'
+import { useTranslate } from '@hooks/useTranslate'
 
 /**
  * Footer Component
@@ -20,14 +21,15 @@ const DEVELOPERS: Developer[] = [
 ]
 
 export const Footer: React.FC = () => {
+  const t = useTranslate()
   const currentYear = new Date().getFullYear()
   
   return (
     <footer className="app-footer">
       <div className="footer-content">
-        <p>&copy; {currentYear} Ping.Pong.Play! - Hive Helsinki. All rights reserved.</p>
+        <p>&copy; {currentYear} Ping.Pong.Play! - Hive Helsinki. {t('footer.allRightsReserved')}</p>
         <div className="footer-developers-row">
-          <span className="footer-developers-label">Developers:</span>
+          <span className="footer-developers-label">{t('footer.developers')}:</span>
           {DEVELOPERS.map((dev: Developer) => (
             <a
               key={dev.url}
@@ -42,7 +44,7 @@ export const Footer: React.FC = () => {
             </a>
           ))}
         </div>
-        <p>Made with ❤️ for ping pong enthusiasts</p>
+        <p>{t('footer.madeWithLove')}</p>
       </div>
     </footer>
   )
