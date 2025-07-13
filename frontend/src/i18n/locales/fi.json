@@ -16,6 +16,7 @@
     "loginWithGoogle": "Kirjaudu Googlella",
     "dontHaveAccount": "Ei tiliä?",
     "registerHere": "Rekisteröidy tästä",
+    "register": "Rekisteröidy",
     "registering": "Rekisteröityy...",
     "chooseAUsername": "Valitse käyttäjätunnus",
     "enterEmail": "Syötä sähköpostisi",
@@ -25,7 +26,15 @@
     "alreadyHaveAccount": "Onko sinulla jo tili?",
     "signInHere": "Kirjaudu tästä",
     "logout": "Kirjaudu ulos",
-    "clickAgainToConfirm": "Klikkaa uudelleen vahvistamaan"
+    "clickAgainToConfirm": "Klikkaa uudelleen vahvistamaan",
+    "usernameMinLength": "Käyttäjätunnus on oltava vähintään 3 merkkiä pitkä",
+    "usernameMaxLength": "Käyttäjätunnus on oltava enintään 20 merkkiä pitkä",
+    "usernamePattern": "Käyttäjätunnus voi sisältää vain kirjaimia ja numeroita",
+    "passwordMinLength": "Salasana on oltava vähintään 6 merkkiä pitkä",
+    "emailPattern": "Sähköposti ei ole kelvollinen",
+    "confirmPasswordRequired": "Vahvistus salasana on pakollinen",
+    "confirmPasswordMinLength": "Vahvistus salasana on oltava vähintään 6 merkkiä pitkä",
+    "confirmPasswordMatch": "Salasanat eivät täsmää"
   },
 
   "dashboard": {
@@ -33,6 +42,7 @@
   },
 
   "Search": "Etsi",
+  "Search for a user": "Etsi käyttäjää",
 
   "Your Players": "Pelaajasi",
   "Delete player": "Poista pelaaja",

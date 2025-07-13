@@ -16,6 +16,7 @@
     "loginWithGoogle": "Googleでサインイン",
     "dontHaveAccount": "アカウントを持っていませんか？",
     "registerHere": "ここで登録",
+    "register": "登録",
     "registering": "登録中...",
     "chooseAUsername": "ユーザーネームを選択",
     "enterEmail": "メールアドレスを入力",
@@ -25,14 +26,23 @@
     "alreadyHaveAccount": "アカウントを持っていますか？",
     "signInHere": "ここでサインイン",
     "logout": "ログアウト",
-    "clickAgainToConfirm": "もう一度クリックして確認"
+    "clickAgainToConfirm": "もう一度クリックして確認",
+    "usernameMinLength": "ユーザーネームは3文字以上で入力してください",
+    "usernameMaxLength": "ユーザーネームは20文字以下で入力してください",
+    "usernamePattern": "ユーザーネームは英数字のみ使用できます",
+    "passwordMinLength": "パスワードは6文字以上で入力してください",
+    "emailPattern": "メールアドレスが不正です",
+    "confirmPasswordRequired": "パスワード確認は必須です",
+    "confirmPasswordMinLength": "パスワード確認は6文字以上で入力してください",
+    "confirmPasswordMatch": "パスワードが一致しません"
   },
 
   "dashboard": {
     "welcome": "こんにちは"
   },
 
-  "Search": "検索",
+  "Search": "検索 ",
+  "Search for a user": "ユーザーを検索",
 
   "Your Players": "あなたのプレイヤー",
   "Delete player": "プレイヤーを削除",

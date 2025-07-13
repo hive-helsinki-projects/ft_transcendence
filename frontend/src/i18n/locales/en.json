@@ -16,6 +16,7 @@
     "loginWithGoogle": "Login with Google",
     "dontHaveAccount": "Don't have an account?",
     "registerHere": "Register here",
+    "register": "Register",
     "registering": "Registering...",
     "chooseAUsername": "Choose a username",
     "enterEmail": "Enter your email",
@@ -25,7 +26,15 @@
     "alreadyHaveAccount": "Already have an account?",
     "signInHere": "Sign in here",
     "logout": "Logout",
-    "clickAgainToConfirm": "Click again to confirm"
+    "clickAgainToConfirm": "Click again to confirm",
+    "usernameMinLength": "Username must be at least 3 characters",
+    "usernameMaxLength": "Username must be less than 20 characters",
+    "usernamePattern": "Username must contain only letters and numbers",
+    "passwordMinLength": "Password must be at least 6 characters",
+    "emailPattern": "Please enter a valid email address",
+    "confirmPasswordRequired": "Password confirmation is required",
+    "confirmPasswordMinLength": "Password confirmation must be at least 6 characters",
+    "confirmPasswordMatch": "Passwords do not match"
   },
 
   "dashboard": {
@@ -33,6 +42,7 @@
   },
 
   "Search": "Search",
+  "Search for a user": "Search for a user",
 
   "Your Players": "Your Players",
   "Delete player": "Delete player",
