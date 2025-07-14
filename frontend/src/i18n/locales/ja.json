@@ -14,7 +14,7 @@
     "signIn": "サインイン",
     "signingIn": "サインイン中...",
     "loginWithGoogle": "Googleでサインイン",
-    "dontHaveAccount": "アカウントをお持ちでない方",
+    "dontHaveAccount": "アカウントをお持ちでない方? ",
     "registerHere": "ここで登録",
     "register": "登録",
     "registering": "登録中...",
@@ -23,7 +23,7 @@
     "emailRequired": "メールアドレスは必須です",
     "createAPassword": "パスワードを作成",
     "confirmPassword": "パスワードを確認",
-    "alreadyHaveAccount": "すでにアカウントをお持ちですか？",
+    "alreadyHaveAccount": "すでにアカウントをお持ちですか？ ",
     "signInHere": "ここでサインイン",
     "logout": "ログアウト",
     "clickAgainToConfirm": "もう一度クリックして確認",
@@ -38,7 +38,17 @@
     "errors": {
       "usernameOrEmailExists": "ユーザー名またはメールアドレスは既に使用されています",
       "serverError": "サーバーエラーが発生しました。もう一度お試しください",
-      "2faNotSupported": "登録後の2段階認証には対応していません"
+      "2faNotSupported": "登録後の2段階認証には対応していません",
+      "2faNotSetup": "2段階認証が設定されていません",
+      "invalid2faCode": "無効な2段階認証コードです",
+      "userNotFound": "ユーザーが見つかりません",
+      "internalServerError": "サーバーエラー",
+      "invalidCredentials": "ユーザー名またはパスワードが間違っています",
+      "2faRequired": "2段階認証が必要です",
+      "userAlreadyLoggedOut": "ユーザーはすでにログアウトしています",
+      "logoutSuccessful": "ログアウトが完了しました",
+      "userCreatedSuccessfully": "ユーザーが作成されました",
+      "unexpectedError": "予期しないエラーが発生しました"
     }
   },
 

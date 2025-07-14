@@ -1,6 +1,8 @@
 import { UseAuthFormReturn } from '@/types/auth'
 import { AUTH_MESSAGES } from '@utils/constants'
 import { useState } from 'react'
+import { formatErrorMessage } from '@/utils/errors'
+import { useTranslate } from '@hooks/index'
 
 /**
  * Custom hook for managing authentication form state and actions
@@ -22,7 +24,7 @@ export const useAuthForm = (): UseAuthFormReturn => {
   const [isLoading, setIsLoading] = useState(false) // Tracks if authentication is in progress
   const [error, setError] = useState('') // Stores any error messages
   const [successMessage, setSuccessMessage] = useState('') // Stores success messages
-
+  const t = useTranslate()
   /**
    * Clears all messages (error and success)
    * Useful when starting a new authentication attempt
@@ -39,9 +41,7 @@ export const useAuthForm = (): UseAuthFormReturn => {
    * Otherwise, uses the default error message
    */
   const handleAuthError = (error: unknown) => {
-    setError(
-      error instanceof Error ? error.message : AUTH_MESSAGES.ERROR.DEFAULT,
-    )
+    setError(formatErrorMessage(error, t))
   }
 
   /**

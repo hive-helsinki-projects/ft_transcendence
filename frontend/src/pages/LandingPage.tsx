@@ -11,6 +11,7 @@ import {
 } from '@components/index'
 import '@assets/styles/index.css'
 import { useTranslate } from '@/hooks/useTranslate'
+import { formatErrorMessage } from '@/utils/errors'
 
 /**
  * LandingPage Component
@@ -44,7 +45,6 @@ export const LandingPage: React.FC = () => {
 
   // Handlers
   const handleAuthSubmit = async (formData: AuthFormData) => {
-    resetMessages()
     setLoading(true)
 
     try {
@@ -62,6 +62,7 @@ export const LandingPage: React.FC = () => {
 
       const loginResponse = response as LoginResponse
 
+      resetMessages() // Only clear messages on successful login
       handleAuthSuccess()
       await new Promise((resolve) => setTimeout(resolve, REDIRECT_DELAY))
       login(loginResponse.token, loginResponse.username, loginResponse.id)
@@ -98,7 +99,7 @@ export const LandingPage: React.FC = () => {
       login(loginResponse.token, finalUsername, loginResponse.id)
       navigate('/dashboard')
     } catch {
-      setTwoFaError(t('Invalid 2FA code'))
+      setTwoFaError(formatErrorMessage(error, t))
     } finally {
       setLoading(false)
     }

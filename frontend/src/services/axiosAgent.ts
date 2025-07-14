@@ -32,9 +32,13 @@ api.interceptors.response.use(
   (response) => response,
   (error: AxiosError<ErrorResponse>) => {
     if (error.response?.status === 401) {
-      // Handle unauthorized access
-      localStorage.removeItem('token')
-      window.location.href = '/'
+      // Only redirect if user has a token (expired/invalid session)
+      // If no token, they're already trying to login, so show the error
+      const hasToken = localStorage.getItem('token')
+      if (hasToken) {
+        localStorage.removeItem('token')
+        window.location.href = '/'
+      }
     }
 
     // Handle network errors
@@ -46,7 +50,7 @@ api.interceptors.response.use(
     }
 
     // Handle specific error status codes
-    const errorMessage = error.response.data?.message || 'An error occurred'
+    const errorMessage = String(error.response.data?.error || error.response.data?.message || 'An error occurred')
     return Promise.reject(new Error(errorMessage))
   },
 )

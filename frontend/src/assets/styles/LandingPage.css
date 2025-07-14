@@ -69,7 +69,7 @@
   @apply w-5 h-5 rounded-[50%];
 }
 .link-button {
-  @apply text-[rgba(255,255,255,0.8)] cursor-pointer text-[0.9rem] underline p-0 border-[none] hover:text-[white];
+  @apply text-[rgba(255,255,255,0.8)] cursor-pointer text-[0.9rem] underline border-[none] hover:text-[white];
   background: none;
 }
 .error-message {

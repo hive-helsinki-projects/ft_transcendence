@@ -14,7 +14,7 @@
     "signIn": "Sign In",
     "signingIn": "Signing in...",
     "loginWithGoogle": "Login with Google",
-    "dontHaveAccount": "Don't have an account?",
+    "dontHaveAccount": "Don't have an account? ",
     "registerHere": "Register here",
     "register": "Register",
     "registering": "Registering...",
@@ -23,7 +23,7 @@
     "emailRequired": "Email is required",
     "createAPassword": "Create a password",
     "confirmPassword": "Confirm your password",
-    "alreadyHaveAccount": "Already have an account?",
+    "alreadyHaveAccount": "Already have an account? ",
     "signInHere": "Sign in here",
     "logout": "Logout",
     "clickAgainToConfirm": "Click again to confirm",
@@ -36,10 +36,20 @@
     "confirmPasswordMinLength": "Password confirmation must be at least 6 characters",
     "confirmPasswordMatch": "Passwords do not match",
     "errors": {
-    "usernameOrEmailExists": "Username or email already exists",
-    "serverError": "Server error. Please try again later",
-    "2faNotSupported": "2FA after register not supported"
-  }
+      "usernameOrEmailExists": "Username or email already exists",
+      "serverError": "Server error. Please try again later",
+      "2faNotSupported": "2FA after register not supported",
+      "2faNotSetup": "2FA is not set up",
+      "invalid2faCode": "Invalid 2FA code", 
+      "userNotFound": "User not found",
+      "internalServerError": "Internal Server Error",
+      "invalidCredentials": "Invalid username or password",
+      "2faRequired": "Two-factor authentication required",
+      "userAlreadyLoggedOut": "User already logged out",
+      "logoutSuccessful": "Logout successful",
+      "userCreatedSuccessfully": "User created successfully",
+      "unexpectedError": "An unexpected error occurred"
+    }
   },
 
   "dashboard": {

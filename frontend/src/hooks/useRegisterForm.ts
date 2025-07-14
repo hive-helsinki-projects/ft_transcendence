@@ -5,7 +5,7 @@ import { validateRegistrationForm } from '@utils/validation'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useTranslate } from '@hooks/index'
-
+import { formatErrorMessage } from '@/utils/errors'
 
 interface UseRegisterFormReturn {
   formData: AuthFormData
@@ -59,7 +59,7 @@ export const useRegisterForm = (): UseRegisterFormReturn => {
       setSuccessMessage(t('Registration.successful'))
       setTimeout(() => navigate('/dashboard'), 1000)
     } catch (error) {
-      setError(error instanceof Error ? error.message : t('Registration failed'))
+      setError(formatErrorMessage(error, t))
     } finally {
       setIsLoading(false)
     }

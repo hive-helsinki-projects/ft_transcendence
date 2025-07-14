@@ -14,7 +14,7 @@
     "signIn": "Kirjaudu",
     "signingIn": "Kirjaudutaan...",
     "loginWithGoogle": "Kirjaudu Googlella",
-    "dontHaveAccount": "Ei tiliä?",
+    "dontHaveAccount": "Ei tiliä? ",
     "registerHere": "Rekisteröidy tästä",
     "register": "Rekisteröidy",
     "registering": "Rekisteröityy...",
@@ -23,7 +23,7 @@
     "emailRequired": "Sähköposti on pakollinen",
     "createAPassword": "Luo salasana",
     "confirmPassword": "Vahvista salasana",
-    "alreadyHaveAccount": "Onko sinulla jo tili?",
+    "alreadyHaveAccount": "Onko sinulla jo tili? ",
     "signInHere": "Kirjaudu tästä",
     "logout": "Kirjaudu ulos",
     "clickAgainToConfirm": "Klikkaa uudelleen vahvistamaan",
@@ -36,9 +36,19 @@
     "confirmPasswordMinLength": "Vahvistus salasana on oltava vähintään 6 merkkiä pitkä",
     "confirmPasswordMatch": "Salasanat eivät täsmää",
     "errors": {
-      "usernameOrEmailExists": "Username or email already exists",
-      "serverError": "Server error. Please try again later",
-      "2faNotSupported": "2FA after register not supported"
+      "usernameOrEmailExists": "Käyttäjätunnus tai sähköposti on jo olemassa",
+      "serverError": "Palvelinvirhe. Yritä uudelleen myöhemmin",
+      "2faNotSupported": "2FA rekisteröitymisen jälkeen ei tuettu",
+      "2faNotSetup": "2FA ei ole asetettu",
+      "invalid2faCode": "Virheellinen 2FA-koodi", 
+      "userNotFound": "Käyttäjää ei löytynyt",
+      "internalServerError": "Palvelinvirhe",
+      "invalidCredentials": "Käyttäjätunnus tai salasana on virheellinen",
+      "2faRequired": "Kaksivaiheinen todennus vaaditaan",
+      "userAlreadyLoggedOut": "Käyttäjä on jo kirjautunut ulos",
+      "logoutSuccessful": "Uloskirjautuminen onnistui",
+      "userCreatedSuccessfully": "Käyttäjä luotu onnistuneesti",
+      "unexpectedError": "Odottamaton virhe tapahtui"
     }
   },
 
