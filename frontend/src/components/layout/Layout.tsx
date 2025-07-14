@@ -37,21 +37,24 @@ export const Layout: React.FC<LayoutProps> = ({
   showBackground = false
 }) => {
   const location = useLocation()
-  const { id: userId, logout } = useAuth()
+  const { id: userId, logout, isAuthenticated } = useAuth()
   const parsedId = userId ? parseInt(userId, 10) : null
   const { avatar, handleAvatarChange } = useAvatar(parsedId)
   
   // Automatically show background on landing page
   const shouldShowBackground = showBackground || location.pathname === '/'
   
-  // Show sidebar on all pages except public pages (landing, register)
-  const shouldShowSidebar = !['/register', '/'].includes(location.pathname)
+  // Show sidebar on all pages
+  const shouldShowSidebar = true
+  
+  // Only show avatar menu when user is authenticated
+  const shouldShowAvatarMenu = isAuthenticated
 
   return (
     <ErrorBoundary fallback={errorFallback}>
       <div className="app-layout">
         {shouldShowSidebar && <Sidebar />}
-        {shouldShowSidebar && (
+        {shouldShowAvatarMenu && (
           <AvatarMenu
             avatar={avatar}
             onAvatarChange={handleAvatarChange}
