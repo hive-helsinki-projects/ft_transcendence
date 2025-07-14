@@ -1,4 +1,3 @@
-import { useAuth } from '@hooks/auth/useAuth'
 import {
   useMatchHistories,
   useTranslate,
@@ -18,7 +17,6 @@ import { API_URL } from '@utils/constants'
 import { useNavigate } from 'react-router-dom'
 
 export const Dashboard: React.FC = () => {
-  const { username } = useAuth()
   const { userPlayers, createPlayer, deletePlayer } = useUserPlayers()
   const { matches } = useMatchHistories()
   const t = useTranslate()
@@ -48,9 +46,6 @@ export const Dashboard: React.FC = () => {
     }
   }
 
-  if (!username) {
-    return <div>Please log in to view the dashboard</div>
-  }
   return (
     <div className="dashboard">
       <div className="welcome-header">
