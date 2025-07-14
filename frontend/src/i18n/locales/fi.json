@@ -34,7 +34,12 @@
     "emailPattern": "Sähköposti ei ole kelvollinen",
     "confirmPasswordRequired": "Vahvistus salasana on pakollinen",
     "confirmPasswordMinLength": "Vahvistus salasana on oltava vähintään 6 merkkiä pitkä",
-    "confirmPasswordMatch": "Salasanat eivät täsmää"
+    "confirmPasswordMatch": "Salasanat eivät täsmää",
+    "errors": {
+      "usernameOrEmailExists": "Username or email already exists",
+      "serverError": "Server error. Please try again later",
+      "2faNotSupported": "2FA after register not supported"
+    }
   },
 
   "dashboard": {
@@ -170,6 +175,8 @@
   "Enable 2FA": "Ota 2FA käyttöön",
   "Enter 2FA code": "Syötä 2FA-koodi",
   "Verify & Enable": "Vahvista ja ota käyttöön",
+  "Enter 6-digit code": "Enter 6-digit code",
+  "Verify": "Verify",
 
   "Language Preferences": "Kieliasetukset",
   "languages": {

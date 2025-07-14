@@ -34,7 +34,12 @@
     "emailPattern": "メールアドレスが不正です",
     "confirmPasswordRequired": "パスワード確認は必須です",
     "confirmPasswordMinLength": "パスワード確認は6文字以上で入力してください",
-    "confirmPasswordMatch": "パスワードが一致しません"
+    "confirmPasswordMatch": "パスワードが一致しません",
+    "errors": {
+      "usernameOrEmailExists": "ユーザー名またはメールアドレスは既に使用されています",
+      "serverError": "サーバーエラーが発生しました。もう一度お試しください",
+      "2faNotSupported": "登録後の2段階認証には対応していません"
+    }
   },
 
   "dashboard": {
@@ -170,6 +175,8 @@
   "Enable 2FA": "2段階認証を有効にする",
   "Enter 2FA code": "2段階認証コードを入力",
   "Verify & Enable": "認証して有効化",
+  "Enter 6-digit code": "6桁の認証コードを入力",
+  "Verify": "認証",
 
   "Language Preferences": "言語設定",
   "languages": {

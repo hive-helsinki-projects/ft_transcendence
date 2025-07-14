@@ -98,7 +98,7 @@ export const LandingPage: React.FC = () => {
       login(loginResponse.token, finalUsername, loginResponse.id)
       navigate('/dashboard')
     } catch {
-      setTwoFaError('Invalid 2FA code')
+      setTwoFaError(t('Invalid 2FA code'))
     } finally {
       setLoading(false)
     }
@@ -122,10 +122,10 @@ export const LandingPage: React.FC = () => {
         />
         {needs2fa && (
           <div className="modal">
-            <h3>Two-Factor Authentication</h3>
+            <h3>{t('Two-Factor Authentication')}</h3>
             <input
               type="text"
-              placeholder="Enter 6-digit code"
+              placeholder={t('Enter 6-digit code')}
               value={twoFaCode}
               onChange={(e) => setTwoFaCode(e.target.value)}
               maxLength={6}
@@ -136,7 +136,7 @@ export const LandingPage: React.FC = () => {
               onClick={handleVerify2FA}
               disabled={isLoading}
             >
-              Verify
+              {t('Verify')}
             </button>
             {twoFaError && <p className="error-message">{twoFaError}</p>}
           </div>

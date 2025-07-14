@@ -34,7 +34,12 @@
     "emailPattern": "Please enter a valid email address",
     "confirmPasswordRequired": "Password confirmation is required",
     "confirmPasswordMinLength": "Password confirmation must be at least 6 characters",
-    "confirmPasswordMatch": "Passwords do not match"
+    "confirmPasswordMatch": "Passwords do not match",
+    "errors": {
+    "usernameOrEmailExists": "Username or email already exists",
+    "serverError": "Server error. Please try again later",
+    "2faNotSupported": "2FA after register not supported"
+  }
   },
 
   "dashboard": {
@@ -170,6 +175,8 @@
   "Enable 2FA": "Enable 2FA",
   "Enter 2FA code": "Enter 2FA code",
   "Verify & Enable": "Verify & Enable",
+  "Enter 6-digit code": "Enter 6-digit code",
+  "Verify": "Verify",
 
   "Language Preferences": "Language Preferences",
   "languages": {
