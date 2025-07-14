@@ -33,6 +33,10 @@
   @apply flex-1 flex flex-col;
 }
 
+.layout-content.with-sidebar .main-content {
+  @apply ml-16;
+}
+
 .main-content {
   @apply flex-1;
 }

@@ -1,9 +1,9 @@
 .sidebar {
-  @apply fixed w-12 bg-[#1E1E2E] flex flex-col items-center gap-2 px-0 py-4 border-r-[rgba(255,255,255,0.1)] border-r border-solid left-0 inset-y-0;
+  @apply fixed w-16 bg-[#1E1E2E] flex flex-col items-center gap-2 px-0 py-4 border-r-[rgba(255,255,255,0.1)] border-r border-solid left-0 inset-y-0;
 }
 
 .sidebar-button {
-  @apply w-10 h-10 flex items-center justify-center text-[white] cursor-pointer transition-all duration-[0.2s] rounded-lg border-[none] hover:bg-[rgba(255,255,255,0.1)];
+  @apply w-12 h-12 flex items-center justify-center text-[white] cursor-pointer transition-all duration-[0.2s] rounded-lg border-[none] hover:bg-[rgba(255,255,255,0.1)];
   background: transparent;
 }
 

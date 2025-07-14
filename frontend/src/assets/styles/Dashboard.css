@@ -71,13 +71,13 @@
   @apply hidden;
 }
 .avatar-container {
-  @apply fixed w-12 h-12 flex justify-center items-center cursor-pointer transition-all duration-[0.3s] ease-[ease] left-0 bottom-5;
+  @apply fixed w-16 h-16 flex justify-center items-center cursor-pointer transition-all duration-[0.3s] ease-[ease] left-0 bottom-5 z-40;
 }
 .welcome-avatar {
-  @apply w-9 h-9 transition-all duration-[0.3s] ease-[ease] relative rounded-[50%] border-2 border-solid border-[rgba(255,255,255,0.1)];
+  @apply w-10 h-10 transition-all duration-[0.3s] ease-[ease] relative rounded-[50%] border-2 border-solid border-[rgba(255,255,255,0.1)];
 }
 .avatar-container:hover .welcome-avatar {
-  @apply w-[42px] h-[42px] border-[rgba(255,255,255,0.3)];
+  @apply w-[46px] h-[46px] border-[rgba(255,255,255,0.3)];
 }
 .edit-button {
   @apply absolute w-8 h-8 cursor-pointer flex items-center justify-center transition-all duration-[0.3s] ease-[ease] rounded-[50%] border-2 border-solid border-[rgba(255,255,255,0.1)] right-0 bottom-0 hover:border-[rgba(255,255,255,0.2)];
@@ -233,10 +233,10 @@
 }
 
 .online-status {
-  @apply absolute w-2.5 h-2.5 bg-[#4AE44A] shadow-[0_0_0_2px_rgba(74,228,74,0.3)] animate-[pulse_2s_infinite] rounded-[50%] border-2 border-solid border-[#1E1E2E] right-0 bottom-0;
+  @apply absolute w-3 h-3 bg-[#4AE44A] shadow-[0_0_0_2px_rgba(74,228,74,0.3)] animate-[pulse_2s_infinite] rounded-[50%] border-2 border-solid border-[#1E1E2E] right-1 bottom-1;
 }
 .avatar-menu {
-  @apply absolute border flex flex-col gap-2 opacity-0 invisible -translate-x-2.5 transition-all duration-[0.3s] ease-[ease] min-w-[150px] p-2 rounded-lg border-solid border-[rgba(255,255,255,0.1)] left-12 bottom-0;
+  @apply absolute border flex flex-col gap-2 opacity-0 invisible -translate-x-2.5 transition-all duration-[0.3s] ease-[ease] min-w-[150px] p-2 rounded-lg border-solid border-[rgba(255,255,255,0.1)] left-16 bottom-0 z-50;
   background: #1e1e2e;
 }
 .avatar-container:hover .avatar-menu {

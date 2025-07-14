@@ -1,4 +1,4 @@
 .loading-container {
-  @apply relative min-h-screen flex flex-col text-white border overflow-hidden ml-[48px] p-8 border-white/10 w-full;
+  @apply relative min-h-screen flex flex-col text-white border overflow-hidden p-8 border-white/10 w-full;
   background: #1e1e2e;
 }

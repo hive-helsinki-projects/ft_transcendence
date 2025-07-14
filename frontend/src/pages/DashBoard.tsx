@@ -1,6 +1,5 @@
 import { useAuth } from '@hooks/auth/useAuth'
 import {
-  useAvatar,
   useMatchHistories,
   useTranslate,
   useUserPlayers,
@@ -8,7 +7,6 @@ import {
 import axios from 'axios'
 import React, { useEffect } from 'react'
 import {
-  AvatarMenu,
   GameStats,
   MatchHistory as MatchHistoryComponent,
   PlayerManagement,
@@ -20,9 +18,7 @@ import { API_URL } from '@utils/constants'
 import { useNavigate } from 'react-router-dom'
 
 export const Dashboard: React.FC = () => {
-  const { id: userId, username, logout } = useAuth()
-  const parsedId = userId ? parseInt(userId, 10) : null
-  const { avatar, handleAvatarChange } = useAvatar(parsedId)
+  const { username } = useAuth()
   const { userPlayers, createPlayer, deletePlayer } = useUserPlayers()
   const { matches } = useMatchHistories()
   const t = useTranslate()
@@ -77,12 +73,6 @@ export const Dashboard: React.FC = () => {
       </div>
 
       <TopPlayers players={userPlayers} />
-
-      <AvatarMenu
-        avatar={avatar}
-        onAvatarChange={handleAvatarChange}
-        onLogout={logout}
-      />
     </div>
   )
 }
