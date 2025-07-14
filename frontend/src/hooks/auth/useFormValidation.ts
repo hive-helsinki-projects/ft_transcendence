@@ -48,7 +48,7 @@ const createValidationRules = (t: (key: string) => string) => ({
  * It includes a validateField function for validating individual fields
  * and a validateForm function for validating the entire form
  */
-export const useFormValidation = () => {
+export const useFormValidation = (activeFields?: string[]) => {
   const t = useTranslate()
   const VALIDATION_RULES = createValidationRules(t)
   
@@ -84,8 +84,11 @@ export const useFormValidation = () => {
     (formData: AuthFormData): FormValidation => {
       const errors: Record<string, string> = {}
 
-      // Validate all fields that are present in the form data
-      Object.keys(formData).forEach((key) => {
+      // Determine which fields to validate
+      const fieldsToValidate = activeFields || Object.keys(formData)
+
+      // Validate only the specified fields
+      fieldsToValidate.forEach((key) => {
         const fieldName = key as keyof AuthFormData
         const value = formData[fieldName] || ''
         
@@ -99,7 +102,7 @@ export const useFormValidation = () => {
 
       return { isValid, errors }
     },
-    [validateField, VALIDATION_RULES],
+    [validateField, VALIDATION_RULES, activeFields],
   )
 
   const updateValidation = useCallback(

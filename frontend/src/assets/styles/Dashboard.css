@@ -1,14 +1,7 @@
-.dashboard-container {
-  @apply min-h-screen w-full p-8;
-  background: #1a1b26;
-}
 .dashboard {
   @apply w-full relative mx-auto my-0;
 }
-.dashboard-error {
-  @apply flex justify-center items-center min-h-screen text-[white] text-[1.2rem];
-  background: #1a1b26;
-}
+
 .players-management {
   @apply mb-8 p-6 rounded-2xl;
   background: rgba(255, 255, 255, 0.05);
@@ -47,18 +40,14 @@
   @apply border border-solid border-[rgba(44,62,80,0.3)];
   background: rgba(44, 62, 80, 0.2);
 }
-.player-item-avatar {
-  @apply w-10 h-10 rounded-[50%];
-}
+
 .player-item-info {
   @apply flex flex-col gap-1;
 }
 .player-item-name {
   @apply text-[white] font-medium;
 }
-.player-item-points {
-  @apply text-[rgba(255,255,255,0.6)] text-sm;
-}
+
 .welcome-header {
   @apply mb-8;
 }
@@ -172,12 +161,10 @@
 }
 
 .recent-matches-section {
-  @apply border p-6 rounded-2xl border-solid border-[rgba(255,255,255,0.1)];
+  @apply p-6 rounded-2xl;
   background: rgba(255, 255, 255, 0.05);
 }
-.recent-matches-section h2 {
-  @apply text-[white] text-xl font-semibold mb-6;
-}
+
 .matches-list {
   @apply flex flex-col gap-3;
 }
@@ -245,52 +232,6 @@
   background: rgba(255, 255, 255, 0.1);
 }
 
-.profile-section {
-  @apply p-6 rounded-2xl;
-  background: rgba(255, 255, 255, 0.05);
-}
-.profile-actions {
-  @apply mt-4;
-}
-.edit-form {
-  @apply flex gap-4 mt-4;
-}
-.edit-form input {
-  @apply flex-1 border text-[white] p-2 rounded-lg border-solid border-[rgba(255,255,255,0.2)];
-  background: rgba(255, 255, 255, 0.1);
-}
-.edit-form button,
-.action-buttons button {
-  @apply text-[white] cursor-pointer transition-all duration-[0.3s] ease-[ease] px-4 py-2 rounded-lg border-[none];
-  background: rgba(255, 255, 255, 0.1);
-}
-.edit-form button:hover,
-.action-buttons button:hover {
-  background: rgba(255, 255, 255, 0.2);
-}
-.logout-button {
-  @apply flex items-center gap-2 border text-[white] text-[0.9rem] cursor-pointer transition-all duration-[0.3s] ease-[ease] px-5 py-3 rounded-xl border-solid border-[rgba(255,255,255,0.2)] hover:-translate-y-px;
-  background: rgba(255, 255, 255, 0.1);
-}
-.logout-button:hover {
-  background: rgba(255, 255, 255, 0.15);
-}
-.logout-button.confirm {
-  @apply text-[#FFA5A5] animate-[pulse_1.5s_infinite] border-[rgba(229,62,62,0.3)];
-  background: rgba(229, 62, 62, 0.1);
-}
-.logout-button.confirm:hover {
-  background: rgba(229, 62, 62, 0.2);
-}
-.logout-button svg {
-  @apply transition-transform duration-[0.3s] ease-[ease];
-}
-.logout-button:hover svg {
-  @apply translate-x-0.5;
-}
-.logout-button span {
-  @apply whitespace-nowrap;
-}
 .online-status {
   @apply absolute w-2.5 h-2.5 bg-[#4AE44A] shadow-[0_0_0_2px_rgba(74,228,74,0.3)] animate-[pulse_2s_infinite] rounded-[50%] border-2 border-solid border-[#1E1E2E] right-0 bottom-0;
 }
@@ -318,11 +259,8 @@
   @apply text-[0.9rem];
 }
 .top-players-section {
-  @apply mb-8 p-6 rounded-2xl;
+  @apply p-6 rounded-2xl;
   background: rgba(255, 255, 255, 0.05);
-}
-.top-players-section h2 {
-  @apply text-white text-sm uppercase tracking-wider mt-0 mb-5 mx-0 pl-2;
 }
 
 @keyframes pulse {
@@ -448,20 +386,6 @@
 }
 .error-message {
   @apply text-[#ff4d4d] text-sm block mt-2;
-}
-.welcome-message {
-  @apply border text-center animate-[slideDown_0.3s_ease-out] mb-8 p-6 rounded-2xl border-solid border-[rgba(74,226,175,0.2)];
-  background: linear-gradient(
-    45deg,
-    rgba(74, 226, 175, 0.1),
-    rgba(53, 189, 141, 0.1)
-  );
-}
-.welcome-message h2 {
-  @apply text-[#4AE2AF] text-2xl mb-2;
-}
-.welcome-message p {
-  @apply text-[rgba(255,255,255,0.8)] text-base;
 }
 
 @keyframes slideDown {

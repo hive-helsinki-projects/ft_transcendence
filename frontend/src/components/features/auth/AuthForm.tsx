@@ -22,11 +22,6 @@ export const AuthForm: React.FC<AuthFormProps> = ({
   buttonText,
   loadingText,
 }) => {
-  // Form state
-  const [formData, setFormData] = useState<AuthFormData>({
-    username: '',
-    password: '',
-  })
   const t = useTranslate()
 
   // Default fields with translations
@@ -41,8 +36,17 @@ export const AuthForm: React.FC<AuthFormProps> = ({
     { name: 'password', type: 'password', placeholder: 'Password' },
   ]
 
-  // Form validation
-  const { validation, updateValidation } = useFormValidation()
+  // Form state - initialize with all possible fields
+  const [formData, setFormData] = useState<AuthFormData>({
+    username: '',
+    password: '',
+    email: '',
+    confirmPassword: '',
+  })
+
+  // Form validation - only validate fields that are actually in the form
+  const activeFieldNames = formFields.map(field => field.name)
+  const { validation, updateValidation } = useFormValidation(activeFieldNames)
 
   /**
    * Handles input changes and updates form validation
