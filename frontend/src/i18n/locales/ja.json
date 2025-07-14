@@ -1,12 +1,12 @@
 {
   "hero": {
-    "hero.title": "ピン・ポン・プレイ！",
-    "hero.subtitle": "Level Up Your Ping Pong Skills",
-    "hero.description": "Smash, spin, and dominate the table. Prove you are the ultimate paddle master."
+    "title": "Ping. Pong. Play!",
+    "subtitle": "卓球スキルをレベルアップしよう",
+    "description": "スマッシュ、スピン、そのラケットで卓球台を支配せよ。君こそ最強の卓球マスター"
   },
 
   "auth": {
-    "title": "ピン・ポン・プレイ！",
+    "title": "試合を始めよう！",
     "username": "ユーザーネーム",
     "usernameRequired": "ユーザーネームは必須です",
     "password": "パスワード",
@@ -14,7 +14,7 @@
     "signIn": "サインイン",
     "signingIn": "サインイン中...",
     "loginWithGoogle": "Googleでサインイン",
-    "dontHaveAccount": "アカウントを持っていませんか？",
+    "dontHaveAccount": "アカウントをお持ちでない方",
     "registerHere": "ここで登録",
     "register": "登録",
     "registering": "登録中...",
@@ -23,7 +23,7 @@
     "emailRequired": "メールアドレスは必須です",
     "createAPassword": "パスワードを作成",
     "confirmPassword": "パスワードを確認",
-    "alreadyHaveAccount": "アカウントを持っていますか？",
+    "alreadyHaveAccount": "すでにアカウントをお持ちですか？",
     "signInHere": "ここでサインイン",
     "logout": "ログアウト",
     "clickAgainToConfirm": "もう一度クリックして確認",
@@ -295,7 +295,7 @@
 
   "footer": {
     "developers": "開発者",
-    "madeWithLove": "❤️によって作成されたピンポン愛好家のためのもの",
-    "allRightsReserved": "すべての権利は保留されています"
+    "madeWithLove": "卓球を愛するすべての人へ❤️を込めて",
+    "allRightsReserved": "無断転載を禁じます"
   }
 }
