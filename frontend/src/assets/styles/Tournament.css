@@ -4,10 +4,10 @@
 .tournament-header {
   @apply flex justify-between items-center mb-8;
 }
-.tournament-header h1 {
-  @apply text-[2rem] text-[color:var(--text-primary)] m-0;
-}
 
+.tournament-winner {
+  @apply bg-white/5 rounded-lg p-4 mb-6 inline-block;
+}
 .error-message {
   @apply bg-[color:var(--error-bg)] text-[color:var(--error-text)] mb-8 p-4 rounded-lg;
 }

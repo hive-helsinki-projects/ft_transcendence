@@ -145,12 +145,12 @@ export const TournamentPage: React.FC = () => {
             </div>
             <div className="tournament-round-info">
               <h2>🏆 {t('Tournament Completed')}</h2>
-              <p>
+              <p className="tournament-winner">
                 {t('Winner')}:{' '}
                 {userPlayers.find((u) => u.id === tournament.winner_id)
                   ?.display_name || `${t('Player')} ${tournament.winner_id ?? 'N/A'}`}
               </p>
-              <p>{t('tournament.noActive')}</p>
+              <p className = "mb-4">{t('tournament.noActive')}</p>
               <button
                 onClick={() => navigate('/dashboard')}
                 className="btn-primary"
