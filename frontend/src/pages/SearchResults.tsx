@@ -46,10 +46,10 @@ export const SearchResults: React.FC = () => {
   return (
     <div className="search-results">
       <h1 className="search-results-title">
-        {query ? `Search Results for "${query}"` : t('All Users')}
+        {query ? t('Search Results for', { query }) : t('All Users')}
       </h1>
       <p className="search-results-gray-text">
-        {filteredUsers.length} {filteredUsers.length === 1 ? t('user') : t('users')} found
+        {filteredUsers.length} {filteredUsers.length === 1 ? t('user') : t('users')} {t('found')}
       </p>
 
     {filteredUsers.length > 0 ? (
@@ -58,7 +58,7 @@ export const SearchResults: React.FC = () => {
             <div key={user.id} className="search-result-item">
              <div>
                <span className="search-results h2">{user.username}</span>
-               <span className="search-results-gray-text">User ID: {user.id}</span>
+               <span className="search-results-gray-text">{t('User ID')}: {user.id}</span>
              </div>
              <button className="btn-primary" onClick={() => handleClick(user.id)}>{t('Show Profile')}</button>
             </div>
@@ -66,7 +66,7 @@ export const SearchResults: React.FC = () => {
       </div>
       ) : (
          <div>
-           <p>{t('No results found for')} "{query}"</p>
+           <p>{t('No results found for', { query })}</p>
          </div>
       )}
     </div>

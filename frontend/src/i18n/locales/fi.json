@@ -43,6 +43,14 @@
 
   "Search": "Etsi",
   "Search for a user": "Etsi käyttäjää",
+  "Search Results for": "Search Results for \"{{query}}\"",
+  "All Users": "All Users",
+  "No results found for": "No results found for \"{{query}}\"",
+  "User ID": "User ID",
+  "user": "user",
+  "users": "users",
+  "found": "found",
+  "Show Profile": "Show Profile",
 
   "Your Players": "Pelaajasi",
   "Delete player": "Poista pelaaja",
@@ -107,6 +115,7 @@
   "Winner": "Voittaja",
   "Please rotate your device to landscape": "Käännä laite vaakasuoraan",
 
+  "Game Stats": "Game Stats",
   "Player Stats": "Pelaajan tilastot",
   "Select a player": "Valitse pelaaja",
   "stats": {

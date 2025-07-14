@@ -43,6 +43,14 @@
 
   "Search": "検索 ",
   "Search for a user": "ユーザーを検索",
+  "Search Results for": "検索結果：「{{query}}」",
+  "All Users": "すべてのユーザー",
+  "No results found for": "「{{query}}」に一致する結果は見つかりませんでした",
+  "User ID": "ユーザーID",
+  "user": "ユーザー",
+  "users": "ユーザー",
+  "found": "が見つかりました",
+  "Show Profile": "プロフィールを表示",
 
   "Your Players": "あなたのプレイヤー",
   "Delete player": "プレイヤーを削除",
@@ -107,6 +115,7 @@
   "Winner": "勝者",
   "Please rotate your device to landscape": "デバイスを横向きにしてください",
 
+  "Game Stats": "試合統計",
   "Player Stats": "プレイヤー統計",
   "Select a player": "プレイヤーを選択",
   "stats": {
