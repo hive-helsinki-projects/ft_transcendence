@@ -7,7 +7,7 @@ import { useTranslate } from '@hooks/index'
 interface RawPlayer {
   id: number
   display_name: string
-  avatar?: string
+  avatar_url?: string
   wins?: number
   losses?: number
   isActive?: boolean
@@ -27,8 +27,8 @@ export const useUserPlayers = () => {
           id: r.id,
           display_name: r.display_name,
           // prepend backend host, fallback to placeholder-avatar based on id index
-          avatar: r.avatar
-            ? `${API_URL}${r.avatar}`
+          avatar: r.avatar_url
+            ? `${API_URL}${r.avatar_url}`
             : `${API_URL}/uploads/placeholder-avatar${(r.id % 4) + 1}.png`,
           isActive: r.isActive ?? false,
           points: r.points ?? 0,
@@ -54,8 +54,8 @@ export const useUserPlayers = () => {
       const mapped = rawPlayers.map((r) => ({
         id: r.id,
         display_name: r.display_name,
-        avatar: r.avatar
-          ? `${API_URL}${r.avatar}`
+        avatar: r.avatar_url
+          ? `${API_URL}${r.avatar_url}`
           : `${API_URL}/uploads/placeholder-avatar${(r.id % 4) + 1}.png`,
         isActive: r.isActive ?? false,
         points: r.points ?? 0,
@@ -81,8 +81,8 @@ export const useUserPlayers = () => {
       const mapped = rawPlayers.map((r) => ({
         id: r.id,
         display_name: r.display_name,
-        avatar: r.avatar
-          ? `${API_URL}${r.avatar}`
+        avatar: r.avatar_url
+          ? `${API_URL}${r.avatar_url}`
           : `${API_URL}/uploads/placeholder-avatar${(r.id % 4) + 1}.png`,
         isActive: r.isActive ?? false,
         points: r.points ?? 0,

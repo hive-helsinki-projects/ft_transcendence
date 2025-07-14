@@ -260,7 +260,7 @@ export const QuickPlay: React.FC<QuickPlayProps> = ({ userPlayers }) => {
               </button>
               <button
                 onClick={() => setShowModalTourn(false)}
-                className="cancel-button"
+                className="btn-secondary"
               >
                 {t('Cancel')}
               </button>
