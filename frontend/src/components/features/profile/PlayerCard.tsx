@@ -5,16 +5,20 @@ import type { UserPlayer } from '@/types/dashboard'
 import '@assets/styles/Profile.css'
 
 interface PlayerCardProps {
-  player: UserPlayer
+  player: UserPlayer & { avatar_url?: string }
 }
 
 export const PlayerCard: React.FC<PlayerCardProps> = ({ player }) => {
   const t = useTranslate()
 
+  // Handle both avatar (from Dashboard) and avatar_url (from ProfilePage backend)
+  const avatarUrl = player.avatar || player.avatar_url || '/placeholder-avatar1.png'
+  const fullAvatarUrl = avatarUrl.startsWith('http') ? avatarUrl : `${API_URL}${avatarUrl}`
+
   return (
     <div className="player-card">
       <img
-        src={player.avatar ? `${API_URL}${player.avatar}` : '/placeholder-avatar1.png'}
+        src={fullAvatarUrl}
         alt={player.display_name}
         className="player-avatar"
       />
