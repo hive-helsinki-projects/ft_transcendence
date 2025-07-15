@@ -35,6 +35,9 @@
     "confirmPasswordRequired": "Vahvistus salasana on pakollinen",
     "confirmPasswordMinLength": "Vahvistus salasana on oltava vähintään 6 merkkiä pitkä",
     "confirmPasswordMatch": "Salasanat eivät täsmää",
+    "success": {
+      "login": "Login successful! Redirecting to dashboard..."
+    },
     "errors": {
       "usernameOrEmailExists": "Käyttäjätunnus tai sähköposti on jo olemassa",
       "serverError": "Palvelinvirhe. Yritä uudelleen myöhemmin",
@@ -323,5 +326,7 @@
     "developers": "Kehittäjät",
     "madeWithLove": "Tehty ❤️ pingpong-harrastajille",
     "allRightsReserved": "Kaikki oikeudet pidätetään"
-  }
+  },
+
+  "networkError": "Network Error: Please check your internet connection"
 }

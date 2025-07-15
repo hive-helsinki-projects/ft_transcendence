@@ -35,6 +35,9 @@
     "confirmPasswordRequired": "パスワード確認は必須です",
     "confirmPasswordMinLength": "パスワード確認は6文字以上で入力してください",
     "confirmPasswordMatch": "パスワードが一致しません",
+    "success": {
+      "login": "ログイン成功！ダッシュボードに移動中..."
+    },
     "errors": {
       "usernameOrEmailExists": "ユーザー名またはメールアドレスは既に使用されています",
       "serverError": "サーバーエラーが発生しました。もう一度お試しください",
@@ -323,5 +326,7 @@
     "developers": "開発者",
     "madeWithLove": "卓球を愛するすべての人へ❤️を込めて",
     "allRightsReserved": "無断転載を禁じます"
-  }
+  },
+
+  "networkError": "ネットワークエラー：インターネット接続を確認してください"
 }

@@ -30,9 +30,8 @@ export const VALIDATION_RULES = {
   },
 } as const
 
-// These are the messages and timing values used throughout authentication
 export const AUTH_MESSAGES = {
-  SUCCESS: 'Login successful! Redirecting to dashboard...',
+  SUCCESS: 'auth.success.login',
   ERROR: {
     DEFAULT: 'Login failed. Please try again.',
   },

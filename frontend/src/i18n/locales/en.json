@@ -35,6 +35,9 @@
     "confirmPasswordRequired": "Password confirmation is required",
     "confirmPasswordMinLength": "Password confirmation must be at least 6 characters",
     "confirmPasswordMatch": "Passwords do not match",
+    "success": {
+      "login": "Login successful! Redirecting to dashboard..."
+    },
     "errors": {
       "usernameOrEmailExists": "Username or email already exists",
       "serverError": "Server error. Please try again later",
@@ -323,6 +326,8 @@
     "developers": "Developers",
     "madeWithLove": "Made with ❤️ for ping pong enthusiasts",
     "allRightsReserved": "All rights reserved"
-  }
+  },
+
+  "networkError": "Network Error: Please check your internet connection"
 }
 

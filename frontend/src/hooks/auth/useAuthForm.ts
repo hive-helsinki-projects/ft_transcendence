@@ -49,7 +49,7 @@ export const useAuthForm = (): UseAuthFormReturn => {
    * Sets the success message that will be displayed to the user
    */
   const handleAuthSuccess = () => {
-    setSuccessMessage(AUTH_MESSAGES.SUCCESS)
+    setSuccessMessage(t(AUTH_MESSAGES.SUCCESS))
   }
 
   // Return all state values and functions needed for authentication

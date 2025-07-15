@@ -1,4 +1,5 @@
 import axios, { AxiosError, InternalAxiosRequestConfig } from 'axios'
+import i18next from 'i18next'
 
 interface ErrorResponse {
   message?: string
@@ -45,7 +46,7 @@ api.interceptors.response.use(
     if (!error.response) {
       console.error('Network Error:', error.message)
       return Promise.reject(
-        new Error('Network Error: Please check your internet connection'),
+        new Error(i18next.t('networkError')),
       )
     }
 
