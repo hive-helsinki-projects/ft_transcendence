@@ -12,7 +12,7 @@ const PADDLE_WIDTH = 10
 const PADDLE_HEIGHT = 100
 const BALL_RADIUS = 8
 const PADDLE_SPEED = 7
-const MAX_SCORE = 2
+const MAX_SCORE = 11
 const PADDLE_ROUNDING = 4
 
 let trailLength = 20
@@ -69,8 +69,8 @@ export const Game: React.FC = () => {
   const p2Down = useRef(false)
 
   const canvasRef = useRef<HTMLCanvasElement>(null)
-  const ballSpeedX = useRef(4)
-  const ballSpeedY = useRef(4)
+  const ballSpeedX = useRef(6)
+  const ballSpeedY = useRef(6)
 
   const location = useLocation()
   const navigate = useNavigate()
@@ -136,7 +136,7 @@ export const Game: React.FC = () => {
     function resetBall() {
       ballX = CANVAS_WIDTH / 2
       ballY = CANVAS_HEIGHT / 2
-      ballSpeedX.current = (Math.random() > 0.5 ? 1 : -1) * 3
+      ballSpeedX.current = (Math.random() > 0.5 ? 1 : -1) * 6
       ballSpeedY.current =
         (Math.random() > 0.5 ? 1 : -1) * (Math.random() * 4 + 2)
     }

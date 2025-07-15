@@ -36,14 +36,14 @@
     "confirmPasswordMinLength": "Vahvistus salasana on oltava vähintään 6 merkkiä pitkä",
     "confirmPasswordMatch": "Salasanat eivät täsmää",
     "success": {
-      "login": "Login successful! Redirecting to dashboard..."
+      "login": "Kirjautuminen onnistui! Ohjataan Dashboardiin..."
     },
     "errors": {
       "usernameOrEmailExists": "Käyttäjätunnus tai sähköposti on jo olemassa",
       "serverError": "Palvelinvirhe. Yritä uudelleen myöhemmin",
       "2faNotSupported": "2FA rekisteröitymisen jälkeen ei tuettu",
       "2faNotSetup": "2FA ei ole asetettu",
-      "invalid2faCode": "Virheellinen 2FA-koodi", 
+      "invalid2faCode": "Virheellinen 2FA-koodi",
       "userNotFound": "Käyttäjää ei löytynyt",
       "internalServerError": "Palvelinvirhe",
       "invalidCredentials": "Käyttäjätunnus tai salasana on virheellinen",
@@ -61,14 +61,14 @@
 
   "Search": "Etsi",
   "Search for a user": "Etsi käyttäjää",
-  "Search Results for": "Search Results for \"{{query}}\"",
-  "All Users": "All Users",
-  "No results found for": "No results found for \"{{query}}\"",
-  "User ID": "User ID",
-  "user": "user",
-  "users": "users",
-  "found": "found",
-  "Show Profile": "Show Profile",
+  "Search Results for": "Tulokset \"{{query}}\"",
+  "All Users": "Kaikki Käyttäjät",
+  "No results found for": "Ei tuloksia \"{{query}}\"",
+  "User ID": "Käyttäjä ID",
+  "user": "Käyttäjä",
+  "users": "Käyttäjät",
+  "found": "Loytyi",
+  "Show Profile": "Näytä profiili",
 
   "Your Players": "Pelaajasi",
   "Delete player": "Poista pelaaja",
@@ -133,7 +133,7 @@
   "Winner": "Voittaja",
   "Please rotate your device to landscape": "Käännä laite vaakasuoraan",
 
-  "Game Stats": "Game Stats",
+  "Game Stats": "Peli tulokset",
   "Player Stats": "Pelaajan tilastot",
   "Select a player": "Valitse pelaaja",
   "stats": {
@@ -210,7 +210,7 @@
 
   "Help Center": "Apu Keskus",
   "help.description": "Vastaukset usein kysyttyihin kysymyksiin.",
-  
+
   "Game Rules": "Pelin Säännöt",
   "rules": {
     "basic": {
@@ -310,7 +310,7 @@
     "confirmCancelRequest": "Haluatko varmasti peruuttaa kaveripyynnön käyttäjälle {{username}}?",
     "confirmDenyRequest": "Haluatko varmasti hylätä kaveripyynnön käyttäjältä {{username}}?"
   },
-  
+
   "profile": {
   "title": "{{username}} profiili!",
   "userNotFound": "Käyttäjää ei löytynyt.",
@@ -328,5 +328,5 @@
     "allRightsReserved": "Kaikki oikeudet pidätetään"
   },
 
-  "networkError": "Network Error: Please check your internet connection"
+  "networkError": "Yhteysvirhe. Tarkista internet-yhteytesi ja yritä uudelleen."
 }
